@@ -19,12 +19,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+Route::group(['middleware' => 'guest'], function () {
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('registerPost', [AuthController::class, 'registerPost'])->name('registerPost');
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'loginPost'])->name('login');
+});
 
-
+Route::group(['middleware' => 'auth'], function () {
 Route::get('/home', [AdminController::class, 'index']);
 Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
+});

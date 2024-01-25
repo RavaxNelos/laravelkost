@@ -11,8 +11,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container">
-            <a class="navbar-brand" href="#">Navbar</a>
+        <div class="container px-3">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -31,8 +30,8 @@
         </div>
     </nav>
 
-    <div class="container">
-        <h1>Hello Admin {{ Auth:user()->name }}</h1>
+    <div class="container px-3">
+        <h1>Hello World, {{ Auth::user()->name }}</h1>
     </div>
 
 </body>

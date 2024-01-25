@@ -1,11 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=KoHo:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Lemon&family=Oleo+Script:wght@400;700&family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Pacifico&family=Permanent+Marker&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sniglet:wght@400;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Brygada+1918:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Caveat:wght@400;500;600;700&family=KoHo:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Lemon&family=Oleo+Script:wght@400;700&family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Pacifico&family=Permanent+Marker&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sniglet:wght@400;800&display=swap');
+
 
 
 @media screen and (max-width: 600px) {
 
     .mt-6 {
-        padding-top: 60px !important;
+        padding-top: 95px !important;
     }
+
+    i.bi.bi-eye-slash {}
 }
 
 body {
@@ -19,30 +22,24 @@ body {
 .text-indah {
     color: #000000;
     font-size: 14px;
-    font-weight: bold;
-    margin-top: 10px;
-
+    font-weight: 400;
+    margin-bottom: 10px;
 }
 
 .text-indah a {
-    text-decoration: none;
-
+    font-style: italic;
     transition: color 0.3s;
 
 }
 
 .text-indah a:hover {
-    color: #0056b3;
+    color: rgba(255, 255, 255, 0.8);
 
-}
-
-.card-header {
-    background: linear-gradient(to right, #ffffff, #f2f2f2);
 }
 
 h1.card-title {
-    font-size: 22px;
-    margin-top: 5px;
+    font-size: 20px;
+    margin-top: 20px;
     font-family: Poppins;
     font-weight: 800;
 }
@@ -54,9 +51,21 @@ h1.card-title {
 }
 
 .mt-6 {
-    padding-top: 30px;
+    padding-top: 60px;
+    padding-bottom: 60px;
 }
 
 .form-control {
     font-size: 13px !important;
+}
+
+button.btn-register {
+    background: #dcdcdc;
+    color: #000000;
+}
+
+button.btn-register:hover {
+    background: rgba(0, 0, 0, 0.8);
+    color: #ffffff;
+    transition: 0.5s;
 }
