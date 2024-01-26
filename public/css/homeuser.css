@@ -1,0 +1,23 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.header {
+    padding: 10px;
+}
+
+.header .header-atas {
+    color: #808080;
+    font-size: 12px;
+}
+
+.header .header-bawah {
+    margin-top: -20px;
+    font-size: 16px;
+    font-weight: bold;
+}

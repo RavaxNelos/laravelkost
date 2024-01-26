@@ -31,6 +31,11 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             /* Bayangan lembut */
         }
+
+        input[type=submit]:disabled {
+            color: black;
+            background-color: #ffffff5d;
+        }
     </style>
 </head>
 
@@ -58,22 +63,23 @@
                             @csrf
                             <div class="mb-2">
                                 <label for="name" class="form-label" style="font-weight: 500; margin-left: 10px;">Masukkan nama</label>
-                                <input type="text" name="name" class="form-control" id="email" placeholder="Masukkan nama anda" style="border-radius: 50px; background-color: #ffffff; margin-top: -5px; font-style: italic;">
+                                <input type="text" name="name" class="form-control required" id="email" placeholder="Masukkan nama anda" onkeyup="enableSubmit()" style="border-radius: 50px; background-color: #ffffff; margin-top: -5px; font-style: italic;">
                             </div>
                             <div class="mb-2" style="position: relative">
                                 <label for="password" class="form-label" style="font-weight: 500; margin-left: 10px;">Password</label>
-                                <input type="password" name="password" class="form-control" id="password" placeholder="Masukkan password anda" style="border-radius: 50px; background-color: #ffffff; margin-top: -5px; font-style: italic;">
+                                <input type="password" name="password" class="form-control required" id="password" placeholder="Masukkan password anda" onkeyup="enableSubmit()" style="border-radius: 50px; background-color: #ffffff; margin-top: -5px; font-style: italic;">
                                 <i class="bi bi-eye-slash" id="togglePassword" style="position: absolute; font-size: 20px; right: 10px; top: 31px; cursor: pointer;"></i>
                             </div>
                             <div class="mb-3">
                                 <div class="text-center">
-                                    <button class="btn btn-dark btn-login" style="border-radius: 50px; width: 170px;">Masuk</button>
+                                    <input type="submit" class="btn btn-dark" style="border-radius: 50px; width: 170px; margin-top: 20px;" value="Masuk" disabled>
                                 </div>
                             </div>
                         </form>
                         <p class="text-center text-indah">Belum punya akun? <a href="{{ route('register') }}">Daftar di sini</a></p>
                     </div>
                 </div>
+                <p class="text-center" style="color: #fff; font-size: 16px; margin-top: 4rem;">Idea by Burning Room Technology</p>
             </div>
         </div>
     </div>
@@ -92,6 +98,21 @@
                 togglePasswordButton.classList.remove("bi-eye");
             }
         });
+
+        function enableSubmit() {
+            let inputs = document.getElementsByClassName('required'); // Enter your class name for a required field, this should also be reflected within your form fields.
+            let btn = document.querySelector('input[type="submit"]');
+            let isValid = true;
+            for (var i = 0; i < inputs.length; i++) {
+                let changedInput = inputs[i];
+                if (changedInput.value.trim() === "" || changedInput.value === null) {
+                    changedInput.classList.remove("disabled");
+                    isValid = false;
+                    break;
+                }
+            }
+            btn.disabled = !isValid;
+        }
     </script>
 </body>
 

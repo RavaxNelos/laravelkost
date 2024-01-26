@@ -69,3 +69,7 @@ button.btn-register:hover {
     color: #ffffff;
     transition: 0.5s;
 }
+
+input:disabled {
+    color: black;
+}

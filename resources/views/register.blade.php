@@ -23,6 +23,11 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             /* Bayangan lembut */
         }
+
+        input[type=submit]:disabled {
+            color: black;
+            background-color: #ffffff5d;
+        }
     </style>
 </head>
 
@@ -39,7 +44,7 @@
                                 {{ Session::get('success') }}
                             </div>
                         @endif
-                        <form action="{{ route('registerPost') }}" method="POST" id="registerForm">
+                        <form action="{{ route('registerPost') }}" method="POST">
                             @csrf
                             <div class="mb-2">
                                 <label for="name" class="form-label" style="font-weight: 500; margin-left: 10px;">Nama</label>
@@ -66,7 +71,7 @@
                             </div>
                             <div class="mb-3">
                                 <div class="text-center">
-                                    <button class="btn btn-dark btn-register" style="border-radius: 50px; width: 170px; margin-top: -1px;">Daftar</button>
+                                    <input type="submit" class="btn btn-dark" style="border-radius: 50px; width: 170px; margin-top: -1px;" value="Daftar" disabled>
                                 </div>
                             </div>
                         </form>
@@ -128,33 +133,48 @@
         });
 
         function enableSubmit() {
-
-            var requireds = document.getElementById("registerForm").querySelectorAll("[required]");
+            let inputs = document.getElementsByClassName('required'); // Enter your class name for a required field, this should also be reflected within your form fields.
             let btn = document.querySelector('input[type="submit"]');
             let isValid = true;
-
-            for (var i = 0; i < requireds.length; i++) {
-
-                let changedInput = requireds[i];
-
-                if (changedInput.type == "checkbox") {
-                    if (changedInput.checked === false) {
-                        isValid = false;
-                        break;
-                    }
-                } else {
-                    if (changedInput.value.trim() === "" || changedInput.value === null) {
-                        changedInput.classList.remove("bg-white");
-                        isValid = false;
-                        break;
-                    } else {
-                        changedInput.classList.add("bg-white");
-                        changedInput.classList.add("text-light-emphasis");
-                    }
+            for (var i = 0; i < inputs.length; i++) {
+                let changedInput = inputs[i];
+                if (changedInput.value.trim() === "" || changedInput.value === null) {
+                    changedInput.classList.remove("disabled");
+                    isValid = false;
+                    break;
                 }
             }
             btn.disabled = !isValid;
         }
+
+        // function enableSubmit() {
+
+        //     var requireds = document.getElementById("registerForm").querySelectorAll("[required]");
+        //     let btn = document.querySelector('button[type="submit"]');
+        //     let isValid = true;
+
+        //     for (var i = 0; i < requireds.length; i++) {
+
+        //         let changedInput = requireds[i];
+
+        //         if (changedInput.type == "checkbox") {
+        //             if (changedInput.checked === false) {
+        //                 isValid = false;
+        //                 break;
+        //             }
+        //         } else {
+        //             if (changedInput.value.trim() === "" || changedInput.value === null) {
+        //                 changedInput.classList.remove("disabled");
+        //                 isValid = false;
+        //                 break;
+        //             } else {
+        //                 changedInput.classList.add("disabled");
+        //                 changedInput.classList.add("text-light-emphasis");
+        //             }
+        //         }
+        //     }
+        //     btn.disabled = !isValid;
+        // }
     </script>
 </body>
 
