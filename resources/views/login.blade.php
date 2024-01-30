@@ -79,7 +79,8 @@
                         <p class="text-center text-indah">Belum punya akun? <a href="{{ route('register') }}">Daftar di sini</a></p>
                     </div>
                 </div>
-                <p class="text-center" style="color: #fff; font-size: 16px; margin-top: 4rem;">Idea by Burning Room Technology</p>
+                <p class="text-center" style="color: #fff; font-size: 16px; margin-top: 6rem;">Idea by</p>
+                <p class="text-center text-primary" style="margin-top: -20px;">Burning Room Technology</p>
             </div>
         </div>
     </div>

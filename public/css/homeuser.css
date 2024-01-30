@@ -42,15 +42,25 @@ body {
 }
 
 .header img {
-    width: 110px;
+    width: 105px;
     height: 40px;
 }
 
+.search button {
+    margin-top: -4px;
+    border-radius: 50%;
+    border-color: black;
+    border-style: solid;
+    font-size: 19.8px;
+    background-color: #fff;
+}
+
 .header .header-atas {
-    color: #B0B0B0;
-    font-size: 11px;
-    font-weight: 600;
+    color: #000000;
+    font-size: 7.5px;
+    font-weight: 400;
     margin-bottom: 7px;
+    font-style: italic;
 }
 
 .header .lokasi {
@@ -62,8 +72,32 @@ body {
 .header-kanan img {
     border: 2px solid blue;
     border-radius: 50%;
-    height: 35px;
-    width: 35px;
+    height: 36px;
+    width: 36px;
+}
+
+.garis-pembatas-1 {
+    border-top: 4px solid #ccc;
+    margin-top: -17px;
+    /* Sesuaikan sesuai kebutuhan */
+    margin-bottom: 10px;
+    /* Sesuaikan sesuai kebutuhan */
+}
+
+.garis-pembatas-2 {
+    border-top: 15px solid #ccc;
+    margin-top: 10px;
+    /* Sesuaikan sesuai kebutuhan */
+    margin-bottom: 5px;
+    /* Sesuaikan sesuai kebutuhan */
+}
+
+.garis-pembatas-3 {
+    border-top: 15px solid #ccc;
+    margin-top: 10px;
+    /* Sesuaikan sesuai kebutuhan */
+    margin-bottom: 1px;
+    /* Sesuaikan sesuai kebutuhan */
 }
 
 .form-control:focus {
@@ -78,4 +112,53 @@ img {
     user-select: none;
     -webkit-user-drag: none;
     -webkit-touch-callout: none;
+}
+
+.button-container {
+    position: absolute !important;
+    top: 250px;
+    left: 35px;
+    display: flex;
+    gap: 10px;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-kost-bulanan {
+    background-color: #3498db !important;
+    color: #fff !important;
+    cursor: pointer;
+}
+
+.btn-sewa-harian {
+    background-color: #e74c3c !important;
+    color: #fff !important;
+    cursor: pointer;
+}
+
+.btn.active {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.btn-area-timur-surabaya {
+    border-radius: 10px;
+    background-color: #8E82A2;
+    border-color: #800080;
+    border-style: solid;
+    color: white;
+    width: 170px;
+    height: 30px;
+    font-size: 15px;
+}
+
+.btn-kamar-kost-putra {
+    border-radius: 10px;
+    background-color: #8E82A2;
+    border-color: #800080;
+    border-style: solid;
+    color: white;
+    width: 80px;
+    height: 30px;
+    font-size: 15px;
 }
