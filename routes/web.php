@@ -18,6 +18,9 @@ use App\Http\Controllers\AuthController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/detail', function () {
+    return view('detail.index');
+});
 
 Route::group(['middleware' => 'guest'], function () {
 Route::get('/register', [AuthController::class, 'register'])->name('register');
