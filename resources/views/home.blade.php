@@ -56,6 +56,36 @@
         .btn:hover {
             background-color: black;
         }
+
+        .btn-like-timur {
+            background-color: rgba(255, 255, 255, 0.8) !important;
+            backdrop-filter: blur(50px) !important;
+        }
+
+        .btn-like-putra {
+            background-color: rgba(255, 255, 255, 0.8) !important;
+            backdrop-filter: blur(50px) !important;
+        }
+
+        .btn-like-putri {
+            background-color: rgba(255, 255, 255, 0.8) !important;
+            backdrop-filter: blur(50px) !important;
+        }
+
+        .btn-like-barat {
+            background-color: rgba(255, 255, 255, 0.8) !important;
+            backdrop-filter: blur(50px) !important;
+        }
+
+        .btn-like-rekomendasi {
+            background-color: rgba(255, 255, 255, 0.8) !important;
+            backdrop-filter: blur(50px) !important;
+        }
+
+        .btn-like-didekat-mu {
+            background-color: rgba(255, 255, 255, 0.8) !important;
+            backdrop-filter: blur(50px) !important;
+        }
     </style>
 </head>
 
@@ -412,13 +442,13 @@
                 <div class="splide__track">
                     <ul class="splide__list">
                         <li class="splide__slide">
-                            <img src="img/banner1.png" style="border-radius: 0px; width: 334px; height: 150px; object-fit: cover;">
+                            <img src="img/banner5.png" style="border-radius: 15px; width: 334px; height: 150px; object-fit: cover;">
                         </li>
                         <li class="splide__slide">
-                            <img src="img/banner2.png" style="border-radius: 0px; width: 334px; height: 150px; object-fit: cover;">
+                            <img src="img/banner6.png" style="border-radius: 15px; width: 334px; height: 150px; object-fit: cover;">
                         </li>
                         <li class="splide__slide">
-                            <img src="img/banner3.png" style="border-radius: 0px; width: 334px; height: 150px; object-fit: cover;">
+                            <img src="img/banner7.png" style="border-radius: 15px; width: 334px; height: 150px; object-fit: cover;">
                         </li>
                     </ul>
                 </div>
@@ -444,36 +474,12 @@
                         </div>
                         <div class="row">
                             <div class="col-7 mt-2">
-                                <h3 style="font-size: 15px;" class="text-dark mb-0 fw-bold text-center">Rp. 1.000.000</h3>
+                                <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. 1.000.000</h3>
                             </div>
                             <div class="col-5 text-end">
                                 <button class="btn-kamar-kost-putra">Lihat</button>
                             </div>
                         </div>
-                        {{-- <div class="row g-3">
-                                    <div class="col-10">
-                                        <h6 class="fw-bold mb-1">Rekomendasi Rumah Kost</h6>
-                                    </div>
-                                    <div class="col-3 text-end">
-                                        <p class="mb-0"><i class="bi bi-star-fill text-warning"></i> <span class="fw-semibold">4.5</span></p>
-                                    </div>
-                                </div>
-                                <div class="row g-3 mb-3">
-                                    <div class="col-12">
-                                        <small class="mb-0 text-secondary fw-semibold"><i class="bi bi-pin-map-fill"></i> Jemur Sari, Surabaya</small>
-                                    </div>
-                                </div>
-                                <div class="row g-3">
-                                    <div class="col-2">
-                                        <p class="mb-0 fw-semibold"><i class="ri-hotel-bed-fill"></i> 2</p>
-                                    </div>
-                                    <div class="col-2">
-                                        <p class="mb-0 fw-semibold"><i class="ri-armchair-fill"></i></i> 4</p>
-                                    </div>
-                                    <div class="col-8 text-end">
-                                        <h3 class="mb-0 fw-bold">Rp. 340.000</h3>
-                                    </div>
-                                </div> --}}
                     </div>
                 </div>
                 <div x-show="filter == 'bulanan'">
@@ -484,36 +490,12 @@
                         </div>
                         <div class="row">
                             <div class="col-7 mt-2">
-                                <h3 style="font-size: 15px;" class="text-dark mb-0 fw-bold text-center">Rp. 1.500.000</h3>
+                                <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. 1.500.000</h3>
                             </div>
                             <div class="col-5 text-end">
                                 <button class="btn-kamar-kost-putra">Lihat</button>
                             </div>
                         </div>
-                        {{-- <div class="row g-3">
-                                    <div class="col-10">
-                                        <h6 class="fw-bold mb-1">Rekomendasi Rumah Kost</h6>
-                                    </div>
-                                    <div class="col-3 text-end">
-                                        <p class="mb-0"><i class="bi bi-star-fill text-warning"></i> <span class="fw-semibold">4.5</span></p>
-                                    </div>
-                                </div>
-                                <div class="row g-3 mb-3">
-                                    <div class="col-12">
-                                        <small class="mb-0 text-secondary fw-semibold"><i class="bi bi-pin-map-fill"></i> Jemur Sari, Surabaya</small>
-                                    </div>
-                                </div>
-                                <div class="row g-3">
-                                    <div class="col-2">
-                                        <p class="mb-0 fw-semibold"><i class="ri-hotel-bed-fill"></i> 2</p>
-                                    </div>
-                                    <div class="col-2">
-                                        <p class="mb-0 fw-semibold"><i class="ri-armchair-fill"></i></i> 4</p>
-                                    </div>
-                                    <div class="col-8 text-end">
-                                        <h3 class="mb-0 fw-bold">Rp. 340.000</h3>
-                                    </div>
-                                </div> --}}
                     </div>
                 </div>
                 <div x-show="filter == 'bulanan'">
@@ -524,36 +506,12 @@
                         </div>
                         <div class="row">
                             <div class="col-7 mt-2">
-                                <h3 style="font-size: 15px;" class="text-dark mb-0 fw-bold text-center">Rp. 1.750.000</h3>
+                                <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. 1.750.000</h3>
                             </div>
                             <div class="col-5 text-end">
                                 <button class="btn-kamar-kost-putra">Lihat</button>
                             </div>
                         </div>
-                        {{-- <div class="row g-3">
-                                    <div class="col-10">
-                                        <h6 class="fw-bold mb-1">Rekomendasi Rumah Kost</h6>
-                                    </div>
-                                    <div class="col-3 text-end">
-                                        <p class="mb-0"><i class="bi bi-star-fill text-warning"></i> <span class="fw-semibold">4.5</span></p>
-                                    </div>
-                                </div>
-                                <div class="row g-3 mb-3">
-                                    <div class="col-12">
-                                        <small class="mb-0 text-secondary fw-semibold"><i class="bi bi-pin-map-fill"></i> Jemur Sari, Surabaya</small>
-                                    </div>
-                                </div>
-                                <div class="row g-3">
-                                    <div class="col-2">
-                                        <p class="mb-0 fw-semibold"><i class="ri-hotel-bed-fill"></i> 2</p>
-                                    </div>
-                                    <div class="col-2">
-                                        <p class="mb-0 fw-semibold"><i class="ri-armchair-fill"></i></i> 4</p>
-                                    </div>
-                                    <div class="col-8 text-end">
-                                        <h3 class="mb-0 fw-bold">Rp. 340.000</h3>
-                                    </div>
-                                </div> --}}
                     </div>
                 </div>
                 <div x-show="filter == 'bulanan'">
@@ -564,36 +522,12 @@
                         </div>
                         <div class="row">
                             <div class="col-7 mt-2">
-                                <h3 style="font-size: 15px;" class="text-dark mb-0 fw-bold text-center">Rp. 2.000.000</h3>
+                                <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. 2.000.000</h3>
                             </div>
                             <div class="col-5 text-end">
                                 <button class="btn-kamar-kost-putra">Lihat</button>
                             </div>
                         </div>
-                        {{-- <div class="row g-3">
-                                    <div class="col-10">
-                                        <h6 class="fw-bold mb-1">Rekomendasi Rumah Kost</h6>
-                                    </div>
-                                    <div class="col-3 text-end">
-                                        <p class="mb-0"><i class="bi bi-star-fill text-warning"></i> <span class="fw-semibold">4.5</span></p>
-                                    </div>
-                                </div>
-                                <div class="row g-3 mb-3">
-                                    <div class="col-12">
-                                        <small class="mb-0 text-secondary fw-semibold"><i class="bi bi-pin-map-fill"></i> Jemur Sari, Surabaya</small>
-                                    </div>
-                                </div>
-                                <div class="row g-3">
-                                    <div class="col-2">
-                                        <p class="mb-0 fw-semibold"><i class="ri-hotel-bed-fill"></i> 2</p>
-                                    </div>
-                                    <div class="col-2">
-                                        <p class="mb-0 fw-semibold"><i class="ri-armchair-fill"></i></i> 4</p>
-                                    </div>
-                                    <div class="col-8 text-end">
-                                        <h3 class="mb-0 fw-bold">Rp. 340.000</h3>
-                                    </div>
-                                </div> --}}
                     </div>
                 </div>
                 <div x-show="filter == 'bulanan'">
@@ -604,36 +538,12 @@
                         </div>
                         <div class="row">
                             <div class="col-7 mt-2">
-                                <h3 style="font-size: 15px;" class="text-dark mb-0 fw-bold text-center">Rp. 2.500.000</h3>
+                                <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. 2.500.000</h3>
                             </div>
                             <div class="col-5 text-end">
                                 <button class="btn-kamar-kost-putra">Lihat</button>
                             </div>
                         </div>
-                        {{-- <div class="row g-3">
-                                    <div class="col-10">
-                                        <h6 class="fw-bold mb-1">Rekomendasi Rumah Kost</h6>
-                                    </div>
-                                    <div class="col-3 text-end">
-                                        <p class="mb-0"><i class="bi bi-star-fill text-warning"></i> <span class="fw-semibold">4.5</span></p>
-                                    </div>
-                                </div>
-                                <div class="row g-3 mb-3">
-                                    <div class="col-12">
-                                        <small class="mb-0 text-secondary fw-semibold"><i class="bi bi-pin-map-fill"></i> Jemur Sari, Surabaya</small>
-                                    </div>
-                                </div>
-                                <div class="row g-3">
-                                    <div class="col-2">
-                                        <p class="mb-0 fw-semibold"><i class="ri-hotel-bed-fill"></i> 2</p>
-                                    </div>
-                                    <div class="col-2">
-                                        <p class="mb-0 fw-semibold"><i class="ri-armchair-fill"></i></i> 4</p>
-                                    </div>
-                                    <div class="col-8 text-end">
-                                        <h3 class="mb-0 fw-bold">Rp. 340.000</h3>
-                                    </div>
-                                </div> --}}
                     </div>
                 </div>
                 <div x-show="filter == 'harian'">
@@ -644,36 +554,12 @@
                         </div>
                         <div class="row">
                             <div class="col-7 mt-2">
-                                <h3 style="font-size: 15px;" class="text-dark mb-0 fw-bold text-center">Rp. 1.000.000</h3>
+                                <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. 1.000.000</h3>
                             </div>
                             <div class="col-5 text-end">
                                 <button class="btn-kamar-kost-putra">Lihat</button>
                             </div>
                         </div>
-                        {{-- <div class="row g-3">
-                                    <div class="col-10">
-                                        <h6 class="fw-bold mb-1">Rekomendasi Rumah Kost</h6>
-                                    </div>
-                                    <div class="col-3 text-end">
-                                        <p class="mb-0"><i class="bi bi-star-fill text-warning"></i> <span class="fw-semibold">4.5</span></p>
-                                    </div>
-                                </div>
-                                <div class="row g-3 mb-3">
-                                    <div class="col-12">
-                                        <small class="mb-0 text-secondary fw-semibold"><i class="bi bi-pin-map-fill"></i> Jemur Sari, Surabaya</small>
-                                    </div>
-                                </div>
-                                <div class="row g-3">
-                                    <div class="col-2">
-                                        <p class="mb-0 fw-semibold"><i class="ri-hotel-bed-fill"></i> 2</p>
-                                    </div>
-                                    <div class="col-2">
-                                        <p class="mb-0 fw-semibold"><i class="ri-armchair-fill"></i></i> 4</p>
-                                    </div>
-                                    <div class="col-8 text-end">
-                                        <h3 class="mb-0 fw-bold">Rp. 340.000</h3>
-                                    </div>
-                                </div> --}}
                     </div>
                 </div>
                 <div x-show="filter == 'harian'">
@@ -684,36 +570,12 @@
                         </div>
                         <div class="row">
                             <div class="col-7 mt-2">
-                                <h3 style="font-size: 15px;" class="text-dark mb-0 fw-bold text-center">Rp. 1.500.000</h3>
+                                <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. 1.500.000</h3>
                             </div>
                             <div class="col-5 text-end">
                                 <button class="btn-kamar-kost-putra">Lihat</button>
                             </div>
                         </div>
-                        {{-- <div class="row g-3">
-                                    <div class="col-10">
-                                        <h6 class="fw-bold mb-1">Rekomendasi Rumah Kost</h6>
-                                    </div>
-                                    <div class="col-3 text-end">
-                                        <p class="mb-0"><i class="bi bi-star-fill text-warning"></i> <span class="fw-semibold">4.5</span></p>
-                                    </div>
-                                </div>
-                                <div class="row g-3 mb-3">
-                                    <div class="col-12">
-                                        <small class="mb-0 text-secondary fw-semibold"><i class="bi bi-pin-map-fill"></i> Jemur Sari, Surabaya</small>
-                                    </div>
-                                </div>
-                                <div class="row g-3">
-                                    <div class="col-2">
-                                        <p class="mb-0 fw-semibold"><i class="ri-hotel-bed-fill"></i> 2</p>
-                                    </div>
-                                    <div class="col-2">
-                                        <p class="mb-0 fw-semibold"><i class="ri-armchair-fill"></i></i> 4</p>
-                                    </div>
-                                    <div class="col-8 text-end">
-                                        <h3 class="mb-0 fw-bold">Rp. 340.000</h3>
-                                    </div>
-                                </div> --}}
                     </div>
                 </div>
                 <div x-show="filter == 'harian'">
@@ -724,36 +586,12 @@
                         </div>
                         <div class="row">
                             <div class="col-7 mt-2">
-                                <h3 style="font-size: 15px;" class="text-dark mb-0 fw-bold text-center">Rp. 1.750.000</h3>
+                                <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. 1.750.000</h3>
                             </div>
                             <div class="col-5 text-end">
                                 <button class="btn-kamar-kost-putra">Lihat</button>
                             </div>
                         </div>
-                        {{-- <div class="row g-3">
-                                    <div class="col-10">
-                                        <h6 class="fw-bold mb-1">Rekomendasi Rumah Kost</h6>
-                                    </div>
-                                    <div class="col-3 text-end">
-                                        <p class="mb-0"><i class="bi bi-star-fill text-warning"></i> <span class="fw-semibold">4.5</span></p>
-                                    </div>
-                                </div>
-                                <div class="row g-3 mb-3">
-                                    <div class="col-12">
-                                        <small class="mb-0 text-secondary fw-semibold"><i class="bi bi-pin-map-fill"></i> Jemur Sari, Surabaya</small>
-                                    </div>
-                                </div>
-                                <div class="row g-3">
-                                    <div class="col-2">
-                                        <p class="mb-0 fw-semibold"><i class="ri-hotel-bed-fill"></i> 2</p>
-                                    </div>
-                                    <div class="col-2">
-                                        <p class="mb-0 fw-semibold"><i class="ri-armchair-fill"></i></i> 4</p>
-                                    </div>
-                                    <div class="col-8 text-end">
-                                        <h3 class="mb-0 fw-bold">Rp. 340.000</h3>
-                                    </div>
-                                </div> --}}
                     </div>
                 </div>
                 <div x-show="filter == 'harian'">
@@ -764,36 +602,12 @@
                         </div>
                         <div class="row">
                             <div class="col-7 mt-2">
-                                <h3 style="font-size: 15px;" class="text-dark mb-0 fw-bold text-center">Rp. 2.000.000</h3>
+                                <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. 2.000.000</h3>
                             </div>
                             <div class="col-5 text-end">
                                 <button class="btn-kamar-kost-putra">Lihat</button>
                             </div>
                         </div>
-                        {{-- <div class="row g-3">
-                                    <div class="col-10">
-                                        <h6 class="fw-bold mb-1">Rekomendasi Rumah Kost</h6>
-                                    </div>
-                                    <div class="col-3 text-end">
-                                        <p class="mb-0"><i class="bi bi-star-fill text-warning"></i> <span class="fw-semibold">4.5</span></p>
-                                    </div>
-                                </div>
-                                <div class="row g-3 mb-3">
-                                    <div class="col-12">
-                                        <small class="mb-0 text-secondary fw-semibold"><i class="bi bi-pin-map-fill"></i> Jemur Sari, Surabaya</small>
-                                    </div>
-                                </div>
-                                <div class="row g-3">
-                                    <div class="col-2">
-                                        <p class="mb-0 fw-semibold"><i class="ri-hotel-bed-fill"></i> 2</p>
-                                    </div>
-                                    <div class="col-2">
-                                        <p class="mb-0 fw-semibold"><i class="ri-armchair-fill"></i></i> 4</p>
-                                    </div>
-                                    <div class="col-8 text-end">
-                                        <h3 class="mb-0 fw-bold">Rp. 340.000</h3>
-                                    </div>
-                                </div> --}}
                     </div>
                 </div>
                 <div x-show="filter == 'harian'">
@@ -804,36 +618,12 @@
                         </div>
                         <div class="row">
                             <div class="col-7 mt-2">
-                                <h3 style="font-size: 15px;" class="text-dark mb-0 fw-bold text-center">Rp. 2.500.000</h3>
+                                <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. 2.500.000</h3>
                             </div>
                             <div class="col-5 text-end">
                                 <button class="btn-kamar-kost-putra">Lihat</button>
                             </div>
                         </div>
-                        {{-- <div class="row g-3">
-                                    <div class="col-10">
-                                        <h6 class="fw-bold mb-1">Rekomendasi Rumah Kost</h6>
-                                    </div>
-                                    <div class="col-3 text-end">
-                                        <p class="mb-0"><i class="bi bi-star-fill text-warning"></i> <span class="fw-semibold">4.5</span></p>
-                                    </div>
-                                </div>
-                                <div class="row g-3 mb-3">
-                                    <div class="col-12">
-                                        <small class="mb-0 text-secondary fw-semibold"><i class="bi bi-pin-map-fill"></i> Jemur Sari, Surabaya</small>
-                                    </div>
-                                </div>
-                                <div class="row g-3">
-                                    <div class="col-2">
-                                        <p class="mb-0 fw-semibold"><i class="ri-hotel-bed-fill"></i> 2</p>
-                                    </div>
-                                    <div class="col-2">
-                                        <p class="mb-0 fw-semibold"><i class="ri-armchair-fill"></i></i> 4</p>
-                                    </div>
-                                    <div class="col-8 text-end">
-                                        <h3 class="mb-0 fw-bold">Rp. 340.000</h3>
-                                    </div>
-                                </div> --}}
                     </div>
                 </div>
             </div>
@@ -849,14 +639,13 @@
                 <!-- Area tengah surabaya -->
                 {{-- @for ($i = 1; $i <= 5; $i++) --}}
                 <div x-show="filter == 'bulanan'">
-                    <div class="custom-card" style="width: 302px; height: 116px; padding: 9px; border-radius: 15px; border: 2px solid #ccc;">
+                    <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 2px solid #ccc;">
                         <div class="position-relative mb-2">
                             <div class="row">
                                 <div class="col-4 mb-0">
                                     <img src="img/kostsurabaya11.jpg" style="border-radius: 15px; width: 90px; height: 90px; object-fit: cover;">
-                                    <button class="btn-like-populer" id="btn-like-timur" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
                                 </div>
-                                <div class="col-4" style="width: 130px; margin-left: 2px;">
+                                <div class="col-4" style="width: 130px; margin-left: 16px;">
                                     <h6 style="font-size: 16px; margin-top: 10px;" class="fw-bold">Kost Putra</h6>
                                     <p style="margin-top: -5px; font-size: 12px; color: #6a6666fa;" class="mb-2 fw-normal">Uk. Kamar 5 x 6 M</p>
                                     <button class="btn-kost-populer" style="width: 125px; height: 33px; padding: 4px;">
@@ -868,14 +657,13 @@
                     </div>
                 </div>
                 <div x-show="filter == 'bulanan'">
-                    <div class="custom-card" style="width: 302px; height: 116px; padding: 9px; border-radius: 15px; border: 2px solid #ccc;">
+                    <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 2px solid #ccc;">
                         <div class="position-relative mb-2">
                             <div class="row">
                                 <div class="col-4 mb-0">
                                     <img src="img/kostsurabaya12.jpg" style="border-radius: 15px; width: 90px; height: 90px; object-fit: cover;">
-                                    <button class="btn-like-populer" id="btn-like-timur" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
                                 </div>
-                                <div class="col-4" style="width: 130px; margin-left: 2px;">
+                                <div class="col-4" style="width: 130px; margin-left: 16px;">
                                     <h6 style="font-size: 16px; margin-top: 10px;" class="fw-bold">Kost Putri</h6>
                                     <p style="margin-top: -5px; font-size: 12px; color: #6a6666fa;" class="mb-2 fw-normal">Uk. kamar 6 x 5 M</p>
                                     <button class="btn-kost-populer" style="width: 125px; height: 33px; padding: 4px;">
@@ -887,14 +675,13 @@
                     </div>
                 </div>
                 <div x-show="filter == 'bulanan'">
-                    <div class="custom-card" style="width: 302px; height: 116px; padding: 9px; border-radius: 15px; border: 2px solid #ccc;">
+                    <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 2px solid #ccc;">
                         <div class="position-relative mb-2">
                             <div class="row">
                                 <div class="col-4 mb-0">
                                     <img src="img/kostsurabaya13.jpg" style="border-radius: 15px; width: 90px; height: 90px; object-fit: cover;">
-                                    <button class="btn-like-populer" id="btn-like-timur" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
                                 </div>
-                                <div class="col-4" style="width: 150px; margin-left: 2px;">
+                                <div class="col-4" style="width: 150px; margin-left: 16px;">
                                     <h6 style="font-size: 16px; margin-top: 10px;" class="fw-bold">Kost Pegawai</h6>
                                     <p style="margin-top: -5px; font-size: 12px; color: #6a6666fa;" class="mb-2 fw-normal">Uk. Kamar 7 x 9 M</p>
                                     <button class="btn-kost-populer" style="width: 125px; height: 33px; padding: 4px;">
@@ -906,14 +693,13 @@
                     </div>
                 </div>
                 <div x-show="filter == 'bulanan'">
-                    <div class="custom-card" style="width: 302px; height: 116px; padding: 9px; border-radius: 15px; border: 2px solid #ccc;">
+                    <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 2px solid #ccc;">
                         <div class="position-relative mb-2">
                             <div class="row">
                                 <div class="col-4 mb-0">
                                     <img src="img/kostsurabaya14.jpg" style="border-radius: 15px; width: 90px; height: 90px; object-fit: cover;">
-                                    <button class="btn-like-populer" id="btn-like-timur" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
                                 </div>
-                                <div class="col-4" style="width: 130px; margin-left: 2px;">
+                                <div class="col-4" style="width: 130px; margin-left: 16px;">
                                     <h6 style="font-size: 16px; margin-top: 10px;" class="fw-bold">Kost Putri</h6>
                                     <p style="margin-top: -5px; font-size: 12px; color: #6a6666fa;" class="mb-2 fw-normal">Uk. Kamar 8 x 6 M</p>
                                     <button class="btn-kost-populer" style="width: 125px; height: 33px; padding: 4px;">
@@ -925,14 +711,13 @@
                     </div>
                 </div>
                 <div x-show="filter == 'bulanan'">
-                    <div class="custom-card" style="width: 302px; height: 116px; padding: 9px; border-radius: 15px; border: 2px solid #ccc;">
+                    <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 2px solid #ccc;">
                         <div class="position-relative mb-2">
                             <div class="row">
                                 <div class="col-4 mb-0">
                                     <img src="img/kostsurabaya15.jpg" style="border-radius: 15px; width: 90px; height: 90px; object-fit: cover;">
-                                    <button class="btn-like-populer" id="btn-like-timur" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
                                 </div>
-                                <div class="col-4" style="width: 150px; margin-left: 2px;">
+                                <div class="col-4" style="width: 150px; margin-left: 16px;">
                                     <h6 style="font-size: 16px; margin-top: 10px;" class="fw-bold">Kost Karyawan</h6>
                                     <p style="margin-top: -5px; font-size: 12px; color: #6a6666fa;" class="mb-2 fw-normal">Uk. Kamar 5 x 4 M</p>
                                     <button class="btn-kost-populer" style="width: 125px; height: 33px; padding: 4px;">
@@ -944,14 +729,13 @@
                     </div>
                 </div>
                 <div x-show="filter == 'harian'">
-                    <div class="custom-card" style="width: 302px; height: 116px; padding: 9px; border-radius: 15px; border: 2px solid #ccc;">
+                    <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 2px solid #ccc;">
                         <div class="position-relative mb-2">
                             <div class="row">
                                 <div class="col-4 mb-0">
                                     <img src="img/kostsurabayaharian11.jpg" style="border-radius: 15px; width: 90px; height: 90px; object-fit: cover;">
-                                    <button class="btn-like-populer" id="btn-like-timur" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
                                 </div>
-                                <div class="col-4" style="width: 130px; margin-left: 2px;">
+                                <div class="col-4" style="width: 130px; margin-left: 16px;">
                                     <h6 style="font-size: 16px; margin-top: 10px;" class="fw-bold">Kost Putra</h6>
                                     <p style="margin-top: -5px; font-size: 12px; color: #6a6666fa;" class="mb-2 fw-normal">Uk. Kamar 5 x 6 M</p>
                                     <button class="btn-kost-populer" style="width: 125px; height: 33px; padding: 4px;">
@@ -963,14 +747,13 @@
                     </div>
                 </div>
                 <div x-show="filter == 'harian'">
-                    <div class="custom-card" style="width: 302px; height: 116px; padding: 9px; border-radius: 15px; border: 2px solid #ccc;">
+                    <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 2px solid #ccc;">
                         <div class="position-relative mb-2">
                             <div class="row">
                                 <div class="col-4 mb-0">
                                     <img src="img/kostsurabayaharian12.jpg" style="border-radius: 15px; width: 90px; height: 90px; object-fit: cover;">
-                                    <button class="btn-like-populer" id="btn-like-timur" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
                                 </div>
-                                <div class="col-4" style="width: 130px; margin-left: 2px;">
+                                <div class="col-4" style="width: 130px; margin-left: 16px;">
                                     <h6 style="font-size: 16px; margin-top: 10px;" class="fw-bold">Kost Putri</h6>
                                     <p style="margin-top: -5px; font-size: 12px; color: #6a6666fa;" class="mb-2 fw-normal">Uk. kamar 6 x 5 M</p>
                                     <button class="btn-kost-populer" style="width: 125px; height: 33px; padding: 4px;">
@@ -982,14 +765,13 @@
                     </div>
                 </div>
                 <div x-show="filter == 'harian'">
-                    <div class="custom-card" style="width: 302px; height: 116px; padding: 9px; border-radius: 15px; border: 2px solid #ccc;">
+                    <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 2px solid #ccc;">
                         <div class="position-relative mb-2">
                             <div class="row">
                                 <div class="col-4 mb-0">
                                     <img src="img/kostsurabayaharian13.jpg" style="border-radius: 15px; width: 90px; height: 90px; object-fit: cover;">
-                                    <button class="btn-like-populer" id="btn-like-timur" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
                                 </div>
-                                <div class="col-4" style="width: 150px; margin-left: 2px;">
+                                <div class="col-4" style="width: 150px; margin-left: 16px;">
                                     <h6 style="font-size: 16px; margin-top: 10px;" class="fw-bold">Kost Pegawai</h6>
                                     <p style="margin-top: -5px; font-size: 12px; color: #6a6666fa;" class="mb-2 fw-normal">Uk. Kamar 7 x 9 M</p>
                                     <button class="btn-kost-populer" style="width: 125px; height: 33px; padding: 4px;">
@@ -1001,14 +783,13 @@
                     </div>
                 </div>
                 <div x-show="filter == 'harian'">
-                    <div class="custom-card" style="width: 302px; height: 116px; padding: 9px; border-radius: 15px; border: 2px solid #ccc;">
+                    <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 2px solid #ccc;">
                         <div class="position-relative mb-2">
                             <div class="row">
                                 <div class="col-4 mb-0">
                                     <img src="img/kostsurabayaharian14.jpg" style="border-radius: 15px; width: 90px; height: 90px; object-fit: cover;">
-                                    <button class="btn-like-populer" id="btn-like-timur" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
                                 </div>
-                                <div class="col-4" style="width: 130px; margin-left: 2px;">
+                                <div class="col-4" style="width: 130px; margin-left: 16px;">
                                     <h6 style="font-size: 16px; margin-top: 10px;" class="fw-bold">Kost Putri</h6>
                                     <p style="margin-top: -5px; font-size: 12px; color: #6a6666fa;" class="mb-2 fw-normal">Uk. Kamar 8 x 6 M</p>
                                     <button class="btn-kost-populer" style="width: 125px; height: 33px; padding: 4px;">
@@ -1020,14 +801,13 @@
                     </div>
                 </div>
                 <div x-show="filter == 'harian'">
-                    <div class="custom-card" style="width: 302px; height: 116px; padding: 9px; border-radius: 15px; border: 2px solid #ccc;">
+                    <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 2px solid #ccc;">
                         <div class="position-relative mb-2">
                             <div class="row">
                                 <div class="col-4 mb-0">
                                     <img src="img/kostsurabayaharian15.jpg" style="border-radius: 15px; width: 90px; height: 90px; object-fit: cover;">
-                                    <button class="btn-like-populer" id="btn-like-timur" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
                                 </div>
-                                <div class="col-4" style="width: 150px; margin-left: 2px;">
+                                <div class="col-4" style="width: 150px; margin-left: 16px;">
                                     <h6 style="font-size: 16px; margin-top: 10px;" class="fw-bold">Kost Karyawan</h6>
                                     <p style="margin-top: -5px; font-size: 12px; color: #6a6666fa;" class="mb-2 fw-normal">Uk. Kamar 5 x 4 M</p>
                                     <button class="btn-kost-populer" style="width: 125px; height: 33px; padding: 4px;">
@@ -1059,7 +839,7 @@
                         </div>
                         <div class="row">
                             <div class="col-7 mt-2">
-                                <h3 style="font-size: 15px;" class="text-dark mb-0 fw-bold text-center">Rp. 1.750.000</h3>
+                                <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. 1.750.000</h3>
                             </div>
                             <div class="col-5 text-end">
                                 <button class="btn-kamar-kost-putra">Lihat</button>
@@ -1075,7 +855,7 @@
                         </div>
                         <div class="row">
                             <div class="col-7 mt-2">
-                                <h3 style="font-size: 15px;" class="text-dark mb-0 fw-bold text-center">Rp. 2.000.000</h3>
+                                <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. 2.000.000</h3>
                             </div>
                             <div class="col-5 text-end">
                                 <button class="btn-kamar-kost-putra">Lihat</button>
@@ -1091,36 +871,12 @@
                         </div>
                         <div class="row">
                             <div class="col-7 mt-2">
-                                <h3 style="font-size: 15px;" class="text-dark mb-0 fw-bold text-center">Rp. 2.250.000</h3>
+                                <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. 2.250.000</h3>
                             </div>
                             <div class="col-5 text-end">
                                 <button class="btn-kamar-kost-putra">Lihat</button>
                             </div>
                         </div>
-                        {{-- <div class="row g-3">
-                                    <div class="col-10">
-                                        <h6 class="fw-bold mb-1">Rekomendasi Rumah Kost</h6>
-                                    </div>
-                                    <div class="col-3 text-end">
-                                        <p class="mb-0"><i class="bi bi-star-fill text-warning"></i> <span class="fw-semibold">4.5</span></p>
-                                    </div>
-                                </div>
-                                <div class="row g-3 mb-3">
-                                    <div class="col-12">
-                                        <small class="mb-0 text-secondary fw-semibold"><i class="bi bi-pin-map-fill"></i> Jemur Sari, Surabaya</small>
-                                    </div>
-                                </div>
-                                <div class="row g-3">
-                                    <div class="col-2">
-                                        <p class="mb-0 fw-semibold"><i class="ri-hotel-bed-fill"></i> 2</p>
-                                    </div>
-                                    <div class="col-2">
-                                        <p class="mb-0 fw-semibold"><i class="ri-armchair-fill"></i></i> 4</p>
-                                    </div>
-                                    <div class="col-8 text-end">
-                                        <h3 class="mb-0 fw-bold">Rp. 340.000</h3>
-                                    </div>
-                                </div> --}}
                     </div>
                 </div>
                 <div x-show="filter == 'bulanan'">
@@ -1131,36 +887,12 @@
                         </div>
                         <div class="row">
                             <div class="col-7 mt-2">
-                                <h3 style="font-size: 15px;" class="text-dark mb-0 fw-bold text-center">Rp. 3.300.000</h3>
+                                <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. 3.300.000</h3>
                             </div>
                             <div class="col-5 text-end">
                                 <button class="btn-kamar-kost-putra">Lihat</button>
                             </div>
                         </div>
-                        {{-- <div class="row g-3">
-                                    <div class="col-10">
-                                        <h6 class="fw-bold mb-1">Rekomendasi Rumah Kost</h6>
-                                    </div>
-                                    <div class="col-3 text-end">
-                                        <p class="mb-0"><i class="bi bi-star-fill text-warning"></i> <span class="fw-semibold">4.5</span></p>
-                                    </div>
-                                </div>
-                                <div class="row g-3 mb-3">
-                                    <div class="col-12">
-                                        <small class="mb-0 text-secondary fw-semibold"><i class="bi bi-pin-map-fill"></i> Jemur Sari, Surabaya</small>
-                                    </div>
-                                </div>
-                                <div class="row g-3">
-                                    <div class="col-2">
-                                        <p class="mb-0 fw-semibold"><i class="ri-hotel-bed-fill"></i> 2</p>
-                                    </div>
-                                    <div class="col-2">
-                                        <p class="mb-0 fw-semibold"><i class="ri-armchair-fill"></i></i> 4</p>
-                                    </div>
-                                    <div class="col-8 text-end">
-                                        <h3 class="mb-0 fw-bold">Rp. 340.000</h3>
-                                    </div>
-                                </div> --}}
                     </div>
                 </div>
                 <div x-show="filter == 'bulanan'">
@@ -1171,36 +903,12 @@
                         </div>
                         <div class="row">
                             <div class="col-7 mt-2">
-                                <h3 style="font-size: 15px;" class="text-dark mb-0 fw-bold text-center">Rp. 5.000.000</h3>
+                                <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. 5.000.000</h3>
                             </div>
                             <div class="col-5 text-end">
                                 <button class="btn-kamar-kost-putra">Lihat</button>
                             </div>
                         </div>
-                        {{-- <div class="row g-3">
-                                    <div class="col-10">
-                                        <h6 class="fw-bold mb-1">Rekomendasi Rumah Kost</h6>
-                                    </div>
-                                    <div class="col-3 text-end">
-                                        <p class="mb-0"><i class="bi bi-star-fill text-warning"></i> <span class="fw-semibold">4.5</span></p>
-                                    </div>
-                                </div>
-                                <div class="row g-3 mb-3">
-                                    <div class="col-12">
-                                        <small class="mb-0 text-secondary fw-semibold"><i class="bi bi-pin-map-fill"></i> Jemur Sari, Surabaya</small>
-                                    </div>
-                                </div>
-                                <div class="row g-3">
-                                    <div class="col-2">
-                                        <p class="mb-0 fw-semibold"><i class="ri-hotel-bed-fill"></i> 2</p>
-                                    </div>
-                                    <div class="col-2">
-                                        <p class="mb-0 fw-semibold"><i class="ri-armchair-fill"></i></i> 4</p>
-                                    </div>
-                                    <div class="col-8 text-end">
-                                        <h3 class="mb-0 fw-bold">Rp. 340.000</h3>
-                                    </div>
-                                </div> --}}
                     </div>
                 </div>
                 <div x-show="filter == 'harian'">
@@ -1211,7 +919,7 @@
                         </div>
                         <div class="row">
                             <div class="col-7 mt-2">
-                                <h3 style="font-size: 15px;" class="text-dark mb-0 fw-bold text-center">Rp. 1.750.000</h3>
+                                <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. 1.750.000</h3>
                             </div>
                             <div class="col-5 text-end">
                                 <button class="btn-kamar-kost-putra">Lihat</button>
@@ -1227,7 +935,7 @@
                         </div>
                         <div class="row">
                             <div class="col-7 mt-2">
-                                <h3 style="font-size: 15px;" class="text-dark mb-0 fw-bold text-center">Rp. 2.000.000</h3>
+                                <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. 2.000.000</h3>
                             </div>
                             <div class="col-5 text-end">
                                 <button class="btn-kamar-kost-putra">Lihat</button>
@@ -1243,7 +951,7 @@
                         </div>
                         <div class="row">
                             <div class="col-7 mt-2">
-                                <h3 style="font-size: 15px;" class="text-dark mb-0 fw-bold text-center">Rp. 2.250.000</h3>
+                                <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. 2.250.000</h3>
                             </div>
                             <div class="col-5 text-end">
                                 <button class="btn-kamar-kost-putra">Lihat</button>
@@ -1283,7 +991,7 @@
                         </div>
                         <div class="row">
                             <div class="col-7 mt-2">
-                                <h3 style="font-size: 15px;" class="text-dark mb-0 fw-bold text-center">Rp. 3.300.000</h3>
+                                <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. 3.300.000</h3>
                             </div>
                             <div class="col-5 text-end">
                                 <button class="btn-kamar-kost-putra">Lihat</button>
@@ -1323,41 +1031,31 @@
                         </div>
                         <div class="row">
                             <div class="col-7 mt-2">
-                                <h3 style="font-size: 15px;" class="text-dark mb-0 fw-bold text-center">Rp. 5.000.000</h3>
+                                <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. 5.000.000</h3>
                             </div>
                             <div class="col-5 text-end">
                                 <button class="btn-kamar-kost-putra">Lihat</button>
                             </div>
                         </div>
-                        {{-- <div class="row g-3">
-                                    <div class="col-10">
-                                        <h6 class="fw-bold mb-1">Rekomendasi Rumah Kost</h6>
-                                    </div>
-                                    <div class="col-3 text-end">
-                                        <p class="mb-0"><i class="bi bi-star-fill text-warning"></i> <span class="fw-semibold">4.5</span></p>
-                                    </div>
-                                </div>
-                                <div class="row g-3 mb-3">
-                                    <div class="col-12">
-                                        <small class="mb-0 text-secondary fw-semibold"><i class="bi bi-pin-map-fill"></i> Jemur Sari, Surabaya</small>
-                                    </div>
-                                </div>
-                                <div class="row g-3">
-                                    <div class="col-2">
-                                        <p class="mb-0 fw-semibold"><i class="ri-hotel-bed-fill"></i> 2</p>
-                                    </div>
-                                    <div class="col-2">
-                                        <p class="mb-0 fw-semibold"><i class="ri-armchair-fill"></i></i> 4</p>
-                                    </div>
-                                    <div class="col-8 text-end">
-                                        <h3 class="mb-0 fw-bold">Rp. 340.000</h3>
-                                    </div>
-                                </div> --}}
                     </div>
                 </div>
             </div>
             <div class="col-12" style="margin-top: 20px;">
-                <img src="img/banner4.png" style="border-radius: 15px; width: 334px; height: 150px; object-fit: cover;">
+                <section class="splide new-1" aria-label="Splide Basic HTML Example">
+                    <div class="splide__track">
+                        <ul class="splide__list">
+                            <li class="splide__slide">
+                                <img src="{{ asset('img/banner8.png') }}" style="border-radius: 15px; width: 334px; height: 160px; object-fit: cover;">
+                            </li>
+                            <li class="splide__slide">
+                                <img src="{{ asset('img/banner9.png') }}" style="border-radius: 15px; width: 334px; height: 160px; object-fit: cover;">
+                            </li>
+                            <li class="splide__slide">
+                                <img src="{{ asset('img/banner10.png') }}" style="border-radius: 15px; width: 334px; height: 160px; object-fit: cover;">
+                            </li>
+                        </ul>
+                    </div>
+                </section>
             </div>
         </div>
         <div class="garis-pembatas-3"></div>
@@ -1599,9 +1297,6 @@
                                     <div class="col-10">
                                         <h6 style="font-size: 16px; margin-bottom: -0.3rem;" class="fw-bold">Kost Mahasiswa</h6>
                                     </div>
-                                    {{-- <div class="col-3 text-end">
-                                            <p class="mb-0"><i class="bi bi-star-fill text-warning"></i> <span class="fw-semibold">4.5</span></p>
-                                        </div> --}}
                                 </div>
                                 <div class="row g-3 mb-3">
                                     <div class="col-12">
@@ -1638,9 +1333,6 @@
                                     <div class="col-10">
                                         <h6 style="font-size: 16px; margin-bottom: -0.3rem;" class="fw-bold">Kost Mahasiswi</h6>
                                     </div>
-                                    {{-- <div class="col-3 text-end">
-                                            <p class="mb-0"><i class="bi bi-star-fill text-warning"></i> <span class="fw-semibold">4.5</span></p>
-                                        </div> --}}
                                 </div>
                                 <div class="row g-3 mb-3">
                                     <div class="col-12">
@@ -1677,9 +1369,6 @@
                                     <div class="col-10">
                                         <h6 style="font-size: 16px; margin-bottom: -0.3rem;" class="fw-bold">Kost Karyawan</h6>
                                     </div>
-                                    {{-- <div class="col-3 text-end">
-                                            <p class="mb-0"><i class="bi bi-star-fill text-warning"></i> <span class="fw-semibold">4.5</span></p>
-                                        </div> --}}
                                 </div>
                                 <div class="row g-3 mb-3">
                                     <div class="col-12">
@@ -1716,9 +1405,6 @@
                                     <div class="col-10">
                                         <h6 style="font-size: 16px; margin-bottom: -0.3rem;" class="fw-bold">Kost Putra</h6>
                                     </div>
-                                    {{-- <div class="col-3 text-end">
-                                            <p class="mb-0"><i class="bi bi-star-fill text-warning"></i> <span class="fw-semibold">4.5</span></p>
-                                        </div> --}}
                                 </div>
                                 <div class="row g-3 mb-3">
                                     <div class="col-12">
@@ -1755,9 +1441,6 @@
                                     <div class="col-10">
                                         <h6 style="font-size: 16px; margin-bottom: -0.3rem;" class="fw-bold">Kost Putri</h6>
                                     </div>
-                                    {{-- <div class="col-3 text-end">
-                                            <p class="mb-0"><i class="bi bi-star-fill text-warning"></i> <span class="fw-semibold">4.5</span></p>
-                                        </div> --}}
                                 </div>
                                 <div class="row g-3 mb-3">
                                     <div class="col-12">
@@ -1794,9 +1477,6 @@
                                     <div class="col-10">
                                         <h6 style="font-size: 16px; margin-bottom: -0.3rem;" class="fw-bold">Kost Mahasiswa</h6>
                                     </div>
-                                    {{-- <div class="col-3 text-end">
-                                            <p class="mb-0"><i class="bi bi-star-fill text-warning"></i> <span class="fw-semibold">4.5</span></p>
-                                        </div> --}}
                                 </div>
                                 <div class="row g-3 mb-3">
                                     <div class="col-12">
@@ -1833,9 +1513,6 @@
                                     <div class="col-10">
                                         <h6 style="font-size: 16px; margin-bottom: -0.3rem;" class="fw-bold">Kost Mahasiswi</h6>
                                     </div>
-                                    {{-- <div class="col-3 text-end">
-                                            <p class="mb-0"><i class="bi bi-star-fill text-warning"></i> <span class="fw-semibold">4.5</span></p>
-                                        </div> --}}
                                 </div>
                                 <div class="row g-3 mb-3">
                                     <div class="col-12">
@@ -1872,9 +1549,6 @@
                                     <div class="col-10">
                                         <h6 style="font-size: 16px; margin-bottom: -0.3rem;" class="fw-bold">Kost Karyawan</h6>
                                     </div>
-                                    {{-- <div class="col-3 text-end">
-                                            <p class="mb-0"><i class="bi bi-star-fill text-warning"></i> <span class="fw-semibold">4.5</span></p>
-                                        </div> --}}
                                 </div>
                                 <div class="row g-3 mb-3">
                                     <div class="col-12">
@@ -1911,9 +1585,6 @@
                                     <div class="col-10">
                                         <h6 style="font-size: 16px; margin-bottom: -0.3rem;" class="fw-bold">Kost Putra</h6>
                                     </div>
-                                    {{-- <div class="col-3 text-end">
-                                            <p class="mb-0"><i class="bi bi-star-fill text-warning"></i> <span class="fw-semibold">4.5</span></p>
-                                        </div> --}}
                                 </div>
                                 <div class="row g-3 mb-3">
                                     <div class="col-12">
@@ -1950,9 +1621,6 @@
                                     <div class="col-10">
                                         <h6 style="font-size: 16px; margin-bottom: -0.3rem;" class="fw-bold">Kost Putri</h6>
                                     </div>
-                                    {{-- <div class="col-3 text-end">
-                                            <p class="mb-0"><i class="bi bi-star-fill text-warning"></i> <span class="fw-semibold">4.5</span></p>
-                                        </div> --}}
                                 </div>
                                 <div class="row g-3 mb-3">
                                     <div class="col-12">
@@ -2117,22 +1785,27 @@
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <script>
         var splide = new Splide('.splide.new', {
+            type: "loop",
+            autoplay: true,
             arrows: false,
+            pagination: false,
             perPage: 1,
             autoWidth: true,
             gap: '0.5rem',
             lazyLoad: 'nearby'
         });
         splide.mount();
-        // var splide = new Splide('.splide.new-1', {
-        //     arrows: false,
-        //     pagination: false,
-        //     perPage: 1,
-        //     autoWidth: true,
-        //     gap: '0.5rem',
-        //     lazyLoad: 'nearby'
-        // });
-        // splide.mount();
+        var splide = new Splide('.splide.new-1', {
+            type: "loop",
+            autoplay: true,
+            arrows: false,
+            pagination: false,
+            perPage: 1,
+            autoWidth: true,
+            gap: '0.5rem',
+            lazyLoad: 'nearby'
+        });
+        splide.mount();
         var splide = new Splide('.splide.new-2', {
             type: "loop",
             autoplay: true,
@@ -2189,12 +1862,13 @@
         document.addEventListener("DOMContentLoaded", function() {
             var stickyTop = document.getElementById("stickyTop");
             var lastScrollTop = 0;
+            var scrollThreshold = 10; // Ubah nilai sesuai dengan ukuran y yang diinginkan
 
             window.addEventListener("scroll", function() {
                 var scrollTop = window.scrollY || document.documentElement.scrollTop;
 
-                if (scrollTop > 50) {
-                    // User sedang scroll ke bawah, dan sudah scroll melebihi 50 piksel dari atas
+                if (scrollTop > scrollThreshold) {
+                    // User sedang scroll ke bawah, dan sudah scroll melebihi nilai y yang ditentukan
                     stickyTop.classList.add("scrolled");
                 } else {
                     // User sedang di atas sendiri
@@ -2204,6 +1878,7 @@
                 lastScrollTop = scrollTop;
             });
         });
+
 
         function changeIconAndColor(button) {
             // Mengambil elemen ikon pada tombol
@@ -2215,7 +1890,7 @@
 
             // Mengubah warna ikon menjadi kuning
             var currentColor = iconElement.style.color;
-            iconElement.style.color = (currentColor === "yellow") ? "" : "yellow";
+            iconElement.style.color = (currentColor === "purple") ? "" : "purple";
         }
     </script>
 </body>

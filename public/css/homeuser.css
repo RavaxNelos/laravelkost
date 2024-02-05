@@ -262,6 +262,8 @@ img {
 }
 
 .btn-like-didekat-mu {
+    width: 30px;
+    height: 30px;
     position: absolute;
     top: 6px;
     right: 6px;
@@ -271,6 +273,8 @@ img {
 }
 
 .btn-like-rekomendasi {
+    width: 30px;
+    height: 30px;
     position: absolute;
     top: 6px;
     right: 6px;
@@ -280,6 +284,8 @@ img {
 }
 
 .btn-like-barat {
+    width: 30px;
+    height: 30px;
     position: absolute;
     top: 6px;
     right: 6px;
@@ -289,6 +295,8 @@ img {
 }
 
 .btn-like-putri {
+    width: 30px;
+    height: 30px;
     position: absolute;
     top: 6px;
     right: 6px;
@@ -297,16 +305,18 @@ img {
     font-size: 14px;
 }
 
-.btn-like-populer {
+/* .btn-like-populer {
     position: absolute;
     top: 60px;
     right: 4px;
     border-radius: 50%;
     border: none;
     font-size: 18px;
-}
+} */
 
 .btn-like-putra {
+    width: 30px;
+    height: 30px;
     position: absolute;
     top: 6px;
     right: 6px;
