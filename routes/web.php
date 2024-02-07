@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
@@ -22,6 +22,10 @@ Route::get('/detail', function () {
     return view('detail.index');
 });
 
+Route::get('/transaksi', [UserController::class, 'transaksi'])->name('transaksi');
+
+Route::get('/detail', [UserController::class, 'detailrumah'])->name('detailrumah');
+
 Route::group(['middleware' => 'guest'], function () {
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('registerPost', [AuthController::class, 'registerPost'])->name('registerPost');
@@ -30,6 +34,7 @@ Route::post('/login', [AuthController::class, 'loginPost'])->name('login');
 });
 
 Route::group(['middleware' => 'auth'], function () {
-Route::get('/home', [AdminController::class, 'index']);
+Route::get('/home',[UserController::class, 'index']);
 Route::delete('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/home', [UserController::class, 'detail'])->name('kembalidetail');
 });

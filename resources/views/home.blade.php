@@ -86,13 +86,19 @@
             background-color: rgba(255, 255, 255, 0.8) !important;
             backdrop-filter: blur(50px) !important;
         }
+
+        .card-black {
+            border: 1px solid #ccc;
+            background-color: rgba(255, 255, 255, 0.8) !important;
+            backdrop-filter: blur(10px) !important;
+        }
     </style>
 </head>
 
 <body>
     <div class="sticky-bottom">
         <nav class="nav">
-            <a href="" class="nav__link">
+            <a href="" class="nav__link nav-active">
                 <i class="bi bi-house-door-fill"></i>
                 <span class="nav__text">Beranda</span>
             </a>
@@ -124,7 +130,7 @@
                     </div>
                     <!-- end logo kost -->
                 </div>
-                <div class="col-4 mt-1">
+                <div class="col-4" style="margin-top: 10px;">
                     <!-- Search Bar -->
                     <div class="search" style="padding-left: 10.5rem;">
                         <button><i class="bi bi-search"></i></button>
@@ -132,7 +138,7 @@
                     <!-- end Search Bar -->
                 </div>
                 <!-- Avatar icon  -->
-                <div class="col-5 text-end">
+                <div class="col-5 text-end" style="margin-top: 7px;">
                     <div class="header-kanan">
                         <img src="img/avatar.png" loading="lazy">
                     </div>
@@ -218,7 +224,9 @@
                 <div x-show="filter == 'bulanan'">
                     <div class="custom-card" style="width: 180px; height: 290px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
                         <div class="position-relative mb-2">
-                            <img src="img/kostsurabaya1.jpg" style="border-radius: 15px; width: 160px; height: 160px; object-fit: cover;">
+                            <a href="{{ route('detailrumah') }}">
+                                <img src="img/kostsurabaya1.jpg" style="border-radius: 15px; width: 160px; height: 160px; object-fit: cover;">
+                            </a>
                             <button id="btn-like-timur" class="btn-like-timur" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
                         </div>
                         <div style="width: 195px" class="row">
@@ -627,7 +635,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row mt-4">
+            <div class="row mt-3 mb-0">
                 <div class="col-8">
                     <h1 style="font-weight: bold; font-size: 18px; font-family: 'Inter', sans-serif;">Kamar Kost Populer</h1>
                 </div>
@@ -639,7 +647,7 @@
                 <!-- Area tengah surabaya -->
                 {{-- @for ($i = 1; $i <= 5; $i++) --}}
                 <div x-show="filter == 'bulanan'">
-                    <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 2px solid #ccc;">
+                    <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
                         <div class="position-relative mb-2">
                             <div class="row">
                                 <div class="col-4 mb-0">
@@ -657,7 +665,7 @@
                     </div>
                 </div>
                 <div x-show="filter == 'bulanan'">
-                    <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 2px solid #ccc;">
+                    <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
                         <div class="position-relative mb-2">
                             <div class="row">
                                 <div class="col-4 mb-0">
@@ -675,7 +683,7 @@
                     </div>
                 </div>
                 <div x-show="filter == 'bulanan'">
-                    <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 2px solid #ccc;">
+                    <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
                         <div class="position-relative mb-2">
                             <div class="row">
                                 <div class="col-4 mb-0">
@@ -693,7 +701,7 @@
                     </div>
                 </div>
                 <div x-show="filter == 'bulanan'">
-                    <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 2px solid #ccc;">
+                    <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
                         <div class="position-relative mb-2">
                             <div class="row">
                                 <div class="col-4 mb-0">
@@ -711,7 +719,7 @@
                     </div>
                 </div>
                 <div x-show="filter == 'bulanan'">
-                    <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 2px solid #ccc;">
+                    <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
                         <div class="position-relative mb-2">
                             <div class="row">
                                 <div class="col-4 mb-0">
@@ -729,7 +737,7 @@
                     </div>
                 </div>
                 <div x-show="filter == 'harian'">
-                    <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 2px solid #ccc;">
+                    <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
                         <div class="position-relative mb-2">
                             <div class="row">
                                 <div class="col-4 mb-0">
@@ -747,7 +755,7 @@
                     </div>
                 </div>
                 <div x-show="filter == 'harian'">
-                    <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 2px solid #ccc;">
+                    <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
                         <div class="position-relative mb-2">
                             <div class="row">
                                 <div class="col-4 mb-0">
@@ -765,7 +773,7 @@
                     </div>
                 </div>
                 <div x-show="filter == 'harian'">
-                    <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 2px solid #ccc;">
+                    <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
                         <div class="position-relative mb-2">
                             <div class="row">
                                 <div class="col-4 mb-0">
@@ -783,7 +791,7 @@
                     </div>
                 </div>
                 <div x-show="filter == 'harian'">
-                    <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 2px solid #ccc;">
+                    <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
                         <div class="position-relative mb-2">
                             <div class="row">
                                 <div class="col-4 mb-0">
@@ -801,7 +809,7 @@
                     </div>
                 </div>
                 <div x-show="filter == 'harian'">
-                    <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 2px solid #ccc;">
+                    <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
                         <div class="position-relative mb-2">
                             <div class="row">
                                 <div class="col-4 mb-0">
@@ -1061,7 +1069,7 @@
         <div class="garis-pembatas-3"></div>
         <div class="container">
             <!-- product rumah -->
-            <div class="row mt-4">
+            <div class="row mt-3 mb-0">
                 <div class="col-7">
                     <h1 style="font-weight: bold; font-size: 18px; font-family: 'Inter', sans-serif;">Area Surabaya Barat</h1>
                 </div>
@@ -1086,7 +1094,7 @@
                                 <h6 style="font-size: 12px;" class="text-secondary">Fasilitas: Uk. 5 x 7 M | AC 1 | Toilet | Pk...</h6>
                             </div>
                             <div class="col-12">
-                                <button class="btn-area-barat">Lihat Detail Dan Lokasi</button>
+                                <button class="btn-area-barat">Lihat Detail dan Lokasi</button>
                             </div>
                         </div>
                     </div>
@@ -1106,7 +1114,7 @@
                             </div>
                             <div class="col-12">
                                 <div class="col-12">
-                                    <button class="btn-area-barat">Lihat Detail Dan Lokasi</button>
+                                    <button class="btn-area-barat">Lihat Detail dan Lokasi</button>
                                 </div>
                             </div>
                         </div>
@@ -1127,7 +1135,7 @@
                             </div>
                             <div class="col-12">
                                 <div class="col-12">
-                                    <button class="btn-area-barat">Lihat Detail Dan Lokasi</button>
+                                    <button class="btn-area-barat">Lihat Detail dan Lokasi</button>
                                 </div>
                             </div>
                         </div>
@@ -1148,7 +1156,7 @@
                             </div>
                             <div class="col-12">
                                 <div class="col-12">
-                                    <button class="btn-area-barat">Lihat Detail Dan Lokasi</button>
+                                    <button class="btn-area-barat">Lihat Detail dan Lokasi</button>
                                 </div>
                             </div>
                         </div>
@@ -1169,7 +1177,7 @@
                             </div>
                             <div class="col-12">
                                 <div class="col-12">
-                                    <button class="btn-area-barat">Lihat Detail Dan Lokasi</button>
+                                    <button class="btn-area-barat">Lihat Detail dan Lokasi</button>
                                 </div>
                             </div>
                         </div>
@@ -1189,7 +1197,7 @@
                                 <h6 style="font-size: 12px;" class="text-secondary">Fasilitas: Uk. 5 x 7 M | AC 1 | Toilet | Pk...</h6>
                             </div>
                             <div class="col-12">
-                                <button class="btn-area-barat">Lihat Detail Dan Lokasi</button>
+                                <button class="btn-area-barat">Lihat Detail dan Lokasi</button>
                             </div>
                         </div>
                     </div>
@@ -1209,7 +1217,7 @@
                             </div>
                             <div class="col-12">
                                 <div class="col-12">
-                                    <button class="btn-area-barat">Lihat Detail Dan Lokasi</button>
+                                    <button class="btn-area-barat">Lihat Detail dan Lokasi</button>
                                 </div>
                             </div>
                         </div>
@@ -1230,7 +1238,7 @@
                             </div>
                             <div class="col-12">
                                 <div class="col-12">
-                                    <button class="btn-area-barat">Lihat Detail Dan Lokasi</button>
+                                    <button class="btn-area-barat">Lihat Detail dan Lokasi</button>
                                 </div>
                             </div>
                         </div>
@@ -1251,7 +1259,7 @@
                             </div>
                             <div class="col-12">
                                 <div class="col-12">
-                                    <button class="btn-area-barat">Lihat Detail Dan Lokasi</button>
+                                    <button class="btn-area-barat">Lihat Detail dan Lokasi</button>
                                 </div>
                             </div>
                         </div>
@@ -1272,7 +1280,7 @@
                             </div>
                             <div class="col-12">
                                 <div class="col-12">
-                                    <button class="btn-area-barat">Lihat Detail Dan Lokasi</button>
+                                    <button class="btn-area-barat">Lihat Detail dan Lokasi</button>
                                 </div>
                             </div>
                         </div>
@@ -1281,7 +1289,8 @@
                 {{-- @endfor --}}
                 <!-- end Area barat surabaya -->
             </div>
-            <div class="row mt-3">
+            <!-- rekomendasi rumah -->
+            <div class="row mt-3 mb-0">
                 <div class="col-12">
                     <h1 style="font-weight: bold; font-size: 18px; font-family: 'Inter', sans-serif;">Rekomendasi Rumah Kost</h1>
                     <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay;">
@@ -1291,7 +1300,6 @@
                                 <div class="position-relative mb-2">
                                     <img src="img/rumahkost1.jpg" style="border-radius: 15px; width: 220px; height: 140px; object-fit: cover;">
                                     <button id="btn-like-timur" class="btn-like-rekomendasi" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                                    <button class="btn-rekomendasi-rumah">Lihat</button>
                                 </div>
                                 <div class="row g-3">
                                     <div class="col-10">
@@ -1300,24 +1308,15 @@
                                 </div>
                                 <div class="row g-3 mb-3">
                                     <div class="col-12">
-                                        <small style="font-size: 12px; margin-top: -40px;" class="mb-0 text-secondary fw-semibold"><i class="bi bi-geo-alt-fill text-danger"></i></i> Jemur Sari, Surabaya</small>
+                                        <small style="font-size: 12px; margin-top: -40px;" class="mb-0 text-secondary fw-normal"><i class="bi bi-geo-alt-fill text-danger"></i> Jemur Sari No 09/09, Surabaya</small>
                                     </div>
                                 </div>
-                                <div class="row g-3" style="margin-top: -26px;">
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class="bi bi-wifi"></i>
+                                <div class="row" style="margin-top: -10px;">
+                                    <div class="col-8">
+                                        <h3 style="margin-top: 5px; font-size: 16px;" class="mb-0 fw-bold">Rp. 1.750.000</h3>
                                     </div>
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class="ri-sofa-fill"></i>
-                                    </div>
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class='bx bxs-bowl-rice'></i>
-                                    </div>
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class='bx bxs-shower'></i>
-                                    </div>
-                                    <div class="col-8 text-end">
-                                        <h3 style="margin-top: 5px; font-size: 14px;" class="mb-0 fw-bold">Rp. 1.750.000</h3>
+                                    <div class="col-4 text-end">
+                                        <button class="btn-rekomendasi-rumah" style="margin-left: -20px;">Lihat</button>
                                     </div>
                                 </div>
                             </div>
@@ -1327,7 +1326,6 @@
                                 <div class="position-relative mb-2">
                                     <img src="img/rumahkost2.jpg" style="border-radius: 15px; width: 220px; height: 140px; object-fit: cover;">
                                     <button id="btn-like-timur" class="btn-like-rekomendasi" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                                    <button class="btn-rekomendasi-rumah">Lihat</button>
                                 </div>
                                 <div class="row g-3">
                                     <div class="col-10">
@@ -1336,24 +1334,15 @@
                                 </div>
                                 <div class="row g-3 mb-3">
                                     <div class="col-12">
-                                        <small style="font-size: 12px; margin-top: -40px;" class="mb-0 text-secondary fw-semibold"><i class="bi bi-geo-alt-fill text-danger"></i></i> Kenjeran, Surabaya</small>
+                                        <small style="font-size: 12px; margin-top: -40px;" class="mb-0 text-secondary fw-normal"><i class="bi bi-geo-alt-fill text-danger"></i></i> Kenjeran, Surabaya</small>
                                     </div>
                                 </div>
-                                <div class="row g-3" style="margin-top: -26px;">
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class="bi bi-wifi"></i>
-                                    </div>
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class="ri-sofa-fill"></i>
-                                    </div>
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class='bx bxs-bowl-rice'></i>
-                                    </div>
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class='bx bxs-shower'></i>
-                                    </div>
-                                    <div class="col-8 text-end">
+                                <div class="row" style="margin-top: -10px;">
+                                    <div class="col-8">
                                         <h3 style="margin-top: 5px; font-size: 14px;" class="mb-0 fw-bold">Rp. 2.500.000</h3>
+                                    </div>
+                                    <div class="col-4 text-end">
+                                        <button class="btn-rekomendasi-rumah" style="margin-left: -20px;">Lihat</button>
                                     </div>
                                 </div>
                             </div>
@@ -1363,7 +1352,6 @@
                                 <div class="position-relative mb-2">
                                     <img src="img/rumahkost3.jpg" style="border-radius: 15px; width: 220px; height: 140px; object-fit: cover;">
                                     <button id="btn-like-timur" class="btn-like-rekomendasi" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                                    <button class="btn-rekomendasi-rumah">Lihat</button>
                                 </div>
                                 <div class="row g-3">
                                     <div class="col-10">
@@ -1372,24 +1360,15 @@
                                 </div>
                                 <div class="row g-3 mb-3">
                                     <div class="col-12">
-                                        <small style="font-size: 12px; margin-top: -40px;" class="mb-0 text-secondary fw-semibold"><i class="bi bi-geo-alt-fill text-danger"></i></i> Ploso Timur, Surabaya</small>
+                                        <small style="font-size: 12px; margin-top: -40px;" class="mb-0 text-secondary fw-normal"><i class="bi bi-geo-alt-fill text-danger"></i></i> Ploso Timur, Surabaya</small>
                                     </div>
                                 </div>
-                                <div class="row g-3" style="margin-top: -26px;">
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class="bi bi-wifi"></i>
-                                    </div>
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class="ri-sofa-fill"></i>
-                                    </div>
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class='bx bxs-bowl-rice'></i>
-                                    </div>
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class='bx bxs-shower'></i>
-                                    </div>
-                                    <div class="col-8 text-end">
+                                <div class="row" style="margin-top: -10px;">
+                                    <div class="col-8">
                                         <h3 style="margin-top: 5px; font-size: 14px;" class="mb-0 fw-bold">Rp. 2.350.000</h3>
+                                    </div>
+                                    <div class="col-4 text-end">
+                                        <button class="btn-rekomendasi-rumah" style="margin-left: -20px;">Lihat</button>
                                     </div>
                                 </div>
                             </div>
@@ -1399,7 +1378,6 @@
                                 <div class="position-relative mb-2">
                                     <img src="img/rumahkost4.jpg" style="border-radius: 15px; width: 220px; height: 140px; object-fit: cover;">
                                     <button id="btn-like-timur" class="btn-like-rekomendasi" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                                    <button class="btn-rekomendasi-rumah">Lihat</button>
                                 </div>
                                 <div class="row g-3">
                                     <div class="col-10">
@@ -1408,24 +1386,15 @@
                                 </div>
                                 <div class="row g-3 mb-3">
                                     <div class="col-12">
-                                        <small style="font-size: 12px; margin-top: -40px;" class="mb-0 text-secondary fw-semibold"><i class="bi bi-geo-alt-fill text-danger"></i></i> Mulyorejo, Surabaya</small>
+                                        <small style="font-size: 12px; margin-top: -40px;" class="mb-0 text-secondary fw-normal"><i class="bi bi-geo-alt-fill text-danger"></i></i> Mulyorejo, Surabaya</small>
                                     </div>
                                 </div>
-                                <div class="row g-3" style="margin-top: -26px;">
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class="bi bi-wifi"></i>
-                                    </div>
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class="ri-sofa-fill"></i>
-                                    </div>
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class='bx bxs-bowl-rice'></i>
-                                    </div>
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class='bx bxs-shower'></i>
-                                    </div>
-                                    <div class="col-8 text-end">
+                                <div class="row" style="margin-top: -10px;">
+                                    <div class="col-8">
                                         <h3 style="margin-top: 5px; font-size: 14px;" class="mb-0 fw-bold">Rp. 1.500.000</h3>
+                                    </div>
+                                    <div class="col-4 text-end">
+                                        <button class="btn-rekomendasi-rumah" style="margin-left: -20px;">Lihat</button>
                                     </div>
                                 </div>
                             </div>
@@ -1435,7 +1404,6 @@
                                 <div class="position-relative mb-2">
                                     <img src="img/rumahkost5.jpg" style="border-radius: 15px; width: 220px; height: 140px; object-fit: cover;">
                                     <button id="btn-like-timur" class="btn-like-rekomendasi" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                                    <button class="btn-rekomendasi-rumah">Lihat</button>
                                 </div>
                                 <div class="row g-3">
                                     <div class="col-10">
@@ -1444,24 +1412,15 @@
                                 </div>
                                 <div class="row g-3 mb-3">
                                     <div class="col-12">
-                                        <small style="font-size: 12px; margin-top: -40px;" class="mb-0 text-secondary fw-semibold"><i class="bi bi-geo-alt-fill text-danger"></i></i> Kalijudan, Surabaya</small>
+                                        <small style="font-size: 12px; margin-top: -40px;" class="mb-0 text-secondary fw-normal"><i class="bi bi-geo-alt-fill text-danger"></i></i> Kalijudan, Surabaya</small>
                                     </div>
                                 </div>
-                                <div class="row g-3" style="margin-top: -26px;">
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class="bi bi-wifi"></i>
-                                    </div>
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class="ri-sofa-fill"></i>
-                                    </div>
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class='bx bxs-bowl-rice'></i>
-                                    </div>
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class='bx bxs-shower'></i>
-                                    </div>
-                                    <div class="col-8 text-end">
+                                <div class="row" style="margin-top: -10px;">
+                                    <div class="col-8">
                                         <h3 style="margin-top: 5px; font-size: 14px;" class="mb-0 fw-bold">Rp. 1.250.000</h3>
+                                    </div>
+                                    <div class="col-4 text-end">
+                                        <button class="btn-rekomendasi-rumah" style="margin-left: -20px;">Lihat</button>
                                     </div>
                                 </div>
                             </div>
@@ -1471,7 +1430,6 @@
                                 <div class="position-relative mb-2">
                                     <img src="img/rumahkostharian1.jpg" style="border-radius: 15px; width: 220px; height: 140px; object-fit: cover;">
                                     <button id="btn-like-timur" class="btn-like-rekomendasi" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                                    <button class="btn-rekomendasi-rumah">Lihat</button>
                                 </div>
                                 <div class="row g-3">
                                     <div class="col-10">
@@ -1480,24 +1438,15 @@
                                 </div>
                                 <div class="row g-3 mb-3">
                                     <div class="col-12">
-                                        <small style="font-size: 12px; margin-top: -40px;" class="mb-0 text-secondary fw-semibold"><i class="bi bi-geo-alt-fill text-danger"></i></i> Jemur Sari, Surabaya</small>
+                                        <small style="font-size: 12px; margin-top: -40px;" class="mb-0 text-secondary fw-normal"><i class="bi bi-geo-alt-fill text-danger"></i></i> Jemur Sari, Surabaya</small>
                                     </div>
                                 </div>
-                                <div class="row g-3" style="margin-top: -26px;">
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class="bi bi-wifi"></i>
+                                <div class="row" style="margin-top: -10px;">
+                                    <div class="col-8">
+                                        <h3 style="margin-top: 5px; font-size: 14px;" class="mb-0 fw-bold">Rp. 1.250.000</h3>
                                     </div>
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class="ri-sofa-fill"></i>
-                                    </div>
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class='bx bxs-bowl-rice'></i>
-                                    </div>
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class='bx bxs-shower'></i>
-                                    </div>
-                                    <div class="col-8 text-end">
-                                        <h3 style="margin-top: 5px; font-size: 14px;" class="mb-0 fw-bold">Rp. 1.750.000</h3>
+                                    <div class="col-4 text-end">
+                                        <button class="btn-rekomendasi-rumah" style="margin-left: -20px;">Lihat</button>
                                     </div>
                                 </div>
                             </div>
@@ -1507,33 +1456,23 @@
                                 <div class="position-relative mb-2">
                                     <img src="img/rumahkostharian2.jpg" style="border-radius: 15px; width: 220px; height: 140px; object-fit: cover;">
                                     <button id="btn-like-timur" class="btn-like-rekomendasi" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                                    <button class="btn-rekomendasi-rumah">Lihat</button>
                                 </div>
                                 <div class="row g-3">
                                     <div class="col-10">
-                                        <h6 style="font-size: 16px; margin-bottom: -0.3rem;" class="fw-bold">Kost Mahasiswi</h6>
+                                        <h6 style="font-size: 16px; margin-bottom: -0.3rem;" class="fw-bold">Kost Mahasiswa</h6>
                                     </div>
                                 </div>
                                 <div class="row g-3 mb-3">
                                     <div class="col-12">
-                                        <small style="font-size: 12px; margin-top: -40px;" class="mb-0 text-secondary fw-semibold"><i class="bi bi-geo-alt-fill text-danger"></i></i> Kenjeran, Surabaya</small>
+                                        <small style="font-size: 12px; margin-top: -40px;" class="mb-0 text-secondary fw-normal"><i class="bi bi-geo-alt-fill text-danger"></i></i> Jemur Sari, Surabaya</small>
                                     </div>
                                 </div>
-                                <div class="row g-3" style="margin-top: -26px;">
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class="bi bi-wifi"></i>
+                                <div class="row" style="margin-top: -10px;">
+                                    <div class="col-8">
+                                        <h3 style="margin-top: 5px; font-size: 14px;" class="mb-0 fw-bold">Rp. 1.250.000</h3>
                                     </div>
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class="ri-sofa-fill"></i>
-                                    </div>
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class='bx bxs-bowl-rice'></i>
-                                    </div>
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class='bx bxs-shower'></i>
-                                    </div>
-                                    <div class="col-8 text-end">
-                                        <h3 style="margin-top: 5px; font-size: 14px;" class="mb-0 fw-bold">Rp. 2.500.000</h3>
+                                    <div class="col-4 text-end">
+                                        <button class="btn-rekomendasi-rumah" style="margin-left: -20px;">Lihat</button>
                                     </div>
                                 </div>
                             </div>
@@ -1543,33 +1482,23 @@
                                 <div class="position-relative mb-2">
                                     <img src="img/rumahkostharian3.jpg" style="border-radius: 15px; width: 220px; height: 140px; object-fit: cover;">
                                     <button id="btn-like-timur" class="btn-like-rekomendasi" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                                    <button class="btn-rekomendasi-rumah">Lihat</button>
                                 </div>
                                 <div class="row g-3">
                                     <div class="col-10">
-                                        <h6 style="font-size: 16px; margin-bottom: -0.3rem;" class="fw-bold">Kost Karyawan</h6>
+                                        <h6 style="font-size: 16px; margin-bottom: -0.3rem;" class="fw-bold">Kost Mahasiswa</h6>
                                     </div>
                                 </div>
                                 <div class="row g-3 mb-3">
                                     <div class="col-12">
-                                        <small style="font-size: 12px; margin-top: -40px;" class="mb-0 text-secondary fw-semibold"><i class="bi bi-geo-alt-fill text-danger"></i></i> Ploso Timur, Surabaya</small>
+                                        <small style="font-size: 12px; margin-top: -40px;" class="mb-0 text-secondary fw-normal"><i class="bi bi-geo-alt-fill text-danger"></i></i> Jemur Sari, Surabaya</small>
                                     </div>
                                 </div>
-                                <div class="row g-3" style="margin-top: -26px;">
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class="bi bi-wifi"></i>
+                                <div class="row" style="margin-top: -10px;">
+                                    <div class="col-8">
+                                        <h3 style="margin-top: 5px; font-size: 14px;" class="mb-0 fw-bold">Rp. 1.250.000</h3>
                                     </div>
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class="ri-sofa-fill"></i>
-                                    </div>
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class='bx bxs-bowl-rice'></i>
-                                    </div>
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class='bx bxs-shower'></i>
-                                    </div>
-                                    <div class="col-8 text-end">
-                                        <h3 style="margin-top: 5px; font-size: 14px;" class="mb-0 fw-bold">Rp. 2.350.000</h3>
+                                    <div class="col-4 text-end">
+                                        <button class="btn-rekomendasi-rumah" style="margin-left: -20px;">Lihat</button>
                                     </div>
                                 </div>
                             </div>
@@ -1579,33 +1508,23 @@
                                 <div class="position-relative mb-2">
                                     <img src="img/rumahkostharian4.jpg" style="border-radius: 15px; width: 220px; height: 140px; object-fit: cover;">
                                     <button id="btn-like-timur" class="btn-like-rekomendasi" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                                    <button class="btn-rekomendasi-rumah">Lihat</button>
                                 </div>
                                 <div class="row g-3">
                                     <div class="col-10">
-                                        <h6 style="font-size: 16px; margin-bottom: -0.3rem;" class="fw-bold">Kost Putra</h6>
+                                        <h6 style="font-size: 16px; margin-bottom: -0.3rem;" class="fw-bold">Kost Mahasiswa</h6>
                                     </div>
                                 </div>
                                 <div class="row g-3 mb-3">
                                     <div class="col-12">
-                                        <small style="font-size: 12px; margin-top: -40px;" class="mb-0 text-secondary fw-semibold"><i class="bi bi-geo-alt-fill text-danger"></i></i> Mulyorejo, Surabaya</small>
+                                        <small style="font-size: 12px; margin-top: -40px;" class="mb-0 text-secondary fw-normal"><i class="bi bi-geo-alt-fill text-danger"></i></i> Jemur Sari, Surabaya</small>
                                     </div>
                                 </div>
-                                <div class="row g-3" style="margin-top: -26px;">
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class="bi bi-wifi"></i>
+                                <div class="row" style="margin-top: -10px;">
+                                    <div class="col-8">
+                                        <h3 style="margin-top: 5px; font-size: 14px;" class="mb-0 fw-bold">Rp. 1.250.000</h3>
                                     </div>
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class="ri-sofa-fill"></i>
-                                    </div>
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class='bx bxs-bowl-rice'></i>
-                                    </div>
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class='bx bxs-shower'></i>
-                                    </div>
-                                    <div class="col-8 text-end">
-                                        <h3 style="margin-top: 5px; font-size: 14px;" class="mb-0 fw-bold">Rp. 1.500.000</h3>
+                                    <div class="col-4 text-end">
+                                        <button class="btn-rekomendasi-rumah" style="margin-left: -20px;">Lihat</button>
                                     </div>
                                 </div>
                             </div>
@@ -1615,33 +1534,23 @@
                                 <div class="position-relative mb-2">
                                     <img src="img/rumahkostharian5.jpg" style="border-radius: 15px; width: 220px; height: 140px; object-fit: cover;">
                                     <button id="btn-like-timur" class="btn-like-rekomendasi" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                                    <button class="btn-rekomendasi-rumah">Lihat</button>
                                 </div>
                                 <div class="row g-3">
                                     <div class="col-10">
-                                        <h6 style="font-size: 16px; margin-bottom: -0.3rem;" class="fw-bold">Kost Putri</h6>
+                                        <h6 style="font-size: 16px; margin-bottom: -0.3rem;" class="fw-bold">Kost Mahasiswa</h6>
                                     </div>
                                 </div>
                                 <div class="row g-3 mb-3">
                                     <div class="col-12">
-                                        <small style="font-size: 12px; margin-top: -40px;" class="mb-0 text-secondary fw-semibold"><i class="bi bi-geo-alt-fill text-danger"></i></i> Kalijudan, Surabaya</small>
+                                        <small style="font-size: 12px; margin-top: -40px;" class="mb-0 text-secondary fw-normal"><i class="bi bi-geo-alt-fill text-danger"></i></i> Jemur Sari, Surabaya</small>
                                     </div>
                                 </div>
-                                <div class="row g-3" style="margin-top: -26px;">
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class="bi bi-wifi"></i>
-                                    </div>
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class="ri-sofa-fill"></i>
-                                    </div>
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class='bx bxs-bowl-rice'></i>
-                                    </div>
-                                    <div class="col-1">
-                                        <i style="color: #ccc; font-size: 14px;" class='bx bxs-shower'></i>
-                                    </div>
-                                    <div class="col-8 text-end">
+                                <div class="row" style="margin-top: -10px;">
+                                    <div class="col-8">
                                         <h3 style="margin-top: 5px; font-size: 14px;" class="mb-0 fw-bold">Rp. 1.250.000</h3>
+                                    </div>
+                                    <div class="col-4 text-end">
+                                        <button class="btn-rekomendasi-rumah" style="margin-left: -20px;">Lihat</button>
                                     </div>
                                 </div>
                             </div>
@@ -1650,129 +1559,139 @@
                     </div>
                 </div>
             </div>
-            <!-- end product rumah -->
+            <!-- end rekomendasi rumah -->
 
             <!-- didekat mu rumah -->
-            <div class="row mt-4 mb-5">
+            <div class="row mt-3" style="margin-bottom: 2rem;">
                 <div class="col-12">
                     <h1 style="font-weight: bold; font-size: 18px; font-family: 'Inter', sans-serif;;">Didekat Kamu</h1>
                     <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay;">
-                        {{-- @for ($i = 1; $i <= 5; $i++) --}}
                         <div x-show="filter == 'bulanan'">
                             <div class="position-relative mb-2">
-                                <img src="img/rumahkost6.jpg" style="border-radius: 15px; width: 226px; height: 236px; object-fit: cover;">
+                                <img src="img/rumahkost6.jpg" style="border-top-right-radius: 15px; border-top-left-radius: 15px; width: 226px; height: 236px; object-fit: cover;">
                                 <button id="btn-like-timur" class="btn-like-didekat-mu" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                                <div class="overlay"></div>
-                                <h6 style="top: 140px; left: 10px; font-size: 18px; position: absolute;" class="fw-semibold text-white">Kost Karyawan</h6>
-                                <i style="position: absolute; top: 162px; left: 10px; color: rgba(255, 255, 255, 0.5); font-size: 14px" class="bi bi-geo-alt text-info"></i><small style="position: absolute; top: 164px; left: 28px; font-size: 12px; color: rgba(255, 255, 255, 0.8);" class="text-secondary;"> 2024 Mulyorejo, Surabaya</small>
-                                <h6 style="position: absolute; top: 196px; left: 10px; font-size: 16px;" class="fw-bold text-white">Rp. 2.000.000</h6>
-                                <button class="btn-didekat-mu">Lihat</button>
                             </div>
-                        </div>
-                        <div x-show="filter == 'bulanan'">
-                            <div class="position-relative mb-2">
-                                <img src="img/rumahkost7.jpg" style="border-radius: 15px; width: 226px; height: 236px; object-fit: cover;">
-                                <button id="btn-like-timur" class="btn-like-didekat-mu" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                                <div class="overlay"></div>
-                                <h6 style="top: 140px; left: 10px; font-size: 18px; position: absolute;" class="fw-semibold text-white">Kost Karyawan</h6>
-                                <i style="position: absolute; top: 162px; left: 10px; color: rgba(255, 255, 255, 0.5); font-size: 14px" class="bi bi-geo-alt text-info"></i><small style="position: absolute; top: 164px; left: 28px; font-size: 12px; color: rgba(255, 255, 255, 0.8);" class="text-secondary;"> 2024 Mulyorejo, Surabaya</small>
-                                <h6 style="position: absolute; top: 196px; left: 10px; font-size: 16px;" class="fw-bold text-white">Rp. 2.000.000</h6>
+                            <div class="card-black" style="position: relative; margin-top: -8px; width: 226px; height: 100px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; opacity: 0.9;">
+                                <h6 style="top: 10px; left: 10px; font-size: 18px; position: absolute; color: #333;" class="fw-semibold">Kost Karyawan</h6>
+                                <i style="position: absolute; top: 32px; left: 10px; color: #333; font-size: 12px" class="bi bi-geo-alt text-info"></i><small style="position: absolute; top: 32px; left: 26px; font-size: 12px; color: #333" class="text-secondary;"> 2024 Mulyorejo, Surabaya</small>
+                                <h6 style="position: absolute; top: 58px; left: 10px; font-size: 16px; color: #333;" class="fw-bold">Rp. 2.000.000</h6>
                                 <button class="btn-didekat-mu">Lihat</button>
                             </div>
                         </div>
                         <div x-show="filter == 'bulanan'">
                             <div class="position-relative mb-2">
-                                <img src="img/rumahkost8.jpg" style="border-radius: 15px; width: 226px; height: 236px; object-fit: cover;">
+                                <img src="img/rumahkost7.jpg" style="border-top-right-radius: 15px; border-top-left-radius: 15px; width: 226px; height: 236px; object-fit: cover;">
                                 <button id="btn-like-timur" class="btn-like-didekat-mu" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                                <div class="overlay"></div>
-                                <h6 style="top: 140px; left: 10px; font-size: 18px; position: absolute;" class="fw-semibold text-white">Kost Karyawan</h6>
-                                <i style="position: absolute; top: 162px; left: 10px; color: rgba(255, 255, 255, 0.5); font-size: 14px" class="bi bi-geo-alt text-info"></i><small style="position: absolute; top: 164px; left: 28px; font-size: 12px; color: rgba(255, 255, 255, 0.8);" class="text-secondary;"> 2024 Mulyorejo, Surabaya</small>
-                                <h6 style="position: absolute; top: 196px; left: 10px; font-size: 16px;" class="fw-bold text-white">Rp. 2.000.000</h6>
+                            </div>
+                            <div class="card-black" style="position: relative; margin-top: -8px; width: 226px; height: 100px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; opacity: 0.9;">
+                                <h6 style="top: 10px; left: 10px; font-size: 18px; position: absolute; color: #333;" class="fw-semibold">Kost Karyawan</h6>
+                                <i style="position: absolute; top: 32px; left: 10px; color: #333; font-size: 12px" class="bi bi-geo-alt text-info"></i><small style="position: absolute; top: 32px; left: 26px; font-size: 12px; color: #333" class="text-secondary;"> 2024 Mulyorejo, Surabaya</small>
+                                <h6 style="position: absolute; top: 58px; left: 10px; font-size: 16px; color: #333;" class="fw-bold">Rp. 2.000.000</h6>
                                 <button class="btn-didekat-mu">Lihat</button>
                             </div>
                         </div>
                         <div x-show="filter == 'bulanan'">
                             <div class="position-relative mb-2">
-                                <img src="img/rumahkost9.jpg" style="border-radius: 15px; width: 226px; height: 236px; object-fit: cover;">
+                                <img src="img/rumahkost8.jpg" style="border-top-right-radius: 15px; border-top-left-radius: 15px; width: 226px; height: 236px; object-fit: cover;">
                                 <button id="btn-like-timur" class="btn-like-didekat-mu" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                                <div class="overlay"></div>
-                                <h6 style="top: 140px; left: 10px; font-size: 18px; position: absolute;" class="fw-semibold text-white">Kost Karyawan</h6>
-                                <i style="position: absolute; top: 162px; left: 10px; color: rgba(255, 255, 255, 0.5); font-size: 14px" class="bi bi-geo-alt text-info"></i><small style="position: absolute; top: 164px; left: 28px; font-size: 12px; color: rgba(255, 255, 255, 0.8);" class="text-secondary;"> 2024 Mulyorejo, Surabaya</small>
-                                <h6 style="position: absolute; top: 196px; left: 10px; font-size: 16px;" class="fw-bold text-white">Rp. 2.000.000</h6>
+                            </div>
+                            <div class="card-black" style="position: relative; margin-top: -8px; width: 226px; height: 100px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; opacity: 0.9;">
+                                <h6 style="top: 10px; left: 10px; font-size: 18px; position: absolute; color: #333;" class="fw-semibold">Kost Karyawan</h6>
+                                <i style="position: absolute; top: 32px; left: 10px; color: #333; font-size: 12px" class="bi bi-geo-alt text-info"></i><small style="position: absolute; top: 32px; left: 26px; font-size: 12px; color: #333" class="text-secondary;"> 2024 Mulyorejo, Surabaya</small>
+                                <h6 style="position: absolute; top: 58px; left: 10px; font-size: 16px; color: #333;" class="fw-bold">Rp. 2.000.000</h6>
                                 <button class="btn-didekat-mu">Lihat</button>
                             </div>
                         </div>
                         <div x-show="filter == 'bulanan'">
                             <div class="position-relative mb-2">
-                                <img src="img/rumahkost10.jpg" style="border-radius: 15px; width: 226px; height: 236px; object-fit: cover;">
+                                <img src="img/rumahkost9.jpg" style="border-top-right-radius: 15px; border-top-left-radius: 15px; width: 226px; height: 236px; object-fit: cover;">
                                 <button id="btn-like-timur" class="btn-like-didekat-mu" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                                <div class="overlay"></div>
-                                <h6 style="top: 140px; left: 10px; font-size: 18px; position: absolute;" class="fw-semibold text-white">Kost Karyawan</h6>
-                                <i style="position: absolute; top: 162px; left: 10px; color: rgba(255, 255, 255, 0.5); font-size: 14px" class="bi bi-geo-alt text-info"></i><small style="position: absolute; top: 164px; left: 28px; font-size: 12px; color: rgba(255, 255, 255, 0.8);" class="text-secondary;"> 2024 Mulyorejo, Surabaya</small>
-                                <h6 style="position: absolute; top: 196px; left: 10px; font-size: 16px;" class="fw-bold text-white">Rp. 2.000.000</h6>
+                            </div>
+                            <div class="card-black" style="position: relative; margin-top: -8px; width: 226px; height: 100px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; opacity: 0.9;">
+                                <h6 style="top: 10px; left: 10px; font-size: 18px; position: absolute; color: #333;" class="fw-semibold">Kost Karyawan</h6>
+                                <i style="position: absolute; top: 32px; left: 10px; color: #333; font-size: 12px" class="bi bi-geo-alt text-info"></i><small style="position: absolute; top: 32px; left: 26px; font-size: 12px; color: #333" class="text-secondary;"> 2024 Mulyorejo, Surabaya</small>
+                                <h6 style="position: absolute; top: 58px; left: 10px; font-size: 16px; color: #333;" class="fw-bold">Rp. 2.000.000</h6>
+                                <button class="btn-didekat-mu">Lihat</button>
+                            </div>
+                        </div>
+                        <div x-show="filter == 'bulanan'">
+                            <div class="position-relative mb-2">
+                                <img src="img/rumahkost10.jpg" style="border-top-right-radius: 15px; border-top-left-radius: 15px; width: 226px; height: 236px; object-fit: cover;">
+                                <button id="btn-like-timur" class="btn-like-didekat-mu" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
+                            </div>
+                            <div class="card-black" style="position: relative; margin-top: -8px; width: 226px; height: 100px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; opacity: 0.9;">
+                                <h6 style="top: 10px; left: 10px; font-size: 18px; position: absolute; color: #333;" class="fw-semibold">Kost Karyawan</h6>
+                                <i style="position: absolute; top: 32px; left: 10px; color: #333; font-size: 12px" class="bi bi-geo-alt text-info"></i><small style="position: absolute; top: 32px; left: 26px; font-size: 12px; color: #333" class="text-secondary;"> 2024 Mulyorejo, Surabaya</small>
+                                <h6 style="position: absolute; top: 58px; left: 10px; font-size: 16px; color: #333;" class="fw-bold">Rp. 2.000.000</h6>
                                 <button class="btn-didekat-mu">Lihat</button>
                             </div>
                         </div>
                         <div x-show="filter == 'harian'">
                             <div class="position-relative mb-2">
-                                <img src="img/rumahkostharian6.jpg" style="border-radius: 15px; width: 226px; height: 236px; object-fit: cover;">
+                                <img src="img/rumahkostharian6.jpg" style="border-top-right-radius: 15px; border-top-left-radius: 15px; width: 226px; height: 236px; object-fit: cover;">
                                 <button id="btn-like-timur" class="btn-like-didekat-mu" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                                <div class="overlay"></div>
-                                <h6 style="top: 140px; left: 10px; font-size: 18px; position: absolute;" class="fw-semibold text-white">Kost Karyawan</h6>
-                                <i style="position: absolute; top: 162px; left: 10px; color: rgba(255, 255, 255, 0.5); font-size: 14px" class="bi bi-geo-alt text-info"></i><small style="position: absolute; top: 164px; left: 28px; font-size: 12px; color: rgba(255, 255, 255, 0.8);" class="text-secondary;"> 2024 Mulyorejo, Surabaya</small>
-                                <h6 style="position: absolute; top: 196px; left: 10px; font-size: 16px;" class="fw-bold text-white">Rp. 2.000.000</h6>
+                            </div>
+                            <div class="card-black" style="position: relative; margin-top: -8px; width: 226px; height: 100px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; opacity: 0.9;">
+                                <h6 style="top: 10px; left: 10px; font-size: 18px; position: absolute; color: #333;" class="fw-semibold">Kost Karyawan</h6>
+                                <i style="position: absolute; top: 32px; left: 10px; color: #333; font-size: 12px" class="bi bi-geo-alt text-info"></i><small style="position: absolute; top: 32px; left: 26px; font-size: 12px; color: #333" class="text-secondary;"> 2024 Mulyorejo, Surabaya</small>
+                                <h6 style="position: absolute; top: 58px; left: 10px; font-size: 16px; color: #333;" class="fw-bold">Rp. 2.000.000</h6>
                                 <button class="btn-didekat-mu">Lihat</button>
                             </div>
                         </div>
                         <div x-show="filter == 'harian'">
                             <div class="position-relative mb-2">
-                                <img src="img/rumahkostharian7.jpg" style="border-radius: 15px; width: 226px; height: 236px; object-fit: cover;">
+                                <img src="img/rumahkostharian7.jpg" style="border-top-right-radius: 15px; border-top-left-radius: 15px; width: 226px; height: 236px; object-fit: cover;">
                                 <button id="btn-like-timur" class="btn-like-didekat-mu" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                                <div class="overlay"></div>
-                                <h6 style="top: 140px; left: 10px; font-size: 18px; position: absolute;" class="fw-semibold text-white">Kost Karyawan</h6>
-                                <i style="position: absolute; top: 162px; left: 10px; color: rgba(255, 255, 255, 0.5); font-size: 14px" class="bi bi-geo-alt text-info"></i><small style="position: absolute; top: 164px; left: 28px; font-size: 12px; color: rgba(255, 255, 255, 0.8);" class="text-secondary;"> 2024 Mulyorejo, Surabaya</small>
-                                <h6 style="position: absolute; top: 196px; left: 10px; font-size: 16px;" class="fw-bold text-white">Rp. 2.000.000</h6>
+                            </div>
+                            <div class="card-black" style="position: relative; margin-top: -8px; width: 226px; height: 100px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; opacity: 0.9;">
+                                <h6 style="top: 10px; left: 10px; font-size: 18px; position: absolute; color: #333;" class="fw-semibold">Kost Karyawan</h6>
+                                <i style="position: absolute; top: 32px; left: 10px; color: #333; font-size: 12px" class="bi bi-geo-alt text-info"></i><small style="position: absolute; top: 32px; left: 26px; font-size: 12px; color: #333" class="text-secondary;"> 2024 Mulyorejo, Surabaya</small>
+                                <h6 style="position: absolute; top: 58px; left: 10px; font-size: 16px; color: #333;" class="fw-bold">Rp. 2.000.000</h6>
                                 <button class="btn-didekat-mu">Lihat</button>
                             </div>
                         </div>
                         <div x-show="filter == 'harian'">
                             <div class="position-relative mb-2">
-                                <img src="img/rumahkostharian8.jpg" style="border-radius: 15px; width: 226px; height: 236px; object-fit: cover;">
+                                <img src="img/rumahkostharian8.jpg" style="border-top-right-radius: 15px; border-top-left-radius: 15px; width: 226px; height: 236px; object-fit: cover;">
                                 <button id="btn-like-timur" class="btn-like-didekat-mu" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                                <div class="overlay"></div>
-                                <h6 style="top: 140px; left: 10px; font-size: 18px; position: absolute;" class="fw-semibold text-white">Kost Karyawan</h6>
-                                <i style="position: absolute; top: 162px; left: 10px; color: rgba(255, 255, 255, 0.5); font-size: 14px" class="bi bi-geo-alt text-info"></i><small style="position: absolute; top: 164px; left: 28px; font-size: 12px; color: rgba(255, 255, 255, 0.8);" class="text-secondary;"> 2024 Mulyorejo, Surabaya</small>
-                                <h6 style="position: absolute; top: 196px; left: 10px; font-size: 16px;" class="fw-bold text-white">Rp. 2.000.000</h6>
+                            </div>
+                            <div class="card-black" style="position: relative; margin-top: -8px; width: 226px; height: 100px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; opacity: 0.9;">
+                                <h6 style="top: 10px; left: 10px; font-size: 18px; position: absolute; color: #333;" class="fw-semibold">Kost Karyawan</h6>
+                                <i style="position: absolute; top: 32px; left: 10px; color: #333; font-size: 12px" class="bi bi-geo-alt text-info"></i><small style="position: absolute; top: 32px; left: 26px; font-size: 12px; color: #333" class="text-secondary;"> 2024 Mulyorejo, Surabaya</small>
+                                <h6 style="position: absolute; top: 58px; left: 10px; font-size: 16px; color: #333;" class="fw-bold">Rp. 2.000.000</h6>
                                 <button class="btn-didekat-mu">Lihat</button>
                             </div>
                         </div>
                         <div x-show="filter == 'harian'">
                             <div class="position-relative mb-2">
-                                <img src="img/rumahkostharian9.jpg" style="border-radius: 15px; width: 226px; height: 236px; object-fit: cover;">
+                                <img src="img/rumahkostharian9.jpg" style="border-top-right-radius: 15px; border-top-left-radius: 15px; width: 226px; height: 236px; object-fit: cover;">
                                 <button id="btn-like-timur" class="btn-like-didekat-mu" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                                <div class="overlay"></div>
-                                <h6 style="top: 140px; left: 10px; font-size: 18px; position: absolute;" class="fw-semibold text-white">Kost Karyawan</h6>
-                                <i style="position: absolute; top: 162px; left: 10px; color: rgba(255, 255, 255, 0.5); font-size: 14px" class="bi bi-geo-alt text-info"></i><small style="position: absolute; top: 164px; left: 28px; font-size: 12px; color: rgba(255, 255, 255, 0.8);" class="text-secondary;"> 2024 Mulyorejo, Surabaya</small>
-                                <h6 style="position: absolute; top: 196px; left: 10px; font-size: 16px;" class="fw-bold text-white">Rp. 2.000.000</h6>
+                            </div>
+                            <div class="card-black" style="position: relative; margin-top: -8px; width: 226px; height: 100px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; opacity: 0.9;">
+                                <h6 style="top: 10px; left: 10px; font-size: 18px; position: absolute; color: #333;" class="fw-semibold">Kost Karyawan</h6>
+                                <i style="position: absolute; top: 32px; left: 10px; color: #333; font-size: 12px" class="bi bi-geo-alt text-info"></i><small style="position: absolute; top: 32px; left: 26px; font-size: 12px; color: #333" class="text-secondary;"> 2024 Mulyorejo, Surabaya</small>
+                                <h6 style="position: absolute; top: 58px; left: 10px; font-size: 16px; color: #333;" class="fw-bold">Rp. 2.000.000</h6>
                                 <button class="btn-didekat-mu">Lihat</button>
                             </div>
                         </div>
                         <div x-show="filter == 'harian'">
                             <div class="position-relative mb-2">
-                                <img src="img/rumahkostharian10.jpg" style="border-radius: 15px; width: 226px; height: 236px; object-fit: cover;">
+                                <img src="img/rumahkostharian10.jpg" style="border-top-right-radius: 15px; border-top-left-radius: 15px; width: 226px; height: 236px; object-fit: cover;">
                                 <button id="btn-like-timur" class="btn-like-didekat-mu" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                                <div class="overlay"></div>
-                                <h6 style="top: 140px; left: 10px; font-size: 18px; position: absolute;" class="fw-semibold text-white">Kost Karyawan</h6>
-                                <i style="position: absolute; top: 162px; left: 10px; color: rgba(255, 255, 255, 0.5); font-size: 14px" class="bi bi-geo-alt text-info"></i><small style="position: absolute; top: 164px; left: 28px; font-size: 12px; color: rgba(255, 255, 255, 0.8);" class="text-secondary;"> 2024 Mulyorejo, Surabaya</small>
-                                <h6 style="position: absolute; top: 196px; left: 10px; font-size: 16px;" class="fw-bold text-white">Rp. 2.000.000</h6>
+                            </div>
+                            <div class="card-black" style="position: relative; margin-top: -8px; width: 226px; height: 100px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; opacity: 0.9;">
+                                <h6 style="top: 10px; left: 10px; font-size: 18px; position: absolute; color: #333;" class="fw-semibold">Kost Karyawan</h6>
+                                <i style="position: absolute; top: 32px; left: 10px; color: #333; font-size: 12px" class="bi bi-geo-alt text-info"></i><small style="position: absolute; top: 32px; left: 26px; font-size: 12px; color: #333" class="text-secondary;"> 2024 Mulyorejo, Surabaya</small>
+                                <h6 style="position: absolute; top: 58px; left: 10px; font-size: 16px; color: #333;" class="fw-bold">Rp. 2.000.000</h6>
                                 <button class="btn-didekat-mu">Lihat</button>
                             </div>
                         </div>
-                        {{-- @endfor --}}
                     </div>
+                    {{-- @endfor --}}
                 </div>
             </div>
-            <!-- end didekat mu rumah -->
+        </div>
+        <!-- end didekat mu rumah -->
     </section>
     <form action="{{ route('logout') }}" method="POST" class="d-flex" role="search">
         @csrf
@@ -1862,7 +1781,7 @@
         document.addEventListener("DOMContentLoaded", function() {
             var stickyTop = document.getElementById("stickyTop");
             var lastScrollTop = 0;
-            var scrollThreshold = 10; // Ubah nilai sesuai dengan ukuran y yang diinginkan
+            var scrollThreshold = 6; // Ubah nilai sesuai dengan ukuran y yang diinginkan
 
             window.addEventListener("scroll", function() {
                 var scrollTop = window.scrollY || document.documentElement.scrollTop;
