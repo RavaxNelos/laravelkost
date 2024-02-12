@@ -14,6 +14,10 @@ class UserController extends Controller
     {
         return view('detail.index');
     }
+    public function menujudetail()
+    {
+        return view('detail.index');
+    }
     public function detail()
     {
         return view('home');
@@ -21,5 +25,13 @@ class UserController extends Controller
     public function transaksi()
     {
         return view('transaksi.index');
+    }
+    public function back()
+    {
+        return view('detail.index');
+    }
+    public function bayar()
+    {
+        return view('transaksi.checkout');
     }
 }

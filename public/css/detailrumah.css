@@ -23,3 +23,49 @@
     font-weight: bold;
     font-size: 20px;
 }
+
+.btn-wa {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(128, 0, 128, 0.9);
+    border-radius: 10px;
+    border: none;
+    color: #ffffff;
+}
+
+.btn-wa:hover {
+    background-color: #9370DB;
+    border: 1px solid rgba(128, 0, 128, 0.9);
+}
+
+.btn-lokasi {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(128, 0, 128, 0.9);
+    border-radius: 10px;
+    border: none;
+    color: #ffffff;
+    margin-left: -10px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-lokasi:hover {
+    background-color: #9370DB;
+    border: 1px solid rgba(128, 0, 128, 0.9);
+}
+
+.btn-pesan {
+    width: 225px;
+    height: 40px;
+    background-color: rgba(128, 0, 128, 0.9);
+    border-radius: 10px;
+    border: none;
+    color: #ffffff;
+    margin-left: -20px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-pesan:hover {
+    background-color: #9370DB;
+    border: 1px solid rgba(128, 0, 128, 0.9);
+}

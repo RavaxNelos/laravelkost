@@ -26,6 +26,8 @@ Route::get('/transaksi', [UserController::class, 'transaksi'])->name('transaksi'
 
 Route::get('/detail', [UserController::class, 'detailrumah'])->name('detailrumah');
 
+Route::get('/checkout', [UserController::class, 'bayar'])->name('checkout');
+
 Route::group(['middleware' => 'guest'], function () {
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('registerPost', [AuthController::class, 'registerPost'])->name('registerPost');

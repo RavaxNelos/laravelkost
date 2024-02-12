@@ -17,7 +17,7 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        .btn-like-detail {
+        button.btn-like-detail {
             background-color: rgba(255, 255, 255, 0.8) !important;
             backdrop-filter: blur(50px) !important;
         }
@@ -26,15 +26,34 @@
 
 
 <body>
-    <div style="max-width: 300%; min-height: 100px; min-width: 250px; position: relative;">
-        <img src="{{ asset('img/kostsurabaya1.jpg') }}"style="border-radius: 0px;" class="w-100">
-        <form action="{{ route('kembalidetail') }}">
-            <button class="btn-back-home"><i class="bi bi-arrow-left"></i></button>
-        </form>
-        <button class="btn-like-detail" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
+    <section class="splide new-2" aria-label="Splide Basic HTML Example">
+        <div class="splide__track">
+            <ul class="splide__list">
+                <li class="splide__slide">
+                    <div style="max-width: 300%; min-height: 100px; min-width: 250px; position: relative;">
+                        <img src="{{ asset('img/kostsurabaya6.jpg') }}"style="border-radius: 0px;" class="w-100">
+                    </div>
+                </li>
+                <li class="splide__slide">
+                    <div style="max-width: 300%; min-height: 100px; min-width: 250px; position: relative;">
+                        <img src="{{ asset('img/kostsurabaya15.jpg') }}"style="border-radius: 0px;" class="w-100">
+                    </div>
+                </li>
+                <li class="splide__slide">
+                    <div style="max-width: 300%; min-height: 100px; min-width: 250px; position: relative;">
+                        <img src="{{ asset('img/kostsurabaya10.jpg') }}"style="border-radius: 0px;" class="w-100">
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <form action="{{ route('kembalidetail') }}">
+        <button class="btn-back-home"><i class="bi bi-arrow-left"></i></button>
+    </form>
+    <button class="btn-like-detail" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
     </div>
     <div class="container">
-        <div class="card-custom-detail" style="position: absolute; width: 335px; height: 430px; background-color: rgb(255, 255, 255); box-shadow: 5px 0 10px rgba(0, 0, 0, 0.1), -5px 0 10px rgba(0, 0, 0, 0.1); margin-top: -30px; border-radius: 25px;">
+        <div class="card-custom-detail" style="position: absolute; width: 335px; height: 425px; background-color: rgb(255, 255, 255); box-shadow: 5px 0 10px rgba(0, 0, 0, 0.1), -5px 0 10px rgba(0, 0, 0, 0.1); margin-top: -30px; border-radius: 25px;">
             <div class="container">
                 <!-- Judul kamar -->
                 <div class="col-7 text-start mt-3">
@@ -44,16 +63,15 @@
                         <h3 style="font-size: 16px;" class="text-dark fw-bold">Rp. 2.000.000</h3>
                     </div> --}}
                 <div class="row">
-                    <div class="col-9 text-start mt-1">
+                    <div class="col-9 text-start">
                         <p class="text-secondary" style="margin-top: -8px; font-size: 12px;">Ukuran Kamar Kostnya 3 x 4 Meter</p>
                     </div>
-                    .col
                 </div>
                 <!-- end Judul kamar -->
                 <div class="col-12 text-start">
-                    <h6 class="fw-semibold" style="position: absolute; top: 65px; font-size: 18px; font-family: Poppins">Fasilitas</h6>
+                    <h6 class="fw-semibold" style="position: absolute; top: 70px; font-size: 18px; font-family: Poppins">Fasilitas</h6>
                 </div>
-                <section class="splide" aria-label="Splide Basic HTML Example" style="margin-top: -20px">
+                <section class="splide new" aria-label="Splide Basic HTML Example" style="margin-top: -13px">
                     <div class="splide__track">
                         <ul class="splide__list">
                             <li class="splide__slide">
@@ -130,7 +148,7 @@
                     </p>
                 </div>
                 <div class="col-12 mt-2">
-                    <h6 class="fw-semibold">Gambaran Umum Kost</h6>
+                    <h6 class="fw-semibold">Isi Kamar Kost</h6>
                     <section class="splide new-1" aria-label="Splide Basic HTML Example">
                         <div class="splide__track">
                             <ul class="splide__list">
@@ -156,17 +174,17 @@
                 <div class="row">
                     <div class="col-2 mt-4">
                         <a href="https://api.whatsapp.com/send?phone=6282332724688" target="_blank" rel="noopener noreferrer">
-                            <button style="width: 40px; height: 40px; background-color: rgba(128, 0, 128, 0.9); border-radius: 10px; border: none; color: #ffffff;"><i class="bi bi-whatsapp"></i></button>
+                            <button class="btn-wa"><i class="bi bi-whatsapp"></i></button>
                         </a>
                     </div>
                     <div class="col-2 mt-4">
                         <a href="https://maps.app.goo.gl/pWPjQFsNmoAjsngG7" target="_blank" rel="noopener noreferrer">
-                            <button style="width: 40px; height: 40px; background-color: rgba(128, 0, 128, 0.9); border-radius: 10px; border: none; color: #ffffff;"><i class="bi bi-geo-alt-fill"></i></button>
+                            <button class="btn-lokasi"><i class="bi bi-geo-alt-fill"></i></button>
                         </a>
                     </div>
                     <div class="col-8 mt-4">
                         <form action="{{ route('transaksi') }}">
-                            <button style="width: 195px; height: 40px; background-color: rgba(128, 0, 128, 0.9); border-radius: 10px; border: none; color: #ffffff;">Pesan Sekarang</button>
+                            <button class="btn-pesan">Pesan Sekarang</button>
                         </form>
                     </div>
                 </div>
@@ -176,7 +194,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <script>
-        var splide = new Splide('.splide', {
+        var splide = new Splide('.splide.new', {
             arrows: false,
             pagination: false,
             perPage: 3,
@@ -198,6 +216,14 @@
 
         splide.mount();
 
+        var splide = new Splide('.splide.new-2', {
+            autoplay: true,
+            lazyLoad: 'nearby',
+            pagination: false,
+            arrows: false,
+        });
+        splide.mount();
+
         let isFavorite = false;
 
         function changeIconAndColor(button) {
@@ -215,15 +241,15 @@
             isFavorite = !isFavorite;
 
             Swal.fire({
-                title: 'Sukses!',
+                title: 'Berhasil!',
                 text: isFavorite ? 'Anda favoritkan kamar kost ini!' : 'Anda tidak favoritkan kamar kost ini!',
-                icon: 'success',
-                confirmButtonText: 'OK'
+                icon: isFavorite ? 'success' : 'error',
+                confirmButtonText: 'OKE'
             }).then((result) => {
                 // Callback yang dijalankan saat tombol "OK" ditekan
                 if (result.isConfirmed) {
                     // Tambahkan logika atau perubahan lain yang ingin Anda lakukan di sini
-                    console.log('Tombol OK ditekan');
+                    console.log('Tombol OKE telah ditekan oleh user');
                 }
             });
         }

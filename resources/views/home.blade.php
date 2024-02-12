@@ -357,7 +357,7 @@
                 </div>
                 <div x-show="filter == 'harian'">
                     <div class="custom-card" style="width: 180px; height: 290px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
-                        <div class="position-relative mb-2">
+                        <div class="position-relaive mb-2">
                             <img src="img/kostsurabayaharian2.jpg" style="border-radius: 15px; width: 160px; height: 160px; object-fit: cover;">
                             <button id="btn-like-timur" class="btn-like-timur" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
                         </div>
@@ -1094,7 +1094,9 @@
                                 <h6 style="font-size: 12px;" class="text-secondary">Fasilitas: Uk. 5 x 7 M | AC 1 | Toilet | Pk...</h6>
                             </div>
                             <div class="col-12">
-                                <button class="btn-area-barat">Lihat Detail dan Lokasi</button>
+                                <form action="{{ route('detailrumah') }}">
+                                    <button class="btn-area-barat">Lihat Detail dan Lokasi</button>
+                                </form>
                             </div>
                         </div>
                     </div>
