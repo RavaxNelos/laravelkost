@@ -48,7 +48,7 @@
         </div>
     </section>
     <form action="{{ route('kembalidetail') }}">
-        <button class="btn-back-home"><i class="bi bi-arrow-left"></i></button>
+        <button class="btn-back-home"><ion-icon name="chevron-back-outline"></ion-icon></button>
     </form>
     <button class="btn-like-detail" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
     </div>
@@ -144,11 +144,11 @@
                 <div class="col-12">
                     <h6 class="fw-semibold">Tentang Kamar Kost</h6>
                     <p class="text-secondary" style="font-size: 12px;">
-                        Kamar kost putra ini memiliki ukuran kamar 3 x 4 Meter dan mempunyai kamar mandi dalam beserta alat-alatnya.
+                        Besar ukuran kamar kostnya 3 x 4 Meter. Kamar kost Putra ini juga memiliki fasilitas berbagai macam seperti ac,toilet dan lain-lain
                     </p>
                 </div>
                 <div class="col-12 mt-2">
-                    <h6 class="fw-semibold">Isi Kamar Kost</h6>
+                    <h6 class="fw-semibold">Kamar Kost</h6>
                     <section class="splide new-1" aria-label="Splide Basic HTML Example">
                         <div class="splide__track">
                             <ul class="splide__list">
@@ -193,6 +193,8 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script>
         var splide = new Splide('.splide.new', {
             arrows: false,
