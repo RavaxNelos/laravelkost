@@ -132,7 +132,7 @@
                 </div>
                 <div class="col-4" style="margin-top: 10px;">
                     <!-- Search Bar -->
-                    <div class="search" style="padding-left: 10.5rem;">
+                    <div class="search" style="padding-left: 10.2rem;">
                         <button><i class="bi bi-search"></i></button>
                     </div>
                     <!-- end Search Bar -->
@@ -204,17 +204,17 @@
             </div>
         </section>
         <div class="button-container">
-            <button :class="filter == 'bulanan' ? 'btn btn-dark' : 'btn text-secondary'" x-on:click="filter = 'bulanan'">Kost Bulanan</button>
+            <button :class="filter == 'bulanan' ? 'btn btn-dark' : 'btn text-secondary'" x-on:click="filter = 'bulanan';" onclick="resetScroll('kategori-sewa')">Kost Bulanan</button>
             {{-- <button class="btn btn-kost-bulanan active fw-semibold">Kost Bulanan</button> --}}
-            <button :class="filter == 'harian' ? 'btn btn-dark' : 'btn text-secondary'" x-on:click="filter = 'harian'">Sewa Harian</button>
+            <button :class="filter == 'harian' ? 'btn btn-dark' : 'btn text-secondary'" x-on:click="filter = 'harian';" onclick="resetScroll('kategori-sewa')">Sewa Harian</button>
         </div>
         <!-- end Kost bulanan dan kost harian -->
         <div class="container mt-5">
             <!-- didekat mu rumah -->
             <div class="row mt-3" style="margin-bottom: 2rem;">
                 <div class="col-12">
-                    <h1 style="font-weight: bold; font-size: 18px; font-family: 'Inter', sans-serif;;">Didekat Kamu</h1>
-                    <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay;">
+                    <h1 style="font-weight: bold; font-size: 18px; font-family: 'Inter', sans-serif;">Didekat Kamu</h1>
+                    <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay;" id="kategori-sewa">
                         <div x-show="filter == 'bulanan'">
                             <div class="position-relative mb-2">
                                 <img src="img/rumahkost6.jpg" style="border-top-right-radius: 15px; border-top-left-radius: 15px; width: 226px; height: 236px; object-fit: cover;">
@@ -349,8 +349,7 @@
                     <p class="fw-normal text-primary">Semua</p>
                 </div>
             </div>
-            <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-top: -10px;">
-                {{-- @for ($i = 1; $i <= 5; $i++) --}}
+            <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-top: -10px; margin-bottom: 2rem;" id="katagori-sewa-timur">
                 <div x-show="filter == 'bulanan'">
                     <div class="custom-card" style="width: 180px; height: 290px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
                         <div class="position-relative mb-2">
@@ -594,7 +593,7 @@
         </div>
         <div class="garis-pembatas-2"></div>
         <div class="container">
-            <div class="row mt-3 mb-0">
+            <div class="row mt-3">
                 <div class="col-7">
                     <h1 style="font-weight: bold; font-size: 18px; font-family: 'Inter', sans-serif;">Kamar Kost Putra</h1>
                 </div>
@@ -602,7 +601,7 @@
                     <p class="fw-normal text-primary">Semua</p>
                 </div>
             </div>
-            <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-top: -10px;">
+            <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-top: -10px; margin-bottom: 2rem;" id="kategori-sewa-putra">
                 {{-- @for ($i = 1; $i <= 5; $i++) --}}
                 <div x-show="filter == 'bulanan'">
                     <div class="card" style="padding: 10px; border-radius: 15px;">
@@ -773,7 +772,7 @@
                     <p class="fw-normal text-primary">Semua</p>
                 </div>
             </div>
-            <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-top: -10px;">
+            <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-top: -10px; margin-bottom: 2rem;" id="kategori-sewa-populer">
                 <!-- Area tengah surabaya -->
                 {{-- @for ($i = 1; $i <= 5; $i++) --}}
                 <div x-show="filter == 'bulanan'">
@@ -967,7 +966,7 @@
                     <p class="fw-normal text-primary">Semua</p>
                 </div>
             </div>
-            <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-top: -10px;">
+            <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-top: -10px; margin-bottom: 2rem;" id="kategori-sewa-putri">
                 {{-- @for ($i = 1; $i <= 5; $i++) --}}
                 <div x-show="filter == 'bulanan'">
                     <div class="card" style="padding: 10px; border-radius: 15px;">
@@ -1159,7 +1158,7 @@
                     <p class="fw-normal text-primary">Semua</p>
                 </div>
             </div>
-            <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-top: -10px;">
+            <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-top: -10px; margin-bottom: 2rem;" id="kategori-sewa-barat">
                 <!-- Area barat surabaya -->
                 {{-- @for ($i = 1; $i <= 5; $i++) --}}
                 <div x-show="filter == 'bulanan'">
@@ -1377,8 +1376,7 @@
             <div class="row mt-3 mb-0">
                 <div class="col-12">
                     <h1 style="font-weight: bold; font-size: 18px; font-family: 'Inter', sans-serif;">Rekomendasi Kamar Kost</h1>
-                    <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-bottom: 2rem;">
-                        {{-- @for ($i = 1; $i <= 5; $i++) --}}
+                    <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-bottom: 2rem;" id="kategori-sewa-rekomendasi">
                         <div x-show="filter == 'bulanan'">
                             <div class="card" style="padding: 10px; border-radius: 15px;">
                                 <div class="position-relative mb-2">
@@ -1639,7 +1637,6 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- @endfor --}}
                     </div>
                 </div>
             </div>
@@ -1651,7 +1648,6 @@
         <button class="btn btn-danger" type="submit">Logout</button>
     </form>
     <!-- end didekat mu rumah -->
-    </div>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <script>
@@ -1748,7 +1744,19 @@
 
                 lastScrollTop = scrollTop;
             });
+
         });
+
+        function resetScroll(id) {
+            document.getElementById(id).scrollLeft = 0;
+            document.getElementById('katagori-sewa-timur').scrollLeft = 0;
+            document.getElementById('kategori-sewa-putra').scrollLeft = 0;
+            document.getElementById('kategori-sewa-populer').scrollLeft = 0;
+            document.getElementById('kategori-sewa-putri').scrollLeft = 0;
+            document.getElementById('kategori-sewa-barat').scrollLeft = 0;
+            document.getElementById('kategori-sewa-rekomendasi').scrollLeft = 0;
+        }
+
 
 
         function changeIconAndColor(button) {

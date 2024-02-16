@@ -24,132 +24,137 @@
     <!-- splide js -->
     <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
     <!-- end splide js -->
+    <style>
+        :root {
+            scrollbar-color: transparent transparent;
+        }
+
+        body {
+            overflow: overlay;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: transparent;
+            border-radius: 2px;
+        }
+
+        .accordion-button:focus {
+            border-color: none;
+            box-shadow: none;
+        }
+
+        .accordion-button:not(.collapsed) {
+            color: black;
+            background-color: white;
+            box-shadow: none;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container py-3">
+    <div class="container">
         <div class="row">
-            <div class="col-3 text-start mt-3">
+            <div class="col-3 text-start" style="margin-top: 10px;">
                 <a href="{{ route('detailrumah') }}" style="color: black">
-                    <ion-icon name="chevron-back-outline" style="font-size: 30px;"></ion-icon>
+                    <ion-icon name="chevron-back-outline" style="font-size: 18px;"></ion-icon>
                 </a>
             </div>
-            <div class="col-6 text-center mt-3">
-                <h3 class="fw-semibold" style="font-family: Poppins">Transaksi</h3>
+            <div class="col-6 text-center mt-2">
+                <h3 class="fw-bold" style="font-family: Poppins; font-size: 18px;">Transaksi</h3>
             </div>
         </div>
     </div>
     <hr class="hr-divider">
-    <div class="container py-3">
-        {{-- <div x-data="{ activeButton: 'Button 1' }"> --}}
-        <section class="splide new-1" aria-label="Splide Basic HTML Example">
-            <div class="splide__track">
-                <ul class="splide__list">
-                    <div class="buttons-container">
-                        <li class="splide__slide">
-                            <button @click="activeButton = 'Button 1'" :class="{ 'active': activeButton === 'Button 1' }">Per Bulan</button>
-                        </li>
-                        <li class="splide__slide">
-                            <button @click="activeButton = 'Button 2'" :class="{ 'active': activeButton === 'Button 2' }">Per 3 Bulan</button>
-                        </li>
-                        <li class="splide__slide">
-                            <button @click="activeButton = 'Button 3'" :class="{ 'active': activeButton === 'Button 3' }">Per 6 Bulan</button>
-                        </li>
-                        <li class="splide__slide">
-                            <button @click="activeButton = 'Button 4'" :class="{ 'active': activeButton === 'Button 4' }">Per Tahun</button>
-                        </li>
-                    </div>
-                </ul>
-            </div>
-        </section>
-        {{-- </div> --}}
+    <div class="container py-4">
+        <div class="col-12 d-flex gap-3" style="overflow-x: auto; white-space: nowrap; margin-top: -10px; margin-bottom: 2rem;">
+            <button class="btn btn-primary" style="width: 110px; height: 40px;">Per Bulan</button>
+            <button class="btn btn-outline-secondary" style="width: 110px; height: 40px;">Per 3 Bulan</button>
+            <button class="btn btn-outline-secondary" style="width: 110px; height: 40px;">Per 6 Bulan</button>
+            <button class="btn btn-outline-secondary" style="width: 110px; height: 40px;">Per Tahun</button>
+        </div>
     </div>
-    <hr class="hr-divider">
+    <hr class="hr-divider" style="margin-top: -40px;">
     <div class="container py-2 bg-body-secondary">
         <div class="row">
             <div class="col-2 text-start">
                 <button class="tokokamarkost"><i class="bi bi-house-fill" style="color: white;"></i></button>
             </div>
             <div class="col-8">
-                <h3 class="fw-semibold" style="font-size: 18px; margin-top: 10px; font-family: Poppins; margin-left: -10px">Toko Sewa Kamar Kost</h3>
-            </div>
-            <div class="col-2 text-end mt-2">
-                <i class="bi bi-three-dots-vertical" style="color: #ccc; font-size: 20px;"></i>
+                <h3 class="fw-semibold" style="font-size: 18px; margin-top: 10px; font-family: Poppins; margin-left: -10px">Sewa Kamar Kost</h3>
             </div>
         </div>
     </div>
     <hr class="hr-tipis">
     <div class="container py-2">
-        <div class="row">
-            <div class="col-3">
-                <img src="{{ asset('img/kostsurabaya6.jpg') }}" style="width: 70px; height: 60px; object-fit: cover; border-radius: 10px">
-            </div>
-            <div class="col-9">
-                <h6 class="fw-medium" style="font-family: Poppins; font-size: 16px; margin-left: -8px; width: 250px;">Kost Putra | Ukuran Kamar Kost 3 X 4 Meter</h6>
-                <h6 class="text-secondary" style="font-size: 14px; margin-left: -8px; width: 160px;">Fasilitas : Ac 1,Toilet 1, Kasur 1, dan Selimut 2</h6>
-            </div>
-            <div class="col-10 text-center mt-2">
-                <h6 class="fw-medium" style="margin-left: 4px; font-size: 16px;">Harga Kamar :</h6>
-            </div>
-            <div class="col-2">
-                <div class="dropdown">
-                    <button class="btn btn-outline-secondary rounded text-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 0px; margin-left: -32px;">
-                        Per
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Per Bulan</a></li>
-                        <li><a class="dropdown-item" href="#">Per 3 Bulan</a></li>
-                        <li><a class="dropdown-item" href="#">Per 6 Bulan</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-10 text-center">
-                <h6 class="fw-bold" style="margin-left: 12px; font-size: 18px; color: #9b59b6">Rp. 2.000.000</h6>
-            </div>
-        </div>
-    </div>
-    <hr class="hr-tipis">
-    <div class="container py-3">
-        <div class="row">
-            <div class="col-6 text-start">
-                <h6 class="fw-semibold" style="font-size: 16px; width: 200px;">Harga Kamar Kost :</h6>
-            </div>
-            <div class="col-6 text-end">
-                <h3 class="fw-bold" style="font-size: 16px;">Rp. 2.000.000</h3>
-            </div>
-            <div class="col-6 text-start">
-                <h6 class="fw-semibold" style="font-size: 16px; width: 300px;">Harga Sewa Fasilitas :</h6>
-            </div>
-            <div class="col-6 text-end">
-                <h3 class="fw-bold" style="font-size: 16px;">Rp. 100.000</h3>
-            </div>
-            <div class="col-6 text-start">
-                <h6 class="fw-semibold" style="font-size: 16px; width: 300px;">Harga Administrasi :</h6>
-            </div>
-            <div class="col-6 text-end">
-                <h3 class="fw-bold" style="font-size: 16px;">Rp. 50.000</h3>
-            </div>
-        </div>
-        <hr class="hr-tipis">
         <div class="row mt-2">
-            <div class="col-6 text-start">
-                <h6 class="fw-semibold" style="font-size: 16px; color: #9b59b6;">Total Harga :</h6>
+            <div class="col-5 text-start">
+                <h3 class="fw-normal text-secondary" style="font-size: 14px;">Nama Pelanggan</h3>
             </div>
-            <div class="col-6 text-end">
-                <h3 class="fw-bold" style="font-size: 16px; color: #9b59b6">Rp. 2.150.000</h3>
+            <div class="col-7 text-end">
+                <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">Muhammad Ravanelo</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-5 text-start">
+                <h3 class="fw-normal text-secondary" style="font-size: 14px;">Jenis Kamar</h3>
+            </div>
+            <div class="col-7 text-end">
+                <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">Kamar Putra</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-5 text-start">
+                <h3 class="fw-normal text-secondary" style="font-size: 14px;">Durasi Ngekost</h3>
+            </div>
+            <div class="col-7 text-end">
+                <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">1 Bulan</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-5 text-start">
+                <h3 class="fw-normal text-secondary" style="font-size: 14px;">Biaya Fasilitas</h3>
+            </div>
+            <div class="col-7 text-end">
+                <h3 class="fw-semibold text-secondary-emphesis" style="font-size: 14px;">Rp.100.000</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-5 text-start">
+                <h3 class="fw-normal text-secondary" style="font-size: 14px;">Biaya Kamar Kost</h3>
+            </div>
+            <div class="col-7 text-end">
+                <h3 class="fw-semibold text-secondary-emphesis" style="font-size: 14px;">Rp.2.000.000</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-5 text-start">
+                <h3 class="fw-normal text-secondary" style="font-size: 14px;">Total Biaya</h3>
+            </div>
+            <div class="col-7 text-end">
+                <h3 class="fw-semibold text-secondary-emphesis" style="font-size: 14px;">Rp.2.100.000</h3>
             </div>
         </div>
     </div>
-    <hr class="charlie" style="margin-top: -10px;">
-    <hr class="hr-tebal">
     <div class="container">
-        <div class="sticky-bottom">
-            <div class="row">
-                <div class="col-6 text-start mt-2">
-                    <p class="fw-medium text-secondary" style="width: 300px;">Total Pembayaran :</p>
-                    <h3 class="fw-bold" style="font-size: 16px; margin-top: -16px;">Rp. 2.150.000</h3>
+        <div class="row mt-2">
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" style="border: 1px solid #ccc; border-radius: 15px;">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                            Metode Pembayaran
+                        </button>
+                    </h2>
+                    <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            <button style="border-radius: 0px !important; width: 334px; height: 50px; background-color: white; margin-left: -20px; margin-top: -50px;">ovo</button>
+                        </div>
+                    </div>
                 </div>
-                .col-6.text-end
             </div>
         </div>
     </div>
@@ -157,46 +162,7 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
-    <script>
-        var splide = new Splide('.splide.new-1', {
-            arrows: false,
-        });
-        splide.mount();
-
-        (function() {
-
-            if (!window.StyleFix) return;
-            if (hasxmldatauri()) return;
-
-            // Test unescaped XML data uri
-            function hasxmldatauri() {
-                var img = new Image();
-                datauri = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0,0 1,1" fill="#000"></svg>';
-                img.src = datauri;
-                return (img.width == 1 && img.height == 1);
-            }
-
-            StyleFix.register(function(css) {
-
-                return css.replace(RegExp(/url\(\'data:image\/svg\+xml,(.*)\'\)/gi), function($0, svg) {
-                    return "url('data:image/svg+xml," + escape(svg) + "')";
-                });
-
-            });
-
-        })();
-
-        /* Radial Gradient Syntax fix */
-        StyleFix.register(function(css, raw) {
-            if (PrefixFree.functions.indexOf('radial-gradient') > -1) {
-                css = css.replace(/radial-gradient\(([a-z-\s]+\s+)?at ([^,]+)(?=,)/g, function($0, shape, center) {
-                    return 'radial-gradient(' + center + (shape ? ', ' + shape : '');
-                });
-            }
-
-            return css;
-        });
-    </script>
+    <script></script>
 </body>
 
 </html>

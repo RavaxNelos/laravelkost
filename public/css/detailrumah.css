@@ -4,12 +4,9 @@
     border: none;
     border-radius: 50%;
     background-color: transparent;
-    position: absolute;
-    top: 20px;
-    left: 10px;
     font-weight: bold;
     font-size: 20px;
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 .btn-like-detail {
@@ -17,9 +14,6 @@
     height: 32px;
     border: none;
     border-radius: 50%;
-    position: absolute;
-    top: 20px;
-    right: 10px;
     font-weight: bold;
     font-size: 20px;
 }
@@ -27,7 +21,8 @@
 .btn-wa {
     width: 40px;
     height: 40px;
-    background-color: rgba(128, 0, 128, 0.9);
+    background: rgb(164, 75, 159);
+    background: linear-gradient(0deg, rgba(164, 75, 159, 1) 20%, rgba(159, 75, 158, 1) 40%, rgba(193, 104, 196, 1) 50%, rgba(160, 76, 158, 1) 80%, rgba(157, 76, 158, 1) 85%);
     border-radius: 10px;
     border: none;
     color: #ffffff;
@@ -41,7 +36,8 @@
 .btn-lokasi {
     width: 40px;
     height: 40px;
-    background-color: rgba(128, 0, 128, 0.9);
+    background: rgb(164, 75, 159);
+    background: linear-gradient(0deg, rgba(164, 75, 159, 1) 20%, rgba(159, 75, 158, 1) 40%, rgba(193, 104, 196, 1) 50%, rgba(160, 76, 158, 1) 80%, rgba(157, 76, 158, 1) 85%);
     border-radius: 10px;
     border: none;
     color: #ffffff;
@@ -55,9 +51,10 @@
 }
 
 .btn-pesan {
-    width: 220px;
+    width: 238px;
     height: 40px;
-    background-color: rgba(128, 0, 128, 0.9);
+    background: rgb(164, 75, 159);
+    background: linear-gradient(0deg, rgba(164, 75, 159, 1) 20%, rgba(159, 75, 158, 1) 40%, rgba(193, 104, 196, 1) 50%, rgba(160, 76, 158, 1) 80%, rgba(157, 76, 158, 1) 85%);
     border-radius: 10px;
     border: none;
     color: #ffffff;
@@ -68,4 +65,36 @@
 .btn-pesan:hover {
     background-color: #9370DB;
     border: 1px solid rgba(128, 0, 128, 0.9);
+}
+
+.fixed-top {
+    background-color: transparent;
+    /* Atau warna lain sesuai kebutuhan */
+    transition: background-color 0.3s ease;
+    /* Animasi perubahan warna latar belakang */
+}
+
+.fixed-top.scrolled {
+    background-color: white;
+    /* Warna putih sesuai kebutuhan */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    /* Contoh penambahan shadow saat di-scroll */
+}
+
+
+.sticky-bottom {
+    position: fixed !important;
+    bottom: 0px !important;
+    background-color: white;
+    width: 100%;
+    height: 70px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+.garis-pembatas-2 {
+    border-top: 15px solid #ccc;
+    margin-top: 20px;
+    /* Sesuaikan sesuai kebutuhan */
+    margin-bottom: 4.2rem;
+    /* Sesuaikan sesuai kebutuhan */
 }
