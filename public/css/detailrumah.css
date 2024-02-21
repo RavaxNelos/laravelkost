@@ -5,8 +5,9 @@
     border-radius: 50%;
     background-color: transparent;
     font-weight: bold;
-    font-size: 20px;
-    color: rgb(0, 0, 0);
+    font-size: 24px;
+    color: rgb(255, 255, 255);
+    transition: color 0.3s ease !important;
 }
 
 .btn-like-detail {
@@ -21,8 +22,8 @@
 .btn-wa {
     width: 40px;
     height: 40px;
-    background: rgb(164, 75, 159);
-    background: linear-gradient(0deg, rgba(164, 75, 159, 1) 20%, rgba(159, 75, 158, 1) 40%, rgba(193, 104, 196, 1) 50%, rgba(160, 76, 158, 1) 80%, rgba(157, 76, 158, 1) 85%);
+    background: rgb(106, 5, 114);
+    background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%);
     border-radius: 10px;
     border: none;
     color: #ffffff;
@@ -36,8 +37,8 @@
 .btn-lokasi {
     width: 40px;
     height: 40px;
-    background: rgb(164, 75, 159);
-    background: linear-gradient(0deg, rgba(164, 75, 159, 1) 20%, rgba(159, 75, 158, 1) 40%, rgba(193, 104, 196, 1) 50%, rgba(160, 76, 158, 1) 80%, rgba(157, 76, 158, 1) 85%);
+    background: rgb(106, 5, 114);
+    background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%);
     border-radius: 10px;
     border: none;
     color: #ffffff;
@@ -53,8 +54,8 @@
 .btn-pesan {
     width: 238px;
     height: 40px;
-    background: rgb(164, 75, 159);
-    background: linear-gradient(0deg, rgba(164, 75, 159, 1) 20%, rgba(159, 75, 158, 1) 40%, rgba(193, 104, 196, 1) 50%, rgba(160, 76, 158, 1) 80%, rgba(157, 76, 158, 1) 85%);
+    background: rgb(106, 5, 114);
+    background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%);
     border-radius: 10px;
     border: none;
     color: #ffffff;
@@ -81,6 +82,10 @@
     /* Contoh penambahan shadow saat di-scroll */
 }
 
+.fixed-top.scrolled .btn-back-home i {
+    color: #000000;
+    /* Ganti dengan warna ikon yang diinginkan saat di-scroll */
+}
 
 .sticky-bottom {
     position: fixed !important;

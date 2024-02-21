@@ -42,6 +42,7 @@ body {
 
 .nav-active {
     color: purple;
+    font-weight: bold;
 }
 
 .nav__link:hover {
@@ -112,6 +113,14 @@ body {
     margin-top: 10px;
     /* Sesuaikan sesuai kebutuhan */
     margin-bottom: 5px;
+    /* Sesuaikan sesuai kebutuhan */
+}
+
+.garis-pembatas-2-5 {
+    border-top: 15px solid #ccc;
+    margin-top: -10px;
+    /* Sesuaikan sesuai kebutuhan */
+    margin-bottom: 1px;
     /* Sesuaikan sesuai kebutuhan */
 }
 

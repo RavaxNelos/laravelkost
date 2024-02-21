@@ -22,6 +22,14 @@ Route::get('/detail', function () {
     return view('detail.index');
 });
 
+Route::get('/transaksi', function() {
+    return view('transaksi.index');
+});
+
+Route::get('/buktipembayaran', function () {
+    return view('transaksi.buktipembayaran');
+});
+
 Route::get('/transaksi', [UserController::class, 'transaksi'])->name('transaksi');
 
 Route::get('/detail', [UserController::class, 'detailrumah'])->name('detailrumah');

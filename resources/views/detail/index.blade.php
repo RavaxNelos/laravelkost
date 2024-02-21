@@ -53,6 +53,48 @@
             display: none;
             /* Sembunyikan ketika diperlukan */
         }
+
+        .fixed-top.scrolled .btn-back-home {
+            transition: color 0.3s ease;
+            color: #000000 !important;
+            /* Ganti dengan warna ikon yang diinginkan saat di-scroll */
+        }
+
+        .fixed-top.scrolled .teks-detail {
+            transition: color 0.3s ease;
+            color: #000000 !important;
+            /* Ganti dengan warna ikon yang diinginkan saat di-scroll */
+        }
+
+        div:where(.swal2-container) .swal2-html-container {
+            font-size: 16px !important;
+            font-weight: 400 !important;
+            color: gray !important;
+            margin-top: -20px !important;
+        }
+
+        div:where(.swal2-container) div:where(.swal2-popup) {
+            width: 14em !important;
+            height: 12em !important;
+            border-radius: 10% !important;
+        }
+
+        div.swal2-success-ring {
+            margin-top: -20px !important;
+        }
+
+        span.swal2-success-line-tip {
+            margin-top: -20px !important;
+        }
+
+        span.swal2-success-line-long {
+            margin-top: -20px !important;
+        }
+
+        div.swal2-icon.swal2-error.swal2-icon-show {
+            margin-top: 20px !important;
+            margin-bottom: 30px !important;
+        }
     </style>
 </head>
 
@@ -61,10 +103,13 @@
     <nav class="fixed-top" id="stickyTop">
         <div class="container py-3">
             <div class="row g-3">
-                <div class="col-6">
+                <div class="col-1">
                     <a href="/home" class="btn-back-home"><ion-icon name="chevron-back-outline" style="margin-bottom: -4px;"></ion-icon></a>
                 </div>
-                <div class="col-6 text-end">
+                <div class="col-6 mt-4 text-start" style="margin-top: 25px !important;">
+                    <h3 class="text-white fw-bold teks-detail" style="font-size: 16px; transition: color 0.3s ease;">Detail Kamar Kost</h3>
+                </div>
+                <div class="col-5 text-end">
                     <button class="btn-like-detail" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
                 </div>
             </div>
@@ -192,106 +237,97 @@
         </div>
         <!-- Modal -->
         <div class="modal fade" id="Kamarmandi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable">
-                <div class="modal-content" style="height: 360px; width: 236px; position: absolute; top: 18%; left: 16%;">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Kamar Mandi</h1>
-                    </div>
-                    <div class="modal-body">
-                        <img src="{{ asset('img/interior1.jpg') }}" height="200" width="200" style="border-radius: 5px;">
-                        <p class="text-secondary fw-normal" style="font-size: 14px; margin-top: 1rem;">Kamar mandi/toilet ini dilengkapi dengan wastafel estetis, toilet privat, dan shower atau bak mandi yang menyegarkan. Kamar mandi di kost-kostan ini juga menawarkan suasana yang bersih dan minimalis. Dengan pencahayaan alami yang lembut dan perlengkapan mandi yang lengkap, kamar mandi ini memberikan kenyamanan bagi penghuninya. Desain fungsionalnya menciptakan ruang yang efisien untuk memenuhi kebutuhan harian tanpa kehilangan sentuhan kebersihan dan kenyamanan. </p>
+            <div class="modal-dialog">
+                <div class="modal-content" style="height: 364px; width: 344px; position: absolute; top: 120px;">
+                    <div class="modal-body" style="padding: 4px;">
+                        <img src="{{ asset('img/interior1.jpg') }}" height="220" width="334" style="border-radius: 5px;">
+                        <div class="h3 fw-bold text-center mt-2" style="font-size: 18px;">Kamar Mandi</div>
+                        <p class="text-dark fw-normal" style="font-size: 12px; margin-top: 0.5rem;">
+                            Kamar mandi memiliki ukuran yang umumnya berkisar antara 2 meter x 2 meter hingga 3 meter x 3 meter. Di dalamnya, terdapat wastafel, toilet, dan bak mandi atau shower. Dinding seringkali dilapisi keramik untuk memudahkan pembersihan.</p>
                     </div>
                 </div>
             </div>
         </div>
         <div class="modal fade" id="Ac" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable">
-                <div class="modal-content" style="height: 360px; width: 236px; position: absolute; top: 18%; left: 16%;">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Ac</h1>
-                    </div>
-                    <div class="modal-body">
-                        <img src="{{ asset('img/interior2.jpg') }}" height="200" width="200" style="border-radius: 5px;">
-                        <p class="text-secondary fw-normal" style="font-size: 14px; margin-top: 1rem;">AC merek Panasonic sering menjadi pilihan tepat untuk kost-kostan dengan pertimbangan kualitas dan efisiensi energi. Dikenal dengan desain yang kompak, Panasonic menyediakan AC yang mudah diintegrasikan dalam ruang terbatas. Fitur andal seperti teknologi inverter untuk penghematan energi, filter udara nanoe™ yang membersihkan udara dari partikel mikro, dan pengendalian suhu yang presisi membuatnya ideal untuk menciptakan lingkungan yang nyaman dan sehat di kost-kostan Anda. </p>
+            <div class="modal-dialog">
+                <div class="modal-content" style="height: 364px; width: 344px; position: absolute; top: 120px;">
+                    <div class="modal-body" style="padding: 4px;">
+                        <img src="{{ asset('img/interior2.jpg') }}" height="220" width="334" style="border-radius: 5px;">
+                        <div class="h3 fw-bold text-center mt-2" style="font-size: 18px;">AC PANASONIC</div>
+                        <p class="text-dark fw-normal" style="font-size: 12px; margin-top: 0.5rem;">
+                            AC Panasonic hadir dalam berbagai ukuran, mulai dari model split dengan kapasitas 0.5 PK hingga model ducted dengan kapasitas 5 PK. Fitur-fitur canggihnya meliputi teknologi inverter untuk efisiensi energi, filter nanoe™ yang membersihkan udara. </p>
                     </div>
                 </div>
             </div>
         </div>
         <div class="modal fade" id="Dapur" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable">
-                <div class="modal-content" style="height: 360px; width: 236px; position: absolute; top: 18%; left: 16%;">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Dapur</h1>
-                    </div>
-                    <div class="modal-body">
-                        <img src="{{ asset('img/interior3.jpg') }}" height="200" width="200" style="border-radius: 5px;">
-                        <p class="text-secondary fw-normal" style="font-size: 14px; margin-top: 1rem;">Dapur di kost-kostan dirancang sederhana namun fungsional. Dilengkapi dengan peralatan dasar seperti kompor gas, sink, dan kulkas, dapur ini memenuhi kebutuhan dasar penghuninya. Fasilitas tambahan seperti microwave atau rice cooker mungkin tersedia untuk memberikan kenyamanan dalam persiapan makanan sehari-hari. </p>
+            <div class="modal-dialog">
+                <div class="modal-content" style="height: 364px; width: 344px; position: absolute; top: 120px;">
+                    <div class="modal-body" style="padding: 4px;">
+                        <img src="{{ asset('img/interior3.jpg') }}" height="220" width="334" style="border-radius: 5px;">
+                        <div class="h3 fw-bold text-center mt-2" style="font-size: 18px;">Dapur</div>
+                        <p class="text-dark fw-normal" style="font-size: 12px; margin-top: 0.5rem;">
+                            Dapur memiliki ukuran yang bervariasi, umumnya dimulai dari sekitar 3 meter x 3 meter hingga sesuai dengan kebutuhan ruang. Di dalamnya, terdapat sink, kompor atau oven, lemari penyimpanan, dan meja kerja.</p>
                     </div>
                 </div>
             </div>
         </div>
         <div class="modal fade" id="Tv" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable">
-                <div class="modal-content" style="height: 360px; width: 236px; position: absolute; top: 18%; left: 16%;">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Tv</h1>
-                    </div>
-                    <div class="modal-body">
-                        <img src="{{ asset('img/interior4.jpg') }}" height="200" width="200" style="border-radius: 5px;">
-                        <p class="text-secondary fw-normal" style="font-size: 14px; margin-top: 1rem;">TV merek LG merupakan pilihan ideal untuk kost-kostan dengan desain modern dan teknologi canggih. Dikenal dengan kualitas gambar yang tajam dan warna yang hidup, TV LG sering dilengkapi dengan fitur pintar (Smart TV) untuk akses mudah ke platform streaming. Teknologi suara Dolby Audio yang dimilikinya memberikan pengalaman menonton yang immersif, sementara desain yang ramping membuatnya sesuai untuk ruang yang terbatas. Keandalan dan inovasi LG membuatnya cocok untuk menciptakan pengalaman hiburan yang berkualitas di kost-kostan Anda.
-                        </p>
+            <div class="modal-dialog">
+                <div class="modal-content" style="height: 364px; width: 344px; position: absolute; top: 120px;">
+                    <div class="modal-body" style="padding: 4px;">
+                        <img src="{{ asset('img/interior4.jpg') }}" height="220" width="334" style="border-radius: 5px;">
+                        <div class="h3 fw-bold text-center mt-2" style="font-size: 18px;">Televisi LG</div>
+                        <p class="text-dark fw-normal" style="font-size: 12px; margin-top: 0.5rem;">
+                            TV LG hadir dalam berbagai ukuran, mulai dari model kecil sekitar 32 inci hingga ukuran besar lebih dari 75 inci. Fitur-fitur canggihnya mencakup teknologi OLED atau LED, resolusi 4K atau 8K untuk kualitas gambar tajam, dan dukungan untuk HDR.</p>
                     </div>
                 </div>
             </div>
         </div>
         <div class="modal fade" id="Kulkas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable">
-                <div class="modal-content" style="height: 360px; width: 236px; position: absolute; top: 18%; left: 16%;">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Kulkas</h1>
-                    </div>
-                    <div class="modal-body">
-                        <img src="{{ asset('img/interior5.jpg') }}" height="200" width="200" style="border-radius: 5px;">
-                        <p class="text-secondary fw-normal" style="font-size: 14px; margin-top: 1rem;">Kulkas merek LG merupakan pilihan unggul untuk kost-kostan dengan desain elegan dan fitur canggih. Dikenal dengan teknologi inverter yang hemat energi, kulkas LG memberikan performa pendinginan stabil. Fitur Smart Diagnosis memudahkan pemeliharaan dan pemecahan masalah, sementara tata letak rak yang fleksibel memberikan kemudahan menyusun dan mengakses makanan. Kulkas LG sering dilengkapi dengan fitur SmartThinQ, memungkinkan pengguna mengendalikan dan memonitor kulkas melalui smartphone mereka. </p>
+            <div class="modal-dialog">
+                <div class="modal-content" style="height: 364px; width: 344px; position: absolute; top: 120px;">
+                    <div class="modal-body" style="padding: 4px;">
+                        <img src="{{ asset('img/interior5.jpg') }}" height="220" width="334" style="border-radius: 5px;">
+                        <div class="h3 fw-bold text-center mt-2" style="font-size: 18px;">Kulkas LG</div>
+                        <p class="text-dark fw-normal" style="font-size: 12px; margin-top: 0.5rem;">
+                            Kulkas LG menghadirkan kombinasi elegan antara desain modern dan teknologi inovatif. Dengan ukuran yang bervariasi, mulai dari yang kompak hingga besar, kulkas LG menyediakan ruang penyimpanan yang efisien.</p>
                     </div>
                 </div>
             </div>
         </div>
         <div class="modal fade" id="Lemari" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable">
-                <div class="modal-content" style="height: 360px; width: 236px; position: absolute; top: 18%; left: 16%;">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Lemari</h1>
-                    </div>
-                    <div class="modal-body">
-                        <img src="{{ asset('img/interior6.jpg') }}" height="200" width="200" style="border-radius: 5px;">
-                        <p class="text-secondary fw-normal" style="font-size: 14px; margin-top: 1rem;">Lemari IKEA dikenal untuk desainnya yang fungsional dan estetis, cocok untuk berbagai ruang dan gaya. Mereka menawarkan lemari dengan konsep modular yang memudahkan penyesuaian dengan kebutuhan ruang Anda. Di dalam lemari IKEA, Anda dapat menemukan berbagai rak terbuka, laci, dan sistem penyimpanan pintar seperti kotak penyimpanan yang dapat diintegrasikan. IKEA juga sering menawarkan solusi pintar untuk mengoptimalkan ruang dan menyediakan akses mudah ke barang-barang Anda. </p>
+            <div class="modal-dialog">
+                <div class="modal-content" style="height: 364px; width: 344px; position: absolute; top: 120px;">
+                    <div class="modal-body" style="padding: 4px;">
+                        <img src="{{ asset('img/interior6.jpg') }}" height="220" width="334" style="border-radius: 5px;">
+                        <div class="h3 fw-bold text-center mt-2" style="font-size: 18px;">Lemari IKEA</div>
+                        <p class="text-dark fw-normal" style="font-size: 12px; margin-top: 0.5rem;">
+                            IKEA menawarkan berbagai jenis lemari dengan ukuran dan desain yang beragam. Contohnya, lemari PAX hadir dalam berbagai ukuran lebar, tinggi, dan kedalaman, memberikan fleksibilitas dalam penyesuaian dengan kamar kost Anda.</p>
                     </div>
                 </div>
             </div>
         </div>
         <div class="modal fade" id="Kasur" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable">
-                <div class="modal-content" style="height: 360px; width: 236px; position: absolute; top: 18%; left: 16%;">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Kasur</h1>
-                    </div>
-                    <div class="modal-body">
-                        <img src="{{ asset('img/interior7.jpg') }}" height="200" width="200" style="border-radius: 5px;">
-                        <p class="text-secondary fw-normal" style="font-size: 14px; margin-top: 1rem;">Kasur IKEA menyediakan solusi tidur yang nyaman dan terjangkau untuk kost-kostan. Dikenal dengan beragam pilihan, fitur kasur IKEA termasuk busa memori dan pegas dalam untuk dukungan yang optimal. Desainnya modular memungkinkan pemilihan ukuran yang sesuai dengan ruang, sementara teknologi canggih seperti penutup yang dapat dilepas memudahkan perawatan dan kebersihan. </p>
+            <div class="modal-dialog">
+                <div class="modal-content" style="height: 364px; width: 344px; position: absolute; top: 120px;">
+                    <div class="modal-body" style="padding: 4px;">
+                        <img src="{{ asset('img/interior7.jpg') }}" height="220" width="334" style="border-radius: 5px;">
+                        <div class="h3 fw-bold text-center mt-2" style="font-size: 18px;">Kasur IKEA</div>
+                        <p class="text-dark fw-normal" style="font-size: 12px; margin-top: 0.5rem;">
+                            Kasur IKEA hadir dalam berbagai ukuran, termasuk single, double, queen, dan king size, untuk memenuhi berbagai kebutuhan ruang tidur. Fitur-fiturnya pada kasur sebagai berikut, mencakup desain ergonomic, lapisan busa atau pegas untuk kenyamanan.</p>
                     </div>
                 </div>
             </div>
         </div>
         <div class="modal fade" id="Wifi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable">
-                <div class="modal-content" style="height: 360px; width: 236px; position: absolute; top: 18%; left: 16%;">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Wifi</h1>
-                    </div>
-                    <div class="modal-body">
-                        <img src="{{ asset('img/interior8.jpg') }}" height="200" width="200" style="border-radius: 5px;">
-                        <p class="text-secondary fw-normal" style="font-size: 14px; margin-top: 1rem;">Router WiFi ASUS merupakan solusi handal untuk konektivitas internet di kost-kostan. Dengan teknologi canggih seperti WiFi 6, router ASUS menawarkan kecepatan tinggi dan cakupan yang luas. Fitur QoS (Quality of Service) memastikan prioritas bandwidth untuk aplikasi penting, sementara Mesh WiFi memperluas jangkauan sinyal. Pengelolaan melalui aplikasi ASUS membuat monitoring dan kontrol jaringan menjadi lebih mudah dalam lingkungan kost-kostan Anda. </p>
+            <div class="modal-dialog">
+                <div class="modal-content" style="height: 364px; width: 344px; position: absolute; top: 120px;">
+                    <div class="modal-body" style="padding: 4px;">
+                        <img src="{{ asset('img/interior8.jpg') }}" height="220" width="334" style="border-radius: 5px;">
+                        <div class="h3 fw-bold text-center mt-2" style="font-size: 18px;">Wifi ASUS</div>
+                        <p class="text-dark fw-normal" style="font-size: 12px; margin-top: 0.5rem;">
+                            Router WiFi Asus hadir dalam berbagai model dengan berbagai ukuran dan fitur. Ukuran umumnya kompak, cocok untuk pengaturan rumah tangga atau kantor kecil. Fitur canggihnya mencakup teknologi WiFi 6 terbaru, kecepatan transmisi tinggi, dan kapabilitas.</p>
                     </div>
                 </div>
             </div>
@@ -388,7 +424,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -411,6 +447,7 @@
             autoWidth: true,
             gap: '-0.2rem',
             lazyLoad: 'nearby',
+            drag: 'free',
         });
 
         splide.mount();
@@ -445,6 +482,8 @@
             }
         }
 
+        let isAlertShown = false;
+
         function changeIconAndColor(button) {
             // Mengambil elemen ikon pada tombol
             var iconElement = button.querySelector("i");
@@ -456,8 +495,26 @@
             // Mengubah warna ikon menjadi kuning
             var currentColor = iconElement.style.color;
             iconElement.style.color = (currentColor === "purple") ? "" : "purple";
-        }
+            // Menampilkan SweetAlert
+            if (isAlertShown) {
+                Swal.fire({
+                    text: "Kamar Kost Di Hapus Dari Favorit",
+                    showConfirmButton: false,
+                    icon: "error"
+                });
+            } else {
+                Swal.fire({
+                    text: "Kamar Kost Berhasil Di Favoritkan!",
+                    showConfirmButton: false,
+                    icon: "success"
+                });
+            }
+            isAlertShown = !isAlertShown;
 
+            setTimeout(function() {
+                Swal.close();
+            }, 2500);
+        }
         document.addEventListener("DOMContentLoaded", function() {
             var stickyTop = document.getElementById("stickyTop");
             var lastScrollTop = 0;

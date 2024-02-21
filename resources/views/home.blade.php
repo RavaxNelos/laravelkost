@@ -37,6 +37,20 @@
             border-radius: 2px;
         }
 
+        .splide.new-3 .splide__pagination li {
+            margin-bottom: -6px !important;
+        }
+
+        .splide.new-3 .splide__pagination__page {
+            margin: 2px;
+            width: 4px;
+            height: 4px;
+        }
+
+        .splide.new-3 .splide__pagination__page.is-active {
+            background-color: #9370DB;
+        }
+
         .splide__pagination li {
             margin-bottom: 25px;
         }
@@ -91,6 +105,23 @@
             border: 1px solid #ccc;
             background-color: rgba(255, 255, 255, 0.8) !important;
             backdrop-filter: blur(10px) !important;
+        }
+
+        div:where(.swal2-container) div:where(.swal2-popup) {
+            color: rgb(0, 0, 0) !important;
+            font-size: 0.9rem !important;
+            width: 24em !important;
+            height: 4em !important;
+        }
+
+        div:where(.swal2-container) .swal2-html-container {
+            width: 300px;
+            font-weight: bold !important;
+            text-align: left !important;
+        }
+
+        div.swal2-popup.swal2-modal.swal2-show {
+            margin-top: 450px !important;
         }
     </style>
 </head>
@@ -211,7 +242,7 @@
         <!-- end Kost bulanan dan kost harian -->
         <div class="container mt-5">
             <!-- didekat mu rumah -->
-            <div class="row mt-3" style="margin-bottom: 2rem;">
+            <div class="row mt-3" style="margin-bottom: 0.5rem;">
                 <div class="col-12">
                     <h1 style="font-weight: bold; font-size: 18px; font-family: 'Inter', sans-serif;">Didekat Kamu</h1>
                     <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay;" id="kategori-sewa">
@@ -339,8 +370,91 @@
                     {{-- @endfor --}}
                 </div>
             </div>
-            <!-- end didekat mu rumah -->
-            <!-- Area Surabaya Timur -->
+        </div>
+        <!-- end didekat mu rumah -->
+        <div class="garis-pembatas-2"></div>
+        <div class="container py-2">
+            <section class="splide new-3" aria-label="Splide Basic HTML Example">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide">
+                            <img src="img/banner11.png" width="336" height="80" style="border-radius: 8px;">
+                        </li>
+                        <li class="splide__slide">
+                            <img src="img/banner12.png" width="336" height="80" style="border-radius: 8px;">
+                        </li>
+                        <li class="splide__slide">
+                            <img src="img/banner13.png" width="336" height="80" style="border-radius: 8px;">
+                        </li>
+                        <li class="splide__slide">
+                            <img src="img/banner14.png" width="336" height="80" style="border-radius: 8px;">
+                        </li>
+                        <li class="splide__slide">
+                            <img src="img/banner15.png" width="336" height="80" style="border-radius: 8px;">
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section class="splide new-4" aria-label="Splide Basic HTML Example" style="margin-top: 0.5rem;">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide">
+                            <div class="custom-card" style="position: relative; width: 120px; height: 80px; background-color: rgba(147, 112, 219, 0.6); border-radius: 8px;">
+                                <div class="custom-card-body">
+                                    <div class="lingkaran-logo" style="position: absolute; top: 10px; left: 8px; background-color: rgba(147, 112, 219, 1); width: 26px; height: 26px; border-radius: 30px; z-index: 999999;"><i class="bi bi-cash" style="color: white; padding: 6px; font-size: 14px;"></i></div>
+                                    <p class="fw-semibold" style="font-size: 12px; position: absolute; top: 14px; left: 38px;">Sewa Kamar</p>
+                                    <p class="fw-medium" style="font-size: 12px; position: absolute; top: 36px; left: 8px; color: rgba(147, 112, 219, 1);">Rp.25.000</p>
+                                    <p class="text-body-tertiary" style="position: absolute; top: 52px; left: 8px; font-size: 10px; font-weight: 500;">Hemat Sewa Kamar</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="custom-card" style="position: relative; width: 120px; height:80px; background-color: rgba(142, 68, 173, 0.6); border-radius: 8px;">
+                                <div class="custom-card-body">
+                                    <div class="lingkaran-logo" style="position: absolute; top: 10px; left: 8px; background-color: rgba(142, 68, 173, 1); width: 26px; height: 26px; border-radius: 30px; z-index: 999999;"><i class="bi bi-wallet" style="color: white; padding: 6px; font-size: 14px;"></i></div>
+                                    <p class="fw-semibold" style="font-size: 12px; position: absolute; top: 14px; left: 38px;">Cashback</p>
+                                    <p class="fw-medium" style="font-size: 12px; position: absolute; top: 36px; left: 8px; color: rgba(142, 68, 173, 1);">Rp.50.000</p>
+                                    <p class="text-body-tertiary" style="position: absolute; top: 52px; left: 8px; font-size: 10px; font-weight: 500;">potongan Harga Kost</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="custom-card" style="position: relative; width: 120px; height: 80px; background-color: rgba(147, 112, 219, 0.6); border-radius: 8px;">
+                                <div class="custom-card-body">
+                                    <div class="lingkaran-logo" style="position: absolute; top: 10px; left: 8px; background-color: rgba(147, 112, 219, 1); width: 26px; height: 26px; border-radius: 30px; z-index: 999999;"><i class="bi bi-cash" style="color: white; padding: 6px; font-size: 14px;"></i></div>
+                                    <p class="fw-semibold" style="font-size: 12px; position: absolute; top: 14px; left: 38px;">Sewa Kamar</p>
+                                    <p class="fw-medium" style="font-size: 12px; position: absolute; top: 36px; left: 8px; color: rgba(147, 112, 219, 1);">Rp.50.000</p>
+                                    <p class="text-body-tertiary" style="position: absolute; top: 52px; left: 8px; font-size: 10px; font-weight: 500;">Hemat Sewa Kamar</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="custom-card" style="position: relative; width: 120px; height:80px; background-color: rgba(142, 68, 173, 0.6); border-radius: 8px;">
+                                <div class="custom-card-body">
+                                    <div class="lingkaran-logo" style="position: absolute; top: 10px; left: 8px; background-color: rgba(142, 68, 173, 1); width: 26px; height: 26px; border-radius: 30px; z-index: 999999;"><i class="bi bi-wallet" style="color: white; padding: 6px; font-size: 14px;"></i></div>
+                                    <p class="fw-semibold" style="font-size: 12px; position: absolute; top: 14px; left: 38px;">Cashback</p>
+                                    <p class="fw-medium" style="font-size: 12px; position: absolute; top: 36px; left: 8px; color: rgba(142, 68, 173, 1);">Rp.100.000</p>
+                                    <p class="text-body-tertiary" style="position: absolute; top: 52px; left: 8px; font-size: 10px; font-weight: 500;">potongan Harga Kost</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="custom-card" style="position: relative; width: 120px; height: 80px; background-color: rgba(147, 112, 219, 0.6); border-radius: 8px;">
+                                <div class="custom-card-body">
+                                    <div class="lingkaran-logo" style="position: absolute; top: 10px; left: 8px; background-color: rgba(147, 112, 219, 1); width: 26px; height: 26px; border-radius: 30px; z-index: 999999;"><i class="bi bi-cash" style="color: white; padding: 6px; font-size: 14px;"></i></div>
+                                    <p class="fw-semibold" style="font-size: 12px; position: absolute; top: 14px; left: 38px;">Sewa Kamar</p>
+                                    <p class="fw-medium" style="font-size: 12px; position: absolute; top: 36px; left: 8px; color: rgba(147, 112, 219, 1);">Rp.75.000</p>
+                                    <p class="text-body-tertiary" style="position: absolute; top: 52px; left: 8px; font-size: 10px; font-weight: 500;">Hemat Sewa Kamar</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+        <div class="garis-pembatas-2" style="margin-bottom: 20px;"></div>
+        <!-- Area Surabaya Timur -->
+        <div class="container">
             <div class="row mb-0">
                 <div class="col-7">
                     <h1 style="font-weight: bold; font-size: 18px; font-family: 'Inter', sans-serif;">Area Surabaya Timur</h1>
@@ -575,7 +689,7 @@
                 {{-- @endfor --}}
                 <!-- end Area timur surabaya -->
             </div>
-            <section class="splide new" aria-label="Splide Basic HTML Example" style="margin-top: 15px;">
+            <section class="splide new" aria-label="Splide Basic HTML Example" style="margin-top: -10px;">
                 <div class="splide__track">
                     <ul class="splide__list">
                         <li class="splide__slide">
@@ -958,6 +1072,9 @@
                 {{-- @endfor --}}
                 <!-- end Area tengah surabaya -->
             </div>
+        </div>
+        <div class="garis-pembatas-2-5"></div>
+        <div class="container">
             <div class="row mt-3 mb-0">
                 <div class="col-7">
                     <h1 style="font-weight: bold; font-size: 18px; font-family: 'Inter', sans-serif;">Kamar Kost Putri</h1>
@@ -1129,7 +1246,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12" style="margin-top: 20px;">
+            <div class="col-12" style="margin-top: -10px;">
                 <section class="splide new-1" aria-label="Splide Basic HTML Example">
                     <div class="splide__track">
                         <ul class="splide__list">
@@ -1648,6 +1765,7 @@
         <button class="btn btn-danger" type="submit">Logout</button>
     </form>
     <!-- end didekat mu rumah -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <script>
@@ -1681,24 +1799,27 @@
             gap: '0.5rem'
         });
         splide.mount();
-        // var splide = new Splide('.splide.new-3', {
-        //     arrows: false,
-        //     pagination: false,
-        //     perPage: 1,
-        //     autoWidth: true,
-        //     gap: '0.5rem',
-        //     lazyLoad: 'nearby'
-        // });
-        // splide.mount();
-        // var splide = new Splide('.splide.new-4', {
-        //     arrows: false,
-        //     pagination: false,
-        //     perPage: 1,
-        //     autoWidth: true,
-        //     gap: '0.5rem',
-        //     lazyLoad: 'nearby'
-        // });
-        // splide.mount();
+        var splide = new Splide('.splide.new-3', {
+            type: "loop",
+            autoplay: true,
+            arrows: false,
+            perPage: 1,
+            autoWidth: true,
+            gap: '0.5rem',
+            lazyLoad: 'nearby',
+            interval: '2000',
+        });
+        splide.mount();
+        var splide = new Splide('.splide.new-4', {
+            arrows: false,
+            pagination: false,
+            perPage: 1,
+            autoWidth: true,
+            gap: '0.5rem',
+            lazyLoad: 'nearby',
+            drag: 'free'
+        });
+        splide.mount();
         // var splide = new Splide('.splide.new-5', {
         //     arrows: false,
         //     pagination: false,
@@ -1757,7 +1878,7 @@
             document.getElementById('kategori-sewa-rekomendasi').scrollLeft = 0;
         }
 
-
+        let isAlertShown = false;
 
         function changeIconAndColor(button) {
             // Mengambil elemen ikon pada tombol
@@ -1770,6 +1891,24 @@
             // Mengubah warna ikon menjadi kuning
             var currentColor = iconElement.style.color;
             iconElement.style.color = (currentColor === "purple") ? "" : "purple";
+
+            // Menampilkan SweetAlert
+            if (isAlertShown) {
+                Swal.fire({
+                    text: "Kamar Kost Di Hapus Dari Favorit",
+                    showConfirmButton: false,
+                });
+            } else {
+                Swal.fire({
+                    text: "Kamar Kost Berhasil Di Favoritkan!",
+                    showConfirmButton: false,
+                });
+            }
+            isAlertShown = !isAlertShown;
+
+            setTimeout(function() {
+                Swal.close();
+            }, 3000);
         }
     </script>
 </body>
