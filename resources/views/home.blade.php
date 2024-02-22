@@ -108,16 +108,19 @@
         }
 
         div:where(.swal2-container) div:where(.swal2-popup) {
-            color: rgb(0, 0, 0) !important;
-            font-size: 0.9rem !important;
-            width: 24em !important;
+            color: #ccc !important;
+            font-size: 0.76rem !important;
+            width: 18em !important;
             height: 4em !important;
+            background-color: #000000 !important;
+            opacity: 0.7;
         }
 
         div:where(.swal2-container) .swal2-html-container {
+            margin-left: -2.4rem !important;
             width: 300px;
-            font-weight: bold !important;
-            text-align: left !important;
+            font-weight: 500 !important;
+            text-align: center !important;
         }
 
         div.swal2-popup.swal2-modal.swal2-show {
@@ -1895,12 +1898,12 @@
             // Menampilkan SweetAlert
             if (isAlertShown) {
                 Swal.fire({
-                    text: "Kamar Kost Di Hapus Dari Favorit",
+                    text: "Berhasil Di Hapus Dari Favorit",
                     showConfirmButton: false,
                 });
             } else {
                 Swal.fire({
-                    text: "Kamar Kost Berhasil Di Favoritkan!",
+                    text: "Berhasil DiFavoritkan!",
                     showConfirmButton: false,
                 });
             }
@@ -1908,7 +1911,7 @@
 
             setTimeout(function() {
                 Swal.close();
-            }, 3000);
+            }, 2000);
         }
     </script>
 </body>

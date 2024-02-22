@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Transaksi</title>
     <!-- css rava -->
@@ -32,6 +32,12 @@
             scrollbar-color: transparent transparent;
         }
 
+        html,
+        body {
+            user-drag: none;
+            user-select: none;
+        }
+
         body {
             overflow: overlay;
         }
@@ -46,16 +52,16 @@
             border-radius: 2px;
         }
 
-        .accordion-button:focus {
+        /* .accordion-button:focus {
             border-color: none;
             box-shadow: none;
         }
 
         .accordion-button:not(.collapsed) {
-            color: black;
+            color: rgb(0, 0, 0);
             background-color: white;
             box-shadow: none;
-        }
+        } */
 
         .sticky-top {
             position: sticky;
@@ -82,12 +88,12 @@
         }
 
         .btn:hover {
-            background-color: black;
+            background-color: #000000;
         }
 
         .payment-accordion {
             color: #212529;
-            background: #1c1d27;
+            background: rgba(128, 0, 128, 0.9);
             padding: 1rem;
             padding-left: 0.8rem;
             padding-right: 0.7rem;
@@ -102,11 +108,12 @@
             font-size: 1rem;
             color: var(--bs-accordion-btn-color);
             text-align: left;
-            background-color: #1c1d27;
+            background-color: rgba(128, 0, 128, 0.9);
             border: 0;
             border-radius: 0;
             overflow-anchor: none;
             transition: var(--bs-accordion-transition);
+            backdrop-filter: blur(50px) !important;
         }
 
         .payment-accordion-item {
@@ -136,528 +143,369 @@
 
 <body>
     <div class="sticky-top" id="stickyHeader">
-        <div class="container">
-            <div class="row">
-                <div class="col-1 text-start" style="margin-top: 10px;">
-                    <a href="{{ route('detailrumah') }}" style="color: black">
-                        <ion-icon name="chevron-back-outline" style="font-size: 18px;"></ion-icon>
-                    </a>
+        <div class="container py-2">
+            <div class="row g-3">
+                <div class="col-1">
+                    <a href="/detail" class="btn-back-home"><ion-icon name="chevron-back-outline" style="margin-bottom: -4px;"></ion-icon></a>
                 </div>
-                <div class="col-6 mt-2">
-                    <h3 class="fw-medium" style="font-family: Poppins; font-size: 18px; margin-left: -6px;">Transaksi</h3>
+                <div class="col-6 mt-4 text-start" style="margin-top: 25px !important;">
+                    <h3 class="text-dark fw-bold teks-detail" style="font-size: 16px; transition: color 0.3s ease;">Transaksi</h3>
                 </div>
             </div>
         </div>
     </div>
     <hr class="hr-divider">
     <div class="container mt-2">
-        <h3 class="fw-semibold" style="font-family: Poppins; font-size: 20px;">Berapa Lama Ngekost</h3>
+        <h3 class="fw-medium" style="font-family: Poppins; font-size: 18px;">Rincian Pesanan</h3>
     </div>
-    <div x-data="{ filter: 'per_bulan' }">
-        <div class="container py-3">
-            <div class="col-12 d-flex" style="gap: 10px; overflow-x: auto; white-space: nowrap; margin-top: -10px; margin-bottom: 2rem;">
-                <button :class="filter == 'per_bulan' ? 'btn btn-dark' : 'btn btn-outline-secondary'" x-on:click="filter = 'per_bulan';">Per Bulan</button>
-                <button :class="filter == 'per_3bulan' ? 'btn btn-dark' : 'btn btn-outline-secondary'" x-on:click="filter = 'per_3bulan';">Per 3 Bulan</button>
-                <button :class="filter == 'per_6bulan' ? 'btn btn-dark' : 'btn btn-outline-secondary'" x-on:click="filter = 'per_6bulan';">Per 6 Bulan</button>
-                <button :class="filter == 'per_tahun' ? 'btn btn-dark' : 'btn btn-outline-secondary'" x-on:click="filter = 'per_tahun';">Per Tahun</button>
+    <hr class="hr-rincian-pesanan">
+    <div class="container">
+        <div class="row">
+            <div class="col-5 text-start">
+                <h3 class="fw-normal text-secondary" style="font-size: 14px;">Nama Pelanggan</h3>
+            </div>
+            <div class="col-7 text-end">
+                <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">Muhammad Ravanelo</h3>
             </div>
         </div>
-        <hr class="hr-divider" style="margin-top: -30px;">
-        <div class="container mt-2">
-            <h3 class="fw-semibold" style="font-family: Poppins; font-size: 20px;">Rincian Pesanan</h3>
-        </div>
-        <hr class="hr-rincian-pesanan">
-        <div class="container" x-show="filter == 'per_bulan'">
-            <div class="row">
-                <div class="col-5 text-start">
-                    <h3 class="fw-normal text-secondary" style="font-size: 14px;">Nama Pelanggan</h3>
-                </div>
-                <div class="col-7 text-end">
-                    <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">Muhammad Ravanelo</h3>
-                </div>
+        <div class="row">
+            <div class="col-5 text-start">
+                <h3 class="fw-normal text-secondary" style="font-size: 14px;">Durasi Ngekost</h3>
             </div>
-            <div class="row">
-                <div class="col-5 text-start">
-                    <h3 class="fw-normal text-secondary" style="font-size: 14px;">Durasi Ngekost</h3>
-                </div>
-                <div class="col-7 text-end">
-                    <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">1 Bulan</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-5 text-start">
-                    <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 150px;">Tanggal Pesan Kost</h3>
-                </div>
-                <div class="col-7 text-end">
-                    <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">21 Februari 2024</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-5 text-start">
-                    <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 160px;">Tanggal Booking Kost</h3>
-                </div>
-                <div class="col-7 text-end">
-                    <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">23 Februari 2024</h3>
-                </div>
+            <div class="col-7 text-end">
+                <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">1 Bulan</h3>
             </div>
         </div>
-        <div class="container" x-show="filter == 'per_3bulan'">
-            <div class="row">
-                <div class="col-5 text-start">
-                    <h3 class="fw-normal text-secondary" style="font-size: 14px;">Nama Pelanggan</h3>
-                </div>
-                <div class="col-7 text-end">
-                    <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">Muhammad Ravanelo</h3>
-                </div>
+        <div class="row">
+            <div class="col-5 text-start">
+                <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 150px;">Tanggal Pesan Kost</h3>
             </div>
-            <div class="row">
-                <div class="col-5 text-start">
-                    <h3 class="fw-normal text-secondary" style="font-size: 14px;">Durasi Ngekost</h3>
-                </div>
-                <div class="col-7 text-end">
-                    <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">3 Bulan</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-5 text-start">
-                    <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 150px;">Tanggal Pesan Kost</h3>
-                </div>
-                <div class="col-7 text-end">
-                    <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">21 Februari 2024</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-5 text-start">
-                    <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 160px;">Tanggal Booking Kost</h3>
-                </div>
-                <div class="col-7 text-end">
-                    <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">23 Februari 2024</h3>
-                </div>
+            <div class="col-7 text-end">
+                <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">21 Februari 2024</h3>
             </div>
         </div>
-        <div class="container" x-show="filter == 'per_6bulan'">
-            <div class="row">
-                <div class="col-5 text-start">
-                    <h3 class="fw-normal text-secondary" style="font-size: 14px;">Nama Pelanggan</h3>
-                </div>
-                <div class="col-7 text-end">
-                    <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">Muhammad Ravanelo</h3>
-                </div>
+        <div class="row">
+            <div class="col-5 text-start">
+                <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 160px;">Tanggal Booking Kost</h3>
             </div>
-            <div class="row">
-                <div class="col-5 text-start">
-                    <h3 class="fw-normal text-secondary" style="font-size: 14px;">Durasi Ngekost</h3>
-                </div>
-                <div class="col-7 text-end">
-                    <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">6 Bulan</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-5 text-start">
-                    <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 150px;">Tanggal Pesan Kost</h3>
-                </div>
-                <div class="col-7 text-end">
-                    <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">21 Februari 2024</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-5 text-start">
-                    <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 160px;">Tanggal Booking Kost</h3>
-                </div>
-                <div class="col-7 text-end">
-                    <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">23 Februari 2024</h3>
-                </div>
+            <div class="col-7 text-end">
+                <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">23 Februari 2024</h3>
             </div>
         </div>
-        <div class="container" x-show="filter == 'per_tahun'">
-            <div class="row">
-                <div class="col-5 text-start">
-                    <h3 class="fw-normal text-secondary" style="font-size: 14px;">Nama Pelanggan</h3>
-                </div>
-                <div class="col-7 text-end">
-                    <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">Muhammad Ravanelo</h3>
-                </div>
+    </div>
+    <hr class="hr-tengah">
+    <div class="container">
+        <h3 class="fw-medium" style="font-family: Poppins; font-size: 18px; margin-top: -4px;">Pesanan Kamar Kost Anda</h3>
+        <div class="card-custom" style="position: relative; width: 336px; height: 140px; background-color: whitesmoke; border-radius: 15px; border: 1px solid #ccc;">
+            <img src="{{ asset('img/kostsurabaya6.jpg') }}" width="110" height="130" style="position: absolute; top: 4px; left: 5px; border-radius: 14px;">
+            <h3 class="fw-medium" style="position: absolute; top: 14px; left: 130px; font-size: 16px; color: #222327">Kamar Kost Putra</h3>
+            <p class="text-secondary" style="position: absolute; top: 36px; left: 130px; font-size: 12px; line-height: 1.2; width: 200px;">Fasilitas: UK. 5 x 7 M | AC 1 PK | Kamar Mandi UK. 3 x 5 M | Lemari 1 | Kulkas 1 | Kasur 1</p>
+            <h3 class="fw-semibold" style="font-family: Poppins; position: absolute; top: 104px; left: 130px; font-size: 18px; color: rgb(106, 5, 114)">Rp 2.000.000</h3>
+        </div>
+    </div>
+    <hr class="hr-pembayaran">
+    <div class="container">
+        <h3 class="fw-medium" style="font-family: Poppins; font-size: 18px;">Rincian Pembayaran</h3>
+        <div class="row">
+            <div class="col-5 text-start">
+                <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 150px;">Biaya Kamar Kost</h3>
             </div>
-            <div class="row">
-                <div class="col-5 text-start">
-                    <h3 class="fw-normal text-secondary" style="font-size: 14px;">Durasi Ngekost</h3>
-                </div>
-                <div class="col-7 text-end">
-                    <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">1 Tahun</h3>
-                </div>
+            <div class="col-7 text-end">
+                <h3 class="fw-normal text-secondary-emphasis" style="font-size: 14px;">Rp.2.000.000</h3>
             </div>
-            <div class="row">
-                <div class="col-5 text-start">
-                    <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 150px;">Tanggal Pesan Kost</h3>
-                </div>
-                <div class="col-7 text-end">
-                    <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">21 Februari 2024</h3>
-                </div>
+            <div class="col-5 text-start">
+                <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 150px">Biaya Fasilitas Kost</h3>
             </div>
-            <div class="row">
-                <div class="col-5 text-start">
-                    <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 160px;">Tanggal Booking Kost</h3>
-                </div>
-                <div class="col-7 text-end">
-                    <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">23 Februari 2024</h3>
-                </div>
+            <div class="col-7 text-end">
+                <h3 class="fw-normal text-danger" style="font-size: 14px;">+Rp.100.000</h3>
             </div>
         </div>
-        <hr class="hr-tengah">
-        <div class="container" x-show="filter == 'per_bulan'">
-            <h3 class="fw-semibold" style="font-family: Poppins; font-size: 20px;">Bookingan Anda</h3>
-            <div class="card-custom" style="position: relative; width: 336px; height: 140px; background-color: whitesmoke; border-radius: 15px;">
-                <img src="{{ asset('img/kostsurabaya6.jpg') }}" width="110" height="130" style="position: absolute; top: 4px; left: 5px; border-radius: 14px;">
-                <h3 class="fw-medium" style="position: absolute; top: 14px; left: 130px; font-size: 16px; color: #222327">Kamar Kost Putra</h3>
-                <p class="text-secondary" style="position: absolute; top: 36px; left: 130px; font-size: 12px; line-height: 1.2; width: 200px;">Fasilitas: UK. 5 x 7 M | AC 1 PK | Kamar Mandi UK. 3 x 5 M | Lemari 1 | Kulkas 1 | Kasur 1</p>
-                <h3 class="fw-semibold" style="font-family: Poppins; position: absolute; top: 104px; left: 130px; font-size: 18px; color: rgb(106, 5, 114)">Rp 2.000.000</h3>
+        <div class="row mb-2">
+            <div class="col-5 text-start">
+                <h3 class="fw-medium" style="font-family: Poppins; font-size: 18px; width: 190px;">Total Pembayaran</h3>
+            </div>
+            <div class="col-7 text-end">
+                <h3 class="fw-medium" style="font-family: Poppins; font-size: 18px; color: #9370DB;">Rp.2.100.000</h3>
             </div>
         </div>
-        <div class="container" x-show="filter == 'per_3bulan'">
-            <h3 class="fw-semibold" style="font-family: Poppins; font-size: 20px;">Bookingan Anda</h3>
-            <div class="card-custom" style="position: relative; width: 336px; height: 140px; background-color: whitesmoke; border-radius: 15px;">
-                <img src="{{ asset('img/kostsurabaya6.jpg') }}" width="110" height="130" style="position: absolute; top: 4px; left: 5px; border-radius: 14px;">
-                <h3 class="fw-medium" style="position: absolute; top: 14px; left: 130px; font-size: 16px; color: #222327">Kamar Kost Putra</h3>
-                <p class="text-secondary" style="position: absolute; top: 36px; left: 130px; font-size: 12px; line-height: 1.2; width: 200px;">Fasilitas: UK. 5 x 7 M | AC 1 PK | Kamar Mandi UK. 3 x 5 M | Lemari 1 | Kulkas 1 | Kasur 1</p>
-                <h3 class="fw-semibold" style="font-family: Poppins; position: absolute; top: 104px; left: 130px; font-size: 18px; color: rgb(106, 5, 114)">Rp 2.500.000</h3>
-            </div>
-        </div>
-        <div class="container" x-show="filter == 'per_6bulan'">
-            <h3 class="fw-semibold" style="font-family: Poppins; font-size: 20px;">Bookingan Anda</h3>
-            <div class="card-custom" style="position: relative; width: 336px; height: 140px; background-color: whitesmoke; border-radius: 15px;">
-                <img src="{{ asset('img/kostsurabaya6.jpg') }}" width="110" height="130" style="position: absolute; top: 4px; left: 5px; border-radius: 14px;">
-                <h3 class="fw-medium" style="position: absolute; top: 14px; left: 130px; font-size: 16px; color: #222327">Kamar Kost Putra</h3>
-                <p class="text-secondary" style="position: absolute; top: 36px; left: 130px; font-size: 12px; line-height: 1.2; width: 200px;">Fasilitas: UK. 5 x 7 M | AC 1 PK | Kamar Mandi UK. 3 x 5 M | Lemari 1 | Kulkas 1 | Kasur 1</p>
-                <h3 class="fw-semibold" style="font-family: Poppins; position: absolute; top: 104px; left: 130px; font-size: 18px; color: rgb(106, 5, 114)">Rp 3.000.000</h3>
-            </div>
-        </div>
-        <div class="container" x-show="filter == 'per_tahun'">
-            <h3 class="fw-semibold" style="font-family: Poppins; font-size: 20px;">Bookingan Anda</h3>
-            <div class="card-custom" style="position: relative; width: 336px; height: 140px; background-color: whitesmoke; border-radius: 15px;">
-                <img src="{{ asset('img/kostsurabaya6.jpg') }}" width="110" height="130" style="position: absolute; top: 4px; left: 5px; border-radius: 14px;">
-                <h3 class="fw-medium" style="position: absolute; top: 14px; left: 130px; font-size: 16px; color: #222327">Kamar Kost Putra</h3>
-                <p class="text-secondary" style="position: absolute; top: 36px; left: 130px; font-size: 12px; line-height: 1.2; width: 200px;">Fasilitas: UK. 5 x 7 M | AC 1 PK | Kamar Mandi UK. 3 x 5 M | Lemari 1 | Kulkas 1 | Kasur 1</p>
-                <h3 class="fw-semibold" style="font-family: Poppins; position: absolute; top: 104px; left: 130px; font-size: 18px; color: rgb(106, 5, 114)">Rp 3.500.000</h3>
-            </div>
-        </div>
-        <hr class="hr-pembayaran">
-        <div class="container" x-show="filter == 'per_bulan'">
-            <h3 class="fw-semibold" style="font-family: Poppins; font-size: 20px;">Rincian Pembayaran</h3>
-            <div class="row">
-                <div class="col-5 text-start">
-                    <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 150px;">Biaya Kamar Kost</h3>
+    </div>
+    <section class="payment-method" x-data="{ confirmation: true }" style="background-color: rgba(128, 0, 128, 0.9);">
+        <div x-data="{ selected: false }">
+            <div x-data="{ openPayment: false }" x-init="confirmation = true ? 'setTimeout(() => openPayment = false, 1000)' : null">
+                <div class="payment-accordion">
+                    <div class="payment-accordion-item">
+                        <button class="payment-accordion-button payment-method-text" @click="openPayment = !openPayment" keydown.escape="openPayment = false">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-fill">
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-fill">
+                                            <p class="fw-normal ms-2 my-auto text-white text-size">
+                                                Metode Pembayaran</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ms-auto">
+                                    <i :class="openPayment ? 'fa-solid fa-chevron-up text-white fa-sm' :
+                                        'fa-solid fa-chevron-down text-white fa-sm'">
+                                    </i>
+                                </div>
+                            </div>
+                        </button>
+                    </div>
                 </div>
-                <div class="col-7 text-end">
-                    <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">Rp.2.000.000</h3>
-                </div>
-                <div class="col-5 text-start">
-                    <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 150px">Biaya Fasilitas Kost</h3>
-                </div>
-                <div class="col-7 text-end">
-                    <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">Rp.100.000</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-5 text-start">
-                    <h3 class="fw-semibold" style="font-family: Poppins; font-size: 18px; width: 190px;">Total Pembayaran</h3>
-                </div>
-                <div class="col-7 text-end">
-                    <h3 class="fw-semibold" style="font-family: Poppins; font-size: 18px; color: #9370DB;">Rp.2.100.000</h3>
-                </div>
-            </div>
-        </div>
-        <div class="container" x-show="filter == 'per_3bulan'">
-            <h3 class="fw-semibold" style="font-family: Poppins; font-size: 20px;">Rincian Pembayaran</h3>
-            <div class="row">
-                <div class="col-5 text-start">
-                    <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 150px;">Biaya Kamar Kost</h3>
-                </div>
-                <div class="col-7 text-end">
-                    <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">Rp.2.500.000</h3>
-                </div>
-                <div class="col-5 text-start">
-                    <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 150px">Biaya Fasilitas Kost</h3>
-                </div>
-                <div class="col-7 text-end">
-                    <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">Rp.150.000</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-5 text-start">
-                    <h3 class="fw-semibold" style="font-family: Poppins; font-size: 18px; width: 190px;">Total Pembayaran</h3>
-                </div>
-                <div class="col-7 text-end">
-                    <h3 class="fw-semibold" style="font-family: Poppins; font-size: 18px; color: #9370DB;">Rp.2.650.000</h3>
-                </div>
-            </div>
-        </div>
-        <div class="container" x-show="filter == 'per_6bulan'">
-            <h3 class="fw-semibold" style="font-family: Poppins; font-size: 20px;">Rincian Pembayaran</h3>
-            <div class="row">
-                <div class="col-5 text-start">
-                    <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 150px;">Biaya Kamar Kost</h3>
-                </div>
-                <div class="col-7 text-end">
-                    <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">Rp.3.000.000</h3>
-                </div>
-                <div class="col-5 text-start">
-                    <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 150px">Biaya Fasilitas Kost</h3>
-                </div>
-                <div class="col-7 text-end">
-                    <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">Rp.200.000</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-5 text-start">
-                    <h3 class="fw-semibold" style="font-family: Poppins; font-size: 18px; width: 190px;">Total Pembayaran</h3>
-                </div>
-                <div class="col-7 text-end">
-                    <h3 class="fw-semibold" style="font-family: Poppins; font-size: 18px; color: #9370DB;">Rp.3.200.000</h3>
-                </div>
-            </div>
-        </div>
-        <div class="container" x-show="filter == 'per_tahun'">
-            <h3 class="fw-semibold" style="font-family: Poppins; font-size: 20px;">Rincian Pembayaran</h3>
-            <div class="row">
-                <div class="col-5 text-start">
-                    <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 150px;">Biaya Kamar Kost</h3>
-                </div>
-                <div class="col-7 text-end">
-                    <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">Rp.3.500.000</h3>
-                </div>
-                <div class="col-5 text-start">
-                    <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 150px">Biaya Fasilitas Kost</h3>
-                </div>
-                <div class="col-7 text-end">
-                    <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">Rp.300.000</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-5 text-start">
-                    <h3 class="fw-semibold" style="font-family: Poppins; font-size: 18px; width: 190px;">Total Pembayaran</h3>
-                </div>
-                <div class="col-7 text-end">
-                    <h3 class="fw-semibold" style="font-family: Poppins; font-size: 18px; color: #9370DB;">Rp.3.800.000</h3>
-                </div>
-            </div>
-        </div>
-        <hr class="metode-pembayaran">
-        <section class="payment-method" x-data="{ confirmation: true }" style="background-color: #1c1d27;">
-            <div x-data="{ selected: false }">
-                <div x-data="{ openPayment: false }" x-init="confirmation = true ? 'setTimeout(() => openPayment = false, 1000)' : null">
-                    <div class="payment-accordion">
+                {{-- bank --}}
+                <div x-show="openPayment" x-transition.scale.origin.bottom>
+                    <div class="payment-accordion" x-data="{ openPaymentBank: false }" @click.away="openPaymentBank= false" style="margin-top: -20px !important;">
                         <div class="payment-accordion-item">
-                            <button class="payment-accordion-button payment-method-text" @click="openPayment = !openPayment" keydown.escape="openPayment = false">
+                            <button class="payment-accordion-button payment-method-text text-white" style="padding: 1rem; border: 1px solid #30323e; border-top-left-radius: 15px !important; border-top-right-radius: 15px !important; !important; border-bottom-left-radius: 0px !important; border-bottom-right-radius: 0px !important;" @click="openPaymentBank = !openPaymentBank" keydown.escape="openPaymentBank = false">
                                 <div class="d-flex align-items-center">
                                     <div class="flex-fill">
                                         <div class="d-flex align-items-center">
-                                            <div class="flex-fill">
-                                                <p class="fw-normal ms-2 my-auto text-white text-size">
-                                                    Metode Pembayaran</p>
-                                            </div>
+                                            <p class="fw-normal ms-2 my-auto text-white text-size">
+                                                Transfer Bank</p>
                                         </div>
                                     </div>
                                     <div class="ms-auto">
-                                        <i :class="openPayment ? 'fa-solid fa-chevron-up text-white fa-sm' :
+                                        <i :class="openPaymentBank ? 'fa-solid fa-chevron-up text-white fa-sm' :
                                             'fa-solid fa-chevron-down text-white fa-sm'">
                                         </i>
                                     </div>
                                 </div>
                             </button>
                         </div>
-                    </div>
-                    <div x-show="openPayment" x-transition.scale.origin.bottom>
-                        <div class="payment-accordion" x-data="{ openPaymentBank: false }" @click.away="openPaymentBank= false" style="margin-top: -20px !important;">
+                        <div x-show="openPaymentBank" x-transition.scale.origin.bottom>
                             <div class="payment-accordion-item">
-                                <button class="payment-accordion-button payment-method-text text-white" style="padding: 1rem; border: 1px solid #30323e; border-top-left-radius: 15px !important; border-top-right-radius: 15px !important; border-bottom-left-radius: 0px !important; border-bottom-right-radius: 0px !important;" @click="openPaymentBank = !openPaymentBank" keydown.escape="openPaymentBank = false">
+                                <div style="padding: 1rem; border: 1px solid #30323e" x-on:click="selected !== 'bri' ? selected = 'bri' : selected = false" @click="confirmation = true" :class="selected == 'bri' ?
+                                    'payment-accordion-button payment-method-text text-white clicked' :
+                                    'payment-accordion-button payment-method-text text-white'">
                                     <div class="d-flex align-items-center">
-                                        <div class="flex-fill">
-                                            <div class="d-flex align-items-center">
-                                                <p class="fw-normal ms-2 my-auto text-white text-size">
-                                                    E-Wallet</p>
-                                            </div>
+                                        <div class="mx-auto">
+                                            <img src="{{ asset('img/bri.png') }}" height="30" alt="">
                                         </div>
-                                        <div class="ms-auto">
-                                            <i :class="openPaymentBank ? 'fa-solid fa-chevron-up text-white fa-sm' :
-                                                'fa-solid fa-chevron-down text-white fa-sm'">
-                                            </i>
+                                        <div class="flex-fill">
+                                            <p class="my-auto ms-2">Transfer Bank BRI</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button style="padding: 1rem; border: 1px solid #30323e; border-radius: 0px !important;" x-on:click="selected !== 'bca' ? selected = 'bca' : selected = false" @click="confirmation = true" :class="selected == 'bca' ?
+                                    'payment-accordion-button payment-method-text text-white clicked' :
+                                    'payment-accordion-button payment-method-text text-white'">
+                                    <div class="d-flex align-items-center">
+                                        <div class="mx-auto">
+                                            <img src="{{ asset('img/bca.png') }}" height="30" alt="">
+                                        </div>
+                                        <div class="flex-fill">
+                                            <p class="my-auto ms-2">Transfer Bank BCA</p>
+                                        </div>
+                                    </div>
+                                </button>
+                                <button :class="selected == 'visa' ?
+                                    'payment-accordion-button payment-method-text text-white clicked' :
+                                    'payment-accordion-button payment-method-text text-white'" style="padding: 1rem; border: 1px solid #30323e; border-top-left-radius: 0px !important; border-top-right-radius: 0px !important; border-bottom-left-radius: 15px !important; border-bottom-right-radius: 15px !important;" x-on:click="selected !== 'visa' ? selected = 'visa' : selected = false" @click="confirmation = true">
+                                    <div class="d-flex align-items-center">
+                                        <div class="mx-auto">
+                                            <img src="{{ asset('img/visa.png') }}" height="10" alt="">
+                                        </div>
+                                        <div class="flex-fill">
+                                            <p class="my-auto ms-2">Transfer Visa</p>
                                         </div>
                                     </div>
                                 </button>
                             </div>
-                            <div x-show="openPaymentBank" x-transition.scale.origin.bottom>
-                                <div class="payment-accordion-item">
-                                    <button :class="selected == 'gopay' ?
-                                        'payment-accordion-button payment-method-text text-white clicked' :
-                                        'payment-accordion-button payment-method-text text-white'" style="padding: 1rem; border: 1px solid #30323e; border-radius: 0px !important;" x-on:click="selected !== 'gopay' ? selected = 'gopay' : selected = false" @click="confirmation = true">
+                        </div>
+                    </div>
+                </div>
+                {{-- waller --}}
+                <div x-show="openPayment" x-transition.scale.origin.bottom>
+                    <div class="payment-accordion" x-data="{ openPaymentBank: false }" @click.away="openPaymentBank= false" style="margin-top: -20px !important;">
+                        <div class="payment-accordion-item">
+                            <button class="payment-accordion-button payment-method-text text-white" style="padding: 1rem; border: 1px solid #30323e; border-top-left-radius: 15px !important; border-top-right-radius: 15px !important; border-bottom-left-radius: 0px !important; border-bottom-right-radius: 0px !important;" @click="openPaymentBank = !openPaymentBank" keydown.escape="openPaymentBank = false">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-fill">
                                         <div class="d-flex align-items-center">
-                                            <div class="mx-auto">
-                                                <img src="{{ asset('img/gopay.png') }}" height="30" alt="">
-                                            </div>
-                                            <div class="flex-fill">
-                                                <p class="my-auto ms-2">Gopay</p>
-                                            </div>
+                                            <p class="fw-normal ms-2 my-auto text-white text-size">
+                                                E-Wallet</p>
                                         </div>
-                                    </button>
-                                    <button :class="selected == 'ovo' ?
-                                        'payment-accordion-button payment-method-text text-white clicked' :
-                                        'payment-accordion-button payment-method-text text-white'" style="padding: 1rem; border: 1px solid #30323e; border-radius: 0px !important;" x-on:click="selected !== 'ovo' ? selected = 'ovo' : selected = false" @click="confirmation = true">
-                                        <div class="d-flex align-items-center">
-                                            <div class="mx-auto">
-                                                <img src="{{ asset('img/ovo.png') }}" height="30" alt="">
-                                            </div>
-                                            <div class="flex-fill">
-                                                <p class="my-auto ms-2">Ovo</p>
-                                            </div>
-                                        </div>
-                                    </button>
-                                    <button :class="selected == 'dana' ?
-                                        'payment-accordion-button payment-method-text text-white clicked' :
-                                        'payment-accordion-button payment-method-text text-white'" style="padding: 1rem; border: 1px solid #30323e; border-radius: 0px !important;" x-on:click="selected !== 'dana' ? selected = 'dana' : selected = false" @click="confirmation = true">
-                                        <div class="d-flex align-items-center">
-                                            <div class="mx-auto">
-                                                <img src="{{ asset('img/dana.png') }}" height="30" alt="">
-                                            </div>
-                                            <div class="flex-fill">
-                                                <p class="my-auto ms-2">Dana</p>
-                                            </div>
-                                        </div>
-                                    </button>
-                                    <button :class="selected == 'shoopepay' ?
-                                        'payment-accordion-button payment-method-text text-white clicked' :
-                                        'payment-accordion-button payment-method-text text-white'" style="padding: 1rem; border: 1px solid #30323e;border-top-left-radius: 0px !important; border-top-right-radius: 0px !important; border-bottom-left-radius: 15px !important; border-bottom-right-radius: 15px; !important" x-on:click="selected !== 'shoopepay' ? selected = 'shoopepay' : selected = false" @click="confirmation = true">
-                                        <div class="d-flex align-items-center">
-                                            <div class="mx-auto">
-                                                <img src="{{ asset('img/shopee.png') }}" height="30" alt="">
-                                            </div>
-                                            <div class="flex-fill">
-                                                <p class="my-auto ms-2">Shopee Pay</p>
-                                            </div>
-                                        </div>
-                                    </button>
+                                    </div>
+                                    <div class="ms-auto">
+                                        <i :class="openPaymentBank ? 'fa-solid fa-chevron-up text-white fa-sm' :
+                                            'fa-solid fa-chevron-down text-white fa-sm'">
+                                        </i>
+                                    </div>
                                 </div>
+                            </button>
+                        </div>
+                        <div x-show="openPaymentBank" x-transition.scale.origin.bottom>
+                            <div class="payment-accordion-item">
+                                <button :class="selected == 'gopay' ?
+                                    'payment-accordion-button payment-method-text text-white clicked' :
+                                    'payment-accordion-button payment-method-text text-white'" style="padding: 1rem; border: 1px solid #30323e; border-radius: 0px !important;" x-on:click="selected !== 'gopay' ? selected = 'gopay' : selected = false" @click="confirmation = true">
+                                    <div class="d-flex align-items-center">
+                                        <div class="mx-auto">
+                                            <img src="{{ asset('img/gopay.png') }}" height="30" alt="">
+                                        </div>
+                                        <div class="flex-fill">
+                                            <p class="my-auto ms-2">Gopay</p>
+                                        </div>
+                                    </div>
+                                </button>
+                                <button :class="selected == 'ovo' ?
+                                    'payment-accordion-button payment-method-text text-white clicked' :
+                                    'payment-accordion-button payment-method-text text-white'" style="padding: 1rem; border: 1px solid #30323e; border-radius: 0px !important;" x-on:click="selected !== 'ovo' ? selected = 'ovo' : selected = false" @click="confirmation = true">
+                                    <div class="d-flex align-items-center">
+                                        <div class="mx-auto">
+                                            <img src="{{ asset('img/ovo.png') }}" height="30" alt="">
+                                        </div>
+                                        <div class="flex-fill">
+                                            <p class="my-auto ms-2">Ovo</p>
+                                        </div>
+                                    </div>
+                                </button>
+                                <button :class="selected == 'dana' ?
+                                    'payment-accordion-button payment-method-text text-white clicked' :
+                                    'payment-accordion-button payment-method-text text-white'" style="padding: 1rem; border: 1px solid #30323e; border-radius: 0px !important;" x-on:click="selected !== 'dana' ? selected = 'dana' : selected = false" @click="confirmation = true">
+                                    <div class="d-flex align-items-center">
+                                        <div class="mx-auto">
+                                            <img src="{{ asset('img/dana.png') }}" height="30" alt="">
+                                        </div>
+                                        <div class="flex-fill">
+                                            <p class="my-auto ms-2">Dana</p>
+                                        </div>
+                                    </div>
+                                </button>
+                                <button :class="selected == 'shoopepay' ?
+                                    'payment-accordion-button payment-method-text text-white clicked' :
+                                    'payment-accordion-button payment-method-text text-white'" style="padding: 1rem; border: 1px solid #30323e;border-top-left-radius: 0px !important; border-top-right-radius: 0px !important; border-bottom-left-radius: 15px !important; border-bottom-right-radius: 15px; !important" x-on:click="selected !== 'shoopepay' ? selected = 'shoopepay' : selected = false" @click="confirmation = true">
+                                    <div class="d-flex align-items-center">
+                                        <div class="mx-auto">
+                                            <img src="{{ asset('img/shopee.png') }}" height="30" alt="">
+                                        </div>
+                                        <div class="flex-fill">
+                                            <p class="my-auto ms-2">Shopee Pay</p>
+                                        </div>
+                                    </div>
+                                </button>
                             </div>
                         </div>
                     </div>
-                    <div x-show="selected">
-                        <div>
-                            <template x-if="confirmation == true" class="">
-                                <button x-on:click="confirmation = false;openPayment = false" class="ms-3 mb-2 btn btn-confirm " style="--bs-btn-padding-y: .4rem; --bs-btn-padding-x: 8rem; --bs-btn-font-size: 14px;">Konfirmasi
-                                </button>
-                            </template>
-                            <template x-if="confirmation == false">
-                                <div x-show="selected === 'bca' || selected === 'visa' || selected === 'bri' || selected === 'gopay'|| selected === 'ovo'|| selected === 'dana'|| selected === 'shoopepay'">
-                                    <template x-if="selected == 'gopay'">
+                </div>
+                <div x-show="selected">
+                    <div>
+                        <template x-if="confirmation == true" class="">
+                            <button x-on:click="confirmation = false;openPayment = false" class="ms-3 mb-2 btn btn-confirm " style="--bs-btn-padding-y: .4rem; --bs-btn-padding-x: 8rem; --bs-btn-font-size: 14px;">Konfirmasi
+                            </button>
+                        </template>
+                        <template x-if="confirmation == false">
+                            <div x-show="selected === 'bca' || selected === 'visa' || selected === 'bri' || selected === 'gopay'|| selected === 'ovo'|| selected === 'dana'|| selected === 'shoopepay'">
+                                <template x-if="selected == 'bca'">
+                                    <div class="payment-accordion-item">
                                         <div class="payment-accordion-button payment-method-text text-white" style="border-top: 1px solid #4e4f5b">
                                             <div class="d-flex align-items-center">
                                                 <div class="mx-auto">
-                                                    <img class="ms-3 mb-3 mt-3" src="{{ asset('img/gopay.png') }}" height="30" alt="">
+                                                    <img src="{{ asset('img/bca.png') }}" class="mb-3 ms-3 mt-3" height="30" alt="">
                                                 </div>
                                                 <div class="flex-fill">
-                                                    <p class="my-auto ms-2 mb-3 mt-3">Gopay</p>
+                                                    <p class="my-auto ms-2 mb-3 mt-3">Transfer Bank BCA</p>
                                                 </div>
                                             </div>
                                         </div>
-                                    </template>
-                                    <template x-if="selected == 'ovo'">
-                                        <div class="payment-accordion-button payment-method-text text-white" style="border-top: 1px solid #4e4f5b">
-                                            <div class="d-flex align-items-center">
-                                                <div class="mx-auto">
-                                                    <img class="ms-3 mb-3 mt-3" src="{{ asset('img/ovo.png') }}" height="30" alt="">
-                                                </div>
-                                                <div class="flex-fill">
-                                                    <p class="my-auto ms-2 mb-3 mt-3">OVO</p>
-                                                </div>
+                                    </div>
+                                </template>
+                                <template x-if="selected == 'bri'">
+                                    <div class="payment-accordion-button payment-method-text text-white" style="border-top: 1px solid #4e4f5b">
+                                        <div class="d-flex align-items-center">
+                                            <div class="mx-auto">
+                                                <img src="{{ asset('img/bri.png') }}" class="mb-3 ms-3 mt-3" height="30" alt="">
+                                            </div>
+                                            <div class="flex-fill">
+                                                <p class="my-auto ms-2 mb-3 mt-3">Transfer Bank BRI</p>
                                             </div>
                                         </div>
-                                    </template>
-                                    <template x-if="selected == 'dana'">
-                                        <div class="payment-accordion-button payment-method-text text-white" style="border-top: 1px solid #4e4f5b">
-                                            <div class="d-flex align-items-center">
-                                                <div class="mx-auto">
-                                                    <img class="ms-3 mb-3 mt-3" src="{{ asset('img/dana.png') }}" height="30" alt="">
-                                                </div>
-                                                <div class="flex-fill">
-                                                    <p class="my-auto ms-2 mb-3 mt-3">Dana</p>
-                                                </div>
+                                    </div>
+                                </template>
+                                <template x-if="selected == 'visa'">
+                                    <div class="payment-accordion-button payment-method-text text-white" style="border-top: 1px solid #4e4f5b">
+                                        <div class="d-flex align-items-center">
+                                            <div class="mx-auto">
+                                                <img src="{{ asset('img/visa.png') }}" class="mb-3 ms-3 mt-3" height="10" alt="">
+                                            </div>
+                                            <div class="flex-fill">
+                                                <p class="my-auto ms-2 mb-3 mt-3">Transfer VISA</p>
                                             </div>
                                         </div>
-                                    </template>
-                                    <template x-if="selected == 'shoopepay'">
-                                        <div class="payment-accordion-button payment-method-text text-white" style="border-top: 1px solid #4e4f5b">
-                                            <div class="d-flex align-items-center">
-                                                <div class="mx-auto">
-                                                    <img class="ms-3 mb-3 mt-3" src="{{ asset('img/shopee.png') }}" height="30" alt="">
-                                                </div>
-                                                <div class="flex-fill">
-                                                    <p class="my-auto ms-2 mb-3 mt-3 ">Shoope Pay</p>
-                                                </div>
+                                    </div>
+                                </template>
+                                <template x-if="selected == 'gopay'">
+                                    <div class="payment-accordion-button payment-method-text text-white" style="border-top: 1px solid #4e4f5b">
+                                        <div class="d-flex align-items-center">
+                                            <div class="mx-auto">
+                                                <img class="ms-3 mb-3 mt-3" src="{{ asset('img/gopay.png') }}" height="30" alt="">
+                                            </div>
+                                            <div class="flex-fill">
+                                                <p class="my-auto ms-2 mb-3 mt-3">Gopay</p>
                                             </div>
                                         </div>
-                                    </template>
-                                </div>
-                            </template>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-        <hr class="hr-terakhir">
-        <div class="sticky-bottom">
-            <div class="container py-2" x-show="filter == 'per_bulan'">
-                <div class="row">
-                    <div class="col-12 text-start">
-                        <h3 class="mb-1 mt-1" style="font-size: 12px;">Total Pembayaran</h3>
-                    </div>
-                    <div class="col-6 text-start">
-                        <h3 class="fw-semibold" style="font-size: 23,5; color: #9370DB">Rp.2.100.000</h3>
-                    </div>
-                    <div class="col-6 text-end btn-bawah">
-                        <a type="submit" href="/buktipembayaran" class="btn text-end text-white">Bayar</a>
-                    </div>
-                </div>
-            </div>
-            <div class="container py-2" x-show="filter == 'per_3bulan'">
-                <div class="row">
-                    <div class="col-12 text-start">
-                        <h3 class="mb-1 mt-1" style="font-size: 12px;">Total Pembayaran</h3>
-                    </div>
-                    <div class="col-6 text-start">
-                        <h3 class="fw-semibold" style="font-size: 23,5; color: #9370DB">Rp.2.650.000</h3>
-                    </div>
-                    <div class="col-6 text-end btn-bawah">
-                        <a type="submit" class="btn text-end">Bayar</a>
-                    </div>
-                </div>
-            </div>
-            <div class="container py-2" x-show="filter == 'per_6bulan'">
-                <div class="row">
-                    <div class="col-12 text-start">
-                        <h3 class="mb-1 mt-1" style="font-size: 12px;">Total Pembayaran</h3>
-                    </div>
-                    <div class="col-6 text-start">
-                        <h3 class="fw-semibold" style="font-size: 23,5; color: #9370DB">Rp.3.200.000</h3>
-                    </div>
-                    <div class="col-6 text-end btn-bawah">
-                        <a type="submit" class="btn text-end">Bayar</a>
-                    </div>
-                </div>
-            </div>
-            <div class="container py-2" x-show="filter == 'per_tahun'">
-                <div class="row">
-                    <div class="col-12 text-start">
-                        <h3 class="mb-1 mt-1" style="font-size: 12px;">Total Pembayaran</h3>
-                    </div>
-                    <div class="col-6 text-start">
-                        <h3 class="fw-semibold" style="font-size: 23,5; color: #9370DB">Rp.3.800.000</h3>
-                    </div>
-                    <div class="col-6 text-end btn-bawah">
-                        <a type="submit" class="btn text-end">Bayar</a>
+                                    </div>
+                                </template>
+                                <template x-if="selected == 'ovo'">
+                                    <div class="payment-accordion-button payment-method-text text-white" style="border-top: 1px solid #4e4f5b">
+                                        <div class="d-flex align-items-center">
+                                            <div class="mx-auto">
+                                                <img class="ms-3 mb-3 mt-3" src="{{ asset('img/ovo.png') }}" height="30" alt="">
+                                            </div>
+                                            <div class="flex-fill">
+                                                <p class="my-auto ms-2 mb-3 mt-3">OVO</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                                <template x-if="selected == 'dana'">
+                                    <div class="payment-accordion-button payment-method-text text-white" style="border-top: 1px solid #4e4f5b">
+                                        <div class="d-flex align-items-center">
+                                            <div class="mx-auto">
+                                                <img class="ms-3 mb-3 mt-3" src="{{ asset('img/dana.png') }}" height="30" alt="">
+                                            </div>
+                                            <div class="flex-fill">
+                                                <p class="my-auto ms-2 mb-3 mt-3">Dana</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                                <template x-if="selected == 'shoopepay'">
+                                    <div class="payment-accordion-button payment-method-text text-white" style="border-top: 1px solid #4e4f5b">
+                                        <div class="d-flex align-items-center">
+                                            <div class="mx-auto">
+                                                <img class="ms-3 mb-3 mt-3" src="{{ asset('img/shopee.png') }}" height="30" alt="">
+                                            </div>
+                                            <div class="flex-fill">
+                                                <p class="my-auto ms-2 mb-3 mt-3 ">Shoope Pay</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
+    <hr class="hr-terakhir">
+    <div class="sticky-bottom">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-12 text-start">
+                    <h3 class="mb-1 mt-1" style="font-size: 12px;">Total Pembayaran</h3>
+                </div>
+                <div class="col-6 text-start">
+                    <h3 class="fw-semibold" style="font-size: 23,5; color: #9370DB">Rp.2.100.000</h3>
+                </div>
+                <div class="col-6 text-end btn-bawah">
+                    <a type="submit" href="/konfirmasitransaksi" class="btn text-end text-white">Bayar</a>
+                </div>
+            </div>
+        </div>
+
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -674,6 +522,9 @@
             } else {
                 header.classList.remove('scrolled');
             }
+        });
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
         });
     </script>
 </body>

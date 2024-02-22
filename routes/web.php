@@ -26,8 +26,8 @@ Route::get('/transaksi', function() {
     return view('transaksi.index');
 });
 
-Route::get('/buktipembayaran', function () {
-    return view('transaksi.buktipembayaran');
+Route::get('/konfirmasitransaksi', function () {
+    return view('transaksi.konfirmasitransaksi');
 });
 
 Route::get('/transaksi', [UserController::class, 'transaksi'])->name('transaksi');

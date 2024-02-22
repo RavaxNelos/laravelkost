@@ -37,10 +37,11 @@
 }
 
 .hr-pembayaran {
-  border-top: 2px solid #ccc;
+  border-top: 10px solid #ccc;
   margin-top: 1.6rem;
   /* Hilangkan margin default dari <hr> */
 }
+
 .metode-pembayaran {
   border-top: 2px solid #ccc;
   margin-top: 1rem;
@@ -89,8 +90,20 @@ button.tokokamarkost {
   margin-top: -14px;
 }
 
-.btn-confirm{
+.btn-confirm {
   border: 2px solid rgb(106, 5, 114) !important;
   color: white !important;
   border-radius: 8px !important;
+}
+
+.btn-back-home {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  font-weight: bold;
+  font-size: 24px;
+  color: rgb(0, 0, 0);
+  transition: color 0.3s ease !important;
 }

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Details</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
@@ -15,6 +15,12 @@
     <style>
         * {
             font-family: 'Poppins', sans-serif;
+        }
+
+        html,
+        body {
+            user-drag: none;
+            user-select: none;
         }
 
         button.btn-like-detail {
@@ -60,12 +66,6 @@
             /* Ganti dengan warna ikon yang diinginkan saat di-scroll */
         }
 
-        .fixed-top.scrolled .teks-detail {
-            transition: color 0.3s ease;
-            color: #000000 !important;
-            /* Ganti dengan warna ikon yang diinginkan saat di-scroll */
-        }
-
         div:where(.swal2-container) .swal2-html-container {
             font-size: 16px !important;
             font-weight: 400 !important;
@@ -95,6 +95,13 @@
             margin-top: 20px !important;
             margin-bottom: 30px !important;
         }
+
+        #kamarKost {
+            opacity: 0;
+            /* Awalnya sembunyikan */
+            transform: translateY(-25px);
+            /* Geser ke atas agar tidak terlihat */
+        }
     </style>
 </head>
 
@@ -106,8 +113,8 @@
                 <div class="col-1">
                     <a href="/home" class="btn-back-home"><ion-icon name="chevron-back-outline" style="margin-bottom: -4px;"></ion-icon></a>
                 </div>
-                <div class="col-6 mt-4 text-start" style="margin-top: 25px !important;">
-                    <h3 class="text-white fw-bold teks-detail" style="font-size: 16px; transition: color 0.3s ease;">Detail Kamar Kost</h3>
+                <div class="col-6 mt-4 text-start" id="kamarKost" style="margin-top: 25px !important;">
+                    <h3 class="fw-bold" style="font-size: 16px; transition: color 0.3s ease;">Detail Kamar Kost</h3>
                 </div>
                 <div class="col-5 text-end">
                     <button class="btn-like-detail" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
@@ -534,6 +541,24 @@
                 lastScrollTop = scrollTop;
             });
 
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            var kamarKost = document.getElementById('kamarKost');
+
+            window.addEventListener('scroll', function() {
+                var scrollPosition = window.scrollY;
+
+                if (scrollPosition > 0) { // Ubah angka ini sesuai dengan tinggi scroll yang diinginkan
+                    kamarKost.style.opacity = '1';
+                    kamarKost.style.transform = 'translateY(0)';
+                } else {
+                    kamarKost.style.opacity = '0';
+                    kamarKost.style.transform = 'translateY(-25px)';
+                }
+            });
+        });
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
         });
     </script>
 </body>

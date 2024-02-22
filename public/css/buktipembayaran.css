@@ -1,4 +1,15 @@
 hr.garis-1 {
     margin-top: -8px;
-    border: 2px solid #ccc;
+    border-top: 2px solid #ccc;
+
+}
+
+hr.garis-2 {
+    margin-top: 10px;
+    border-top: 2px dashed #ccc;
+}
+
+hr.garis-3 {
+    margin-top: 30px;
+    border-top: 2px dashed #ccc;
 }
