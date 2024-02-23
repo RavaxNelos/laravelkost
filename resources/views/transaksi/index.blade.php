@@ -93,7 +93,7 @@
 
         .payment-accordion {
             color: #212529;
-            background: rgba(128, 0, 128, 0.9);
+            background: rgba(104, 41, 145, 0.9);
             padding: 1rem;
             padding-left: 0.8rem;
             padding-right: 0.7rem;
@@ -108,7 +108,7 @@
             font-size: 1rem;
             color: var(--bs-accordion-btn-color);
             text-align: left;
-            background-color: rgba(128, 0, 128, 0.9);
+            background-color: rgba(104, 41, 145, 0.8);
             border: 0;
             border-radius: 0;
             overflow-anchor: none;
@@ -149,7 +149,7 @@
                     <a href="/detail" class="btn-back-home"><ion-icon name="chevron-back-outline" style="margin-bottom: -4px;"></ion-icon></a>
                 </div>
                 <div class="col-6 mt-4 text-start" style="margin-top: 25px !important;">
-                    <h3 class="text-dark fw-bold teks-detail" style="font-size: 16px; transition: color 0.3s ease;">Transaksi</h3>
+                    <h3 class="text-dark fw-semibold teks-detail" style="font-size: 16px; transition: color 0.3s ease;">Transaksi</h3>
                 </div>
             </div>
         </div>
@@ -222,14 +222,14 @@
         </div>
         <div class="row mb-2">
             <div class="col-5 text-start">
-                <h3 class="fw-medium" style="font-family: Poppins; font-size: 18px; width: 190px;">Total Pembayaran</h3>
+                <h3 class="fw-medium" style="font-family: Poppins; font-size: 18px; width: 190px; font-weight: 440 !important;">Total Pembayaran</h3>
             </div>
             <div class="col-7 text-end">
                 <h3 class="fw-medium" style="font-family: Poppins; font-size: 18px; color: #9370DB;">Rp.2.100.000</h3>
             </div>
         </div>
     </div>
-    <section class="payment-method" x-data="{ confirmation: true }" style="background-color: rgba(128, 0, 128, 0.9);">
+    <section class="payment-method" x-data="{ confirmation: true }" style="background-color: rgba(104, 41, 145, 0.8);">
         <div x-data="{ selected: false }">
             <div x-data="{ openPayment: false }" x-init="confirmation = true ? 'setTimeout(() => openPayment = false, 1000)' : null">
                 <div class="payment-accordion">
@@ -390,7 +390,8 @@
                     </div>
                 </div>
                 <div x-show="selected">
-                    <div>
+                    <div
+                    style="background-color: rgba(104, 41, 145, 0.8);">
                         <template x-if="confirmation == true" class="">
                             <button x-on:click="confirmation = false;openPayment = false" class="ms-3 mb-2 btn btn-confirm " style="--bs-btn-padding-y: .4rem; --bs-btn-padding-x: 8rem; --bs-btn-font-size: 14px;">Konfirmasi
                             </button>

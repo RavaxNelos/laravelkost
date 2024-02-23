@@ -34,4 +34,9 @@ class UserController extends Controller
     {
         return view('transaksi.checkout');
     }
+
+    public function kamar()
+    {
+        return view('kamar');
+    }
 }

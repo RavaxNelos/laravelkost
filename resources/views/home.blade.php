@@ -15,6 +15,37 @@
     <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style>
+        #popup {
+            width: 204px;
+            height: 50px;
+            text-align: center;
+            display: none;
+            position: fixed;
+            top: 80%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            z-index: 1000;
+        }
+
+        #popup-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            z-index: 999;
+        }
+
+        p#popup-text {
+            width: 186px;
+            margin-top: 4px;
+        }
+
         * {
             font-family: 'Poppins', sans-serif;
         }
@@ -25,6 +56,21 @@
 
         body {
             overflow: overlay;
+            user-select: none;
+        }
+
+        .scroll-popup {
+            display: none;
+            position: fixed;
+            bottom: 9.6%;
+            left: 34%;
+            background-color: #ffffff;
+            color: #000000;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            font-size: 12px;
         }
 
         ::-webkit-scrollbar {
@@ -106,26 +152,6 @@
             background-color: rgba(255, 255, 255, 0.8) !important;
             backdrop-filter: blur(10px) !important;
         }
-
-        div:where(.swal2-container) div:where(.swal2-popup) {
-            color: #ccc !important;
-            font-size: 0.76rem !important;
-            width: 18em !important;
-            height: 4em !important;
-            background-color: #000000 !important;
-            opacity: 0.7;
-        }
-
-        div:where(.swal2-container) .swal2-html-container {
-            margin-left: -2.4rem !important;
-            width: 300px;
-            font-weight: 500 !important;
-            text-align: center !important;
-        }
-
-        div.swal2-popup.swal2-modal.swal2-show {
-            margin-top: 450px !important;
-        }
     </style>
 </head>
 
@@ -136,7 +162,7 @@
                 <i class="bi bi-house-door-fill"></i>
                 <span class="nav__text">Beranda</span>
             </a>
-            <a href="" class="nav__link">
+            <a href="/kamar" class="nav__link">
                 <i class="bi bi-door-closed"></i>
                 <span class="nav__text">Kamar</span>
             </a>
@@ -181,6 +207,9 @@
             </div>
         </div>
     </div>
+    <div class="scroll-popup" id="scrollPopup">
+        <span onclick="scrollToTop()"><i class="bi bi-arrow-up-circle"></i> Kembali Ke Atas</span>
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-12">
@@ -189,6 +218,11 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div id="popup-background" onclick="closePopup()"></div>
+    <div id="popup">
+        <p id="popup-text" style="font-size: 14px;">Berhasil DiFavoritkan</p>
     </div>
 
     {{-- <!-- pembatas 1 -->
@@ -1496,7 +1530,7 @@
             <div class="row mt-3 mb-0">
                 <div class="col-12">
                     <h1 style="font-weight: bold; font-size: 18px; font-family: 'Inter', sans-serif;">Rekomendasi Kamar Kost</h1>
-                    <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-bottom: 2rem;" id="kategori-sewa-rekomendasi">
+                    <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-bottom: 4.8rem;" id="kategori-sewa-rekomendasi">
                         <div x-show="filter == 'bulanan'">
                             <div class="card" style="padding: 10px; border-radius: 15px;">
                                 <div class="position-relative mb-2">
@@ -1768,6 +1802,8 @@
         <button class="btn btn-danger" type="submit">Logout</button>
     </form>
     <!-- end didekat mu rumah -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
@@ -1881,8 +1917,6 @@
             document.getElementById('kategori-sewa-rekomendasi').scrollLeft = 0;
         }
 
-        let isAlertShown = false;
-
         function changeIconAndColor(button) {
             // Mengambil elemen ikon pada tombol
             var iconElement = button.querySelector("i");
@@ -1895,23 +1929,61 @@
             var currentColor = iconElement.style.color;
             iconElement.style.color = (currentColor === "purple") ? "" : "purple";
 
-            // Menampilkan SweetAlert
-            if (isAlertShown) {
-                Swal.fire({
-                    text: "Berhasil Di Hapus Dari Favorit",
-                    showConfirmButton: false,
-                });
-            } else {
-                Swal.fire({
-                    text: "Berhasil DiFavoritkan!",
-                    showConfirmButton: false,
-                });
-            }
-            isAlertShown = !isAlertShown;
+            // Ganti ikon atau warna sesuai keinginan Anda
+            // Misalnya, di sini saya hanya menambahkan kelas 'favorited'
+            button.classList.toggle('favorited');
 
+            var popupText = document.getElementById('popup-text');
+
+            if (button.classList.contains('favorited')) {
+                popupText.innerText = 'Berhasil Difavoritkan';
+            } else {
+                popupText.innerText = 'Dihapus Dari Favorit';
+            }
+
+            // Tampilkan pop-up
+            showPopup();
+        }
+
+        function showPopup() {
+            var popupBackground = document.getElementById('popup-background');
+            var popup = document.getElementById('popup');
+
+            popupBackground.style.display = 'block';
+            popup.style.display = 'block';
+
+            // Sembunyikan pop-up setelah beberapa detik (misalnya, 3 detik)
             setTimeout(function() {
-                Swal.close();
-            }, 2000);
+                closePopup();
+            }, 3000);
+        }
+
+        function closePopup() {
+            var popupBackground = document.getElementById('popup-background');
+            var popup = document.getElementById('popup');
+
+            popupBackground.style.display = 'none';
+            popup.style.display = 'none';
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            window.onscroll = function() {
+                showScrollPopup();
+            };
+        });
+
+        function showScrollPopup() {
+            var scrollPopup = document.getElementById("scrollPopup");
+            if (document.body.scrollTop > 2390 || document.documentElement.scrollTop > 2390) {
+                scrollPopup.style.display = "block";
+            } else {
+                scrollPopup.style.display = "none";
+            }
+        }
+
+        function scrollToTop() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
         }
     </script>
 </body>

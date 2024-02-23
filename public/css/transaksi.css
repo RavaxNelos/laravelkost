@@ -91,7 +91,7 @@ button.tokokamarkost {
 }
 
 .btn-confirm {
-  border: 2px solid rgb(106, 5, 114) !important;
+  border: 2px solid #9370DB !important;
   color: white !important;
   border-radius: 8px !important;
 }

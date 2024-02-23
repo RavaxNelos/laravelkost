@@ -13,6 +13,37 @@
     <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <style>
+        #popup {
+            width: 204px;
+            height: 50px;
+            text-align: center;
+            display: none;
+            position: fixed;
+            top: 80%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            z-index: 1000;
+        }
+
+        #popup-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            z-index: 999;
+        }
+
+        p#popup-text {
+            width: 186px;
+            margin-top: 4px;
+        }
+
         * {
             font-family: 'Poppins', sans-serif;
         }
@@ -122,6 +153,10 @@
             </div>
         </div>
     </nav>
+    <div id="popup-background" onclick="closePopup()"></div>
+    <div id="popup">
+        <p id="popup-text" style="font-size: 14px;">Berhasil DiFavoritkan</p>
+    </div>
     <section class="splide new-2" aria-label="Splide Basic HTML Example">
         <div class="splide__track">
             <ul class="splide__list">
@@ -502,25 +537,41 @@
             // Mengubah warna ikon menjadi kuning
             var currentColor = iconElement.style.color;
             iconElement.style.color = (currentColor === "purple") ? "" : "purple";
-            // Menampilkan SweetAlert
-            if (isAlertShown) {
-                Swal.fire({
-                    text: "Kamar Kost Di Hapus Dari Favorit",
-                    showConfirmButton: false,
-                    icon: "error"
-                });
-            } else {
-                Swal.fire({
-                    text: "Kamar Kost Berhasil Di Favoritkan!",
-                    showConfirmButton: false,
-                    icon: "success"
-                });
-            }
-            isAlertShown = !isAlertShown;
 
+            button.classList.toggle('favorited');
+
+            var popupText = document.getElementById('popup-text');
+
+            if (button.classList.contains('favorited')) {
+                popupText.innerText = 'Berhasil Difavoritkan';
+            } else {
+                popupText.innerText = 'Dihapus Dari Favorit';
+            }
+
+            // Tampilkan pop-up
+            showPopup();
+
+        }
+
+        function showPopup() {
+            var popupBackground = document.getElementById('popup-background');
+            var popup = document.getElementById('popup');
+
+            popupBackground.style.display = 'block';
+            popup.style.display = 'block';
+
+            // Sembunyikan pop-up setelah beberapa detik (misalnya, 3 detik)
             setTimeout(function() {
-                Swal.close();
-            }, 2500);
+                closePopup();
+            }, 3000);
+        }
+
+        function closePopup() {
+            var popupBackground = document.getElementById('popup-background');
+            var popup = document.getElementById('popup');
+
+            popupBackground.style.display = 'none';
+            popup.style.display = 'none';
         }
         document.addEventListener("DOMContentLoaded", function() {
             var stickyTop = document.getElementById("stickyTop");

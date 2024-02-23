@@ -30,6 +30,10 @@ Route::get('/konfirmasitransaksi', function () {
     return view('transaksi.konfirmasitransaksi');
 });
 
+Route::get('/kamar', function() {
+    return view('kamar');
+});
+
 Route::get('/transaksi', [UserController::class, 'transaksi'])->name('transaksi');
 
 Route::get('/detail', [UserController::class, 'detailrumah'])->name('detailrumah');

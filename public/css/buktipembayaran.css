@@ -1,6 +1,6 @@
 hr.garis-1 {
-    margin-top: -8px;
-    border-top: 2px solid #ccc;
+    margin-top: 0px;
+    border-top: 10px solid #ccc;
 
 }
 
@@ -11,5 +11,21 @@ hr.garis-2 {
 
 hr.garis-3 {
     margin-top: 30px;
-    border-top: 2px dashed #ccc;
+    border-top: 10px solid #ccc;
 }
+hr.garis-4 {
+    margin-top: 0rem;
+    border-top: 10px solid #ccc;
+}
+
+.btn-back-home {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background-color: transparent;
+    font-weight: bold;
+    font-size: 24px;
+    color: rgb(0, 0, 0);
+    transition: color 0.3s ease !important;
+  }
