@@ -13,6 +13,27 @@
     <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <style>
+        #jam-container {
+            font-family: Poppins;
+        }
+
+        #waktu {
+            display: none;
+        }
+
+        #waktu-btn {
+            display: none;
+            border: 1px solid rgba(106, 5, 114, 1);
+            color: #000000;
+            font-weight: 600;
+            /* Tambahkan gaya lain sesuai kebutuhan Anda */
+        }
+
+        .btn-lainnya {
+            font-family: Poppins;
+            cursor: pointer;
+        }
+
         #popup {
             width: 204px;
             height: 50px;
@@ -133,6 +154,63 @@
             transform: translateY(-25px);
             /* Geser ke atas agar tidak terlihat */
         }
+
+        div.scrollmenu {
+            background-color: transparent;
+            overflow: auto;
+            white-space: nowrap;
+        }
+
+        div.scrollmenu a {
+            font-size: 18px;
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            text-decoration: none;
+        }
+
+        .scrollmenu .active {
+            border-radius: 50%;
+            background-color: purple;
+            color: #ffffff;
+            width: 40px;
+            height: 40px;
+        }
+
+        .btn.active {
+            background: rgb(106, 5, 114);
+            background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%);
+            color: #ffffff !important;
+            /* Jika ingin mengubah warna teks juga */
+        }
+
+        .splide__arrow {
+            background: transparent;
+            width: 1em;
+            height: 1em;
+        }
+
+        .scrollmenu {
+            overflow: hidden;
+            /* Menghilangkan scroll horizontal */
+        }
+
+        .scrollmenu::-webkit-scrollbar {
+            width: 12px;
+            /* Atur lebar scroll bar jika ingin tetap ada */
+        }
+
+        .scrollmenu::-webkit-scrollbar-thumb {
+            background-color: transparent;
+            /* Mengatur warna thumb scroll bar menjadi transparan */
+            border-radius: 10px;
+            /* Atur radius sudut thumb scroll bar jika ingin tetap ada */
+        }
+
+        .splide__arrow svg {
+            fill: rgba(106, 5, 114, 1);
+        }
     </style>
 </head>
 
@@ -191,12 +269,25 @@
         <!-- end Judul kamar -->
         <!-- harga kamar -->
         <div class="row" style="margin-top: -8px; margin-bottom: 6px;">
-            <div class="col-12 text-start">
+            <div class="col-6 text-start">
                 <h6 class="fw-bold" style="font-size: 22px; color: rgba(128, 0, 128, 0.9);">Rp. 2.000.000</h6>
+            </div>
+            <div class="col-6" style="margin-top: 12px; margin-left: -26px;">
+                <p class="text-danger" style="margin-top: -8px; font-size: 10px; font-style: italic;">(Tidak Termasuk Listrik) <i class="bi bi-info-circle" data-bs-toggle="modal" data-bs-target="#exampleModal" style="color: #000000; margin-left: 4px; font-size: 12px;"></i></p>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content" style="width: 336px; position: absolute; top: 320px; height: 84px;">
+                    <div class="modal-body">
+                        <p class="fw-normal" style="font-size: 12px; margin-top: -4px; justify-content: center;">Biaya sewa kamar tidak termasuk listrik, dan pembayaran listrik akan dilakukan melalui sistem token dengan tarif yang berlaku.</p>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- end harga kamar -->
-        <div class="col-12 text-start">
+        <div class="col-12 text-start" style="margin-top: -10px;">
             <h6 class="fw-semibold" style="font-size: 18px; font-family: Poppins;">Fasilitas</h6>
         </div>
         <section class="splide new" aria-label="Splide Basic HTML Example" style="margin-top: -36px">
@@ -375,7 +466,7 @@
             </div>
         </div>
         <div class="col-12">
-            <h6 class="fw-semibold" style="margin-bottom: 10px;">Fasilitas Kamar</h6>
+            <h6 class="fw-semibold" style="margin-bottom: 10px;">Fasilitas</h6>
             <section class="splide new-1" aria-label="Splide Basic HTML Example">
                 <div class="splide__track">
                     <ul class="splide__list">
@@ -431,18 +522,134 @@
                 </div>
             </section>
         </div>
-    </div>
-    <div class="garis-pembatas-2"></div>
-    <!-- Modal -->
-    <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <img src="" id="modalImage" alt="Full Image">
+        <!-- booking kost -->
+        <div class="col-12 text-start">
+            <h6 class="fw-semibold" style="margin-bottom: 10px; margin-top: 30px;">Jadwal Masuk Kamar</h6>
+        </div>
+        <div class="container px-2">
+            <div class="card-jadwal">
+                <section class="splide new-3" aria-label="Splide Basic HTML Example">
+                    <div class="splide__track">
+                        <ul class="splide__list">
+                            <li class="splide__slide">
+                                <h3 class="fw-medium fs-3 text-center text-white" style="margin-top: 10px;">Januari</h3>
+                            </li>
+                            <li class="splide__slide">
+                                <h3 class="fw-medium fs-3 text-center text-white" style="margin-top: 10px;">Februari</h3>
+                            </li>
+                            <li class="splide__slide">
+                                <h3 class="fw-medium fs-3 text-center text-white" style="margin-top: 10px;">Maret</h3>
+                            </li>
+                            <li class="splide__slide">
+                                <h3 class="fw-medium fs-3 text-center text-white" style="margin-top: 10px;">April</h3>
+                            </li>
+                            <li class="splide__slide">
+                                <h3 class="fw-medium fs-3 text-center text-white" style="margin-top: 10px;">Mei</h3>
+                            </li>
+                            <li class="splide__slide">
+                                <h3 class="fw-medium fs-3 text-center text-white" style="margin-top: 10px;">Juni</h3>
+                            </li>
+                            <li class="splide__slide">
+                                <h3 class="fw-medium fs-3 text-center text-white" style="margin-top: 10px;">Juli</h3>
+                            </li>
+                            <li class="splide__slide">
+                                <h3 class="fw-medium fs-3 text-center text-white" style="margin-top: 10px;">Agustus</h3>
+                            </li>
+                            <li class="splide__slide">
+                                <h3 class="fw-medium fs-3 text-center text-white" style="margin-top: 10px;">September</h3>
+                            </li>
+                            <li class="splide__slide">
+                                <h3 class="fw-medium fs-3 text-center text-white" style="margin-top: 10px;">Oktober</h3>
+                            </li>
+                            <li class="splide__slide">
+                                <h3 class="fw-medium fs-3 text-center text-white" style="margin-top: 10px;">November</h3>
+                            </li>
+                            <li class="splide__slide">
+                                <h3 class="fw-medium fs-3 text-center text-white" style="margin-top: 10px;">Desember</h3>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <div class="scrollmenu">
+                    <a href="#1" onclick="makeActive(this)">1</a>
+                    <a href="#2" onclick="makeActive(this)">2</a>
+                    <a href="#3" onclick="makeActive(this)">3</a>
+                    <a href="#4" onclick="makeActive(this)">4</a>
+                    <a href="#5" onclick="makeActive(this)">5</a>
+                    <a href="#6" onclick="makeActive(this)">6</a>
+                    <a href="#7" onclick="makeActive(this)">7</a>
+                    <a href="#8" onclick="makeActive(this)">8</a>
+                    <a href="#9" onclick="makeActive(this)">9</a>
+                    <a href="#10" onclick="makeActive(this)">10</a>
+                    <a href="#11" onclick="makeActive(this)">11</a>
+                    <a href="#12" onclick="makeActive(this)">12</a>
+                    <a href="#13" onclick="makeActive(this)">13</a>
+                    <a href="#14" onclick="makeActive(this)">14</a>
+                    <a href="#15" onclick="makeActive(this)">15</a>
+                    <a href="#16" onclick="makeActive(this)">16</a>
+                    <a href="#17" onclick="makeActive(this)">17</a>
+                    <a href="#18" onclick="makeActive(this)">18</a>
+                    <a href="#19" onclick="makeActive(this)">19</a>
+                    <a href="#20" onclick="makeActive(this)">20</a>
+                    <a href="#21" onclick="makeActive(this)">21</a>
+                    <a href="#22" onclick="makeActive(this)">22</a>
+                    <a href="#23" onclick="makeActive(this)">23</a>
+                    <a href="#24" onclick="makeActive(this)">24</a>
+                    <a href="#25" onclick="makeActive(this)">25</a>
+                    <a href="#26" onclick="makeActive(this)">26</a>
+                    <a href="#27" onclick="makeActive(this)">27</a>
+                    <a href="#28" onclick="makeActive(this)">28</a>
+                    <a href="#29" onclick="makeActive(this)">29</a>
+                    <a href="#30" onclick="makeActive(this)">30</a>
                 </div>
             </div>
+            <div class="row mt-2" style="margin-left: 0.25rem ;gap: 0.5rem;" x-data="{ new_schedule: '' }">
+                <button x-on:click="new_schedule = 'time-1'" :class="new_schedule == 'time-1' ? 'btn time-btn fw-semibold active' :
+                    'btn fw-semibold'" type="button" style="--bs-btn-padding-y: .50rem; width: 6.15rem; --bs-btn-font-size: .75rem;border: 1px solid rgba(106, 5, 114, 1); color: #000000;">
+                    08.00 WIB
+                </button>
+                <button x-on:click="new_schedule = 'time-2'" :class="new_schedule == 'time-2' ? 'btn time-btn fw-semibold active' :
+                    'btn fw-semibold'" type="button" style="--bs-btn-padding-y: .50rem; width: 6.15rem; --bs-btn-font-size: .75rem;border: 1px solid rgba(106, 5, 114, 1); color: #000000;">
+                    09.00 WIB
+                </button>
+                <button x-on:click="new_schedule = 'time-3'" :class="new_schedule == 'time-3' ? 'btn time-btn fw-semibold active' :
+                    'btn fw-semibold'" type="button" style="--bs-btn-padding-y: .50rem; width: 6.15rem; --bs-btn-font-size: .75rem;border: 1px solid rgba(106, 5, 114, 1); color: #000000;">
+                    09.00 WIB
+                </button>
+                <button x-on:click="new_schedule = 'time-4'" :class="new_schedule == 'time-4' ? 'btn time-btn fw-semibold active' :
+                    'btn fw-semibold'" type="button" style="--bs-btn-padding-y: .50rem; width: 6.15rem; --bs-btn-font-size: .75rem;border: 1px solid rgba(106, 5, 114, 1); color: #000000;">
+                    10.00 WIB
+                </button>
+                <button x-on:click="new_schedule = 'time-5'" :class="new_schedule == 'time-5' ? 'btn time-btn fw-semibold active' :
+                    'btn fw-semibold'" type="button" style="--bs-btn-padding-y: .50rem; width: 6.15rem; --bs-btn-font-size: .75rem;border: 1px solid rgba(106, 5, 114, 1); color: #000000;">
+                    13.00 WIB
+                </button>
+                <button x-on:click="new_schedule = 'time-6'" :class="new_schedule == 'time-6' ? 'btn time-btn fw-semibold active' :
+                    'btn fw-semibold'" type="button" style="--bs-btn-padding-y: .50rem; width: 6.15rem; --bs-btn-font-size: .75rem;border: 1px solid rgba(106, 5, 114, 1); color: #000000;">
+                    14.00 WIB
+                </button>
+                <button x-on:click="new_schedule = 'time-7'" :class="new_schedule == 'time-7' ? 'btn time-btn fw-semibold active' :
+                    'btn fw-semibold'" type="button" style="--bs-btn-padding-y: .50rem; width: 6.15rem; --bs-btn-font-size: .75rem;border: 1px solid rgba(106, 5, 114, 1); color: #000000;">
+                    15.00 WIB
+                </button>
+                <button x-on:click="new_schedule = 'time-8'" :class="new_schedule == 'time-8' ? 'btn time-btn fw-semibold active' :
+                    'btn fw-semibold'" type="button" style="--bs-btn-padding-y: .50rem; width: 6.15rem; --bs-btn-font-size: .75rem;border: 1px solid rgba(106, 5, 114, 1); color: #000000;">
+                    16.00 WIB
+                </button>
+                <button x-on:click="new_schedule = 'time-9'" :class="new_schedule == 'time-9' ? 'btn time-btn fw-semibold active' :
+                    'btn fw-semibold'" type="button" style="--bs-btn-padding-y: .50rem; width: 6.15rem; --bs-btn-font-size: .75rem;border: 1px solid rgba(106, 5, 114, 1); color: #000000;">
+                    17.00 WIB
+                </button>
+            </div>
+            <div id="jam-container">
+                <label for="waktu" class="btn-lainnya" onclick="toggleJam()">Waktu Lainnya</label>
+                <input type="time" id="waktu" onchange="updateWaktu()">
+                <button id="waktu-btn" onclick="submitWaktu()">Set Waktu</button>
+            </div>
         </div>
+        <!-- booking kost -->
     </div>
+    <div class="garis-pembatas-2"></div>
     <div class="sticky-bottom">
         <div class="container">
             <div class="row">
@@ -470,6 +677,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script>
         var splide = new Splide('.splide.new', {
             arrows: false,
@@ -499,6 +707,13 @@
             autoplay: true,
             lazyLoad: 'nearby',
             arrows: false,
+            interval: '2000'
+        });
+        splide.mount();
+        var splide = new Splide('.splide.new-3', {
+            type: 'loop',
+            lazyLoad: 'nearby',
+            pagination: false,
             interval: '2000'
         });
         splide.mount();
@@ -611,6 +826,49 @@
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
         });
+
+        function makeActive(element) {
+            // Menghapus kelas 'active' dari semua elemen
+            var links = document.querySelectorAll('.scrollmenu a');
+            links.forEach(function(link) {
+                link.classList.remove('active');
+            });
+
+            // Menambahkan kelas 'active' pada elemen yang dipilih
+            element.classList.add('active');
+
+            // Mengukur tinggi dan lebar elemen yang dipilih
+            var height = element.clientHeight;
+            var width = element.clientWidth;
+
+            // Lakukan sesuatu dengan nilai tinggi dan lebar, contohnya:
+            console.log('Tinggi:', height, 'px');
+            console.log('Lebar:', width, 'px');
+        }
+
+        function addInput() {
+            // Menyembunyikan tombol
+            var btnLainnya = document.querySelector('.btn-lainnya');
+            btnLainnya.style.display = 'none';
+
+            // Menampilkan input
+            var inputContainer = document.getElementById('inputContainer');
+            inputContainer.style.display = 'block';
+
+            // Jika Anda ingin melakukan lebih banyak tindakan, tambahkan logika lainnya di sini
+        }
+
+        function toggleJam() {
+            var waktuInput = document.getElementById("waktu");
+            waktuInput.style.display = (waktuInput.style.display === "block") ? "none" : "block";
+        }
+
+        function updateWaktu() {
+            var waktuValue = document.getElementById("waktu").value;
+            console.log("Waktu yang dipilih:", waktuValue);
+
+            // Tambahkan kode lain sesuai kebutuhan Anda
+        }
     </script>
 </body>
 

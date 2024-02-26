@@ -23,11 +23,11 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        html,
+        /* html,
         body {
             user-drag: none;
             user-select: none;
-        }
+        } */
 
         .sticky-top {
             position: sticky;
@@ -65,7 +65,7 @@
     <div class="container">
         <div class="row">
             <div class="col-5 text-start">
-                <h3 class="fw-normal text-secondary" style="font-size: 14px;">Nama Pelanggan</h3>
+                <h3 class="fw-normal text-secondary" style="font-size: 14px;">Nama User</h3>
             </div>
             <div class="col-7 text-end">
                 <h3 class="fw-semibold text-secondary-emphesis" style="font-size: 14px;">Muhammad Ravanelo</h3>
@@ -73,26 +73,26 @@
         </div>
         <div class="row">
             <div class="col-5 text-start">
-                <h3 class="fw-normal text-secondary" style="font-size: 14px;">Durasi Ngekost</h3>
+                <h3 class="fw-normal text-secondary" style="font-size: 14px;">Pilihan Kost</h3>
             </div>
             <div class="col-7 text-end">
-                <h3 class="fw-semibold text-secondary-emphesis" style="font-size: 14px;">1 Bulan</h3>
+                <h3 class="fw-semibold text-secondary-emphesis" style="font-size: 14px;">Bulanan</h3>
             </div>
         </div>
         <div class="row">
             <div class="col-5 text-start">
-                <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 160px;">Tanggal Pesan Kost</h3>
+                <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 160px;">Tgl Pesanan</h3>
             </div>
             <div class="col-7 text-end">
-                <h3 class="fw-semibold text-secondary-emphesis" style="font-size: 14px;">21 Februari 2024</h3>
+                <h3 class="fw-semibold text-secondary-emphesis" style="font-size: 14px;">21 Februari 2024, 17.00 WIB</h3>
             </div>
         </div>
         <div class="row">
-            <div class="col-5 text-start">
-                <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 170px;">Tanggal Booking Kost</h3>
+            <div class="col-4 text-start">
+                <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 170px;">Est. Masuk Kost</h3>
             </div>
-            <div class="col-7 text-end">
-                <h3 class="fw-semibold text-secondary-emphesis" style="font-size: 14px;">23 Februari 2024</h3>
+            <div class="col-8 text-end">
+                <h3 class="fw-semibold text-secondary-emphesis" style="font-size: 14px;">23 Februari 2024, 17.00 WIB</h3>
             </div>
         </div>
     </div>
@@ -105,7 +105,7 @@
                 <h3 class="fw-semibold" style="font-size: 18px; font-family: Poppins; width: 180px;">Total Pembayaran</h3>
             </div>
             <div class="col-7 text-end">
-                <h3 class="fw-semibold" style="font-size: 18px; font-family: Poppins; color: #9370DB;">Rp.2.100.000</h3>
+                <h3 class="fw-semibold" style="font-size: 18px; font-family: Poppins; color: #9370DB;">Rp.2.300.000</h3>
             </div>
         </div>
         <div class="row mt-3">
@@ -123,7 +123,7 @@
         </div>
         <div class="row">
             <div class="col-12 text-start">
-                <p style="margin-top:-20px"><span class="fw-semibold" id="nomorTelp" style="font-size:16px; color: #800080;">082332724688</span><button class="btn fw-semibold text-success" style="font-size:12px; margin-left:-10px; margin-bottom:3px;" onclick="copyText()"><img src="{{ asset('img/copy.png') }}" height="15" alt=""></button>
+                <p style="margin-top:-20px"><span class="fw-semibold" id="nomorTelp" style="font-size:16px; color: #800080;">082332724688</span><button class="btn fw-semibold text-success" style="font-size:12px; margin-left:-8px; margin-bottom:3px;" onclick="copyText()"><img id="copyIcon" src="{{ asset('img/copy.png') }}" height="15" alt=""></button>
                 </p>
             </div>
             <div class="col-12 text-start mb-2">
@@ -132,7 +132,7 @@
         </div>
         <div class="row">
             <div class="col-4">
-                <a href="/home" type="submit" style="width: 130px; height: 40px; border: 2px solid #9370DB; padding: 8px;text-decoration: none; color: #9370DB; border-radius: 8px; font-size: 12px; text-align: center;">Halaman Utama</a>
+                <a href="/home" type="submit" style="width: 130px; height: 40px; border: 1px solid #9370DB; padding: 8px;text-decoration: none; color: #9370DB; border-radius: 8px; font-size: 12px; text-align: center;">Halaman Utama</a>
             </div>
             <div class="col-8">
                 <button id="confirmButton" style="margin-left: 18px; width: 200px; height: 40px; background-color: #9370DB; border-radius: 8px; border: none; font-size: 12px; color: white;">Konfirmasi Pembayaran</button>
@@ -155,18 +155,15 @@
             <div class="splide__track">
                 <ul class="splide__list">
                     <li class="splide__slide">
-                        <div class="card" style="width: 14rem; height: 19.5rem; border-radius: 8px;">
-                            <img src="{{ asset('img/kamarkostputri1.jpg') }}" height="150" width="222" style="border-top-left-radius: 4px; border-top-right-radius: 4px;">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <a type="submit" style="border: 1px solid #ccc; width: 60px; height: 28px; border-radius: 8px; text-align: center; font-weight: 500; padding: 2px; font-size: 14px;">Putri</a>
-                                    </div>
-                                    <div class="col-6">
-                                        <a type="submit" style="border: 1px solid #ccc; width: 120px; height: 28px; border-radius: 8px; text-align: center; font-weight: 500; padding: 2px; margin-left: -2.5rem; font-size: 14px;">Kost Andalan</a>
-                                    </div>
+                        <div class="card" style="width: 14rem; height: 16.6rem; border-radius: 8px;">
+                            <img src="{{ asset('img/kamarkostputri1.jpg') }}" height="150" width="222" style="border-top-left-radius: 4px; border-top-right-radius: 4px; position: relative;">
+                            <div class="row">
+                                <div class="col-12">
+                                    <a type="submit" style="background-color: rgba(255, 255, 255, 0.4); border: 1px solid #ccc; width: 100px; height: 28px; border-radius: 8px; text-align: center; font-weight: 500; padding: 2px; font-size: 14px; position: absolute; top: 10px; left: 16px;">Kost Putri</a>
                                 </div>
-                                <div class="row mt-2">
+                            </div>
+                            <div class="card-body" style="margin-top: -10px;">
+                                <div class="row">
                                     <div class="col-1 text-start mt-1">
                                         <i class="bi bi-geo-alt"></i>
                                     </div>
@@ -174,7 +171,7 @@
                                         <h3 class="fw-medium" style="font-size: 14px; margin-left: -4px;">Kecamatan Mulyorejo</h3>
                                     </div>
                                 </div>
-                                <p class="text-secondary" style="font-size: 12px; margin-top: -4px;">K.Mandi Dalam|Wifi|AC|Lemari...</p>
+                                <p class="text-secondary" style="font-size: 10px; margin-top: -4px;">K.Mandi Dalam | Wifi | AC | Lemari...</p>
                                 <div class="row" style="margin-top: -14px">
                                     <div class="col-1 text-start">
                                         <i class="bi bi-lightning-fill" style="color: red;"></i>
@@ -185,17 +182,21 @@
                                     <div class="col-5" style="margin-top: 2px;">
                                         <p class="text-secondary" style="font-size: 12px; text-decoration: line-through; width: 96px; margin-left: -12px;">Rp.1.500.000</p>
                                     </div>
-                                    <h3 class="fw-semibold" style="font-size: 18px; font-family: Poppins; color: #9370DB; margin-top: -10px;">Rp.1.305.000<span style="font-size: 14px; color: black; font-weight: 400;">/bulan</span></h3>
+                                    <h3 class="fw-semibold" style="font-size: 18px; font-family: Poppins; color: #9370DB; margin-top: -10px;">Rp.1.305.000<span style="font-size: 14px; color: gray; font-weight: 400;">/bulan</span></h3>
                                 </div>
                             </div>
                         </div>
                     </li>
                     <li class="splide__slide">
-                        <div class="card" style="width: 14rem; height: 19.5rem; border-radius: 8px;">
-                            <img src="{{ asset('img/kamarkostputri4.jpg') }}" height="150" width="222" style="border-top-left-radius: 4px; border-top-right-radius: 4px;">
-                            <div class="card-body">
-                                <a type="submit" style="border: 1px solid #ccc; width: 60px; height: 28px; border-radius: 8px; text-align: center; font-weight: 500; padding: 2px; font-size: 14px;">Putri</a>
-                                <div class="row mt-2">
+                        <div class="card" style="width: 14rem; height: 16.6rem; border-radius: 8px;">
+                            <img src="{{ asset('img/kamarkostputri4.jpg') }}" height="150" width="222" style="border-top-left-radius: 4px; border-top-right-radius: 4px; position: relative;">
+                            <div class="row">
+                                <div class="col-12">
+                                    <a type="submit" style="background-color: rgba(255, 255, 255, 0.4); border: 1px solid #ccc; width: 100px; height: 28px; border-radius: 8px; text-align: center; font-weight: 500; padding: 2px; font-size: 14px; position: absolute; top: 10px; left: 16px;">Kost Putri</a>
+                                </div>
+                            </div>
+                            <div class="card-body" style="margin-top: -10px;">
+                                <div class="row">
                                     <div class="col-1 text-start mt-1">
                                         <i class="bi bi-geo-alt"></i>
                                     </div>
@@ -203,7 +204,7 @@
                                         <h3 class="fw-medium" style="font-size: 14px; margin-left: -4px;">Kecamatan Mulyorejo</h3>
                                     </div>
                                 </div>
-                                <p class="text-secondary" style="font-size: 12px; margin-top: -4px;">K.Mandi Dalam|Wifi|AC|Lemari...</p>
+                                <p class="text-secondary" style="font-size: 10px; margin-top: -4px;">K.Mandi Dalam | Wifi | AC | Lemari...</p>
                                 <div class="row" style="margin-top: -14px">
                                     <div class="col-1 text-start">
                                         <i class="bi bi-lightning-fill" style="color: red;"></i>
@@ -214,16 +215,20 @@
                                     <div class="col-5" style="margin-top: 2px;">
                                         <p class="text-secondary" style="font-size: 12px; text-decoration: line-through; width: 96px; margin-left: -12px;">Rp.1.500.000</p>
                                     </div>
-                                    <h3 class="fw-semibold" style="font-size: 18px; font-family: Poppins; color: #9370DB; margin-top: -10px;">Rp.1.365.000<span style="font-size: 14px; color: black; font-weight: 400;">/bulan</span></h3>
+                                    <h3 class="fw-semibold" style="font-size: 18px; font-family: Poppins; color: #9370DB; margin-top: -10px;">Rp.1.365.000<span style="font-size: 14px; color: gray; font-weight: 400;">/bulan</span></h3>
                                 </div>
                             </div>
                         </div>
                     </li>
                     <li class="splide__slide">
-                        <div class="card" style="width: 14rem; height: 19.5rem; border-radius: 8px;">
-                            <img src="{{ asset('img/kamarkostputri3.jpg') }}" height="150" width="222" style="border-top-left-radius: 4px; border-top-right-radius: 4px;">
-                            <div class="card-body">
-                                <a type="submit" style="border: 1px solid #ccc; width: 60px; height: 28px; border-radius: 8px; text-align: center; font-weight: 500; padding: 2px; font-size: 14px;">Putri</a>
+                        <div class="card" style="width: 14rem; height: 16.6rem; border-radius: 8px;">
+                            <img src="{{ asset('img/kamarkostputri3.jpg') }}" height="150" width="222" style="border-top-left-radius: 4px; border-top-right-radius: 4px; position: relative;">
+                            <div class="row">
+                                <div class="col-12">
+                                    <a type="submit" style="background-color: rgba(255, 255, 255, 0.4); border: 1px solid #ccc; width: 100px; height: 28px; border-radius: 8px; text-align: center; font-weight: 500; padding: 2px; font-size: 14px; position: absolute; top: 10px; left: 16px;">Kost Putri</a>
+                                </div>
+                            </div>
+                            <div class="card-body" style="margin-top: -10px;">
                                 <div class="row mt-2">
                                     <div class="col-1 text-start mt-1">
                                         <i class="bi bi-geo-alt"></i>
@@ -232,7 +237,7 @@
                                         <h3 class="fw-medium" style="font-size: 14px; margin-left: -4px;">Kecamatan Mulyorejo</h3>
                                     </div>
                                 </div>
-                                <p class="text-secondary" style="font-size: 12px; margin-top: -4px;">K.Mandi Dalam|Wifi|AC|Lemari...</p>
+                                <p class="text-secondary" style="font-size: 10px; margin-top: -4px;">K.Mandi Dalam | Wifi | AC | Lemari...</p>
                                 <div class="row" style="margin-top: -14px">
                                     <div class="col-1 text-start">
                                         <i class="bi bi-lightning-fill" style="color: red;"></i>
@@ -243,24 +248,21 @@
                                     <div class="col-5" style="margin-top: 2px;">
                                         <p class="text-secondary" style="font-size: 12px; text-decoration: line-through; width: 96px; margin-left: -12px;">Rp.1.500.000</p>
                                     </div>
-                                    <h3 class="fw-semibold" style="font-size: 18px; font-family: Poppins; color: #9370DB; margin-top: -10px;">Rp.1.400.000<span style="font-size: 14px; color: black; font-weight: 400;">/bulan</span></h3>
+                                    <h3 class="fw-semibold" style="font-size: 18px; font-family: Poppins; color: #9370DB; margin-top: -10px;">Rp.1.400.000<span style="font-size: 14px; color: gray; font-weight: 400;">/bulan</span></h3>
                                 </div>
                             </div>
                         </div>
                     </li>
                     <li class="splide__slide">
-                        <div class="card" style="width: 14rem; height: 19.5rem; border-radius: 8px;">
-                            <img src="{{ asset('img/kamarkostputri5.jpg') }}" height="150" width="222" style="border-top-left-radius: 4px; border-top-right-radius: 4px;">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <a type="submit" style="border: 1px solid #ccc; width: 60px; height: 28px; border-radius: 8px; text-align: center; font-weight: 500; padding: 2px; font-size: 14px;">Putri</a>
-                                    </div>
-                                    <div class="col-6">
-                                        <a type="submit" style="border: 1px solid #ccc; width: 120px; height: 28px; border-radius: 8px; text-align: center; font-weight: 500; padding: 2px; margin-left: -2.5rem; font-size: 14px;">Kost Andalan</a>
-                                    </div>
+                        <div class="card" style="width: 14rem; height: 16.6rem; border-radius: 8px;">
+                            <img src="{{ asset('img/kamarkostputri4.jpg') }}" height="150" width="222" style="border-top-left-radius: 4px; border-top-right-radius: 4px; position: relative;">
+                            <div class="row">
+                                <div class="col-12">
+                                    <a type="submit" style="background-color: rgba(255, 255, 255, 0.4); border: 1px solid #ccc; width: 100px; height: 28px; border-radius: 8px; text-align: center; font-weight: 500; padding: 2px; font-size: 14px; position: absolute; top: 10px; left: 16px;">Kost Putri</a>
                                 </div>
-                                <div class="row mt-2">
+                            </div>
+                            <div class="card-body" style="margin-top: -10px;">
+                                <div class="row">
                                     <div class="col-1 text-start mt-1">
                                         <i class="bi bi-geo-alt"></i>
                                     </div>
@@ -268,7 +270,7 @@
                                         <h3 class="fw-medium" style="font-size: 14px; margin-left: -4px;">Kecamatan Mulyorejo</h3>
                                     </div>
                                 </div>
-                                <p class="text-secondary" style="font-size: 12px; margin-top: -4px;">K.Mandi Dalam|Wifi|AC|Lemari...</p>
+                                <p class="text-secondary" style="font-size: 10px; margin-top: -4px;">K.Mandi Dalam | Wifi | AC | Lemari...</p>
                                 <div class="row" style="margin-top: -14px">
                                     <div class="col-1 text-start">
                                         <i class="bi bi-lightning-fill" style="color: red;"></i>
@@ -279,7 +281,40 @@
                                     <div class="col-5" style="margin-top: 2px;">
                                         <p class="text-secondary" style="font-size: 12px; text-decoration: line-through; width: 96px; margin-left: -12px;">Rp.1.500.000</p>
                                     </div>
-                                    <h3 class="fw-semibold" style="font-size: 18px; font-family: Poppins; color: #9370DB; margin-top: -10px;">Rp.1.300.000<span style="font-size: 14px; color: black; font-weight: 400;">/bulan</span></h3>
+                                    <h3 class="fw-semibold" style="font-size: 18px; font-family: Poppins; color: #9370DB; margin-top: -10px;">Rp.1.300.000<span style="font-size: 14px; color: gray; font-weight: 400;">/bulan</span></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="splide__slide">
+                        <div class="card" style="width: 14rem; height: 16.6rem; border-radius: 8px;">
+                            <img src="{{ asset('img/kamarkostputri5.jpg') }}" height="150" width="222" style="border-top-left-radius: 4px; border-top-right-radius: 4px; position: relative;">
+                            <div class="row">
+                                <div class="col-12">
+                                    <a type="submit" style="background-color: rgba(255, 255, 255, 0.4); border: 1px solid #ccc; width: 100px; height: 28px; border-radius: 8px; text-align: center; font-weight: 500; padding: 2px; font-size: 14px; position: absolute; top: 10px; left: 16px;">Kost Putri</a>
+                                </div>
+                            </div>
+                            <div class="card-body" style="margin-top: -10px;">
+                                <div class="row">
+                                    <div class="col-1 text-start mt-1">
+                                        <i class="bi bi-geo-alt"></i>
+                                    </div>
+                                    <div class="col-11 mt-2" style="width: 180px;">
+                                        <h3 class="fw-medium" style="font-size: 14px; margin-left: -4px;">Kecamatan Mulyorejo</h3>
+                                    </div>
+                                </div>
+                                <p class="text-secondary" style="font-size: 10px; margin-top: -4px;">K.Mandi Dalam | Wifi | AC | Lemari...</p>
+                                <div class="row" style="margin-top: -14px">
+                                    <div class="col-1 text-start">
+                                        <i class="bi bi-lightning-fill" style="color: red;"></i>
+                                    </div>
+                                    <div class="col-5" style="margin-top: 2px;">
+                                        <p class="fw-medium" style="color: red; font-size: 12px; margin-left: -4px; width: 96px;">Diskon 100rb</p>
+                                    </div>
+                                    <div class="col-5" style="margin-top: 2px;">
+                                        <p class="text-secondary" style="font-size: 12px; text-decoration: line-through; width: 96px; margin-left: -12px;">Rp.1.500.000</p>
+                                    </div>
+                                    <h3 class="fw-semibold" style="font-size: 18px; font-family: Poppins; color: #9370DB; margin-top: -10px;">Rp.1.400.000<span style="font-size: 14px; color: gray; font-weight: 400;">/bulan</span></h3>
                                 </div>
                             </div>
                         </div>
@@ -299,7 +334,7 @@
             <div class="splide__track">
                 <ul class="splide__list">
                     <li class="splide__slide">
-                        <div class="card" style="width: 10.1rem; height: 14rem; box-shadow: -10px 10px 50px rgba(0, 0, 0, 0.1); border: none;">
+                        <div class="card populer" style="width: 10.1rem; height: 14rem; border: none;">
                             <img src="{{ asset('img/kamarkostputra1.jpg') }}" style="border-radius: 15px; width: 160px; height: 100px;  object-fit: cover;">
                             <div class="card-body">
                                 <h3 class="fw-bold" style="font-size: 14px; font-family: Poppins;">Kost Putra</h3>
@@ -308,16 +343,28 @@
                                     <div class="col-1">
                                         <i class="bi bi-wifi" style="color: #ccc;"></i>
                                     </div>
-                                    <div class="col-8">
+                                    <div class="col-4">
                                         <p class="text-secondary" style="font-size: 12px; margin-top: 2px;">WiFi</p>
+                                    </div>
+                                    <div class="col-1">
+                                        <i class="bi bi-snow" style="color: #ccc"></i>
+                                    </div>
+                                    <div class="col-4">
+                                        <p class="text-secondary" style="font-size: 12px; margin-top: 2px;">AC</p>
                                     </div>
                                 </div>
                                 <div class="row" style="margin-top: -14px;">
                                     <div class="col-1">
-                                        <i class="bi bi-snow" style="color: #ccc"></i>
+                                        <ion-icon name="bed" style="color: #ccc; margin-top: 4px;"></ion-icon>
                                     </div>
-                                    <div class="col-8">
-                                        <p class="text-secondary" style="font-size: 12px; margin-top: 2px;">AC</p>
+                                    <div class="col-4">
+                                        <p class="text-secondary" style="font-size: 12px; margin-top: 2px; width: 100px;">Kasur</p>
+                                    </div>
+                                    <div class="col-1">
+                                        <i class="bi bi-tv" style="color: #ccc;"></i>
+                                    </div>
+                                    <div class="col-4">
+                                        <p class="text-secondary" style="font-size: 12px; margin-top: 2px;">TV</p>
                                     </div>
                                 </div>
                             </div>
@@ -329,122 +376,170 @@
                         </div>
                     </li>
                     <li class="splide__slide">
-                        <div class="card" style="width: 10.1rem; height: 14rem; box-shadow: -10px 10px 50px rgba(0, 0, 0, 0.1); border: none;">
+                        <div class="card populer" style="width: 10.1rem; height: 14rem; border: none;">
                             <img src="{{ asset('img/kamarkostputra2.jpg') }}" style="border-radius: 15px; width: 160px; height: 100px;  object-fit: cover;">
                             <div class="card-body">
                                 <h3 class="fw-bold" style="font-size: 14px; font-family: Poppins;">Kost Putra</h3>
-                                <p class="text-secondary" style="font-size: 12px; margin-top: -2px;">Mulyorejo, Surabaya</p>
+                                <p class="text-secondary" style="font-size: 12px; margin-top: -2px;">Kalijudan, Surabaya</p>
                                 <div class="row" style="margin-top: -10px;">
                                     <div class="col-1">
                                         <i class="bi bi-wifi" style="color: #ccc;"></i>
                                     </div>
-                                    <div class="col-8">
+                                    <div class="col-4">
                                         <p class="text-secondary" style="font-size: 12px; margin-top: 2px;">WiFi</p>
+                                    </div>
+                                    <div class="col-1">
+                                        <i class="bi bi-snow" style="color: #ccc"></i>
+                                    </div>
+                                    <div class="col-4">
+                                        <p class="text-secondary" style="font-size: 12px; margin-top: 2px;">AC</p>
                                     </div>
                                 </div>
                                 <div class="row" style="margin-top: -14px;">
                                     <div class="col-1">
-                                        <i class="bi bi-snow" style="color: #ccc"></i>
+                                        <ion-icon name="bed" style="color: #ccc; margin-top: 4px;"></ion-icon>
                                     </div>
-                                    <div class="col-8">
-                                        <p class="text-secondary" style="font-size: 12px; margin-top: 2px;">AC</p>
+                                    <div class="col-4">
+                                        <p class="text-secondary" style="font-size: 12px; margin-top: 2px; width: 100px;">Kasur</p>
+                                    </div>
+                                    <div class="col-1">
+                                        <i class="bi bi-tv" style="color: #ccc;"></i>
+                                    </div>
+                                    <div class="col-4">
+                                        <p class="text-secondary" style="font-size: 12px; margin-top: 2px;">TV</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="container">
                             <p class="fw-medium" style="font-size: 12px; font-family: Poppins;">
-                            <h3 style="color: #800080; font-size: 14px;">Rp.2.600.000<span class="text-secondary" style="font-size: 12px;">/bulan</span></h3>
+                            <h3 style="color: #800080; font-size: 14px;">Rp.2.300.000<span class="text-secondary" style="font-size: 12px;">/bulan</span></h3>
                             </p>
                         </div>
                     </li>
                     <li class="splide__slide">
-                        <div class="card" style="width: 10.1rem; height: 14rem; box-shadow: -10px 10px 50px rgba(0, 0, 0, 0.1); border: none;">
+                        <div class="card populer" style="width: 10.1rem; height: 14rem; border: none;">
                             <img src="{{ asset('img/kamarkostputra3.jpg') }}" style="border-radius: 15px; width: 160px; height: 100px;  object-fit: cover;">
                             <div class="card-body">
                                 <h3 class="fw-bold" style="font-size: 14px; font-family: Poppins;">Kost Putra</h3>
-                                <p class="text-secondary" style="font-size: 12px; margin-top: -2px;">Ploso, Surabaya</p>
+                                <p class="text-secondary" style="font-size: 12px; margin-top: -2px;">Kalijudan, Surabaya</p>
                                 <div class="row" style="margin-top: -10px;">
                                     <div class="col-1">
                                         <i class="bi bi-wifi" style="color: #ccc;"></i>
                                     </div>
-                                    <div class="col-8">
+                                    <div class="col-4">
                                         <p class="text-secondary" style="font-size: 12px; margin-top: 2px;">WiFi</p>
+                                    </div>
+                                    <div class="col-1">
+                                        <i class="bi bi-snow" style="color: #ccc"></i>
+                                    </div>
+                                    <div class="col-4">
+                                        <p class="text-secondary" style="font-size: 12px; margin-top: 2px;">AC</p>
                                     </div>
                                 </div>
                                 <div class="row" style="margin-top: -14px;">
                                     <div class="col-1">
-                                        <i class="bi bi-snow" style="color: #ccc"></i>
+                                        <ion-icon name="bed" style="color: #ccc; margin-top: 4px;"></ion-icon>
                                     </div>
-                                    <div class="col-8">
-                                        <p class="text-secondary" style="font-size: 12px; margin-top: 2px;">AC</p>
+                                    <div class="col-4">
+                                        <p class="text-secondary" style="font-size: 12px; margin-top: 2px; width: 100px;">Kasur</p>
+                                    </div>
+                                    <div class="col-1">
+                                        <i class="bi bi-tv" style="color: #ccc;"></i>
+                                    </div>
+                                    <div class="col-4">
+                                        <p class="text-secondary" style="font-size: 12px; margin-top: 2px;">TV</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="container">
                             <p class="fw-medium" style="font-size: 12px; font-family: Poppins;">
-                            <h3 style="color: #800080; font-size: 14px;">Rp.2.900.000<span class="text-secondary" style="font-size: 12px;">/bulan</span></h3>
+                            <h3 style="color: #800080; font-size: 14px;">Rp.2.300.000<span class="text-secondary" style="font-size: 12px;">/bulan</span></h3>
                             </p>
                         </div>
                     </li>
                     <li class="splide__slide">
-                        <div class="card" style="width: 10.1rem; height: 14rem; box-shadow: -10px 10px 50px rgba(0, 0, 0, 0.1); border: none;">
+                        <div class="card populer" style="width: 10.1rem; height: 14rem; border: none;">
                             <img src="{{ asset('img/kamarkostputra4.jpg') }}" style="border-radius: 15px; width: 160px; height: 100px;  object-fit: cover;">
                             <div class="card-body">
                                 <h3 class="fw-bold" style="font-size: 14px; font-family: Poppins;">Kost Putra</h3>
-                                <p class="text-secondary" style="font-size: 12px; margin-top: -2px;">Jambangan, Surabaya</p>
+                                <p class="text-secondary" style="font-size: 12px; margin-top: -2px;">Kalijudan, Surabaya</p>
                                 <div class="row" style="margin-top: -10px;">
                                     <div class="col-1">
                                         <i class="bi bi-wifi" style="color: #ccc;"></i>
                                     </div>
-                                    <div class="col-8">
+                                    <div class="col-4">
                                         <p class="text-secondary" style="font-size: 12px; margin-top: 2px;">WiFi</p>
+                                    </div>
+                                    <div class="col-1">
+                                        <i class="bi bi-snow" style="color: #ccc"></i>
+                                    </div>
+                                    <div class="col-4">
+                                        <p class="text-secondary" style="font-size: 12px; margin-top: 2px;">AC</p>
                                     </div>
                                 </div>
                                 <div class="row" style="margin-top: -14px;">
                                     <div class="col-1">
-                                        <i class="bi bi-snow" style="color: #ccc"></i>
+                                        <ion-icon name="bed" style="color: #ccc; margin-top: 4px;"></ion-icon>
                                     </div>
-                                    <div class="col-8">
-                                        <p class="text-secondary" style="font-size: 12px; margin-top: 2px;">AC</p>
+                                    <div class="col-4">
+                                        <p class="text-secondary" style="font-size: 12px; margin-top: 2px; width: 100px;">Kasur</p>
+                                    </div>
+                                    <div class="col-1">
+                                        <i class="bi bi-tv" style="color: #ccc;"></i>
+                                    </div>
+                                    <div class="col-4">
+                                        <p class="text-secondary" style="font-size: 12px; margin-top: 2px;">TV</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="container">
                             <p class="fw-medium" style="font-size: 12px; font-family: Poppins;">
-                            <h3 style="color: #800080; font-size: 14px;">Rp.3.200.000<span class="text-secondary" style="font-size: 12px;">/bulan</span></h3>
+                            <h3 style="color: #800080; font-size: 14px;">Rp.2.300.000<span class="text-secondary" style="font-size: 12px;">/bulan</span></h3>
                             </p>
                         </div>
                     </li>
                     <li class="splide__slide">
-                        <div class="card" style="width: 10.1rem; height: 14rem; box-shadow: -10px 10px 50px rgba(0, 0, 0, 0.1); border: none;">
+                        <div class="card populer" style="width: 10.1rem; height: 14rem; border: none;">
                             <img src="{{ asset('img/kamarkostputra5.jpg') }}" style="border-radius: 15px; width: 160px; height: 100px;  object-fit: cover;">
                             <div class="card-body">
                                 <h3 class="fw-bold" style="font-size: 14px; font-family: Poppins;">Kost Putra</h3>
-                                <p class="text-secondary" style="font-size: 12px; margin-top: -2px;">Gubeng, Surabaya</p>
+                                <p class="text-secondary" style="font-size: 12px; margin-top: -2px;">Kalijudan, Surabaya</p>
                                 <div class="row" style="margin-top: -10px;">
                                     <div class="col-1">
                                         <i class="bi bi-wifi" style="color: #ccc;"></i>
                                     </div>
-                                    <div class="col-8">
+                                    <div class="col-4">
                                         <p class="text-secondary" style="font-size: 12px; margin-top: 2px;">WiFi</p>
+                                    </div>
+                                    <div class="col-1">
+                                        <i class="bi bi-snow" style="color: #ccc"></i>
+                                    </div>
+                                    <div class="col-4">
+                                        <p class="text-secondary" style="font-size: 12px; margin-top: 2px;">AC</p>
                                     </div>
                                 </div>
                                 <div class="row" style="margin-top: -14px;">
                                     <div class="col-1">
-                                        <i class="bi bi-snow" style="color: #ccc"></i>
+                                        <ion-icon name="bed" style="color: #ccc; margin-top: 4px;"></ion-icon>
                                     </div>
-                                    <div class="col-8">
-                                        <p class="text-secondary" style="font-size: 12px; margin-top: 2px;">AC</p>
+                                    <div class="col-4">
+                                        <p class="text-secondary" style="font-size: 12px; margin-top: 2px; width: 100px;">Kasur</p>
+                                    </div>
+                                    <div class="col-1">
+                                        <i class="bi bi-tv" style="color: #ccc;"></i>
+                                    </div>
+                                    <div class="col-4">
+                                        <p class="text-secondary" style="font-size: 12px; margin-top: 2px;">TV</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="container">
                             <p class="fw-medium" style="font-size: 12px; font-family: Poppins;">
-                            <h3 style="color: #800080; font-size: 14px;">Rp.3.500.000<span class="text-secondary" style="font-size: 12px;">/bulan</span></h3>
+                            <h3 style="color: #800080; font-size: 14px;">Rp.2.300.000<span class="text-secondary" style="font-size: 12px;">/bulan</span></h3>
                             </p>
                         </div>
                     </li>
@@ -466,47 +561,92 @@
             <div class="splide__track">
                 <ul class="splide__list">
                     <li class="splide__slide">
-                        <div class="card" style="width: 16rem;">
-                            <img src="{{ asset('img/kamarkostputraharian1.jpg') }}" style="border-radius: 10px; width: 254px; height: 300px; padding: 4px;">
-                            <div class="card-body">
-                                <p class="text-secondary" style="font-size: 12px; margin-top: -12px">Kalijudan, Surabaya</p>
-                                <h3 class="fw-semibold" style="font-size: 14px; font-family: Poppins; margin-top: -16px; color: #800080;">Rp.2.000.000</h3>
+                        <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
+                            <div class="position-relative mb-2">
+                                <div class="row">
+                                    <div class="col-4 mb-0">
+                                        <img src="img/kostsurabaya11.jpg" style="border-radius: 15px; width: 90px; height: 90px; object-fit: cover;">
+                                    </div>
+                                    <div class="col-4" style="width: 130px; margin-left: 16px;">
+                                        <h6 style="font-size: 16px; margin-top: 10px;" class="fw-bold">Kost Putra</h6>
+                                        <p style="margin-top: -5px; font-size: 12px; color: #6a6666fa;" class="mb-2 fw-normal">Uk. Kamar 5 x 6 M</p>
+                                        <button class="btn-kost-populer" style="width: 125px; height: 33px; padding: 4px;">
+                                            <p>Cek</p>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </li>
                     <li class="splide__slide">
-                        <div class="card" style="width: 16rem;">
-                            <img src="{{ asset('img/kamarkostputraharian2.jpg') }}" style="border-radius: 10px; width: 254px; height: 300px; padding: 4px;">
-                            <div class="card-body">
-                                <p class="text-secondary" style="font-size: 12px; margin-top: -12px">Tambaksari, Surabaya</p>
-                                <h3 class="fw-semibold" style="font-size: 14px; font-family: Poppins; margin-top: -16px; color: #800080;">Rp.2.500.000</h3>
+                        <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
+                            <div class="position-relative mb-2">
+                                <div class="row">
+                                    <div class="col-4 mb-0">
+                                        <img src="img/kostsurabaya12.jpg" style="border-radius: 15px; width: 90px; height: 90px; object-fit: cover;">
+                                    </div>
+                                    <div class="col-4" style="width: 130px; margin-left: 16px;">
+                                        <h6 style="font-size: 16px; margin-top: 10px;" class="fw-bold">Kost Putri</h6>
+                                        <p style="margin-top: -5px; font-size: 12px; color: #6a6666fa;" class="mb-2 fw-normal">Uk. kamar 6 x 5 M</p>
+                                        <button class="btn-kost-populer" style="width: 125px; height: 33px; padding: 4px;">
+                                            <p>Cek</p>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </li>
                     <li class="splide__slide">
-                        <div class="card" style="width: 16rem;">
-                            <img src="{{ asset('img/kamarkostputraharian3.jpg') }}" style="border-radius: 10px; width: 254px; height: 300px; padding: 4px;">
-                            <div class="card-body">
-                                <p class="text-secondary" style="font-size: 12px; margin-top: -12px">Gunung Anyar, Surabaya</p>
-                                <h3 class="fw-semibold" style="font-size: 14px; font-family: Poppins; margin-top: -16px; color: #800080;">Rp.3.000.000</h3>
+                        <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
+                            <div class="position-relative mb-2">
+                                <div class="row">
+                                    <div class="col-4 mb-0">
+                                        <img src="img/kostsurabaya13.jpg" style="border-radius: 15px; width: 90px; height: 90px; object-fit: cover;">
+                                    </div>
+                                    <div class="col-4" style="width: 150px; margin-left: 16px;">
+                                        <h6 style="font-size: 16px; margin-top: 10px;" class="fw-bold">Kost Pegawai</h6>
+                                        <p style="margin-top: -5px; font-size: 12px; color: #6a6666fa;" class="mb-2 fw-normal">Uk. Kamar 7 x 9 M</p>
+                                        <button class="btn-kost-populer" style="width: 125px; height: 33px; padding: 4px;">
+                                            <p>Cek</p>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </li>
                     <li class="splide__slide">
-                        <div class="card" style="width: 16rem;">
-                            <img src="{{ asset('img/kamarkostputraharian4.jpg') }}" style="border-radius: 10px; width: 254px; height: 300px; padding: 4px;">
-                            <div class="card-body">
-                                <p class="text-secondary" style="font-size: 12px; margin-top: -12px">Mulyosari, Surabaya</p>
-                                <h3 class="fw-semibold" style="font-size: 14px; font-family: Poppins; margin-top: -16px; color: #800080;">Rp.3.500.000</h3>
+                        <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
+                            <div class="position-relative mb-2">
+                                <div class="row">
+                                    <div class="col-4 mb-0">
+                                        <img src="img/kostsurabaya14.jpg" style="border-radius: 15px; width: 90px; height: 90px; object-fit: cover;">
+                                    </div>
+                                    <div class="col-4" style="width: 130px; margin-left: 16px;">
+                                        <h6 style="font-size: 16px; margin-top: 10px;" class="fw-bold">Kost Putri</h6>
+                                        <p style="margin-top: -5px; font-size: 12px; color: #6a6666fa;" class="mb-2 fw-normal">Uk. Kamar 8 x 6 M</p>
+                                        <button class="btn-kost-populer" style="width: 125px; height: 33px; padding: 4px;">
+                                            <p>Cek</p>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </li>
                     <li class="splide__slide">
-                        <div class="card" style="width: 16rem;">
-                            <img src="{{ asset('img/kamarkostputraharian5.jpg') }}" style="border-radius: 10px; width: 254px; height: 300px; padding: 4px;">
-                            <div class="card-body">
-                                <p class="text-secondary" style="font-size: 12px; margin-top: -12px">Jambangan, Surabaya</p>
-                                <h3 class="fw-semibold" style="font-size: 14px; font-family: Poppins; margin-top: -16px; color: #800080;">Rp.4.000.000</h3>
+                        <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
+                            <div class="position-relative mb-2">
+                                <div class="row">
+                                    <div class="col-4 mb-0">
+                                        <img src="img/kostsurabaya15.jpg" style="border-radius: 15px; width: 90px; height: 90px; object-fit: cover;">
+                                    </div>
+                                    <div class="col-4" style="width: 150px; margin-left: 16px;">
+                                        <h6 style="font-size: 16px; margin-top: 10px;" class="fw-bold">Kost Karyawan</h6>
+                                        <p style="margin-top: -5px; font-size: 12px; color: #6a6666fa;" class="mb-2 fw-normal">Uk. Kamar 5 x 4 M</p>
+                                        <button class="btn-kost-populer" style="width: 125px; height: 33px; padding: 4px;">
+                                            <p>Cek</p>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </li>
@@ -536,6 +676,11 @@
             textarea.select();
             document.execCommand('copy');
             document.body.removeChild(textarea);
+
+            var copyIcon = document.getElementById('copyIcon');
+        copyIcon.src = "{{ asset('img/copying.png') }}";
+        copyIcon.alt = "New Copy Icon";
+
         }
         var splide = new Splide('.splide.new-1', {
             arrows: false,
@@ -582,9 +727,9 @@
                 header.classList.remove('scrolled');
             }
         });
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-        });
+        // document.addEventListener('contextmenu', function(e) {
+        //     e.preventDefault();
+        // });
     </script>
 </body>
 

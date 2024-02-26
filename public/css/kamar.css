@@ -49,3 +49,8 @@ body {
     color: purple;
     font-weight: bold;
 }
+
+hr.hr-1 {
+    border-top: 10px solid #ccc;
+}
+

@@ -103,3 +103,18 @@
     margin-bottom: 4.2rem;
     /* Sesuaikan sesuai kebutuhan */
 }
+
+.card-jadwal {
+    width: 320px;
+    height: 100px;
+    border-radius: 14px;
+    background-color: rgba(155, 89, 182, 0.7);
+}
+
+.btn-lainnya {
+    text-decoration: underline;
+    margin-left: 7rem;
+    margin-top: 10px;
+    color: rgba(128, 0, 128, 1);
+    font-size: 12px;
+}

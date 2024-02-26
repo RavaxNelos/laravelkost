@@ -162,7 +162,7 @@
     <div class="container">
         <div class="row">
             <div class="col-5 text-start">
-                <h3 class="fw-normal text-secondary" style="font-size: 14px;">Nama Pelanggan</h3>
+                <h3 class="fw-normal text-secondary" style="font-size: 14px;">Nama User</h3>
             </div>
             <div class="col-7 text-end">
                 <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">Muhammad Ravanelo</h3>
@@ -170,26 +170,26 @@
         </div>
         <div class="row">
             <div class="col-5 text-start">
-                <h3 class="fw-normal text-secondary" style="font-size: 14px;">Durasi Ngekost</h3>
+                <h3 class="fw-normal text-secondary" style="font-size: 14px;">Pilihan Kost</h3>
             </div>
             <div class="col-7 text-end">
-                <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">1 Bulan</h3>
+                <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">Bulanan</h3>
             </div>
         </div>
         <div class="row">
             <div class="col-5 text-start">
-                <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 150px;">Tanggal Pesan Kost</h3>
+                <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 150px;">Tgl. Pesanan</h3>
             </div>
             <div class="col-7 text-end">
-                <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">21 Februari 2024</h3>
+                <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">21 Februari 2024, 17.00 WIB</h3>
             </div>
         </div>
         <div class="row">
-            <div class="col-5 text-start">
-                <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 160px;">Tanggal Booking Kost</h3>
+            <div class="col-4 text-start">
+                <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 150px;">Est. Masuk Kost</h3>
             </div>
-            <div class="col-7 text-end">
-                <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">23 Februari 2024</h3>
+            <div class="col-8 text-end">
+                <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">23 Februari 2024, 17.00 WIB</h3>
             </div>
         </div>
     </div>
@@ -200,7 +200,17 @@
             <img src="{{ asset('img/kostsurabaya6.jpg') }}" width="110" height="130" style="position: absolute; top: 4px; left: 5px; border-radius: 14px;">
             <h3 class="fw-medium" style="position: absolute; top: 14px; left: 130px; font-size: 16px; color: #222327">Kamar Kost Putra</h3>
             <p class="text-secondary" style="position: absolute; top: 36px; left: 130px; font-size: 12px; line-height: 1.2; width: 200px;">Fasilitas: UK. 5 x 7 M | AC 1 PK | Kamar Mandi UK. 3 x 5 M | Lemari 1 | Kulkas 1 | Kasur 1</p>
+            <p class="text-danger" style="position: absolute; top: 80px; left: 130px; font-size: 10px; font-style: italic;">(Tidak Termasuk Listrik) <i class="bi bi-info-circle" data-bs-toggle="modal" data-bs-target="#exampleModal" style="color: #000000; margin-left: 4px; font-size: 12px;"></i></p>
             <h3 class="fw-semibold" style="font-family: Poppins; position: absolute; top: 104px; left: 130px; font-size: 18px; color: rgb(106, 5, 114)">Rp 2.000.000</h3>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width: 336px; position: absolute; top: 320px; height: 84px;">
+                <div class="modal-body">
+                    <p class="fw-normal" style="font-size: 12px; margin-top: -4px; justify-content: center;">Biaya sewa kamar tidak termasuk listrik, dan pembayaran listrik akan dilakukan melalui sistem token dengan tarif yang berlaku.</p>
+                </div>
+            </div>
         </div>
     </div>
     <hr class="hr-pembayaran">
@@ -214,10 +224,22 @@
                 <h3 class="fw-normal text-secondary-emphasis" style="font-size: 14px;">Rp.2.000.000</h3>
             </div>
             <div class="col-5 text-start">
-                <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 150px">Biaya Fasilitas Kost</h3>
+                <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 150px">Biaya Kost Bulanan</h3>
             </div>
             <div class="col-7 text-end">
                 <h3 class="fw-normal text-danger" style="font-size: 14px;">+Rp.100.000</h3>
+            </div>
+            <div class="col-5 text-start">
+                <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 150px">Biaya Penanganan</h3>
+            </div>
+            <div class="col-7 text-end">
+                <h3 class="fw-normal text-danger" style="font-size: 14px;">+Rp.200.000</h3>
+            </div>
+            <div class="col-5 text-start">
+                <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 160px">Promo Voucher Kamar</h3>
+            </div>
+            <div class="col-7 text-end">
+                <h3 class="fw-normal text-success" style="font-size: 14px;">-Rp.25.000</h3>
             </div>
         </div>
         <div class="row mb-2">
@@ -225,7 +247,7 @@
                 <h3 class="fw-medium" style="font-family: Poppins; font-size: 18px; width: 190px; font-weight: 440 !important;">Total Pembayaran</h3>
             </div>
             <div class="col-7 text-end">
-                <h3 class="fw-medium" style="font-family: Poppins; font-size: 18px; color: #9370DB;">Rp.2.100.000</h3>
+                <h3 class="fw-medium" style="font-family: Poppins; font-size: 18px; color: #9370DB;">Rp.2.275.000</h3>
             </div>
         </div>
     </div>
@@ -390,8 +412,7 @@
                     </div>
                 </div>
                 <div x-show="selected">
-                    <div
-                    style="background-color: rgba(104, 41, 145, 0.8);">
+                    <div style="background-color: rgba(104, 41, 145, 0.8);">
                         <template x-if="confirmation == true" class="">
                             <button x-on:click="confirmation = false;openPayment = false" class="ms-3 mb-2 btn btn-confirm " style="--bs-btn-padding-y: .4rem; --bs-btn-padding-x: 8rem; --bs-btn-font-size: 14px;">Konfirmasi
                             </button>

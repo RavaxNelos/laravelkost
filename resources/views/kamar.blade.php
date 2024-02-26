@@ -20,6 +20,16 @@
         * {
             font-family: 'Poppins', sans-serif;
         }
+
+        .splide.new-1 .splide__pagination__page {
+            margin: 2px;
+            width: 6px;
+            height: 6px;
+        }
+
+        .splide.new-1 .splide__pagination__page.is-active {
+            background-color: #9370DB;
+        }
     </style>
 </head>
 
@@ -53,15 +63,76 @@
             <div class="row">
                 <div class="search-container">
                     <form class="p-0 m-0 d-flex" style="position: relative;" role="search">
-                        <input type="text" id="searchInput" name="searchInput" placeholder="Cari Kost..." style="width: 334px; height: 40px; text-indent: 40px;  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); border: 1px solid #a59595; border-radius: 4px;">
-                        <i class="bi bi-search" style="position: absolute; font-size: 20px; top: 4px; left: 10px;"></i>
+                        <input type="text" id="searchInput" name="searchInput" placeholder="Cari Kamar Kost..." style="width: 334px; height: 40px; text-indent: 10px; box-shadow: 0 0 4px rgba(0, 0, 0, 0.5); border: 1px solid #a59595; border-radius: 8px; font-style: italic;">
+                        <i class="bi bi-search" style="position: absolute; font-size: 20px; top: 4px; right: 20px;"></i>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    <div class="container">
+        <section class="splide new-1" aria-label="Splide Basic HTML Example">
+            <div class="splide__track">
+                <ul class="splide__list">
+                    <li class="splide__slide">
+                        <img src="{{ asset('img/banner16.png') }}" style="border-radius: 8px; width: 334px; height: 150px;">
+                    </li>
+                    <li class="splide__slide">
+                        <img src="{{ asset('img/banner17.png') }}" style="border-radius: 8px; width: 334px; height: 150px;">
+                    </li>
+                    <li class="splide__slide">
+                        <img src="{{ asset('img/banner18.png') }}" style="border-radius: 8px; width: 334px; height: 150px;">
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    <hr class="hr-1" style="margin-bottom: 4rem;">
+    <div class="container">
+        <section class="splide new-2" aria-label="Splide Basic HTML Example">
+            <div class="splide__track">
+                <ul class="splide__list">
+                    <li class="splide__slide">
+                        <div class="card" style="width: 16rem; border-radius: 10px; position: relative;">
+                            <img src="{{ asset('img/kamarkostputra1.jpg') }}" style="width: 254px; height: 150px; padding: 10px; border-radius: 30px; margin-top: -50px;">
+                            <div class="card-body">
+
+                            </div>
+                    </li>
+                    <li class="splide__slide">Slide 02</li>
+                    <li class="splide__slide">Slide 03</li>
+                </ul>
+            </div>
+        </section>
+    </div>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script>
+        var splide = new Splide('.splide.new-1', {
+            type: "loop",
+            autoplay: true,
+            arrows: false,
+            perPage: 1,
+            autoWidth: true,
+            gap: '0.5rem',
+            lazyLoad: 'nearby'
+        });
+
+        splide.mount();
+
+        var splide = new Splide('.splide.new-2', {
+            type: "loop",
+            pagination: false,
+            arrows: false,
+            perPage: 1,
+            autoWidth: true,
+            gap: '0.5rem',
+            lazyLoad: 'nearby'
+        });
+
+        splide.mount();
+    </script>
 </body>
 
 </html>
