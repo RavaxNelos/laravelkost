@@ -162,20 +162,23 @@
         }
 
         div.scrollmenu a {
+            margin-left: 20px;
+            margin-top: 10px;
             font-size: 18px;
             display: inline-block;
             color: white;
             text-align: center;
-            padding: 15px;
+            padding: 2px;
             text-decoration: none;
         }
 
         .scrollmenu .active {
+            font-size: 18px;
             border-radius: 50%;
             background-color: purple;
             color: #ffffff;
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
         }
 
         .btn.active {

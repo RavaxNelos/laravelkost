@@ -181,7 +181,7 @@
                 <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 150px;">Tgl. Pesanan</h3>
             </div>
             <div class="col-7 text-end">
-                <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">21 Februari 2024, 17.00 WIB</h3>
+                <h3 class="fw-semibold" style="font-size: 14px; color: rgb(106, 5, 114);">21 Februari 2024, 17.00 WIB</h3>
             </div>
         </div>
         <div class="row">
@@ -189,7 +189,7 @@
                 <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 150px;">Est. Masuk Kost</h3>
             </div>
             <div class="col-8 text-end">
-                <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">23 Februari 2024, 17.00 WIB</h3>
+                <h3 class="fw-semibold" style="font-size: 14px; color: rgb(106, 5, 114);">23 Februari 2024, 17.00 WIB</h3>
             </div>
         </div>
     </div>
@@ -201,7 +201,7 @@
             <h3 class="fw-medium" style="position: absolute; top: 14px; left: 130px; font-size: 16px; color: #222327">Kamar Kost Putra</h3>
             <p class="text-secondary" style="position: absolute; top: 36px; left: 130px; font-size: 12px; line-height: 1.2; width: 200px;">Fasilitas: UK. 5 x 7 M | AC 1 PK | Kamar Mandi UK. 3 x 5 M | Lemari 1 | Kulkas 1 | Kasur 1</p>
             <p class="text-danger" style="position: absolute; top: 80px; left: 130px; font-size: 10px; font-style: italic;">(Tidak Termasuk Listrik) <i class="bi bi-info-circle" data-bs-toggle="modal" data-bs-target="#exampleModal" style="color: #000000; margin-left: 4px; font-size: 12px;"></i></p>
-            <h3 class="fw-semibold" style="font-family: Poppins; position: absolute; top: 104px; left: 130px; font-size: 18px; color: rgb(106, 5, 114)">Rp 2.000.000</h3>
+            <h3 class="fw-semibold" style="font-family: Poppins; position: absolute; top: 104px; left: 130px; font-size: 18px; color: rgb(106, 5, 114);">Rp 2.000.000</h3>
         </div>
     </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

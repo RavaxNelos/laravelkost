@@ -84,7 +84,7 @@
                 <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 160px;">Tgl Pesanan</h3>
             </div>
             <div class="col-7 text-end">
-                <h3 class="fw-semibold text-secondary-emphesis" style="font-size: 14px;">21 Februari 2024, 17.00 WIB</h3>
+                <h3 class="fw-semibold" style="font-size: 14px; color: rgb(106, 5, 114);">21 Februari 2024, 17.00 WIB</h3>
             </div>
         </div>
         <div class="row">
@@ -92,7 +92,7 @@
                 <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 170px;">Est. Masuk Kost</h3>
             </div>
             <div class="col-8 text-end">
-                <h3 class="fw-semibold text-secondary-emphesis" style="font-size: 14px;">23 Februari 2024, 17.00 WIB</h3>
+                <h3 class="fw-semibold" style="font-size: 14px; color: rgb(106, 5, 114);">23 Februari 2024, 17.00 WIB</h3>
             </div>
         </div>
     </div>
