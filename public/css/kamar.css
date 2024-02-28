@@ -50,19 +50,11 @@ body {
     font-weight: bold;
 }
 
-hr.hr-1 {
-    border-top: 10px solid #ccc;
-}
-
-hr.hr-2 {
-    border-top: 10px solid #ccc;
-}
-hr.hr-3 {
-    border-top: 10px solid #ccc;
-}
-hr.hr-4 {
-    border-top: 10px solid #ccc;
-}
-hr.hr-dadakan {
-    border-top: 10px solid #ccc;
+.btn-like-detail {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 20px;
 }

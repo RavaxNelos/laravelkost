@@ -12,12 +12,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style>
         #jam-container {
             font-family: Poppins;
         }
 
-        #waktu {
+        /* #waktu {
             display: none;
         }
 
@@ -26,8 +27,8 @@
             border: 1px solid rgba(106, 5, 114, 1);
             color: #000000;
             font-weight: 600;
-            /* Tambahkan gaya lain sesuai kebutuhan Anda */
-        }
+            Tambahkan gaya lain sesuai kebutuhan Anda
+        } */
 
         .btn-lainnya {
             font-family: Poppins;
@@ -214,11 +215,42 @@
         .splide__arrow svg {
             fill: rgba(106, 5, 114, 1);
         }
+
+        .btn-waktu {
+            --bs-btn-padding-y: .50rem;
+            width: 100%;
+            --bs-btn-font-size: .75rem;
+            border: 1px solid rgba(106, 5, 114, 1);
+            color: #000000;
+        }
+
+        .btn-waktu-active {
+            --bs-btn-padding-y: .50rem;
+            width: 100%;
+            --bs-btn-font-size: .75rem;
+            background: rgb(106, 5, 114);
+            background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%);
+            color: #ffffff !important;
+            border: 1px solid rgba(106, 5, 114, 1);
+        }
     </style>
 </head>
 
 
 <body>
+    <div class="modal fade" id="chooseTime" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <input type="time" name="waktu" step="3600" class="form-control" pattern="[0-2][0-9]:[0-5][0-9]" id="waktu">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" onclick="updateTime()" class="btn btn-primary">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <nav class="fixed-top" id="stickyTop">
         <div class="container py-3">
             <div class="row g-3">
@@ -606,49 +638,40 @@
                     <a href="#30" onclick="makeActive(this)">30</a>
                 </div>
             </div>
-            <div class="row mt-2" style="margin-left: 0.25rem ;gap: 0.5rem;" x-data="{ new_schedule: '' }">
-                <button x-on:click="new_schedule = 'time-1'" :class="new_schedule == 'time-1' ? 'btn time-btn fw-semibold active' :
-                    'btn fw-semibold'" type="button" style="--bs-btn-padding-y: .50rem; width: 6.15rem; --bs-btn-font-size: .75rem;border: 1px solid rgba(106, 5, 114, 1); color: #000000;">
-                    08.00 WIB
-                </button>
-                <button x-on:click="new_schedule = 'time-2'" :class="new_schedule == 'time-2' ? 'btn time-btn fw-semibold active' :
-                    'btn fw-semibold'" type="button" style="--bs-btn-padding-y: .50rem; width: 6.15rem; --bs-btn-font-size: .75rem;border: 1px solid rgba(106, 5, 114, 1); color: #000000;">
-                    09.00 WIB
-                </button>
-                <button x-on:click="new_schedule = 'time-3'" :class="new_schedule == 'time-3' ? 'btn time-btn fw-semibold active' :
-                    'btn fw-semibold'" type="button" style="--bs-btn-padding-y: .50rem; width: 6.15rem; --bs-btn-font-size: .75rem;border: 1px solid rgba(106, 5, 114, 1); color: #000000;">
-                    09.00 WIB
-                </button>
-                <button x-on:click="new_schedule = 'time-4'" :class="new_schedule == 'time-4' ? 'btn time-btn fw-semibold active' :
-                    'btn fw-semibold'" type="button" style="--bs-btn-padding-y: .50rem; width: 6.15rem; --bs-btn-font-size: .75rem;border: 1px solid rgba(106, 5, 114, 1); color: #000000;">
-                    10.00 WIB
-                </button>
-                <button x-on:click="new_schedule = 'time-5'" :class="new_schedule == 'time-5' ? 'btn time-btn fw-semibold active' :
-                    'btn fw-semibold'" type="button" style="--bs-btn-padding-y: .50rem; width: 6.15rem; --bs-btn-font-size: .75rem;border: 1px solid rgba(106, 5, 114, 1); color: #000000;">
-                    13.00 WIB
-                </button>
-                <button x-on:click="new_schedule = 'time-6'" :class="new_schedule == 'time-6' ? 'btn time-btn fw-semibold active' :
-                    'btn fw-semibold'" type="button" style="--bs-btn-padding-y: .50rem; width: 6.15rem; --bs-btn-font-size: .75rem;border: 1px solid rgba(106, 5, 114, 1); color: #000000;">
-                    14.00 WIB
-                </button>
-                <button x-on:click="new_schedule = 'time-7'" :class="new_schedule == 'time-7' ? 'btn time-btn fw-semibold active' :
-                    'btn fw-semibold'" type="button" style="--bs-btn-padding-y: .50rem; width: 6.15rem; --bs-btn-font-size: .75rem;border: 1px solid rgba(106, 5, 114, 1); color: #000000;">
-                    15.00 WIB
-                </button>
-                <button x-on:click="new_schedule = 'time-8'" :class="new_schedule == 'time-8' ? 'btn time-btn fw-semibold active' :
-                    'btn fw-semibold'" type="button" style="--bs-btn-padding-y: .50rem; width: 6.15rem; --bs-btn-font-size: .75rem;border: 1px solid rgba(106, 5, 114, 1); color: #000000;">
-                    16.00 WIB
-                </button>
-                <button x-on:click="new_schedule = 'time-9'" :class="new_schedule == 'time-9' ? 'btn time-btn fw-semibold active' :
-                    'btn fw-semibold'" type="button" style="--bs-btn-padding-y: .50rem; width: 6.15rem; --bs-btn-font-size: .75rem;border: 1px solid rgba(106, 5, 114, 1); color: #000000;">
-                    17.00 WIB
-                </button>
+            <div class="row mt-2 g-2 justify-content-center" x-data="{ new_schedule: '' }" id="jam-container">
+                <div class="col-4">
+                    <button x-on:click="new_schedule = 'time-1'" :class="new_schedule == 'time-1' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'" type="button">08.00 WIB</button>
+                </div>
+                <div class="col-4">
+                    <button x-on:click="new_schedule = 'time-2'" :class="new_schedule == 'time-2' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'" type="button">09.00 WIB</button>
+                </div>
+                <div class="col-4">
+                    <button x-on:click="new_schedule = 'time-3'" :class="new_schedule == 'time-3' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'" type="button">09.00 WIB</button>
+                </div>
+                <div class="col-4">
+                    <button x-on:click="new_schedule = 'time-4'" :class="new_schedule == 'time-4' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'" type="button">10.00 WIB</button>
+                </div>
+                <div class="col-4">
+                    <button x-on:click="new_schedule = 'time-5'" :class="new_schedule == 'time-5' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'" type="button">13.00 WIB</button>
+                </div>
+                <div class="col-4">
+                    <button x-on:click="new_schedule = 'time-6'" :class="new_schedule == 'time-6' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'" type="button">14.00 WIB</button>
+                </div>
+                <div class="col-4">
+                    <button x-on:click="new_schedule = 'time-7'" :class="new_schedule == 'time-7' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'" type="button">15.00 WIB</button>
+                </div>
+                <div class="col-4">
+                    <button x-on:click="new_schedule = 'time-8'" :class="new_schedule == 'time-8' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'" type="button">16.00 WIB</button>
+                </div>
+                <div class="col-4">
+                    <button x-on:click="new_schedule = 'time-9'" :class="new_schedule == 'time-9' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'" type="button">17.00 WIB</button>
+                </div>
             </div>
-            <div id="jam-container">
-                <label for="waktu" class="btn-lainnya" onclick="toggleJam()">Waktu Lainnya</label>
-                <input type="time" id="waktu" onchange="updateWaktu()">
-                <button id="waktu-btn" onclick="submitWaktu()">Set Waktu</button>
-            </div>
+            <label id="addWaktu" class="btn-lainnya" data-bs-toggle="modal" data-bs-target="#chooseTime">Waktu Lainnya</label>
+            {{-- <div id="jam-container"> --}}
+            {{-- <input type="time" id="waktu" onchange="updateWaktu()"> --}}
+            {{-- <button id="waktu-btn" onclick="submitWaktu()">Set Waktu</button> --}}
+            {{-- </div> --}}
         </div>
         <!-- booking kost -->
     </div>
@@ -679,8 +702,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script>
         var splide = new Splide('.splide.new', {
             arrows: false,
@@ -871,6 +893,27 @@
             console.log("Waktu yang dipilih:", waktuValue);
 
             // Tambahkan kode lain sesuai kebutuhan Anda
+        }
+
+        const waktu = document.getElementById("waktu");
+
+        waktu.addEventListener("input", function() {
+            const value = this.value.replace(/[^0-9]/g, "");
+            if (value.length > 2) {
+                this.value = value.slice(0, 2) + ":" + value.slice(2);
+            }
+        });
+
+        function updateTime() {
+            $("#chooseTime").modal('hide');
+            $("#addWaktu").addClass('d-none');
+            // <button x-on:click="new_schedule = 'time-1'" :class="new_schedule == 'time-1' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'" type="button">08.00 WIB</button>
+            $("#jam-container").append("<div class='col-4'><button id='jam-container-button'>" + $("#waktu").val() + " WIB</button></div>");
+            $("#jam-container-button").attr({
+                "x-on:click": "new_schedule = 'time-10'",
+                ":class": "new_schedule == 'time-10' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'",
+                "type": "button",
+            });
         }
     </script>
 </body>

@@ -678,8 +678,8 @@
             document.body.removeChild(textarea);
 
             var copyIcon = document.getElementById('copyIcon');
-        copyIcon.src = "{{ asset('img/copying.png') }}";
-        copyIcon.alt = "New Copy Icon";
+            copyIcon.src = "{{ asset('img/copying.png') }}";
+            copyIcon.alt = "New Copy Icon";
 
         }
         var splide = new Splide('.splide.new-1', {
