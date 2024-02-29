@@ -34,6 +34,10 @@ Route::get('/kamar', function() {
     return view('kamar');
 });
 
+Route::get('/coba', function () {
+    return view('coba');
+});
+
 Route::get('/transaksi', [UserController::class, 'transaksi'])->name('transaksi');
 
 Route::get('/detail', [UserController::class, 'detailrumah'])->name('detailrumah');

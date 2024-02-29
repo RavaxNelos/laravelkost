@@ -39,4 +39,8 @@ class UserController extends Controller
     {
         return view('kamar');
     }
+    public function coba()
+    {
+        return view('coba');
+    }
 }

@@ -58,3 +58,148 @@ body {
     font-weight: bold;
     font-size: 20px;
 }
+
+.fixed-top {
+    background-color: transparent;
+    /* Atau warna lain sesuai kebutuhan */
+    transition: background-color 0.3s ease;
+    /* Animasi perubahan warna latar belakang */
+}
+
+.fixed-top.scrolled {
+    background-color: white;
+    /* Warna putih sesuai kebutuhan */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    /* Contoh penambahan shadow saat di-scroll */
+}
+
+.label-upload {
+    width: 100px;
+    height: 100px;
+    top: 0px;
+    left: 55px;
+    position: absolute;
+}
+
+.label-upload i {
+    position: absolute !important;
+    top: 50px !important;
+    font-size: 40px;
+    color: #ffffff;
+}
+
+.select-menu {
+    width: 336px;
+    margin: 0px;
+}
+
+.select-menu .select-btn {
+    display: flex;
+    height: 30px;
+    background: #fff;
+    padding: 20px;
+    font-size: 18px;
+    font-weight: 400;
+    border-radius: 8px;
+    align-items: center;
+    cursor: pointer;
+    justify-content: space-between;
+    border: 1px solid purple;
+}
+
+.select-btn i {
+    font-size: 25px;
+    transition: 0.3s;
+}
+
+.select-menu.active .select-btn i {
+    transform: rotate(-180deg);
+}
+
+.select-menu .options {
+    position: relative;
+    padding: 0px;
+    margin-top: 10px;
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid purple;
+    display: none;
+}
+
+.select-menu.active .options {
+    display: block;
+}
+
+.options {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    list-style-type: none;
+    padding: 0;
+}
+
+.options .option {
+    display: flex;
+    height: 50px;
+    cursor: pointer;
+    padding: 0 16px;
+    border-radius: 8px;
+    align-items: center;
+    background: #fff;
+}
+
+.options .option:hover {
+    background: #F2F2F2;
+}
+
+.option i {
+    font-size: 25px;
+    margin-right: 12px;
+}
+
+.option .option-text {
+    font-size: 12px;
+    color: #000000;
+}
+
+.options .optionend {
+    display: flex;
+    height: 50px;
+    cursor: pointer;
+    padding: 0 16px;
+    border-radius: 8px;
+    align-items: center;
+    background: #fff;
+}
+
+.options .optionend:hover {
+    background: #F2F2F2;
+}
+
+.optionend i {
+    font-size: 25px;
+    margin-right: 2px;
+}
+
+.optionend .option-text {
+    font-size: 12px;
+    color: #000000;
+}
+
+.option {
+    position: relative;
+    padding-bottom: 10px;
+    /* Atur sesuai keinginan untuk memberikan ruang di antara teks dan garis */
+}
+
+.option::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    /* Atur ketebalan garis */
+    background-color: purple;
+    /* Atur warna garis */
+}

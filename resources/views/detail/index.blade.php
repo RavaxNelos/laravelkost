@@ -646,10 +646,10 @@
                     <button x-on:click="new_schedule = 'time-2'" :class="new_schedule == 'time-2' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'" type="button">09.00 WIB</button>
                 </div>
                 <div class="col-4">
-                    <button x-on:click="new_schedule = 'time-3'" :class="new_schedule == 'time-3' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'" type="button">09.00 WIB</button>
+                    <button x-on:click="new_schedule = 'time-3'" :class="new_schedule == 'time-3' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'" type="button">10.00 WIB</button>
                 </div>
                 <div class="col-4">
-                    <button x-on:click="new_schedule = 'time-4'" :class="new_schedule == 'time-4' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'" type="button">10.00 WIB</button>
+                    <button x-on:click="new_schedule = 'time-4'" :class="new_schedule == 'time-4' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'" type="button">11.00 WIB</button>
                 </div>
                 <div class="col-4">
                     <button x-on:click="new_schedule = 'time-5'" :class="new_schedule == 'time-5' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'" type="button">13.00 WIB</button>
