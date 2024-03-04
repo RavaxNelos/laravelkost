@@ -18,7 +18,7 @@
     <!-- css rava -->
     <link rel="stylesheet" href="{{ asset('css/kamar.css') }}">
     <style>
-        #popup {
+        /* #popup {
             width: 204px;
             height: 50px;
             text-align: center;
@@ -47,14 +47,14 @@
         p#popup-text {
             width: 186px;
             margin-top: 4px;
-        }
+        } */
 
         * {
             font-family: 'Poppins', sans-serif;
         }
 
         ::-webkit-scrollbar {
-            width: 10px;
+            width: 0px;
             background: transparent;
         }
 
@@ -92,12 +92,12 @@
                 <i class="bi bi-door-closed-fill"></i>
                 <span class="nav__text">Kamar</span>
             </a>
-            <a href="" class="nav__link">
+            <div class="nav__link" id="openModalBtn">
                 <i class="bi bi-chat-dots"></i>
                 <span class="nav__text">Lapor</span>
-            </a>
+            </div>
             <a href="" class="nav__link">
-                <i class="bi bi-clock-history"></i>
+                <i class="bi bi-clock"></i>
                 <span class="nav__text">Riwayat</span>
             </a>
             <a href="" class="nav__link">
@@ -108,13 +108,25 @@
     </div>
     <nav class="fixed-top" id="stickyTop">
         <div class="container py-3">
-            <div class="row">
-                <div class="col-12 text-end">
-                    <button class="btn-like-detail" onclick="changeIconAndColor(this)"><i class="bi bi-three-dots-vertical"></i></button>
-                </div>
+            <div class="col-12 text-end">
+                <button class="btn-like-detail" onclick="toggleCard()"><i class="bi bi-three-dots-vertical"></i></button>
             </div>
         </div>
     </nav>
+    <div class="modal" id="myModal">
+        <div class="modal-content">
+            <!-- Konten modal, dapat diedit sesuai kebutuhan -->
+            <div class="row">
+                <div class="col-12 text-center">
+                    <a href="/kerusakan" class="kerusakan fw-medium"><i class="bi bi-exclamation-triangle"></i></i> Laporkan Kerusakan</a>
+                </div>
+                <hr class="garis-pembatas-laporkan" style="border-top: 1px solid #ccc; margin-top: 10px;">
+                <div class="col-12 text-center" style="margin-top: -10px">
+                    <a href="" class="kehilangan fw-medium"><i class="bi bi-search"></i> Laporkan Kehilangan</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <section class="splide new-1" aria-label="Splide Basic HTML Example">
         <div class="splide__track">
             <ul class="splide__list">
@@ -131,6 +143,11 @@
         </div>
     </section>
     <div class="container mt-3">
+        <div class="cardsidebar" id="cardContent">
+            <a href="" class="jadwal fw-medium"><i class="bi bi-calendar-date-fill"></i></i> Jadwal Pembayaran</a>
+            <hr class="garispemisah" style="border-top: 1px solid #ccc; margin-top: 40px;">
+            <a href="" class="lapor fw-medium"><i class="bi bi-exclamation-circle-fill"></i> Laporkan Kerusakan</a>
+        </div>
         <div class="row">
             <div class="col-3 text-start">
                 <a type="submit" style="width: 100px; height: 30px; text-align: center; text-decoration: none; border: 1px solid #ccc; border-radius: 6px; padding: 2px;" class="text-dark fs-6 fw-medium">Kos Putra</a>
@@ -144,52 +161,54 @@
             </div>
         </div>
         <div class="row mt-2">
-            <div class="col-12 text-start">
-                <h1 class="fw-semibold" style="font-size: 14px; font-family: Poppins;">Tgl Masuk Kamar</h1>
+            <div class="col-6 text-start">
+                <h1 class="fw-normal" style="font-size: 12px; font-family: Poppins; color: #CCCCCC;">Tgl. Masuk Kost</h1>
             </div>
-            <div class="col-12 text-start">
-                <p class="fw-medium" style="font-size: 12px; color: #9370DB; margin-top: -8px;">29 Februari 2024</p>
-            </div>
-            <div class="col-12 text-start">
-                <h1 class="fw-semibold" style="font-size: 14px; font-family: Poppins;">Durasi Ngekost</h1>
+            <div class="col-6 text-end">
+                <h1 class="fw-nromal" style="font-size: 12px; font-family: Poppins; color: #CCCCCC;">Durasi Ngekost</h1>
             </div>
         </div>
-        <div class="col-12 text-start">
-            <p class="fw-medium" style="font-size: 12px; color: #9370DB; margin-top: -8px;">2 Bulan 1 Jam 20 Detik</p>
+        <div class="row">
+            <div class="col-6 text-start">
+                <p class="fw-medium" style="font-size: 14px; color: #9370DB; margin-top: -8px;">29 Februari 2024 </p>
+            </div>
+            <div class="col-6 text-end">
+                <p class="fw-medium" style="font-size: 14px; color: #9370DB; margin-top: -8px;">5 Bulan 3 Hari</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="fw-medium" style="font-size: 12px; font-family: Poppins; color: #CCCCCC;">Harga /Bulan</h1>
+            </div>
+            <div class="col-12 text-center">
+                <p class="fw-semibold" style="font-size: 14px; color: #9b59b6; margin-top: -8px;">Rp. 2.300.000</p>
+            </div>
         </div>
     </div>
     <hr class="hr-1" style="margin-top: -4px; border-top: 10px solid #ccc;">
     <div class="container">
         <h1 class="fw-semibold" style="font-size: 18px; font-family: Poppins;">Spesifikasi Kamar Kost</h1>
         <div class="row">
-            <div class="col-12 text">
-                <h1 class="fw-semibold text-secondary" style="font-size: 14px; font-family: Poppins;">Harga /Bulan</h1>
-            </div>
             <div class="col-12 text-start">
-                <p class="fw-semibold" style="font-size: 18px; color: #9b59b6; margin-top: -8px;">Rp. 2.300.000<span class="text-secondary" style="font-size: 12px;">/bulan</span></p>
+                <h1 class="fw-normal" style="font-size: 12px; font-family: Poppins; color: #CCCCCC;">Ukuran Kamar</h1>
             </div>
+            <p class="text-dark fw-medium" style="font-size: 12px; margin-top: -8px;">Ukuran Kamar 3 x 4 Meter</p>
         </div>
         <div class="row" style="margin-top: -10px;">
             <div class="col-12 text-start">
-                <h1 class="fw-semibold" style="font-size: 14px; font-family: Poppins;">Ukuran Kamar</h1>
+                <h1 class="fw-normal" style="font-size: 12px; font-family: Poppins; color: #CCCCCC;">Lokasi Kost</h1>
             </div>
-            <p class="text-secondary fw-medium" style="font-size: 12px; font-style: italic; margin-top: -8px;">Ukuran Kamar 3 x 4 Meter</p>
+            <p class="text-dark fw-medium" style="font-size: 12px; margin-top: -8px;">Jl. Mulyorejo No. 03, Surabaya Jawa Timur</p>
         </div>
         <div class="row" style="margin-top: -10px;">
             <div class="col-12 text-start">
-                <h1 class="fw-semibold" style="font-size: 14px; font-family: Poppins;">Lokasi Kost</h1>
-            </div>
-            <p class="text-secondary-emphasis fw-medium" style="font-size: 12px; margin-top: -8px;">Jalan Mulyorejo No. 03, Surabaya Jawa Timur</p>
-        </div>
-        <div class="row" style="margin-top: -10px;">
-            <div class="col-12 text-start">
-                <h1 class="fw-semibold" style="font-size: 14px; font-family: Poppins;">Air Bersih</h1>
+                <h1 class="fw-normal" style="font-size: 12px; font-family: Poppins; color: #CCCCCC;">Air Bersih</h1>
             </div>
             <p class="text-secondary-emphasis fw-medium" style="font-size: 12px; margin-top: -8px;">PDAM</p>
         </div>
         <div class="row" style="margin-top: -10px;">
             <div class="col-12 text-start">
-                <h1 class="fw-semibold" style="font-size: 14px; font-family: Poppins;">Jenis Listrik</h1>
+                <h1 class="fw-normal" style="font-size: 12px; font-family: Poppins; color: #CCCCCC;">Listrik Yang Dipakai</h1>
             </div>
             <p class="text-secondary-emphasis fw-medium" style="font-size: 12px; margin-top: -8px;">Token</p>
         </div>
@@ -277,18 +296,14 @@
         </section>
         <hr class="hr-5" style="margin-top: 20px; border-top: 1px solid #ccc;">
         <h1 class="fw-semibold" style="font-size: 18px; font-family: Poppins;">Fasilitas Parkir</h1>
-        <section class="splide new-5" aria-label="Splide Basic HTML Example">
-            <div class="splide__track">
-                <ul class="splide__list">
-                    <li class="splide__slide">
-                        <img src="{{ asset('img/interior19.jpg') }}" style="width: 168px; height: 100px; border-radius: 10px;">
-                    </li>
-                    <li class="splide__slide">
-                        <img src="{{ asset('img/interior20.jpg') }}" style="width: 168px; height: 100px; border-radius: 10px;">
-                    </li>
-                </ul>
+        <div class="row">
+            <div class="col-6">
+                <img src="{{ asset('img/interior19.jpg') }}" style="width: 164px; height: 100px; border-radius: 10px;">
             </div>
-        </section>
+            <div class="col-6" style="margin-left: -8px;">
+                <img src="{{ asset('img/interior20.jpg') }}" style="width: 164px; height: 100px; border-radius: 10px;">
+            </div>
+        </div>
     </div>
     <hr class="hr-6" style="margin-top: 20px; border-top: 10px solid #ccc;">
     <div class="container">
@@ -299,145 +314,168 @@
             </div>
             <ul class="options">
                 <li class="option">
-                    <span class="option-text">1. Akses 24 Jam</span>
+                    <span class="option-angka">1.</span><span class="option-text">Akses 24 Jam</span>
                 </li>
                 <li class="option">
-                    <span class="option-text">2. Tidak Boleh Pasutri</span>
+                    <span class="option-angka">2.</span><span class="option-text">Tidak Boleh Pasutri</span>
                 </li>
                 <li class="option">
-                    <span class="option-text">3. Lawan Jenis Dilarang Ke Kamar</span>
+                    <span class="option-angka">3.</span><span class="option-text">Lawan Jenis Dilarang Ke Kamar</span>
                 </li>
                 <li class="option">
-                    <span class="option-text">4. Maksimal 2 Orang/Kamar</span>
+                    <span class="option-angka">4.</span><span class="option-text">Maksimal 2 Orang/Kamar</span>
                 </li>
                 <li class="option">
-                    <span class="option-text">5. Dilarang bawa hewan</span>
+                    <span class="option-angka">5.</span><span class="option-text">Dilarang bawa hewan</span>
                 </li>
                 <li class="option">
-                    <span class="option-text">6. Dilarang Merokok</span>
+                    <span class="option-angka">6.</span><span class="option-text">Dilarang Merokok</span>
                 </li>
                 <li class="option">
-                    <span class="option-text">7. Dilarang Mengganggu Ketenagan Penghuni Lain</span>
+                    <span class="option-angka">7.</span><span class="option-text">Dilarang Mengganggu Ketenagan Penghuni</span>
+                </li>
+                <li class="option">
+                    <span class="option-angka">8.</span><span class="option-text">Dilarang Bawa Anak</span>
+                </li>
+                <li class="option">
+                    <span class="option-angka">9.</span><span class="option-text">Gunakan Fasilitas Dengan Benar</span>
+                </li>
+                <li class="option">
+                    <span class="option-angka">10.</span><span class="option-text">Jagalah Kebersihan Di Kamarmu</span>
+                </li>
+                <li class="option">
+                    <span class="option-angka">11.</span><span class="option-text">Dilarang Telat Membayar Kamar</span>
+                </li>
+                <li class="option">
+                    <span class="option-angka">12.</span><span class="option-text">Kunci Pintu Kamar Kost Ketika Pergi Ke Luar</span>
+                </li>
+                <li class="option">
+                    <span class="option-angka">13.</span><span class="option-text">Dilarang Minum Minuman Keras</span>
+                </li>
+                <li class="option">
+                    <span class="option-angka">14.</span><span class="option-text">Dilarang Merusak Fasilitas Di Kamar</span>
                 </li>
                 <li class="optionend">
-                    <span class="option-text">8. Dilarang Mengadakan Pesta atau Kegiatan Yang Mengganggu</span>
+                    <span class="option-angka">15.</span><span class="option-text">Dilarang Mengadakan Pesta Di Kamar</span>
                 </li>
             </ul>
         </div>
+    </div>
+    <hr class="garis-tepi-peraturan-kost" style="margin-top: 14x; border-top: 10px solid #ccc;">
+    <div class="container" style="margin-top: -10px;">
         <h1 class="fw-semibold" style="font-size: 18px; font-family: Poppins; margin-top: 10px;">Kamar Kost Kamu</h1>
-        <p class="text-secondary" style="font-size: 10px; font-style: italic; margin-top: -10px;">Update tampilan terbaru kamarmu disini (Maks. 10 foto)</p>
+        <p class="text-secondary" style="font-size: 10px; font-style: italic; margin-top: -6px;">Update tampilan terbaru kamarmu disini (Maks. 10 foto)</p>
         <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay;">
             <div class="position-relative">
-                <img id="frame" src="{{ asset('img/interior1.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px;">
+                <img id="frame" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage()">
                 <label for="uploadfoto" class="label-upload">
                     <div class="box-icon">
-                        <div class="bg-kategori rounded-5 ">
-                            <i class="bi bi-cloud-upload"></i>
+                        <div class="bg-kategori rounded-5">
+                            <i id="uploadIcon" class="bi bi-cloud-upload"></i>
                         </div>
                     </div>
                     <input type="file" onchange="preview()" hidden id="uploadfoto" accept="image/*">
                 </label>
             </div>
             <div class="position-relative">
-                <img id="frame2" src="{{ asset('img/interior1.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px;">
+                <img id="frame2" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage2()">
                 <label for="uploadfoto2" class="label-upload">
                     <div class="box-icon">
-                        <div class="bg-kategori rounded-5 ">
-                            <i class="bi bi-cloud-upload"></i>
+                        <div class="bg-kategori rounded-5">
+                            <i id="uploadIcon2" class="bi bi-cloud-upload"></i>
                         </div>
                     </div>
                     <input type="file" onchange="preview2()" hidden id="uploadfoto2" accept="image/*">
                 </label>
             </div>
             <div class="position-relative">
-                <img id="frame3" src="{{ asset('img/interior1.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px;">
+                <img id="frame3" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage3()">
                 <label for="uploadfoto3" class="label-upload">
                     <div class="box-icon">
-                        <div class="bg-kategori rounded-5 ">
-                            <i class="bi bi-cloud-upload"></i>
+                        <div class="bg-kategori rounded-5">
+                            <i id="uploadIcon3" class="bi bi-cloud-upload"></i>
                         </div>
                     </div>
                     <input type="file" onchange="preview3()" hidden id="uploadfoto3" accept="image/*">
                 </label>
             </div>
             <div class="position-relative">
-                <img id="frame4" src="{{ asset('img/interior1.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px;">
+                <img id="frame4" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage4()">
                 <label for="uploadfoto4" class="label-upload">
                     <div class="box-icon">
-                        <div class="bg-kategori rounded-5 ">
-                            <i class="bi bi-cloud-upload"></i>
+                        <div class="bg-kategori rounded-5">
+                            <i id="uploadIcon4" class="bi bi-cloud-upload"></i>
                         </div>
                     </div>
                     <input type="file" onchange="preview4()" hidden id="uploadfoto4" accept="image/*">
                 </label>
             </div>
             <div class="position-relative">
-                <img id="frame5" src="{{ asset('img/interior1.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px;">
+                <img id="frame5" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage5()">
                 <label for="uploadfoto5" class="label-upload">
                     <div class="box-icon">
-                        <div class="bg-kategori rounded-5 ">
-                            <i class="bi bi-cloud-upload"></i>
+                        <div class="bg-kategori rounded-5">
+                            <i id="uploadIcon5" class="bi bi-cloud-upload"></i>
                         </div>
                     </div>
                     <input type="file" onchange="preview5()" hidden id="uploadfoto5" accept="image/*">
                 </label>
             </div>
             <div class="position-relative">
-                <img id="frame6" src="{{ asset('img/interior1.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px;">
+                <img id="frame6" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage6()">
                 <label for="uploadfoto6" class="label-upload">
                     <div class="box-icon">
-                        <div class="bg-kategori rounded-5 ">
-                            <i class="bi bi-cloud-upload"></i>
+                        <div class="bg-kategori rounded-5">
+                            <i id="uploadIcon6" class="bi bi-cloud-upload"></i>
                         </div>
                     </div>
                     <input type="file" onchange="preview6()" hidden id="uploadfoto6" accept="image/*">
                 </label>
             </div>
             <div class="position-relative">
-                <img id="frame7" src="{{ asset('img/interior1.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px;">
+                <img id="frame7" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage7()">
                 <label for="uploadfoto7" class="label-upload">
                     <div class="box-icon">
-                        <div class="bg-kategori rounded-5 ">
-                            <i class="bi bi-cloud-upload"></i>
+                        <div class="bg-kategori rounded-5">
+                            <i id="uploadIcon7" class="bi bi-cloud-upload"></i>
                         </div>
                     </div>
                     <input type="file" onchange="preview7()" hidden id="uploadfoto7" accept="image/*">
                 </label>
             </div>
             <div class="position-relative">
-                <img id="frame8" src="{{ asset('img/interior1.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px;">
+                <img id="frame8" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage8()">
                 <label for="uploadfoto8" class="label-upload">
                     <div class="box-icon">
-                        <div class="bg-kategori rounded-5 ">
-                            <i class="bi bi-cloud-upload"></i>
+                        <div class="bg-kategori rounded-5">
+                            <i id="uploadIcon8" class="bi bi-cloud-upload"></i>
                         </div>
                     </div>
                     <input type="file" onchange="preview8()" hidden id="uploadfoto8" accept="image/*">
                 </label>
             </div>
             <div class="position-relative">
-                <img id="frame9" src="{{ asset('img/interior1.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px;">
+                <img id="frame9" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage9()">
                 <label for="uploadfoto9" class="label-upload">
                     <div class="box-icon">
-                        <div class="bg-kategori rounded-5 ">
-                            <i class="bi bi-cloud-upload"></i>
+                        <div class="bg-kategori rounded-5">
+                            <i id="uploadIcon9" class="bi bi-cloud-upload"></i>
                         </div>
                     </div>
                     <input type="file" onchange="preview9()" hidden id="uploadfoto9" accept="image/*">
                 </label>
             </div>
             <div class="position-relative">
-                <img id="frame10" src="{{ asset('img/interior1.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px;">
+                <img id="frame10" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage10()">
                 <label for="uploadfoto10" class="label-upload">
                     <div class="box-icon">
-                        <div class="bg-kategori rounded-5 ">
-                            <i class="bi bi-cloud-upload"></i>
+                        <div class="bg-kategori rounded-5">
+                            <i id="uploadIcon10" class="bi bi-cloud-upload"></i>
                         </div>
                     </div>
                     <input type="file" onchange="preview10()" hidden id="uploadfoto10" accept="image/*">
                 </label>
             </div>
-            {{-- <img id="frame" src="{{ asset('img/interior1.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px;" /> --}}
         </div>
     </div>
     <hr class="hr-9" style="margin-top: 20px; border-top: 10px solid #ccc; margin-bottom: 3.4rem;">
@@ -1186,6 +1224,8 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bxslider/dist/jquery.bxslider.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         var splide = new Splide('.splide.new-1', {
             type: "loop",
@@ -1230,67 +1270,32 @@
         });
 
         splide.mount();
-        var splide = new Splide('.splide.new-5', {
-            drag: 'free',
-            pagination: false,
-            arrows: false,
-            perPage: 1,
-            gap: '0.5rem',
-            autoWidth: true,
-            lazyLoad: 'nearby'
-        });
+        // var splide = new Splide('.splide.new-5', {
+        //     drag: 'free',
+        //     pagination: false,
+        //     arrows: false,
+        //     perPage: 1,
+        //     gap: '0.5rem',
+        //     autoWidth: true,
+        //     lazyLoad: 'nearby'
+        // });
 
-        splide.mount();
+        // splide.mount();
 
-        let isAlertShown = false;
+        function toggleCard() {
+            var cardContent = document.getElementById('cardContent');
+            cardContent.classList.toggle('show'); // Toggle the 'show' class
+        }
 
-        function changeIconAndColor(button) {
-            // Mengambil elemen ikon pada tombol
-            var iconElement = button.querySelector("i");
+        document.addEventListener('click', function(event) {
+            var cardContent = document.getElementById('cardContent');
+            var toggleButton = document.querySelector('.btn-like-detail');
 
-            // Mengganti kelas ikon untuk mengubahnya menjadi bintang terisi (filled star)
-            iconElement.classList.toggle("bi-star");
-            iconElement.classList.toggle("bi-star-fill");
-
-            // Mengubah warna ikon menjadi kuning
-            var currentColor = iconElement.style.color;
-            iconElement.style.color = (currentColor === "purple") ? "" : "purple";
-
-            button.classList.toggle('favorited');
-
-            var popupText = document.getElementById('popup-text');
-
-            if (button.classList.contains('favorited')) {
-                popupText.innerText = 'Berhasil Difavoritkan';
-            } else {
-                popupText.innerText = 'Dihapus Dari Favorit';
+            // Periksa apakah yang diklik berada di luar card dan button toggle
+            if (!cardContent.contains(event.target) && event.target !== toggleButton) {
+                cardContent.classList.remove('remove');
             }
-
-            // Tampilkan pop-up
-            showPopup();
-
-        }
-
-        function showPopup() {
-            var popupBackground = document.getElementById('popup-background');
-            var popup = document.getElementById('popup');
-
-            popupBackground.style.display = 'block';
-            popup.style.display = 'block';
-
-            // Sembunyikan pop-up setelah beberapa detik (misalnya, 3 detik)
-            setTimeout(function() {
-                closePopup();
-            }, 3000);
-        }
-
-        function closePopup() {
-            var popupBackground = document.getElementById('popup-background');
-            var popup = document.getElementById('popup');
-
-            popupBackground.style.display = 'none';
-            popup.style.display = 'none';
-        }
+        });
 
         document.addEventListener("DOMContentLoaded", function() {
             var stickyTop = document.getElementById("stickyTop");
@@ -1314,58 +1319,252 @@
         });
 
         function preview() {
-            frame.src = URL.createObjectURL(event.target.files[0]);
+            var frame = document.getElementById('frame');
+            var uploadIcon = document.getElementById('uploadIcon');
+            var uploadInput = document.getElementById('uploadfoto');
+
+            if (event.target.files.length > 0) {
+                frame.src = URL.createObjectURL(event.target.files[0]);
+                uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
+            }
+        }
+
+        function deleteImage() {
+            var frame = document.getElementById('frame');
+            var uploadIcon = document.getElementById('uploadIcon');
+            var uploadInput = document.getElementById('uploadfoto');
+
+            // Kembalikan ke gambar semula dan tampilkan ikon upload
+            frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
+            uploadIcon.style.display = 'block';
+            uploadInput.value = ''; // Bersihkan nilai input file
         }
 
         function preview2() {
-            frame2.src = URL.createObjectURL(event.target.files[0]);
+            var frame = document.getElementById('frame2');
+            var uploadIcon = document.getElementById('uploadIcon2');
+            var uploadInput = document.getElementById('uploadfoto2');
+
+            if (event.target.files.length > 0) {
+                frame.src = URL.createObjectURL(event.target.files[0]);
+                uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
+            }
+        }
+
+        function deleteImage2() {
+            var frame = document.getElementById('frame2');
+            var uploadIcon = document.getElementById('uploadIcon2');
+            var uploadInput = document.getElementById('uploadfoto2');
+
+            // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
+            frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
+            uploadIcon.style.display = 'block';
+            uploadInput.value = ''; // Bersihkan nilai input file
         }
 
         function preview3() {
-            frame2.src = URL.createObjectURL(event.target.files[0]);
+            var frame = document.getElementById('frame3');
+            var uploadIcon = document.getElementById('uploadIcon3');
+            var uploadInput = document.getElementById('uploadfoto3');
+
+            if (event.target.files.length > 0) {
+                frame.src = URL.createObjectURL(event.target.files[0]);
+                uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
+            }
+        }
+
+        function deleteImage3() {
+            var frame = document.getElementById('frame3');
+            var uploadIcon = document.getElementById('uploadIcon3');
+            var uploadInput = document.getElementById('uploadfoto3');
+
+            // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
+            frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
+            uploadIcon.style.display = 'block';
+            uploadInput.value = ''; // Bersihkan nilai input file
         }
 
         function preview4() {
-            frame2.src = URL.createObjectURL(event.target.files[0]);
+            var frame = document.getElementById('frame4');
+            var uploadIcon = document.getElementById('uploadIcon4');
+            var uploadInput = document.getElementById('uploadfoto4');
+
+            if (event.target.files.length > 0) {
+                frame.src = URL.createObjectURL(event.target.files[0]);
+                uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
+            }
+        }
+
+        function deleteImage4() {
+            var frame = document.getElementById('frame4');
+            var uploadIcon = document.getElementById('uploadIcon4');
+            var uploadInput = document.getElementById('uploadfoto4');
+
+            // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
+            frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
+            uploadIcon.style.display = 'block';
+            uploadInput.value = ''; // Bersihkan nilai input file
         }
 
         function preview5() {
-            frame2.src = URL.createObjectURL(event.target.files[0]);
+            var frame = document.getElementById('frame5');
+            var uploadIcon = document.getElementById('uploadIcon5');
+            var uploadInput = document.getElementById('uploadfoto5');
+
+            if (event.target.files.length > 0) {
+                frame.src = URL.createObjectURL(event.target.files[0]);
+                uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
+            }
+        }
+
+        function deleteImage5() {
+            var frame = document.getElementById('frame5');
+            var uploadIcon = document.getElementById('uploadIcon5');
+            var uploadInput = document.getElementById('uploadfoto5');
+
+            // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
+            frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
+            uploadIcon.style.display = 'block';
+            uploadInput.value = ''; // Bersihkan nilai input file
         }
 
         function preview6() {
-            frame2.src = URL.createObjectURL(event.target.files[0]);
+            var frame = document.getElementById('frame6');
+            var uploadIcon = document.getElementById('uploadIcon6');
+            var uploadInput = document.getElementById('uploadfoto6');
+
+            if (event.target.files.length > 0) {
+                frame.src = URL.createObjectURL(event.target.files[0]);
+                uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
+            }
+        }
+
+        function deleteImage6() {
+            var frame = document.getElementById('frame6');
+            var uploadIcon = document.getElementById('uploadIcon6');
+            var uploadInput = document.getElementById('uploadfoto6');
+
+            // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
+            frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
+            uploadIcon.style.display = 'block';
+            uploadInput.value = ''; // Bersihkan nilai input file
         }
 
         function preview7() {
-            frame2.src = URL.createObjectURL(event.target.files[0]);
+            var frame = document.getElementById('frame7');
+            var uploadIcon = document.getElementById('uploadIcon7');
+            var uploadInput = document.getElementById('uploadfoto7');
+
+            if (event.target.files.length > 0) {
+                frame.src = URL.createObjectURL(event.target.files[0]);
+                uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
+            }
+        }
+
+        function deleteImage7() {
+            var frame = document.getElementById('frame7');
+            var uploadIcon = document.getElementById('uploadIcon7');
+            var uploadInput = document.getElementById('uploadfoto7');
+
+            // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
+            frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
+            uploadIcon.style.display = 'block';
+            uploadInput.value = ''; // Bersihkan nilai input file
         }
 
         function preview8() {
-            frame2.src = URL.createObjectURL(event.target.files[0]);
+            var frame = document.getElementById('frame8');
+            var uploadIcon = document.getElementById('uploadIcon8');
+            var uploadInput = document.getElementById('uploadfoto8');
+
+            if (event.target.files.length > 0) {
+                frame.src = URL.createObjectURL(event.target.files[0]);
+                uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
+            }
+        }
+
+        function deleteImage8() {
+            var frame = document.getElementById('frame8');
+            var uploadIcon = document.getElementById('uploadIcon8');
+            var uploadInput = document.getElementById('uploadfoto8');
+
+            // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
+            frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
+            uploadIcon.style.display = 'block';
+            uploadInput.value = ''; // Bersihkan nilai input file
         }
 
         function preview9() {
-            frame2.src = URL.createObjectURL(event.target.files[0]);
+            var frame = document.getElementById('frame9');
+            var uploadIcon = document.getElementById('uploadIcon9');
+            var uploadInput = document.getElementById('uploadfoto9');
+
+            if (event.target.files.length > 0) {
+                frame.src = URL.createObjectURL(event.target.files[0]);
+                uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
+            }
+        }
+
+        function deleteImage9() {
+            var frame = document.getElementById('frame9');
+            var uploadIcon = document.getElementById('uploadIcon9');
+            var uploadInput = document.getElementById('uploadfoto9');
+
+            // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
+            frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
+            uploadIcon.style.display = 'block';
+            uploadInput.value = ''; // Bersihkan nilai input file
         }
 
         function preview10() {
-            frame2.src = URL.createObjectURL(event.target.files[0]);
+            var frame = document.getElementById('frame10');
+            var uploadIcon = document.getElementById('uploadIcon10');
+            var uploadInput = document.getElementById('uploadfoto10');
+
+            if (event.target.files.length > 0) {
+                frame.src = URL.createObjectURL(event.target.files[0]);
+                uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
+            }
+        }
+
+        function deleteImage10() {
+            var frame = document.getElementById('frame10');
+            var uploadIcon = document.getElementById('uploadIcon10');
+            var uploadInput = document.getElementById('uploadfoto10');
+
+            // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
+            frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
+            uploadIcon.style.display = 'block';
+            uploadInput.value = ''; // Bersihkan nilai input file
         }
 
         const optionMenu = document.querySelector(".select-menu"),
             selectBtn = optionMenu.querySelector(".select-btn"),
-            options = optionMenu.querySelectorAll(".option"),
             sBtn_text = optionMenu.querySelector(".sBtn-text");
         selectBtn.addEventListener("click", () => optionMenu.classList.toggle("active"));
-        options.forEach(option => {
-            option.addEventListener("click", () => {
-                let selectedOption = option.querySelector(".option-text").innerText;
-                sBtn_text.innerText = selectedOption;
-                optionMenu.classList.remove("active");
-            });
-        });
 
+        var modal = document.getElementById('myModal');
+        var openModalBtn = document.getElementById('openModalBtn');
+        var closeModalBtn = document.getElementById('closeModalBtn');
+
+        // Fungsi untuk menampilkan modal
+        openModalBtn.onclick = function() {
+            modal.style.display = 'block';
+        }
+
+        // Menutup modal jika area di luar modal diklik
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+        // options.forEach(option => {
+        //     option.addEventListener("click", () => {
+        //         let selectedOption = option.querySelector(".option-text").innerText;
+        //         sBtn_text.innerText = selectedOption;
+        //         optionMenu.classList.remove("active");
+        //     });
+        // });
         // function previewImage() {
         //     var input = document.getElementById('imageInput');
         //     var preview = document.getElementById('preview');

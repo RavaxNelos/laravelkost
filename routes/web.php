@@ -38,6 +38,10 @@ Route::get('/coba', function () {
     return view('coba');
 });
 
+Route::get('/kerusakan', function() {
+    return view('laporkan.laporkankerusakan');
+});
+
 Route::get('/transaksi', [UserController::class, 'transaksi'])->name('transaksi');
 
 Route::get('/detail', [UserController::class, 'detailrumah'])->name('detailrumah');

@@ -43,4 +43,8 @@ class UserController extends Controller
     {
         return view('coba');
     }
+    public function kerusakan()
+    {
+        return view('laporkan.laporkankerusakan');
+    }
 }
