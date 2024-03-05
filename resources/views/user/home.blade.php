@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    <link rel="stylesheet" href="css/homeuser.css">
+    <link rel="stylesheet" href="{{ asset('usercss/homeuser.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -158,7 +158,7 @@
 <body>
     <div class="sticky-bottom">
         <nav class="nav">
-            <a href="" class="nav__link nav-active">
+            <a href="#" class="nav__link nav-active">
                 <i class="bi bi-house-door-fill"></i>
                 <span class="nav__text">Beranda</span>
             </a>
@@ -166,13 +166,13 @@
                 <i class="bi bi-door-closed"></i>
                 <span class="nav__text">Kamar</span>
             </a>
-            <a href="" class="nav__link">
+            <div class="nav__link" id="openModalBtn">
                 <i class="bi bi-chat-dots"></i>
                 <span class="nav__text">Lapor</span>
-            </a>
-            <a href="" class="nav__link">
-                <i class="bi bi-wallet2"></i>
-                <span class="nav__text">Transaksi</span>
+            </div>
+            <a href="/riwayat" class="nav__link">
+                <i class="bi bi-clock"></i>
+                <span class="nav__text">Riwayat</span>
             </a>
             <a href="" class="nav__link">
                 <i class="bi bi-person"></i>
@@ -204,6 +204,20 @@
                     </div>
                 </div>
                 <!-- end Avatar icon -->
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="myModal">
+        <div class="modal-content">
+            <!-- Konten modal, dapat diedit sesuai kebutuhan -->
+            <div class="row">
+                <div class="col-12">
+                    <a href="/kerusakan" class="kerusakan fw-medium"><i class="bi bi-exclamation-triangle-fill"></i> Laporkan Kerusakan</a>
+                </div>
+                <hr class="garis-pembatas-laporkan" style="border-top: 1px solid #ccc; margin-top: 10px;">
+                <div class="col-12" style="margin-top: -10px">
+                    <a href="/kehilangan" class="kehilangan fw-medium"><i class='bx bxs-search-alt-2'></i> Laporkan Kehilangan</a>
+                </div>
             </div>
         </div>
     </div>
@@ -1803,7 +1817,7 @@
     </form>
     <!-- end didekat mu rumah -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
@@ -1984,6 +1998,22 @@
         function scrollToTop() {
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
+        }
+
+        var modal = document.getElementById('myModal');
+        var openModalBtn = document.getElementById('openModalBtn');
+        var closeModalBtn = document.getElementById('closeModalBtn');
+
+        // Fungsi untuk menampilkan modal
+        openModalBtn.onclick = function() {
+            modal.style.display = 'block';
+        }
+
+        // Menutup modal jika area di luar modal diklik
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
         }
     </script>
 </body>

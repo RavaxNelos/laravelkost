@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Laporkan Kerusakan</title>
-    <link rel="stylesheet" href="{{ asset('css/laporkankerusakan.css') }}">
+    <title>Kehilangan</title>
+    <link rel="stylesheet" href="{{ asset('usercss/laporkankehilangan.css') }}">
     <!-- end css rava -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- font google -->
@@ -30,21 +30,6 @@
     <style>
         * {
             font-family: 'Poppins', sans-serif;
-        }
-
-        ::-webkit-scrollbar {
-            width: 0px;
-            background: transparent;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: transparent;
-            border-radius: 2px;
-        }
-
-        .input-nama:focus {
-            border: 1px solid red !important;
-            /* Ganti #000 dengan warna yang Anda inginkan */
         }
 
         .form-control:focus {
@@ -124,7 +109,7 @@
                 <i class="bi bi-chat-dots-fill"></i>
                 <span class="nav__text">Lapor</span>
             </div>
-            <a href="" class="nav__link">
+            <a href="/riwayat" class="nav__link">
                 <i class="bi bi-clock"></i>
                 <span class="nav__text">Riwayat</span>
             </a>
@@ -138,14 +123,14 @@
         <div class="container py-2" style="background-color: white;">
             <div class="row">
                 <div class="col-12 text-start mt-2">
-                    <h3 class="text-dark fw-semibold teks-kerusakan" style="font-size: 16px; transition: color 0.3s ease;">Laporkan Kerusakan</h3>
+                    <h3 class="text-dark fw-semibold teks-kehilangan" style="font-size: 16px; transition: color 0.3s ease;">Laporan Kehilangan</h3>
                 </div>
             </div>
         </div>
     </div>
     <hr class="garis-1">
     <div class="container">
-        <div class="card-laporkan-kerusakan">
+        <div class="card-laporkan-kehilangan">
             <div class="container mt-3">
                 <div class="row">
                     <div class="col-12 text-start">
@@ -165,32 +150,40 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-12 text-start">
-                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Apa Yang Rusak?<span class="wajib">*</span></h3>
+                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Lokasi Kehilangan<span class="wajib">*</span></h3>
+                    </div>
+                    <div class="col-12">
+                        <input type="text" class="input-nama">
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12 text-start">
+                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Apa Yang Hilang?<span class="wajib">*</span></h3>
                     </div>
                     <div class="col-9 text-start">
-                        <input type="text" class="input-kerusakan" placeholder="Barang yang mengalami kerusakan" readonly>
+                        <input type="text" class="input-kerusakan" placeholder="Pilih barang anda yang hilang" disabled>
                     </div>
                     <div class="col-3 text-end">
                         <div class="dropdown">
                             <button class="btn-dropdown-kerusakan dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Kasur</a></li>
-                                <li><a class="dropdown-item" href="#">Lampu Kamar</a></li>
-                                <li><a class="dropdown-item" href="#">Pintu Kamar</a></li>
-                                <li><a class="dropdown-item" href="#">Lainnya</a></li>
+                            <ul class="dropdown-menu" id="barangDropdown">
+                                <li><a class="dropdown-item" href="#" onclick="updateInput('Handphone')">Handphone</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updateInput('Dompet')">Dompet</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updateInput('Sandal/Sepatu')">Sandal/Sepatu</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updateInput('Lainnya')">Lainnya</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-12 text-start">
-                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Tanggal Laporan<span class="wajib">*</span></h3>
+                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Tanggal Kehilangan<span class="wajib">*</span></h3>
                     </div>
                     <div class="col-12">
                         <div class="input-group">
-                            <input type="date" class="form-control" id="tanggal" name="tanggal">
-                            <span class="input-group-text">
+                            <input type="date" class="form-control" id="tanggal" name="tanggal" style="border: 1px solid rgb(187, 0, 255); border-top-leftradius: 4px; border-bottom-left-radius: 4px;">
+                            <span class="input-group-text" style="border: 1px solid rgb(187, 0, 255); border-top-right-radius: 4px; border-bottom-right-radius: 4px; background: linear-gradient(45deg, #9c27b0, #673ab7, #3f51b5); color: white;">
                                 <i class="bi bi-calendar"></i>
                             </span>
                         </div>
@@ -198,65 +191,27 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-12 text-start">
-                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Unggah Foto<span class="wajib">*</span></h3>
+                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Jam Kehilangan<span class="wajib">*</span></h3>
                     </div>
-                    <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay;">
-                        <div class="position-relative">
-                            <img id="frame" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 100px; height: 100px; border-radius: 8px; cursor: pointer;" onclick="deleteImage()">
-                            <label for="uploadfoto" class="label-upload">
-                                <div class="box-icon">
-                                    <div class="bg-kategori rounded-5">
-                                        <i id="uploadIcon" class="bi bi-cloud-upload"></i>
-                                    </div>
-                                </div>
-                                <input type="file" onchange="preview()" hidden id="uploadfoto" accept="image/*">
-                            </label>
-                        </div>
-                        <div class="position-relative">
-                            <img id="frame2" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 100px; height: 100px; border-radius: 8px; cursor: pointer;" onclick="deleteImage2()">
-                            <label for="uploadfoto2" class="label-upload">
-                                <div class="box-icon">
-                                    <div class="bg-kategori rounded-5">
-                                        <i id="uploadIcon2" class="bi bi-cloud-upload"></i>
-                                    </div>
-                                </div>
-                                <input type="file" onchange="preview2()" hidden id="uploadfoto2" accept="image/*">
-                            </label>
-                        </div>
-                        <div class="position-relative">
-                            <img id="frame3" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 100px; height: 100px; border-radius: 8px; cursor: pointer;" onclick="deleteImage3()">
-                            <label for="uploadfoto3" class="label-upload">
-                                <div class="box-icon">
-                                    <div class="bg-kategori rounded-5">
-                                        <i id="uploadIcon3" class="bi bi-cloud-upload"></i>
-                                    </div>
-                                </div>
-                                <input type="file" onchange="preview3()" hidden id="uploadfoto3" accept="image/*">
-                            </label>
-                        </div>
-                        <div class="position-relative">
-                            <img id="frame4" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 100px; height: 100px; border-radius: 8px; cursor: pointer;" onclick="deleteImage4()">
-                            <label for="uploadfoto4" class="label-upload">
-                                <div class="box-icon">
-                                    <div class="bg-kategori rounded-5">
-                                        <i id="uploadIcon4" class="bi bi-cloud-upload"></i>
-                                    </div>
-                                </div>
-                                <input type="file" onchange="preview4()" hidden id="uploadfoto4" accept="image/*">
-                            </label>
+                    <div class="col-12">
+                        <div class="input-group">
+                            <input type="time" class="form-control" id="jamInput" name="jamInput" style="border: 1px solid rgb(187, 0, 255); border-top-leftradius: 4px; border-bottom-left-radius: 4px;">
+                            <span class="input-group-text" style="border: 1px solid rgb(187, 0, 255); border-top-right-radius: 4px; border-bottom-right-radius: 4px; background: linear-gradient(45deg, #9c27b0, #673ab7, #3f51b5); color: white">
+                                <i class="bi bi-clock"></i>
+                            </span>
                         </div>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-12 text-start">
-                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Keterangan (Opsional)</h3>
+                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Keterangan Tambahan<span class="wajib">*</span></h3>
                     </div>
                     <div class="col-12">
                         <textarea name="" id="" placeholder="Tambahkan keterangan kamu" class="textarea-keterangan"></textarea>
                     </div>
                 </div>
             </div>
-            <hr class="kirim-laporan">
+            <hr class="kirim-laporan" style="border-top: 1px solid #ccc">
             <div class="container text-center">
                 <button type="button" class="btn btn-dark" style="border-radius: 50px; width: 170px;" disabled>Kirim Laporan</button>
             </div>
@@ -268,94 +223,6 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <script>
-        function preview() {
-            var frame = document.getElementById('frame');
-            var uploadIcon = document.getElementById('uploadIcon');
-            var uploadInput = document.getElementById('uploadfoto');
-
-            if (event.target.files.length > 0) {
-                frame.src = URL.createObjectURL(event.target.files[0]);
-                uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
-            }
-        }
-
-        function deleteImage() {
-            var frame = document.getElementById('frame');
-            var uploadIcon = document.getElementById('uploadIcon');
-            var uploadInput = document.getElementById('uploadfoto');
-
-            // Kembalikan ke gambar semula dan tampilkan ikon upload
-            frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
-            uploadIcon.style.display = 'block';
-            uploadInput.value = ''; // Bersihkan nilai input file
-        }
-
-        function preview2() {
-            var frame = document.getElementById('frame2');
-            var uploadIcon = document.getElementById('uploadIcon2');
-            var uploadInput = document.getElementById('uploadfoto2');
-
-            if (event.target.files.length > 0) {
-                frame.src = URL.createObjectURL(event.target.files[0]);
-                uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
-            }
-        }
-
-        function deleteImage2() {
-            var frame = document.getElementById('frame2');
-            var uploadIcon = document.getElementById('uploadIcon2');
-            var uploadInput = document.getElementById('uploadfoto2');
-
-            // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
-            frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
-            uploadIcon.style.display = 'block';
-            uploadInput.value = ''; // Bersihkan nilai input file
-        }
-
-        function preview3() {
-            var frame = document.getElementById('frame3');
-            var uploadIcon = document.getElementById('uploadIcon3');
-            var uploadInput = document.getElementById('uploadfoto3');
-
-            if (event.target.files.length > 0) {
-                frame.src = URL.createObjectURL(event.target.files[0]);
-                uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
-            }
-        }
-
-        function deleteImage3() {
-            var frame = document.getElementById('frame3');
-            var uploadIcon = document.getElementById('uploadIcon3');
-            var uploadInput = document.getElementById('uploadfoto3');
-
-            // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
-            frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
-            uploadIcon.style.display = 'block';
-            uploadInput.value = ''; // Bersihkan nilai input file
-        }
-
-        function preview4() {
-            var frame = document.getElementById('frame4');
-            var uploadIcon = document.getElementById('uploadIcon4');
-            var uploadInput = document.getElementById('uploadfoto4');
-
-            if (event.target.files.length > 0) {
-                frame.src = URL.createObjectURL(event.target.files[0]);
-                uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
-            }
-        }
-
-        function deleteImage4() {
-            var frame = document.getElementById('frame4');
-            var uploadIcon = document.getElementById('uploadIcon4');
-            var uploadInput = document.getElementById('uploadfoto4');
-
-            // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
-            frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
-            uploadIcon.style.display = 'block';
-            uploadInput.value = ''; // Bersihkan nilai input file
-        }
-
         window.addEventListener('scroll', function() {
             var header = document.getElementById('stickyHeader');
             var scrollPosition = window.scrollY;
@@ -367,6 +234,10 @@
                 header.classList.remove('scrolled');
             }
         });
+
+        function updateInput(selectedValue) {
+            document.querySelector('.input-kerusakan').value = selectedValue;
+        }
     </script>
 </body>
 

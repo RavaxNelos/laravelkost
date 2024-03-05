@@ -8,43 +8,51 @@ class UserController extends Controller
 {
     public function index()
     {
-        return view('home');
+        return view('user.home');
     }
     public function detailrumah()
     {
-        return view('detail.index');
+        return view('user.detail.index');
     }
     public function menujudetail()
     {
-        return view('detail.index');
+        return view('user.detail.index');
     }
     public function detail()
     {
-        return view('home');
+        return view('user.home');
     }
     public function transaksi()
     {
-        return view('transaksi.index');
+        return view('user.transaksi.index');
     }
     public function back()
     {
-        return view('detail.index');
+        return view('user.detail.index');
     }
     public function bayar()
     {
-        return view('transaksi.checkout');
+        return view('user.transaksi.checkout');
     }
 
     public function kamar()
     {
-        return view('kamar');
+        return view('user.kamar');
     }
     public function coba()
     {
-        return view('coba');
+        return view('user.coba');
     }
     public function kerusakan()
     {
-        return view('laporkan.laporkankerusakan');
+        return view('user.laporkan.laporkankerusakan');
+    }
+    public function kehilangan()
+    {
+        return view('user.laporkan.laporkankehilangan');
+    }
+    public function riwayat()
+    {
+        return view('user.riwayat');
     }
 }

@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bxslider/dist/jquery.bxslider.css">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <!-- css rava -->
-    <link rel="stylesheet" href="{{ asset('css/kamar.css') }}">
+    <link rel="stylesheet" href="{{ asset('usercss/kamar.css') }}">
     <style>
         /* #popup {
             width: 204px;
@@ -88,7 +88,7 @@
                 <i class="bi bi-house-door"></i>
                 <span class="nav__text">Beranda</span>
             </a>
-            <a href="" class="nav__link nav-active">
+            <a href="/kamar" class="nav__link nav-active">
                 <i class="bi bi-door-closed-fill"></i>
                 <span class="nav__text">Kamar</span>
             </a>
@@ -96,7 +96,7 @@
                 <i class="bi bi-chat-dots"></i>
                 <span class="nav__text">Lapor</span>
             </div>
-            <a href="" class="nav__link">
+            <a href="/riwayat" class="nav__link">
                 <i class="bi bi-clock"></i>
                 <span class="nav__text">Riwayat</span>
             </a>
@@ -122,7 +122,7 @@
                 </div>
                 <hr class="garis-pembatas-laporkan" style="border-top: 1px solid #ccc; margin-top: 10px;">
                 <div class="col-12" style="margin-top: -10px">
-                    <a href="" class="kehilangan fw-medium"><i class='bx bxs-search-alt-2'></i> Laporkan Kehilangan</a>
+                    <a href="/kehilangan" class="kehilangan fw-medium"><i class='bx bxs-search-alt-2'></i> Laporkan Kehilangan</a>
                 </div>
             </div>
         </div>

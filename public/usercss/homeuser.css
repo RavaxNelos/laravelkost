@@ -351,3 +351,52 @@ img {
     border: none;
     font-size: 14px;
 }
+
+.kerusakan {
+    font-size: 14px;
+    text-decoration: none;
+    color: #000000;
+}
+
+.kerusakan i {
+    color: red;
+    font-size: 12px;
+    margin-right: 4px;
+}
+
+.kehilangan {
+    font-size: 14px;
+    text-decoration: none;
+    color: #000000;
+}
+
+.kehilangan i {
+    color: #9370DB;
+    font-size: 14px;
+    margin-right: 4px;
+}
+
+.modal {
+    display: none;
+    /* Sembunyikan modal secara default */
+    position: fixed;
+    /* Tetapkan posisi modal */
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* Lebar modal 100% dari layar */
+    height: 100%;
+    /* Tinggi modal 100% dari layar */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Warna latar belakang dengan transparansi */
+}
+
+.modal-content {
+    position: absolute !important;
+    bottom: 70px !important;
+    left: 20% !important;
+    background-color: #fefefe !important;
+    padding: 10px !important;
+    border: 1px solid #ccc !important;
+    width: 59% !important;
+}

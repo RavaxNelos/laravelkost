@@ -16,30 +16,36 @@ use App\Http\Controllers\AuthController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
 Route::get('/detail', function () {
-    return view('detail.index');
+    return view('user.detail.index');
 });
 
 Route::get('/transaksi', function() {
-    return view('transaksi.index');
+    return view('user.transaksi.index');
 });
 
 Route::get('/konfirmasitransaksi', function () {
-    return view('transaksi.konfirmasitransaksi');
+    return view('user.transaksi.konfirmasitransaksi');
 });
 
 Route::get('/kamar', function() {
-    return view('kamar');
+    return view('user.kamar');
 });
 
 Route::get('/coba', function () {
-    return view('coba');
+    return view('user.coba');
 });
 
 Route::get('/kerusakan', function() {
-    return view('laporkan.laporkankerusakan');
+    return view('user.laporkan.laporkankerusakan');
+});
+Route::get('/kehilangan', function() {
+    return view('user.laporkan.laporkankehilangan');
+});
+Route::get('/riwayat', function() {
+    return view('user.riwayat');
 });
 
 Route::get('/transaksi', [UserController::class, 'transaksi'])->name('transaksi');
