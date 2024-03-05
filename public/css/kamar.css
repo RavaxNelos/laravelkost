@@ -140,10 +140,12 @@ body {
 }
 
 .options .option {
+    position: relative;
+    padding-left: 20px;
+    padding-bottom: 0px;
     display: flex;
     height: 50px;
     cursor: pointer;
-    padding: 0 16px;
     border-radius: 8px;
     align-items: center;
     background: #fff;
@@ -286,7 +288,7 @@ body {
 
 .kehilangan i {
     color: #9370DB;
-    font-size: 12px;
+    font-size: 14px;
     margin-right: 4px;
 }
 

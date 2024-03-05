@@ -41,6 +41,71 @@
             background: transparent;
             border-radius: 2px;
         }
+
+        .input-nama:focus {
+            border: 1px solid red !important;
+            /* Ganti #000 dengan warna yang Anda inginkan */
+        }
+
+        .form-control:focus {
+            border-color: #dbdada;
+            box-shadow: none;
+        }
+
+        .dropdown-toggle::after {
+            display: inline-block;
+            margin-top: 4px;
+            vertical-align: 1.255em;
+            content: "";
+            border-top: 0.6em solid;
+            border-right: 0.6em solid transparent;
+            border-bottom: 0;
+            border-left: 0.6em solid transparent;
+            color: white;
+        }
+
+        .dropdown-menu {
+            --bs-dropdown-zindex: 1000;
+            --bs-dropdown-min-width: 19.3rem;
+            --bs-dropdown-padding-x: 0;
+            --bs-dropdown-padding-y: 0.5rem;
+            --bs-dropdown-spacer: 0.125rem;
+            --bs-dropdown-font-size: 1rem;
+            --bs-dropdown-color: var(--bs-body-color);
+            --bs-dropdown-bg: var(--bs-body-bg);
+            --bs-dropdown-border-color: var(--bs-border-color-translucent);
+            --bs-dropdown-border-radius: var(--bs-border-radius);
+            --bs-dropdown-border-width: var(--bs-border-width);
+            --bs-dropdown-inner-border-radius: calc(var(--bs-border-radius) - var(--bs-border-width));
+            --bs-dropdown-divider-bg: var(--bs-border-color-translucent);
+            --bs-dropdown-divider-margin-y: 0.5rem;
+            --bs-dropdown-box-shadow: var(--bs-box-shadow);
+            --bs-dropdown-link-color: var(--bs-body-color);
+            --bs-dropdown-link-hover-color: var(--bs-body-color);
+            --bs-dropdown-link-hover-bg: var(--bs-tertiary-bg);
+            --bs-dropdown-link-active-color: black;
+            --bs-dropdown-link-active-bg: gray;
+            --bs-dropdown-link-disabled-color: var(--bs-tertiary-color);
+            --bs-dropdown-item-padding-x: 1rem;
+            --bs-dropdown-item-padding-y: 0.25rem;
+            --bs-dropdown-header-color: #6c757d;
+            --bs-dropdown-header-padding-x: 1rem;
+            --bs-dropdown-header-padding-y: 0.5rem;
+            position: absolute;
+            z-index: var(--bs-dropdown-zindex);
+            display: none;
+            min-width: var(--bs-dropdown-min-width);
+            padding: var(--bs-dropdown-padding-y) var(--bs-dropdown-padding-x);
+            margin: 0;
+            font-size: var(--bs-dropdown-font-size);
+            color: var(--bs-dropdown-color);
+            text-align: left;
+            list-style: none;
+            background-color: var(--bs-dropdown-bg);
+            background-clip: padding-box;
+            border: var(--bs-dropdown-border-width) solid var(--bs-dropdown-border-color);
+            border-radius: var(--bs-dropdown-border-radius);
+        }
     </style>
 </head>
 
@@ -87,7 +152,7 @@
                         <h3 class="fw-medium text-secondary" style="font-size: 14px;">Nama User</h3>
                     </div>
                     <div class="col-12">
-                        <input type="text" class="input-nama" value="Muhammad Ravanelo">
+                        <input type="text" class="input-nama" value="Muhammad Ravanelo" disabled>
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -95,35 +160,25 @@
                         <h3 class="fw-medium text-secondary" style="font-size: 14px;">No. Kamar</h3>
                     </div>
                     <div class="col-12">
-                        <input type="text" class="input-nama" value="Kamar No. 1">
+                        <input type="text" class="input-nama" value="Kamar No. 1" disabled>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-12 text-start">
                         <h3 class="fw-medium text-secondary" style="font-size: 14px;">Apa Yang Rusak?<span class="wajib">*</span></h3>
                     </div>
-                    <div class="col-12">
-                        <div class="select-menu">
-                            <div class="select-btn">
-                                <span class="sBtn-text">Bagian yang mengalami kerusakan...</span>
-                                <i class="bx bx-chevron-down"></i>
-                            </div>
-                            <ul class="options">
-                                <li class="option">
-                                    <span class="option-text">Barang</span>
-                                </li>
-                                <li class="option">
-                                    <span class="option-text">Alat Elektronik</span>
-                                </li>
-                                <li class="option">
-                                    <span class="option-text">Lampu</span>
-                                </li>
-                                <li class="option">
-                                    <span class="option-text">Kran Air</span>
-                                </li>
-                                <li class="optionend">
-                                    <span class="option-text">Lainnya...</span>
-                                </li>
+                    <div class="col-9 text-start">
+                        <input type="text" class="input-kerusakan" placeholder="Barang yang mengalami kerusakan" readonly>
+                    </div>
+                    <div class="col-3 text-end">
+                        <div class="dropdown">
+                            <button class="btn-dropdown-kerusakan dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Kasur</a></li>
+                                <li><a class="dropdown-item" href="#">Lampu Kamar</a></li>
+                                <li><a class="dropdown-item" href="#">Pintu Kamar</a></li>
+                                <li><a class="dropdown-item" href="#">Lainnya</a></li>
                             </ul>
                         </div>
                     </div>
@@ -134,7 +189,7 @@
                     </div>
                     <div class="col-12">
                         <div class="input-group">
-                            <input type="date" class="form-control" id="tanggal" name="tanggal" onblur="(this.type='text')">
+                            <input type="date" class="form-control" id="tanggal" name="tanggal">
                             <span class="input-group-text">
                                 <i class="bi bi-calendar"></i>
                             </span>
@@ -197,13 +252,13 @@
                         <h3 class="fw-medium text-secondary" style="font-size: 14px;">Keterangan (Opsional)</h3>
                     </div>
                     <div class="col-12">
-                        <textarea name="" id="" cols="22" rows="4" placeholder="Tambahkan keterangan kamu" class="textarea-keterangan"></textarea>
+                        <textarea name="" id="" placeholder="Tambahkan keterangan kamu" class="textarea-keterangan"></textarea>
                     </div>
                 </div>
             </div>
             <hr class="kirim-laporan">
             <div class="container text-center">
-                <button class="btn btn-secondary text-white">Kirim Laporan</button>
+                <button type="button" class="btn btn-dark" style="border-radius: 50px; width: 170px;" disabled>Kirim Laporan</button>
             </div>
         </div>
     </div>
@@ -213,19 +268,6 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <script>
-        const optionMenu = document.querySelector(".select-menu"),
-            selectBtn = optionMenu.querySelector(".select-btn"),
-            options = optionMenu.querySelectorAll(".option"),
-            sBtn_text = optionMenu.querySelector(".sBtn-text");
-        selectBtn.addEventListener("click", () => optionMenu.classList.toggle("active"));
-        options.forEach(option => {
-            option.addEventListener("click", () => {
-                let selectedOption = option.querySelector(".option-text").innerText;
-                sBtn_text.innerText = selectedOption;
-                optionMenu.classList.remove("active");
-            });
-        });
-
         function preview() {
             var frame = document.getElementById('frame');
             var uploadIcon = document.getElementById('uploadIcon');

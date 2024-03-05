@@ -57,7 +57,7 @@ hr.garis-1 {
 
 .card-laporkan-kerusakan {
     width: 100%;
-    height: 710px;
+    height: 726px;
     background-color: #ffffff;
     /* Warna putih */
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
@@ -89,108 +89,6 @@ hr.garis-1 {
 .select-menu {
     margin: 0px;
     width: 310px;
-}
-
-.select-menu .select-btn {
-    display: flex;
-    height: 40px;
-    background: #ffffff;
-    padding: 12px;
-    color: gray;
-    font-size: 12px;
-    font-weight: 400;
-    border-radius: 4px;
-    align-items: center;
-    cursor: pointer;
-    justify-content: space-between;
-    border: 1px solid rgb(187, 0, 255);
-}
-
-.select-btn i {
-    color: black;
-    font-size: 25px;
-    transition: 0.3s;
-}
-
-.select-menu.active .select-btn i {
-    transform: rotate(-180deg);
-}
-
-.select-menu .options {
-    position: relative;
-    padding: 0px;
-    margin-top: 10px;
-    border-radius: 4px;
-    background: #fff;
-    border: 1px solid rgb(187, 0, 255);
-    display: none;
-}
-
-.select-menu.active .options {
-    display: block;
-}
-
-.options {
-    max-height: 350px;
-    overflow-y: auto;
-    border: 1px solid #ccc;
-    list-style-type: none;
-    padding: 0;
-}
-
-.options .option {
-    display: flex;
-    height: 50px;
-    cursor: pointer;
-    padding: 0 16px;
-    border-radius: 4px;
-    align-items: center;
-    background: #fff;
-    text-align: justify;
-}
-
-.options .option:hover {
-    background: #F2F2F2;
-}
-
-.option .option-text {
-    font-size: 14px;
-    color: #333;
-}
-
-.option {
-    position: relative;
-    padding-bottom: 10px;
-    /* Atur sesuai keinginan untuk memberikan ruang di antara teks dan garis */
-}
-
-.option::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    /* Atur ketebalan garis */
-    background-color: purple;
-    display: inline-block;
-    /* Atur warna garis */
-}
-
-.options .optionend {
-    text-align: justify;
-    display: flex;
-    height: 50px;
-    cursor: pointer;
-    padding: 0 16px;
-    border-radius: 8px;
-    align-items: center;
-    background: #fff;
-}
-
-.optionend .option-text {
-    font-size: 12px;
-    color: #000000;
 }
 
 .label-upload {
@@ -226,16 +124,43 @@ hr.garis-1 {
 
 hr.hr-1 {
     border-top: 10px solid #ccc;
-    margin-top: 7rem;
+    margin-top: 1rem;
     margin-bottom: 3.4rem;
 }
 
 .textarea-keterangan {
+    width: 100%;
+    height: 120px;
     border-radius: 4px;
-    text-indent: 10px;
+    padding: 10px;
 }
 
 .textarea-keterangan::placeholder {
     font-size: 12px;
     padding: 4px;
+}
+
+button.btn-dropdown-kerusakan {
+    width: 80%;
+    height: 40px;
+    padding: 10px;
+    margin-left: 12px;
+    display: flex;
+    border: none;
+    background: linear-gradient(45deg, #9c27b0, #673ab7, #3f51b5);
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.input-kerusakan {
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+    width: 300px;
+    height: 40px;
+    padding-bottom: 6px;
+}
+
+.input-kerusakan::placeholder {
+    font-size: 12px;
+    text-indent: 10px;
 }

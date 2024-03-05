@@ -117,12 +117,12 @@
         <div class="modal-content">
             <!-- Konten modal, dapat diedit sesuai kebutuhan -->
             <div class="row">
-                <div class="col-12 text-center">
-                    <a href="/kerusakan" class="kerusakan fw-medium"><i class="bi bi-exclamation-triangle"></i></i> Laporkan Kerusakan</a>
+                <div class="col-12">
+                    <a href="/kerusakan" class="kerusakan fw-medium"><i class="bi bi-exclamation-triangle-fill"></i> Laporkan Kerusakan</a>
                 </div>
                 <hr class="garis-pembatas-laporkan" style="border-top: 1px solid #ccc; margin-top: 10px;">
-                <div class="col-12 text-center" style="margin-top: -10px">
-                    <a href="" class="kehilangan fw-medium"><i class="bi bi-search"></i> Laporkan Kehilangan</a>
+                <div class="col-12" style="margin-top: -10px">
+                    <a href="" class="kehilangan fw-medium"><i class='bx bxs-search-alt-2'></i> Laporkan Kehilangan</a>
                 </div>
             </div>
         </div>
@@ -208,7 +208,7 @@
         </div>
         <div class="row" style="margin-top: -10px;">
             <div class="col-12 text-start">
-                <h1 class="fw-normal" style="font-size: 12px; font-family: Poppins; color: #CCCCCC;">Listrik Yang Dipakai</h1>
+                <h1 class="fw-normal" style="font-size: 12px; font-family: Poppins; color: #CCCCCC;">Tipe Listrik</h1>
             </div>
             <p class="text-secondary-emphasis fw-medium" style="font-size: 12px; margin-top: -8px;">Token</p>
         </div>
