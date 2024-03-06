@@ -55,4 +55,8 @@ class UserController extends Controller
     {
         return view('user.riwayat');
     }
+    public function profil()
+    {
+        return view('user.profil');
+    }
 }

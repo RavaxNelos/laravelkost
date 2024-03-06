@@ -111,11 +111,27 @@ hr.garis-pertama {
 
 hr.garis-kedua {
     border-top: 10px solid #ccc;
-    margin-top: 16px;
+    margin-top: 0px;
 }
 
 hr.garis-ketiga {
     border-top: 10px solid #ccc;
-    margin-top: 44.8rem;
+    margin-top: 42.8rem;
     margin-bottom: 3.4rem;
+}
+
+.sticky-top {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+/* Style for sticky header when scrolled */
+.sticky-top.scrolled {
+    background-color: white;
+    /* Ganti warna latar belakang sesuai kebutuhan Anda */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    /* Optional: Tambahkan bayangan jika diinginkan */
 }

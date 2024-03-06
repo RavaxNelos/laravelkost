@@ -16,7 +16,7 @@
     <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
     <!-- end google font -->
     <!-- css rava -->
-    <link rel="stylesheet" href="{{ asset('usercss/buktipembayaran.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/usercss/buktipembayaran.css') }}">
     <!-- end css rava -->
     <style>
         * {

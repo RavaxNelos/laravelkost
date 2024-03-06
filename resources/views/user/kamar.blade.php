@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bxslider/dist/jquery.bxslider.css">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <!-- css rava -->
-    <link rel="stylesheet" href="{{ asset('usercss/kamar.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/usercss/kamar.css') }}">
     <style>
         /* #popup {
             width: 204px;
@@ -100,7 +100,7 @@
                 <i class="bi bi-clock"></i>
                 <span class="nav__text">Riwayat</span>
             </a>
-            <a href="" class="nav__link">
+            <a href="/profil" class="nav__link">
                 <i class="bi bi-person"></i>
                 <span class="nav__text">Profil</span>
             </a>
@@ -152,8 +152,8 @@
             <div class="col-3 text-start">
                 <a type="submit" style="width: 100px; height: 30px; text-align: center; text-decoration: none; border: 1px solid #ccc; border-radius: 6px; padding: 2px;" class="text-dark fs-6 fw-medium">Kos Putra</a>
             </div>
-            <div class="col-1" style="margin-top: 4px;">
-                <i class="bi bi-dot text-secondary" style="margin-left: 24px;"></i>
+            <div class="col-1" style="margin-top: 0px;">
+                <i class="bi bi-dot text-secondary" style="margin-left: 22px; font-size:20px;"></i>
             </div>
             <div class="col-8 text-end">
                 <a type="submit" style="width: 190px; height: 30px; text-align: center; text-decoration: none; background-color: green; border-radius: 6px; padding: 8px; opacity: 0.4; position: relative; border: 2px solid #006400;" class="text-dark fs-6 fw-medium"></a>

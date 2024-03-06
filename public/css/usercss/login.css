@@ -7,7 +7,7 @@
 
 body {
     overflow: hidden;
-    background: url('../img/background-login.jpg') no-repeat center center fixed;
+    background: url('/img/background-login.jpg') no-repeat center center fixed;
     /* Ganti 'path/to/your/image.jpg' dengan path atau URL gambar pemandangan Anda */
     background-size: cover;
     /* Menutupi seluruh elemen dengan gambar */

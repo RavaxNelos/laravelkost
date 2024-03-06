@@ -18,9 +18,8 @@ use App\Http\Controllers\AuthController;
 Route::get('/', function () {
     return view('login');
 });
-Route::get('/detail', function () {
-    return view('user.detail.index');
-});
+Route::get('/user/home', [UserController::class, 'detail'])->name('detail');
+Route::get('/user/detail', [UserController::class, 'detailrumah'])->name('detailrumah');
 
 Route::get('/transaksi', function() {
     return view('user.transaksi.index');
@@ -46,6 +45,9 @@ Route::get('/kehilangan', function() {
 });
 Route::get('/riwayat', function() {
     return view('user.riwayat');
+});
+Route::get('/profil', function() {
+    return view('user.profil');
 });
 
 Route::get('/transaksi', [UserController::class, 'transaksi'])->name('transaksi');

@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    <link rel="stylesheet" href="{{ asset('usercss/homeuser.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/usercss/homeuser.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -174,7 +174,7 @@
                 <i class="bi bi-clock"></i>
                 <span class="nav__text">Riwayat</span>
             </a>
-            <a href="" class="nav__link">
+            <a href="/profil" class="nav__link">
                 <i class="bi bi-person"></i>
                 <span class="nav__text">Profil</span>
             </a>
@@ -306,7 +306,9 @@
                                 <h6 style="top: 10px; left: 10px; font-size: 18px; position: absolute; color: #333;" class="fw-semibold">Kost Karyawan</h6>
                                 <i style="position: absolute; top: 32px; left: 10px; color: #333; font-size: 12px" class="bi bi-geo-alt text-info"></i><small style="position: absolute; top: 32px; left: 26px; font-size: 12px; color: #333" class="text-secondary;"> 2024 Mulyorejo, Surabaya</small>
                                 <h6 style="position: absolute; top: 58px; left: 10px; font-size: 16px; color: #333;" class="fw-bold">Rp. 2.000.000</h6>
-                                <button class="btn-didekat-mu">Lihat</button>
+                                <form action="/detail">
+                                    <button class="btn-didekat-mu">Lihat</button>
+                                </form>
                             </div>
                         </div>
                         <div x-show="filter == 'bulanan'">
@@ -518,7 +520,7 @@
                 <div x-show="filter == 'bulanan'">
                     <div class="custom-card" style="width: 180px; height: 290px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
                         <div class="position-relative mb-2">
-                            <a href="{{ route('detailrumah') }}">
+                            <a href="/user/detail">
                                 <img src="img/kostsurabaya1.jpg" style="border-radius: 15px; width: 160px; height: 160px; object-fit: cover;">
                             </a>
                             <button id="btn-like-timur" class="btn-like-timur" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
