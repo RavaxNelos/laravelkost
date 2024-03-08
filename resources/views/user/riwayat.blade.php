@@ -116,10 +116,10 @@
             <div class="container">
                 <div class="row" style="margin-top: -16px;">
                     <div class="col-6 text-center" style="margin-left: -12px;">
-                        <button :class="filter == 'bulanan' ? 'btn btn-dark' : 'btn text-secondary'" x-on:click="filter = 'bulanan';">Bulanan</button>
+                        <button :class="filter == 'bulanan' ? 'btn btn-dark' : 'btn text-secondary'" x-on:click="filter = 'bulanan';">Kost Bulanan</button>
                     </div>
                     <div class="col-6 text-center" style="margin-left: 0px;">
-                        <button :class="filter == 'harian' ? 'btn btn-dark' : 'btn text-secondary'" x-on:click="filter = 'harian';">Harian</button>
+                        <button :class="filter == 'harian' ? 'btn btn-dark' : 'btn text-secondary'" x-on:click="filter = 'harian';">Sewa Harian</button>
                     </div>
                 </div>
             </div>
@@ -182,7 +182,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-7 text-start" style="margin-top: -10px;">
-                                    <p class="text-secondary fw-normal" style="font-size: 12px;">03 Maret 2024, 18.00 WIB</p>
+                                    <p class="text-secondary fw-normal" style="font-size: 12px;">10 Januari 2024, 18.30 WIB</p>
                                 </div>
                                 <div class="col-5 text-end" style="margin-top: -10px;">
                                     <p class="fw-normal" style="font-size: 12px; color: #9C27B0;">Berlangsung</p>
@@ -213,7 +213,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-7 text-start" style="margin-top: -10px;">
-                                    <p class="text-secondary fw-normal" style="font-size: 12px;">03 Maret 2024, 18.00 WIB</p>
+                                    <p class="text-secondary fw-normal" style="font-size: 12px;">12 Februari 2024, 19.00 WIB</p>
                                 </div>
                                 <div class="col-5 text-end" style="margin-top: -10px;">
                                     <p class="text-success fw-normal" style="font-size: 12px;">Selesai</p>
@@ -244,7 +244,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-7 text-start" style="margin-top: -10px;">
-                                    <p class="text-secondary fw-normal" style="font-size: 12px;">03 Maret 2024, 18.00 WIB</p>
+                                    <p class="text-secondary fw-normal" style="font-size: 12px;">15 April 2024, 19.30 WIB</p>
                                 </div>
                                 <div class="col-5 text-end" style="margin-top: -10px;">
                                     <p class="fw-normal" style="font-size: 12px; color: #9C27B0;">Berlangsung</p>
@@ -275,7 +275,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-7 text-start" style="margin-top: -10px;">
-                                    <p class="text-secondary fw-normal" style="font-size: 12px;">03 Maret 2024, 18.00 WIB</p>
+                                    <p class="text-secondary fw-normal" style="font-size: 12px;">03 Maret 2024, 17.30 WIB</p>
                                 </div>
                                 <div class="col-5 text-end" style="margin-top: -10px;">
                                     <p class="text-success fw-normal" style="font-size: 12px;">Selesai</p>
@@ -306,7 +306,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-7 text-start" style="margin-top: -10px;">
-                                    <p class="text-secondary fw-normal" style="font-size: 12px;">03 Maret 2024, 18.00 WIB</p>
+                                    <p class="text-secondary fw-normal" style="font-size: 12px;">06 Maret 2024, 17.00 WIB</p>
                                 </div>
                                 <div class="col-5 text-end" style="margin-top: -10px;">
                                     <p class="fw-normal" style="font-size: 12px; color: #9C27B0;">Berlangsung</p>
@@ -337,7 +337,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-7 text-start" style="margin-top: -10px;">
-                                    <p class="text-secondary fw-normal" style="font-size: 12px;">03 Maret 2024, 18.00 WIB</p>
+                                    <p class="text-secondary fw-normal" style="font-size: 12px;">13 Maret 2024, 18.00 WIB</p>
                                 </div>
                                 <div class="col-5 text-end" style="margin-top: -10px;">
                                     <p class="text-success fw-normal" style="font-size: 12px;">Selesai</p>
@@ -368,7 +368,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-7 text-start" style="margin-top: -10px;">
-                                    <p class="text-secondary fw-normal" style="font-size: 12px;">03 Maret 2024, 18.00 WIB</p>
+                                    <p class="text-secondary fw-normal" style="font-size: 12px;">19 Maret 2024, 19.00 WIB</p>
                                 </div>
                                 <div class="col-5 text-end" style="margin-top: -10px;">
                                     <p class="fw-normal" style="font-size: 12px; color: #9C27B0;">Berlangsung</p>

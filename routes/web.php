@@ -49,6 +49,9 @@ Route::get('/riwayat', function() {
 Route::get('/profil', function() {
     return view('user.profil');
 });
+Route::get('/favorit', function() {
+    return view('user.kamarfavorit');
+});
 
 Route::get('/transaksi', [UserController::class, 'transaksi'])->name('transaksi');
 

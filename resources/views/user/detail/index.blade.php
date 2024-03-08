@@ -606,36 +606,36 @@
                     </div>
                 </section>
                 <div class="scrollmenu">
-                    <a href="#1" onclick="makeActive(this)">1</a>
-                    <a href="#2" onclick="makeActive(this)">2</a>
-                    <a href="#3" onclick="makeActive(this)">3</a>
-                    <a href="#4" onclick="makeActive(this)">4</a>
-                    <a href="#5" onclick="makeActive(this)">5</a>
-                    <a href="#6" onclick="makeActive(this)">6</a>
-                    <a href="#7" onclick="makeActive(this)">7</a>
-                    <a href="#8" onclick="makeActive(this)">8</a>
-                    <a href="#9" onclick="makeActive(this)">9</a>
-                    <a href="#10" onclick="makeActive(this)">10</a>
-                    <a href="#11" onclick="makeActive(this)">11</a>
-                    <a href="#12" onclick="makeActive(this)">12</a>
-                    <a href="#13" onclick="makeActive(this)">13</a>
-                    <a href="#14" onclick="makeActive(this)">14</a>
-                    <a href="#15" onclick="makeActive(this)">15</a>
-                    <a href="#16" onclick="makeActive(this)">16</a>
-                    <a href="#17" onclick="makeActive(this)">17</a>
-                    <a href="#18" onclick="makeActive(this)">18</a>
-                    <a href="#19" onclick="makeActive(this)">19</a>
-                    <a href="#20" onclick="makeActive(this)">20</a>
-                    <a href="#21" onclick="makeActive(this)">21</a>
-                    <a href="#22" onclick="makeActive(this)">22</a>
-                    <a href="#23" onclick="makeActive(this)">23</a>
-                    <a href="#24" onclick="makeActive(this)">24</a>
-                    <a href="#25" onclick="makeActive(this)">25</a>
-                    <a href="#26" onclick="makeActive(this)">26</a>
-                    <a href="#27" onclick="makeActive(this)">27</a>
-                    <a href="#28" onclick="makeActive(this)">28</a>
-                    <a href="#29" onclick="makeActive(this)">29</a>
-                    <a href="#30" onclick="makeActive(this)">30</a>
+                    <a href="#1" data-action="selectDay" data-day="01/03/2024">1</a>
+                    <a href="#2" data-action="selectDay" data-day="02/03/2024">2</a>
+                    <a href="#3" data-action="selectDay" data-day="03/03/2024">3</a>
+                    <a href="#4" data-action="selectDay" data-day="04/03/2024">4</a>
+                    <a href="#5" data-action="selectDay" data-day="05/03/2024">5</a>
+                    <a href="#6" data-action="selectDay" data-day="06/03/2024">6</a>
+                    <a href="#7" data-action="selectDay" data-day="07/03/2024">7</a>
+                    <a href="#8" class="day active today" data-action="selectDay" data-day="08/03/2024">8</a>
+                    <a href="#9" data-action="selectDay" data-day="09/03/2024">9</a>
+                    <a href="#10" data-action="selectDay" data-day="10/03/2024">10</a>
+                    <a href="#11" data-action="selectDay" data-day="11/03/2024">11</a>
+                    <a href="#12" data-action="selectDay" data-day="12/03/2024">12</a>
+                    <a href="#13" data-action="selectDay" data-day="13/03/2024">13</a>
+                    <a href="#14" data-action="selectDay" data-day="14/03/2024">14</a>
+                    <a href="#15" data-action="selectDay" data-day="15/03/2024">15</a>
+                    <a href="#16" data-action="selectDay" data-day="16/03/2024">16</a>
+                    <a href="#17" data-action="selectDay" data-day="17/03/2024">17</a>
+                    <a href="#18" data-action="selectDay" data-day="18/03/2024">18</a>
+                    <a href="#19" data-action="selectDay" data-day="19/03/2024">19</a>
+                    <a href="#20" data-action="selectDay" data-day="20/03/2024">20</a>
+                    <a href="#21" data-action="selectDay" data-day="21/03/2024">21</a>
+                    <a href="#22" data-action="selectDay" data-day="22/03/2024">22</a>
+                    <a href="#23" data-action="selectDay" data-day="23/03/2024">23</a>
+                    <a href="#24" data-action="selectDay" data-day="24/03/2024">24</a>
+                    <a href="#25" data-action="selectDay" data-day="25/03/2024">25</a>
+                    <a href="#26" data-action="selectDay" data-day="26/03/2024">26</a>
+                    <a href="#27" data-action="selectDay" data-day="27/03/2024">27</a>
+                    <a href="#28" data-action="selectDay" data-day="28/03/2024">28</a>
+                    <a href="#29" data-action="selectDay" data-day="29/03/2024">29</a>
+                    <a href="#30" data-action="selectDay" data-day="30/03/2024">30</a>
                 </div>
             </div>
             <div class="row mt-2 g-2 justify-content-center" x-data="{ new_schedule: '' }" id="jam-container">

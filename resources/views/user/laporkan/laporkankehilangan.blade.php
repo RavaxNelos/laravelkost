@@ -213,7 +213,7 @@
             </div>
             <hr class="kirim-laporan" style="border-top: 1px solid #ccc">
             <div class="container text-center">
-                <button type="button" class="btn btn-dark" style="border-radius: 50px; width: 170px;" disabled>Kirim Laporan</button>
+                <button type="button" class="btn btn-dark" style="border-radius: 50px; width: 170px;" disabled id="submitButton">Kirim Laporan</button>
             </div>
         </div>
     </div>
@@ -238,6 +238,32 @@
         function updateInput(selectedValue) {
             document.querySelector('.input-kerusakan').value = selectedValue;
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var lokasiInput = document.querySelector('.input-nama');
+            var barangHilangInput = document.querySelector('.input-kerusakan');
+            var tanggalInput = document.querySelector('#tanggal');
+            var jamInput = document.querySelector('#jamInput');
+            var keteranganInput = document.querySelector('.textarea-keterangan');
+            var submitButton = document.querySelector('#submitButton');
+
+            var inputElements = [lokasiInput, barangHilangInput, tanggalInput, jamInput, keteranganInput];
+
+            // Memantau setiap perubahan pada input
+            inputElements.forEach(function(input) {
+                input.addEventListener('input', checkInputs);
+            });
+
+            // Fungsi untuk memeriksa input
+            function checkInputs() {
+                var allInputsFilled = inputElements.every(function(input) {
+                    return input.value.trim() !== '';
+                });
+
+                // Mengaktifkan atau menonaktifkan tombol berdasarkan status input
+                submitButton.disabled = !allInputsFilled;
+            }
+        });
     </script>
 </body>
 

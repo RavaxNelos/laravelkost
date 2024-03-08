@@ -135,7 +135,37 @@
                 <a href="/home" type="submit" style="width: 130px; height: 40px; border: 1px solid #9370DB; padding: 8px;text-decoration: none; color: #9370DB; border-radius: 8px; font-size: 12px; text-align: center;">Halaman Utama</a>
             </div>
             <div class="col-8">
-                <button id="confirmButton" style="margin-left: 18px; width: 200px; height: 40px; background-color: #9370DB; border-radius: 8px; border: none; font-size: 12px; color: white;">Konfirmasi Pembayaran</button>
+                <button id="confirmButton" style="margin-left: 18px; width: 200px; height: 40px; background-color: #9370DB; border-radius: 8px; border: none; font-size: 12px; color: white;" data-bs-toggle="modal" data-bs-target="#konfirmasi">Konfirmasi Pembayaran</button>
+                <!-- Modal -->
+                <div class="modal fade" id="konfirmasi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content" style="border: 1px solid #800080; border-radius: 20px; margin-top: 10rem;">
+                            <div class="modal-body">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-12 text-center">
+                                            <h3 class="fw-semibold" style="font-size: 16px;">Bukti Pembayaran</h3>
+                                            <div class="position-relative">
+                                                <img id="frame" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 200px; height: 200px; border-radius: 8px; cursor: pointer;" onclick="deleteImage()">
+                                                <label for="uploadfoto" class="label-upload">
+                                                    <div class="box-icon">
+                                                        <div class="bg-kategori rounded-5">
+                                                            <i id="uploadIcon" class="bi bi-cloud-upload" style="position: absolute; font-size: 50px; color: white; top: 66px; left: 116px;"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input type="file" onchange="preview()" hidden id="uploadfoto" accept="image/*">
+                                                </label>
+                                            </div>
+                                            <div class="col-12 text-center mt-3">
+                                                <button class="btn" style="background-color: #9370DB; color: white; border: none; width: 150px;">Kirim</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -730,6 +760,27 @@
         // document.addEventListener('contextmenu', function(e) {
         //     e.preventDefault();
         // });
+        function preview() {
+            var frame = document.getElementById('frame');
+            var uploadIcon = document.getElementById('uploadIcon');
+            var uploadInput = document.getElementById('uploadfoto');
+
+            if (event.target.files.length > 0) {
+                frame.src = URL.createObjectURL(event.target.files[0]);
+                uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
+            }
+        }
+
+        function deleteImage() {
+            var frame = document.getElementById('frame');
+            var uploadIcon = document.getElementById('uploadIcon');
+            var uploadInput = document.getElementById('uploadfoto');
+
+            // Kembalikan ke gambar semula dan tampilkan ikon upload
+            frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
+            uploadIcon.style.display = 'block';
+            uploadInput.value = ''; // Bersihkan nilai input file
+        }
     </script>
 </body>
 

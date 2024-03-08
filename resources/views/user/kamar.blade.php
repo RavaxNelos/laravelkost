@@ -1284,19 +1284,44 @@
 
         function toggleCard() {
             var cardContent = document.getElementById('cardContent');
+            var lastScrollTop = 0;
             cardContent.classList.toggle('show'); // Toggle the 'show' class
+            window.addEventListener('scroll', function() {
+                var st = window.scrollY;
+
+                // Menggunakan scroll down sebagai trigger untuk menyembunyikan cardContent
+                if (st > lastScrollTop) {
+                    cardContent.style.transform = 'translateY(-1000px)'; // Menggeser elemen ke atas
+                } else {
+                    cardContent.style.transform = 'translateY(0)'; // Menampilkan kembali elemen
+                }
+
+                lastScrollTop = st;
+            });
+            document.addEventListener('DOMContentLoaded', function() {
+                var cardContent = document.getElementById('cardContent');
+                var toggleButton = document.querySelector('.btn-like-detail');
+
+                toggleButton.addEventListener('click', function(event) {
+                    event.stopPropagation();
+                    cardContent.classList.toggle('show');
+                });
+
+                document.addEventListener('click', function(event) {
+                    var isClickInsideCard = cardContent.contains(event.target);
+                    var isToggleButton = event.target === toggleButton;
+
+                    if (!isClickInsideCard && !isToggleButton) {
+                        cardContent.classList.remove('show');
+                    }
+                });
+
+                // Menangani klik di dalam card-content agar tidak menutup card
+                cardContent.addEventListener('click', function(event) {
+                    event.stopPropagation();
+                });
+            });
         }
-
-        document.addEventListener('click', function(event) {
-            var cardContent = document.getElementById('cardContent');
-            var toggleButton = document.querySelector('.btn-like-detail');
-
-            // Periksa apakah yang diklik berada di luar card dan button toggle
-            if (!cardContent.contains(event.target) && event.target !== toggleButton) {
-                cardContent.classList.remove('remove');
-            }
-        });
-
         document.addEventListener("DOMContentLoaded", function() {
             var stickyTop = document.getElementById("stickyTop");
             var lastScrollTop = 0;

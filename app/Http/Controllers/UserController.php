@@ -59,4 +59,9 @@ class UserController extends Controller
     {
         return view('user.profil');
     }
+    public function favorit()
+    {
+        return view('user.kamarfavorit');
+    }
+
 }

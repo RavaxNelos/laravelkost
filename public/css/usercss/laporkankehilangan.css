@@ -153,3 +153,8 @@ hr.hr-1 {
     font-size: 12px;
     padding: 4px;
 }
+
+.btn-dark:enabled {
+    background-color: #9370DB;
+    border: 1px solid #9c27b0;
+}

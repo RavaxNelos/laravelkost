@@ -165,6 +165,19 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-12 text-start">
+                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Tanggal Laporan<span class="wajib">*</span></h3>
+                    </div>
+                    <div class="col-12">
+                        <div class="input-group">
+                            <input type="date" class="form-control" id="tanggal" name="tanggal" style="border: 1px solid rgb(187, 0, 255); border-top-leftradius: 4px; border-bottom-left-radius: 4px;" placeholder="Masukkan tanggal laporan" id="datepicker">
+                            <span class="input-group-text" style="border: 1px solid rgb(187, 0, 255); border-top-right-radius: 4px; border-bottom-right-radius: 4px; background: linear-gradient(45deg, #9c27b0, #673ab7, #3f51b5); color: white;">
+                                <i class="bi bi-calendar"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12 text-start">
                         <h3 class="fw-medium text-secondary" style="font-size: 14px;">Apa Yang Rusak?<span class="wajib">*</span></h3>
                     </div>
                     <div class="col-9 text-start">
@@ -180,19 +193,6 @@
                                 <li><a class="dropdown-item" href="#" onclick="updateInput('Pintu Kamar')">Pintu Kamar</a></li>
                                 <li><a class="dropdown-item" href="#" onclick="updateInput('Lainnya')">Lainnya</a></li>
                             </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-12 text-start">
-                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Tanggal Laporan<span class="wajib">*</span></h3>
-                    </div>
-                    <div class="col-12">
-                        <div class="input-group">
-                            <input type="date" class="form-control" id="tanggal" name="tanggal" style="border: 1px solid rgb(187, 0, 255); border-top-leftradius: 4px; border-bottom-left-radius: 4px;" placeholder="Masukkan tanggal laporan" id="datepicker">
-                            <span class="input-group-text" style="border: 1px solid rgb(187, 0, 255); border-top-right-radius: 4px; border-bottom-right-radius: 4px; background: linear-gradient(45deg, #9c27b0, #673ab7, #3f51b5); color: white;">
-                                <i class="bi bi-calendar"></i>
-                            </span>
                         </div>
                     </div>
                 </div>
@@ -258,7 +258,7 @@
             </div>
             <hr class="kirim-laporan" style="border-top: 1px solid #ccc">
             <div class="container text-center">
-                <button type="button" class="btn btn-dark" style="border-radius: 50px; width: 170px;" disabled>Kirim Laporan</button>
+                <button type="button" class="btn btn-dark" style="border-radius: 50px; width: 170px;" disabled id="submitButton">Kirim Laporan</button>
             </div>
         </div>
     </div>
@@ -373,11 +373,33 @@
             document.querySelector('.input-kerusakan').value = selectedValue;
         }
 
-        var picker = new Pikaday({
-            field: document.getElementById('datepicker'),
-            format: 'D MMM YYYY',
-            onSelect: function() {
-                console.log(this.getMoment().format('Do MMMM YYYY'));
+        document.addEventListener('DOMContentLoaded', function() {
+            // Memantau input dan gambar
+            var inputElements = document.querySelectorAll('.input-nama, .input-kerusakan, #tanggal');
+            var fileInputs = document.querySelectorAll('input[type="file"]');
+            var submitButton = document.querySelector('.btn');
+
+            // Memantau setiap perubahan pada input dan gambar
+            inputElements.forEach(function(input) {
+                if (input.type === "date") {
+                    input.addEventListener('change', checkInputs);
+                } else {
+                    input.addEventListener('input', checkInputs);
+                }
+            });
+
+            fileInputs.forEach(function(fileInput) {
+                fileInput.addEventListener('change', checkInputs);
+            });
+
+            // Fungsi untuk memeriksa input dan gambar
+            function checkInputs() {
+                var namaValue = document.querySelector('.input-nama').value;
+                var kerusakanValue = document.querySelector('.input-kerusakan').value;
+                var tanggalValue = document.querySelector('#tanggal').value;
+
+                // Mengaktifkan atau menonaktifkan tombol berdasarkan status input
+                submitButton.disabled = !(namaValue && kerusakanValue && tanggalValue);
             }
         });
     </script>
