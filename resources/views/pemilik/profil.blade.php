@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Profil</title>
-    <link rel="stylesheet" href="{{ asset('css/usercss/profil.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pemilikcss/profil.css') }}">
     <!-- end css rava -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- font google -->
@@ -93,7 +93,7 @@
             <div class="col-12 text-center">
                 <img id="profileImage" src="{{ asset('img/avatar.png') }}" style="margin-top: 50px; width: 90px; height: 90px; border: 1px solid white; border-radius: 50%; position: relative;">
                 <h3 class="fw-medium" style="font-size: 18px; color: white; margin-top: 16px;">Muhammad Ravanelo Akhtar</h3>
-                <button class="btn-status">Pengunjung</button>
+                <button class="btn-status">Pemilik</button>
             </div>
         </section>
     </section>

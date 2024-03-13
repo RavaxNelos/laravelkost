@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PemilikController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
@@ -18,9 +19,23 @@ use App\Http\Controllers\AuthController;
 Route::get('/', function () {
     return view('login');
 });
+
+//user controller
+Route::get('/user/kamar', [UserController::class, 'kamar'])->name('kamar');
+Route::get('/user/riwayat', [UserController::class, 'riwayat'])->name('riwayat');
+Route::get('/user/profil', [UserController::class, 'profil'])->name('profil');
+Route::get('/user/kerusakan', [UserController::class, 'kerusakan'])->name('kerusakan');
+Route::get('/user/kehilangan', [UserController::class, 'kehilangan'])->name('kehilangan');
 Route::get('/user/home', [UserController::class, 'detail'])->name('detail');
 Route::get('/user/detail', [UserController::class, 'detailrumah'])->name('detailrumah');
+Route::get('/user/transaksi', [UserController::class, 'transaksi'])->name('transaksi');
+Route::get('/user/konfirmasitransaksi', [UserController::class, 'konfirmasitransaksi'])->name('konfirmasitransaksi');
 
+//pemilik controller
+Route::get('/pemilik/home', [PemilikController::class, 'home'])->name('home');
+Route::get('/pemilik/profil', [PemilikController::class, 'profil'])->name('profil');
+
+//admin controller
 Route::get('/transaksi', function() {
     return view('user.transaksi.index');
 });
@@ -34,7 +49,7 @@ Route::get('/kamar', function() {
 });
 
 Route::get('/coba', function () {
-    return view('user.coba');
+    return view('coba');
 });
 
 Route::get('/kerusakan', function() {

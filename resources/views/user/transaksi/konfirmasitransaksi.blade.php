@@ -132,7 +132,7 @@
         </div>
         <div class="row">
             <div class="col-4">
-                <a href="/home" type="submit" style="width: 130px; height: 40px; border: 1px solid #9370DB; padding: 8px;text-decoration: none; color: #9370DB; border-radius: 8px; font-size: 12px; text-align: center;">Halaman Utama</a>
+                <a href="{{ asset('/user/home') }}" type="submit" style="width: 130px; height: 40px; border: 1px solid #9370DB; padding: 8px;text-decoration: none; color: #9370DB; border-radius: 8px; font-size: 12px; text-align: center;">Halaman Utama</a>
             </div>
             <div class="col-8">
                 <button id="confirmButton" style="margin-left: 18px; width: 200px; height: 40px; background-color: #9370DB; border-radius: 8px; border: none; font-size: 12px; color: white;" data-bs-toggle="modal" data-bs-target="#konfirmasi">Konfirmasi Pembayaran</button>
@@ -595,7 +595,7 @@
                             <div class="position-relative mb-2">
                                 <div class="row">
                                     <div class="col-4 mb-0">
-                                        <img src="img/kostsurabaya11.jpg" style="border-radius: 15px; width: 90px; height: 90px; object-fit: cover;">
+                                        <img src="{{ asset('/img/kostsurabaya11.jpg') }}" style="border-radius: 15px; width: 90px; height: 90px; object-fit: cover;">
                                     </div>
                                     <div class="col-4" style="width: 130px; margin-left: 16px;">
                                         <h6 style="font-size: 16px; margin-top: 10px;" class="fw-bold">Kost Putra</h6>
@@ -613,7 +613,7 @@
                             <div class="position-relative mb-2">
                                 <div class="row">
                                     <div class="col-4 mb-0">
-                                        <img src="img/kostsurabaya12.jpg" style="border-radius: 15px; width: 90px; height: 90px; object-fit: cover;">
+                                        <img src="{{ asset('/img/kostsurabaya12.jpg') }}" style="border-radius: 15px; width: 90px; height: 90px; object-fit: cover;">
                                     </div>
                                     <div class="col-4" style="width: 130px; margin-left: 16px;">
                                         <h6 style="font-size: 16px; margin-top: 10px;" class="fw-bold">Kost Putri</h6>
@@ -631,7 +631,7 @@
                             <div class="position-relative mb-2">
                                 <div class="row">
                                     <div class="col-4 mb-0">
-                                        <img src="img/kostsurabaya13.jpg" style="border-radius: 15px; width: 90px; height: 90px; object-fit: cover;">
+                                        <img src="{{ asset('/img/kostsurabaya13.jpg') }}" style="border-radius: 15px; width: 90px; height: 90px; object-fit: cover;">
                                     </div>
                                     <div class="col-4" style="width: 150px; margin-left: 16px;">
                                         <h6 style="font-size: 16px; margin-top: 10px;" class="fw-bold">Kost Pegawai</h6>
@@ -649,7 +649,7 @@
                             <div class="position-relative mb-2">
                                 <div class="row">
                                     <div class="col-4 mb-0">
-                                        <img src="img/kostsurabaya14.jpg" style="border-radius: 15px; width: 90px; height: 90px; object-fit: cover;">
+                                        <img src="{{ asset('/img/kostsurabaya14.jpg') }}" style="border-radius: 15px; width: 90px; height: 90px; object-fit: cover;">
                                     </div>
                                     <div class="col-4" style="width: 130px; margin-left: 16px;">
                                         <h6 style="font-size: 16px; margin-top: 10px;" class="fw-bold">Kost Putri</h6>
@@ -667,7 +667,7 @@
                             <div class="position-relative mb-2">
                                 <div class="row">
                                     <div class="col-4 mb-0">
-                                        <img src="img/kostsurabaya15.jpg" style="border-radius: 15px; width: 90px; height: 90px; object-fit: cover;">
+                                        <img src="{{ asset('/img/kostsurabaya15.jpg') }}" style="border-radius: 15px; width: 90px; height: 90px; object-fit: cover;">
                                     </div>
                                     <div class="col-4" style="width: 150px; margin-left: 16px;">
                                         <h6 style="font-size: 16px; margin-top: 10px;" class="fw-bold">Kost Karyawan</h6>

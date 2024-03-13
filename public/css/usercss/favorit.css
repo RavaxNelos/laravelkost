@@ -16,7 +16,7 @@
 
 hr.hr-divider {
     border-top: 10px solid #ccc;
-    margin-top: -10px;
+    margin-top: 0px;
     /* Hilangkan margin default dari <hr> */
 }
 
@@ -53,4 +53,28 @@ input.input-search {
 
 .btn-animated {
     transition: transform 0.7s ease-in-out;
+}
+
+.sticky-top {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+/* Style for sticky header when scrolled */
+.sticky-top.scrolled {
+    background-color: white;
+    /* Ganti warna latar belakang sesuai kebutuhan Anda */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    /* Optional: Tambahkan bayangan jika diinginkan */
+}
+
+.btn-search {
+    border-radius: 50%;
+    border: 1px solid black;
+    border-style: solid;
+    font-size: 16px;
+    background-color: #fff;
 }

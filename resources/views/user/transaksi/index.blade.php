@@ -146,7 +146,7 @@
         <div class="container py-2">
             <div class="row g-3">
                 <div class="col-1">
-                    <a href="/detail" class="btn-back-home"><ion-icon name="chevron-back-outline" style="margin-bottom: -4px;"></ion-icon></a>
+                    <a href="/user/detail" class="btn-back-home"><ion-icon name="chevron-back-outline" style="margin-bottom: -4px;"></ion-icon></a>
                 </div>
                 <div class="col-6 mt-4 text-start" style="margin-top: 25px !important;">
                     <h3 class="text-dark fw-semibold teks-detail" style="font-size: 16px; transition: color 0.3s ease;">Transaksi</h3>
@@ -523,7 +523,7 @@
                     <h3 class="fw-semibold" style="font-size: 23,5; color: #9370DB">Rp.2.100.000</h3>
                 </div>
                 <div class="col-6 text-end btn-bawah">
-                    <a type="submit" href="/konfirmasitransaksi" class="btn text-end text-white">Bayar</a>
+                    <a type="submit" href="{{ asset('/user/konfirmasitransaksi') }}" class="btn text-end text-white">Bayar</a>
                 </div>
             </div>
         </div>

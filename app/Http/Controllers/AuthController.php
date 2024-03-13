@@ -42,7 +42,13 @@ class AuthController extends Controller
         ];
 
         if (Auth::attempt($credetials)) {
-            return redirect('/home')->with('success', 'Login Berhasil');
+            if (Auth::user()->role_id == 1) {
+                return redirect('/admin/home');
+            } elseif(Auth::user()->role_id == 2) {
+                return redirect('/pemilik/home');
+            } elseif(Auth::user()->role_id == 3) {
+                return redirect('/user/home');
+            }
         }
 
         return back()->with('error', 'Nama atau Password salah');

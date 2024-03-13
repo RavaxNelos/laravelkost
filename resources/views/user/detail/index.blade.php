@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Details</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://eonasdan.github.io/bootstrap-datetimepicker/css/prettify-1.0.css">
+    <link rel="stylesheet" href="https://eonasdan.github.io/bootstrap-datetimepicker/css/base.css">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="{{ asset('css/usercss/detailrumah.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -18,17 +22,15 @@
             font-family: Poppins;
         }
 
-        /* #waktu {
-            display: none;
+        ::-webkit-scrollbar {
+            width: 10px;
+            background: transparent;
         }
 
-        #waktu-btn {
-            display: none;
-            border: 1px solid rgba(106, 5, 114, 1);
-            color: #000000;
-            font-weight: 600;
-            Tambahkan gaya lain sesuai kebutuhan Anda
-        } */
+        ::-webkit-scrollbar-thumb {
+            background: transparent;
+            border-radius: 2px;
+        }
 
         .btn-lainnya {
             font-family: Poppins;
@@ -68,6 +70,7 @@
 
         * {
             font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
         }
 
         html,
@@ -255,7 +258,7 @@
         <div class="container py-3">
             <div class="row g-3">
                 <div class="col-1">
-                    <a href="/home" class="btn-back-home"><ion-icon name="chevron-back-outline" style="margin-bottom: -4px;"></ion-icon></a>
+                    <a href="/user/home" class="btn-back-home"><ion-icon name="chevron-back-outline" style="margin-bottom: -4px;"></ion-icon></a>
                 </div>
                 <div class="col-6 mt-4 text-start" id="kamarKost" style="margin-top: 25px !important;">
                     <h3 class="fw-bold" style="font-size: 16px; transition: color 0.3s ease;">Detail Kamar Kost</h3>
@@ -562,82 +565,8 @@
             <h6 class="fw-semibold" style="margin-bottom: 10px; margin-top: 30px;">Jadwal Masuk Kamar</h6>
         </div>
         <div class="container px-2">
-            <div class="card-jadwal">
-                <section class="splide new-3" aria-label="Splide Basic HTML Example">
-                    <div class="splide__track">
-                        <ul class="splide__list">
-                            <li class="splide__slide">
-                                <h3 class="fw-medium fs-3 text-center text-white" style="margin-top: 10px;">Januari</h3>
-                            </li>
-                            <li class="splide__slide">
-                                <h3 class="fw-medium fs-3 text-center text-white" style="margin-top: 10px;">Februari</h3>
-                            </li>
-                            <li class="splide__slide">
-                                <h3 class="fw-medium fs-3 text-center text-white" style="margin-top: 10px;">Maret</h3>
-                            </li>
-                            <li class="splide__slide">
-                                <h3 class="fw-medium fs-3 text-center text-white" style="margin-top: 10px;">April</h3>
-                            </li>
-                            <li class="splide__slide">
-                                <h3 class="fw-medium fs-3 text-center text-white" style="margin-top: 10px;">Mei</h3>
-                            </li>
-                            <li class="splide__slide">
-                                <h3 class="fw-medium fs-3 text-center text-white" style="margin-top: 10px;">Juni</h3>
-                            </li>
-                            <li class="splide__slide">
-                                <h3 class="fw-medium fs-3 text-center text-white" style="margin-top: 10px;">Juli</h3>
-                            </li>
-                            <li class="splide__slide">
-                                <h3 class="fw-medium fs-3 text-center text-white" style="margin-top: 10px;">Agustus</h3>
-                            </li>
-                            <li class="splide__slide">
-                                <h3 class="fw-medium fs-3 text-center text-white" style="margin-top: 10px;">September</h3>
-                            </li>
-                            <li class="splide__slide">
-                                <h3 class="fw-medium fs-3 text-center text-white" style="margin-top: 10px;">Oktober</h3>
-                            </li>
-                            <li class="splide__slide">
-                                <h3 class="fw-medium fs-3 text-center text-white" style="margin-top: 10px;">November</h3>
-                            </li>
-                            <li class="splide__slide">
-                                <h3 class="fw-medium fs-3 text-center text-white" style="margin-top: 10px;">Desember</h3>
-                            </li>
-                        </ul>
-                    </div>
-                </section>
-                <div class="scrollmenu">
-                    <a href="#1" data-action="selectDay" data-day="01/03/2024">1</a>
-                    <a href="#2" data-action="selectDay" data-day="02/03/2024">2</a>
-                    <a href="#3" data-action="selectDay" data-day="03/03/2024">3</a>
-                    <a href="#4" data-action="selectDay" data-day="04/03/2024">4</a>
-                    <a href="#5" data-action="selectDay" data-day="05/03/2024">5</a>
-                    <a href="#6" data-action="selectDay" data-day="06/03/2024">6</a>
-                    <a href="#7" data-action="selectDay" data-day="07/03/2024">7</a>
-                    <a href="#8" class="day active today" data-action="selectDay" data-day="08/03/2024">8</a>
-                    <a href="#9" data-action="selectDay" data-day="09/03/2024">9</a>
-                    <a href="#10" data-action="selectDay" data-day="10/03/2024">10</a>
-                    <a href="#11" data-action="selectDay" data-day="11/03/2024">11</a>
-                    <a href="#12" data-action="selectDay" data-day="12/03/2024">12</a>
-                    <a href="#13" data-action="selectDay" data-day="13/03/2024">13</a>
-                    <a href="#14" data-action="selectDay" data-day="14/03/2024">14</a>
-                    <a href="#15" data-action="selectDay" data-day="15/03/2024">15</a>
-                    <a href="#16" data-action="selectDay" data-day="16/03/2024">16</a>
-                    <a href="#17" data-action="selectDay" data-day="17/03/2024">17</a>
-                    <a href="#18" data-action="selectDay" data-day="18/03/2024">18</a>
-                    <a href="#19" data-action="selectDay" data-day="19/03/2024">19</a>
-                    <a href="#20" data-action="selectDay" data-day="20/03/2024">20</a>
-                    <a href="#21" data-action="selectDay" data-day="21/03/2024">21</a>
-                    <a href="#22" data-action="selectDay" data-day="22/03/2024">22</a>
-                    <a href="#23" data-action="selectDay" data-day="23/03/2024">23</a>
-                    <a href="#24" data-action="selectDay" data-day="24/03/2024">24</a>
-                    <a href="#25" data-action="selectDay" data-day="25/03/2024">25</a>
-                    <a href="#26" data-action="selectDay" data-day="26/03/2024">26</a>
-                    <a href="#27" data-action="selectDay" data-day="27/03/2024">27</a>
-                    <a href="#28" data-action="selectDay" data-day="28/03/2024">28</a>
-                    <a href="#29" data-action="selectDay" data-day="29/03/2024">29</a>
-                    <a href="#30" data-action="selectDay" data-day="30/03/2024">30</a>
-                </div>
-            </div>
+            <div id="datetimepicker"></div>
+
             <div class="row mt-2 g-2 justify-content-center" x-data="{ new_schedule: '' }" id="jam-container">
                 <div class="col-4">
                     <button x-on:click="new_schedule = 'time-1'" :class="new_schedule == 'time-1' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'" type="button">08.00 WIB</button>
@@ -690,7 +619,7 @@
                     </a>
                 </div>
                 <div class="col-8 mt-3">
-                    <form action="{{ route('transaksi') }}">
+                    <form action="/user/transaksi">
                         <button class="btn-pesan">Pesan Sekarang</button>
                     </form>
                 </div>
@@ -703,7 +632,20 @@
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+    <script src="https://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
+    <script id="rendered-js">
+        $(function() {
+            $('#datetimepicker').datetimepicker({
+                inline: true,
+                sideBySide: true,
+                locale: 'id',
+                format: 'DD.MM.YYYY'
+            });
+
+        });
         var splide = new Splide('.splide.new', {
             arrows: false,
             pagination: false,
@@ -735,13 +677,13 @@
             interval: '2000'
         });
         splide.mount();
-        var splide = new Splide('.splide.new-3', {
-            type: 'loop',
-            lazyLoad: 'nearby',
-            pagination: false,
-            interval: '2000'
-        });
-        splide.mount();
+        // var splide = new Splide('.splide.new-3', {
+        //     type: 'loop',
+        //     lazyLoad: 'nearby',
+        //     pagination: false,
+        //     interval: '2000'
+        // });
+        // splide.mount();
 
         let isFavorite = false;
 

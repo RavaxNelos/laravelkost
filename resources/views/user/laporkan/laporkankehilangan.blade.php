@@ -97,126 +97,160 @@
 <body>
     <div class="sticky-bottom">
         <nav class="nav">
-            <a href="/home" class="nav__link">
+            <a href="{{ asset('/user/home') }}" class="nav__link">
                 <i class="bi bi-house-door"></i>
                 <span class="nav__text">Beranda</span>
             </a>
-            <a href="/kamar" class="nav__link">
+            <a href="{{ asset('/user/kamar') }}" class="nav__link">
                 <i class="bi bi-door-closed"></i>
                 <span class="nav__text">Kamar</span>
             </a>
-            <div class="nav__link nav-active">
+            <div class="nav__link nav-active" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <i class="bi bi-chat-dots-fill"></i>
                 <span class="nav__text">Lapor</span>
             </div>
-            <a href="/riwayat" class="nav__link">
+            <a href="{{ asset('/user/riwayat') }}" class="nav__link">
                 <i class="bi bi-clock"></i>
                 <span class="nav__text">Riwayat</span>
             </a>
-            <a href="/profil" class="nav__link">
+            <a href="{{ asset('/user/profil') }}" class="nav__link">
                 <i class="bi bi-person"></i>
                 <span class="nav__text">Profil</span>
             </a>
         </nav>
     </div>
-    <div class="sticky-top" id="stickyHeader">
-        <div class="container py-2" style="background-color: white;">
-            <div class="row">
-                <div class="col-12 text-start mt-2">
-                    <h3 class="text-dark fw-semibold teks-kehilangan" style="font-size: 16px; transition: color 0.3s ease;">Laporan Kehilangan</h3>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="margin-top: 31rem; margin-left: 4rem; width: 210px;">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <a href="{{ asset('/user/kerusakan') }}" class="kerusakan fw-medium"><i class="bi bi-exclamation-triangle-fill"></i> Laporkan Kerusakan</a>
+                        </div>
+                        <hr class="garis-pembatas-laporkan" style="border-top: 1px solid #ccc; margin-top: 10px;">
+                        <div class="col-12" style="margin-top: -10px">
+                            <a href="{{ asset('/user/kehilangan') }}" class="kehilangan fw-medium"><i class='bx bxs-search-alt-2'></i> Laporkan Kehilangan</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <hr class="garis-1">
-    <div class="container">
-        <div class="card-laporkan-kehilangan">
-            <div class="container mt-3">
+    <section x-data="{ filter: 'form' }">
+        <div class="sticky-top" id="stickyHeader">
+            <div class="container py-2" style="background-color: white;">
                 <div class="row">
-                    <div class="col-12 text-start">
-                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Nama User</h3>
-                    </div>
-                    <div class="col-12">
-                        <input type="text" class="input-nama" value="Muhammad Ravanelo" disabled>
+                    <div class="col-12 text-start mt-2">
+                        <h3 class="text-dark fw-semibold teks-kehilangan" style="font-size: 16px; transition: color 0.3s ease;">Laporan Kehilangan</h3>
                     </div>
                 </div>
-                <div class="row mt-3">
-                    <div class="col-12 text-start">
-                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">No. Kamar</h3>
-                    </div>
-                    <div class="col-12">
-                        <input type="text" class="input-nama" value="Kamar No. 1" disabled>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-12 text-start">
-                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Lokasi Kehilangan<span class="wajib">*</span></h3>
-                    </div>
-                    <div class="col-12">
-                        <input type="text" class="input-nama">
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-12 text-start">
-                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Apa Yang Hilang?<span class="wajib">*</span></h3>
-                    </div>
-                    <div class="col-9 text-start">
-                        <input type="text" class="input-kerusakan" placeholder="Pilih barang anda yang hilang" disabled>
-                    </div>
-                    <div class="col-3 text-end">
-                        <div class="dropdown">
-                            <button class="btn-dropdown-kerusakan dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            </button>
-                            <ul class="dropdown-menu" id="barangDropdown">
-                                <li><a class="dropdown-item" href="#" onclick="updateInput('Handphone')">Handphone</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="updateInput('Dompet')">Dompet</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="updateInput('Sandal/Sepatu')">Sandal/Sepatu</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="updateInput('Lainnya')">Lainnya</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-12 text-start">
-                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Tanggal Kehilangan<span class="wajib">*</span></h3>
-                    </div>
-                    <div class="col-12">
-                        <div class="input-group">
-                            <input type="date" class="form-control" id="tanggal" name="tanggal" style="border: 1px solid rgb(187, 0, 255); border-top-leftradius: 4px; border-bottom-left-radius: 4px;">
-                            <span class="input-group-text" style="border: 1px solid rgb(187, 0, 255); border-top-right-radius: 4px; border-bottom-right-radius: 4px; background: linear-gradient(45deg, #9c27b0, #673ab7, #3f51b5); color: white;">
-                                <i class="bi bi-calendar"></i>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-12 text-start">
-                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Jam Kehilangan<span class="wajib">*</span></h3>
-                    </div>
-                    <div class="col-12">
-                        <div class="input-group">
-                            <input type="time" class="form-control" id="jamInput" name="jamInput" style="border: 1px solid rgb(187, 0, 255); border-top-leftradius: 4px; border-bottom-left-radius: 4px;">
-                            <span class="input-group-text" style="border: 1px solid rgb(187, 0, 255); border-top-right-radius: 4px; border-bottom-right-radius: 4px; background: linear-gradient(45deg, #9c27b0, #673ab7, #3f51b5); color: white">
-                                <i class="bi bi-clock"></i>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-12 text-start">
-                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Keterangan Tambahan<span class="wajib">*</span></h3>
-                    </div>
-                    <div class="col-12">
-                        <textarea name="" id="" placeholder="Tambahkan keterangan kamu" class="textarea-keterangan"></textarea>
-                    </div>
-                </div>
-            </div>
-            <hr class="kirim-laporan" style="border-top: 1px solid #ccc">
-            <div class="container text-center">
-                <button type="button" class="btn btn-dark" style="border-radius: 50px; width: 170px;" disabled id="submitButton">Kirim Laporan</button>
             </div>
         </div>
-    </div>
+        <hr class="garis-1">
+        <div class="container">
+            <div class="row" style="margin-top: -16px;">
+                <div class="col-6 text-center" style="margin-left: -12px;">
+                    <button :class="filter == 'form' ? 'btn-active' : 'btn-non-aktif'" x-on:click="filter = 'form';">Form Laporan</button>
+                </div>
+                <div class="col-6 text-center" style="margin-left: 0px;">
+                    <button :class="filter == 'riwayat' ? 'btn-active' : 'btn-non-aktif'" x-on:click="filter = 'riwayat';">Riwayat Laporan</button>
+                </div>
+            </div>
+        </div>
+        <hr class="garis-2">
+        <div class="container" x-show="filter == 'form'">
+            <div class="card-laporkan-kehilangan">
+                <div class="container mt-3">
+                    <div class="row">
+                        <div class="col-12 text-start">
+                            <h3 class="fw-medium text-secondary" style="font-size: 14px;">Nama User</h3>
+                        </div>
+                        <div class="col-12">
+                            <input type="text" class="input-nama" value="Muhammad Ravanelo" disabled>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12 text-start">
+                            <h3 class="fw-medium text-secondary" style="font-size: 14px;">No. Kamar</h3>
+                        </div>
+                        <div class="col-12">
+                            <input type="text" class="input-nama" value="Kamar No. 1" disabled>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12 text-start">
+                            <h3 class="fw-medium text-secondary" style="font-size: 14px;">Lokasi Kehilangan<span class="wajib">*</span></h3>
+                        </div>
+                        <div class="col-12">
+                            <input type="text" class="input-nama">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12 text-start">
+                            <h3 class="fw-medium text-secondary" style="font-size: 14px;">Apa Yang Hilang?<span class="wajib">*</span></h3>
+                        </div>
+                        <div class="col-9 text-start">
+                            <input type="text" id="inputKerusakan" class="input-kerusakan" placeholder="Pilih barang anda yang hilang" disabled>
+                        </div>
+                        <div class="col-3 text-end">
+                            <div class="dropdown">
+                                <button class="btn-dropdown-kerusakan dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                </button>
+                                <ul class="dropdown-menu" id="barangDropdown">
+                                    <li><a class="dropdown-item" href="#" onclick="updateInput('Handphone')">Handphone</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="updateInput('Dompet')">Dompet</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="updateInput('Laptop')">Laptop</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="updateInput('Tablet')">Tablet</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="updateInput('Jam Tangan')">Jam Tangan</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="updateInput('Surat')">Surat</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="updateInput('Sandal/Sepatu')">Sandal/Sepatu</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="showTextInput()">Lainnya</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12 text-start">
+                            <h3 class="fw-medium text-secondary" style="font-size: 14px;">Tanggal Kehilangan<span class="wajib">*</span></h3>
+                        </div>
+                        <div class="col-12">
+                            <div class="input-group">
+                                <input type="date" class="form-control" id="tanggal" name="tanggal" style="border: 1px solid rgb(187, 0, 255); border-top-leftradius: 4px; border-bottom-left-radius: 4px;">
+                                <span class="input-group-text" style="border: 1px solid rgb(187, 0, 255); border-top-right-radius: 4px; border-bottom-right-radius: 4px; background: linear-gradient(45deg, #9c27b0, #673ab7, #3f51b5); color: white;">
+                                    <i class="bi bi-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12 text-start">
+                            <h3 class="fw-medium text-secondary" style="font-size: 14px;">Jam Kehilangan<span class="wajib">*</span></h3>
+                        </div>
+                        <div class="col-12">
+                            <div class="input-group">
+                                <input type="time" class="form-control" id="jamInput" name="jamInput" style="border: 1px solid rgb(187, 0, 255); border-top-leftradius: 4px; border-bottom-left-radius: 4px;">
+                                <span class="input-group-text" style="border: 1px solid rgb(187, 0, 255); border-top-right-radius: 4px; border-bottom-right-radius: 4px; background: linear-gradient(45deg, #9c27b0, #673ab7, #3f51b5); color: white">
+                                    <i class="bi bi-clock"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12 text-start">
+                            <h3 class="fw-medium text-secondary" style="font-size: 14px;">Keterangan Tambahan<span class="wajib">*</span></h3>
+                        </div>
+                        <div class="col-12">
+                            <textarea name="" id="" placeholder="Tambahkan keterangan kamu" class="textarea-keterangan"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <hr class="kirim-laporan" style="border-top: 1px solid #ccc">
+                <div class="container text-center">
+                    <button type="button" class="btn btn-dark" style="border-radius: 50px; width: 170px;" disabled id="submitButton">Kirim Laporan</button>
+                </div>
+            </div>
+        </div>
+    </section>
     <hr class="hr-1">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -237,6 +271,12 @@
 
         function updateInput(selectedValue) {
             document.querySelector('.input-kerusakan').value = selectedValue;
+        }
+
+        function showTextInput() {
+            var inputElement = document.getElementById("inputKerusakan");
+            inputElement.removeAttribute("disabled");
+            inputElement.focus();
         }
 
         document.addEventListener('DOMContentLoaded', function() {

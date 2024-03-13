@@ -84,11 +84,11 @@
 <body>
     <div class="sticky-bottom">
         <nav class="nav">
-            <a href="/home" class="nav__link">
+            <a href="{{ asset('/user/home') }}" class="nav__link">
                 <i class="bi bi-house-door"></i>
                 <span class="nav__text">Beranda</span>
             </a>
-            <a href="/kamar" class="nav__link nav-active">
+            <a href="{{ asset('/user/kamar') }}" class="nav__link nav-active">
                 <i class="bi bi-door-closed-fill"></i>
                 <span class="nav__text">Kamar</span>
             </a>
@@ -96,11 +96,11 @@
                 <i class="bi bi-chat-dots"></i>
                 <span class="nav__text">Lapor</span>
             </div>
-            <a href="/riwayat" class="nav__link">
+            <a href="{{ asset('/user/riwayat') }}" class="nav__link">
                 <i class="bi bi-clock"></i>
                 <span class="nav__text">Riwayat</span>
             </a>
-            <a href="/profil" class="nav__link">
+            <a href="{{ asset('/user/profil') }}" class="nav__link">
                 <i class="bi bi-person"></i>
                 <span class="nav__text">Profil</span>
             </a>
@@ -118,11 +118,11 @@
             <!-- Konten modal, dapat diedit sesuai kebutuhan -->
             <div class="row">
                 <div class="col-12">
-                    <a href="/kerusakan" class="kerusakan fw-medium"><i class="bi bi-exclamation-triangle-fill"></i> Laporkan Kerusakan</a>
+                    <a href="{{ asset('/user/kerusakan') }}" class="kerusakan fw-medium"><i class="bi bi-exclamation-triangle-fill"></i> Laporkan Kerusakan</a>
                 </div>
                 <hr class="garis-pembatas-laporkan" style="border-top: 1px solid #ccc; margin-top: 10px;">
                 <div class="col-12" style="margin-top: -10px">
-                    <a href="/kehilangan" class="kehilangan fw-medium"><i class='bx bxs-search-alt-2'></i> Laporkan Kehilangan</a>
+                    <a href="{{ asset('/user/kehilangan') }}" class="kehilangan fw-medium"><i class='bx bxs-search-alt-2'></i> Laporkan Kehilangan</a>
                 </div>
             </div>
         </div>

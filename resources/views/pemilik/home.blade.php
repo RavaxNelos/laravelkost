@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    <link rel="stylesheet" href="{{ asset('css/usercss/homeuser.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pemilikcss/home.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -162,19 +162,19 @@
                 <i class="bi bi-house-door-fill"></i>
                 <span class="nav__text">Beranda</span>
             </a>
-            <a href="{{ asset('/user/kamar') }}" class="nav__link">
+            <a href="{{ asset('/pemilik/transaksi') }}" class="nav__link">
                 <i class="bi bi-door-closed"></i>
-                <span class="nav__text">Kamar</span>
+                <span class="nav__text">Transaksi</span>
             </a>
-            <div class="nav__link" id="openModalBtn">
+            <a href="{{ asset('/pemilik/pengguna') }}" class="nav__link">
                 <i class="bi bi-chat-dots"></i>
-                <span class="nav__text">Lapor</span>
-            </div>
-            <a href="{{ asset('/user/riwayat') }}" class="nav__link">
+                <span class="nav__text">Pengguna</span>
+            </a>
+            <a href="{{ asset('/pemilik/riwayat') }}" class="nav__link">
                 <i class="bi bi-clock"></i>
                 <span class="nav__text">Riwayat</span>
             </a>
-            <a href="{{ asset('/user/profil') }}" class="nav__link">
+            <a href="{{ asset('/pemilik/profil') }}" class="nav__link">
                 <i class="bi bi-person"></i>
                 <span class="nav__text">Profil</span>
             </a>

@@ -26,13 +26,13 @@ class UserController extends Controller
     {
         return view('user.transaksi.index');
     }
+    public function konfirmasitransaksi()
+    {
+        return view('user.transaksi.konfirmasitransaksi');
+    }
     public function back()
     {
         return view('user.detail.index');
-    }
-    public function bayar()
-    {
-        return view('user.transaksi.checkout');
     }
 
     public function kamar()
@@ -41,7 +41,7 @@ class UserController extends Controller
     }
     public function coba()
     {
-        return view('user.coba');
+        return view('coba');
     }
     public function kerusakan()
     {

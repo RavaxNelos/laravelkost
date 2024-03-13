@@ -22,7 +22,8 @@ class User extends Authenticatable
         'email',
         'nomorhp',
         'password',
-        'konfirmasipassword'
+        'konfirmasipassword',
+        'role_id'
     ];
 
     /**
