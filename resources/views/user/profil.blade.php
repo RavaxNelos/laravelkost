@@ -173,7 +173,7 @@
             <form action="/favorit">
                 <button class="btn-edit-akun"><i class="bi bi-heart-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: #9370DB;"></i>Kamar Kost Favorit<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 6.8rem;"></i></button>
             </form>
-            <button class="btn-edit-akun" data-bs-toggle="modal" data-bs-target="#bantuan"><i class="bi bi-question-circle-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: #9370DB;"></i>Bantuan<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 11.2rem;"></i></button>
+            <button class="btn-edit-akun" data-bs-toggle="modal" data-bs-target="#bantuan"><i class="bi bi-question-circle-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: #9370DB;"></i>Bantuan<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 11.4rem;"></i></button>
             <!-- Modal -->
             <div class="modal fade" id="bantuan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">

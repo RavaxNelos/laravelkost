@@ -33,6 +33,10 @@ Route::get('/user/konfirmasitransaksi', [UserController::class, 'konfirmasitrans
 
 //pemilik controller
 Route::get('/pemilik/home', [PemilikController::class, 'home'])->name('home');
+Route::get('/pemilik/area', [PemilikController::class, 'area'])->name('area');
+Route::get('/pemilik/transaksi', [PemilikController::class, 'transaksi'])->name('transaksi');
+Route::get('/pemilik/pengguna', [PemilikController::class, 'pengguna'])->name('pengguna');
+Route::get('/pemilik/riwayat', [PemilikController::class, 'riwayat'])->name('riwayat');
 Route::get('/pemilik/profil', [PemilikController::class, 'profil'])->name('profil');
 
 //admin controller

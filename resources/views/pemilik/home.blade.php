@@ -159,23 +159,27 @@
     <div class="sticky-bottom">
         <nav class="nav">
             <a href="#" class="nav__link nav-active">
-                <i class="bi bi-house-door-fill"></i>
+                <ion-icon name="home" style="font-size: 20px;"></ion-icon>
                 <span class="nav__text">Beranda</span>
             </a>
+            <a href="{{ asset('/pemilik/area') }}" class="nav__link">
+                <ion-icon name="location-outline" style="font-size: 20px;"></ion-icon>
+                <span class="nav__text">Area Kost</span>
+            </a>
             <a href="{{ asset('/pemilik/transaksi') }}" class="nav__link">
-                <i class="bi bi-door-closed"></i>
+                <ion-icon name="newspaper-outline" style="font-size: 20px;"></ion-icon>
                 <span class="nav__text">Transaksi</span>
             </a>
             <a href="{{ asset('/pemilik/pengguna') }}" class="nav__link">
-                <i class="bi bi-chat-dots"></i>
+                <ion-icon name="people-outline" style="font-size: 20px;"></ion-icon>
                 <span class="nav__text">Pengguna</span>
             </a>
             <a href="{{ asset('/pemilik/riwayat') }}" class="nav__link">
-                <i class="bi bi-clock"></i>
+                <ion-icon name="time-outline" style="font-size: 20px;"></ion-icon>
                 <span class="nav__text">Riwayat</span>
             </a>
             <a href="{{ asset('/pemilik/profil') }}" class="nav__link">
-                <i class="bi bi-person"></i>
+                <ion-icon name="person-outline" style="font-size: 19px; margin-bottom: 1px;"></ion-icon>
                 <span class="nav__text">Profil</span>
             </a>
         </nav>
@@ -1999,15 +2003,6 @@
         function scrollToTop() {
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
-        }
-
-        var modal = document.getElementById('myModal');
-        var openModalBtn = document.getElementById('openModalBtn');
-        var closeModalBtn = document.getElementById('closeModalBtn');
-
-        // Fungsi untuk menampilkan modal
-        openModalBtn.onclick = function() {
-            modal.style.display = 'block';
         }
 
         // Menutup modal jika area di luar modal diklik

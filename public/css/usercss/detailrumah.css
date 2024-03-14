@@ -119,8 +119,10 @@
     font-size: 12px;
 }
 
+/* TANGGAL */
+
 #datetimepicker {
-    background: linear-gradient(to bottom right, #6a0dad, #cf93ff);
+    background: linear-gradient(135deg, #8a2be2, #800080);
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -149,18 +151,33 @@
                             thead {
                                 color: white !important;
 
+
                                 tr {
                                     display: flex;
                                     align-items: center;
                                     justify-content: center;
 
-                                    .prev {
+                                    .picker-switch {
+                                        pointer-events: none;
+                                    }
+
+                                    /* .prev {
                                         height: fit-content;
                                         width: fit-content;
 
                                         span {
-                                            height: 0;
+                                            height: 2rem;
+                                            width: 2rem;
                                         }
+                                    } */
+
+                                    th:hover {
+                                        background-color: unset;
+                                        content: unset;
+                                    }
+
+                                    th.prev.disabled {
+                                        color: rgba(255, 253, 253, 0.642) !important;
                                     }
                                 }
                             }
@@ -170,6 +187,7 @@
                                 width: 79vw !important;
                                 overflow-x: auto !important;
                                 margin-top: .35rem;
+                                gap: .25rem;
 
                                 tr {
                                     display: flex !important;
@@ -184,7 +202,8 @@
                                         justify-content: center;
                                         border-radius: .4rem;
                                         border: unset !important;
-                                        color: black !important;
+                                        color: white;
+                                        flex: 0 0 auto;
                                     }
 
                                     td:hover {
@@ -195,6 +214,23 @@
                                     td.day.old,
                                     .day.new {
                                         display: none !important;
+                                    }
+
+                                    td.active {
+                                        background-color: white !important;
+                                        border-radius: 6.5px;
+                                        color: rgb(0, 0, 0) !important;
+                                        font-weight: normal !important;
+                                        font-size: .95rem !important;
+                                    }
+
+                                    td.today {
+                                        font-weight: bold;
+                                    }
+
+                                    td:before {
+                                        display: none !important;
+                                        content: '' !important;
                                     }
                                 }
                             }
@@ -231,33 +267,22 @@
 .bootstrap-datetimepicker-widget table td.second:hover,
 .bootstrap-datetimepicker-widget table td span:hover {
     /* Hintergrundfarbe für die angehoverte Auswahl */
-    color: #000000 !important;
-    background: #ffffff;
+    background: #f5f5f5;
 }
 
-.bootstrap-datetimepicker-widget table td.active,
-.bootstrap-datetimepicker-widget table td.active:hover,
-.bootstrap-datetimepicker-widget table td span.active {
-    /* Hintergrundfarbe für die aktive Auswahl */
-    background-color: #ffffff;
-    color: #000000 !important;
+.datepicker-days tbody .day.date-passed {
+    color: #ccc !important;
+    /* Mengubah warna menjadi abu-abu */
+    pointer-events: none;
+    /* Menonaktifkan klik pada tanggal yang sudah lewat */
 }
-
-.bootstrap-datetimepicker-widget a {
-    /* Für das Kalender-Icon, das Uhrzeit-Icon und die Pfeile in der Uhrzeitauswahl*/
-    color: #000000;
-}
-
-.timepicker-picker .btn-primary {
-    /* Für den Button AM / PM*/
-    color: #fff;
-    background-color: #ff007d;
-    border-color: #ff007d;
-}
-
 
 thead tr:nth-child(2) {
     display: none !important;
+}
+
+.day.disabled {
+    color: rgba(255, 253, 253, 0.642) !important;
 }
 
 /* TANGGAL */

@@ -49,24 +49,28 @@
 <body>
     <div class="sticky-bottom">
         <nav class="nav">
-            <a href="{{ asset('/user/home') }}" class="nav__link">
-                <i class="bi bi-house-door"></i>
+            <a href="{{ asset('/pemilik/home') }}" class="nav__link">
+                <ion-icon name="home-outline" style="font-size: 20px;"></ion-icon>
                 <span class="nav__text">Beranda</span>
             </a>
-            <a href="{{ asset('/user/kamar') }}" class="nav__link">
-                <i class="bi bi-door-closed"></i>
-                <span class="nav__text">Kamar</span>
+            <a href="{{ asset('/pemilik/area') }}" class="nav__link">
+                <ion-icon name="location-outline" style="font-size: 20px;"></ion-icon>
+                <span class="nav__text">Area Kost</span>
             </a>
-            <div class="nav__link" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                <i class="bi bi-chat-dots"></i>
-                <span class="nav__text">Lapor</span>
-            </div>
-            <a href="{{ asset('/user/riwayat') }}" class="nav__link">
-                <i class="bi bi-clock"></i>
+            <a href="{{ asset('/pemilik/transaksi') }}" class="nav__link">
+                <ion-icon name="newspaper-outline" style="font-size: 20px;"></ion-icon>
+                <span class="nav__text">Transaksi</span>
+            </a>
+            <a href="{{ asset('/pemilik/pengguna') }}" class="nav__link">
+                <ion-icon name="people-outline" style="font-size: 20px;"></ion-icon>
+                <span class="nav__text">Pengguna</span>
+            </a>
+            <a href="{{ asset('/pemilik/riwayat') }}" class="nav__link">
+                <ion-icon name="time-outline" style="font-size: 20px;"></ion-icon>
                 <span class="nav__text">Riwayat</span>
             </a>
-            <a href="{{ asset('/user/profil') }}" class="nav__link nav-active">
-                <i class="bi bi-person-fill"></i>
+            <a href="{{ asset('/pemilik/profil') }}" class="nav__link nav-active">
+                <ion-icon name="person" style="font-size: 19px; margin-bottom: 1px;"></ion-icon>
                 <span class="nav__text">Profil</span>
             </a>
         </nav>
@@ -171,9 +175,9 @@
                 </div>
             </div>
             <form action="/favorit">
-                <button class="btn-edit-akun"><i class="bi bi-heart-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: #9370DB;"></i>Kamar Kost Favorit<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 6.8rem;"></i></button>
+                <button class="btn-edit-akun"><i class="bi bi-book-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: #9370DB;"></i>Kebijakan Dan Ketentuan<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 4rem;"></i></button>
             </form>
-            <button class="btn-edit-akun" data-bs-toggle="modal" data-bs-target="#bantuan"><i class="bi bi-question-circle-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: #9370DB;"></i>Bantuan<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 11.2rem;"></i></button>
+            <button class="btn-edit-akun" data-bs-toggle="modal" data-bs-target="#bantuan"><i class="bi bi-star-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: #9370DB;"></i>Blast Notifikasi<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 8.8rem;"></i></button>
             <!-- Modal -->
             <div class="modal fade" id="bantuan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -185,7 +189,7 @@
                                         <img src="{{ asset('img/info.png') }}" width="100" height="100">
                                     </div>
                                     <div class="col-12 text-center mt-2">
-                                        <h3 class="fw-semibold" style="font-size: 16px;">Bantuan</h3>
+                                        <h3 class="fw-semibold" style="font-size: 16px;">Blast Notifikasi</h3>
                                     </div>
                                     <div class="col-12 text-center">
                                         <form action="https://api.whatsapp.com/send" method="get" target="_blank" rel="noopener noreferrer">
@@ -199,7 +203,7 @@
                     </div>
                 </div>
             </div>
-            <button class="btn-edit-akun" data-bs-toggle="modal" data-bs-target="#editsandi"><i class="bi bi-lock-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: #9370DB;"></i>Edit Kata Sandi<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 8.4rem;"></i></button>
+            <button class="btn-edit-akun" data-bs-toggle="modal" data-bs-target="#editsandi"><i class="bi bi-lock-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: #9370DB;"></i>Edit Kata Sandi<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 8.6rem;"></i></button>
             <!-- Modal -->
             <div class="modal fade" id="editsandi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -240,7 +244,7 @@
                     </div>
                 </div>
             </div>
-            <button class="btn-logout" data-bs-toggle="modal" data-bs-target="#logout"><i class="bi bi-arrow-right-square-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: red;"></i>Logout<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 12rem;"></i></button>
+            <button class="btn-logout" data-bs-toggle="modal" data-bs-target="#logout"><i class="bi bi-arrow-right-square-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: red;"></i>Logout<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 12.2rem;"></i></button>
             <!-- Modal -->
             <div class="modal fade" id="logout" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
