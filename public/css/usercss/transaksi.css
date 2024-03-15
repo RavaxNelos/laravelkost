@@ -1,0 +1,109 @@
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+.hr-divider {
+  border-top: 10px solid #ccc;
+  margin: 0;
+  /* Hilangkan margin default dari <hr> */
+}
+
+.hr-tebal {
+  border-top: 10px solid #ccc;
+  margin: 0;
+  /* Hilangkan margin default dari <hr> */
+}
+
+.hr-tipis {
+  border-top: 3px solid #ccc;
+  margin: 0;
+  /* Hilangkan margin default dari <hr> */
+}
+
+.hr-terakhir {
+  border-top: 14px solid #ccc;
+  margin-bottom: 4.3rem;
+  /* Hilangkan margin default dari <hr> */
+}
+
+.hr-tengah {
+  border-top: 2px dashed #000000;
+  margin-top: 12px;
+}
+
+.hr-rincian-pesanan {
+  border-top: 2px solid #ccc;
+  margin-top: 10px;
+}
+
+.hr-pembayaran {
+  border-top: 10px solid #ccc;
+  margin-top: 1.6rem;
+  /* Hilangkan margin default dari <hr> */
+}
+
+.metode-pembayaran {
+  border-top: 2px solid #ccc;
+  margin-top: 1rem;
+  /* Hilangkan margin default dari <hr> */
+}
+
+.buttons-container {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  border-radius: 30px !important;
+  padding: 10px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+}
+
+button.active {
+  background-color: #9b59b6;
+  color: #fff;
+  border: 1px solid #8e44ad;
+}
+
+button.tokokamarkost {
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #8e44ad;
+}
+
+.sticky-bottom {
+  position: fixed !important;
+  bottom: 0px !important;
+  background-color: white;
+  width: 100%;
+  height: 70px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+.btn-bawah .btn {
+  color: white;
+  background: rgb(106, 5, 114);
+  background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%);
+  margin-top: -14px;
+}
+
+.btn-confirm {
+  border: 2px solid #9370DB !important;
+  color: white !important;
+  border-radius: 8px !important;
+}
+
+.btn-back-home {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  font-weight: bold;
+  font-size: 24px;
+  color: rgb(0, 0, 0);
+  transition: color 0.3s ease !important;
+}

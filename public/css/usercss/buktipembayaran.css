@@ -1,0 +1,53 @@
+hr.garis-1 {
+    margin-top: 0px;
+    border-top: 10px solid #ccc;
+
+}
+
+hr.garis-2 {
+    margin-top: 10px;
+    border-top: 2px dashed #ccc;
+}
+
+hr.garis-3 {
+    margin-top: 30px;
+    border-top: 10px solid #ccc;
+}
+hr.garis-4 {
+    margin-top: 0rem;
+    border-top: 10px solid #ccc;
+}
+
+.btn-back-home {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background-color: transparent;
+    font-weight: bold;
+    font-size: 24px;
+    color: rgb(0, 0, 0);
+    transition: color 0.3s ease !important;
+  }
+
+  .btn-kost-populer {
+    border: 1px solid #0000009c;
+    border-radius: 10px;
+    color: #0000009c;
+    width: 80px;
+    height: 30px;
+    font-size: 15px;
+    color: #9b59b6;
+    background-color: white;
+}
+
+.card.populer::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px; /* Sesuaikan tinggi shadow sesuai kebutuhan */
+    background: rgba(0, 0, 0, 0.1); /* Warna shadow */
+    border-radius: 0 0 8px 8px; /* Sesuaikan radius shadow sesuai kebutuhan */
+  }

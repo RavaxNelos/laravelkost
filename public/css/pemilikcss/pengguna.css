@@ -1,0 +1,71 @@
+.nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 55px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+    display: flex;
+    overflow-x: auto;
+}
+
+.nav__link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    max-width: 50px;
+    /* overflow: hidden; */
+    white-space: nowrap;
+    font-family: sans-serif;
+    color: #444444;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: background-color 0.1s ease-in-out, margin 0.3s;
+    margin: 0 6px;
+}
+
+.nav__text {
+    font-size: 10px;
+}
+
+.nav-active {
+    color: purple;
+    font-weight: bold;
+}
+
+.nav__link:hover {
+    color: purple;
+    font-weight: bold;
+}
+
+button.btn-aktif {
+    width: 180px;
+    padding: 4px;
+    color: white;
+    border: 1px solid #800080;
+    background: black;
+}
+
+button.btn-non-aktif {
+    width: 180px;
+    padding: 4px;
+    border: none;
+    background: transparent;
+    color: gray;
+}
+
+.sticky-top {
+    background-color: transparent;
+    /* Atau warna lain sesuai kebutuhan */
+    transition: background-color 0.3s ease;
+    /* Animasi perubahan warna latar belakang */
+}
+
+.sticky-top.scrolled {
+    background-color: white;
+    /* Warna putih sesuai kebutuhan */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    /* Contoh penambahan shadow saat di-scroll */
+}

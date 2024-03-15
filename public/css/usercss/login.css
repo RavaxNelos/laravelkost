@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@400;500;600;700&family=KoHo:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Lemon&family=Oleo+Script:wght@400;700&family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Pacifico&family=Permanent+Marker&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sniglet:wght@400;800&display=swap');
+
+@media screen and (max-width: 600px) {
+
+    /* Gaya khusus untuk perangkat dengan lebar layar maksimum 600px */
+}
+
+body {
+    overflow: hidden;
+    background: url('/img/background-login.jpg') no-repeat center center fixed;
+    /* Ganti 'path/to/your/image.jpg' dengan path atau URL gambar pemandangan Anda */
+    background-size: cover;
+    /* Menutupi seluruh elemen dengan gambar */
+}
+
+.card {
+    margin-top: -50px;
+}
+
+.text-indah {
+    color: #000000;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.text-indah a {
+    font-style: italic;
+    transition: color 0.3s;
+
+}
+
+.text-indah a:hover {
+    color: rgba(255, 255, 255, 0.8);
+
+}
+
+h1.card-title {
+    font-size: 20px;
+    margin-top: 20px;
+    font-family: Poppins;
+    font-weight: 800;
+}
+
+.form-control:focus {
+    box-shadow: none !important;
+    border-color: #000000 !important;
+}
+
+button.btn-login {
+    margin-top: 20px;
+    background: #dcdcdc;
+    color: #000000;
+}
+
+button.btn-login:hover {
+    background: rgba(0, 0, 0, 0.8);
+    color: #ffffff;
+    transition: 0.5s;
+}

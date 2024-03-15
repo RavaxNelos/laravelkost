@@ -1,0 +1,318 @@
+body {
+    font-family: Poppins, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 55px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+    display: flex;
+    overflow-x: auto;
+}
+
+.nav__link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    max-width: 50px;
+    /* overflow: hidden; */
+    white-space: nowrap;
+    font-family: sans-serif;
+    font-size: 20px;
+    color: #444444;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: background-color 0.1s ease-in-out, margin 0.3s;
+    margin: 0 11px;
+}
+
+.nav__text {
+    font-size: 12px;
+}
+
+.nav-active {
+    color: purple;
+    font-weight: bold;
+}
+
+.nav__link:hover {
+    color: purple;
+    font-weight: bold;
+}
+
+.btn-like-detail {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.fixed-top {
+    height: 60px;
+    background-color: transparent;
+    /* Atau warna lain sesuai kebutuhan */
+    transition: background-color 0.3s ease;
+    /* Animasi perubahan warna latar belakang */
+}
+
+.fixed-top.scrolled {
+    height: 60px;
+    background-color: white;
+    box-shadow: 0px 0px 4px #000000;
+    /* Warna putih sesuai kebutuhan */
+}
+
+.label-upload {
+    width: 50px;
+    height: 50px;
+    top: 0px;
+    left: 55px;
+    position: absolute;
+}
+
+.label-upload i {
+    position: absolute !important;
+    top: 50px !important;
+    font-size: 40px;
+    color: #ffffff;
+}
+
+.select-menu {
+    width: 336px;
+    margin: 0px;
+}
+
+.select-menu .select-btn {
+    display: flex;
+    height: 30px;
+    background: #fff;
+    padding: 20px;
+    font-size: 18px;
+    font-weight: 400;
+    border-radius: 8px;
+    align-items: center;
+    cursor: pointer;
+    justify-content: space-between;
+    border: 1px solid purple;
+}
+
+.select-btn i {
+    font-size: 25px;
+    transition: 0.3s;
+}
+
+.select-menu.active .select-btn i {
+    transform: rotate(-180deg);
+}
+
+.select-menu .options {
+    position: relative;
+    padding: 0px;
+    margin-top: 10px;
+    border-radius: 8px;
+    background: #fff;
+    border: 1px solid purple;
+    display: none;
+}
+
+.select-menu.active .options {
+    display: block;
+}
+
+.options {
+    max-height: 350px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    list-style-type: none;
+    padding: 0;
+}
+
+.options .option {
+    position: relative;
+    padding-left: 20px;
+    padding-bottom: 0px;
+    display: flex;
+    height: 50px;
+    cursor: pointer;
+    border-radius: 8px;
+    align-items: center;
+    background: #fff;
+    text-align: justify;
+}
+
+.option i {
+    font-size: 25px;
+    margin-right: 12px;
+}
+
+.option .option-text {
+    font-size: 12px;
+    color: #000000;
+}
+
+.option .option-angka {
+    display: inline-block;
+    font-size: 12px;
+    color: #000000;
+    margin-right: 8px;
+}
+
+.optionend .option-angka {
+    display: inline-block;
+    font-size: 12px;
+    color: #000000;
+    margin-right: 8px;
+}
+
+.options .optionend {
+    text-align: justify;
+    display: flex;
+    height: 50px;
+    cursor: pointer;
+    padding: 0 16px;
+    border-radius: 8px;
+    align-items: center;
+    background: #fff;
+}
+
+.optionend i {
+    font-size: 25px;
+    margin-right: 2px;
+}
+
+.optionend .option-text {
+    font-size: 12px;
+    color: #000000;
+}
+
+.option {
+    position: relative;
+    padding-bottom: 10px;
+    /* Atur sesuai keinginan untuk memberikan ruang di antara teks dan garis */
+}
+
+.option::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    /* Atur ketebalan garis */
+    background-color: purple;
+    display: inline-block;
+    /* Atur warna garis */
+}
+
+.cardsidebar {
+    display: none;
+    position: absolute;
+    /* Hide the card by default */
+    border-radius: 8px;
+    width: 200px;
+    height: 80px;
+    background-color: #ffffff;
+    /* padding: 10px; */
+    border: 1px solid #ccc;
+    /* margin-top: -200px; */
+    margin-left: 8.6rem;
+}
+
+.cardsidebar.show {
+    position: absolute;
+    top: 60px;
+    display: block;
+    background-color: #ffffff;
+    /* Show the sidebar when the 'show' class is present */
+}
+
+.lapor {
+    position: absolute;
+    left: 10px;
+    top: 48px;
+    font-size: 14px;
+    text-decoration: none;
+    color: #000000;
+}
+
+.lapor i {
+    color: red;
+    font-size: 12px;
+    margin-right: 4px;
+}
+
+.jadwal {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    font-size: 14px;
+    text-decoration: none;
+    color: #000000;
+}
+
+.jadwal i {
+    color: #9370DB;
+    font-size: 12px;
+    margin-right: 4px;
+}
+
+.kerusakan {
+    font-size: 14px;
+    text-decoration: none;
+    color: #000000;
+}
+
+.kerusakan i {
+    color: red;
+    font-size: 12px;
+    margin-right: 4px;
+}
+
+.kehilangan {
+    font-size: 14px;
+    text-decoration: none;
+    color: #000000;
+}
+
+.kehilangan i {
+    color: #9370DB;
+    font-size: 14px;
+    margin-right: 4px;
+}
+
+.modal {
+    display: none;
+    /* Sembunyikan modal secara default */
+    position: fixed;
+    /* Tetapkan posisi modal */
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* Lebar modal 100% dari layar */
+    height: 100%;
+    /* Tinggi modal 100% dari layar */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Warna latar belakang dengan transparansi */
+}
+
+.modal-content {
+    position: absolute;
+    bottom: 70px;
+    left: 20%;
+    background-color: #fefefe;
+    padding: 10px;
+    border: 1px solid #ccc;
+    width: 59%;
+}
