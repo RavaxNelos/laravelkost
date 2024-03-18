@@ -979,15 +979,25 @@
             popup.style.display = 'none';
         }
 
-        window.addEventListener('scroll', function() {
-            var stickyTop = document.getElementById('stickyTop');
+        document.addEventListener("DOMContentLoaded", function() {
+            var stickyTop = document.getElementById("stickyTop");
+            var lastScrollTop = 0;
+            var scrollThreshold = 6; // Ubah nilai sesuai dengan ukuran y yang diinginkan
 
-            // Jika posisi scroll lebih dari 0, ubah background menjadi putih, jika tidak, kembalikan ke transparan
-            if (window.scrollY > 0) {
-                stickyTop.classList.add('bg-white');
-            } else {
-                stickyTop.classList.remove('bg-white');
-            }
+            window.addEventListener("scroll", function() {
+                var scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+                if (scrollTop > scrollThreshold) {
+                    // User sedang scroll ke bawah, dan sudah scroll melebihi nilai y yang ditentukan
+                    stickyTop.classList.add("scrolled");
+                } else {
+                    // User sedang di atas sendiri
+                    stickyTop.classList.remove("scrolled");
+                }
+
+                lastScrollTop = scrollTop;
+            });
+
         });
 
         function resetScroll(id) {

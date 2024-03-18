@@ -9,6 +9,21 @@
     overflow-x: auto;
 }
 
+.sticky-top {
+    background-color: transparent;
+    /* Atau warna lain sesuai kebutuhan */
+    transition: background-color 0.3s ease;
+    /* Animasi perubahan warna latar belakang */
+}
+
+.sticky-top.scrolled {
+    background-color: white;
+    /* Warna putih sesuai kebutuhan */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    /* Contoh penambahan shadow saat di-scroll */
+    height: 50px;
+}
+
 .nav__link {
     display: flex;
     flex-direction: column;

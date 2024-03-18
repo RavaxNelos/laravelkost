@@ -51,7 +51,7 @@
     border: 1px solid rgba(128, 0, 128, 0.9);
 }
 
-.btn-pesan {
+/* .btn-pesan {
     width: 238px;
     height: 40px;
     background: rgb(106, 5, 114);
@@ -66,6 +66,32 @@
 .btn-pesan:hover {
     background-color: #9370DB;
     border: 1px solid rgba(128, 0, 128, 0.9);
+} */
+
+.btn-dark:enabled {
+    width: 238px;
+    height: 40px;
+    background: rgb(106, 5, 114);
+    background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%);
+    border-radius: 10px;
+    border: none;
+    color: #ffffff;
+    margin-left: -20px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-dark[disabled] {
+    width: 238px;
+    height: 40px;
+    background-color: #e0e0e0;
+    /* Warna abu-abu */
+    color: #616161;
+    /* Warna teks abu-abu yang cocok */
+    cursor: not-allowed;
+    /* Mengubah kursor saat tombol nonaktif */
+    border-radius: 10px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    margin-left: -20px;
 }
 
 .fixed-top {

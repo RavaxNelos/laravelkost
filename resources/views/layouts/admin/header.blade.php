@@ -12,7 +12,7 @@
                 </a>
             </li>
         </ul>
-        <ul class="navbar-nav quick-links d-none d-lg-flex">
+        {{-- <ul class="navbar-nav quick-links d-none d-lg-flex">
             <li class="nav-item dropdown hover-dd d-none d-lg-block">
                 <a class="nav-link" href="javascript:void(0)" data-bs-toggle="dropdown">Apps<span class="mt-1"><i class="ti ti-chevron-down"></i></span></a>
                 <div class="dropdown-menu dropdown-menu-nav dropdown-menu-animate-up py-0">
@@ -155,7 +155,7 @@
             <li class="nav-item dropdown-hover d-none d-lg-block">
                 <a class="nav-link" href="app-email.html">Email</a>
             </li>
-        </ul>
+        </ul> --}}
         <div class="d-block d-lg-none">
             <img src="{{ asset('admin') }}/dist/images/logos/dark-logo.svg" class="dark-logo" width="180" alt="" />
             <img src="{{ asset('admin') }}/dist/images/logos/light-logo.svg" class="light-logo" width="180" alt="" />
@@ -171,7 +171,7 @@
                     <i class="ti ti-align-justified fs-7"></i>
                 </a>
                 <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-center">
-                    <li class="nav-item dropdown">
+                    {{-- <li class="nav-item dropdown">
                         <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="{{ asset('admin') }}/dist/images/svgs/icon-flag-en.svg" alt="" class="rounded-circle object-fit-cover round-20">
                         </a>
@@ -203,14 +203,14 @@
                                 </a>
                             </div>
                         </div>
-                    </li>
-                    <li class="nav-item">
+                    </li> --}}
+                    {{-- <li class="nav-item">
                         <a class="nav-link notify-badge nav-icon-hover" href="javascript:void(0)" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                             <i class="ti ti-basket"></i>
                             <span class="badge rounded-pill bg-danger fs-2">2</span>
                         </a>
-                    </li>
-                    <li class="nav-item dropdown">
+                    </li> --}}
+                    {{-- <li class="nav-item dropdown">
                         <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="ti ti-bell-ringing"></i>
                             <div class="notification bg-primary rounded-circle"></div>
@@ -280,7 +280,7 @@
                                 <button class="btn btn-outline-primary w-100"> See All Notifications </button>
                             </div>
                         </div>
-                    </li>
+                    </li> --}}
                     <li class="nav-item dropdown">
                         <a class="nav-link pe-0" href="javascript:void(0)" id="drop1" data-bs-toggle="dropdown" aria-expanded="false">
                             <div class="d-flex align-items-center">

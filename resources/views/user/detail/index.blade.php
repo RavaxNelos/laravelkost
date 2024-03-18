@@ -75,7 +75,6 @@
 
         html,
         body {
-            user-drag: none;
             user-select: none;
         }
 
@@ -277,19 +276,13 @@
         <div class="splide__track">
             <ul class="splide__list">
                 <li class="splide__slide">
-                    <div style="max-width: 300%; min-height: 100px; min-width: 250px; position: relative;">
-                        <img src="{{ asset('img/kostsurabaya6.jpg') }}"style="border-radius: 0px;" class="w-100">
-                    </div>
+                    <img src="{{ asset('img/kostsurabaya6.jpg') }}" style="height: 270px; position: relative; object-fit: cover;border-radius: 0px;" class="w-100">
                 </li>
                 <li class="splide__slide">
-                    <div style="max-width: 300%; min-height: 100px; min-width: 250px; position: relative;">
-                        <img src="{{ asset('img/kostsurabaya15.jpg') }}"style="border-radius: 0px;" class="w-100">
-                    </div>
+                    <img src="{{ asset('img/kostsurabaya7.jpg') }}" style="height: 270px; position: relative; object-fit: cover;border-radius: 0px;" class="w-100">
                 </li>
                 <li class="splide__slide">
-                    <div style="max-width: 300%; min-height: 100px; min-width: 250px; position: relative;">
-                        <img src="{{ asset('img/kostsurabaya1.jpg') }}"style="border-radius: 0px;" class="w-100">
-                    </div>
+                    <img src="{{ asset('img/kostsurabaya8.jpg') }}" style="height: 270px; position: relative; object-fit: cover;border-radius: 0px;" class="w-100">
                 </li>
             </ul>
         </div>
@@ -619,8 +612,8 @@
                     </a>
                 </div>
                 <div class="col-8 mt-3">
-                    <form action="/user/transaksi">
-                        <button class="btn-pesan">Pesan Sekarang</button>
+                    <form action="{{ asset('/user/transaksi') }}">
+                        <button type="submit" class="btn btn-dark" id="btnPesanSekarang" disabled>Pesan Sekarang</button>
                     </form>
                 </div>
             </div>
@@ -674,7 +667,8 @@
             autoplay: true,
             lazyLoad: 'nearby',
             arrows: false,
-            interval: '2000'
+            interval: '2000',
+            autoWidth: true
         });
         splide.mount();
         // var splide = new Splide('.splide.new-3', {
@@ -755,6 +749,7 @@
             popupBackground.style.display = 'none';
             popup.style.display = 'none';
         }
+
         document.addEventListener("DOMContentLoaded", function() {
             var stickyTop = document.getElementById("stickyTop");
             var lastScrollTop = 0;
@@ -857,6 +852,37 @@
                 "type": "button",
             });
         }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // Fungsi untuk memeriksa apakah tanggal dan jam sudah dipilih
+            function cekPilihan() {
+                var tanggal = document.getElementById("datetimepicker").value;
+                var jam = document.querySelector(".btn-waktu.active");
+
+                // Jika tanggal dan jam sudah dipilih, aktifkan tombol "Pesan Sekarang"
+                if (tanggal !== '' && jam !== null) {
+                    document.getElementById("btnPesanSekarang").disabled = false;
+                } else {
+                    document.getElementById("btnPesanSekarang").disabled = true;
+                }
+            }
+
+            // Panggil fungsi cekPilihan setiap kali ada perubahan pada tanggal atau jam
+            document.getElementById("datetimepicker").addEventListener("change", cekPilihan);
+            var waktuButtons = document.querySelectorAll(".btn-waktu");
+            waktuButtons.forEach(function(button) {
+                button.addEventListener("click", function() {
+                    waktuButtons.forEach(function(btn) {
+                        btn.classList.remove("active");
+                    });
+                    button.classList.add("active");
+                    cekPilihan();
+                });
+            });
+
+            // Panggil cekPilihan saat halaman dimuat untuk menentukan status awal tombol
+            cekPilihan();
+        });
     </script>
 </body>
 

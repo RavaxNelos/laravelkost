@@ -174,9 +174,75 @@
                     </div>
                 </div>
             </div>
-            <form action="/favorit">
-                <button class="btn-edit-akun"><i class="bi bi-book-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: #9370DB;"></i>Kebijakan Dan Ketentuan<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 4rem;"></i></button>
-            </form>
+            <button class="btn-edit-akun" data-bs-toggle="modal" data-bs-target="#kebijakan"><i class="bi bi-book-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: #9370DB;"></i>Kebijakan Dan Ketentuan<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 4rem;"></i>
+            </button>
+            <!-- Modal -->
+
+            <div class="modal fade" id="kebijakan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content" style="height: 300px; position: absolute; top: 25%;">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Kebijakan Dan Ketentuan</h1>
+                        </div>
+                        <div class="modal-body">
+                            <div class="col-12 text-start">
+                                <p class="fw-medium" style="font-size: 18px;">Deskripsi Layanan :</p>
+                            </div>
+                            <div class="col-12">
+                                <p class="fw-medium" style="font-size: 14px;">Ngekost adalah platform penyewaan kamar kost yang memungkinkan pengguna untuk mencari, menemukan, dan menyewa kamar kost yang sesuai dengan kebutuhan mereka.</p>
+                            </div>
+                            <div class="col-12 text-start">
+                                <p class="fw-medium" style="font-size: 18px;">Syarat Penggunaan :</p>
+                            </div>
+                            <div class="col-12">
+                                <p class="fw-medium" style="font-size: 14px;">Pengguna harus berusia minimal 18 tahun untuk menggunakan layanan Ngekost. Pengguna bertanggung jawab sepenuhnya atas informasi yang diberikan dan harus mematuhi peraturan penggunaan yang berlaku.</p>
+                            </div>
+                            <div class="col-12 text-start">
+                                <p class="fw-medium" style="font-size: 18px;">Privasi :</p>
+                            </div>
+                            <div class="col-12">
+                                <p class="fw-medium" style="font-size: 14px;">Kami menghargai privasi pengguna kami dan berkomitmen untuk melindungi data pribadi mereka. Informasi pribadi yang dikumpulkan oleh Ngekost akan digunakan secara hati-hati dan tidak akan dibagikan kepada pihak ketiga tanpa izin.</p>
+                            </div>
+                            <div class="col-12 text-start">
+                                <p class="fw-medium" style="font-size: 18px;">Hak Cipta dan Kekayaan Intelektual :</p>
+                            </div>
+                            <div class="col-12">
+                                <p class="fw-medium" style="font-size: 14px;">Seluruh materi di situs web Ngekost, termasuk teks, gambar, dan desain, dilindungi oleh hak cipta dan merupakan milik Ngekost. Pengguna dilarang menggandakan, mendistribusikan, atau menggunakan materi tersebut tanpa izin.</p>
+                            </div>
+                            <div class="col-12 text-start">
+                                <p class="fw-medium" style="font-size: 18px;">Pembayaran dan Pembatalan :</p>
+                            </div>
+                            <div class="col-12">
+                                <p class="fw-medium" style="font-size: 14px;">Pembayaran untuk kamar kost harus dilakukan sesuai dengan ketentuan yang ditetapkan. Pengguna dapat membatalkan pesanan dengan mengikuti kebijakan pembatalan yang berlaku dan mungkin dikenai biaya pembatalan sesuai dengan kebijakan kami.</p>
+                            </div>
+                            <div class="col-12 text-start">
+                                <p class="fw-medium" style="font-size: 18px;">Batasan Tanggung Jawab :</p>
+                            </div>
+                            <div class="col-12">
+                                <p class="fw-medium" style="font-size: 14px;">Ngekost tidak bertanggung jawab atas kerugian atau kerusakan yang timbul dari penggunaan layanan kami, termasuk kerugian finansial, kehilangan data, atau kerusakan fisik.</p>
+                            </div>
+                            <div class="col-12 text-start">
+                                <p class="fw-medium" style="font-size: 18px;">Perubahan dan Pembaruan :</p>
+                            </div>
+                            <div class="col-12">
+                                <p class="fw-medium" style="font-size: 14px;">Ngekost berhak untuk mengubah atau memperbarui ketentuan dan kebijakan kami tanpa pemberitahuan sebelumnya. Perubahan tersebut akan berlaku segera setelah diterbitkan di situs web kami.</p>
+                            </div>
+                            <div class="col-12 text-start">
+                                <p class="fw-medium" style="font-size: 18px;">Hukum yang Berlaku :</p>
+                            </div>
+                            <div class="col-12">
+                                <p class="fw-medium" style="font-size: 14px;">Kebijakan dan ketentuan penggunaan Ngekost diatur oleh hukum Republik Indonesia. Setiap perselisihan yang timbul akan diselesaikan secara damai dan dapat dibawa ke pengadilan yang berwenang.</p>
+                            </div>
+                            <div class="col-12 text-start">
+                                <p class="fw-medium" style="font-size: 18px;">Persetujuan Pengguna :</p>
+                            </div>
+                            <div class="col-12">
+                                <p class="fw-medium" style="font-size: 14px;">Dengan menggunakan layanan Ngekost, pengguna dianggap telah membaca, memahami, dan menyetujui semua ketentuan dan kebijakan yang tercantum di situs web kami.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <button class="btn-edit-akun" data-bs-toggle="modal" data-bs-target="#bantuan"><i class="bi bi-star-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: #9370DB;"></i>Blast Notifikasi<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 8.8rem;"></i></button>
             <!-- Modal -->
             <div class="modal fade" id="bantuan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -233,10 +299,38 @@
                                         <i class="bi bi-eye-slash" id="toggleKonfirmasiBaru" onclick="togglePassword('konfirmasikatasandibaru')" style="position: absolute; font-size: 20px; right: 40px; top: 324px; cursor: pointer;"></i>
                                     </div>
                                     <div class="col-12 text-start">
-                                        <p class="fw-normal" style="font-size: 14px;">Lupa kata Sandi?<a href="#" style="font-style: italic; color: #9370DB; text-decoration: none; margin-left: 4px;">Klik Disini</a></p>
+                                        <p class="fw-normal" style="font-size: 14px;">Lupa kata Sandi?<a data-bs-toggle="modal" data-bs-target="#lupasandi" style="font-style: italic; color: #9370DB; text-decoration: none; margin-left: 4px;">Klik Disini</a></p>
                                     </div>
                                     <div class="col-12 text-center mt-2">
                                         <button id="simpanPasswordButton" class="btn btn-secondary" style="color: white; border: none;" disabled>Simpan</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="lupasandi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="border: 1px solid #800080; border-radius: 20px; margin-top: 10rem;">
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12 text-center">
+                                        <img src="{{ asset('img/security.png') }}" width="100" height="100">
+                                    </div>
+                                    <div class="col-12 text-center mt-2">
+                                        <h3 class="fw-semibold" style="font-size: 16px;">Lupa Kata Sandi?</h3>
+                                    </div>
+                                    <div class="col-12 text-start">
+                                        <label for="name" class="fw-medium" style="font-size: 14px;">Masukkan Email <span class="text-danger">*</span></label>
+                                        <input type="email" class="input-email" id="email" placeholder="Ketik Emailmu..." style="font-size: 14px;">
+                                    </div>
+                                    <div class="col-12 text-center mt-2">
+                                        <button id="simpanPasswordButton" class="btn btn-secondary" style="color: white; border: none;" disabled>Kirim</button>
+                                    </div>
+                                    <div class="col-12 text-center">
+                                        <a data-bs-toggle="modal" data-bs-target="#editsandi" style="text-decoration: none; font-size: 14px; color: #9370DB;">Kembali Ke Halaman Ubah Sandi</a>
                                     </div>
                                 </div>
                             </div>

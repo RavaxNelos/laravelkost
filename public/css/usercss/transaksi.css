@@ -83,10 +83,23 @@ button.tokokamarkost {
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
 }
 
-.btn-bawah .btn {
+.btn-dark:enabled {
   color: white;
   background: rgb(106, 5, 114);
   background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%);
+  margin-top: -14px;
+}
+
+.btn-dark[disabled] {
+  background-color: #e0e0e0;
+  /* Warna abu-abu */
+  color: #616161;
+  /* Warna teks abu-abu yang cocok */
+  cursor: not-allowed;
+  /* Mengubah kursor saat tombol nonaktif */
+  border-radius: 10px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  margin-left: -20px;
   margin-top: -14px;
 }
 
