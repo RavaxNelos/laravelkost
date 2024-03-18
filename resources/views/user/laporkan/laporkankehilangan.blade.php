@@ -250,6 +250,151 @@
                 </div>
             </div>
         </div>
+        <div class="container" x-show="filter == 'riwayat'">
+            <div class="card-custom" style="width: 100%; height: auto; border-radius: 10px; background-color: gray;">
+                <div class="container py-3">
+                    <div class="card-custom-list">
+                        <div class="container py-2">
+                            <div class="row">
+                                <div class="col-5 text-start">
+                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">Nama User</h3>
+                                </div>
+                                <div class="col-7 text-end">
+                                    <h3 class="fw-medium" style="font-size: 14px; color: #333333;">Muhammad Ravanelo</h3>
+                                </div>
+                                <div class="col-5 text-start" style="margin-top: -6px;">
+                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">No. Kamar</h3>
+                                </div>
+                                <div class="col-7 text-end" style="margin-top: -6px;">
+                                    <h3 class="fw-medium" style="font-size: 14px; color: #333333;">Kamar No.1</h3>
+                                </div>
+                                <div class="col-6 text-start" style="margin-top: -6px;">
+                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">Lokasi Kehilangan</h3>
+                                </div>
+                                <div class="col-6 text-end" style="margin-top: -6px;">
+                                    <h3 class="fw-medium" style="font-size: 14px; color: #333333;">Di Kamar</h3>
+                                </div>
+                                <div class="col-6 text-start" style="margin-top: -6px;">
+                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">Yang Hilang</h3>
+                                </div>
+                                <div class="col-6 text-end" style="margin-top: -6px;">
+                                    <h3 class="fw-medium" style="font-size: 14px; color: #333333;">Handphone</h3>
+                                </div>
+                                <div class="col-7 text-start" style="margin-top: -6px;">
+                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">Tanggal Kehilangan</h3>
+                                </div>
+                                <div class="col-5 text-end" style="margin-top: -6px;">
+                                    <h3 class="fw-medium" style="font-size: 14px; color: #333333;">18-03-2024</h3>
+                                </div>
+                                <div class="col-6 text-start" style="margin-top: -6px;">
+                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">Jam Kehilangan</h3>
+                                </div>
+                                <div class="col-6 text-end" style="margin-top: -6px;">
+                                    <h3 class="fw-medium" style="font-size: 14px; color: #333333;">11.00 WIB</h3>
+                                </div>
+                            </div>
+                            <hr class="hr-garis-card">
+                            <div class="col-12 text-center">
+                                <h3 class="fw-medium" style="font-size: 14px; color: #9c27b0;">Selengkapnya</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-custom-list">
+                        <div class="container py-2">
+                            <div class="row">
+                                <div class="col-5 text-start">
+                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">Nama User</h3>
+                                </div>
+                                <div class="col-7 text-end">
+                                    <h3 class="fw-medium" style="font-size: 14px; color: #333333;">Adrian Kurniawan</h3>
+                                </div>
+                                <div class="col-5 text-start" style="margin-top: -6px;">
+                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">No. Kamar</h3>
+                                </div>
+                                <div class="col-7 text-end" style="margin-top: -6px;">
+                                    <h3 class="fw-medium" style="font-size: 14px; color: #333333;">Kamar No.1</h3>
+                                </div>
+                                <div class="col-6 text-start" style="margin-top: -6px;">
+                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">Lokasi Kehilangan</h3>
+                                </div>
+                                <div class="col-6 text-end" style="margin-top: -6px;">
+                                    <h3 class="fw-medium" style="font-size: 14px; color: #333333;">Di Kamar</h3>
+                                </div>
+                                <div class="col-6 text-start" style="margin-top: -6px;">
+                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">Yang Hilang</h3>
+                                </div>
+                                <div class="col-6 text-end" style="margin-top: -6px;">
+                                    <h3 class="fw-medium" style="font-size: 14px; color: #333333;">Handphone</h3>
+                                </div>
+                                <div class="col-7 text-start" style="margin-top: -6px;">
+                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">Tanggal Kehilangan</h3>
+                                </div>
+                                <div class="col-5 text-end" style="margin-top: -6px;">
+                                    <h3 class="fw-medium" style="font-size: 14px; color: #333333;">18-03-2024</h3>
+                                </div>
+                                <div class="col-6 text-start" style="margin-top: -6px;">
+                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">Jam Kehilangan</h3>
+                                </div>
+                                <div class="col-6 text-end" style="margin-top: -6px;">
+                                    <h3 class="fw-medium" style="font-size: 14px; color: #333333;">11.00 WIB</h3>
+                                </div>
+                            </div>
+                            <hr class="hr-garis-card">
+                            <div class="col-12 text-center">
+                                <h3 class="fw-medium" style="font-size: 14px; color: #9c27b0;">Selengkapnya</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-custom-list">
+                        <div class="container py-2">
+                            <div class="row">
+                                <div class="col-5 text-start">
+                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">Nama User</h3>
+                                </div>
+                                <div class="col-7 text-end">
+                                    <h3 class="fw-medium" style="font-size: 14px; color: #333333;">Brahmana</h3>
+                                </div>
+                                <div class="col-5 text-start" style="margin-top: -6px;">
+                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">No. Kamar</h3>
+                                </div>
+                                <div class="col-7 text-end" style="margin-top: -6px;">
+                                    <h3 class="fw-medium" style="font-size: 14px; color: #333333;">Kamar No.1</h3>
+                                </div>
+                                <div class="col-6 text-start" style="margin-top: -6px;">
+                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">Lokasi Kehilangan</h3>
+                                </div>
+                                <div class="col-6 text-end" style="margin-top: -6px;">
+                                    <h3 class="fw-medium" style="font-size: 14px; color: #333333;">Di Kamar</h3>
+                                </div>
+                                <div class="col-6 text-start" style="margin-top: -6px;">
+                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">Yang Hilang</h3>
+                                </div>
+                                <div class="col-6 text-end" style="margin-top: -6px;">
+                                    <h3 class="fw-medium" style="font-size: 14px; color: #333333;">Handphone</h3>
+                                </div>
+                                <div class="col-7 text-start" style="margin-top: -6px;">
+                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">Tanggal Kehilangan</h3>
+                                </div>
+                                <div class="col-5 text-end" style="margin-top: -6px;">
+                                    <h3 class="fw-medium" style="font-size: 14px; color: #333333;">18-03-2024</h3>
+                                </div>
+                                <div class="col-6 text-start" style="margin-top: -6px;">
+                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">Jam Kehilangan</h3>
+                                </div>
+                                <div class="col-6 text-end" style="margin-top: -6px;">
+                                    <h3 class="fw-medium" style="font-size: 14px; color: #333333;">11.00 WIB</h3>
+                                </div>
+                            </div>
+                            <hr class="hr-garis-card">
+                            <div class="col-12 text-center">
+                                <h3 class="fw-medium" style="font-size: 14px; color: #9c27b0;">Selengkapnya</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
     </section>
     <hr class="hr-1">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

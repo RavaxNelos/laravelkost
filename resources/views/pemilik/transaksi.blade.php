@@ -83,7 +83,7 @@
                 <h3 class="fw-semibold" style="font-size: 16px; color: #d8d8d8">Januari</h3>
                 <div class="custom-card-list" x-show="filter == 'bulanan'">
                     <div class="container py-2">
-                        <div class="row">
+                        <div class="row" style="margin-bottom: -4px;">
                             <div class="col-6 text-start">
                                 <h3 class="fw-medium" style="font-size: 14px; color:  #9400D3;">No. Pesanan</h3>
                             </div>
@@ -95,26 +95,26 @@
                             <div class="col-3 text-start">
                                 <img src="{{ asset('img/kamarkostputra1.jpg') }}" style="width: 80px; height: 70px; border-radius: 8px;">
                             </div>
-                            <div class="col-9">
+                            <div class="col-9" style="margin-left: 6px; width: 200px; margin-top: 2px;">
                                 <h3 class="fw-medium" style="font-size: 14px;">Kamar Kost Putra</h3>
                                 <p class="text-secondary fw-normal" style="font-size: 10px; margin-top: -6px; line-height: 14px; width: 190px;">Kamar Uk 3 x 4 M | K.Mandi Dlm | 1 AC PK | 1 Lemari | 2 Kasur | 1 Kulkas...</p>
                                 <h3 class="fw-semibold" style="font-size: 16px; color: #800080; font-family: Poppins; margin-top: -14px;">Rp. 2.300.000</h3>
                             </div>
                         </div>
-                        <hr class="hr-garis-card">
+                        <hr class="hr-garis-card" style="margin-top: 2px;">
                         <div class="row">
                             <div class="col-7 text-start">
                                 <p class="fw-normal mb-0" style="font-size: 12px; color:  #9400D3;">03 Januari 2024, 18.00 WIB</p>
                             </div>
                             <div class="col-5 text-end">
-                                <p class="text-success fw-normal mb-0" style="font-size: 12px;">Selesai</p>
+                                <p class="text-success fw-normal mb-0" style="font-size: 12px;">Lunas</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="custom-card-list" x-show="filter == 'harian'">
                     <div class="container py-2">
-                        <div class="row">
+                        <div class="row" style="margin-bottom: -4px;">
                             <div class="col-6 text-start">
                                 <h3 class="fw-medium" style="font-size: 14px; color:  #9400D3;">No. Pesanan</h3>
                             </div>
@@ -126,19 +126,19 @@
                             <div class="col-3 text-start">
                                 <img src="{{ asset('img/kamarkostputra2.jpg') }}" style="width: 80px; height: 70px; border-radius: 8px;">
                             </div>
-                            <div class="col-9">
+                            <div class="col-9" style="width: 200px; margin-left: 6px; margin-top: 2px;">
                                 <h3 class="fw-medium" style="font-size: 14px;">Kamar Kost Putra</h3>
                                 <p class="text-secondary fw-normal" style="font-size: 10px; margin-top: -6px; line-height: 14px; width: 190px;">Kamar Uk 4 x 4 M | K.Mandi Dlm | 1 AC PK | 1 Lemari | 2 Kasur | 1 Kulkas...</p>
                                 <h3 class="fw-semibold" style="font-size: 16px; color: #800080; font-family: Poppins; margin-top: -14px;">Rp. 525.000</h3>
                             </div>
                         </div>
-                        <hr class="hr-garis-card">
+                        <hr class="hr-garis-card" style="margin-top: 2px;">
                         <div class="row">
                             <div class="col-7 text-start">
                                 <p class="fw-normal mb-0" style="font-size: 12px; color:  #9400D3;">10 Januari 2024, 18.30 WIB</p>
                             </div>
                             <div class="col-5 text-end">
-                                <p class="fw-normal mb-0" style="font-size: 12px; color: #800080;">Berlangsung</p>
+                                <p class="fw-normal mb-0" style="font-size: 12px; color: #800080;">Belum Lunas</p>
                             </div>
                         </div>
                     </div>
@@ -146,7 +146,7 @@
                 <h3 class="fw-semibold" style="font-size: 16px; color: #d8d8d8">Februari</h3>
                 <div class="custom-card-list" x-show="filter == 'bulanan'">
                     <div class="container py-2">
-                        <div class="row">
+                        <div class="row" style="margin-bottom: -4px;">
                             <div class="col-6 text-start">
                                 <h3 class="fw-medium" style="font-size: 14px; color:  #9400D3;">No. Pesanan</h3>
                             </div>
@@ -158,26 +158,26 @@
                             <div class="col-3 text-start">
                                 <img src="{{ asset('img/kamarkostputra3.jpg') }}" style="width: 80px; height: 70px; border-radius: 8px;">
                             </div>
-                            <div class="col-9">
+                            <div class="col-9" style="margin-left: 6px; width: 200px; margin-top: 2px;">
                                 <h3 class="fw-medium" style="font-size: 14px;">Kamar Kost Putra</h3>
                                 <p class="text-secondary fw-normal" style="font-size: 10px; margin-top: -6px; line-height: 14px; width: 190px;">Kamar Uk 3 x 4 M | K.Mandi Dlm | 1 AC PK | 1 Lemari | 2 Kasur | 1 Kulkas...</p>
                                 <h3 class="fw-semibold" style="font-size: 16px; color: #800080; font-family: Poppins; margin-top: -14px;">Rp. 2.300.000</h3>
                             </div>
                         </div>
-                        <hr class="hr-garis-card">
+                        <hr class="hr-garis-card" style="margin-top: 2px;">
                         <div class="row">
                             <div class="col-7 text-start">
                                 <p class="fw-normal mb-0" style="font-size: 12px; color:  #9400D3;">03 Februari 2024, 18.00 WIB</p>
                             </div>
                             <div class="col-5 text-end">
-                                <p class="text-success fw-normal mb-0" style="font-size: 12px;">Selesai</p>
+                                <p class="text-success fw-normal mb-0" style="font-size: 12px;">Lunas</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="custom-card-list" x-show="filter == 'harian'">
                     <div class="container py-2">
-                        <div class="row">
+                        <div class="row" style="margin-bottom: -4px;">
                             <div class="col-6 text-start">
                                 <h3 class="fw-medium" style="font-size: 14px; color:  #9400D3;">No. Pesanan</h3>
                             </div>
@@ -189,19 +189,19 @@
                             <div class="col-3 text-start">
                                 <img src="{{ asset('img/kamarkostputra4.jpg') }}" style="width: 80px; height: 70px; border-radius: 8px;">
                             </div>
-                            <div class="col-9">
+                            <div class="col-9" style="width: 200px; margin-left: 6px; margin-top: 2px;">
                                 <h3 class="fw-medium" style="font-size: 14px;">Kamar Kost Putra</h3>
                                 <p class="text-secondary fw-normal" style="font-size: 10px; margin-top: -6px; line-height: 14px; width: 190px;">Kamar Uk 4 x 4 M | K.Mandi Dlm | 1 AC PK | 1 Lemari | 2 Kasur | 1 Kulkas...</p>
                                 <h3 class="fw-semibold" style="font-size: 16px; color: #800080; font-family: Poppins; margin-top: -14px;">Rp. 525.000</h3>
                             </div>
                         </div>
-                        <hr class="hr-garis-card">
+                        <hr class="hr-garis-card" style="margin-top: 2px;">
                         <div class="row">
                             <div class="col-7 text-start">
                                 <p class="fw-normal mb-0" style="font-size: 12px; color:  #9400D3;">10 Februari 2024, 18.30 WIB</p>
                             </div>
                             <div class="col-5 text-end">
-                                <p class="fw-normal mb-0" style="font-size: 12px; color: #800080;">Berlangsung</p>
+                                <p class="fw-normal mb-0" style="font-size: 12px; color: #800080;">Belum Lunas</p>
                             </div>
                         </div>
                     </div>
@@ -209,7 +209,7 @@
                 <h3 class="fw-semibold" style="font-size: 16px; color: #d8d8d8">Maret</h3>
                 <div class="custom-card-list" x-show="filter == 'bulanan'">
                     <div class="container py-2">
-                        <div class="row">
+                        <div class="row" style="margin-bottom: -4px;">
                             <div class="col-6 text-start">
                                 <h3 class="fw-medium" style="font-size: 14px; color:  #9400D3;">No. Pesanan</h3>
                             </div>
@@ -221,26 +221,26 @@
                             <div class="col-3 text-start">
                                 <img src="{{ asset('img/kamarkostputra5.jpg') }}" style="width: 80px; height: 70px; border-radius: 8px;">
                             </div>
-                            <div class="col-9">
+                            <div class="col-9" style="margin-left: 6px; width: 200px; margin-top: 2px;">
                                 <h3 class="fw-medium" style="font-size: 14px;">Kamar Kost Putra</h3>
                                 <p class="text-secondary fw-normal" style="font-size: 10px; margin-top: -6px; line-height: 14px; width: 190px;">Kamar Uk 3 x 4 M | K.Mandi Dlm | 1 AC PK | 1 Lemari | 2 Kasur | 1 Kulkas...</p>
                                 <h3 class="fw-semibold" style="font-size: 16px; color: #800080; font-family: Poppins; margin-top: -14px;">Rp. 2.300.000</h3>
                             </div>
                         </div>
-                        <hr class="hr-garis-card">
+                        <hr class="hr-garis-card" style="margin-top: 2px;">
                         <div class="row">
                             <div class="col-7 text-start">
                                 <p class="fw-normal mb-0" style="font-size: 12px; color:  #9400D3;">03 Maret 2024, 18.00 WIB</p>
                             </div>
                             <div class="col-5 text-end">
-                                <p class="text-success fw-normal mb-0" style="font-size: 12px;">Selesai</p>
+                                <p class="text-success fw-normal mb-0" style="font-size: 12px;">Lunas</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="custom-card-list" x-show="filter == 'harian'">
                     <div class="container py-2">
-                        <div class="row">
+                        <div class="row" style="margin-bottom: -4px;">
                             <div class="col-6 text-start">
                                 <h3 class="fw-medium" style="font-size: 14px; color:  #9400D3;">No. Pesanan</h3>
                             </div>
@@ -250,21 +250,21 @@
                         </div>
                         <div class="row">
                             <div class="col-3 text-start">
-                                <img src="{{ asset('img/kamarkostputra5.jpg') }}" style="width: 80px; height: 70px; border-radius: 8px;">
+                                <img src="{{ asset('img/kamarkostputraharian3.jpg') }}" style="width: 80px; height: 70px; border-radius: 8px;">
                             </div>
-                            <div class="col-9">
+                            <div class="col-9" style="width: 200px; margin-left: 6px; margin-top: 2px;">
                                 <h3 class="fw-medium" style="font-size: 14px;">Kamar Kost Putra</h3>
-                                <p class="text-secondary fw-normal" style="font-size: 10px; margin-top: -6px; line-height: 14px; width: 190px;">Kamar Uk 3 x 4 M | K.Mandi Dlm | 1 AC PK | 1 Lemari | 2 Kasur | 1 Kulkas...</p>
-                                <h3 class="fw-semibold" style="font-size: 16px; color: #800080; font-family: Poppins; margin-top: -14px;">Rp. 540.000</h3>
+                                <p class="text-secondary fw-normal" style="font-size: 10px; margin-top: -6px; line-height: 14px; width: 190px;">Kamar Uk 4 x 4 M | K.Mandi Dlm | 1 AC PK | 1 Lemari | 2 Kasur | 1 Kulkas...</p>
+                                <h3 class="fw-semibold" style="font-size: 16px; color: #800080; font-family: Poppins; margin-top: -14px;">Rp. 525.000</h3>
                             </div>
                         </div>
-                        <hr class="hr-garis-card">
+                        <hr class="hr-garis-card" style="margin-top: 2px;">
                         <div class="row">
                             <div class="col-7 text-start">
                                 <p class="fw-normal mb-0" style="font-size: 12px; color:  #9400D3;">03 Februari 2024, 18.00 WIB</p>
                             </div>
                             <div class="col-5 text-end">
-                                <p class="text-success fw-normal mb-0" style="font-size: 12px;">Selesai</p>
+                                <p class="text-success fw-normal mb-0" style="font-size: 12px;">Lunas</p>
                             </div>
                         </div>
                     </div>

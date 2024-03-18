@@ -83,7 +83,7 @@
             </a>
         </nav>
     </div>
-    <section x-data="{ filter: 'lama', openSearch: false }">
+    <section x-data="{ filter: 'baru', openSearch: false }">
         <div class="sticky-top" id="stickyTop">
             <div class="container py-2">
                 <div class="row" x-show="openSearch === false">
@@ -105,10 +105,10 @@
             <div class="container" @click="openSearch = false">
                 <div class="row" style="margin-top: 0px;">
                     <div class="col-6 text-center" style="margin-left: -12px;">
-                        <button :class="filter == 'lama' ? 'btn-aktif' : 'btn-non-aktif'" x-on:click="filter = 'lama';">Pengguna Lama</button>
+                        <button :class="filter == 'baru' ? 'btn-aktif' : 'btn-non-aktif'" x-on:click="filter = 'baru';">Pengguna Baru</button>
                     </div>
                     <div class="col-6 text-center" style="margin-left: 0px;">
-                        <button :class="filter == 'baru' ? 'btn-aktif' : 'btn-non-aktif'" x-on:click="filter = 'baru';">Pengguna Baru</button>
+                        <button :class="filter == 'lama' ? 'btn-aktif' : 'btn-non-aktif'" x-on:click="filter = 'lama';">Pengguna Lama</button>
                     </div>
                 </div>
             </div>

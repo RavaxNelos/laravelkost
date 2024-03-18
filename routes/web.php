@@ -44,7 +44,6 @@ Route::get('/pemilik/profil', [PemilikController::class, 'profil'])->name('profi
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 Route::get('/admin/product', [AdminController::class, 'product'])->name('product');
 
-//admin controller
 Route::get('/transaksi', function() {
     return view('user.transaksi.index');
 });

@@ -36,7 +36,7 @@
         @include('layouts.admin.sidebar')
         <div class="body-wrapper">
             @include('layouts.admin.header')
-            <div class="containter-fluid">
+            <div class="container-fluid">
                 @yield('content')
             </div>
         </div>

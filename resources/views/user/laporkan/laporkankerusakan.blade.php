@@ -295,8 +295,16 @@
                 </div>
             </div>
         </div>
+        <div class="container" x-show="filter == 'riwayat'" style="margin-top: 8rem;">
+            <div class="col-12 text-center">
+                <img src="{{ asset('img/chat.png') }}" width="180" height="180">
+            </div>
+            <div class="col-12 text-center">
+                <p class="fw-normal" style="font-size: 14px;">Belum Ada Laporan Yang Masuk</p>
+            </div>
+        </div>
+        <hr class="hr-1" x-show="filter == 'form'">
     </section>
-    <hr class="hr-1">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

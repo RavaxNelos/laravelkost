@@ -43,7 +43,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credetials)) {
             if (Auth::user()->role_id == 1) {
-                return redirect('/admin/home');
+                return redirect('/admin/dashboard');
             } elseif(Auth::user()->role_id == 2) {
                 return redirect('/pemilik/home');
             } elseif(Auth::user()->role_id == 3) {
