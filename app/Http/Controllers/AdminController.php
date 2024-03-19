@@ -14,4 +14,10 @@ class AdminController extends Controller
     public function kamar() {
         return view('admin.kamar.kamar');
     }
+    public function transaksi() {
+        return view('admin.transaksi.transaksi');
+    }
+    public function tambahkamar() {
+        return view('admin.kamar.tambahkamar');
+    }
 }

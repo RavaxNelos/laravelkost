@@ -5,6 +5,7 @@ use App\Http\Controllers\PemilikController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\KamarKostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,8 +43,13 @@ Route::get('/pemilik/profil', [PemilikController::class, 'profil'])->name('profi
 
 //admin controller
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
-Route::get('/admin/kamar', [AdminController::class, 'kamar'])->name('kamar');
-
+Route::get('/admin/kamar', [KamarKostController::class, 'index'])->name('kamar');
+Route::get('/admin/tambahkamar', [KamarKostController::class, 'create'])->name('tambahkamar');
+Route::post('/admin/kamar', [KamarKostController::class, 'store'])->name('kamar.store');
+Route::get('/admin/transaksi', [AdminController::class, 'transaksi'])->name('transaksi');
+Route::get('/admin/tambahkamar', [AdminController::class, 'tambahkamar'])->name('tambahkamar');
+//kamar controller
+// Route::resource('kamar', KamarKostController::class);
 Route::get('/transaksi', function() {
     return view('user.transaksi.index');
 });

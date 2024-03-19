@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title', 'Kamar')
+@section('title', 'Transaksi')
 
 @section('styles')
 
@@ -10,11 +10,11 @@
         <div class="card-body px-4 py-3">
             <div class="row align-items-center">
                 <div class="col-9">
-                    <h4 class="fw-semibold mb-8">Kamar</h4>
+                    <h4 class="fw-semibold mb-8">Transaksi</h4>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a class="text-muted " href="./index.html">Dashboard</a></li>
-                            <li class="breadcrumb-item" aria-current="page">Kamar</li>
+                            <li class="breadcrumb-item" aria-current="page">Transaksi</li>
                         </ol>
                     </nav>
                 </div>
@@ -32,7 +32,7 @@
             <div class="row">
                 <div class="col-md-4 col-xl-3">
                     <form class="position-relative">
-                        <input type="text" class="form-control product-search ps-5" id="input-search" placeholder="Cari Kamar..." />
+                        <input type="text" class="form-control product-search ps-5" id="input-search" placeholder="Cari Transaksi..." />
                         <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                     </form>
                 </div>
@@ -42,8 +42,8 @@
                             <i class="ti ti-trash text-danger me-1 fs-5"></i> Delete All Row
                         </a>
                     </div>
-                    <a href="{{ route('tambahkamar') }}" id="btn-add-contact" class="btn btn-info d-flex align-items-center">
-                        <i class="ti ti-users text-white me-1 fs-5"></i> Tambah Kamar
+                    <a href="javascript:void(0)" id="btn-add-contact" class="btn btn-info d-flex align-items-center">
+                        <i class="ti ti-users text-white me-1 fs-5"></i> Bukti Transfer
                     </a>
                 </div>
             </div>
@@ -64,59 +64,98 @@
                             </div>
                         </div>
                     </th>
-                    <th>Gambar Kost</th>
-                    <th>Nama Kost</th>
-                    <th>Harga Kost</th>
-                    <th>Lokasi Kost</th>
-                    <th>Ukuran Kost</th>
-                    <th>Action</th>
+                    <th>#</th>
+                    <th>Nama</th>
+                    <th>Total Penyewaan</th>
+                    <th>Harga Per Kamar</th>
+                    <th>Total Harga</th>
                 </thead>
                 <tbody>
-                    @foreach ($kamarkost as $item)
-                        <!-- start row -->
-                        <tr class="search-items">
-                            <td>
-                                <div class="n-chk align-self-center text-center">
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input contact-chkbox primary" id="checkbox1" />
-                                        <label class="form-check-label" for="checkbox1"></label>
-                                    </div>
+                    <!-- start row -->
+                    <tr class="search-items">
+                        <td>
+                            <div class="n-chk align-self-center text-center">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input contact-chkbox primary" id="checkbox1" />
+                                    <label class="form-check-label" for="checkbox1"></label>
                                 </div>
-                            </td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <img src="{{ $item->gambar_kost }}" class="rounded-circle" width="35" />
+                            </div>
+                        </td>
+                        <td>
+                            <span class="usr-number" data-nomer="1">1</span>
+                        </td>
+                        <td>
+                            <span class="usr-name" data-nama="Ravanelo">Ravanelo</span>
+                        </td>
+                        <td>
+                            <span class="usr-total-sewa" data-total-sewa="2">2</span>
+                        </td>
+                        <td>
+                            <span class="usr-harga" data-harga="Rp. 2000000">Rp. 2000000</span>
+                        </td>
+                        <td>
+                            <span class="usr-total-harga" data-total-harga="Rp. 4000000">Rp. 4000000</span>
+                        </td>
+                    </tr>
+                    <!-- end row -->
+                    <!-- start row -->
+                    <tr class="search-items">
+                        <td>
+                            <div class="n-chk align-self-center text-center">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input contact-chkbox primary" id="checkbox2" />
+                                    <label class="form-check-label" for="checkbox2"></label>
                                 </div>
-                            </td>
-                            <td>
-                                <span class="usr-nama-kost">{{ $item->nama_kost }}</span>
-                            </td>
-                            <td>
-                                <span class="usr-harga-kost">{{ $item->harga_kost }}</span>
-                            </td>
-                            <td>
-                                <span class="usr-lokasi-kost">{{ $item->lokasi_kost }}</span>
-                            </td>
-                            <td>
-                                <span class="usr-ukuran-kost">{{ $item->ukuran_kost }}</span>
-                            </td>
-                            <td>
-                                <div class="action-btn">
-                                    <a href="javascript:void(0)" class="text-info edit">
-                                        <i class="ti ti-eye fs-5"></i>
-                                    </a>
-                                    <a href="javascript:void(0)" class="text-dark delete ms-2">
-                                        <i class="ti ti-trash fs-5"></i>
-                                    </a>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="usr-number" data-nomer="2">2</span>
+                        </td>
+                        <td>
+                            <span class="usr-name" data-nama="Adrian">Adrian</span>
+                        </td>
+                        <td>
+                            <span class="usr-total-sewa" data-total-sewa="1">1</span>
+                        </td>
+                        <td>
+                            <span class="usr-harga" data-harga="Rp. 2100000">Rp. 2100000</span>
+                        </td>
+                        <td>
+                            <span class="usr-total-harga" data-total-harga="Rp. 2100000">Rp. 2100000</span>
+                        </td>
+                    </tr>
+                    <!-- end row -->
+                    <!-- start row -->
+                    <tr class="search-items">
+                        <td>
+                            <div class="n-chk align-self-center text-center">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input contact-chkbox primary" id="checkbox4" />
+                                    <label class="form-check-label" for="checkbox4"></label>
                                 </div>
-                            </td>
-                        </tr>
-                        <!-- end row -->
-                    @endforeach
+                            </div>
+                        </td>
+                        <td>
+                            <span class="usr-number" data-nomer="3">3</span>
+                        </td>
+                        <td>
+                            <span class="usr-name" data-nama="Bramahna">Bramahna</span>
+                        </td>
+                        <td>
+                            <span class="usr-total-sewa" data-total-sewa="3">3</span>
+                        </td>
+                        <td>
+                            <span class="usr-harga" data-harga="Rp. 1000000">Rp. 1000000</span>
+                        </td>
+                        <td>
+                            <span class="usr-total-harga" data-total-harga="Rp. 3000000">Rp. 3000000</span>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
+
     <!-- --------------------------------------------------- -->
     <!-- Customizer -->
     <!-- --------------------------------------------------- -->

@@ -117,8 +117,8 @@
         </div>
     </section>
     <section x-data="{ filter: 'bulanan' }">
+        <hr class="hr-1" style="margin: 0px; border-top: 10px solid #ccc;">
         <div class="sticky-top" id="stickyTop">
-            <hr class="hr-1" style="margin: 0px; border-top: 10px solid #ccc;">
             <div class="container">
                 <div class="row" style="margin-top: 0px;">
                     <div class="col-6 text-center" style="margin-left: -12px;">

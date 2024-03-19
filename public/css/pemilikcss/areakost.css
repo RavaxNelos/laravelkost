@@ -21,7 +21,6 @@
     /* Warna putih sesuai kebutuhan */
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     /* Contoh penambahan shadow saat di-scroll */
-    height: 50px;
 }
 
 .nav__link {

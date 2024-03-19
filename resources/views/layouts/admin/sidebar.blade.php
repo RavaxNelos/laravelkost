@@ -3,8 +3,8 @@
     <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
             <a href="/admin/dashboard" class="text-nowrap logo-img">
-                <img src="{{ asset('img/logokosthomerava.png') }}" class="dark-logo" width="160" height="80" alt="" />
-                <img src="{{ asset('img.logokosthomerava.png') }}" class="light-logo" width="160" height="80" alt="" />
+                <img src="{{ asset('img/logokosthomerava.png') }}" class="dark-logo mb-0" width="180" alt="" />
+                <img src="{{ asset('img.logokosthomerava.png') }}" class="light-logo mb-0" width="180" alt="" />
             </a>
             <div class="close-btn d-lg-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
                 <i class="ti ti-x fs-8 text-muted"></i>
@@ -56,7 +56,7 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/admin/pengguna" aria-expanded="false">
                         <span>
-                            <i class="ti ti-user-circle"></i>
+                            <i class="ti ti-user-check"></i>
                         </span>
                         <span class="hide-menu">Pengguna Kost</span>
                     </a>

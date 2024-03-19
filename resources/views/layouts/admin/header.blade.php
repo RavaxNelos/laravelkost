@@ -6,11 +6,6 @@
                     <i class="ti ti-menu-2"></i>
                 </a>
             </li>
-            <li class="nav-item d-none d-lg-block">
-                <a class="nav-link nav-icon-hover" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    <i class="ti ti-search"></i>
-                </a>
-            </li>
         </ul>
         {{-- <ul class="navbar-nav quick-links d-none d-lg-flex">
             <li class="nav-item dropdown hover-dd d-none d-lg-block">
@@ -160,6 +155,11 @@
             <img src="{{ asset('admin') }}/dist/images/logos/dark-logo.svg" class="dark-logo" width="180" alt="" />
             <img src="{{ asset('admin') }}/dist/images/logos/light-logo.svg" class="light-logo" width="180" alt="" />
         </div>
+        {{-- <li class="nav-item d-none d-lg-block">
+            <a class="nav-link nav-icon-hover" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <i class="ti ti-search"></i>
+            </a>
+        </li> --}}
         <button class="navbar-toggler p-0 border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="p-2">
                 <i class="ti ti-dots fs-7"></i>
