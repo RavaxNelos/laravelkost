@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title', 'Kamar')
+@section('title', 'Pembayaran')
 
 @section('styles')
 
@@ -10,11 +10,11 @@
         <div class="card-body px-4 py-3">
             <div class="row align-items-center">
                 <div class="col-9">
-                    <h4 class="fw-semibold mb-8">Kamar</h4>
+                    <h4 class="fw-semibold mb-8">Pembayaran</h4>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a class="text-muted " href="./index.html">Dashboard</a></li>
-                            <li class="breadcrumb-item" aria-current="page">Kamar</li>
+                            <li class="breadcrumb-item"><a class="text-muted " href="{{ route('dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item" aria-current="page">Pembayaran</li>
                         </ol>
                     </nav>
                 </div>
@@ -32,7 +32,7 @@
             <div class="row">
                 <div class="col-md-4 col-xl-3">
                     <form class="position-relative">
-                        <input type="text" class="form-control product-search ps-5" id="input-search" placeholder="Cari Kamar..." />
+                        <input type="text" class="form-control product-search ps-5" id="input-search" placeholder="Cari Pembayaran..." />
                         <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                     </form>
                 </div>
@@ -43,7 +43,7 @@
                         </a>
                     </div>
                     <a href="{{ route('tambahkamar') }}" id="btn-add-contact" class="btn btn-info d-flex align-items-center">
-                        <i class="ti ti-plus text-white me-1 fs-5"></i> Tambah Kamar
+                        <i class="ti ti-plus text-white me-1 fs-5"></i> Tambah Pembayaran
                     </a>
                 </div>
             </div>
@@ -55,58 +55,72 @@
         <div class="table-responsive">
             <table class="table search-table align-middle text-nowrap">
                 <thead class="header-item">
-                    <th>Gambar Kost</th>
-                    <th>Kategori Kost</th>
-                    <th>Harga Kost</th>
-                    <th>Lokasi Kost</th>
-                    <th>Ukuran Kost</th>
-                    <th>Status Kost</th>
+                    <th>Nama Pembayaran</th>
+                    <th>Gambar Pembayaran</th>
+                    <th>Kategori Pembayaran</th>
+                    <th>Nomer Pembayaran</th>
+                    <th>Atas Nama</th>
                     <th>Action</th>
                 </thead>
                 <tbody>
-                    @foreach ($kamarkost as $item)
-                        <!-- start row -->
-                        <tr class="search-items">
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" class="rounded-1" width="100" />
-                                </div>
-                            </td>
-                            <td>
-                                <span class="usr-nama-kost">{{ $item->kategori_kost }}</span>
-                            </td>
-                            <td>
-                                <span class="usr-harga-kost">Rp. {{ $item->harga_kost }}</span>
-                            </td>
-                            <td>
-                                <span class="usr-lokasi-kost">{{ $item->lokasi_kost }}</span>
-                            </td>
-                            <td>
-                                <span class="usr-ukuran-kost">{{ $item->ukuran_kost }}</span>
-                            </td>
-                            <td>
-                                <span class="usr-ukuran-kost">{{ $item->status_kost }}</span>
-                            </td>
-                            <td>
-                                <div class="action-btn">
-                                    <form action="/admin/kamar/destroy" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="id" value="{{ $item->id }}">
-                                        <button class="btn btn-danger" style="width: 30px; height: 30px; padding: 4.5px;">
-                                            <i class="ti ti-trash fs-5"></i>
-                                        </button>
-                                        <a href="/admin/editkamar/{{ $item->id }}" class="btn btn-warning" style="width: 30px; height: 30px; padding: 4.5px;">
-                                            <i class="ti ti-edit fs-5"></i>
-                                        </a>
-                                        <button class="btn btn-info" style="width: 30px; height: 30px; padding: 4.5px;">
-                                            <i class="ti ti-eye fs-5"></i>
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                        <!-- end row -->
-                    @endforeach
+                    <!-- start row -->
+                    <tr class="search-items">
+                        <td>
+                            <span class="use-name-pembayaran">Gopay</span>
+                        </td>
+                        <td>
+                            <img src="{{ asset('img/gopay.png') }}" class="rounded-circle" width="35">
+                        </td>
+                        <td>
+                            <span class="usr-kategori">E-Wallet</span>
+                        </td>
+                        <td>
+                            <span class="usr-nomer-pemnayaran">830250378940</span>
+                        </td>
+                        <td>
+                            <span class="usr-atas-nama">Ravanelo</span>
+                        </td>
+                        <td>
+                            <div class="action-btn">
+                                <button class="btn btn-danger" style="width: 30px; height: 30px; padding: 4px;">
+                                    <i class="ti ti-trash fs-5"></i>
+                                </button>
+                                <button class="btn btn-primary ms-2" style="width: 30px; height: 30px; padding: 4px;">
+                                    <i class="ti ti-edit fs-5"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- end row -->
+                    <!-- start row -->
+                    <tr class="search-items">
+                        <td>
+                            <span class="use-name-pembayaran">Bank Bri</span>
+                        </td>
+                        <td>
+                            <img src="{{ asset('img/bri.png') }}" class="rounded-circle" width="35">
+                        </td>
+                        <td>
+                            <span class="usr-kategori">Transfer Bank</span>
+                        </td>
+                        <td>
+                            <span class="usr-nomer-pemnayaran">830475032</span>
+                        </td>
+                        <td>
+                            <span class="usr-atas-nama">Samsudin</span>
+                        </td>
+                        <td>
+                            <div class="action-btn">
+                                <button class="btn btn-danger" style="width: 30px; height: 30px; padding: 4px;">
+                                    <i class="ti ti-trash fs-5"></i>
+                                </button>
+                                <button class="btn btn-primary ms-2" style="width: 30px; height: 30px; padding: 4px;">
+                                    <i class="ti ti-edit fs-5"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- end row -->
                 </tbody>
             </table>
         </div>
@@ -232,7 +246,6 @@
     <!-- Customizer -->
     <!-- ---------------------------------------------- -->
 @endsection
-
 @push('scripts')
     <script src="{{ asset('admin') }}dist/js/apps/contact.js"></script>
 @endpush

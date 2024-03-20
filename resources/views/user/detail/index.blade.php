@@ -555,7 +555,7 @@
         </div>
         <!-- booking kost -->
         <div class="col-12 text-start">
-            <h6 class="fw-semibold" style="margin-bottom: 10px; margin-top: 30px;">Jadwal Masuk Kamar</h6>
+            <h6 class="fw-semibold" style="margin-bottom: 10px; margin-top: 30px;">Jadwal Masuk Kost</h6>
         </div>
         <div class="container px-2">
             <div id="datetimepicker"></div>

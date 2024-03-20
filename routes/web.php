@@ -5,7 +5,12 @@ use App\Http\Controllers\PemilikController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\KamarKostController;
+use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\PemilikControlller;
+use App\Http\Controllers\PenggunaController;
+use App\Http\Controllers\TransaksiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,9 +51,17 @@ Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('das
 Route::get('/admin/kamar', [KamarKostController::class, 'index'])->name('kamar');
 Route::get('/admin/tambahkamar', [KamarKostController::class, 'create'])->name('tambahkamar');
 Route::post('/admin/kamar', [KamarKostController::class, 'store'])->name('kamar.store');
+Route::get('/admin/editkamar/{id}', [KamarKostController::class, 'edit'])->name('editkamar');
+Route::post('/admin/editkamar', [KamarKostController::class, 'update'])->name('editkamarPost');
+Route::post('/admin/kamar/destroy', [KamarKostController::class, 'destroy'])->name('destroy');
 Route::get('/admin/transaksi', [AdminController::class, 'transaksi'])->name('transaksi');
 Route::get('/admin/tambahkamar', [AdminController::class, 'tambahkamar'])->name('tambahkamar');
-//kamar controller
+Route::get('/admin/banner', [BannerController::class, 'index'])->name('banner');
+Route::get('/admin/pengguna', [PenggunaController::class, 'index'])->name('pengguna');
+Route::get('/admin/pemilik', [PemilikControlller::class, 'index'])->name('pemilik');
+Route::get('/admin/pembayaran', [PembayaranController::class, 'index'])->name('bayar');
+//pemilik2 controller
+// Route::get('/pemilik2/dashboard', [])
 // Route::resource('kamar', KamarKostController::class);
 Route::get('/transaksi', function() {
     return view('user.transaksi.index');

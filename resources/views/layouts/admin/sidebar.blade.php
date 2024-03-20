@@ -30,15 +30,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/admin/riwayat" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-clock"></i>
-                        </span>
-                        <span class="hide-menu">Riwayat</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="/admin/kamar" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('kamar') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-door"></i>
                         </span>
@@ -46,7 +38,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/admin/pemabayaran" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('bayar') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-coin"></i>
                         </span>
@@ -54,7 +46,15 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/admin/pengguna" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('banner') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-app-window"></i>
+                        </span>
+                        <span class="hide-menu">Banner</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('pengguna') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-user-check"></i>
                         </span>
@@ -62,7 +62,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/admin/pemilik" aria-expanded="false">
+                    <a class="sidebar-link" href="{{ route('pemilik') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-user-circle"></i>
                         </span>
@@ -70,11 +70,11 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="#" aria-expanded="false">
+                    <a class="sidebar-link" aria-expanded="false">
                         <span class="d-flex">
-                            <i class="ti ti-login"></i>
+                            <i class="ti ti-login text-danger"></i>
                         </span>
-                        <span class="hide-menu">Logout</span>
+                        <span class="hide-menu text-danger">Logout</span>
                     </a>
                 </li>
                 <li class="sidebar-item">

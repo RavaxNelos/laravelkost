@@ -11,14 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kamarkost', function (Blueprint $table) {
+        Schema::create('pembayaran', function (Blueprint $table) {
             $table->id();
-            $table->string('gambar_kost');
-            $table->string('kategori_kost');
-            $table->string('harga_kost');
-            $table->string('lokasi_kost');
-            $table->string('ukuran_kost');
-            $table->string('status_kost');
             $table->timestamps();
         });
     }
@@ -28,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kamarkost');
+        Schema::dropIfExists('pembayaran');
     }
 };

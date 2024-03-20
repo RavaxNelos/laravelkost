@@ -69,7 +69,7 @@
                         <tr class="search-items">
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" class="rounded-1" width="100" />
+                                    <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" class="rounded-circle" width="35" />
                                 </div>
                             </td>
                             <td>
@@ -89,13 +89,13 @@
                             </td>
                             <td>
                                 <div class="action-btn">
-                                    <form action="/admin/kamar/destroy" method="POST">
+                                    <form action="{{ route('destroy', $item->id) }}" method="POST">
                                         @csrf
-                                        <input type="hidden" name="id" value="{{ $item->id }}">
+                                        @method('delete')
                                         <button class="btn btn-danger" style="width: 30px; height: 30px; padding: 4.5px;">
                                             <i class="ti ti-trash fs-5"></i>
                                         </button>
-                                        <a href="/admin/editkamar/{{ $item->id }}" class="btn btn-warning" style="width: 30px; height: 30px; padding: 4.5px;">
+                                        <a href="{{ route('editkamar', $item->id) }}" class="btn btn-warning" style="width: 30px; height: 30px; padding: 4.5px;">
                                             <i class="ti ti-edit fs-5"></i>
                                         </a>
                                         <button class="btn btn-info" style="width: 30px; height: 30px; padding: 4.5px;">

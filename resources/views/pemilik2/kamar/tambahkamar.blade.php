@@ -39,62 +39,44 @@
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="mt-3">
-                                    <input class="form-control" type="file" name="gambar_kost" id="gambar_kost" value="{{ old('gambar_kost') }}">
-                                    @error('gambar_kost')
-                                        {{ $message }}
-                                    @enderror
-                                </div>
+                                <form class="mt-3">
+                                    <input class="form-control" type="file" name="gambar_kost" id="gambar_kost">
+                                </form>
                             </div>
                             <div class="col-md-6">
-                                <div class="mt-3">
+                                <form class="mt-0">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="kategori_kost" id="kategori_kost" placeholder="Masukkan Nama Kost" value="{{ old('kategori_kost') }}">
-                                        @error('kategori_kost')
-                                            {{ $message }}
-                                        @enderror
+                                        <input type="text" class="form-control" name="kategori_kost" id="kategori_kost" placeholder="Masukkan Nama Kost">
                                     </div>
-                                </div>
+                                </form>
                             </div>
                             <div class="col-md-6">
-                                <div class="mt-3">
+                                <form class="mt-3">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="harga_kost" id="harga_kost" placeholder="Masukkan Harga Kost" value="{{ old('harga_kost') }}">
-                                        @error('harga_kost')
-                                            {{ $message }}
-                                        @enderror
+                                        <input type="text" class="form-control" name="harga_kost" id="harga_kost" placeholder="Masukkan Harga Kost">
                                     </div>
-                                </div>
+                                </form>
                             </div>
                             <div class="col-md-6">
-                                <div class="mt-3">
+                                <form class="mt-3">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="lokasi_kost" id="lokasi_kost" placeholder="Masukkan Lokasi Kost" value="{{ old('lokasi_kost') }}">
-                                        @error('lokasi_kost')
-                                            {{ $message }}
-                                        @enderror
+                                        <input type="text" class="form-control" name="lokasi_kost" id="lokasi_kost" placeholder="Masukkan Lokasi Kost">
                                     </div>
-                                </div>
+                                </form>
                             </div>
                             <div class="col-md-6">
-                                <div class="mt-3">
+                                <form class="mt-3">
                                     <div class="form-group">
                                         <input type="text" class="form-control" name="ukuran_kost" id="ukuran_kost" placeholder="Masukkan Ukuran Kost">
-                                        @error('ukuran_kost')
-                                            {{ $message }}
-                                        @enderror
                                     </div>
-                                </div>
+                                </form>
                             </div>
                             <div class="col-md-6">
-                                <div class="mt-3">
+                                <form class="mt-3">
                                     <div class="form-group">
                                         <input type="text" class="form-control" name="status_kost" id="status_kost" placeholder="Masukkan Status Kost">
-                                        @error('status_kost')
-                                            {{ $message }}
-                                        @enderror
                                     </div>
-                                </div>
+                                </form>
                             </div>
                             <div class="col-12">
                                 <div class="d-md-flex align-items-center mt-3">

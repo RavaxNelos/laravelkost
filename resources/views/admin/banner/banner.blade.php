@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title', 'Kamar')
+@section('title', 'Banner')
 
 @section('styles')
 
@@ -10,11 +10,11 @@
         <div class="card-body px-4 py-3">
             <div class="row align-items-center">
                 <div class="col-9">
-                    <h4 class="fw-semibold mb-8">Kamar</h4>
+                    <h4 class="fw-semibold mb-8">Banner</h4>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a class="text-muted " href="./index.html">Dashboard</a></li>
-                            <li class="breadcrumb-item" aria-current="page">Kamar</li>
+                            <li class="breadcrumb-item"><a class="text-muted " href="{{ route('dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item" aria-current="page">Banner</li>
                         </ol>
                     </nav>
                 </div>
@@ -32,7 +32,7 @@
             <div class="row">
                 <div class="col-md-4 col-xl-3">
                     <form class="position-relative">
-                        <input type="text" class="form-control product-search ps-5" id="input-search" placeholder="Cari Kamar..." />
+                        <input type="text" class="form-control product-search ps-5" id="input-search" placeholder="Cari Banner..." />
                         <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                     </form>
                 </div>
@@ -43,7 +43,7 @@
                         </a>
                     </div>
                     <a href="{{ route('tambahkamar') }}" id="btn-add-contact" class="btn btn-info d-flex align-items-center">
-                        <i class="ti ti-plus text-white me-1 fs-5"></i> Tambah Kamar
+                        <i class="ti ti-plus text-white me-1 fs-5"></i> Tambah Banner
                     </a>
                 </div>
             </div>
@@ -55,58 +55,75 @@
         <div class="table-responsive">
             <table class="table search-table align-middle text-nowrap">
                 <thead class="header-item">
-                    <th>Gambar Kost</th>
-                    <th>Kategori Kost</th>
-                    <th>Harga Kost</th>
-                    <th>Lokasi Kost</th>
-                    <th>Ukuran Kost</th>
-                    <th>Status Kost</th>
+                    <th>#</th>
+                    <th>Gambar Banner</th>
                     <th>Action</th>
                 </thead>
                 <tbody>
-                    @foreach ($kamarkost as $item)
+                    @foreach ($banner as $item)
                         <!-- start row -->
                         <tr class="search-items">
                             <td>
+                                <span class="usr-nomer-banner">{{ $item->nomer_banner }}</span>
+                            </td>
+                            <td>
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" class="rounded-1" width="100" />
+                                    <img src="{{ asset('img/banner5.png') }}" class="rounded-1" width="200" />
                                 </div>
                             </td>
                             <td>
-                                <span class="usr-nama-kost">{{ $item->kategori_kost }}</span>
-                            </td>
-                            <td>
-                                <span class="usr-harga-kost">Rp. {{ $item->harga_kost }}</span>
-                            </td>
-                            <td>
-                                <span class="usr-lokasi-kost">{{ $item->lokasi_kost }}</span>
-                            </td>
-                            <td>
-                                <span class="usr-ukuran-kost">{{ $item->ukuran_kost }}</span>
-                            </td>
-                            <td>
-                                <span class="usr-ukuran-kost">{{ $item->status_kost }}</span>
-                            </td>
-                            <td>
                                 <div class="action-btn">
-                                    <form action="/admin/kamar/destroy" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="id" value="{{ $item->id }}">
-                                        <button class="btn btn-danger" style="width: 30px; height: 30px; padding: 4.5px;">
-                                            <i class="ti ti-trash fs-5"></i>
-                                        </button>
-                                        <a href="/admin/editkamar/{{ $item->id }}" class="btn btn-warning" style="width: 30px; height: 30px; padding: 4.5px;">
-                                            <i class="ti ti-edit fs-5"></i>
-                                        </a>
-                                        <button class="btn btn-info" style="width: 30px; height: 30px; padding: 4.5px;">
-                                            <i class="ti ti-eye fs-5"></i>
-                                        </button>
-                                    </form>
+                                    <button class="btn btn-danger" style="width: 30px; height: 30px; padding: 4px;">
+                                        <i class="ti ti-trash fs-5"></i>
+                                    </button>
+                                    <button class="btn btn-primary ms-2" style="width: 30px; height: 30px; padding: 4px;">
+                                        <i class="ti ti-edit fs-5"></i>
+                                    </button>
                                 </div>
                             </td>
                         </tr>
                         <!-- end row -->
                     @endforeach
+                    <tr class="search-items">
+                        <td>
+                            <span class="usr-nomer-banner">2</span>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <img src="{{ asset('img/banner6.png') }}" class="rounded-1" width="200" />
+                            </div>
+                        </td>
+                        <td>
+                            <div class="action-btn">
+                                <button class="btn btn-danger" style="width: 30px; height: 30px; padding: 4px;">
+                                    <i class="ti ti-trash fs-5"></i>
+                                </button>
+                                <button class="btn btn-primary ms-2" style="width: 30px; height: 30px; padding: 4px;">
+                                    <i class="ti ti-edit fs-5"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="search-items">
+                        <td>
+                            <span class="usr-nomer-banner">3</span>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <img src="{{ asset('img/banner7.png') }}" class="rounded-1" width="200" />
+                            </div>
+                        </td>
+                        <td>
+                            <div class="action-btn">
+                                <button class="btn btn-danger" style="width: 30px; height: 30px; padding: 4px;">
+                                    <i class="ti ti-trash fs-5"></i>
+                                </button>
+                                <button class="btn btn-primary ms-2" style="width: 30px; height: 30px; padding: 4px;">
+                                    <i class="ti ti-edit fs-5"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>

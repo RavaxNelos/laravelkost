@@ -26,11 +26,11 @@
 <body>
     <!-- Preloader -->
     <div class="preloader">
-        <img src="{{ asset('admin') }}/dist/images/logos/favicon.ico" alt="loader" class="lds-ripple img-fluid" />
+        <img src="{{ asset('img') }}/logokostrava.png" alt="loader" class="lds-ripple img-fluid" />
     </div>
     <!-- Preloader -->
     <div class="preloader">
-        <img src="{{ asset('admin') }}/dist/images/logos/favicon.ico" alt="loader" class="lds-ripple img-fluid" />
+        <img src="{{ asset('img') }}/logokostrava.png" alt="loader" class="lds-ripple img-fluid" />
     </div>
     <div class="page-wrapper" id="main-wrapper" data-theme="blue_theme" data-layout="vertical" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
         @include('layouts.admin.sidebar')

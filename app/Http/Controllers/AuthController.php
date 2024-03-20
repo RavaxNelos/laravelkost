@@ -48,7 +48,10 @@ class AuthController extends Controller
                 return redirect('/pemilik/home');
             } elseif(Auth::user()->role_id == 3) {
                 return redirect('/user/home');
+            } elseif(Auth::user()->role_id == 4) {
+                return redirect('/permilik2/dashboard');
             }
+
         }
 
         return back()->with('error', 'Nama atau Password salah');
