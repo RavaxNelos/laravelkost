@@ -14,7 +14,7 @@
         <nav class="sidebar-nav scroll-sidebar" data-simplebar>
             <ul id="sidebarnav">
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/admin/dashboard" aria-expanded="false">
+                    <a class="sidebar-link" href="/pemilikmin/dashboard" aria-expanded="false">
                         <span>
                             <i class="ti ti-aperture"></i>
                         </span>
@@ -22,7 +22,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/admin/transaksi" aria-expanded="false">
+                    <a class="sidebar-link" href="/pemilikmin/transaksi" aria-expanded="false">
                         <span>
                             <i class="ti ti-shopping-cart"></i>
                         </span>
@@ -67,22 +67,6 @@
                             <i class="ti ti-user-circle"></i>
                         </span>
                         <span class="hide-menu">Pemilik Kost</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" aria-expanded="false">
-                        <span class="d-flex">
-                            <i class="ti ti-login text-danger"></i>
-                        </span>
-                        <span class="hide-menu text-danger">Logout</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link sidebar-link" href="/admin/perbaikan" aria-expanded="false">
-                        <span class="rounded-3">
-                            <i class="ti ti-settings"></i>
-                        </span>
-                        <span class="hide-menu">Perbaikan</span>
                     </a>
                 </li>
             </ul>

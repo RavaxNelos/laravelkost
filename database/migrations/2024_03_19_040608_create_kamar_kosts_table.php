@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('harga_kost');
             $table->string('lokasi_kost');
             $table->string('ukuran_kost');
+            $table->string('tipe_kost');
             $table->string('status_kost');
             $table->timestamps();
         });

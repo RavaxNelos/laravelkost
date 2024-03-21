@@ -29,7 +29,7 @@
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <style>
         * {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Ubuntu', sans-serif;
         }
 
         .btn.btn-dark {
@@ -37,6 +37,7 @@
             height: 40px;
             border: 2px solid #800080;
             border-radius: 0px;
+            font-family: 'Poppins';
         }
 
         .btn.btn-dark:hover {
@@ -45,6 +46,7 @@
             border: 2px solid #800080;
             border-radius: 0px !important;
             background-color: black;
+            font-family: 'Poppins';
         }
 
         .btn:first-child:active {
@@ -54,12 +56,14 @@
             height: 40px;
             border: 2px solid #800080;
             border-radius: 0px;
+            font-family: 'Poppins';
         }
 
         .btn.text-secondary {
             width: 180px;
             height: 40px;
             border-radius: 0px;
+            font-family: 'Poppins';
         }
     </style>
 </head>

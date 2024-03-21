@@ -45,11 +45,11 @@ class AuthController extends Controller
             if (Auth::user()->role_id == 1) {
                 return redirect('/admin/dashboard');
             } elseif(Auth::user()->role_id == 2) {
-                return redirect('/pemilik/home');
+                return redirect('/pemilikmin/dashboard');
             } elseif(Auth::user()->role_id == 3) {
-                return redirect('/user/home');
+                return redirect('/pemilik/home');
             } elseif(Auth::user()->role_id == 4) {
-                return redirect('/permilik2/dashboard');
+                return redirect('/user/home');
             }
 
         }

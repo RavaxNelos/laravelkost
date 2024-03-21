@@ -9,5 +9,5 @@ class Banner extends Model
 {
     use HasFactory;
     protected $table = 'banner';
-    protected $guard = ['id'];
+    protected $guarded = ['id'];
 }

@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('pembayaran', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_pembayaran');
+            $table->string('logo_pembayaran');
+            $table->string('kategori_pembayaran');
+            $table->string('nomer_pembayaran');
+            $table->string('atasnama_pembayaran');
             $table->timestamps();
         });
     }

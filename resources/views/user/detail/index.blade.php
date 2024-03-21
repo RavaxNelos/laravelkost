@@ -69,7 +69,7 @@
         }
 
         * {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Ubuntu', sans-serif;
             box-sizing: border-box;
         }
 
@@ -301,7 +301,7 @@
         <!-- harga kamar -->
         <div class="row" style="margin-top: -8px; margin-bottom: 6px;">
             <div class="col-6 text-start">
-                <h6 class="fw-bold" style="font-size: 22px; color: rgba(128, 0, 128, 0.9);">Rp. 2.000.000</h6>
+                <h6 class="fw-bold" style="font-size: 22px; color: rgba(128, 0, 128, 0.9); font-family: Poppins;">Rp. 2.000.000</h6>
             </div>
             <div class="col-6" style="margin-top: 12px; margin-left: -26px;">
                 <p class="text-danger" style="margin-top: -8px; font-size: 10px; font-style: italic;">(Tidak Termasuk Listrik) <i class="bi bi-info-circle" data-bs-toggle="modal" data-bs-target="#exampleModal" style="color: #000000; margin-left: 4px; font-size: 12px;"></i></p>
@@ -392,7 +392,7 @@
             </div>
         </section>
         <div class="col-12">
-            <h6 class="fw-semibold">Tentang Kamar Kost</h6>
+            <h6 class="fw-semibold" style="font-family: Poppins;">Tentang Kamar Kost</h6>
             <p class="text-secondary" style="font-size: 12px;">
                 Besar ukuran kamar kostnya 3 x 4 Meter. Kamar kost Putra ini juga memiliki fasilitas berbagai macam seperti ac, toilet, dan lain-lain<span class="ellipsis">...</span>
                 <span class="additional-text">. Beserta ada sebuah kamar mandi vip ynag di dalamnya terdapat sebuah alat untuk mandi</span>
@@ -497,7 +497,7 @@
             </div>
         </div>
         <div class="col-12">
-            <h6 class="fw-semibold" style="margin-bottom: 10px;">Fasilitas</h6>
+            <h6 class="fw-semibold" style="margin-bottom: 10px; font-family: Poppins;">Fasilitas</h6>
             <section class="splide new-1" aria-label="Splide Basic HTML Example">
                 <div class="splide__track">
                     <ul class="splide__list">
@@ -555,7 +555,7 @@
         </div>
         <!-- booking kost -->
         <div class="col-12 text-start">
-            <h6 class="fw-semibold" style="margin-bottom: 10px; margin-top: 30px;">Jadwal Masuk Kost</h6>
+            <h6 class="fw-semibold" style="margin-bottom: 10px; margin-top: 30px; font-family: Poppins;">Jadwal Masuk Kost</h6>
         </div>
         <div class="container px-2">
             <div id="datetimepicker"></div>

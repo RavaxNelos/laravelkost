@@ -17,7 +17,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style>
         * {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Ubuntu', sans-serif;
         }
 
         .btn.btn-dark {
@@ -25,6 +25,7 @@
             height: 40px;
             border: 2px solid #800080;
             border-radius: 0px;
+            font-family: 'Poppins';
         }
 
         .btn.btn-dark:hover {
@@ -33,6 +34,7 @@
             border: 2px solid #800080;
             border-radius: 0px !important;
             background-color: black;
+            font-family: 'Poppins';
         }
 
         .btn:first-child:active {
@@ -42,12 +44,14 @@
             height: 40px;
             border: 2px solid #800080;
             border-radius: 0px;
+            font-family: 'Poppins';
         }
 
         .btn.text-secondary {
             width: 180px;
             height: 40px;
             border-radius: 0px;
+            font-family: 'Poppins';
         }
     </style>
 </head>

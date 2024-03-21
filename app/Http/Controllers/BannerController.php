@@ -10,9 +10,8 @@ class BannerController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        return view('admin.banner.banner', [
+    public function index() {
+        return view('pemilikmin.banner.banner', [
             'banner' => Banner::all(),
         ]);
     }
@@ -22,7 +21,7 @@ class BannerController extends Controller
      */
     public function create()
     {
-        //
+        return view('pemilikmin.banner.tambahbanner');
     }
 
     /**
@@ -30,7 +29,19 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'gambar_banner' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $gambarBarang = $request->file('gambar_banner');
+        $namaFile = time().'.'.$gambarBarang->getClientOriginalExtension();
+        $gambarBarang->move(public_path('uploadkamar'), $namaFile);
+
+        $banner = new Banner();
+        $banner->gambar_banner = $namaFile;
+        $banner->save();
+
+        return redirect()->route('banner')->with('success', 'Kamar Berhasil Ditambahkan');
     }
 
     /**
@@ -46,15 +57,34 @@ class BannerController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('pemilikmin.banner.editbanner')->with([
+            'banner' => Banner::find($id),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            'gambar_banner' => 'nullable',
+        ]);
+
+        if($request->gambar_banner) {
+            $gambarBarang = $request->file('gambar_banner');
+            $namaFile = time().'.'.$gambarBarang->getClientOriginalExtension();
+            $gambarBarang->move(public_path('uploadkamar'), $namaFile);
+        } else {
+            $namaFile = Banner::find($request->id)->gambar_banner;
+        }
+
+        $banner = Banner::find($request->id);
+        $banner->gambar_banner   = $namaFile;
+        $banner->save();
+        // return redirect()->route('admin.index')->with('success', 'Barang berhasil ditambahkan.');
+        // return back()->with('success', 'Kamar Telah Ditambahkan.');
+        return redirect()->route('banner.store')->with('success', 'Kamar Berhasil Dirubah');
     }
 
     /**
@@ -62,6 +92,9 @@ class BannerController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $banner = Banner::find($id);
+        $banner->delete();
+
+        return back()->with('success', 'Kamar Berhasil Dihapus');
     }
 }

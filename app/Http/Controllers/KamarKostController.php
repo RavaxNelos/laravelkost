@@ -11,7 +11,7 @@ class KamarKostController extends Controller
      * Display a listing of the resource.
      */
     public function index() {
-        return view('admin.kamar.kamar', [
+        return view('pemilikmin.kamar.kamar', [
             'kamarkost' => KamarKost::all(),
         ]);
     }
@@ -21,7 +21,7 @@ class KamarKostController extends Controller
      */
     public function create()
     {
-        return view('admin.kamar.tambahkamar');
+        return view('pemilikmin.kamar.tambahkamar');
     }
 
     /**
@@ -35,6 +35,7 @@ class KamarKostController extends Controller
         'harga_kost' => 'required',
         'lokasi_kost' => 'required',
         'ukuran_kost' => 'required',
+        'tipe_kost' => 'required',
         'status_kost' => 'required',
     ]);
 
@@ -47,6 +48,7 @@ class KamarKostController extends Controller
     $kamarkost->harga_kost = $request->harga_kost;
     $kamarkost->lokasi_kost = $request->lokasi_kost;
     $kamarkost->ukuran_kost = $request->ukuran_kost;
+    $kamarkost->tipe_kost = $request->tipe_kost;
     $kamarkost->status_kost = $request->status_kost;
     $kamarkost->gambar_kost = $namaFile;
     $kamarkost->save();
@@ -67,7 +69,7 @@ class KamarKostController extends Controller
      */
     public function edit(string $id)
     {
-        return view('admin.kamar.editkamar')->with([
+        return view('pemilikmin.kamar.editkamar')->with([
             'kamarkost' => KamarKost::find($id),
         ]);
     }
@@ -83,13 +85,14 @@ class KamarKostController extends Controller
             'harga_kost' => 'required',
             'lokasi_kost' => 'required',
             'ukuran_kost' => 'required',
+            'tipe_kost' => 'required',
             'status_kost' => 'required',
         ]);
 
         if($request->gambar_kost) {
             $gambarBarang = $request->file('gambar_kost');
             $namaFile = time().'.'.$gambarBarang->getClientOriginalExtension();
-            $gambarBarang->move(public_path('uploads'), $namaFile);
+            $gambarBarang->move(public_path('uploadkamar'), $namaFile);
         } else {
             $namaFile = KamarKost::find($request->id)->gambar_kost;
         }
@@ -99,6 +102,7 @@ class KamarKostController extends Controller
         $kamarkost->harga_kost = $request->harga_kost;
         $kamarkost->lokasi_kost = $request->lokasi_kost;
         $kamarkost->ukuran_kost = $request->ukuran_kost;
+        $kamarkost->tipe_kost = $request->tipe_kost;
         $kamarkost->status_kost = $request->status_kost;
         // $kamarkost->layanan_barang = $request->layanan_barang;
         $kamarkost->gambar_kost = $namaFile;
@@ -113,8 +117,8 @@ class KamarKostController extends Controller
      */
     public function destroy(string $id)
     {
-        $kamar = KamarKost::find($id);
-        $kamar->delete();
+        $kamarkost = KamarKost::find($id);
+        $kamarkost->delete();
 
         return back()->with('success', 'Kamar Berhasil Dihapus');
     }
