@@ -1,5 +1,5 @@
 * {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .hr-divider {
@@ -83,17 +83,18 @@ button.tokokamarkost {
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
 }
 
-.btn-dark:enabled {
+.btn-bayar:enabled {
   color: white;
   background: rgb(106, 5, 114);
   background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%);
   margin-top: -14px;
 }
 
-.btn-dark[disabled] {
-  background-color: #e0e0e0;
+.btn-bayar[disabled] {
+  background: rgb(149, 148, 148) !important;
   /* Warna abu-abu */
-  color: #616161;
+  color: #ffffff !important;
+  border: none;
   /* Warna teks abu-abu yang cocok */
   cursor: not-allowed;
   /* Mengubah kursor saat tombol nonaktif */

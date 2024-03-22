@@ -31,6 +31,9 @@ class BannerController extends Controller
     {
         $request->validate([
             'gambar_banner' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'kategori_banner' => 'required',
+            'lokasi_banner' => 'required',
+            'status_banner' => 'required',
         ]);
 
         $gambarBarang = $request->file('gambar_banner');
@@ -39,6 +42,9 @@ class BannerController extends Controller
 
         $banner = new Banner();
         $banner->gambar_banner = $namaFile;
+        $banner->kategori_banner = $request->kategori_banner;
+        $banner->lokasi_banner = $request->lokasi_banner;
+        $banner->status_banner = $request->status_banner;
         $banner->save();
 
         return redirect()->route('banner')->with('success', 'Kamar Berhasil Ditambahkan');
@@ -69,6 +75,9 @@ class BannerController extends Controller
     {
         $request->validate([
             'gambar_banner' => 'nullable',
+            'kategori_banner' => 'required',
+            'lokasi_banner' => 'required',
+            'status_banner' => 'required',
         ]);
 
         if($request->gambar_banner) {
@@ -81,6 +90,9 @@ class BannerController extends Controller
 
         $banner = Banner::find($request->id);
         $banner->gambar_banner   = $namaFile;
+        $banner->kategori_banner = $request->kategori_banner;
+        $banner->lokasi_banner = $request->lokasi_banner;
+        $banner->status_banner = $request->status_banner;
         $banner->save();
         // return redirect()->route('admin.index')->with('success', 'Barang berhasil ditambahkan.');
         // return back()->with('success', 'Kamar Telah Ditambahkan.');

@@ -47,7 +47,8 @@
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="mt-3">
+                                <label class="mt-2" for="Gambar">Gambar Kost</label>
+                                <div class="mt-1">
                                     <input class="form-control" type="file" name="gambar_kost" id="gambar_kost" value="{{ old('gambar_kost') }}">
                                     @error('gambar_kost')
                                         {{ $message }}
@@ -55,9 +56,10 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="mt-3">
+                                <label class="mt-2" for="Kategori">Kategori Kost</label>
+                                <div class="mt-1">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="kategori_kost" id="kategori_kost" placeholder="Masukkan Nama Kost" value="{{ old('kategori_kost') }}">
+                                        <input type="text" class="form-control" name="kategori_kost" id="kategori_kost" placeholder="Masukkan Kategori Kost" value="{{ old('kategori_kost') }}">
                                         @error('kategori_kost')
                                             {{ $message }}
                                         @enderror
@@ -65,7 +67,8 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="mt-3">
+                                <label class="mt-2" for="Harga">Harga Kost</label>
+                                <div class="mt-1">
                                     <div class="form-group">
                                         <input type="text" class="form-control" name="harga_kost" id="harga_kost" placeholder="Masukkan Harga Kost" value="{{ old('harga_kost') }}">
                                         @error('harga_kost')
@@ -75,7 +78,8 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="mt-3">
+                                <label class="mt-2" for="Lokasi">Lokasi Kost</label>
+                                <div class="mt-1">
                                     <div class="form-group">
                                         <input type="text" class="form-control" name="lokasi_kost" id="lokasi_kost" placeholder="Masukkan Lokasi Kost" value="{{ old('lokasi_kost') }}">
                                         @error('lokasi_kost')
@@ -85,9 +89,10 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="mt-3">
+                                <label class="mt-2" for="Ukuran">Ukuran Kost</label>
+                                <div class="mt-1">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="ukuran_kost" id="ukuran_kost" placeholder="Masukkan Ukuran Kost">
+                                        <input type="text" class="form-control" name="ukuran_kost" id="ukuran_kost" placeholder="Masukkan Ukuran Kost" value="{{ old('ukuran_kost') }}">
                                         @error('ukuran_kost')
                                             {{ $message }}
                                         @enderror
@@ -95,10 +100,11 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="mt-3">
+                                <label class="mt-2" for="Tipe">Tipe Kost</label>
+                                <div class="mt-1">
                                     <div class="input-group">
-                                        <label class="input-group-text" for="inputGroupSelect01">Tipe Kost</label>
-                                        <select class="form-select" id="tipe_kost" name="tipe_kost">
+                                        {{-- <label class="input" for="inputGroupSelect01"></label> --}}
+                                        <select class="form-select" id="tipe_kost" name="tipe_kost" value="{{ old('tipe_kost') }}">
                                             <option selected>Pilih Tipe Kost...</option>
                                             <option value="Bulanan">Bulanan</option>
                                             <option value="Harian">Harian</option>
@@ -109,21 +115,27 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="mt-3">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" name="status_kost" id="status_kost" placeholder="Masukkan Status Kost">
-                                        @error('status_kost')
-                                            {{ $message }}
-                                        @enderror
+                            <div class="col-md-12">
+                                <label class="mt-2" for="Status">Status Kost</label>
+                                <div class="mt-1">
+                                    <div class="input-group">
+                                        {{-- <label class="input-group-text" for="inputGroupSelect01">Status Kost</label> --}}
+                                        <select class="form-select" id="status_kost" name="status_kost" value="{{ old('status_kost') }}">
+                                            <option selected>Pilih Status Kost...</option>
+                                            <option value="Publish">Publish</option>
+                                            <option value="Unpublish">Unpublish</option>
+                                            @error('status_kost')
+                                                {{ $message }}
+                                            @enderror
+                                        </select>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12">
-                                <div class="d-md-flex align-items-center mt-3">
+                            <div class="col-12 text-center">
+                                <div class="align-items-center mt-3">
                                     <div class="ms-auto mt-3 mt-md-0">
-                                        <button type="submit" class="btn btn-info font-medium rounded-pill px-4">
-                                            <div class="d-flex align-items-center">
+                                        <button type="submit" class="btn btn-info font-medium rounded-pill">
+                                            <div class="align-items-center">
                                                 Tambahkan
                                             </div>
                                         </button>

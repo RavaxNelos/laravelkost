@@ -42,9 +42,78 @@
                             <i class="ti ti-trash text-danger me-1 fs-5"></i> Delete All Row
                         </a>
                     </div>
-                    <a href="{{ route('tambahkamar') }}" id="btn-add-contact" class="btn btn-info d-flex align-items-center">
+                    <a data-bs-toggle="modal" data-bs-target="#modaltambah" id="btn-add-contact" class="btn btn-info d-flex align-items-center">
                         <i class="ti ti-plus text-white me-1 fs-5"></i> Tambah Pengguna
                     </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modaltambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Pengguna</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <form action="{{ route('pengguna.store') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mt-3">
+                                            <input class="form-control" type="file" name="gambar_pengguna" id="gambar_pengguna" value="{{ old('gambar_pengguna') }}">
+                                            @error('gambar_pengguna')
+                                                {{ $message }}
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mt-3">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="nama_pengguna" value="{{ old('nama_pengguna') }}" id="nama_pengguna" placeholder="Masukkan Nama Pengguna">
+                                                @error('nama_pengguna')
+                                                    {{ $message }}
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mt-3">
+                                            <div class="form-group">
+                                                <input type="email" class="form-control" name="email_pengguna" value="{{ old('email_pengguna') }}" id="email_pengguna" placeholder="Masukkan Email Pengguna">
+                                                @error('email_pengguna')
+                                                    {{ $message }}
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mt-3">
+                                            <div class="form-group">
+                                                <input type="tel" class="form-control" name="nomer_pengguna" value="{{ old('nomer_pengguna') }}" id="nomer_pengguna" placeholder="Masukkan Nomer Pengguna" min="0">
+                                                @error('nomer_pengguna')
+                                                    {{ $message }}
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="d-md-flex align-items-center mt-3">
+                                            <div class="ms-auto mt-3 mt-md-0">
+                                                <button type="submit" class="btn btn-info font-medium rounded-pill px-4">
+                                                    <div class="d-flex align-items-center">
+                                                        Tambahkan
+                                                    </div>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -58,254 +127,118 @@
                     <th>Nama Pengguna</th>
                     <th>Email</th>
                     <th>No.Tlpn</th>
-                    <th>Action</th>
+                    <th>Aksi</th>
                 </thead>
                 <tbody>
-                    <!-- start row -->
-                    <tr class="search-items">
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img src="{{ asset('admin') }}/dist/images/profile/user-1.jpg" alt="avatar" class="rounded-circle" width="35" />
-                                <div class="ms-3">
-                                    <div class="user-meta-info">
-                                        <h6 class="user-name mb-0" data-name="Emma Adams">Ravanelo</h6>
-                                        <span class="user-work fs-3" data-occupation="Web Developer">Pengguna Kost</span>
+                    @foreach ($pengguna as $item)
+                        <tr class="search-items">
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <img src="{{ asset('uploadkamar/' . $item->gambar_pengguna) }}" alt="avatar" class="rounded-circle" width="35" />
+                                    <div class="ms-3">
+                                        <div class="user-meta-info">
+                                            <h6 class="user-name mb-0" data-name="Emma Adams">{{ $item->nama_pengguna }}</h6>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="usr-email-addr" data-email="rava@gmail.com">rava@gmail.com</span>
-                        </td>
-                        <td>
-                            <span class="usr-no" data-no="082332724688">082332724688</span>
-                        </td>
-                        <td>
-                            <div class="action-btn">
-                                <button class="btn btn-danger" style="width: 30px; height: 30px; padding: 4px;">
-                                    <i class="ti ti-trash fs-5"></i>
-                                </button>
-                                <button class="btn btn-primary ms-2" style="width: 30px; height: 30px; padding: 4px;">
-                                    <i class="ti ti-edit fs-5"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <!-- end row -->
-                    <!-- start row -->
-                    <tr class="search-items">
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img src="{{ asset('admin') }}/dist/images/profile/user-2.jpg" alt="avatar" class="rounded-circle" width="35" />
-                                <div class="ms-3">
-                                    <div class="user-meta-info">
-                                        <h6 class="user-name mb-0" data-name="Olivia Allen">Olivia Allen</h6>
-                                        <span class="user-work fs-3" data-occupation="Web Designer">Web Developer</span>
-                                    </div>
+                            </td>
+                            <td>
+                                <span class="usr-email">{{ $item->email_pengguna }}</span>
+                            </td>
+                            <td>
+                                <span class="usr-nomer">{{ $item->nomer_pengguna }}</span>
+                            </td>
+                            <td>
+                                <div class="action-btn">
+                                    <a href="/pemilikmin/pengguna/destroy/{{ $item->id }}" class="btn btn-danger" style="width: 30px; height: 30px; padding: 4.5px;">
+                                        <i class="ti ti-trash fs-5"></i>
+                                    </a>
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#modaledit-{{ $item->id }}" class="btn btn-warning" style="width: 30px; height: 30px; padding: 4.5px;">
+                                        <i class="ti ti-edit fs-5"></i>
+                                    </button>
+                                    <form action="/pemilikmin/pengguna/destroy" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $item->id }}">
+                                    </form>
                                 </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="usr-email-addr" data-email="allen@mail.com">allen@mail.com</span>
-                        </td>
-                        <td>
-                            <span class="usr-no" data-no="082332755688">082332755688</span>
-                        </td>
-                        <td>
-                            <div class="action-btn">
-                                <button class="btn btn-danger" style="width: 30px; height: 30px; padding: 4px;">
-                                    <i class="ti ti-trash fs-5"></i>
-                                </button>
-                                <button class="btn btn-primary ms-2" style="width: 30px; height: 30px; padding: 4px;">
-                                    <i class="ti ti-edit fs-5"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <!-- end row -->
-                    <!-- start row -->
-                    <tr class="search-items">
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img src="{{ asset('admin') }}/dist/images/profile/user-3.jpg" alt="avatar" class="rounded-circle" width="35" />
-                                <div class="ms-3">
-                                    <div class="user-meta-info">
-                                        <h6 class="user-name mb-0" data-name="Isabella Anderson"> Isabella Anderson </h6>
-                                        <span class="user-work fs-3" data-occupation="UX/UI Designer">UX/UI Designer</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="usr-email-addr" data-email="anderson@mail.com">anderson@mail.com</span>
-                        </td>
-                        <td>
-                            <span class="usr-no" data-no="083547827485">083547827485</span>
-                        </td>
-                        <td>
-                            <div class="action-btn">
-                                <button class="btn btn-danger" style="width: 30px; height: 30px; padding: 4px;">
-                                    <i class="ti ti-trash fs-5"></i>
-                                </button>
-                                <button class="btn btn-primary ms-2" style="width: 30px; height: 30px; padding: 4px;">
-                                    <i class="ti ti-edit fs-5"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <!-- end row -->
-                    <!-- start row -->
-                    <tr class="search-items">
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img src="{{ asset('admin') }}/dist/images/profile/user-4.jpg" alt="avatar" class="rounded-circle" width="35" />
-                                <div class="ms-3">
-                                    <div class="user-meta-info">
-                                        <h6 class="user-name mb-0" data-name="Amelia Armstrong"> Amelia Armstrong </h6>
-                                        <span class="user-work fs-3" data-occupation="Ethical Hacker">Ethical Hacker</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="usr-email-addr" data-email="armstrong@mail.com">armstrong@mail.com</span>
-                        </td>
-                        <td>
-                            <span class="usr-no" data-no="0832937485729">0832937485729</span>
-                        </td>
-                        <td>
-                            <div class="action-btn">
-                                <button class="btn btn-danger" style="width: 30px; height: 30px; padding: 4px;">
-                                    <i class="ti ti-trash fs-5"></i>
-                                </button>
-                                <button class="btn btn-primary ms-2" style="width: 30px; height: 30px; padding: 4px;">
-                                    <i class="ti ti-edit fs-5"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <!-- end row -->
-                    <!-- start row -->
-                    <tr class="search-items">
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img src="{{ asset('admin') }}/dist/images/profile/user-5.jpg" alt="avatar" class="rounded-circle" width="35" />
-                                <div class="ms-3">
-                                    <div class="user-meta-info">
-                                        <h6 class="user-name mb-0" data-name="Emily Atkinson"> Emily Atkinson </h6>
-                                        <span class="user-work fs-3" data-occupation="Web developer">Web developer</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="usr-email-addr" data-email="atkinson@mail.com">atkinson@mail.com</span>
-                        </td>
-                        <td>
-                            <span class="usr-no" data-no="083948678822">083948678822</span>
-                        </td>
-                        <td>
-                            <div class="action-btn">
-                                <button class="btn btn-danger" style="width: 30px; height: 30px; padding: 4px;">
-                                    <i class="ti ti-trash fs-5"></i>
-                                </button>
-                                <button class="btn btn-primary ms-2" style="width: 30px; height: 30px; padding: 4px;">
-                                    <i class="ti ti-edit fs-5"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <!-- end row -->
-                    <!-- start row -->
-                    <tr class="search-items">
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img src="{{ asset('admin') }}/dist/images/profile/user-1.jpg" alt="avatar" class="rounded-circle" width="35" />
-                                <div class="ms-3">
-                                    <div class="user-meta-info">
-                                        <h6 class="user-name mb-0" data-name="Sofia Bailey">Sofia Bailey</h6>
-                                        <span class="user-work fs-3" data-occupation="UX/UI Designer">UX/UI Designer</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="usr-email-addr" data-email="bailey@mail.com">bailey@mail.com</span>
-                        </td>
-                        <td>
-                            <span class="usr-no" data-no="083476885766">083476885766</span>
-                        </td>
-                        <td>
-                            <div class="action-btn">
-                                <button class="btn btn-danger" style="width: 30px; height: 30px; padding: 4px;">
-                                    <i class="ti ti-trash fs-5"></i>
-                                </button>
-                                <button class="btn btn-primary ms-2" style="width: 30px; height: 30px; padding: 4px;">
-                                    <i class="ti ti-edit fs-5"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="search-items">
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img src="{{ asset('admin') }}/dist/images/profile/user-2.jpg" alt="avatar" class="rounded-circle" width="35" />
-                                <div class="ms-3">
-                                    <div class="user-meta-info">
-                                        <h6 class="user-name mb-0" data-name="Victoria Sharma"> Victoria Sharma </h6>
-                                        <span class="user-work fs-3" data-occupation="Project Manager">Project Manager</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="usr-email-addr" data-email="sharma@mail.com">sharma@mail.com</span>
-                        </td>
-                        <td>
-                            <span class="usr-no" data-no="082366478893">082366478893</span>
-                        </td>
-                        <td>
-                            <div class="action-btn">
-                                <button class="btn btn-danger" style="width: 30px; height: 30px; padding: 4px;">
-                                    <i class="ti ti-trash fs-5"></i>
-                                </button>
-                                <button class="btn btn-primary ms-2" style="width: 30px; height: 30px; padding: 4px;">
-                                    <i class="ti ti-edit fs-5"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="search-items">
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <img src="{{ asset('admin') }}/dist/images/profile/user-3.jpg" alt="avatar" class="rounded-circle" width="35" />
-                                <div class="ms-3">
-                                    <div class="user-meta-info">
-                                        <h6 class="user-name mb-0" data-name="Penelope Baker"> Penelope Baker </h6>
-                                        <span class="user-work fs-3" data-occupation="Web Developer">Web Developer</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <span class="usr-email-addr" data-email="baker@mail.com">baker@mail.com</span>
-                        </td>
-                        <td>
-                            <span class="usr-no" data-no="082388399841">082388399841</span>
-                        </td>
-                        <td>
-                            <div class="action-btn">
-                                <button class="btn btn-danger" style="width: 30px; height: 30px; padding: 4px;">
-                                    <i class="ti ti-trash fs-5"></i>
-                                </button>
-                                <button class="btn btn-primary ms-2" style="width: 30px; height: 30px; padding: 4px;">
-                                    <i class="ti ti-edit fs-5"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
+        </div>
+    </div>
+    <div class="modal fade" id="modaledit-{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Pengguna</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img src="{{ asset('uploadkamar/' . $item->gambar_pengguna) }}" class="rounded-1" width="35">
+                            </div>
+                            <form action="/pemilikmin/editpengguna" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $item->id }}">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mt-3">
+                                            <input class="form-control" type="file" name="gambar_pengguna" value="{{ $item->gambar_pengguna }}" id="gambar_pengguna">
+                                            @error('gambar_pengguna')
+                                                {{ $message }}
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mt-3">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="nama_pengguna" value="{{ $item->nama_pengguna }}" id="nama_pengguna" placeholder="Masukkan Nama Pengguna">
+                                                @error('nama_pengguna')
+                                                    {{ $message }}
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mt-3">
+                                            <div class="form-group">
+                                                <input type="email" class="form-control" name="email_pengguna" value="{{ $item->email_pengguna }}" id="email_pengguna" placeholder="Masukkan Email Pengguna">
+                                                @error('email_pengguna')
+                                                    {{ $message }}
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mt-3">
+                                            <div class="form-group">
+                                                <input type="number" class="form-control" name="nomer_pengguna" value="{{ $item->nomer_pengguna }}" id="nomer_pengguna" placeholder="Masukkan Nomer Pengguna">
+                                                @error('nomer_pengguna')
+                                                    {{ $message }}
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="d-md-flex align-items-center mt-3">
+                                            <div class="ms-auto mt-3 mt-md-0">
+                                                <button type="submit" class="btn btn-info font-medium rounded-pill px-4">
+                                                    <div class="d-flex align-items-center">
+                                                        Edit
+                                                    </div>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- --------------------------------------------------- -->

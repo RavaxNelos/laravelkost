@@ -21,6 +21,9 @@ class RoleSeeder extends Seeder
                 'name' => 'pemilik-kos'
             ],
             [
+                'name' => 'pemilik-admin'
+            ],
+            [
                 'name' => 'user'
             ],
         ];

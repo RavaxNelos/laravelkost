@@ -3,7 +3,37 @@
 @section('title', 'Banner')
 
 @section('styles')
+    <style>
+        .published {
+            display: flex;
+            /* Set the display property to inline-block */
+            width: 60px;
+            /* Set width to auto to allow the element to expand based on content */
+            height: 30px;
+            background-color: rgba(0, 255, 0, 0.246);
+            padding: 6px;
+            align-items: center;
+            /* Sembunyikan konten yang keluar dari batas */
+            color: green;
+            border-radius: 4px;
+            font-weight: 500;
+        }
 
+        .Unpublish {
+            display: flex;
+            /* Set the display property to inline-block */
+            width: 80px;
+            /* Set width to auto to allow the element to expand based on content */
+            height: 30px;
+            background-color: rgba(255, 0, 0, 0.246);
+            padding: 6px;
+            align-items: center;
+            /* Sembunyikan konten yang keluar dari batas */
+            color: red;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+    </style>
 @endsection
 @section('content')
     <div class="card bg-light-info shadow-none position-relative overflow-hidden">
@@ -37,9 +67,94 @@
                     </form>
                 </div>
                 <div class="col-md-8 col-xl-9 text-end d-flex justify-content-md-end justify-content-center mt-3 mt-md-0">
-                    <a href="{{ route('tambahbanner') }}" id="btn-add-contact" class="btn btn-info d-flex align-items-center">
+                    <a data-bs-toggle="modal" data-bs-target="#modaltambah" id="btn-add-contact" class="btn btn-info d-flex align-items-center">
                         <i class="ti ti-plus text-white me-1 fs-5"></i> Tambah Banner
                     </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="modaltambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Banner</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <form action="{{ route('banner.store') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mt-3">
+                                            <input class="form-control" type="file" name="gambar_banner" id="gambar_banner" value="{{ old('gambar_banner') }}">
+                                            @error('gambar_banner')
+                                                {{ $message }}
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mt-3">
+                                            <div class="input-group">
+                                                {{-- <label class="input-group-text" for="inputGroupSelect01">Kategori Banner</label> --}}
+                                                <select class="form-select" id="kategori_banner" name="kategori_banner" value="{{ old('kategori_banner') }}">
+                                                    {{-- <option selected>Pilih Kategori Banner...</option> --}}
+                                                    <option value="Slider">Slider</option>
+                                                    <option value="Banner">Banner</option>
+                                                    @error('kategori_banner')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mt-3">
+                                            <div class="input-group">
+                                                {{-- <label class="input-group-text" for="inputGroupSelect01">Kategori Banner</label> --}}
+                                                <select class="form-select" id="lokasi_banner" name="lokasi_banner" value="{{ old('lokasi_banner') }}">
+                                                    {{-- <option selected>Pilih Kategori Banner...</option> --}}
+                                                    <option value="Home">Home</option>
+                                                    <option value="Area Kost">Area Kost</option>
+                                                    @error('lokasi_banner')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mt-3">
+                                            <div class="input-group">
+                                                {{-- <label class="input-group-text" for="inputGroupSelect01">Kategori Banner</label> --}}
+                                                <select class="form-select" id="status_banner" name="status_banner" value="{{ old('status_banner') }}">
+                                                    {{-- <option selected>Pilih Kategori Banner...</option> --}}
+                                                    <option value="Publish">Publish</option>
+                                                    <option value="Unpublish">Unpublish</option>
+                                                    @error('status_banner')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="d-md-flex align-items-center mt-3">
+                                            <div class="ms-auto mt-3 mt-md-0">
+                                                <button type="submit" class="btn btn-info font-medium rounded-pill px-4">
+                                                    <div class="d-flex align-items-center">
+                                                        Tambahkan
+                                                    </div>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -51,7 +166,10 @@
             <table class="table search-table align-middle text-nowrap">
                 <thead class="header-item">
                     <th>Gambar Banner</th>
-                    <th>Action</th>
+                    <th>Kategori Banner</th>
+                    <th>Lokasi Banner</th>
+                    <th>Status Banner</th>
+                    <th>Aksi</th>
                 </thead>
                 <tbody>
                     @foreach ($banner as $item)
@@ -63,13 +181,104 @@
                                 </div>
                             </td>
                             <td>
+                                <span class="usr-nama-banner">{{ $item->kategori_banner }}</span>
+                            </td>
+                            <td>
+                                <span class="usr-lokasi-banner">{{ $item->lokasi_banner }}</span>
+                            </td>
+                            <td>
+                                <span class="usr-status-banner @if ($item->status_banner == 'Publish') published @else Unpublish @endif">{{ $item->status_banner }}</span>
+                            </td>
+                            <td>
                                 <div class="action-btn">
                                     <a href="/pemilikmin/banner/destroy/{{ $item->id }}" class="btn btn-danger" style="width: 30px; height: 30px; padding: 4.5px;">
                                         <i class="ti ti-trash fs-5"></i>
                                     </a>
-                                    <a href="/pemilikmin/editbanner/{{ $item->id }}" class="btn btn-warning" style="width: 30px; height: 30px; padding: 4.5px;">
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#modaledit-{{ $item->id }}" class="btn btn-warning" style="width: 30px; height: 30px; padding: 4.5px;">
                                         <i class="ti ti-edit fs-5"></i>
-                                    </a>
+                                    </button>
+                                    <div class="modal fade" id="modaledit-{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Banner</h1>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <form action="/pemilikmin/editbanner" method="POST" enctype="multipart/form-data">
+                                                                @csrf
+                                                                <input type="hidden" name="id" value="{{ $item->id }}">
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <div class="mt-3">
+                                                                            <input class="form-control" type="file" name="gambar_banner" value="{{ $item->gambar_banner }}" id="gambar_banner">
+                                                                            @error('gambar_banner')
+                                                                                {{ $message }}
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="mt-3">
+                                                                            <div class="input-group">
+                                                                                <label class="input-group-text" for="inputGroupSelect01">Kategori Banner</label>
+                                                                                <select class="form-select" id="kategori_banner" name="kategori_banner">
+                                                                                    <option value="Slider" {{ $item->kategori_banner == 'Slider' ? 'selected' : '' }}>Slider</option>
+                                                                                    <option value="Banner" {{ $item->kategori_banner == 'Banner' ? 'selected' : '' }}>Banner</option>
+                                                                                    @error('kategori_banner')
+                                                                                        {{ $message }}
+                                                                                    @enderror
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="mt-3">
+                                                                            <div class="input-group">
+                                                                                <label class="input-group-text" for="inputGroupSelect01">Lokasi Banner</label>
+                                                                                <select class="form-select" id="lokasi_banner" name="lokasi_banner">
+                                                                                    <option value="Home" {{ $item->lokasi_banner == 'Home' ? 'selected' : '' }}>Home</option>
+                                                                                    <option value="Area Kost" {{ $item->lokasi_banner == 'Area Kost' ? 'selected' : '' }}>Area Kost</option>
+                                                                                    @error('lokasi_banner')
+                                                                                        {{ $message }}
+                                                                                    @enderror
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="mt-3">
+                                                                            <div class="input-group">
+                                                                                <label class="input-group-text" for="inputGroupSelect01">Lokasi Banner</label>
+                                                                                <select class="form-select" id="status_banner" name="status_banner">
+                                                                                    <option value="Publish" {{ $item->status_banner == 'Publish' ? 'selected' : '' }}>Publish</option>
+                                                                                    <option value="Unpublish" {{ $item->status_banner == 'Unpublish' ? 'selected' : '' }}>Unpublish</option>
+                                                                                    @error('status_banner')
+                                                                                        {{ $message }}
+                                                                                    @enderror
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-12">
+                                                                        <div class="d-md-flex align-items-center mt-3">
+                                                                            <div class="ms-auto mt-3 mt-md-0">
+                                                                                <button type="submit" class="btn btn-info font-medium rounded-pill px-4">
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        Edit
+                                                                                    </div>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <form action="/pemilikmin/banner/destroy" method="POST">
                                         @csrf
                                         <input type="hidden" name="id" value="{{ $item->id }}">

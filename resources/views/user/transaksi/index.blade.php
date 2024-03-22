@@ -523,7 +523,7 @@
                     <h3 class="fw-semibold" style="font-size: 23,5; color: #9370DB">Rp.2.100.000</h3>
                 </div>
                 <div class="col-6 text-end">
-                    <button type="submit" href="{{ asset('/user/konfirmasitransaksi') }}" class="btn btn-dark text-end" id="btnBayar" disabled>Bayar</button>
+                    <button type="submit" href="{{ asset('/user/konfirmasitransaksi') }}" class="btn btn-bayar text-end" id="btnBayar" disabled>Bayar</button>
                 </div>
             </div>
         </div>

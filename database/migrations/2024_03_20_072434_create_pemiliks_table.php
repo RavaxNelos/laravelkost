@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('pemilik', function (Blueprint $table) {
             $table->id();
+            $table->string('gambar_pemilik');
+            $table->string('nama_pemilik');
+            $table->string('email_pemilik');
+            $table->string('nomer_pemilik');
             $table->timestamps();
         });
     }

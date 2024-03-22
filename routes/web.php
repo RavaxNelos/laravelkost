@@ -8,7 +8,7 @@ use App\Http\Controllers\PemilikMinController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\KamarKostController;
 use App\Http\Controllers\PembayaranController;
-use App\Http\Controllers\PemilikControlller;
+use App\Http\Controllers\PemilikTabelControlller;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\TransaksiController;
 
@@ -69,7 +69,17 @@ Route::get('/pemilikmin/editpembayaran/{id}', [PembayaranController::class, 'edi
 Route::post('/pemilikmin/editpembayaran', [PembayaranController::class, 'update'])->name('editpembayaranPost');
 Route::get('/pemilikmin/pembayaran/destroy/{id}', [PembayaranController::class, 'destroy'])->name('destroy');
 Route::get('/pemilikmin/pengguna', [PenggunaController::class, 'index'])->name('pengguna');
-Route::get('/pemilikmin/pemilik', [PemilikControlller::class, 'index'])->name('pemilik');
+Route::get('/pemilikmin/tambahpengguna', [PenggunaController::class, 'create'])->name('tambahpengguna');
+Route::post('/pemilikmin/pengguna', [PenggunaController::class, 'store'])->name('pengguna.store');
+Route::get('/pemilikmin/editpengguna/{id}', [PenggunaController::class, 'edit'])->name('editpengguna');
+Route::post('/pemilikmin/editpengguna', [PenggunaController::class, 'update'])->name('editpenggunaPost');
+Route::get('/pemilikmin/pengguna/destroy/{id}', [PenggunaController::class, 'destroy'])->name('destroy');
+Route::get('/pemilikmin/pemilik', [PemilikTabelControlller::class, 'index'])->name('pemilik');
+Route::get('/pemilikmin/tambahpemilik', [PemilikTabelControlller::class, 'create'])->name('tambahpengguna');
+Route::post('/pemilikmin/pemilik', [PemilikTabelControlller::class, 'store'])->name('pemilik.store');
+Route::get('/pemilikmin/editpemilik/{id}', [PemilikTabelControlller::class, 'edit'])->name('editpengguna');
+Route::post('/pemilikmin/editpemilik', [PemilikTabelControlller::class, 'update'])->name('editpenggunaPost');
+Route::get('/pemilikmin/pemilik/destroy/{id}', [PemilikTabelControlller::class, 'destroy'])->name('destroy');
 //pemilik2 controller
 // Route::get('/pemilik2/dashboard', [])
 // Route::resource('kamar', KamarKostController::class);

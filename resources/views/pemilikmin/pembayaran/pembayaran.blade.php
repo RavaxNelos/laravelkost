@@ -37,9 +37,101 @@
                     </form>
                 </div>
                 <div class="col-md-8 col-xl-9 text-end d-flex justify-content-md-end justify-content-center mt-3 mt-md-0">
-                    <a href="{{ route('tambahpembayaran') }}" id="btn-add-contact" class="btn btn-info d-flex align-items-center">
+                    <a data-bs-toggle="modal" data-bs-target="#modaltambah" id="btn-add-contact" class="btn btn-info d-flex align-items-center">
                         <i class="ti ti-plus text-white me-1 fs-5"></i> Tambah Pembayaran
                     </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modaltambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Banner</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <form action="{{ route('pembayaran.store') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="col-md-12">
+                                    <div class="mt-3">
+                                        <div class="input-group mb-3">
+                                            <label class="input-group-text" for="inputGroupSelect01">Metode Pembayaran</label>
+                                            <select class="form-select" id="nama_pembayaran" name="nama_pembayaran">
+                                                <option selected>Pilih Nama Pembayaran...</option>
+                                                <option value="Bank BRI">Bank BRI</option>
+                                                <option value="Bank BCA">Bank BCA</option>
+                                                <option value="Visa">Visa</option>
+                                                <option value="Gopay">Gopay</option>
+                                                <option value="Ovo">Ovo</option>
+                                                <option value="Dana">Dana</option>
+                                                <option value="Shopee Pay">Shopee Pay</option>
+                                                @error('nama_pembayaran')
+                                                    {{ $message }}
+                                                @enderror
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mt-3">
+                                        <input class="form-control" type="file" name="logo_pembayaran" id="logo_pembayaran" value="{{ old('logo_pembayaran') }}">
+                                        @error('logo_pembayaran')
+                                            {{ $message }}
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mt-3">
+                                        <div class="input-group mb-3">
+                                            <label class="input-group-text" for="inputGroupSelect01">Kategori Pembayaran</label>
+                                            <select class="form-select" id="kategori_pembayaran" name="kategori_pembayaran">
+                                                <option selected>Pilih Kategori Pembayaran...</option>
+                                                <option value="Transfer Bank">Transfer Bank</option>
+                                                <option value="E-Wallet">E-Wallet</option>
+                                                @error('kategori_pembayaran')
+                                                    {{ $message }}
+                                                @enderror
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mt-3">
+                                        <div class="form-group">
+                                            <input type="number" class="form-control" name="nomer_pembayaran" id="nomer_pembayaran" placeholder="Masukkan nomer pembayaran" value="{{ old('nomer_pembayaran') }}">
+                                            @error('nomer_pembayaran')
+                                                {{ $message }}
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mt-3">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="atasnama_pembayaran" id="atasnama_pembayaran" placeholder="Masukkan atasnama pembayaran">
+                                            @error('atasnama_pembayaran')
+                                                {{ $message }}
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="d-md-flex align-items-center mt-3">
+                                        <div class="ms-auto mt-3 mt-md-0">
+                                            <button type="submit" class="btn btn-info font-medium rounded-pill px-4">
+                                                <div class="d-flex align-items-center">
+                                                    Tambahkan
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -66,7 +158,7 @@
                             </td>
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ asset('uploadkamar/' . $item->logo_pembayaran) }}" class="rounded-1" style="width: 160px; height: 100px;" />
+                                    <img src="{{ asset('uploadkamar/' . $item->logo_pembayaran) }}" class="rounded-1" width="35" />
                                 </div>
                             </td>
                             <td>
@@ -83,42 +175,137 @@
                                     <a href="/pemilikmin/pembayaran/destroy/{{ $item->id }}" class="btn btn-danger" style="width: 30px; height: 30px; padding: 4.5px;">
                                         <i class="ti ti-trash fs-5"></i>
                                     </a>
-                                    <a href="/pemilikmin/editpembayaran/{{ $item->id }}" class="btn btn-warning" style="width: 30px; height: 30px; padding: 4.5px;">
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#modaledit-{{ $item->id }}" class="btn btn-warning" style="width: 30px; height: 30px; padding: 4.5px;">
                                         <i class="ti ti-edit fs-5"></i>
-                                    </a>
+                                    </button>
                                     <button class="btn btn-info" style="width: 30px; height: 30px; padding: 4.5px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                         <i class="ti ti-eye fs-5"></i>
                                     </button>
-                                    <form action="/pemilikmin/kamar/destroy">
-                                        @csrf
-                                        @method('delete')
-                                        <input type="hidden" name="id" value="{{ $item->id }}">
-
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Metode Pembayaran</h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="row">
-                                                            <div class="col-12 text-start">
-                                                                <label for="gambar pembayaran">Gambar pembayaran</label>
-                                                            </div>
-                                                            <div class="col-12 text-start">
-                                                                <img src="{{ asset('uploadkamar/' . $item->gambar_pembayaran) }}" class="rounded-1" style="width: 160px; height: 100px;" />
-                                                            </div>
-                                                            <div class="col-12 text-start">
-                                                                <label for="kategori pembayaran">Kategori pembayaran</label>
-                                                                <h1 class="fw-medium" style="font-size: 16px;">{{ $item->kategori_pembayaran }}</h1>
-                                                            </div>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Metode Pembayaran</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-12 text-start">
+                                                            <label for="gambar pembayaran">Gambar pembayaran</label>
+                                                        </div>
+                                                        <div class="col-12 text-start">
+                                                            <img src="{{ asset('uploadkamar/' . $item->gambar_pembayaran) }}" class="rounded-1" style="width: 160px; height: 100px;" />
+                                                        </div>
+                                                        <div class="col-12 text-start">
+                                                            <label for="kategori pembayaran">Kategori pembayaran</label>
+                                                            <h1 class="fw-medium" style="font-size: 16px;">{{ $item->kategori_pembayaran }}</h1>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="modal fade" id="modaledit-{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Kamar</h1>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <img src="{{ asset('uploadkamar/' . $item->logo_pembayaran) }}" class="rounded-1" style="width: 300px; height: 180px;">
+                                                            </div>
+                                                            <form action="/pemilikmin/editpembayaran" method="POST" enctype="multipart/form-data">
+                                                                @csrf
+                                                                <input type="hidden" name="id" value="{{ $item->id }}">
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <div class="mt-3">
+                                                                            <input class="form-control" type="file" name="logo_pembayaran" value="{{ $item->logo_pembayaran }}" id="logo_pembayaran">
+                                                                            @error('logo_pembayaran')
+                                                                                {{ $message }}
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="mt-3">
+                                                                            <div class="input-group mb-3">
+                                                                                <label class="input-group-text" for="inputGroupSelect01">Metode Pembayaran</label>
+                                                                                <select class="form-select" id="nama_pembayaran" name="nama_pembayaran">
+                                                                                    <option value="Bank BRI" {{ $item->nama_pembayaran == 'Bank BRI' ? 'selected' : '' }}>Bank BRI</option>
+                                                                                    <option value="Bank BCA" {{ $item->nama_pembayaran == 'Bank BCA' ? 'selected' : '' }}>Bank BCA</option>
+                                                                                    <option value="Visa" {{ $item->nama_pembayaran == 'Visa' ? 'selected' : '' }}>Visa</option>
+                                                                                    <option value="Gopay" {{ $item->nama_pembayaran == 'Gopay' ? 'selected' : '' }}>Gopay</option>
+                                                                                    <option value="Ovo" {{ $item->nama_pembayaran == 'Ovo' ? 'selected' : '' }}>Ovo</option>
+                                                                                    <option value="Dana" {{ $item->nama_pembayaran == 'Dana' ? 'selected' : '' }}>Dana</option>
+                                                                                    <option value="Shopee Pay" {{ $item->nama_pembayaran == 'Shopee Pay' ? 'selected' : '' }}>Shopee Pay</option>
+                                                                                    @error('nama_pembayaran')
+                                                                                        {{ $message }}
+                                                                                    @enderror
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="mt-3">
+                                                                            <div class="input-group mb-3">
+                                                                                <label class="input-group-text" for="inputGroupSelect01">Kategori Pembayaran</label>
+                                                                                <select class="form-select" id="kategori_pembayaran" name="kategori_pembayaran">
+                                                                                    <option value="Transfer Bank" {{ $item->kategori_pembayaran == 'Transfer Bank' ? 'selected' : '' }}>Transfer Bank</option>
+                                                                                    <option value="E-Wallet" {{ $item->kategori_pembayaran == 'E-Wallet' ? 'selected' : '' }}>E-Wallet</option>
+                                                                                    @error('kategori_pembayaran')
+                                                                                        {{ $message }}
+                                                                                    @enderror
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="mt-3">
+                                                                            <div class="form-group">
+                                                                                <input type="number" class="form-control" name="nomer_pembayaran" value="{{ $item->nomer_pembayaran }}" id="nomer_pembayaran" placeholder="Masukkan Nomer Pembayaran">
+                                                                                @error('nomer_pembayaran')
+                                                                                    {{ $message }}
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="mt-3">
+                                                                            <div class="form-group">
+                                                                                <input type="text" class="form-control" name="atasnama_pembayaran" value="{{ $item->atasnama_pembayaran }}" id="atasnama_pembayaran" placeholder="Masukkan Atas Nama Pembayaran">
+                                                                                @error('atasnama_pembayaran')
+                                                                                    {{ $message }}
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-12">
+                                                                        <div class="d-md-flex align-items-center mt-3">
+                                                                            <div class="ms-auto mt-3 mt-md-0">
+                                                                                <button type="submit" class="btn btn-info font-medium rounded-pill px-4">
+                                                                                    <div class="d-flex align-items-center">
+                                                                                        Edit
+                                                                                    </div>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <form action="/pemilikmin/kamar/destroy">
+                                        @csrf
+                                        @method('delete')
+                                        <input type="hidden" name="id" value="{{ $item->id }}">
                                     </form>
                                 </div>
                             </td>

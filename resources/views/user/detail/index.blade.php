@@ -290,7 +290,7 @@
     <div class="container">
         <!-- Judul kamar -->
         <div class="col-7 text-start mt-2">
-            <h6 class="fw-bold" style="font-size: 18px; font-family: Poppins; color: #1e1e1ee5">Kamar Kost Putra</h6>
+            <h6 class="fw-bold" style="font-size: 18px; color: #1e1e1ee5">Kamar Kost Putra</h6>
         </div>
         <div class="row">
             <div class="col-9 text-start">
@@ -304,7 +304,7 @@
                 <h6 class="fw-bold" style="font-size: 22px; color: rgba(128, 0, 128, 0.9); font-family: Poppins;">Rp. 2.000.000</h6>
             </div>
             <div class="col-6" style="margin-top: 12px; margin-left: -26px;">
-                <p class="text-danger" style="margin-top: -8px; font-size: 10px; font-style: italic;">(Tidak Termasuk Listrik) <i class="bi bi-info-circle" data-bs-toggle="modal" data-bs-target="#exampleModal" style="color: #000000; margin-left: 4px; font-size: 12px;"></i></p>
+                <p class="text-danger" style="margin-top: -8px; font-size: 10px; font-style: italic; font-family: Ubuntu;">(Tidak Termasuk Listrik) <i class="bi bi-info-circle" data-bs-toggle="modal" data-bs-target="#exampleModal" style="color: #000000; margin-left: 4px; font-size: 12px;"></i></p>
             </div>
         </div>
         <!-- Modal -->
@@ -312,7 +312,7 @@
             <div class="modal-dialog">
                 <div class="modal-content" style="width: 336px; position: absolute; top: 320px; height: 84px;">
                     <div class="modal-body">
-                        <p class="fw-normal" style="font-size: 12px; margin-top: -4px; justify-content: center;">Biaya sewa kamar tidak termasuk listrik, dan pembayaran listrik akan dilakukan melalui sistem token dengan tarif yang berlaku.</p>
+                        <p class="fw-normal" style="font-size: 12px; margin-top: -4px; justify-content: center; font-family: Ubuntu;">Biaya sewa kamar tidak termasuk listrik, dan pembayaran listrik akan dilakukan melalui sistem token dengan tarif yang berlaku.</p>
                     </div>
                 </div>
             </div>

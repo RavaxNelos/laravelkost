@@ -50,6 +50,20 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="mt-3">
+                                    <div class="input-group">
+                                        <label class="input-group-text" for="inputGroupSelect01">Kategori Banner</label>
+                                        <select class="form-select" id="kategori_banner" name="kategori_banner">
+                                            <option value="Slider" {{ $banner->kategori_banner == 'Slider' ? 'selected' : '' }}>Slider</option>
+                                            <option value="Banner" {{ $banner->kategori_banner == 'Banner' ? 'selected' : '' }}>Banner</option>
+                                            @error('kategori_banner')
+                                                {{ $message }}
+                                            @enderror
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-12">
                                 <div class="d-md-flex align-items-center mt-3">
                                     <div class="ms-auto mt-3 mt-md-0">

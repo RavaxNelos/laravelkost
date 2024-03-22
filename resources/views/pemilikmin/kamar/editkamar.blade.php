@@ -60,11 +60,18 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="mt-3">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" name="kategori_kost" value="{{ $kamarkost->kategori_kost }}" id="kategori_kost" placeholder="Masukkan Kategori Kost">
-                                        @error('ketegori_kost')
-                                            {{ $message }}
-                                        @enderror
+                                    <div class="input-group">
+                                        {{-- <label class="input-group-text" for="inputGroupSelect01">Tipe Kost</label> --}}
+                                        <select class="form-select" id="kategori_kost" name="kategori_kost">
+                                            <option value="Kost Putra" {{ $kamarkost->kategori_kost == 'Kost Putra' ? 'selected' : '' }}>Kost Putra</option>
+                                            <option value="Kost Putri" {{ $kamarkost->kategori_kost == 'Kost Putri' ? 'selected' : '' }}>Kost Putri</option>
+                                            <option value="Kost Karyawan" {{ $kamarkost->kategori_kost == 'Kost Karyawan' ? 'selected' : '' }}>Kost Karyawan</option>
+                                            <option value="Kost Pegawai" {{ $kamarkost->kategori_kost == 'Kost Pegawai' ? 'selected' : '' }}>Kost Pegawai</option>
+                                            <option value="Kost Mahasiswa" {{ $kamarkost->kategori_kost == 'Kost Mahasiswa' ? 'selected' : '' }}>Kost Mahasiswa</option>
+                                            @error('kategori_kost')
+                                                {{ $message }}
+                                            @enderror
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -101,7 +108,7 @@
                             <div class="col-md-6">
                                 <div class="mt-3">
                                     <div class="input-group">
-                                        <label class="input-group-text" for="inputGroupSelect01">Tipe Kost</label>
+                                        {{-- <label class="input-group-text" for="inputGroupSelect01">Tipe Kost</label> --}}
                                         <select class="form-select" id="tipe_kost" name="tipe_kost">
                                             <option value="Bulanan" {{ $kamarkost->tipe_kost == 'Bulanan' ? 'selected' : '' }}>Bulanan</option>
                                             <option value="Harian" {{ $kamarkost->tipe_kost == 'Harian' ? 'selected' : '' }}>Harian</option>
@@ -112,13 +119,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="mt-3">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" name="status_kost" value="{{ $kamarkost->status_kost }}" id="status_kost" placeholder="Masukkan Status Kost">
-                                        @error('status_kost')
-                                            {{ $message }}
-                                        @enderror
+                                    <div class="input-group">
+                                        {{-- <label class="input-group-text" for="inputGroupSelect01">Tipe Kost</label> --}}
+                                        <select class="form-select" id="status_kost" name="status_kost">
+                                            <option value="Publish" {{ $kamarkost->status_kost == 'Publish' ? 'selected' : '' }}>Publish</option>
+                                            <option value="Unpublish" {{ $kamarkost->status_kost == 'Unpublish' ? 'selected' : '' }}>Unpublish</option>
+                                            @error('status_kost')
+                                                {{ $message }}
+                                            @enderror
+                                        </select>
                                     </div>
                                 </div>
                             </div>
