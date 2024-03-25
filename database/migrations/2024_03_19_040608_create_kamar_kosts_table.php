@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('ukuran_kost');
             $table->string('tipe_kost');
             $table->string('status_kost');
+            $table->string('fasilitas_kost');
             $table->timestamps();
         });
     }

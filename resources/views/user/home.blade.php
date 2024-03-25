@@ -470,7 +470,7 @@
                                     <div class="lingkaran-logo" style="position: absolute; top: 10px; left: 8px; background-color: rgba(142, 68, 173, 1); width: 26px; height: 26px; border-radius: 30px; z-index: 999999;"><i class="bi bi-wallet" style="color: white; padding: 6px; font-size: 14px;"></i></div>
                                     <p class="fw-semibold" style="font-size: 12px; position: absolute; top: 14px; left: 38px;">Cashback</p>
                                     <p class="fw-medium text-white" style="font-size: 12px; position: absolute; top: 40px; left: 8px;">Rp.50.000</p>
-                                    <p class="text-body-tertiary" style="position: absolute; top: 58px; left: 8px; font-size: 10px; font-weight: 500;">potongan Harga Kost</p>
+                                    <p class="text-body-tertiary" style="position: absolute; top: 58px; left: 8px; font-size: 10px; font-weight: 500;">Potongan Harga Kost</p>
                                 </div>
                             </div>
                         </li>
@@ -490,7 +490,7 @@
                                     <div class="lingkaran-logo" style="position: absolute; top: 10px; left: 8px; background-color: rgba(142, 68, 173, 1); width: 26px; height: 26px; border-radius: 30px; z-index: 999999;"><i class="bi bi-wallet" style="color: white; padding: 6px; font-size: 14px;"></i></div>
                                     <p class="fw-semibold" style="font-size: 12px; position: absolute; top: 14px; left: 38px;">Cashback</p>
                                     <p class="fw-medium text-white" style="font-size: 12px; position: absolute; top: 40px; left: 8px;">Rp.100.000</p>
-                                    <p class="text-body-tertiary" style="position: absolute; top: 58px; left: 8px; font-size: 10px; font-weight: 500;">potongan Harga Kost</p>
+                                    <p class="text-body-tertiary" style="position: absolute; top: 58px; left: 8px; font-size: 10px; font-weight: 500;">Potongan Harga Kost</p>
                                 </div>
                             </div>
                         </li>

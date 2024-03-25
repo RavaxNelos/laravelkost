@@ -26,7 +26,6 @@ class UserSeeder extends Seeder
                 'nomorhp' => '8'.rand(1111111111, 9999999999),
                 // 'gender' => $faker->randomElement(['Laki-laki', 'Perempuan']),
                 'password' => $password,
-                'konfirmasipassword' => $password,
                 'role_id'  => rand(1,4)
             ]);
         }

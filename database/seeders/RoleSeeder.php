@@ -18,10 +18,10 @@ class RoleSeeder extends Seeder
                 'name' => 'admin'
             ],
             [
-                'name' => 'pemilik-kos'
+                'name' => 'pemilik-admin'
             ],
             [
-                'name' => 'pemilik-admin'
+                'name' => 'pemilik-kos'
             ],
             [
                 'name' => 'user'
