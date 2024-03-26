@@ -69,6 +69,14 @@
                         <span class="hide-menu">Pemilik Kost</span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('kategori') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-square-plus"></i>
+                        </span>
+                        <span class="hide-menu">Tambah Kategori</span>
+                    </a>
+                </li>
             </ul>
             <!-- End Sidebar navigation -->
     </div>

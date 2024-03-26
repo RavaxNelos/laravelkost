@@ -10,12 +10,37 @@
             font-family: 'Ubuntu';
         }
 
+        .logo {
+            position: absolute;
+            top: 30%;
+            left: 42%;
+            animation: zoom 1s infinite alternate;
+            /* Menerapkan animasi 'zoom' */
+        }
+
+        @keyframes zoom {
+            0% {
+                transform: scale(1);
+                /* Skala awal */
+            }
+
+            50% {
+                transform: scale(1.2);
+                /* Skala tengah */
+            }
+
+            100% {
+                transform: scale(1);
+                /* Skala akhir, kembali ke skala awal */
+            }
+        }
+
         .published {
             display: flex;
             /* Set the display property to inline-block */
             align-items: center;
             /* Sembunyikan konten yang keluar dari batas */
-            color: rgb(0, 255, 0);
+            color: #075e54;
             border-radius: 4px;
             font-weight: 500;
         }
@@ -84,20 +109,20 @@
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <label class="mt-2" for="Gambar">Gambar Kost</label>
+                                            <label class="mt-2" for="Gambar">Gambar Kost <span class="text-danger">*</span></label>
                                             <div class="mt-1">
-                                                <input class="form-control" type="file" name="gambar_kost" id="gambar_kost" value="{{ old('gambar_kost') }}" x-model="gambar">
+                                                <input class="form-control" type="file" name="gambar_kost" id="gambar_kost" value="{{ old('gambar_kost') }}" x-model="gambar" required>
                                                 @error('gambar_kost')
                                                     {{ $message }}
                                                 @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <label class="mt-2" for="Kategori">Kategori Kost</label>
+                                            <label class="mt-2" for="Kategori">Kategori Kost <span class="text-danger">*</span></label>
                                             <div class="mt-1">
                                                 <div class="input-group">
                                                     {{-- <label class="input" for="inputGroupSelect01"></label> --}}
-                                                    <select class="form-select" id="kategori_kost" name="kategori_kost" value="{{ old('kategori_kost') }}" x-model="kategori">
+                                                    <select class="form-select" id="kategori_kost" name="kategori_kost" value="{{ old('kategori_kost') }}" x-model="kategori" required>
                                                         <option selected>Pilih Kategori Kost...</option>
                                                         <option value="Kost Putra">Kost Putra</option>
                                                         <option value="Kost Putri">Kost Putri</option>
@@ -112,10 +137,10 @@
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <label class="mt-2" for="Harga">Harga Kost</label>
+                                            <label class="mt-2" for="Harga">Harga Kost <span class="text-danger">*</span></label>
                                             <div class="mt-1">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" name="harga_kost" id="harga_kost" placeholder="Masukkan Harga Kost" value="{{ old('harga_kost') }}" x-model="harga">
+                                                    <input type="text" class="form-control" maxlength="10" name="harga_kost" id="harga_kost" placeholder="Masukkan Harga Kost" value="{{ old('harga_kost') }}" x-model="harga" required>
                                                     @error('harga_kost')
                                                         {{ $message }}
                                                     @enderror
@@ -123,10 +148,10 @@
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <label class="mt-2" for="Lokasi">Lokasi Kost</label>
+                                            <label class="mt-2" for="Lokasi">Lokasi Kost <span class="text-danger">*</span></label>
                                             <div class="mt-1">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" name="lokasi_kost" id="lokasi_kost" placeholder="Masukkan Lokasi Kost" value="{{ old('lokasi_kost') }}" x-model="lokasi">
+                                                    <input type="text" class="form-control" maxlength="10" name="lokasi_kost" id="lokasi_kost" placeholder="Masukkan Lokasi Kost" value="{{ old('lokasi_kost') }}" x-model="lokasi" required>
                                                     @error('lokasi_kost')
                                                         {{ $message }}
                                                     @enderror
@@ -134,10 +159,10 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="mt-2" for="Ukuran">Ukuran Kost</label>
+                                            <label class="mt-2" for="Ukuran">Ukuran Kost <span class="text-danger">*</span></label>
                                             <div class="mt-1">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" name="ukuran_kost" id="ukuran_kost" placeholder="Masukkan Ukuran Kost" value="{{ old('ukuran_kost') }}" x-model="ukuran">
+                                                    <input type="text" class="form-control" maxlength="11" name="ukuran_kost" id="ukuran_kost" placeholder="Masukkan Ukuran Kost" value="{{ old('ukuran_kost') }}" x-model="ukuran" required>
                                                     @error('ukuran_kost')
                                                         {{ $message }}
                                                     @enderror
@@ -145,11 +170,10 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="mt-2" for="Tipe">Tipe Kost</label>
+                                            <label class="mt-2" for="Tipe">Tipe Kost <span class="text-danger">*</span></label>
                                             <div class="mt-1">
                                                 <div class="input-group">
-                                                    {{-- <label class="input" for="inputGroupSelect01"></label> --}}
-                                                    <select class="form-select" id="tipe_kost" name="tipe_kost" value="{{ old('tipe_kost') }}" x-model="tipe">
+                                                    <select class="form-select" id="tipe_kost" name="tipe_kost" value="{{ old('tipe_kost') }}" x-model="tipe" required>
                                                         <option selected>Pilih Tipe Kost...</option>
                                                         <option value="Bulanan">Bulanan</option>
                                                         <option value="Harian">Harian</option>
@@ -161,11 +185,10 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="mt-2" for="Status">Status Kost</label>
+                                            <label class="mt-2" for="Status">Status Kost <span class="text-danger">*</span></label>
                                             <div class="mt-1">
                                                 <div class="input-group">
-                                                    {{-- <label class="input-group-text" for="inputGroupSelect01">Status Kost</label> --}}
-                                                    <select class="form-select" id="status_kost" name="status_kost" value="{{ old('status_kost') }}" x-model="status">
+                                                    <select class="form-select" id="status_kost" name="status_kost" value="{{ old('status_kost') }}" x-model="status" required>
                                                         <option selected>Pilih Status Kost...</option>
                                                         <option value="Publish">Publish</option>
                                                         <option value="Unpublish">Unpublish</option>
@@ -177,10 +200,10 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="mt-2" for="Fasilitas">Fasilitas Kost</label>
+                                            <label class="mt-2" for="Fasilitas">Fasilitas Kost <span class="text-danger">*</span></label>
                                             <div class="mt-1">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" name="fasilitas_kost" id="fasilitas_kost" placeholder="Masukkan Fasilitas Kost" value="{{ old('fasilitas_kost') }}" x-model="fasilitas">
+                                                    <input type="text" class="form-control" name="fasilitas_kost" maxlength="50" id="fasilitas_kost" placeholder="Masukkan Fasilitas Kost" value="{{ old('fasilitas_kost') }}" x-model="fasilitas" required>
                                                     @error('fasilitas_kost')
                                                         {{ $message }}
                                                     @enderror
@@ -191,7 +214,7 @@
                                             <div class="align-items-center mt-3">
                                                 <div class="ms-auto mt-3 mt-md-0">
                                                     <button type="button" class="btn btn-secondary" style="background-color: rgb(161, 161, 161); color: white; border: none;" data-bs-dismiss="modal">Batal</button>
-                                                    <button type="submit" class="btn btn-info font-medium" disabled>
+                                                    <button type="submit" class="btn btn-info font-medium" :class="gambar && kategori && harga && lokasi && ukuran && tipe && status && fasilitas ? null : 'disabled'">
                                                         <div class="align-items-center">
                                                             Tambahkan
                                                         </div>
@@ -251,6 +274,13 @@
                                 </td>
                                 <td class="text-center">
                                     <div class="action-btn">
+                                        <div class="toggle">
+                                            <form id="edit-form" name="edit-form" method="post">
+                                                <div class="form-check form-switch" style="padding: 0px; min-height: 0em; margin-bottom: 0em;">
+                                                    <input class="form-check-input" type="checkbox" data-id={{ $item->id }} {{ $item->status_kost == 'Publish' ? 'checked' : null }} />
+                                                </div>
+                                            </form>
+                                        </div>
                                         <a href="/pemilikmin/kamar/destroy/{{ $item->id }}" class="btn btn-danger" style="width: 30px; height: 30px; padding: 4.5px;">
                                             <i class="ti ti-trash fs-5"></i>
                                         </a>
@@ -277,10 +307,10 @@
                                                                     <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" class="rounded-1" style="width: 100%; height: 200px;">
                                                                 </div>
                                                                 <input type="hidden" name="id" value="{{ $item->id }}">
-                                                                <div class="col-6 text-start mt-2">
+                                                                <div class="col-6 text-start mt-3">
                                                                     <label for="Kategori Kost">Kategori Kost</label>
                                                                 </div>
-                                                                <div class="col-6 text-start mt-2">
+                                                                <div class="col-6 text-start mt-3">
                                                                     <label for="Harga Kost">Harga Kost</label>
                                                                 </div>
                                                                 <div class="col-6" style="margin-top: -12px;">
@@ -303,10 +333,10 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-6 text-start mt-2">
+                                                                <div class="col-6 text-start mt-3">
                                                                     <label for="Lokasi Kost">Lokasi Kost</label>
                                                                 </div>
-                                                                <div class="col-6 text-start mt-2">
+                                                                <div class="col-6 text-start mt-3">
                                                                     <label for="Ukuran Kost">Ukuran Kost</label>
                                                                 </div>
                                                                 <div class="col-md-6" style="margin-top: -12px;">
@@ -329,10 +359,10 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-6 text-start mt-2">
+                                                                <div class="col-6 text-start mt-3">
                                                                     <label for="Tipe Kost">Tipe Kost</label>
                                                                 </div>
-                                                                <div class="col-6 text-start mt-2">
+                                                                <div class="col-6 text-start mt-3">
                                                                     <label for="Status Kost">Status Kost</label>
                                                                 </div>
                                                                 <div class="col-md-6" style="margin-top: -12px;">
@@ -370,6 +400,8 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                    </div>
+                                                    <div class="modal-footer" style="height: 20px;">
                                                     </div>
                                                 </div>
                                             </div>
@@ -417,7 +449,7 @@
                                                                         <div class="col-md-6">
                                                                             <div class="mt-3">
                                                                                 <div class="form-group">
-                                                                                    <input type="text" class="form-control" name="harga_kost" value="{{ $item->harga_kost }}" id="harga_kost" placeholder="Masukkan Harga Kost">
+                                                                                    <input type="text" class="form-control" maxlength="10" name="harga_kost" value="{{ $item->harga_kost }}" id="harga_kost" placeholder="Masukkan Harga Kost">
                                                                                     @error('harga_kost')
                                                                                         {{ $message }}
                                                                                     @enderror
@@ -427,7 +459,7 @@
                                                                         <div class="col-md-6">
                                                                             <div class="mt-3">
                                                                                 <div class="form-group">
-                                                                                    <input type="text" class="form-control" name="lokasi_kost" value="{{ $item->lokasi_kost }}" id="lokasi_kost" placeholder="Masukkan Lokasi Kost">
+                                                                                    <input type="text" class="form-control" maxlength="10" name="lokasi_kost" value="{{ $item->lokasi_kost }}" id="lokasi_kost" placeholder="Masukkan Lokasi Kost">
                                                                                     @error('lokasi_kost')
                                                                                         {{ $message }}
                                                                                     @enderror
@@ -437,7 +469,7 @@
                                                                         <div class="col-md-6">
                                                                             <div class="mt-3">
                                                                                 <div class="form-group">
-                                                                                    <input type="text" class="form-control" name="ukuran_kost" value="{{ $item->ukuran_kost }}" id="ukuran_kost" placeholder="Masukkan Ukuran Kost">
+                                                                                    <input type="text" class="form-control" maxlength="11" name="ukuran_kost" value="{{ $item->ukuran_kost }}" id="ukuran_kost" placeholder="Masukkan Ukuran Kost">
                                                                                     @error('ukuran_kost')
                                                                                         {{ $message }}
                                                                                     @enderror
@@ -473,7 +505,7 @@
                                                                         <div class="col-md-6">
                                                                             <div class="mt-3">
                                                                                 <div class="form-group">
-                                                                                    <input type="text" class="form-control" name="fasilitas_kost" id="fasilitas_kost" value="{{ $item->fasilitas_kost }}">
+                                                                                    <input type="text" class="form-control" maxlength="50" name="fasilitas_kost" id="fasilitas_kost" value="{{ $item->fasilitas_kost }}">
                                                                                     @error('fasilitas_kost')
                                                                                         {{ $message }}
                                                                                     @enderror
@@ -483,7 +515,7 @@
                                                                         <div class="col-12 text-end">
                                                                             <div class="align-items-center mt-3">
                                                                                 <div class="ms-auto mt-3 mt-md-0">
-                                                                                    <button type="button" class="btn btn-secondary" style="background-color: rgb(255, 0, 0); color: white; border: none;" data-bs-dismiss="modal">Batal</button>
+                                                                                    <button type="button" class="btn btn-secondary" style="background-color: rgb(161, 161, 161); color: white; border: none;" data-bs-dismiss="modal">Batal</button>
                                                                                     <button type="submit" class="btn btn-info font-medium px-4">
                                                                                         <div class="d-flex align-items-center">
                                                                                             Edit
@@ -537,20 +569,20 @@
                                             @csrf
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <label class="mt-2" for="Gambar">Gambar Kost</label>
+                                                    <label class="mt-2" for="Gambar">Gambar Kost <span class="text-danger">*</span></label>
                                                     <div class="mt-1">
-                                                        <input class="form-control" type="file" name="gambar_kost" id="gambar_kost" value="{{ old('gambar_kost') }}" x-model="gambar">
+                                                        <input class="form-control" type="file" name="gambar_kost" id="gambar_kost" value="{{ old('gambar_kost') }}" x-model="gambar" required>
                                                         @error('gambar_kost')
                                                             {{ $message }}
                                                         @enderror
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <label class="mt-2" for="Kategori">Kategori Kost</label>
+                                                    <label class="mt-2" for="Kategori">Kategori Kost <span class="text-danger">*</span></label>
                                                     <div class="mt-1">
                                                         <div class="input-group">
                                                             {{-- <label class="input" for="inputGroupSelect01"></label> --}}
-                                                            <select class="form-select" id="kategori_kost" name="kategori_kost" value="{{ old('kategori_kost') }}" x-model="kategori">
+                                                            <select class="form-select" id="kategori_kost" name="kategori_kost" value="{{ old('kategori_kost') }}" x-model="kategori" required>
                                                                 <option selected>Pilih Kategori Kost...</option>
                                                                 <option value="Kost Putra">Kost Putra</option>
                                                                 <option value="Kost Putri">Kost Putri</option>
@@ -565,10 +597,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <label class="mt-2" for="Harga">Harga Kost</label>
+                                                    <label class="mt-2" for="Harga">Harga Kost <span class="text-danger">*</span></label>
                                                     <div class="mt-1">
                                                         <div class="form-group">
-                                                            <input type="text" class="form-control" name="harga_kost" id="harga_kost" placeholder="Masukkan Harga Kost" value="{{ old('harga_kost') }}" x-model="harga">
+                                                            <input type="text" class="form-control" maxlength="10" name="harga_kost" id="harga_kost" placeholder="Masukkan Harga Kost" value="{{ old('harga_kost') }}" x-model="harga" required>
                                                             @error('harga_kost')
                                                                 {{ $message }}
                                                             @enderror
@@ -576,10 +608,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <label class="mt-2" for="Lokasi">Lokasi Kost</label>
+                                                    <label class="mt-2" for="Lokasi">Lokasi Kost <span class="text-danger">*</span></label>
                                                     <div class="mt-1">
                                                         <div class="form-group">
-                                                            <input type="text" class="form-control" name="lokasi_kost" id="lokasi_kost" placeholder="Masukkan Lokasi Kost" value="{{ old('lokasi_kost') }}" x-model="lokasi">
+                                                            <input type="text" class="form-control" maxlength="10" name="lokasi_kost" id="lokasi_kost" placeholder="Masukkan Lokasi Kost" value="{{ old('lokasi_kost') }}" x-model="lokasi" required>
                                                             @error('lokasi_kost')
                                                                 {{ $message }}
                                                             @enderror
@@ -587,10 +619,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label class="mt-2" for="Ukuran">Ukuran Kost</label>
+                                                    <label class="mt-2" for="Ukuran">Ukuran Kost <span class="text-danger">*</span></label>
                                                     <div class="mt-1">
                                                         <div class="form-group">
-                                                            <input type="text" class="form-control" name="ukuran_kost" id="ukuran_kost" placeholder="Masukkan Ukuran Kost" value="{{ old('ukuran_kost') }}" x-model="ukuran">
+                                                            <input type="text" class="form-control" maxlength="11" name="ukuran_kost" id="ukuran_kost" placeholder="Masukkan Ukuran Kost" value="{{ old('ukuran_kost') }}" x-model="ukuran" required>
                                                             @error('ukuran_kost')
                                                                 {{ $message }}
                                                             @enderror
@@ -598,11 +630,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label class="mt-2" for="Tipe">Tipe Kost</label>
+                                                    <label class="mt-2" for="Tipe">Tipe Kost <span class="text-danger">*</span></label>
                                                     <div class="mt-1">
                                                         <div class="input-group">
-                                                            {{-- <label class="input" for="inputGroupSelect01"></label> --}}
-                                                            <select class="form-select" id="tipe_kost" name="tipe_kost" value="{{ old('tipe_kost') }}" x-model="tipe">
+                                                            <select class="form-select" id="tipe_kost" name="tipe_kost" value="{{ old('tipe_kost') }}" x-model="tipe" required>
                                                                 <option selected>Pilih Tipe Kost...</option>
                                                                 <option value="Bulanan">Bulanan</option>
                                                                 <option value="Harian">Harian</option>
@@ -614,11 +645,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label class="mt-2" for="Status">Status Kost</label>
+                                                    <label class="mt-2" for="Status">Status Kost <span class="text-danger">*</span></label>
                                                     <div class="mt-1">
                                                         <div class="input-group">
-                                                            {{-- <label class="input-group-text" for="inputGroupSelect01">Status Kost</label> --}}
-                                                            <select class="form-select" id="status_kost" name="status_kost" value="{{ old('status_kost') }}" x-model="status">
+                                                            <select class="form-select" id="status_kost" name="status_kost" value="{{ old('status_kost') }}" x-model="status" required>
                                                                 <option selected>Pilih Status Kost...</option>
                                                                 <option value="Publish">Publish</option>
                                                                 <option value="Unpublish">Unpublish</option>
@@ -630,10 +660,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label class="mt-2" for="Fasilitas">Fasilitas Kost</label>
+                                                    <label class="mt-2" for="Fasilitas">Fasilitas Kost <span class="text-danger">*</span></label>
                                                     <div class="mt-1">
                                                         <div class="form-group">
-                                                            <input type="text" class="form-control" name="fasilitas_kost" id="fasilitas_kost" placeholder="Masukkan Fasilitas Kost" value="{{ old('fasilitas_kost') }}" x-model="fasilitas">
+                                                            <input type="text" class="form-control" name="fasilitas_kost" maxlength="50" id="fasilitas_kost" placeholder="Masukkan Fasilitas Kost" value="{{ old('fasilitas_kost') }}" x-model="fasilitas" required>
                                                             @error('fasilitas_kost')
                                                                 {{ $message }}
                                                             @enderror
@@ -644,7 +674,7 @@
                                                     <div class="align-items-center mt-3">
                                                         <div class="ms-auto mt-3 mt-md-0">
                                                             <button type="button" class="btn btn-secondary" style="background-color: rgb(161, 161, 161); color: white; border: none;" data-bs-dismiss="modal">Batal</button>
-                                                            <button type="submit" class="btn btn-info font-medium">
+                                                            <button type="submit" class="btn btn-info font-medium" :class="gambar && kategori && harga && lokasi && ukuran && tipe && status && fasilitas ? null : 'disabled'">
                                                                 <div class="align-items-center">
                                                                     Tambahkan
                                                                 </div>
@@ -787,4 +817,19 @@
 
 @push('scripts')
     <script src="{{ asset('admin') }}dist/js/apps/contact.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.form-check-input').click(function(event) {
+                var switch_id = $(this).attr("switch_id");
+                var myUrl = "/toggleStatus/" + $(this).attr('data-id').replace(/\W/g, '-');
+                window.location.href = myUrl;
+
+            });
+        });
+        document.getElementById('form-check-input').addEventListener("change", function() {
+            console.log('test');
+
+        });
+    </script>
 @endpush

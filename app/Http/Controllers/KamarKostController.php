@@ -16,6 +16,14 @@ class KamarKostController extends Controller
         ]);
     }
 
+    public function toggleStatus($id) {
+        $kamarkost = KamarKost::find($id);
+        $kamarkost->status_kost = $kamarkost->status_kost == 'Publish' ? 'Unpublish' : 'Publish';
+        $kamarkost->save();
+
+        return back()->with('success', 'Status Berhasil Dirubah');
+    }
+
     /**
      * Show the form for creating a new resource.
      */

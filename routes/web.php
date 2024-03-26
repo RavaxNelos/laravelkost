@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PemilikMinController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\KamarKostController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PemilikTabelControlller;
 use App\Http\Controllers\PenggunaController;
@@ -49,6 +50,7 @@ Route::get('/pemilik/profil', [PemilikController::class, 'profil'])->name('profi
 //admin controller
 Route::get('/pemilikmin/dashboard', [PemilikMinController::class, 'dashboard'])->name('dashboard');
 Route::get('/pemilikmin/kamar', [KamarKostController::class, 'index'])->name('kamar');
+Route::get('toggleStatus/{id}', [KamarKostController::class, 'toggleStatus'])->name('toggleStatus');
 Route::get('/pemilikmin/tambahkamar', [KamarKostController::class, 'create'])->name('tambahkamar');
 Route::post('/pemilikmin/kamar', [KamarKostController::class, 'store'])->name('kamar.store');
 Route::get('/pemilikmin/editkamar/{id}', [KamarKostController::class, 'edit'])->name('editkamar');
@@ -57,6 +59,7 @@ Route::get('/pemilikmin/kamar/destroy/{id}', [KamarKostController::class, 'destr
 Route::get('/pemilikmin/transaksi', [PemilikMinController::class, 'transaksi'])->name('transaksi');
 Route::get('/pemilikmin/tambahkamar', [PemilikMinController::class, 'tambahkamar'])->name('tambahkamar');
 Route::get('/pemilikmin/banner', [BannerController::class, 'index'])->name('banner');
+Route::get('toggleStatusBanner/{id}', [BannerController::class, 'toggleStatusBanner'])->name('toggleStatusBanner');
 Route::get('/pemilikmin/tambahbanner', [BannerController::class, 'create'])->name('tambahbanner');
 Route::post('/pemilikmin/banner', [BannerController::class, 'store'])->name('banner.store');
 Route::get('/pemilikmin/editbanner/{id}', [BannerController::class, 'edit'])->name('editbanner');
@@ -80,6 +83,13 @@ Route::post('/pemilikmin/pemilik', [PemilikTabelControlller::class, 'store'])->n
 Route::get('/pemilikmin/editpemilik/{id}', [PemilikTabelControlller::class, 'edit'])->name('editpengguna');
 Route::post('/pemilikmin/editpemilik', [PemilikTabelControlller::class, 'update'])->name('editpenggunaPost');
 Route::get('/pemilikmin/pemilik/destroy/{id}', [PemilikTabelControlller::class, 'destroy'])->name('destroy');
+Route::get('/pemilikmin/kategori', [KategoriController::class, 'index'])->name('kategori');
+Route::get('/pemilikmin/tambahkategori', [KategoriController::class, 'create'])->name('tambahkategori');
+Route::post('/pemilikmin/kategori', [KategoriController::class, 'store'])->name('kategori.store');
+Route::get('/pemilikmin/editkategori/{id}', [KategoriController::class, 'edit'])->name('editkategori');
+Route::post('/pemilikmin/editkategori', [KategoriController::class, 'update'])->name('editkategoriPost');
+Route::get('/pemilikmin/kategori/destroy/{id}', [KategoriController::class, 'destroy'])->name('destroy');
+
 //pemilik2 controller
 // Route::get('/pemilik2/dashboard', [])
 // Route::resource('kamar', KamarKostController::class);

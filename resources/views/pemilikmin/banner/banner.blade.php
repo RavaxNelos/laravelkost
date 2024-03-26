@@ -10,11 +10,37 @@
             font-family: 'Ubuntu';
         }
 
+        .logo {
+            position: absolute;
+            top: 30%;
+            left: 42%;
+            animation: zoom 1s infinite alternate;
+            /* Menerapkan animasi 'zoom' */
+        }
+
+        @keyframes zoom {
+            0% {
+                transform: scale(1);
+                /* Skala awal */
+            }
+
+            50% {
+                transform: scale(1.2);
+                /* Skala tengah */
+            }
+
+            100% {
+                transform: scale(1);
+                /* Skala akhir, kembali ke skala awal */
+            }
+        }
+
         .published {
             display: flex;
             align-items: center;
+            align-content: center;
             /* Sembunyikan konten yang keluar dari batas */
-            color: rgb(0, 255, 0);
+            color: #075e54;
             border-radius: 4px;
             font-weight: 500;
         }
@@ -71,7 +97,7 @@
         </div>
         <!-- Modal -->
         <div class="modal fade" id="modaltambah" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog" role="document" x-data="{ gambar: '', kategori: '', lokasi: '', status: '' }">
                 <div class="modal-content" style="width: 100%; height: 540px;">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5 fw-semibold" id="exampleModalLabel">Tambah Banner</h1>
@@ -83,25 +109,24 @@
                                     @csrf
                                     <div class="row">
                                         <div class="col-12 text-start">
-                                            <label for="Gamabar Banner">Gambar Banner</label>
+                                            <label for="Gamabar Banner">Gambar Banner <span class="text-danger">*</span></label>
                                         </div>
                                         <div class="col-md-12 mb-4" style="margin-top: -6px;">
                                             <div class="mt-3">
-                                                <input class="form-control" type="file" name="gambar_banner" id="gambar_banner" value="{{ old('gambar_banner') }}">
+                                                <input class="form-control" type="file" name="gambar_banner" id="gambar_banner" value="{{ old('gambar_banner') }}" x-model="gambar" required>
                                                 @error('gambar_banner')
                                                     {{ $message }}
                                                 @enderror
                                             </div>
                                         </div>
                                         <div class="col-12 text-start">
-                                            <label for="Kategori Banner">Kategori Banner</label>
+                                            <label for="Kategori Banner">Kategori Banner <span class="text-danger">*</span></label>
                                         </div>
                                         <div class="col-md-12 mb-4" style="margin-top: -6px;">
                                             <div class="mt-3">
                                                 <div class="input-group">
-                                                    {{-- <label class="input-group-text" for="inputGroupSelect01">Kategori Banner</label> --}}
-                                                    <select class="form-select" id="kategori_banner" name="kategori_banner" value="{{ old('kategori_banner') }}">
-                                                        {{-- <option selected>Pilih Kategori Banner...</option> --}}
+                                                    <select class="form-select" id="kategori_banner" name="kategori_banner" value="{{ old('kategori_banner') }}" x-model="kategori" required>
+                                                        <option selected>Pilih Kategori Banner...</option>
                                                         <option value="Slider">Slider</option>
                                                         <option value="Banner">Banner</option>
                                                         @error('kategori_banner')
@@ -112,14 +137,13 @@
                                             </div>
                                         </div>
                                         <div class="col-12 text-start">
-                                            <label for="Lokasi Banner">Lokasi Banner</label>
+                                            <label for="Lokasi Banner">Lokasi Banner <span class="text-danger">*</span></label>
                                         </div>
                                         <div class="col-md-12 mb-4" style="margin-top: -6px;">
                                             <div class="mt-3">
                                                 <div class="input-group">
-                                                    {{-- <label class="input-group-text" for="inputGroupSelect01">Kategori Banner</label> --}}
-                                                    <select class="form-select" id="lokasi_banner" name="lokasi_banner" value="{{ old('lokasi_banner') }}">
-                                                        {{-- <option selected>Pilih Kategori Banner...</option> --}}
+                                                    <select class="form-select" id="lokasi_banner" name="lokasi_banner" value="{{ old('lokasi_banner') }}" x-model="lokasi" required>
+                                                        <option selected>Pilih Kategori Banner...</option>
                                                         <option value="Home">Home</option>
                                                         <option value="Area Kost">Area Kost</option>
                                                         @error('lokasi_banner')
@@ -130,14 +154,13 @@
                                             </div>
                                         </div>
                                         <div class="col-12 text-start">
-                                            <label for="Status Banner">Status Banner</label>
+                                            <label for="Status Banner">Status Banner <span class="text-danger">*</span></label>
                                         </div>
                                         <div class="col-md-12 mb-4" style="margin-top: -6px;">
                                             <div class="mt-3">
                                                 <div class="input-group">
-                                                    {{-- <label class="input-group-text" for="inputGroupSelect01">Kategori Banner</label> --}}
-                                                    <select class="form-select" id="status_banner" name="status_banner" value="{{ old('status_banner') }}">
-                                                        {{-- <option selected>Pilih Kategori Banner...</option> --}}
+                                                    <select class="form-select" id="status_banner" name="status_banner" value="{{ old('status_banner') }}" x-model="status" required>
+                                                        <option selected>Pilih Status Banner...</option>
                                                         <option value="Publish">Publish</option>
                                                         <option value="Unpublish">Unpublish</option>
                                                         @error('status_banner')
@@ -150,9 +173,9 @@
                                         <div class="col-12 text-end">
                                             <div class="align-items-center mt-3">
                                                 <div class="ms-auto mt-3 mt-md-0">
-                                                    <button type="button" class="btn btn-secondary" style="background-color: rgb(255, 0, 0); color: white; border: none;" data-bs-dismiss="modal">Batal</button>
-                                                    <button type="submit" class="btn btn-info font-medium px-4">
-                                                        <div class="d-flex align-items-center">
+                                                    <button type="button" class="btn btn-secondary" style="background-color: rgb(161, 161, 161); color: white; border: none;" data-bs-dismiss="modal">Batal</button>
+                                                    <button type="submit" class="btn btn-info font-medium" :class="gambar && kategori && lokasi && status ? null : 'disabled'">
+                                                        <div class="align-items-center">
                                                             Tambahkan
                                                         </div>
                                                     </button>
@@ -174,8 +197,8 @@
                 <table class="table search-table align-middle text-nowrap">
                     <thead class="header-item">
                         <th>Gambar Banner</th>
-                        <th>Kategori Banner</th>
-                        <th>Lokasi Banner</th>
+                        <th class="text-center">Kategori Banner</th>
+                        <th class="text-center">Lokasi Banner</th>
                         <th>Status Banner</th>
                         <th class="text-center">Aksi</th>
                     </thead>
@@ -183,15 +206,15 @@
                         @foreach ($banner as $item)
                             <!-- start row -->
                             <tr class="search-items">
-                                <td>
+                                <td class="text-center">
                                     <div class="d-flex align-items-center">
                                         <img src="{{ asset('uploadkamar/' . $item->gambar_banner) }}" class="rounded-1" style="width: 200px; height: 100px;" />
                                     </div>
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     <span class="usr-nama-banner">{{ $item->kategori_banner }}</span>
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     <span class="usr-lokasi-banner">{{ $item->lokasi_banner }}</span>
                                 </td>
                                 <td>
@@ -199,6 +222,13 @@
                                 </td>
                                 <td class="text-center">
                                     <div class="action-btn">
+                                        <div class="toggle">
+                                            <form id="edit-form" name="edit-form" method="post">
+                                                <div class="form-check form-switch" style="padding: 0px; min-height: 0em; margin-bottom: 0em;">
+                                                    <input class="form-check-input" type="checkbox" data-id={{ $item->id }} {{ $item->status_banner == 'Publish' ? 'checked' : null }} />
+                                                </div>
+                                            </form>
+                                        </div>
                                         <a href="/pemilikmin/banner/destroy/{{ $item->id }}" class="btn btn-danger" style="width: 30px; height: 30px; padding: 4.5px;">
                                             <i class="ti ti-trash fs-5"></i>
                                         </a>
@@ -234,13 +264,12 @@
                                                                                 @enderror
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-12 text-start">
+                                                                        <div class="col-12 text-start mt-1">
                                                                             <label for="Kategori Banner">Kategori Banner</label>
                                                                         </div>
-                                                                        <div class="col-md-12" style="margin-top: -10px;">
+                                                                        <div class="col-md-12" style="margin-top: -14px;">
                                                                             <div class="mt-3">
                                                                                 <div class="input-group">
-                                                                                    <label class="input-group-text" for="inputGroupSelect01">Kategori Banner</label>
                                                                                     <select class="form-select" id="kategori_banner" name="kategori_banner">
                                                                                         <option value="Slider" {{ $item->kategori_banner == 'Slider' ? 'selected' : '' }}>Slider</option>
                                                                                         <option value="Banner" {{ $item->kategori_banner == 'Banner' ? 'selected' : '' }}>Banner</option>
@@ -251,13 +280,12 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-12 text-start">
+                                                                        <div class="col-12 text-start mt-1">
                                                                             <label for="Lokasi Banner">Lokasi Banner</label>
                                                                         </div>
-                                                                        <div class="col-md-12" style="margin-top: -10px;">
+                                                                        <div class="col-md-12" style="margin-top: -14px;">
                                                                             <div class="mt-3">
                                                                                 <div class="input-group">
-                                                                                    <label class="input-group-text" for="inputGroupSelect01">Lokasi Banner</label>
                                                                                     <select class="form-select" id="lokasi_banner" name="lokasi_banner">
                                                                                         <option value="Home" {{ $item->lokasi_banner == 'Home' ? 'selected' : '' }}>Home</option>
                                                                                         <option value="Area Kost" {{ $item->lokasi_banner == 'Area Kost' ? 'selected' : '' }}>Area Kost</option>
@@ -268,13 +296,12 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-12 text-start">
+                                                                        <div class="col-12 text-start mt-1">
                                                                             <label for="Status Banner">Status Banner</label>
                                                                         </div>
-                                                                        <div class="col-md-12" style="margin-top: -10px;">
+                                                                        <div class="col-md-12" style="margin-top: -14px;">
                                                                             <div class="mt-3">
                                                                                 <div class="input-group">
-                                                                                    <label class="input-group-text" for="inputGroupSelect01">Status Banner</label>
                                                                                     <select class="form-select" id="status_banner" name="status_banner">
                                                                                         <option value="Publish" {{ $item->status_banner == 'Publish' ? 'selected' : '' }}>Publish</option>
                                                                                         <option value="Unpublish" {{ $item->status_banner == 'Unpublish' ? 'selected' : '' }}>Unpublish</option>
@@ -288,7 +315,7 @@
                                                                         <div class="col-12 text-end">
                                                                             <div class="align-items-center mt-3">
                                                                                 <div class="ms-auto mt-3 mt-md-0">
-                                                                                    <button type="button" class="btn btn-secondary" style="background-color: rgb(255, 0, 0); color: white; border: none;" data-bs-dismiss="modal">Batal</button>
+                                                                                    <button type="button" class="btn btn-secondary" style="background-color: rgb(161, 161, 161); color: white; border: none;" data-bs-dismiss="modal">Batal</button>
                                                                                     <button type="submit" class="btn btn-info font-medium px-4">
                                                                                         <div class="d-flex align-items-center">
                                                                                             Edit
@@ -297,6 +324,7 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
+                                                                    </div>
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -328,7 +356,7 @@
                     </a>
                 </div>
                 <div class="modal fade" id="modaltambah" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
+                    <div class="modal-dialog" role="document" x-data="{ gambar: '', kategori: '', lokasi: '', status: '' }">
                         <div class="modal-content" style="width: 100%; height: 540px;">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5 fw-semibold" id="exampleModalLabel">Tambah Banner</h1>
@@ -340,25 +368,24 @@
                                             @csrf
                                             <div class="row">
                                                 <div class="col-12 text-start">
-                                                    <label for="Gamabar Banner">Gambar Banner</label>
+                                                    <label for="Gamabar Banner">Gambar Banner <span class="text-danger">*</span></label>
                                                 </div>
                                                 <div class="col-md-12 mb-4" style="margin-top: -6px;">
                                                     <div class="mt-3">
-                                                        <input class="form-control" type="file" name="gambar_banner" id="gambar_banner" value="{{ old('gambar_banner') }}">
+                                                        <input class="form-control" type="file" name="gambar_banner" id="gambar_banner" value="{{ old('gambar_banner') }}" x-model="gambar" required>
                                                         @error('gambar_banner')
                                                             {{ $message }}
                                                         @enderror
                                                     </div>
                                                 </div>
                                                 <div class="col-12 text-start">
-                                                    <label for="Kategori Banner">Kategori Banner</label>
+                                                    <label for="Kategori Banner">Kategori Banner <span class="text-danger">*</span></label>
                                                 </div>
                                                 <div class="col-md-12 mb-4" style="margin-top: -6px;">
                                                     <div class="mt-3">
                                                         <div class="input-group">
-                                                            {{-- <label class="input-group-text" for="inputGroupSelect01">Kategori Banner</label> --}}
-                                                            <select class="form-select" id="kategori_banner" name="kategori_banner" value="{{ old('kategori_banner') }}">
-                                                                {{-- <option selected>Pilih Kategori Banner...</option> --}}
+                                                            <select class="form-select" id="kategori_banner" name="kategori_banner" value="{{ old('kategori_banner') }}" x-model="kategori" required>
+                                                                <option selected>Pilih Kategori Banner...</option>
                                                                 <option value="Slider">Slider</option>
                                                                 <option value="Banner">Banner</option>
                                                                 @error('kategori_banner')
@@ -369,14 +396,13 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-12 text-start">
-                                                    <label for="Lokasi Banner">Lokasi Banner</label>
+                                                    <label for="Lokasi Banner">Lokasi Banner <span class="text-danger">*</span></label>
                                                 </div>
                                                 <div class="col-md-12 mb-4" style="margin-top: -6px;">
                                                     <div class="mt-3">
                                                         <div class="input-group">
-                                                            {{-- <label class="input-group-text" for="inputGroupSelect01">Kategori Banner</label> --}}
-                                                            <select class="form-select" id="lokasi_banner" name="lokasi_banner" value="{{ old('lokasi_banner') }}">
-                                                                {{-- <option selected>Pilih Kategori Banner...</option> --}}
+                                                            <select class="form-select" id="lokasi_banner" name="lokasi_banner" value="{{ old('lokasi_banner') }}" x-model="lokasi" required>
+                                                                <option selected>Pilih Kategori Banner...</option>
                                                                 <option value="Home">Home</option>
                                                                 <option value="Area Kost">Area Kost</option>
                                                                 @error('lokasi_banner')
@@ -387,14 +413,13 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-12 text-start">
-                                                    <label for="Status Banner">Status Banner</label>
+                                                    <label for="Status Banner">Status Banner <span class="text-danger">*</span></label>
                                                 </div>
                                                 <div class="col-md-12 mb-4" style="margin-top: -6px;">
                                                     <div class="mt-3">
                                                         <div class="input-group">
-                                                            {{-- <label class="input-group-text" for="inputGroupSelect01">Kategori Banner</label> --}}
-                                                            <select class="form-select" id="status_banner" name="status_banner" value="{{ old('status_banner') }}">
-                                                                {{-- <option selected>Pilih Kategori Banner...</option> --}}
+                                                            <select class="form-select" id="status_banner" name="status_banner" value="{{ old('status_banner') }}" x-model="status" required>
+                                                                <option selected>Pilih Status Banner...</option>
                                                                 <option value="Publish">Publish</option>
                                                                 <option value="Unpublish">Unpublish</option>
                                                                 @error('status_banner')
@@ -407,9 +432,9 @@
                                                 <div class="col-12 text-end">
                                                     <div class="align-items-center mt-3">
                                                         <div class="ms-auto mt-3 mt-md-0">
-                                                            <button type="button" class="btn btn-secondary" style="background-color: rgb(255, 0, 0); color: white; border: none;" data-bs-dismiss="modal">Batal</button>
-                                                            <button type="submit" class="btn btn-info font-medium px-4">
-                                                                <div class="d-flex align-items-center">
+                                                            <button type="button" class="btn btn-secondary" style="background-color: rgb(161, 161, 161); color: white; border: none;" data-bs-dismiss="modal">Batal</button>
+                                                            <button type="submit" class="btn btn-info font-medium" :class="gambar && kategori && lokasi && status ? null : 'disabled'">
+                                                                <div class="align-items-center">
                                                                     Tambahkan
                                                                 </div>
                                                             </button>
@@ -551,4 +576,19 @@
 
 @push('scripts')
     <script src="{{ asset('admin') }}dist/js/apps/contact.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.form-check-input').click(function(event) {
+                var switch_id = $(this).attr("switch_id");
+                var myUrl = "/toggleStatusBanner/" + $(this).attr('data-id').replace(/\W/g, '-');
+                window.location.href = myUrl;
+
+            });
+        });
+        document.getElementById('form-check-input').addEventListener("change", function() {
+            console.log('test');
+
+        });
+    </script>
 @endpush

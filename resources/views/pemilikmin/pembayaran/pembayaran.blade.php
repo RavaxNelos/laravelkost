@@ -9,6 +9,31 @@
         * {
             font-family: 'Ubuntu';
         }
+
+        .logo {
+            position: absolute;
+            top: 30%;
+            left: 42%;
+            animation: zoom 1s infinite alternate;
+            /* Menerapkan animasi 'zoom' */
+        }
+
+        @keyframes zoom {
+            0% {
+                transform: scale(1);
+                /* Skala awal */
+            }
+
+            50% {
+                transform: scale(1.2);
+                /* Skala tengah */
+            }
+
+            100% {
+                transform: scale(1);
+                /* Skala akhir, kembali ke skala awal */
+            }
+        }
     </style>
 @endsection
 @section('content')
@@ -52,7 +77,7 @@
             </div>
         </div>
         <div class="modal fade" id="modaltambah" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog" role="document" x-data="{ pembayaran: '', logo: '', kategori: '', nomer: '', atasnama: '' }">
                 <div class="modal-content" style="width: 100%; height: 540px;">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5 fw-semibold" id="exampleModalLabel">Tambah Metode Pembayaran</h1>
@@ -63,12 +88,12 @@
                                 <form action="{{ route('pembayaran.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="col-12 text-start">
-                                        <label for="Metode Pembayaran">Metode Pembayaran</label>
+                                        <label for="Metode Pembayaran">Metode Pembayaran <span class="text-danger">*</span></label>
                                     </div>
                                     <div class="col-md-12" style="margin-top: -6px;">
                                         <div class="mt-3">
                                             <div class="input-group mb-3">
-                                                <select class="form-select" id="nama_pembayaran" name="nama_pembayaran">
+                                                <select class="form-select" id="nama_pembayaran" name="nama_pembayaran" x-model="pembayaran" required>
                                                     <option selected>Pilih Nama Pembayaran...</option>
                                                     <option value="Bank BRI">Bank BRI</option>
                                                     <option value="Bank BCA">Bank BCA</option>
@@ -85,23 +110,23 @@
                                         </div>
                                     </div>
                                     <div class="col-12 text-start">
-                                        <label for="Logo Pembayaran">Logo Pembayaran</label>
+                                        <label for="Logo Pembayaran">Logo Pembayaran <span class="text-danger">*</span></label>
                                     </div>
                                     <div class="col-md-12" style="margin-top: -6px;">
                                         <div class="mt-3 mb-3">
-                                            <input class="form-control" type="file" name="logo_pembayaran" id="logo_pembayaran" value="{{ old('logo_pembayaran') }}">
+                                            <input class="form-control" type="file" name="logo_pembayaran" id="logo_pembayaran" value="{{ old('logo_pembayaran') }}" x-model="logo" required>
                                             @error('logo_pembayaran')
                                                 {{ $message }}
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="col-12 text-start">
-                                        <label for="Kategori Pembayaran">Kategori Pembayaran</label>
+                                        <label for="Kategori Pembayaran">Kategori Pembayaran <span class="text-danger">*</span></label>
                                     </div>
                                     <div class="col-md-12" style="margin-top: -6px;">
                                         <div class="mt-3">
                                             <div class="input-group mb-3">
-                                                <select class="form-select" id="kategori_pembayaran" name="kategori_pembayaran" value="{{ old('kategori_pembayaran') }}">
+                                                <select class="form-select" id="kategori_pembayaran" name="kategori_pembayaran" value="{{ old('kategori_pembayaran') }}" x-model="kategori" required>
                                                     <option selected>Pilih Kategori Pembayaran...</option>
                                                     <option value="Transfer Bank">Transfer Bank</option>
                                                     <option value="E-Wallet">E-Wallet</option>
@@ -113,12 +138,12 @@
                                         </div>
                                     </div>
                                     <div class="col-12 text-start">
-                                        <label for="Nomer Pembayaran">Nomer Pembayaran</label>
+                                        <label for="Nomer Pembayaran">Nomer Pembayaran <span class="text-danger">*</span></label>
                                     </div>
                                     <div class="col-md-12" style="margin-top: -6px;">
                                         <div class="mt-3 mb-3">
                                             <div class="form-group">
-                                                <input type="number" class="form-control" name="nomer_pembayaran" id="nomer_pembayaran" placeholder="Masukkan Nomer Pembayaran" value="{{ old('nomer_pembayaran') }}">
+                                                <input type="number" class="form-control" min="0" oninput="limitLength(this, 12)" name="nomer_pembayaran" id="nomer_pembayaran" placeholder="Masukkan Nomer Pembayaran" value="{{ old('nomer_pembayaran') }}" x-model="nomer" required>
                                                 @error('nomer_pembayaran')
                                                     {{ $message }}
                                                 @enderror
@@ -126,12 +151,12 @@
                                         </div>
                                     </div>
                                     <div class="col-12 text-start">
-                                        <label for="Atas Nama Pembayaran">Atas Nama Pembayaran</label>
+                                        <label for="Atas Nama Pembayaran">Atas Nama Pembayaran <span class="text-danger">*</span></label>
                                     </div>
                                     <div class="col-md-12" style="margin-top: -6px;">
                                         <div class="mt-3">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" name="atasnama_pembayaran" id="atasnama_pembayaran" placeholder="Masukkan Atas Nama Pembayaran" value="{{ old('atasnama_pembayaran') }}">
+                                                <input type="text" class="form-control" maxlength="20" name="atasnama_pembayaran" id="atasnama_pembayaran" placeholder="Masukkan Atas Nama Pembayaran" value="{{ old('atasnama_pembayaran') }}" x-model="atasnama" required>
                                                 @error('atasnama_pembayaran')
                                                     {{ $message }}
                                                 @enderror
@@ -141,9 +166,9 @@
                                     <div class="col-12 text-end">
                                         <div class="align-items-center mt-3">
                                             <div class="ms-auto mt-3 mt-md-0">
-                                                <button type="button" class="btn btn-secondary" style="background-color: rgb(255, 0, 0); color: white; border: none;" data-bs-dismiss="modal">Batal</button>
-                                                <button type="submit" class="btn btn-info font-medium px-4">
-                                                    <div class="d-flex align-items-center">
+                                                <button type="button" class="btn btn-secondary" style="background-color: rgb(161, 161, 161); color: white; border: none;" data-bs-dismiss="modal">Batal</button>
+                                                <button type="submit" class="btn btn-info font-medium" :class="pembayaran && logo && kategori && nomer && atasnama ? null : 'disabled'">
+                                                    <div class="align-items-center">
                                                         Tambahkan
                                                     </div>
                                                 </button>
@@ -163,18 +188,18 @@
             <div class="table-responsive">
                 <table class="table search-table align-middle text-nowrap">
                     <thead class="header-item">
-                        <th>Nama Pembayaran</th>
-                        <th>Logo Pembayaran</th>
-                        <th>Kategori Pembayaran</th>
-                        <th>Nomer Pembayaran</th>
-                        <th>Atas Nama</th>
+                        <th class="text-center">Metode Pembayaran</th>
+                        <th>Logo</th>
+                        <th class="text-center">Kategori</th>
+                        <th class="text-center">Nomer</th>
+                        <th class="text-center">Atas Nama</th>
                         <th class="text-center">Aksi</th>
                     </thead>
                     <tbody>
                         @foreach ($pembayaran as $item)
                             <!-- start row -->
                             <tr class="search-items">
-                                <td>
+                                <td class="text-center">
                                     <span class="usr-nama-pembayaran">{{ $item->nama_pembayaran }}</span>
                                 </td>
                                 <td>
@@ -182,13 +207,13 @@
                                         <img src="{{ asset('uploadkamar/' . $item->logo_pembayaran) }}" class="rounded-1" width="35" />
                                     </div>
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     <span class="usr-kategori-pembayaran">{{ $item->kategori_pembayaran }}</span>
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     <span class="usr-nomer-pembayaran">{{ $item->nomer_pembayaran }}</span>
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     <span class="usr-atasnama-pembayaran">{{ $item->atasnama_pembayaran }}</span>
                                 </td>
                                 <td class="text-center">
@@ -270,7 +295,7 @@
                                                                         <label for="Logo Pembayaran">Logo Pembayaran</label>
                                                                     </div>
                                                                     <div class="col-md-12 text-start" style="margin-top: -4px;">
-                                                                        <img src="{{ asset('uploadkamar/' . $item->logo_pembayaran) }}" class="rounded-1 mt-3" width="35">
+                                                                        <img src="{{ asset('uploadkamar/' . $item->logo_pembayaran) }}" class="rounded-1 mt-3" width="55">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -335,7 +360,7 @@
                                                                         <div class="col-md-12" style="margin-top: -6px;">
                                                                             <div class="mt-3 mb-3">
                                                                                 <div class="form-group">
-                                                                                    <input type="number" class="form-control" name="nomer_pembayaran" value="{{ $item->nomer_pembayaran }}" id="nomer_pembayaran" placeholder="Masukkan Nomer Pembayaran">
+                                                                                    <input type="number" class="form-control" min="0" oninput="limitLength(this, 12)" name="nomer_pembayaran" value="{{ $item->nomer_pembayaran }}" id="nomer_pembayaran" placeholder="Masukkan Nomer Pembayaran">
                                                                                     @error('nomer_pembayaran')
                                                                                         {{ $message }}
                                                                                     @enderror
@@ -348,7 +373,7 @@
                                                                         <div class="col-md-12" style="margin-top: -6px;">
                                                                             <div class="mt-3 mb-3">
                                                                                 <div class="form-group">
-                                                                                    <input type="text" class="form-control" name="atasnama_pembayaran" value="{{ $item->atasnama_pembayaran }}" id="atasnama_pembayaran" placeholder="Masukkan Atas Nama Pembayaran">
+                                                                                    <input type="text" class="form-control" maxlength="20" name="atasnama_pembayaran" value="{{ $item->atasnama_pembayaran }}" id="atasnama_pembayaran" placeholder="Masukkan Atas Nama Pembayaran">
                                                                                     @error('atasnama_pembayaran')
                                                                                         {{ $message }}
                                                                                     @enderror
@@ -372,7 +397,7 @@
                                                                         <div class="col-12 text-end">
                                                                             <div class="align-items-center mt-3">
                                                                                 <div class="ms-auto mt-3 mt-md-0">
-                                                                                    <button type="button" class="btn btn-secondary" style="background-color: rgb(255, 0, 0); color: white; border: none;" data-bs-dismiss="modal">Batal</button>
+                                                                                    <button type="button" class="btn btn-secondary" style="background-color: rgb(161, 161, 161); color: white; border: none;" data-bs-dismiss="modal">Batal</button>
                                                                                     <button type="submit" class="btn btn-info font-medium px-4">
                                                                                         <div class="d-flex align-items-center">
                                                                                             Edit
@@ -414,7 +439,7 @@
                     </a>
                 </div>
                 <div class="modal fade" id="modaltambah" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
+                    <div class="modal-dialog" role="document" x-data="{ pembayaran: '', logo: '', kategori: '', nomer: '', atasnama: '' }">
                         <div class="modal-content" style="width: 100%; height: 540px;">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5 fw-semibold" id="exampleModalLabel">Tambah Metode Pembayaran</h1>
@@ -425,12 +450,12 @@
                                         <form action="{{ route('pembayaran.store') }}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <div class="col-12 text-start">
-                                                <label for="Metode Pembayaran">Metode Pembayaran</label>
+                                                <label for="Metode Pembayaran">Metode Pembayaran <span class="text-danger">*</span></label>
                                             </div>
                                             <div class="col-md-12" style="margin-top: -6px;">
                                                 <div class="mt-3">
                                                     <div class="input-group mb-3">
-                                                        <select class="form-select" id="nama_pembayaran" name="nama_pembayaran">
+                                                        <select class="form-select" id="nama_pembayaran" name="nama_pembayaran" x-model="pembayaran" required>
                                                             <option selected>Pilih Nama Pembayaran...</option>
                                                             <option value="Bank BRI">Bank BRI</option>
                                                             <option value="Bank BCA">Bank BCA</option>
@@ -447,23 +472,23 @@
                                                 </div>
                                             </div>
                                             <div class="col-12 text-start">
-                                                <label for="Logo Pembayaran">Logo Pembayaran</label>
+                                                <label for="Logo Pembayaran">Logo Pembayaran <span class="text-danger">*</span></label>
                                             </div>
                                             <div class="col-md-12" style="margin-top: -6px;">
                                                 <div class="mt-3 mb-3">
-                                                    <input class="form-control" type="file" name="logo_pembayaran" id="logo_pembayaran" value="{{ old('logo_pembayaran') }}">
+                                                    <input class="form-control" type="file" name="logo_pembayaran" id="logo_pembayaran" value="{{ old('logo_pembayaran') }}" x-model="logo" required>
                                                     @error('logo_pembayaran')
                                                         {{ $message }}
                                                     @enderror
                                                 </div>
                                             </div>
                                             <div class="col-12 text-start">
-                                                <label for="Kategori Pembayaran">Kategori Pembayaran</label>
+                                                <label for="Kategori Pembayaran">Kategori Pembayaran <span class="text-danger">*</span></label>
                                             </div>
                                             <div class="col-md-12" style="margin-top: -6px;">
                                                 <div class="mt-3">
                                                     <div class="input-group mb-3">
-                                                        <select class="form-select" id="kategori_pembayaran" name="kategori_pembayaran" value="{{ old('kategori_pembayaran') }}">
+                                                        <select class="form-select" id="kategori_pembayaran" name="kategori_pembayaran" value="{{ old('kategori_pembayaran') }}" x-model="kategori" required>
                                                             <option selected>Pilih Kategori Pembayaran...</option>
                                                             <option value="Transfer Bank">Transfer Bank</option>
                                                             <option value="E-Wallet">E-Wallet</option>
@@ -475,12 +500,12 @@
                                                 </div>
                                             </div>
                                             <div class="col-12 text-start">
-                                                <label for="Nomer Pembayaran">Nomer Pembayaran</label>
+                                                <label for="Nomer Pembayaran">Nomer Pembayaran <span class="text-danger">*</span></label>
                                             </div>
                                             <div class="col-md-12" style="margin-top: -6px;">
                                                 <div class="mt-3 mb-3">
                                                     <div class="form-group">
-                                                        <input type="number" class="form-control" name="nomer_pembayaran" id="nomer_pembayaran" placeholder="Masukkan Nomer Pembayaran" value="{{ old('nomer_pembayaran') }}">
+                                                        <input type="number" class="form-control" min="0" oninput="limitLength(this, 12)" name="nomer_pembayaran" id="nomer_pembayaran" placeholder="Masukkan Nomer Pembayaran" value="{{ old('nomer_pembayaran') }}" x-model="nomer" required>
                                                         @error('nomer_pembayaran')
                                                             {{ $message }}
                                                         @enderror
@@ -488,12 +513,12 @@
                                                 </div>
                                             </div>
                                             <div class="col-12 text-start">
-                                                <label for="Atas Nama Pembayaran">Atas Nama Pembayaran</label>
+                                                <label for="Atas Nama Pembayaran">Atas Nama Pembayaran <span class="text-danger">*</span></label>
                                             </div>
                                             <div class="col-md-12" style="margin-top: -6px;">
                                                 <div class="mt-3">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" name="atasnama_pembayaran" id="atasnama_pembayaran" placeholder="Masukkan Atas Nama Pembayaran" value="{{ old('atasnama_pembayaran') }}">
+                                                        <input type="text" class="form-control" maxlength="20" name="atasnama_pembayaran" id="atasnama_pembayaran" placeholder="Masukkan Atas Nama Pembayaran" value="{{ old('atasnama_pembayaran') }}" x-model="atasnama" required>
                                                         @error('atasnama_pembayaran')
                                                             {{ $message }}
                                                         @enderror
@@ -503,9 +528,9 @@
                                             <div class="col-12 text-end">
                                                 <div class="align-items-center mt-3">
                                                     <div class="ms-auto mt-3 mt-md-0">
-                                                        <button type="button" class="btn btn-secondary" style="background-color: rgb(255, 0, 0); color: white; border: none;" data-bs-dismiss="modal">Batal</button>
-                                                        <button type="submit" class="btn btn-info font-medium px-4">
-                                                            <div class="d-flex align-items-center">
+                                                        <button type="button" class="btn btn-secondary" style="background-color: rgb(161, 161, 161); color: white; border: none;" data-bs-dismiss="modal">Batal</button>
+                                                        <button type="submit" class="btn btn-info font-medium" :class="pembayaran && logo && kategori && nomer && atasnama ? null : 'disabled'">
+                                                            <div class="align-items-center">
                                                                 Tambahkan
                                                             </div>
                                                         </button>
@@ -645,4 +670,12 @@
 @endsection
 @push('scripts')
     <script src="{{ asset('admin') }}dist/js/apps/contact.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script>
+        function limitLength(element, maxLength) {
+            if (element.value.length > maxLength) {
+                element.value = element.value.slice(0, maxLength);
+            }
+        }
+    </script>
 @endpush

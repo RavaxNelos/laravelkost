@@ -16,6 +16,14 @@ class BannerController extends Controller
         ]);
     }
 
+    public function toggleStatusBanner($id) {
+        $banner = Banner::find($id);
+        $banner->status_banner = $banner->status_banner == 'Publish' ? 'Unpublish' : 'Publish';
+        $banner->save();
+
+        return back()->with('success', 'Status Berhasil Dirubah');
+    }
+
     /**
      * Show the form for creating a new resource.
      */
