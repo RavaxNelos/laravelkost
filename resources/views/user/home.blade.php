@@ -248,14 +248,18 @@
         <section class="splide new-2" aria-label="Splide Basic HTML Example">
             <div class="splide__track">
                 <ul class="splide__list">
-                    <li class="splide__slide">
-                        <div style="max-width: 300%; min-height: 200px; min-width: 250px;">
-                            <div class="">
-                                <img src="{{ asset('/img/reviewkost1.jpg') }}" style="border-radius: 0px;" class="w-100">
-                            </div>
-                        </div>
-                    </li>
-                    <li class="splide__slide">
+                    @foreach ($banner as $item)
+                        @if ($item->kategori_banner == 'Slider')
+                            <li class="splide__slide">
+                                <div style="max-width: 300%; min-height: 200px; min-width: 250px;">
+                                    <div class="">
+                                        <img src="{{ asset('uploadkamar/' . $item->gambar_banner) }}" style="border-radius: 0px;" class="w-100">
+                                    </div>
+                                </div>
+                            </li>
+                        @endif
+                    @endforeach
+                    {{-- <li class="splide__slide">
                         <div style="max-width: 300%; min-height: 200px; min-width: 250px;">
                             <div class="">
                                 <img src="{{ asset('/img/reviewkost2.jpg') }}" style="border-radius: 0px;" class="w-100">
@@ -282,7 +286,7 @@
                                 <img src="{{ asset('/img/reviewkost5.jpg') }}" style="border-radius: 0px;" class="w-100">
                             </div>
                         </div>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
         </section>
@@ -1851,7 +1855,6 @@
             autoplay: true,
             arrows: false,
             lazyLoad: 'nearby',
-            gap: '0.5rem'
         });
         splide.mount();
         var splide = new Splide('.splide.new-3', {

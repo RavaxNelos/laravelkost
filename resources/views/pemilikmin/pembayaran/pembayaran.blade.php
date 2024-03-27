@@ -14,7 +14,7 @@
             position: absolute;
             top: 30%;
             left: 42%;
-            animation: zoom 1s infinite alternate;
+            animation: zoom 2s infinite alternate;
             /* Menerapkan animasi 'zoom' */
         }
 
@@ -33,6 +33,23 @@
                 transform: scale(1);
                 /* Skala akhir, kembali ke skala awal */
             }
+        }
+
+        .btn.disabled {
+            background: rgb(204, 204, 204);
+            border: none;
+        }
+
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
         }
     </style>
 @endsection
@@ -166,7 +183,7 @@
                                     <div class="col-12 text-end">
                                         <div class="align-items-center mt-3">
                                             <div class="ms-auto mt-3 mt-md-0">
-                                                <button type="button" class="btn btn-secondary" style="background-color: rgb(161, 161, 161); color: white; border: none;" data-bs-dismiss="modal">Batal</button>
+                                                <button type="button" class="btn btn-outline-danger"data-bs-dismiss="modal">Batal</button>
                                                 <button type="submit" class="btn btn-info font-medium" :class="pembayaran && logo && kategori && nomer && atasnama ? null : 'disabled'">
                                                     <div class="align-items-center">
                                                         Tambahkan
@@ -397,10 +414,10 @@
                                                                         <div class="col-12 text-end">
                                                                             <div class="align-items-center mt-3">
                                                                                 <div class="ms-auto mt-3 mt-md-0">
-                                                                                    <button type="button" class="btn btn-secondary" style="background-color: rgb(161, 161, 161); color: white; border: none;" data-bs-dismiss="modal">Batal</button>
+                                                                                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Batal</button>
                                                                                     <button type="submit" class="btn btn-info font-medium px-4">
                                                                                         <div class="d-flex align-items-center">
-                                                                                            Edit
+                                                                                            Simpan
                                                                                         </div>
                                                                                     </button>
                                                                                 </div>
@@ -528,7 +545,7 @@
                                             <div class="col-12 text-end">
                                                 <div class="align-items-center mt-3">
                                                     <div class="ms-auto mt-3 mt-md-0">
-                                                        <button type="button" class="btn btn-secondary" style="background-color: rgb(161, 161, 161); color: white; border: none;" data-bs-dismiss="modal">Batal</button>
+                                                        <button type="button" class="btn btn-outline-danger"data-bs-dismiss="modal">Batal</button>
                                                         <button type="submit" class="btn btn-info font-medium" :class="pembayaran && logo && kategori && nomer && atasnama ? null : 'disabled'">
                                                             <div class="align-items-center">
                                                                 Tambahkan
@@ -671,6 +688,7 @@
 @push('scripts')
     <script src="{{ asset('admin') }}dist/js/apps/contact.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         function limitLength(element, maxLength) {
             if (element.value.length > maxLength) {
@@ -678,4 +696,15 @@
             }
         }
     </script>
+    @if (Session::has('success'))
+        <script>
+            Swal.fire({
+                title: 'Sukses!',
+                text: '{{ Session::get('success') }}',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 3000 // Waktu penampilan Sweet Alert (dalam milidetik)
+            });
+        </script>
+    @endif
 @endpush

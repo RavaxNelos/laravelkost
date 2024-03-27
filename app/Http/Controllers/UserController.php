@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -20,7 +21,9 @@ class UserController extends Controller
     }
     public function detail()
     {
-        return view('user.home');
+        $banner = Banner::where('status_banner', 'Publish')->where('lokasi_banner', 'Home')->get();
+        return view('user.home',compact('banner')
+        );
     }
     public function transaksi()
     {
@@ -63,5 +66,6 @@ class UserController extends Controller
     {
         return view('user.kamarfavorit');
     }
+
 
 }

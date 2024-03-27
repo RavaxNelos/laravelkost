@@ -48,7 +48,7 @@ class PemilikTabelControlller extends Controller
         $pemilik->gambar_pemilik = $namaFile;
         $pemilik->save();
 
-        return redirect()->route('pemilik')->with('success', 'Kamar Berhasil Ditambahkan');
+        return redirect()->route('pemilik')->with('success', 'Pemilik Berhasil Ditambahkan');
     }
 
     /**
@@ -98,7 +98,7 @@ class PemilikTabelControlller extends Controller
         $pemilik->save();
         // return redirect()->route('admin.index')->with('success', 'Barang berhasil ditambahkan.');
         // return back()->with('success', 'Kamar Telah Ditambahkan.');
-        return redirect()->route('pemilik.store')->with('success', 'Kamar Berhasil Dirubah');
+        return redirect()->route('pemilik.store')->with('success', 'Pemilik Berhasil Dirubah');
     }
 
     /**
@@ -109,6 +109,6 @@ class PemilikTabelControlller extends Controller
         $pemilik = Pemilik::find($id);
         $pemilik->delete();
 
-        return back()->with('success', 'Kamar Berhasil Dihapus');
+        return back()->with('success', 'Pemilik Berhasil Dihapus');
     }
 }

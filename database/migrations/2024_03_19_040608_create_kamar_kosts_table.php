@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('kamarkost', function (Blueprint $table) {
             $table->id();
             $table->string('gambar_kost');
-            $table->string('kategori_kost');
+            // $table->string('kategori_kost');
+            $table->foreignId('kategori_id');
             $table->string('harga_kost');
             $table->string('lokasi_kost');
             $table->string('ukuran_kost');

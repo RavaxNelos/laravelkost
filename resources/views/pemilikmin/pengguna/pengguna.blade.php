@@ -34,6 +34,11 @@
                 /* Skala akhir, kembali ke skala awal */
             }
         }
+
+        .btn.disabled {
+            background: rgb(204, 204, 204);
+            border: none;
+        }
     </style>
 @endsection
 @section('content')
@@ -146,7 +151,7 @@
                                         <div class="col-12 mt-1">
                                             <div class="d-md-flex align-items-center mt-3">
                                                 <div class="ms-auto mt-3 mt-md-0">
-                                                    <button type="button" class="btn btn-secondary" style="background-color: rgb(161, 161, 161); color: white; border: none;" data-bs-dismiss="modal">Batal</button>
+                                                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Batal</button>
                                                     <button type="submit" class="btn btn-info font-medium" :class="gambar && nama && email && nomer ? null : 'disabled'">
                                                         <div class="align-items-center">
                                                             Tambahkan
@@ -170,30 +175,30 @@
                 <table class="table search-table align-middle text-nowrap">
                     <thead class="header-item">
                         <th>Nama Pengguna</th>
-                        <th>Email</th>
-                        <th>No.Tlpn</th>
-                        <th>Aksi</th>
+                        <th class="text-center">Email</th>
+                        <th class="text-center">No.Tlpn</th>
+                        <th class="text-center">Aksi</th>
                     </thead>
                     <tbody>
                         @foreach ($users as $item)
                             <tr class="search-items">
-                                <td>
+                                <td class="text-center">
                                     <div class="d-flex align-items-center">
                                         <img src="{{ asset($item->gambar ? 'uploadkamar/' . $item->gambar : '/img/avatar.png') }}" alt="avatar" class="rounded-circle" width="35" />
                                         <div class="ms-3">
                                             <div class="user-meta-info">
-                                                <h6 class="user-name mb-0" data-name="Emma Adams">{{ $item->name }}</h6>
+                                                <h6 class="user-name mb-0">{{ $item->name }}</h6>
                                             </div>
                                         </div>
                                     </div>
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     <span class="usr-email">{{ $item->email }}</span>
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     <span class="usr-nomer">{{ $item->nomorhp }}</span>
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     <div class="action-btn">
                                         <a href="/pemilikmin/pengguna/destroy/{{ $item->id }}" class="btn btn-danger" style="width: 30px; height: 30px; padding: 4.5px;">
                                             <i class="ti ti-trash fs-5"></i>
@@ -216,7 +221,7 @@
                                                             <div class="row">
                                                                 <div class="col-md-12 text-center">
                                                                     <div class="mt-3">
-                                                                        <label for="Profil Pengguna">Profil Pengguna</label>
+                                                                        <label for="Profil Pengguna" class="fs-4 fw-medium mt-3">Profil Pengguna</label>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12 text-start mt-3">
@@ -351,7 +356,7 @@
                                                 <div class="col-12 mt-1">
                                                     <div class="d-md-flex align-items-center mt-3">
                                                         <div class="ms-auto mt-3 mt-md-0">
-                                                            <button type="button" class="btn btn-secondary" style="background-color: rgb(161, 161, 161); color: white; border: none;" data-bs-dismiss="modal">Batal</button>
+                                                            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Batal</button>
                                                             <button type="submit" class="btn btn-info font-medium" :class="gambar && nama && email && nomer ? null : 'disabled'">
                                                                 <div class="align-items-center">
                                                                     Tambahkan
@@ -495,6 +500,7 @@
 @push('scripts')
     <script src="{{ asset('admin') }}dist/js/apps/contact.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         function limitLength(element, maxLength) {
             if (element.value.length > maxLength) {
@@ -502,4 +508,15 @@
             }
         }
     </script>
+    @if (Session::has('success'))
+        <script>
+            Swal.fire({
+                title: 'Sukses!',
+                text: '{{ Session::get('success') }}',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 3000 // Waktu penampilan Sweet Alert (dalam milidetik)
+            });
+        </script>
+    @endif
 @endpush

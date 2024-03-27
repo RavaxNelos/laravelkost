@@ -34,6 +34,11 @@
                 /* Skala akhir, kembali ke skala awal */
             }
         }
+
+        .btn.disabled {
+            background: rgb(204, 204, 204);
+            border: none;
+        }
     </style>
 @endsection
 @section('content')
@@ -75,17 +80,17 @@
                             </a>
                         </div>
                         <a data-bs-toggle="modal" data-bs-target="#modaltambah" id="btn-add-contact" class="btn btn-info d-flex align-items-center">
-                            <i class="ti ti-plus text-white me-1 fs-5"></i> Tambah Pemilik
+                            <i class="ti ti-plus text-white me-1 fs-5"></i> Tambah Kategori
                         </a>
                     </div>
                 </div>
             </div>
         </div>
         <div class="modal fade" id="modaltambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content" style="width: 100%; height: 540px;">
+            <div class="modal-dialog" role="document" x-data="{ nama: '', lokasi: '' }">
+                <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Pemilik</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Kategori</h1>
                     </div>
                     <div class="modal-body">
                         <div class="container">
@@ -94,39 +99,26 @@
                                     @csrf
                                     <div class="row">
                                         <div class="col-12 text-start">
-                                            <label for="Nama Pemilik">Nama Pemilik</label>
+                                            <label for="Nama Kategori">Nama Kategori <span class="text-danger">*</span></label>
                                         </div>
                                         <div class="col-md-12" style="margin-bottom: 18px;">
                                             <div class="mt-3">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" maxlength="20" name="nama_pemilik" value="{{ old('nama_pemilik') }}" id="nama_pemilik" placeholder="Masukkan Nama pemilik">
-                                                    @error('nama_pemilik')
+                                                    <input type="text" class="form-control" maxlength="20" name="kategori" value="{{ old('kategori') }}" id="kategori" placeholder="Masukkan Nama Kategori" x-model="nama">
+                                                    @error('kategori')
                                                         {{ $message }}
                                                     @enderror
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-12 text-start">
-                                            <label for="Email Pemilik">Email Pemilik</label>
+                                            <label for="Lokasi Kategori">Lokasi Kategori <span class="text-danger">*</span></label>
                                         </div>
                                         <div class="col-md-12" style="margin-bottom: 18px;">
                                             <div class="mt-3">
                                                 <div class="form-group">
-                                                    <input type="email" class="form-control" maxlength="20" name="email_pemilik" value="{{ old('email_pemilik') }}" id="email_pemilik" placeholder="Masukkan Email pemilik">
-                                                    @error('email_pemilik')
-                                                        {{ $message }}
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 text-start">
-                                            <label for="Nomer Pemilik">Nomer Pemilik</label>
-                                        </div>
-                                        <div class="col-md-12" style="margin-bottom: 18px;">
-                                            <div class="mt-3">
-                                                <div class="form-group">
-                                                    <input type="number" class="form-control" min="0" oninput="limitLength(this, 12)" name="nomer_pemilik" value="{{ old('nomer_pemilik') }}" id="nomer_pemilik" placeholder="Masukkan Nomer pemilik" min="0">
-                                                    @error('nomer_pemilik')
+                                                    <input type="type" class="form-control" maxlength="20" name="lokasi" value="{{ old('lokasi') }}" id="lokasi" placeholder="Masukkan Lokasi Kategori" x-model="lokasi">
+                                                    @error('lokasi')
                                                         {{ $message }}
                                                     @enderror
                                                 </div>
@@ -135,8 +127,8 @@
                                         <div class="col-12 mt-1">
                                             <div class="d-md-flex align-items-center mt-3">
                                                 <div class="ms-auto mt-3 mt-md-0">
-                                                    <button type="button" class="btn btn-secondary" style="background-color: rgb(161, 161, 161); color: white; border: none;" data-bs-dismiss="modal">Batal</button>
-                                                    <button type="submit" class="btn btn-info font-medium">
+                                                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Batal</button>
+                                                    <button type="submit" class="btn btn-info font-medium" :class="nama && lokasi ? null : 'disabled'">
                                                         <div class="align-items-center">
                                                             Tambahkan
                                                         </div>
@@ -158,22 +150,22 @@
             <div class="table-responsive">
                 <table class="table search-table align-middle text-nowrap">
                     <thead class="header-item">
-                        <th>Nama Kategori</th>
-                        <th>Lokasi Kategori</th>
+                        <th class="text-center">Nama Kategori</th>
+                        <th class="text-center">Lokasi Kategori</th>
                         <th class="text-center">Aksi</th>
                     </thead>
                     <tbody>
                         @foreach ($kategori as $item)
                             <tr class="search-items">
-                                <td>
+                                <td class="text-center">
                                     <span class="usr-kategori">{{ $item->kategori }}</span>
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     <span class="usr-nomer">{{ $item->lokasi }}</span>
                                 </td>
                                 <td class="text-center">
                                     <div class="action-btn">
-                                        <a href="/pemilikmin/pemilik/destroy/{{ $item->id }}" class="btn btn-danger" style="width: 30px; height: 30px; padding: 4.5px;">
+                                        <a href="/pemilikmin/kategori/destroy/{{ $item->id }}" class="btn btn-danger" style="width: 30px; height: 30px; padding: 4.5px;">
                                             <i class="ti ti-trash fs-5"></i>
                                         </a>
                                         {{-- <form action="/pemilikmin/pemilik/destroy" method="POST">
@@ -199,8 +191,8 @@
                     </a>
                 </div>
                 <div class="modal fade" id="modaltambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content" style="width: 100%; height: 540px;">
+                    <div class="modal-dialog" role="document" x-data="{ nama: '', lokasi: '' }">
+                        <div class="modal-content">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Kategori</h1>
                             </div>
@@ -211,12 +203,12 @@
                                             @csrf
                                             <div class="row">
                                                 <div class="col-12 text-start">
-                                                    <label for="Nama Kategori">Nama Kategori</label>
+                                                    <label for="Nama Kategori">Nama Kategori <span class="text-danger">*</span></label>
                                                 </div>
                                                 <div class="col-md-12" style="margin-bottom: 18px;">
                                                     <div class="mt-3">
                                                         <div class="form-group">
-                                                            <input type="text" class="form-control" maxlength="20" name="kategori" value="{{ old('kategori') }}" id="kategori" placeholder="Masukkan Nama Kategori">
+                                                            <input type="text" class="form-control" maxlength="20" name="kategori" value="{{ old('kategori') }}" id="kategori" placeholder="Masukkan Nama Kategori" x-model="nama">
                                                             @error('kategori')
                                                                 {{ $message }}
                                                             @enderror
@@ -229,7 +221,7 @@
                                                 <div class="col-md-12" style="margin-bottom: 18px;">
                                                     <div class="mt-3">
                                                         <div class="form-group">
-                                                            <input type="type" class="form-control" maxlength="20" name="lokasi" value="{{ old('lokasi') }}" id="lokasi" placeholder="Masukkan Lokasi Kategori">
+                                                            <input type="type" class="form-control" maxlength="20" name="lokasi" value="{{ old('lokasi') }}" id="lokasi" placeholder="Masukkan Lokasi Kategori" x-model="lokasi">
                                                             @error('lokasi')
                                                                 {{ $message }}
                                                             @enderror
@@ -239,8 +231,8 @@
                                                 <div class="col-12 mt-1">
                                                     <div class="d-md-flex align-items-center mt-3">
                                                         <div class="ms-auto mt-3 mt-md-0">
-                                                            <button type="button" class="btn btn-secondary" style="background-color: rgb(161, 161, 161); color: white; border: none;" data-bs-dismiss="modal">Batal</button>
-                                                            <button type="submit" class="btn btn-info font-medium">
+                                                            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Batal</button>
+                                                            <button type="submit" class="btn btn-info font-medium" :class="nama && lokasi ? null : 'disabled'">
                                                                 <div class="align-items-center">
                                                                     Tambahkan
                                                                 </div>
@@ -383,4 +375,17 @@
 @endsection
 @push('scripts')
     <script src="{{ asset('admin') }}dist/js/apps/contact.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (Session::has('success'))
+        <script>
+            Swal.fire({
+                title: 'Sukses!',
+                text: '{{ Session::get('success') }}',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 3000 // Waktu penampilan Sweet Alert (dalam milidetik)
+            });
+        </script>
+    @endif
 @endpush

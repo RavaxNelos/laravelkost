@@ -34,6 +34,11 @@
                 /* Skala akhir, kembali ke skala awal */
             }
         }
+
+        .btn.disabled {
+            background: rgb(204, 204, 204);
+            border: none;
+        }
     </style>
 @endsection
 @section('content')
@@ -82,7 +87,7 @@
             </div>
         </div>
         <div class="modal fade" id="modaltambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog" role="document" x-data="{ gambar: '', nama: '', email: '', nomer: '' }">
                 <div class="modal-content" style="width: 100%; height: 540px;">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Pemilik</h1>
@@ -94,23 +99,23 @@
                                     @csrf
                                     <div class="row">
                                         <div class="col-12 text-start">
-                                            <label for="Gambar Pemilik">Gambar Pemilik</label>
+                                            <label for="Gambar Pemilik">Gambar Pemilik <span class="text-danger">*</span></label>
                                         </div>
                                         <div class="col-md-12" style="margin-bottom: 18px;">
                                             <div class="mt-3">
-                                                <input class="form-control" type="file" name="gambar_pemilik" id="gambar_pemilik" value="{{ old('gambar_pemilik') }}">
+                                                <input class="form-control" type="file" name="gambar_pemilik" id="gambar_pemilik" value="{{ old('gambar_pemilik') }}" x-model="gambar">
                                                 @error('gambar_pemilik')
                                                     {{ $message }}
                                                 @enderror
                                             </div>
                                         </div>
                                         <div class="col-12 text-start">
-                                            <label for="Nama Pemilik">Nama Pemilik</label>
+                                            <label for="Nama Pemilik">Nama Pemilik <span class="text-danger">*</span></label>
                                         </div>
                                         <div class="col-md-12" style="margin-bottom: 18px;">
                                             <div class="mt-3">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" maxlength="20" name="nama_pemilik" value="{{ old('nama_pemilik') }}" id="nama_pemilik" placeholder="Masukkan Nama pemilik">
+                                                    <input type="text" class="form-control" maxlength="20" name="nama_pemilik" value="{{ old('nama_pemilik') }}" id="nama_pemilik" placeholder="Masukkan Nama pemilik" x-model="nama">
                                                     @error('nama_pemilik')
                                                         {{ $message }}
                                                     @enderror
@@ -118,12 +123,12 @@
                                             </div>
                                         </div>
                                         <div class="col-12 text-start">
-                                            <label for="Email Pemilik">Email Pemilik</label>
+                                            <label for="Email Pemilik">Email Pemilik <span class="text-danger">*</span></label>
                                         </div>
                                         <div class="col-md-12" style="margin-bottom: 18px;">
                                             <div class="mt-3">
                                                 <div class="form-group">
-                                                    <input type="email" class="form-control" maxlength="20" name="email_pemilik" value="{{ old('email_pemilik') }}" id="email_pemilik" placeholder="Masukkan Email pemilik">
+                                                    <input type="email" class="form-control" maxlength="20" name="email_pemilik" value="{{ old('email_pemilik') }}" id="email_pemilik" placeholder="Masukkan Email pemilik" x-model="email">
                                                     @error('email_pemilik')
                                                         {{ $message }}
                                                     @enderror
@@ -131,12 +136,12 @@
                                             </div>
                                         </div>
                                         <div class="col-12 text-start">
-                                            <label for="Nomer Pemilik">Nomer Pemilik</label>
+                                            <label for="Nomer Pemilik">Nomer Pemilik <span class="text-danger">*</span></label>
                                         </div>
                                         <div class="col-md-12" style="margin-bottom: 18px;">
                                             <div class="mt-3">
                                                 <div class="form-group">
-                                                    <input type="number" class="form-control" min="0" oninput="limitLength(this, 12)" name="nomer_pemilik" value="{{ old('nomer_pemilik') }}" id="nomer_pemilik" placeholder="Masukkan Nomer pemilik" min="0">
+                                                    <input type="number" class="form-control" min="0" oninput="limitLength(this, 12)" name="nomer_pemilik" value="{{ old('nomer_pemilik') }}" id="nomer_pemilik" placeholder="Masukkan Nomer pemilik" x-model="nomer">
                                                     @error('nomer_pemilik')
                                                         {{ $message }}
                                                     @enderror
@@ -146,8 +151,8 @@
                                         <div class="col-12 mt-1">
                                             <div class="d-md-flex align-items-center mt-3">
                                                 <div class="ms-auto mt-3 mt-md-0">
-                                                    <button type="button" class="btn btn-secondary" style="background-color: rgb(161, 161, 161); color: white; border: none;" data-bs-dismiss="modal">Batal</button>
-                                                    <button type="submit" class="btn btn-info font-medium">
+                                                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Batal</button>
+                                                    <button type="submit" class="btn btn-info font-medium" :class="gambar && nama && email && nomer ? null : 'disabled'">
                                                         <div class="align-items-center">
                                                             Tambahkan
                                                         </div>
@@ -170,8 +175,8 @@
                 <table class="table search-table align-middle text-nowrap">
                     <thead class="header-item">
                         <th>Nama Pemilik</th>
-                        <th>Email</th>
-                        <th>No.Tlpn</th>
+                        <th class="text-center">Email</th>
+                        <th class="text-center">No.Tlpn</th>
                         <th class="text-center">Aksi</th>
                     </thead>
                     <tbody>
@@ -187,10 +192,10 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     <span class="usr-email">{{ $item->email_pemilik }}</span>
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     <span class="usr-nomer">{{ $item->nomer_pemilik }}</span>
                                 </td>
                                 <td class="text-center">
@@ -215,7 +220,7 @@
                                                                 </div>
                                                                 <input type="hidden" name="id" value="{{ $item->id }}">
                                                                 <div class="col-12 text-center">
-                                                                    <label for="Profil Pemilik">Profil Pemilik</label>
+                                                                    <label for="Profil Pemilik" class="fs-4 fw-medium mt-3">Profil Pemilik</label>
                                                                 </div>
                                                                 <div class="col-12 text-start mt-3">
                                                                     <label for="Nama Pemilik">Nama Pemilik</label>
@@ -223,7 +228,7 @@
                                                                 <div class="col-md-12">
                                                                     <div class="mt-3">
                                                                         <div class="form-group">
-                                                                            <input type="text" class="form-control" name="nama_pemilik" value="{{ $item->nama_pemilik }}" id="nama_pemilik" placeholder="Masukkan Nama pemilik">
+                                                                            <input type="text" class="form-control" name="nama_pemilik" value="{{ $item->nama_pemilik }}" id="nama_pemilik" disabled>
                                                                             @error('nama_pemilik')
                                                                                 {{ $message }}
                                                                             @enderror
@@ -236,7 +241,7 @@
                                                                 <div class="col-md-12">
                                                                     <div class="mt-3">
                                                                         <div class="form-group">
-                                                                            <input type="email" class="form-control" name="email_pemilik" value="{{ $item->email_pemilik }}" id="email_pemilik" placeholder="Masukkan Email pemilik">
+                                                                            <input type="email" class="form-control" name="email_pemilik" value="{{ $item->email_pemilik }}" id="email_pemilik" disabled>
                                                                             @error('email_pemilik')
                                                                                 {{ $message }}
                                                                             @enderror
@@ -249,7 +254,7 @@
                                                                 <div class="col-md-12">
                                                                     <div class="mt-3">
                                                                         <div class="form-group">
-                                                                            <input type="number" class="form-control" name="nomer_pemilik" value="{{ $item->nomer_pemilik }}" id="nomer_pemilik" placeholder="Masukkan Nomer pemilik">
+                                                                            <input type="number" class="form-control" name="nomer_pemilik" value="{{ $item->nomer_pemilik }}" id="nomer_pemilik" disabled>
                                                                             @error('nomer_pemilik')
                                                                                 {{ $message }}
                                                                             @enderror
@@ -285,7 +290,7 @@
                     </a>
                 </div>
                 <div class="modal fade" id="modaltambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
+                    <div class="modal-dialog" role="document" x-data="{ gambar: '', nama: '', email: '', nomer: '' }">
                         <div class="modal-content" style="width: 100%; height: 540px;">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Pemilik</h1>
@@ -297,23 +302,23 @@
                                             @csrf
                                             <div class="row">
                                                 <div class="col-12 text-start">
-                                                    <label for="Gambar Pemilik">Gambar Pemilik</label>
+                                                    <label for="Gambar Pemilik">Gambar Pemilik <span class="text-danger">*</span></label>
                                                 </div>
                                                 <div class="col-md-12" style="margin-bottom: 18px;">
                                                     <div class="mt-3">
-                                                        <input class="form-control" type="file" name="gambar_pemilik" id="gambar_pemilik" value="{{ old('gambar_pemilik') }}">
+                                                        <input class="form-control" type="file" name="gambar_pemilik" id="gambar_pemilik" value="{{ old('gambar_pemilik') }}" x-model="gambar">
                                                         @error('gambar_pemilik')
                                                             {{ $message }}
                                                         @enderror
                                                     </div>
                                                 </div>
                                                 <div class="col-12 text-start">
-                                                    <label for="Nama Pemilik">Nama Pemilik</label>
+                                                    <label for="Nama Pemilik">Nama Pemilik <span class="text-danger">*</span></label>
                                                 </div>
                                                 <div class="col-md-12" style="margin-bottom: 18px;">
                                                     <div class="mt-3">
                                                         <div class="form-group">
-                                                            <input type="text" class="form-control" maxlength="20" name="nama_pemilik" value="{{ old('nama_pemilik') }}" id="nama_pemilik" placeholder="Masukkan Nama pemilik">
+                                                            <input type="text" class="form-control" maxlength="20" name="nama_pemilik" value="{{ old('nama_pemilik') }}" id="nama_pemilik" placeholder="Masukkan Nama pemilik" x-model="nama">
                                                             @error('nama_pemilik')
                                                                 {{ $message }}
                                                             @enderror
@@ -321,12 +326,12 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-12 text-start">
-                                                    <label for="Email Pemilik">Email Pemilik</label>
+                                                    <label for="Email Pemilik">Email Pemilik <span class="text-danger">*</span></label>
                                                 </div>
                                                 <div class="col-md-12" style="margin-bottom: 18px;">
                                                     <div class="mt-3">
                                                         <div class="form-group">
-                                                            <input type="email" class="form-control" maxlength="20" name="email_pemilik" value="{{ old('email_pemilik') }}" id="email_pemilik" placeholder="Masukkan Email pemilik">
+                                                            <input type="email" class="form-control" maxlength="20" name="email_pemilik" value="{{ old('email_pemilik') }}" id="email_pemilik" placeholder="Masukkan Email pemilik" x-model="email">
                                                             @error('email_pemilik')
                                                                 {{ $message }}
                                                             @enderror
@@ -334,12 +339,12 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-12 text-start">
-                                                    <label for="Nomer Pemilik">Nomer Pemilik</label>
+                                                    <label for="Nomer Pemilik">Nomer Pemilik <span class="text-danger">*</span></label>
                                                 </div>
                                                 <div class="col-md-12" style="margin-bottom: 18px;">
                                                     <div class="mt-3">
                                                         <div class="form-group">
-                                                            <input type="number" class="form-control" min="0" oninput="limitLength(this, 12)" name="nomer_pemilik" value="{{ old('nomer_pemilik') }}" id="nomer_pemilik" placeholder="Masukkan Nomer pemilik" min="0">
+                                                            <input type="number" class="form-control" min="0" oninput="limitLength(this, 12)" name="nomer_pemilik" value="{{ old('nomer_pemilik') }}" id="nomer_pemilik" placeholder="Masukkan Nomer pemilik" x-model="nomer">
                                                             @error('nomer_pemilik')
                                                                 {{ $message }}
                                                             @enderror
@@ -349,8 +354,8 @@
                                                 <div class="col-12 mt-1">
                                                     <div class="d-md-flex align-items-center mt-3">
                                                         <div class="ms-auto mt-3 mt-md-0">
-                                                            <button type="button" class="btn btn-secondary" style="background-color: rgb(161, 161, 161); color: white; border: none;" data-bs-dismiss="modal">Batal</button>
-                                                            <button type="submit" class="btn btn-info font-medium">
+                                                            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Batal</button>
+                                                            <button type="submit" class="btn btn-info font-medium" :class="gambar && nama && email && nomer ? null : 'disabled'">
                                                                 <div class="align-items-center">
                                                                     Tambahkan
                                                                 </div>
@@ -493,6 +498,8 @@
 @endsection
 @push('scripts')
     <script src="{{ asset('admin') }}dist/js/apps/contact.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         function limitLength(element, maxLength) {
             if (element.value.length > maxLength) {
@@ -500,4 +507,15 @@
             }
         }
     </script>
+    @if (Session::has('success'))
+        <script>
+            Swal.fire({
+                title: 'Sukses!',
+                text: '{{ Session::get('success') }}',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 3000 // Waktu penampilan Sweet Alert (dalam milidetik)
+            });
+        </script>
+    @endif
 @endpush

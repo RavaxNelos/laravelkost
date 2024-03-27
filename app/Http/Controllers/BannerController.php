@@ -55,7 +55,7 @@ class BannerController extends Controller
         $banner->status_banner = $request->status_banner;
         $banner->save();
 
-        return redirect()->route('banner')->with('success', 'Kamar Berhasil Ditambahkan');
+        return redirect()->route('banner')->with('success', 'Banner Berhasil Ditambahkan');
     }
 
     /**
@@ -104,7 +104,7 @@ class BannerController extends Controller
         $banner->save();
         // return redirect()->route('admin.index')->with('success', 'Barang berhasil ditambahkan.');
         // return back()->with('success', 'Kamar Telah Ditambahkan.');
-        return redirect()->route('banner.store')->with('success', 'Kamar Berhasil Dirubah');
+        return redirect()->route('banner.store')->with('success', 'Banner Berhasil Dirubah');
     }
 
     /**
@@ -115,6 +115,6 @@ class BannerController extends Controller
         $banner = Banner::find($id);
         $banner->delete();
 
-        return back()->with('success', 'Kamar Berhasil Dihapus');
+        return back()->with('success', 'Banner Berhasil Dihapus');
     }
 }

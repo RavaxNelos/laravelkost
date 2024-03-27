@@ -10,4 +10,8 @@ class KamarKost extends Model
     use HasFactory;
     protected $table = 'kamarkost';
     protected $guarded = ['id'];
+
+    public function kategori() {
+        return $this->belongsTo(Kategori::class, 'kategori_id','id');
+    }
 }

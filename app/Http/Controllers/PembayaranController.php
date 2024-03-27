@@ -50,7 +50,7 @@ class PembayaranController extends Controller
         $pembayaran->logo_pembayaran = $namaFile;
         $pembayaran->save();
 
-        return redirect()->route('bayar')->with('success', 'Metodee Pembayaran Berhasil Ditambahkan');
+        return redirect()->route('bayar')->with('success', 'Metode Pembayaran Berhasil Ditambahkan');
     }
 
     /**

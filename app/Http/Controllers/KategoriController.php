@@ -40,7 +40,7 @@ class KategoriController extends Controller
         $kategori->lokasi = $request->lokasi;
         $kategori->save();
 
-        return redirect()->route('kategori')->with('success', 'Metodee Pembayaran Berhasil Ditambahkan');
+        return redirect()->route('kategori')->with('success', 'Kategori Berhasil Ditambahkan');
     }
 
     /**

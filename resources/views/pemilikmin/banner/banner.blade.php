@@ -14,7 +14,7 @@
             position: absolute;
             top: 30%;
             left: 42%;
-            animation: zoom 1s infinite alternate;
+            animation: zoom 2s infinite alternate;
             /* Menerapkan animasi 'zoom' */
         }
 
@@ -38,9 +38,8 @@
         .published {
             display: flex;
             align-items: center;
-            align-content: center;
             /* Sembunyikan konten yang keluar dari batas */
-            color: #075e54;
+            color: #25D366;
             border-radius: 4px;
             font-weight: 500;
         }
@@ -52,6 +51,20 @@
             color: red;
             border-radius: 4px;
             font-weight: 500;
+        }
+
+        .btn.disabled {
+            background: rgb(204, 204, 204);
+            border: none;
+        }
+
+        .usr-status-banner {
+            display: inline-block !important;
+            /* Agar properti text-align berfungsi */
+        }
+
+        .text-center {
+            text-align: center !important;
         }
     </style>
 @endsection
@@ -173,7 +186,7 @@
                                         <div class="col-12 text-end">
                                             <div class="align-items-center mt-3">
                                                 <div class="ms-auto mt-3 mt-md-0">
-                                                    <button type="button" class="btn btn-secondary" style="background-color: rgb(161, 161, 161); color: white; border: none;" data-bs-dismiss="modal">Batal</button>
+                                                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Batal</button>
                                                     <button type="submit" class="btn btn-info font-medium" :class="gambar && kategori && lokasi && status ? null : 'disabled'">
                                                         <div class="align-items-center">
                                                             Tambahkan
@@ -199,7 +212,7 @@
                         <th>Gambar Banner</th>
                         <th class="text-center">Kategori Banner</th>
                         <th class="text-center">Lokasi Banner</th>
-                        <th>Status Banner</th>
+                        <th class="text-center">Status Banner</th>
                         <th class="text-center">Aksi</th>
                     </thead>
                     <tbody>
@@ -217,11 +230,11 @@
                                 <td class="text-center">
                                     <span class="usr-lokasi-banner">{{ $item->lokasi_banner }}</span>
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     <span class="usr-status-banner @if ($item->status_banner == 'Publish') published @else Unpublish @endif">{{ $item->status_banner }}</span>
                                 </td>
                                 <td class="text-center">
-                                    <div class="action-btn">
+                                    <div class="action-btn d-flex justify-content-center align-items-center gap-1">
                                         <div class="toggle">
                                             <form id="edit-form" name="edit-form" method="post">
                                                 <div class="form-check form-switch" style="padding: 0px; min-height: 0em; margin-bottom: 0em;">
@@ -315,10 +328,10 @@
                                                                         <div class="col-12 text-end">
                                                                             <div class="align-items-center mt-3">
                                                                                 <div class="ms-auto mt-3 mt-md-0">
-                                                                                    <button type="button" class="btn btn-secondary" style="background-color: rgb(161, 161, 161); color: white; border: none;" data-bs-dismiss="modal">Batal</button>
+                                                                                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Batal</button>
                                                                                     <button type="submit" class="btn btn-info font-medium px-4">
                                                                                         <div class="d-flex align-items-center">
-                                                                                            Edit
+                                                                                            Simpan
                                                                                         </div>
                                                                                     </button>
                                                                                 </div>
@@ -432,7 +445,7 @@
                                                 <div class="col-12 text-end">
                                                     <div class="align-items-center mt-3">
                                                         <div class="ms-auto mt-3 mt-md-0">
-                                                            <button type="button" class="btn btn-secondary" style="background-color: rgb(161, 161, 161); color: white; border: none;" data-bs-dismiss="modal">Batal</button>
+                                                            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Batal</button>
                                                             <button type="submit" class="btn btn-info font-medium" :class="gambar && kategori && lokasi && status ? null : 'disabled'">
                                                                 <div class="align-items-center">
                                                                     Tambahkan
@@ -577,6 +590,7 @@
 @push('scripts')
     <script src="{{ asset('admin') }}dist/js/apps/contact.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(document).ready(function() {
             $('.form-check-input').click(function(event) {
@@ -591,4 +605,15 @@
 
         });
     </script>
+    @if (Session::has('success'))
+        <script>
+            Swal.fire({
+                title: 'Sukses!',
+                text: '{{ Session::get('success') }}',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 3000 // Waktu penampilan Sweet Alert (dalam milidetik)
+            });
+        </script>
+    @endif
 @endpush

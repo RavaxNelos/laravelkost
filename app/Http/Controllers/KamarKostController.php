@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\KamarKost;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 
 class KamarKostController extends Controller
@@ -11,8 +12,9 @@ class KamarKostController extends Controller
      * Display a listing of the resource.
      */
     public function index() {
+        $categories = Kategori::where('lokasi', 'Kategori Kost')->get();
         return view('pemilikmin.kamar.kamar', [
-            'kamarkost' => KamarKost::all(),
+            'kamarkost' => KamarKost::all(), 'categories' => $categories
         ]);
     }
 
@@ -29,7 +31,9 @@ class KamarKostController extends Controller
      */
     public function create()
     {
-        return view('pemilikmin.kamar.tambahkamar');
+         $kategori = Kategori::where('lokasi', 'Kamar');
+        return view('pemilikmin.kamar.tambahkamar',  ['kategori' => $kategori]
+        );
     }
 
     /**
@@ -39,7 +43,7 @@ class KamarKostController extends Controller
 {
     $request->validate([
         'gambar_kost' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'kategori_kost' => 'required',
+        'kategori_id' => 'required',
         'harga_kost' => 'required',
         'lokasi_kost' => 'required',
         'ukuran_kost' => 'required',
@@ -53,7 +57,7 @@ class KamarKostController extends Controller
     $gambarBarang->move(public_path('uploadkamar'), $namaFile);
 
     $kamarkost = new KamarKost();
-    $kamarkost->kategori_kost = $request->kategori_kost;
+    $kamarkost->kategori_id = $request->kategori_id;
     $kamarkost->harga_kost = $request->harga_kost;
     $kamarkost->lokasi_kost = $request->lokasi_kost;
     $kamarkost->ukuran_kost = $request->ukuran_kost;
@@ -91,7 +95,7 @@ class KamarKostController extends Controller
     {
         $request->validate([
             'gambar_kost' => 'nullable',
-            'kategori_kost' => 'required',
+            'kategori_id' => 'required',
             'harga_kost' => 'required',
             'lokasi_kost' => 'required',
             'ukuran_kost' => 'required',
@@ -109,7 +113,7 @@ class KamarKostController extends Controller
         }
 
         $kamarkost = KamarKost::find($request->id);
-        $kamarkost->kategori_kost = $request->kategori_kost;
+        $kamarkost->kategori_id = $request->kategori_id;
         $kamarkost->harga_kost = $request->harga_kost;
         $kamarkost->lokasi_kost = $request->lokasi_kost;
         $kamarkost->ukuran_kost = $request->ukuran_kost;
