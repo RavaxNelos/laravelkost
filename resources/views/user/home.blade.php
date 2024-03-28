@@ -248,17 +248,27 @@
         <section class="splide new-2" aria-label="Splide Basic HTML Example">
             <div class="splide__track">
                 <ul class="splide__list">
-                    @foreach ($banner as $item)
-                        @if ($item->kategori_banner == 'Slider')
-                            <li class="splide__slide">
-                                <div style="max-width: 300%; min-height: 200px; min-width: 250px;">
-                                    <div class="">
-                                        <img src="{{ asset('uploadkamar/' . $item->gambar_banner) }}" style="border-radius: 0px;" class="w-100">
-                                    </div>
+                    @if ($banner->isEmpty())
+                        <li class="splide__slide">
+                            <div style="max-width: 300%; min-height: 200px; min-width: 250px;">
+                                <div class="">
+                                    <img src="{{ asset('img/reviewkost1.jpg') }}" style="border-radius: 0px;" class="w-100">
                                 </div>
-                            </li>
-                        @endif
-                    @endforeach
+                            </div>
+                        </li>
+                    @else
+                        @foreach ($banner as $item)
+                            @if ($item->kategori_banner == 'Slider')
+                                <li class="splide__slide">
+                                    <div style="max-width: 300%; min-height: 200px; min-width: 250px;">
+                                        <div class="">
+                                            <img src="{{ asset('uploadkamar/' . $item->gambar_banner) }}" style="border-radius: 0px;" class="w-100">
+                                        </div>
+                                    </div>
+                                </li>
+                            @endif
+                        @endforeach
+                    @endif
                     {{-- <li class="splide__slide">
                         <div style="max-width: 300%; min-height: 200px; min-width: 250px;">
                             <div class="">

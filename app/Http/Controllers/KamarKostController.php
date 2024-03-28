@@ -13,8 +13,9 @@ class KamarKostController extends Controller
      */
     public function index() {
         $categories = Kategori::where('lokasi', 'Kategori Kost')->get();
+        $kamarkost = KamarKost::orderBy('created_at', 'desc')->get();
         return view('pemilikmin.kamar.kamar', [
-            'kamarkost' => KamarKost::all(), 'categories' => $categories
+            'kamarkost' => $kamarkost, 'categories' => $categories
         ]);
     }
 
@@ -83,8 +84,9 @@ class KamarKostController extends Controller
      */
     public function edit(string $id)
     {
+        $categories = Kategori::where('lokasi', 'Kategori Kost')->get();
         return view('pemilikmin.kamar.editkamar')->with([
-            'kamarkost' => KamarKost::find($id),
+            'kamarkost' => KamarKost::find($id), 'categories' => $categories
         ]);
     }
 

@@ -12,8 +12,9 @@ class KategoriController extends Controller
      */
     public function index()
     {
+        $kategori = Kategori::orderBy('created_at', 'desc')->get();
         return view('pemilikmin.kategori.kategori', [
-            'kategori' => Kategori::all(),
+            'kategori' => $kategori,
         ]);
     }
 

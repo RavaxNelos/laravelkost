@@ -281,7 +281,7 @@
                                     </div>
                                 </td>
                                 <td class="text-center">
-                                    <span class="usr-kategori-kost">{{ $item->kategori_id }}</span>
+                                    <span class="usr-kategori-kost">{{ $item->kategori->kategori }}</span>
                                 </td>
                                 <td class="text-center">
                                     <span class="usr-harga-kost">Rp. {{ $item->harga_kost }}</span>
@@ -303,13 +303,38 @@
                                         <div class="toggle ml-2">
                                             <form id="edit-form" name="edit-form" method="post">
                                                 <div class="form-check form-switch" style="padding: 0px; min-height: 0em; margin-bottom: 0em;">
-                                                    <input class="form-check-input" type="checkbox" data-id={{ $item->id }} {{ $item->status_kost == 'Publish' ? 'checked' : null }} />
+                                                    <input class="form-check-input" type="checkbox" data-id={{ $item->id }} {{ $item->status_kost == 'Publish' ? 'checked' : null }} style="margin-left: 14px;" />
                                                 </div>
                                             </form>
                                         </div>
-                                        <a href="/pemilikmin/kamar/destroy/{{ $item->id }}" class="btn btn-danger" style="width: 30px; height: 30px; padding: 4.5px;">
+                                        <a href="#" class="btn btn-danger" style="width: 30px; height: 30px; padding: 4.5px;" onclick="confirmDelete('{{ $item->id }}')">
                                             <i class="ti ti-trash fs-5"></i>
                                         </a>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content" style="margin-top: 12rem;">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="deleteConfirmationModalLabel">Konfirmasi Hapus</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <h3 class="fw-medium fs-3">Apakah Anda Yakin Ingin Menghapus Kamar Ini?</h3>
+                                                    </div>
+                                                    <div class="modal-footer d-flex align-items-center justify-content-center text-center">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
+                                                        <form id="deleteForm" action="" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger">Ya, Hapus</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- <a href="/pemilikmin/kamar/destroy/{{ $item->id }}" class="btn btn-danger" style="width: 30px; height: 30px; padding: 4.5px;">
+                                            <i class="ti ti-trash fs-5"></i>
+                                        </a> --}}
                                         <a type="button" data-bs-toggle="modal" data-bs-target="#modaledit-{{ $item->id }}" class="btn btn-warning" style="width: 30px; height: 30px; padding: 4.5px;">
                                             <i class="ti ti-edit fs-5"></i>
                                         </a>
@@ -351,6 +376,13 @@
                                                                 </div>
                                                                 <div class="col-6 text-start mt-3">
                                                                     <label for="Status Kost">Status Kost</label>
+                                                                </div>
+                                                                <div class="toggle ml-2">
+                                                                    <form id="edit-form" name="edit-form" method="post">
+                                                                        <div class="form-check form-switch" style="padding: 0px; min-height: 0em; margin-bottom: 0em;">
+                                                                            <input class="form-check-input" type="checkbox" data-id={{ $item->id }} {{ $item->status_kost == 'Publish' ? 'checked' : null }} style="margin-left: 14px;" />
+                                                                        </div>
+                                                                    </form>
                                                                 </div>
                                                                 <div class="col-md-6" style="margin-top: -12px;">
                                                                     <div class="mt-3">
@@ -512,11 +544,8 @@
                                                                                 <div class="input-group">
                                                                                     <select class="form-select" id="kategori_id" name="kategori_id">
                                                                                         @foreach ($categories as $category)
-                                                                                            <option value="{{ $category->id }}" {{ $category->kategori }}></option>
+                                                                                            <option value="{{ $category->id }}" {{ $item->kategori_id == $category->id ? 'selected' : '' }}>{{ $category->kategori }}</option>
                                                                                         @endforeach
-                                                                                        @error('kategori_id')
-                                                                                            {{ $message }}
-                                                                                        @enderror
                                                                                     </select>
                                                                                 </div>
                                                                             </div>
@@ -883,6 +912,12 @@
             console.log('test');
 
         });
+
+        function confirmDelete(itemId) {
+            var deleteForm = document.getElementById('deleteForm');
+            deleteForm.action = '/pemilikmin/kamar/destroy/' + itemId;
+            $('#deleteConfirmationModal').modal('show');
+        }
     </script>
     @if (Session::has('success'))
         <script>

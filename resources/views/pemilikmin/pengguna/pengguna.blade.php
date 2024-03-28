@@ -39,6 +39,12 @@
             background: rgb(204, 204, 204);
             border: none;
         }
+
+        .btn .filter-btn {
+            width: 200px;
+            height: 50px;
+            border-radius: 0px;
+        }
     </style>
 @endsection
 @section('content')
@@ -62,319 +68,439 @@
             </div>
         </div>
     </div>
-    @if (count($users) > 0)
-        <div class="widget-content searchable-container list">
-            <!-- --------------------- start Contact ---------------- -->
-            <div class="card card-body" style="margin-bottom: 10px; margin-top: -30px; padding: 10px;">
-                <div class="row">
-                    <div class="col-md-4 col-xl-3">
-                        <form class="position-relative">
-                            <input type="text" class="form-control product-search ps-5" id="input-search" placeholder="Cari Pengguna..." />
-                            <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
-                        </form>
-                    </div>
-                    <div class="col-md-8 col-xl-9 text-end d-flex justify-content-md-end justify-content-center mt-3 mt-md-0">
-                        <div class="action-btn show-btn" style="display: none">
-                            <a href="javascript:void(0)" class="delete-multiple btn-light-danger btn me-2 text-danger d-flex align-items-center font-medium">
-                                <i class="ti ti-trash text-danger me-1 fs-5"></i> Delete All Row
+    <div class="" x-data="{ filter: 'all' }">
+        @if (count($users) > 0)
+            <div class="widget-content searchable-container list">
+                <!-- --------------------- start Contact ---------------- -->
+                <div class="card card-body" style="margin-bottom: 10px; margin-top: -30px; padding: 10px;">
+                    <div class="row">
+                        <div class="col-md-4 col-xl-3">
+                            <form class="position-relative">
+                                <input type="text" class="form-control product-search ps-5" id="input-search" placeholder="Cari Pengguna..." />
+                                <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
+                            </form>
+                        </div>
+                        <div class="col-md-8 col-xl-9 text-end d-flex justify-content-md-end justify-content-center mt-3 mt-md-0">
+                            <div class="action-btn show-btn" style="display: none">
+                                <a href="javascript:void(0)" class="delete-multiple btn-light-danger btn me-2 text-danger d-flex align-items-center font-medium">
+                                    <i class="ti ti-trash text-danger me-1 fs-5"></i> Delete All Row
+                                </a>
+                            </div>
+                            <a data-bs-toggle="modal" data-bs-target="#modaltambah" id="btn-add-contact" class="btn btn-info d-flex align-items-center">
+                                <i class="ti ti-plus text-white me-1 fs-5"></i> Tambah Pengguna
                             </a>
                         </div>
-                        <a data-bs-toggle="modal" data-bs-target="#modaltambah" id="btn-add-contact" class="btn btn-info d-flex align-items-center">
-                            <i class="ti ti-plus text-white me-1 fs-5"></i> Tambah Pengguna
-                        </a>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="modal fade" id="modaltambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document" x-data="{ gambar: '', nama: '', email: '', nomer: '' }">
-                <div class="modal-content" style="width: 100%; height: 540px;">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5 fw-semibold" id="exampleModalLabel">Tambah Pengguna</h1>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container">
-                            <div class="row">
-                                <form action="{{ route('pengguna.store') }}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="row">
-                                        <div class="col-12 text-start">
-                                            <label for="Gambar User">Gambar User <span class="text-danger">*</span></label>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="mt-3 mb-3">
-                                                <input class="form-control" type="file" name="gambar" id="gambar" value="{{ old('gambar') }}" x-model="gambar" required>
-                                                @error('gambar')
-                                                    {{ $message }}
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="col-12 text-start">
-                                            <label for="Nama Pengguna">Nama Pengguna <span class="text-danger">*</span></label>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="mt-3 mb-3">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" maxlength="20" name="name" value="{{ old('name') }}" id="name" placeholder="Masukkan Nama Pengguna" x-model="nama" required>
-                                                    @error('name')
-                                                        {{ $message }}
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 text-start">
-                                            <label for="Email Pengguna">Email Pengguna <span class="text-danger">*</span></label>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="mt-3 mb-3">
-                                                <div class="form-group">
-                                                    <input type="email" class="form-control" maxlength="20" name="email" value="{{ old('email') }}" id="email" placeholder="Masukkan Email Pengguna" x-model="email" required>
-                                                    @error('email')
-                                                        {{ $message }}
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 text-start">
-                                            <label for="Nomor Handphone">Nomer Handphone <span class="text-danger">*</span></label>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="mt-3 mb-3">
-                                                <div class="form-group">
-                                                    <input type="number" class="form-control" min="0" oninput="limitLength(this, 12)" name="nomorhp" value="{{ old('nomorhp') }}" id="nomorhp" placeholder="Masukkan Nomer Pengguna" x-model="nomer" required>
-                                                    @error('nomorhp')
-                                                        {{ $message }}
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 mt-1">
-                                            <div class="d-md-flex align-items-center mt-3">
-                                                <div class="ms-auto mt-3 mt-md-0">
-                                                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Batal</button>
-                                                    <button type="submit" class="btn btn-info font-medium" :class="gambar && nama && email && nomer ? null : 'disabled'">
-                                                        <div class="align-items-center">
-                                                            Tambahkan
-                                                        </div>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+            <div class="modal fade" id="modaltambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document" x-data="{ gambar: '', nama: '', email: '', nomer: '', status: '' }">
+                    <div class="modal-content" style="width: 100%; height: 540px;">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5 fw-semibold" id="exampleModalLabel">Tambah Pengguna</h1>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="dark-transparent sidebartoggler"></div>
-        <div class="dark-transparent sidebartoggler"></div>
-        <div class="card card-body">
-            <div class="table-responsive">
-                <table class="table search-table align-middle text-nowrap">
-                    <thead class="header-item">
-                        <th>Nama Pengguna</th>
-                        <th class="text-center">Email</th>
-                        <th class="text-center">No.Tlpn</th>
-                        <th class="text-center">Aksi</th>
-                    </thead>
-                    <tbody>
-                        @foreach ($users as $item)
-                            <tr class="search-items">
-                                <td class="text-center">
-                                    <div class="d-flex align-items-center">
-                                        <img src="{{ asset($item->gambar ? 'uploadkamar/' . $item->gambar : '/img/avatar.png') }}" alt="avatar" class="rounded-circle" width="35" />
-                                        <div class="ms-3">
-                                            <div class="user-meta-info">
-                                                <h6 class="user-name mb-0">{{ $item->name }}</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="text-center">
-                                    <span class="usr-email">{{ $item->email }}</span>
-                                </td>
-                                <td class="text-center">
-                                    <span class="usr-nomer">{{ $item->nomorhp }}</span>
-                                </td>
-                                <td class="text-center">
-                                    <div class="action-btn">
-                                        <a href="/pemilikmin/pengguna/destroy/{{ $item->id }}" class="btn btn-danger" style="width: 30px; height: 30px; padding: 4.5px;">
-                                            <i class="ti ti-trash fs-5"></i>
-                                        </a>
-                                        <button type="button" data-bs-toggle="modal" data-bs-target="#modallihat-{{ $item->id }}" class="btn btn-info" style="width: 30px; height: 30px; padding: 4.5px;">
-                                            <i class="ti ti-eye fs-5"></i>
-                                        </button>
-                                        <div class="modal fade" id="modallihat-{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content" style="width: 100%; height: 540px;">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Pengguna</h1>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="container">
-                                                            <div class="col-12 text-center">
-                                                                <img src="{{ asset($item->gambar ? 'uploadkamar/' . $item->gambar : '/img/avatar.png') }}" class="rounded-1" width="100">
-                                                            </div>
-                                                            <input type="hidden" name="id" value="{{ $item->id }}">
-                                                            <div class="row">
-                                                                <div class="col-md-12 text-center">
-                                                                    <div class="mt-3">
-                                                                        <label for="Profil Pengguna" class="fs-4 fw-medium mt-3">Profil Pengguna</label>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-12 text-start mt-3">
-                                                                    <label for="Nama Pengguna">Nama Pengguna</label>
-                                                                </div>
-                                                                <div class="col-md-12">
-                                                                    <div class="mt-3">
-                                                                        <div class="form-group">
-                                                                            <input type="text" class="form-control" name="name" value="{{ $item->name }}" id="name" placeholder="Masukkan Nama Pengguna">
-                                                                            @error('name')
-                                                                                {{ $message }}
-                                                                            @enderror
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-12 text-start mt-3">
-                                                                    <label for="Email Pengguna">Email Pengguna</label>
-                                                                </div>
-                                                                <div class="col-md-12">
-                                                                    <div class="mt-3">
-                                                                        <div class="form-group">
-                                                                            <input type="email" class="form-control" name="email" value="{{ $item->email }}" id="email" placeholder="Masukkan Email Pengguna">
-                                                                            @error('email')
-                                                                                {{ $message }}
-                                                                            @enderror
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-12 text-start mt-3">
-                                                                    <label for="Nomor Pengguna">Nomor Pengguna</label>
-                                                                </div>
-                                                                <div class="col-md-12">
-                                                                    <div class="mt-3">
-                                                                        <div class="form-group">
-                                                                            <input type="number" class="form-control" name="nomorhp" value="{{ $item->nomorhp }}" id="nomorhp" placeholder="Masukkan Nomer Pengguna">
-                                                                            @error('nomorhp')
-                                                                                {{ $message }}
-                                                                            @enderror
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {{-- <form action="/pemilikmin/pengguna/destroy" method="POST">
+                        <div class="modal-body" style="margin-top: -20px;">
+                            <div class="container">
+                                <div class="row">
+                                    <form action="{{ route('pengguna.store') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
-                                        <input type="hidden" name="id" value="{{ $item->id }}">
-                                    </form> --}}
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            @else
-                <div class="col-12 text-center mt-5">
-                    <img src="{{ asset('img/planet.png') }}" width="150">
-                </div>
-                <div class="col-12 text-center mt-2">
-                    <h1 class="fw-medium fs-3">Belum Ada Data</h1>
-                </div>
-                <div class="col-12 text-center justify-content-center mt-3 mt-md-0">
-                    <a data-bs-toggle="modal" data-bs-target="#modaltambah" id="btn-add-contact" class="btn btn-info align-items-center">
-                        <i class="ti ti-plus text-white me-1 fs-5"></i> Tambah Pengguna
-                    </a>
-                </div>
-                <div class="modal fade" id="modaltambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document" x-data="{ gambar: '', nama: '', email: '', nomer: '' }">
-                        <div class="modal-content" style="width: 100%; height: 540px;">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5 fw-semibold" id="exampleModalLabel">Tambah Pengguna</h1>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container">
-                                    <div class="row">
-                                        <form action="{{ route('pengguna.store') }}" method="POST" enctype="multipart/form-data">
-                                            @csrf
-                                            <div class="row">
-                                                <div class="col-12 text-start">
-                                                    <label for="Gambar User">Gambar User <span class="text-danger">*</span></label>
+                                        <div class="row">
+                                            <div class="col-12 text-start">
+                                                <label for="Gambar User">Gambar User <span class="text-danger">*</span></label>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="mt-3">
+                                                    <input class="form-control" type="file" name="gambar" id="gambar" value="{{ old('gambar') }}" x-model="gambar" required>
+                                                    @error('gambar')
+                                                        {{ $message }}
+                                                    @enderror
                                                 </div>
-                                                <div class="col-md-12">
-                                                    <div class="mt-3 mb-3">
-                                                        <input class="form-control" type="file" name="gambar" id="gambar" value="{{ old('gambar') }}" x-model="gambar" required>
-                                                        @error('gambar')
+                                            </div>
+                                            <div class="col-12 text-start">
+                                                <label for="Nama Pengguna">Nama Pengguna <span class="text-danger">*</span></label>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="mt-3">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" maxlength="20" name="name" value="{{ old('name') }}" id="name" placeholder="Masukkan Nama Pengguna" x-model="nama" required>
+                                                        @error('name')
                                                             {{ $message }}
                                                         @enderror
                                                     </div>
                                                 </div>
-                                                <div class="col-12 text-start">
-                                                    <label for="Nama Pengguna">Nama Pengguna <span class="text-danger">*</span></label>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="mt-3 mb-3">
-                                                        <div class="form-group">
-                                                            <input type="text" class="form-control" maxlength="20" name="name" value="{{ old('name') }}" id="name" placeholder="Masukkan Nama Pengguna" x-model="nama" required>
-                                                            @error('name')
-                                                                {{ $message }}
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12 text-start">
-                                                    <label for="Email Pengguna">Email Pengguna <span class="text-danger">*</span></label>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="mt-3 mb-3">
-                                                        <div class="form-group">
-                                                            <input type="email" class="form-control" maxlength="20" name="email" value="{{ old('email') }}" id="email" placeholder="Masukkan Email Pengguna" x-model="email" required>
-                                                            @error('email')
-                                                                {{ $message }}
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12 text-start">
-                                                    <label for="Nomor Handphone">Nomer Handphone <span class="text-danger">*</span></label>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="mt-3 mb-3">
-                                                        <div class="form-group">
-                                                            <input type="number" class="form-control" min="0" oninput="limitLength(this, 12)" name="nomorhp" value="{{ old('nomorhp') }}" id="nomorhp" placeholder="Masukkan Nomer Pengguna" x-model="nomer" required>
-                                                            @error('nomorhp')
-                                                                {{ $message }}
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12 mt-1">
-                                                    <div class="d-md-flex align-items-center mt-3">
-                                                        <div class="ms-auto mt-3 mt-md-0">
-                                                            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Batal</button>
-                                                            <button type="submit" class="btn btn-info font-medium" :class="gambar && nama && email && nomer ? null : 'disabled'">
-                                                                <div class="align-items-center">
-                                                                    Tambahkan
-                                                                </div>
-                                                            </button>
-                                                        </div>
+                                            </div>
+                                            <div class="col-12 text-start">
+                                                <label for="Email Pengguna">Email Pengguna <span class="text-danger">*</span></label>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="mt-3">
+                                                    <div class="form-group">
+                                                        <input type="email" class="form-control" maxlength="20" name="email" value="{{ old('email') }}" id="email" placeholder="Masukkan Email Pengguna" x-model="email" required>
+                                                        @error('email')
+                                                            {{ $message }}
+                                                        @enderror
                                                     </div>
                                                 </div>
                                             </div>
-                                        </form>
-                                    </div>
+                                            <div class="col-12 text-start">
+                                                <label for="Nomor Handphone">Nomer Handphone <span class="text-danger">*</span></label>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="mt-3">
+                                                    <div class="form-group">
+                                                        <input type="number" class="form-control" min="0" oninput="limitLength(this, 12)" name="nomorhp" value="{{ old('nomorhp') }}" id="nomorhp" placeholder="Masukkan Nomer Pengguna" x-model="nomer" required>
+                                                        @error('nomorhp')
+                                                            {{ $message }}
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 text-start">
+                                                <label for="Status">Status <span class="text-danger">*</span></label>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="input-group">
+                                                    <select class="form-select" id="status" name="status" value="{{ old('status') }}" x-model="status" required>
+                                                        <option selected>Status...</option>
+                                                        <option value="Pengguna">Pengguna</option>
+                                                        <option value="Penghuni">Penghuni</option>
+                                                    </select>
+                                                    @error('status')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-12 mt-1">
+                                                <div class="d-md-flex align-items-center mt-3">
+                                                    <div class="ms-auto mt-3 mt-md-0">
+                                                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Batal</button>
+                                                        <button type="submit" class="btn btn-info font-medium" :class="gambar && nama && email && nomer && status ? null : 'disabled'">
+                                                            <div class="align-items-center">
+                                                                Tambahkan
+                                                            </div>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-    @endif
-    </div>
+            </div>
+            <div class="dark-transparent sidebartoggler"></div>
+            <div class="dark-transparent sidebartoggler"></div>
+            <div class="row">
+                <div class="btn-group col-12" role="group">
+                    <button class="btn filter-btn rounded-0 col-4" x-on:click="filter = 'all'" :class="filter == 'all' ? 'btn-secondary' : 'btn-light'" style="border-bottom: 1px solid #49BEFF;">Semua</button>
+                    <button class="btn filter-btn rounded-0 col-4" x-on:click="filter = 'Pengguna'" :class="filter == 'Pengguna' ? 'btn-secondary' : 'btn-light'" style="border-bottom: 1px solid #49BEFF;">Pengguna</button>
+                    <button class="btn filter-btn rounded-0 col-4" x-on:click="filter = 'Penghuni'" :class="filter == 'Penghuni' ? 'btn-secondary' : 'btn-light'" style="border-bottom: 1px solid #49BEFF;">Penghuni</button>
+                </div>
+            </div>
+            <div class="card card-body">
+                <div class="table-responsive">
+                    <table class="table search-table align-middle text-nowrap">
+                        <thead class="header-item">
+                            <th>Nama Pengguna</th>
+                            <th class="text-center">Email</th>
+                            <th class="text-center">No.Tlpn</th>
+                            <th class="text-center">Status</th>
+                            <th class="text-center">Aksi</th>
+                        </thead>
+                        <tbody>
+                            @foreach ($users as $item)
+                                <tr class="search-items" x-show="filter == 'all'">
+                                    <td class="text-center">
+                                        <div class="d-flex align-items-center">
+                                            <img src="{{ asset($item->gambar ? 'uploadkamar/' . $item->gambar : '/img/avatar.png') }}" alt="avatar" class="rounded-circle" width="35" />
+                                            <div class="ms-3">
+                                                <div class="user-meta-info">
+                                                    <h6 class="user-name mb-0">{{ $item->name }}</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="usr-email">{{ $item->email }}</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="usr-nomer">{{ $item->nomorhp }}</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="usr-status">{{ $item->status }}</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="action-btn">
+                                            <a href="#" class="btn btn-danger" style="width: 30px; height: 30px; padding: 4.5px;" onclick="confirmDelete('{{ $item->id }}')">
+                                                <i class="ti ti-trash fs-5"></i>
+                                            </a>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content" style="margin-top: 12rem;">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="deleteConfirmationModalLabel">Konfirmasi Hapus</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <h3 class="fw-medium fs-3">Apakah Anda Yakin Ingin Menghapus Akun Ini?</h3>
+                                                        </div>
+                                                        <div class="modal-footer d-flex align-items-center justify-content-center text-center">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
+                                                            <form id="deleteForm" action="" method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger">Ya, Hapus</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a href="/pemilikmin/editpengguna/{{ $item->id }}" type="button" class="btn btn-info" style="width: 30px; height: 30px; padding: 4.5px;">
+                                                <i class="ti ti-eye fs-5"></i>
+                                            </a>
+                                            {{-- <div class="modal fade" id="modallihat-{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content" style="width: 100%; height: 540px;">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Pengguna</h1>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="container">
+                                                                <div class="col-12 text-center">
+                                                                    <img src="{{ asset($item->gambar ? 'uploadkamar/' . $item->gambar : '/img/avatar.png') }}" class="rounded-1" width="100">
+                                                                </div>
+                                                                <input type="hidden" name="id" value="{{ $item->id }}">
+                                                                <div class="row">
+                                                                    <div class="col-md-12 text-center">
+                                                                        <div class="mt-3">
+                                                                            <label for="Profil Pengguna" class="fs-4 fw-medium mt-3">Profil Pengguna</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-12 text-start mt-3">
+                                                                        <label for="Nama Pengguna">Nama Pengguna</label>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div class="mt-3">
+                                                                            <div class="form-group">
+                                                                                <input type="text" class="form-control" name="name" value="{{ $item->name }}" id="name" placeholder="Masukkan Nama Pengguna">
+                                                                                @error('name')
+                                                                                    {{ $message }}
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-12 text-start mt-3">
+                                                                        <label for="Email Pengguna">Email Pengguna</label>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div class="mt-3">
+                                                                            <div class="form-group">
+                                                                                <input type="email" class="form-control" name="email" value="{{ $item->email }}" id="email" placeholder="Masukkan Email Pengguna">
+                                                                                @error('email')
+                                                                                    {{ $message }}
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-12 text-start mt-3">
+                                                                        <label for="Nomor Pengguna">Nomor Pengguna</label>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div class="mt-3">
+                                                                            <div class="form-group">
+                                                                                <input type="number" class="form-control" name="nomorhp" value="{{ $item->nomorhp }}" id="nomorhp" placeholder="Masukkan Nomer Pengguna">
+                                                                                @error('nomorhp')
+                                                                                    {{ $message }}
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> --}}
+                                            {{-- <form action="/pemilikmin/pengguna/destroy" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $item->id }}">
+                                    </form> --}}
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="search-items" x-show="filter === '{{ $item->status }}'">
+                                    <td class="text-center">
+                                        <div class="d-flex align-items-center">
+                                            <img src="{{ asset('uploadkamar/' . $item->gambar) }}" alt="avatar" class="rounded-circle" width="35" />
+                                            <div class="ms-3">
+                                                <div class="user-meta-info">
+                                                    <h6 class="user-name mb-0">{{ $item->name }}</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="usr-email">{{ $item->email }}</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="usr-nomer">{{ $item->nomorhp }}</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="usr-status">{{ $item->status }}</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="action-btn">
+                                            <a href="#" class="btn btn-danger" style="width: 30px; height: 30px; padding: 4.5px;" onclick="confirmDelete('{{ $item->id }}')">
+                                                <i class="ti ti-trash fs-5"></i>
+                                            </a>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content" style="margin-top: 12rem;">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="deleteConfirmationModalLabel">Konfirmasi Hapus</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <h3 class="fw-medium fs-3">Apakah Anda Yakin Ingin Menghapus Akun Ini?</h3>
+                                                        </div>
+                                                        <div class="modal-footer d-flex align-items-center justify-content-center text-center">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
+                                                            <form id="deleteForm" action="" method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger">Ya, Hapus</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a href="/pemilikmin/editpengguna/{id}" type="button" class="btn btn-info" style="width: 30px; height: 30px; padding: 4.5px;">
+                                                <i class="ti ti-eye fs-5"></i>
+                                            </a>
+                                            {{-- <form action="/pemilikmin/pengguna/destroy" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $item->id }}">
+                                    </form> --}}
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                @else
+                    <div class="col-12 text-center mt-5">
+                        <img src="{{ asset('img/planet.png') }}" width="150">
+                    </div>
+                    <div class="col-12 text-center mt-2">
+                        <h1 class="fw-medium fs-3">Belum Ada Data</h1>
+                    </div>
+                    <div class="col-12 text-center justify-content-center mt-3 mt-md-0">
+                        <a data-bs-toggle="modal" data-bs-target="#modaltambah" id="btn-add-contact" class="btn btn-info align-items-center">
+                            <i class="ti ti-plus text-white me-1 fs-5"></i> Tambah Pengguna
+                        </a>
+                    </div>
+                    <div class="modal fade" id="modaltambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document" x-data="{ gambar: '', nama: '', email: '', nomer: '', status: '' }">
+                            <div class="modal-content" style="width: 100%; height: 540px;">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5 fw-semibold" id="exampleModalLabel">Tambah Pengguna</h1>
+                                </div>
+                                <div class="modal-body" style="margin-top: -20px;">
+                                    <div class="container">
+                                        <div class="row">
+                                            <form action="{{ route('pengguna.store') }}" method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="row">
+                                                    <div class="col-12 text-start">
+                                                        <label for="Gambar User">Gambar User <span class="text-danger">*</span></label>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="mt-3">
+                                                            <input class="form-control" type="file" name="gambar" id="gambar" value="{{ old('gambar') }}" x-model="gambar" required>
+                                                            @error('gambar')
+                                                                {{ $message }}
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 text-start">
+                                                        <label for="Nama Pengguna">Nama Pengguna <span class="text-danger">*</span></label>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="mt-3">
+                                                            <div class="form-group">
+                                                                <input type="text" class="form-control" maxlength="20" name="name" value="{{ old('name') }}" id="name" placeholder="Masukkan Nama Pengguna" x-model="nama" required>
+                                                                @error('name')
+                                                                    {{ $message }}
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 text-start">
+                                                        <label for="Email Pengguna">Email Pengguna <span class="text-danger">*</span></label>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="mt-3">
+                                                            <div class="form-group">
+                                                                <input type="email" class="form-control" maxlength="20" name="email" value="{{ old('email') }}" id="email" placeholder="Masukkan Email Pengguna" x-model="email" required>
+                                                                @error('email')
+                                                                    {{ $message }}
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 text-start">
+                                                        <label for="Nomor Handphone">Nomer Handphone <span class="text-danger">*</span></label>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="mt-3">
+                                                            <div class="form-group">
+                                                                <input type="number" class="form-control" min="0" oninput="limitLength(this, 12)" name="nomorhp" value="{{ old('nomorhp') }}" id="nomorhp" placeholder="Masukkan Nomer Pengguna" x-model="nomer" required>
+                                                                @error('nomorhp')
+                                                                    {{ $message }}
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 text-start">
+                                                        <label for="Status">Status <span class="text-danger">*</span></label>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="input-group">
+                                                            <select class="form-select" id="status" name="status" value="{{ old('status') }}" x-model="status" required>
+                                                                <option selected>Status...</option>
+                                                                <option value="Pengguna">Pengguna</option>
+                                                                <option value="Penghuni">Penghuni</option>
+                                                            </select>
+                                                            @error('status')
+                                                                {{ $message }}
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 mt-1">
+                                                        <div class="d-md-flex align-items-center mt-3">
+                                                            <div class="ms-auto mt-3 mt-md-0">
+                                                                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Batal</button>
+                                                                <button type="submit" class="btn btn-info font-medium" :class="gambar && nama && email && nomer && status ? null : 'disabled'">
+                                                                    <div class="align-items-center">
+                                                                        Tambahkan
+                                                                    </div>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        @endif
     </div>
     <!-- --------------------------------------------------- -->
     <!-- Customizer -->
@@ -506,6 +632,12 @@
             if (element.value.length > maxLength) {
                 element.value = element.value.slice(0, maxLength);
             }
+        }
+
+        function confirmDelete(itemId) {
+            var deleteForm = document.getElementById('deleteForm');
+            deleteForm.action = '/pemilikmin/pengguna/destroy/' + itemId;
+            $('#deleteConfirmationModal').modal('show');
         }
     </script>
     @if (Session::has('success'))

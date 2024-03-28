@@ -104,15 +104,19 @@
     <section class="splide new-1" aria-label="Splide Basic HTML Example">
         <div class="splide__track">
             <ul class="splide__list">
-                <li class="splide__slide">
-                    <img src="{{ asset('img/banner19.png') }}" style="width: 360px; height: 180px;">
-                </li>
-                <li class="splide__slide">
-                    <img src="{{ asset('img/banner21.png') }}" style="width: 360px; height: 180px;">
-                </li>
-                <li class="splide__slide">
-                    <img src="{{ asset('img/banner22.png') }}" style="width: 360px; height: 180px;">
-                </li>
+                @if ($banner->isEmpty())
+                    <li class="splide__slide">
+                        <img src="{{ asset('img/banner10.png') }}" style="width: 360px; height: 180px;">
+                    </li>
+                @else
+                    @foreach ($banner as $item)
+                        @if ($item->kategori_banner == 'Slider')
+                            <li class="splide__slide">
+                                <img src="{{ asset('uploadkamar/' . $item->gambar_banner) }}" style="width: 360px; height: 180px;">
+                            </li>
+                        @endif
+                    @endforeach
+                @endif
             </ul>
         </div>
     </section>
@@ -243,7 +247,11 @@
                     </div>
                 </div>
             </div>
-            <img src="{{ asset('img/banner19.png') }}" style="border-radius: 10px; margin-top: 1rem; width: 334px; height: 105px;">
+            @foreach ($banner as $item)
+                @if ($item->kategori_banner == 'Banner')
+                    <img src="{{ asset('uploadkamar/' . $item->gambar_banner) }}" style="border-radius: 10px; margin-top: 1rem; width: 334px; height: 140px;">
+                @endif
+            @endforeach
         </div>
         <hr class="hr-2" style="margin-bottom: 1rem; border-top: 10px solid #ccc;">
         <div class="container">

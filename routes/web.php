@@ -55,7 +55,7 @@ Route::get('/pemilikmin/tambahkamar', [KamarKostController::class, 'create'])->n
 Route::post('/pemilikmin/kamar', [KamarKostController::class, 'store'])->name('kamar.store');
 Route::get('/pemilikmin/editkamar/{id}', [KamarKostController::class, 'edit'])->name('editkamar');
 Route::post('/pemilikmin/editkamar', [KamarKostController::class, 'update'])->name('editkamarPost');
-Route::get('/pemilikmin/kamar/destroy/{id}', [KamarKostController::class, 'destroy'])->name('destroy');
+Route::delete('/pemilikmin/kamar/destroy/{id}', [KamarKostController::class, 'destroy'])->name('destroy');
 Route::get('/pemilikmin/transaksi', [PemilikMinController::class, 'transaksi'])->name('transaksi');
 Route::get('/pemilikmin/tambahkamar', [PemilikMinController::class, 'tambahkamar'])->name('tambahkamar');
 Route::get('/pemilikmin/banner', [BannerController::class, 'index'])->name('banner');
@@ -64,31 +64,31 @@ Route::get('/pemilikmin/tambahbanner', [BannerController::class, 'create'])->nam
 Route::post('/pemilikmin/banner', [BannerController::class, 'store'])->name('banner.store');
 Route::get('/pemilikmin/editbanner/{id}', [BannerController::class, 'edit'])->name('editbanner');
 Route::post('/pemilikmin/editbanner', [BannerController::class, 'update'])->name('editbannerPost');
-Route::get('/pemilikmin/banner/destroy/{id}', [BannerController::class, 'destroy'])->name('destroy');
+Route::delete('/pemilikmin/banner/destroy/{id}', [BannerController::class, 'destroy'])->name('destroy');
 Route::get('/pemilikmin/pembayaran', [PembayaranController::class, 'index'])->name('bayar');
 Route::get('/pemilikmin/tambahpembayaran', [PembayaranController::class, 'create'])->name('tambahpembayaran');
 Route::post('/pemilikmin/pembayaran', [PembayaranController::class, 'store'])->name('pembayaran.store');
 Route::get('/pemilikmin/editpembayaran/{id}', [PembayaranController::class, 'edit'])->name('editpembayaran');
 Route::post('/pemilikmin/editpembayaran', [PembayaranController::class, 'update'])->name('editpembayaranPost');
-Route::get('/pemilikmin/pembayaran/destroy/{id}', [PembayaranController::class, 'destroy'])->name('destroy');
+Route::delete('/pemilikmin/pembayaran/destroy/{id}', [PembayaranController::class, 'destroy'])->name('destroy');
 Route::get('/pemilikmin/pengguna', [PenggunaController::class, 'index'])->name('pengguna');
 Route::get('/pemilikmin/tambahpengguna', [PenggunaController::class, 'create'])->name('tambahpengguna');
 Route::post('/pemilikmin/pengguna', [PenggunaController::class, 'store'])->name('pengguna.store');
 Route::get('/pemilikmin/editpengguna/{id}', [PenggunaController::class, 'edit'])->name('editpengguna');
 Route::post('/pemilikmin/editpengguna', [PenggunaController::class, 'update'])->name('editpenggunaPost');
-Route::get('/pemilikmin/pengguna/destroy/{id}', [PenggunaController::class, 'destroy'])->name('destroy');
+Route::delete('/pemilikmin/pengguna/destroy/{id}', [PenggunaController::class, 'destroy'])->name('destroy');
 Route::get('/pemilikmin/pemilik', [PemilikTabelControlller::class, 'index'])->name('pemilik');
 Route::get('/pemilikmin/tambahpemilik', [PemilikTabelControlller::class, 'create'])->name('tambahpengguna');
 Route::post('/pemilikmin/pemilik', [PemilikTabelControlller::class, 'store'])->name('pemilik.store');
 Route::get('/pemilikmin/editpemilik/{id}', [PemilikTabelControlller::class, 'edit'])->name('editpengguna');
 Route::post('/pemilikmin/editpemilik', [PemilikTabelControlller::class, 'update'])->name('editpenggunaPost');
-Route::get('/pemilikmin/pemilik/destroy/{id}', [PemilikTabelControlller::class, 'destroy'])->name('destroy');
+Route::delete('/pemilikmin/pemilik/destroy/{id}', [PemilikTabelControlller::class, 'destroy'])->name('destroy');
 Route::get('/pemilikmin/kategori', [KategoriController::class, 'index'])->name('kategori');
 Route::get('/pemilikmin/tambahkategori', [KategoriController::class, 'create'])->name('tambahkategori');
 Route::post('/pemilikmin/kategori', [KategoriController::class, 'store'])->name('kategori.store');
 Route::get('/pemilikmin/editkategori/{id}', [KategoriController::class, 'edit'])->name('editkategori');
 Route::post('/pemilikmin/editkategori', [KategoriController::class, 'update'])->name('editkategoriPost');
-Route::get('/pemilikmin/kategori/destroy/{id}', [KategoriController::class, 'destroy'])->name('destroy');
+Route::delete('/pemilikmin/kategori/destroy/{id}', [KategoriController::class, 'destroy'])->name('destroy');
 
 //pemilik2 controller
 // Route::get('/pemilik2/dashboard', [])

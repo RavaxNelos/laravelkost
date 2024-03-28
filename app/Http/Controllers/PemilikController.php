@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
 use Illuminate\Http\Request;
 
 class PemilikController extends Controller
@@ -12,7 +13,8 @@ class PemilikController extends Controller
     }
     public function area()
     {
-        return view('pemilik.areakost');
+        $banner = Banner::where('status_banner', 'Publish')->where('lokasi_banner', 'Area Kost')->get();
+        return view('pemilik.areakost', compact('banner'));
     }
     public function transaksi()
     {

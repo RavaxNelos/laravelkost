@@ -13,8 +13,9 @@ class PenggunaController extends Controller
      */
     public function index()
     {
+        $users = Pengguna::orderBy('created_at', 'desc')->get();
         return view('pemilikmin.pengguna.pengguna', [
-            'users' => Pengguna::all(),
+            'users' => $users,
         ]);
     }
 
@@ -36,6 +37,7 @@ class PenggunaController extends Controller
             'name' => 'required',
             'email' => 'required',
             'nomorhp' => 'required',
+            'status' => 'required',
             'password' => 'nullable',
         ]);
 
@@ -48,6 +50,7 @@ class PenggunaController extends Controller
        $users->name = $request->name;
        $users->email = $request->email;
        $users->nomorhp = $request->nomorhp;
+       $users->status = $request->status;
        $users->gambar = $namaFile;
        $users->role_id = 4;
        $users->save();
@@ -79,10 +82,11 @@ class PenggunaController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'gambar' => 'nullable',
+            'gambar' => 'required',
             'name' => 'required',
             'email' => 'required',
             'nomorhp' => 'required',
+            'status' => 'required',
         ]);
 
         if($request->gambar) {
@@ -97,6 +101,7 @@ class PenggunaController extends Controller
         $users->name = $request->name;
         $users->email = $request->email;
         $users->nomorhp = $request->nomorhp;
+        $users->status = $request->status;
         // $users->layanan_barang = $request->layanan_barang;
         $users->gambar = $namaFile;
         $users->save();

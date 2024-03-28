@@ -13,6 +13,10 @@
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav scroll-sidebar" data-simplebar>
             <ul id="sidebarnav">
+                <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">Menu</span>
+                </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="/pemilikmin/dashboard" aria-expanded="false">
                         <span>
@@ -58,9 +62,17 @@
                         <span>
                             <i class="ti ti-user-check"></i>
                         </span>
-                        <span class="hide-menu">Pengguna Kost</span>
+                        <span class="hide-menu">User Kost</span>
                     </a>
                 </li>
+                {{-- <li class="sidebar-item">
+                    <a class="sidebar-link" href="/pemilikmin/penghuni" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-user"></i>
+                        </span>
+                        <span class="hide-menu">Penghuni Kost</span>
+                    </a>
+                </li> --}}
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('pemilik') }}" aria-expanded="false">
                         <span>
@@ -68,6 +80,10 @@
                         </span>
                         <span class="hide-menu">Pemilik Kost</span>
                     </a>
+                </li>
+                <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">Master Data</span>
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('kategori') }}" aria-expanded="false">

@@ -11,8 +11,9 @@ class BannerController extends Controller
      * Display a listing of the resource.
      */
     public function index() {
+        $banner = Banner::orderBy('created_at', 'desc')->get();
         return view('pemilikmin.banner.banner', [
-            'banner' => Banner::all(),
+            'banner' => $banner,
         ]);
     }
 
@@ -38,7 +39,7 @@ class BannerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'gambar_banner' => 'required|image|mimes:jpeg,png,jpg,gif|max:4048',
+            'gambar_banner' => 'required|image|mimes:jpeg,png,jpg,gif|max:6048',
             'kategori_banner' => 'required',
             'lokasi_banner' => 'required',
             'status_banner' => 'required',

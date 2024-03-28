@@ -12,8 +12,9 @@ class PemilikTabelControlller extends Controller
      */
     public function index()
     {
+        $pemilik = Pemilik::orderBy('created_at', 'desc')->get();
         return view('pemilikmin.pemilik.pemilik', [
-            'pemilik' => Pemilik::all(),
+            'pemilik' => $pemilik,
         ]);
     }
 

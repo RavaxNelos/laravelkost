@@ -12,8 +12,9 @@ class PembayaranController extends Controller
      */
     public function index()
     {
+        $pembayaran = Pembayaran::orderBy('created_at', 'desc')->get();
         return view('pemilikmin.pembayaran.pembayaran', [
-            'pembayaran' => Pembayaran::all(),
+            'pembayaran' => $pembayaran,
         ]);
     }
 
