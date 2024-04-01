@@ -38,6 +38,7 @@ class PenggunaController extends Controller
             'email' => 'required',
             'nomorhp' => 'required',
             'status' => 'required',
+            'lokasi' => 'required',
             'password' => 'nullable',
         ]);
 
@@ -51,6 +52,7 @@ class PenggunaController extends Controller
        $users->email = $request->email;
        $users->nomorhp = $request->nomorhp;
        $users->status = $request->status;
+       $users->lokasi = $request->lokasi;
        $users->gambar = $namaFile;
        $users->role_id = 4;
        $users->save();
@@ -87,6 +89,7 @@ class PenggunaController extends Controller
             'email' => 'required',
             'nomorhp' => 'required',
             'status' => 'required',
+            'lokasi' => 'required',
         ]);
 
         if($request->gambar) {
@@ -102,6 +105,7 @@ class PenggunaController extends Controller
         $users->email = $request->email;
         $users->nomorhp = $request->nomorhp;
         $users->status = $request->status;
+        $users->lokasi = $request->lokasi;
         // $users->layanan_barang = $request->layanan_barang;
         $users->gambar = $namaFile;
         $users->save();

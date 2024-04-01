@@ -46,11 +46,12 @@ class KamarKostController extends Controller
         'gambar_kost' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         'kategori_id' => 'required',
         'harga_kost' => 'required',
-        'lokasi_kost' => 'required',
+        'alamat_kost' => 'required',
         'ukuran_kost' => 'required',
         'tipe_kost' => 'required',
         'status_kost' => 'required',
         'fasilitas_kost' => 'required',
+        'lokasi_kost' => 'required',
     ]);
 
     $gambarBarang = $request->file('gambar_kost');
@@ -60,11 +61,12 @@ class KamarKostController extends Controller
     $kamarkost = new KamarKost();
     $kamarkost->kategori_id = $request->kategori_id;
     $kamarkost->harga_kost = $request->harga_kost;
-    $kamarkost->lokasi_kost = $request->lokasi_kost;
+    $kamarkost->alamat_kost = $request->alamat_kost;
     $kamarkost->ukuran_kost = $request->ukuran_kost;
     $kamarkost->tipe_kost = $request->tipe_kost;
     $kamarkost->status_kost = $request->status_kost;
     $kamarkost->fasilitas_kost = $request->fasilitas_kost;
+    $kamarkost->lokasi_kost = $request->lokasi_kost;
     $kamarkost->gambar_kost = $namaFile;
     $kamarkost->save();
 
@@ -99,11 +101,12 @@ class KamarKostController extends Controller
             'gambar_kost' => 'nullable',
             'kategori_id' => 'required',
             'harga_kost' => 'required',
-            'lokasi_kost' => 'required',
+            'alamat_kost' => 'required',
             'ukuran_kost' => 'required',
             'tipe_kost' => 'required',
             'status_kost' => 'required',
             'fasilitas_kost' => 'required',
+            'lokasi_kost' => 'required',
         ]);
 
         if($request->gambar_kost) {
@@ -117,11 +120,12 @@ class KamarKostController extends Controller
         $kamarkost = KamarKost::find($request->id);
         $kamarkost->kategori_id = $request->kategori_id;
         $kamarkost->harga_kost = $request->harga_kost;
-        $kamarkost->lokasi_kost = $request->lokasi_kost;
+        $kamarkost->alamat_kost = $request->alamat_kost;
         $kamarkost->ukuran_kost = $request->ukuran_kost;
         $kamarkost->tipe_kost = $request->tipe_kost;
         $kamarkost->status_kost = $request->status_kost;
         $kamarkost->fasilitas_kost = $request->fasilitas_kost;
+        $kamarkost->lokasi_kost = $request->lokasi_kost;
         // $kamarkost->layanan_barang = $request->layanan_barang;
         $kamarkost->gambar_kost = $namaFile;
         $kamarkost->save();

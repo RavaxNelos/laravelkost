@@ -123,7 +123,7 @@
             </div>
         </div>
         <div class="modal fade" id="tambahkamar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable" role="document" x-data="{ gambar: '', kategori: '', harga: '', lokasi: '', ukuran: '', tipe: '', status: '', fasilitas: '' }">
+            <div class="modal-dialog modal-dialog-scrollable" role="document" x-data="{ gambar: '', kategori: '', harga: '', alamat: '', ukuran: '', tipe: '', status: '', fasilitas: '', lokasi: '' }">
                 <div class="modal-content" style="width: 100%; height: 540px;">
                     <div class="modal-header" style=" height: 70px;">
                         <h1 class="modal-title fs-5 fw-semibold" id="exampleModalLabel" style="margin-top: -24px;">Tambah Kamar</h1>
@@ -211,17 +211,17 @@
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <label class="mt-2" for="Lokasi">Lokasi Kost <span class="text-danger">*</span></label>
+                                            <label class="mt-2" for="Alamat">Alamat Kost <span class="text-danger">*</span></label>
                                             <div class="mt-1">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" maxlength="30" name="lokasi_kost" id="lokasi_kost" placeholder="Masukkan Lokasi Kost" value="{{ old('lokasi_kost') }}" x-model="lokasi" required>
-                                                    @error('lokasi_kost')
+                                                    <input type="text" class="form-control" maxlength="30" name="alamat_kost" id="alamat_kost" placeholder="Masukkan Alamat Kost" value="{{ old('alamat_kost') }}" x-model="alamat" required>
+                                                    @error('alamat_kost')
                                                         {{ $message }}
                                                     @enderror
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
                                             <label class="mt-2" for="Status">Status Kost <span class="text-danger">*</span></label>
                                             <div class="mt-1">
                                                 <div class="input-group">
@@ -230,6 +230,34 @@
                                                         <option value="Publish">Publish</option>
                                                         <option value="Unpublish">Unpublish</option>
                                                         @error('status_kost')
+                                                            {{ $message }}
+                                                        @enderror
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="mt-2" for="Lokasi">Lokasi Kost <span class="text-danger">*</span></label>
+                                            <div class="mt-1">
+                                                <div class="input-group">
+                                                    <select class="form-select" id="lokasi_kost" name="lokasi_kost" value="{{ old('lokasi_kost') }}" x-model="lokasi" required>
+                                                        <option selected>Pilih Lokasi Kost...</option>
+                                                        <option value="Didekat Kamu">Didekat Kamu</option>
+                                                        <option value="Area Surabaya Timur">Area Surabaya Timur</option>
+                                                        <option value="Kamar Kost Putra">Kamar Kost Putra</option>
+                                                        <option value="Kamar Kost Populer">Kamar Kost Populer</option>
+                                                        <option value="Kamar Kost Putri">Kamar Kost Putri</option>
+                                                        <option value="Area Surabaya Barat">Area Surabaya Barat</option>
+                                                        <option value="Rekomendasi Kamar Kost">Rekomendasi Kamar Kost</option>
+                                                        <option value="Promo Kamar Kost">Promo Kamar Kost</option>
+                                                        <option value="Kamar Kost Terpopuler">Kamar Kost Terpopuler</option>
+                                                        <option value="Kamar Kost Terbaru">Kamar Kost Terbaru</option>
+                                                        <option value="Area Jemursari">Area Jemursari</option>
+                                                        <option value="Area Semolowaru">Area Semolowaru</option>
+                                                        <option value="Area Benowo">Area Benowo</option>
+                                                        <option value="Area Sukolilo">Area Sukolilo</option>
+                                                        <option value="Area Rungkut">Area Rungkut</option>
+                                                        @error('lokasi_kost')
                                                             {{ $message }}
                                                         @enderror
                                                     </select>
@@ -265,7 +293,7 @@
                         <th>Gambar Kost</th>
                         <th class="text-center">Kategori Kost</th>
                         <th class="text-center">Harga Kost</th>
-                        <th class="text-center">Lokasi Kost</th>
+                        <th class="text-center">Alamat Kost</th>
                         <th class="text-center">Ukuran Kost</th>
                         <th class="text-center">Tipe Kost</th>
                         <th class="text-center">Status Kost</th>
@@ -287,7 +315,7 @@
                                     <span class="usr-harga-kost">Rp. {{ $item->harga_kost }}</span>
                                 </td>
                                 <td class="text-center">
-                                    <span class="usr-lokasi-kost">{{ $item->lokasi_kost }}</span>
+                                    <span class="usr-lokasi-kost">{{ $item->alamat_kost }}</span>
                                 </td>
                                 <td class="text-center">
                                     <span class="usr-ukuran-kost">{{ $item->ukuran_kost }}</span>
@@ -377,13 +405,6 @@
                                                                 <div class="col-6 text-start mt-3">
                                                                     <label for="Status Kost">Status Kost</label>
                                                                 </div>
-                                                                <div class="toggle ml-2">
-                                                                    <form id="edit-form" name="edit-form" method="post">
-                                                                        <div class="form-check form-switch" style="padding: 0px; min-height: 0em; margin-bottom: 0em;">
-                                                                            <input class="form-check-input" type="checkbox" data-id={{ $item->id }} {{ $item->status_kost == 'Publish' ? 'checked' : null }} style="margin-left: 14px;" />
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
                                                                 <div class="col-md-6" style="margin-top: -12px;">
                                                                     <div class="mt-3">
                                                                         <div class="form-group">
@@ -413,8 +434,8 @@
                                                                 <div class="col-6" style="margin-top: -12px;">
                                                                     <div class="mt-3">
                                                                         <div class="form-group">
-                                                                            <input type="text" class="form-control" name="kategori_kost" value="{{ $item->kategori_kost }}" id="kategori_kost" disabled>
-                                                                            @error('kategori_kost')
+                                                                            <input type="text" class="form-control" name="kategori_id" value="{{ $item->kategori->kategori }}" id="kategori_id" disabled>
+                                                                            @error('kategori_id')
                                                                                 {{ $message }}
                                                                             @enderror
                                                                         </div>
@@ -430,17 +451,30 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-6 text-start mt-3">
-                                                                    <label for="Lokasi Kost">Lokasi Kost</label>
+                                                                <div class="col-12 text-start mt-3">
+                                                                    <label for="Alamat Kost">Alamat Kost</label>
+                                                                </div>
+                                                                <div class="col-md-12" style="margin-top: -12px;">
+                                                                    <div class="mt-3">
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control" name="alamat_kost" value="{{ $item->alamat_kost }}" id="alamat_kost" disabled>
+                                                                            @error('alamat_kost')
+                                                                                {{ $message }}
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                                 <div class="col-6 text-start mt-3">
                                                                     <label for="Ukuran Kost">Ukuran Kost</label>
                                                                 </div>
+                                                                <div class="col-6 text-start mt-3">
+                                                                    <label for="Lokasi Kost">Lokasi Kost</label>
+                                                                </div>
                                                                 <div class="col-md-6" style="margin-top: -12px;">
                                                                     <div class="mt-3">
                                                                         <div class="form-group">
-                                                                            <input type="text" class="form-control" name="lokasi_kost" value="{{ $item->lokasi_kost }}" id="lokasi_kost" disabled>
-                                                                            @error('lokasi_kost')
+                                                                            <input type="text" class="form-control" name="ukuran_kost" value="{{ $item->ukuran_kost }}" id="ukuran_kost" disabled>
+                                                                            @error('ukuran_kost')
                                                                                 {{ $message }}
                                                                             @enderror
                                                                         </div>
@@ -449,8 +483,8 @@
                                                                 <div class="col-md-6" style="margin-top: -12px;">
                                                                     <div class="mt-3">
                                                                         <div class="form-group">
-                                                                            <input type="text" class="form-control" name="ukuran_kost" value="{{ $item->ukuran_kost }}" id="ukuran_kost" disabled>
-                                                                            @error('ukuran_kost')
+                                                                            <input type="text" class="form-control" name="lokasi_kost" value="{{ $item->lokasi_kost }}" id="lokasi_kost" disabled>
+                                                                            @error('lokasi_kost')
                                                                                 {{ $message }}
                                                                             @enderror
                                                                         </div>
@@ -554,7 +588,7 @@
                                                                             <label for="Harga Kost">Harga Kost</label>
                                                                         </div>
                                                                         <div class="col-6 text-start mt-3">
-                                                                            <label for="Lokasi Kost">Lokasi Kost</label>
+                                                                            <label for="Alamat Kost">Alamat Kost</label>
                                                                         </div>
                                                                         <div class="col-md-6">
                                                                             <div class="mt-0">
@@ -569,23 +603,52 @@
                                                                         <div class="col-md-6">
                                                                             <div class="mt-0">
                                                                                 <div class="form-group">
-                                                                                    <input type="text" class="form-control" maxlength="30" name="lokasi_kost" value="{{ $item->lokasi_kost }}" id="lokasi_kost" placeholder="Masukkan Lokasi Kost">
-                                                                                    @error('lokasi_kost')
+                                                                                    <input type="text" class="form-control" maxlength="30" name="alamat_kost" value="{{ $item->alamat_kost }}" id="alamat_kost" placeholder="Masukkan Alamat Kost">
+                                                                                    @error('alamat_kost')
                                                                                         {{ $message }}
                                                                                     @enderror
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-12 text-start mt-3">
+                                                                        <div class="col-6 text-start mt-3">
                                                                             <label for="Status Kost">Status Kost</label>
                                                                         </div>
-                                                                        <div class="col-md-12">
+                                                                        <div class="col-6 text-start mt-3">
+                                                                            <label for="Lokasi Kost">Lokasi Kost</label>
+                                                                        </div>
+                                                                        <div class="col-md-6">
                                                                             <div class="mt-0">
                                                                                 <div class="input-group">
                                                                                     <select class="form-select" id="status_kost" name="status_kost">
                                                                                         <option value="Publish" {{ $item->status_kost == 'Publish' ? 'selected' : '' }}>Publish</option>
                                                                                         <option value="Unpublish" {{ $item->status_kost == 'Unpublish' ? 'selected' : '' }}>Unpublish</option>
                                                                                         @error('status_kost')
+                                                                                            {{ $message }}
+                                                                                        @enderror
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="mt-0">
+                                                                                <div class="input-group">
+                                                                                    <select class="form-select" id="lokasi_kost" name="lokasi_kost">
+                                                                                        <option value="Didekat Kamu" {{ $item->lokasi_kost == 'Didekat Kamu' ? 'selected' : '' }}>Didekat Kamu</option>
+                                                                                        <option value="Area Surabaya Timur" {{ $item->lokasi_kost == 'Area Surabaya Timur' ? 'selected' : '' }}>Area Surabaya Timur</option>
+                                                                                        <option value="Kamar Kost Putra" {{ $item->lokasi_kost == 'Kamar Kost Putra' ? 'selected' : '' }}>Kamar Kost Putra</option>
+                                                                                        <option value="Kamar Kost Populer" {{ $item->lokasi_kost == 'Kamar Kost Populer' ? 'selected' : '' }}>Kamar Kost Populer</option>
+                                                                                        <option value="Kamar Kost Putri" {{ $item->lokasi_kost == 'Kamar Kost Putri' ? 'selected' : '' }}>Kamar Kost Putri</option>
+                                                                                        <option value="Area Surabaya Barat" {{ $item->lokasi_kost == 'Area Surabaya Barat' ? 'selected' : '' }}>Area Surabaya Barat</option>
+                                                                                        <option value="Rekomendasi Kamar Kost" {{ $item->lokasi_kost == 'Rekomendasi Kamar Kost' ? 'selected' : '' }}>Rekomendasi Kamar Kost</option>
+                                                                                        <option value="Promo Kamar Kost" {{ $item->lokasi_kost == 'Promo Kamar Kost' ? 'selected' : '' }}>Promo Kamar Kost</option>
+                                                                                        <option value="Kamar Kost Terpopuler" {{ $item->lokasi_kost == 'Kamar Kost Terpopuler' ? 'selected' : '' }}>Kamar Kost Terpopuler</option>
+                                                                                        <option value="Kamar Kost Terbaru" {{ $item->lokasi_kost == 'Kamar Kost Terbaru' ? 'selected' : '' }}>Kamar Kost Terbaru</option>
+                                                                                        <option value="Area Jemursari" {{ $item->lokasi_kost == 'Area Jemursari' ? 'selected' : '' }}>Area Jemursari</option>
+                                                                                        <option value="Area Semolowaru" {{ $item->lokasi_kost == 'Area Semolowaru' ? 'selected' : '' }}>Area Semolowaru</option>
+                                                                                        <option value="Area Benowo" {{ $item->lokasi_kost == 'Area Benowo' ? 'selected' : '' }}>Area Benowo</option>
+                                                                                        <option value="Area Sukolilo" {{ $item->lokasi_kost == 'Area Sukolilo' ? 'selected' : '' }}>Area Sukolilo</option>
+                                                                                        <option value="Area Rungkut" {{ $item->lokasi_kost == 'Area Rungkut' ? 'selected' : '' }}>Area Rungkut</option>
+                                                                                        @error('lokasi_kost')
                                                                                             {{ $message }}
                                                                                         @enderror
                                                                                     </select>
@@ -637,7 +700,7 @@
                     </a>
                 </div>
                 <div class="modal fade" id="tambahkamar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-scrollable" role="document" x-data="{ gambar: '', kategori: '', harga: '', lokasi: '', ukuran: '', tipe: '', status: '', fasilitas: '' }">
+                    <div class="modal-dialog modal-dialog-scrollable" role="document" x-data="{ gambar: '', kategori: '', harga: '', alamat: '', ukuran: '', tipe: '', status: '', fasilitas: '', lokasi: '' }">
                         <div class="modal-content" style="width: 100%; height: 540px;">
                             <div class="modal-header" style=" height: 70px;">
                                 <h1 class="modal-title fs-5 fw-semibold" id="exampleModalLabel" style="margin-top: -24px;">Tambah Kamar</h1>
@@ -725,17 +788,17 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <label class="mt-2" for="Lokasi">Lokasi Kost <span class="text-danger">*</span></label>
+                                                    <label class="mt-2" for="Alamat">Alamat Kost <span class="text-danger">*</span></label>
                                                     <div class="mt-1">
                                                         <div class="form-group">
-                                                            <input type="text" class="form-control" maxlength="30" name="lokasi_kost" id="lokasi_kost" placeholder="Masukkan Lokasi Kost" value="{{ old('lokasi_kost') }}" x-model="lokasi" required>
-                                                            @error('lokasi_kost')
+                                                            <input type="text" class="form-control" maxlength="30" name="alamat_kost" id="alamat_kost" placeholder="Masukkan Alamat Kost" value="{{ old('alamat_kost') }}" x-model="alamat" required>
+                                                            @error('alamat_kost')
                                                                 {{ $message }}
                                                             @enderror
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-12">
+                                                <div class="col-md-6">
                                                     <label class="mt-2" for="Status">Status Kost <span class="text-danger">*</span></label>
                                                     <div class="mt-1">
                                                         <div class="input-group">
@@ -744,6 +807,34 @@
                                                                 <option value="Publish">Publish</option>
                                                                 <option value="Unpublish">Unpublish</option>
                                                                 @error('status_kost')
+                                                                    {{ $message }}
+                                                                @enderror
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="mt-2" for="Lokasi">Lokasi Kost <span class="text-danger">*</span></label>
+                                                    <div class="mt-1">
+                                                        <div class="input-group">
+                                                            <select class="form-select" id="lokasi_kost" name="lokasi_kost" value="{{ old('lokasi_kost') }}" x-model="lokasi" required>
+                                                                <option selected>Pilih Lokasi Kost...</option>
+                                                                <option value="Didekat Kamu">Didekat Kamu</option>
+                                                                <option value="Area Surabaya Timur">Area Surabaya Timur</option>
+                                                                <option value="Kamar Kost Putra">Kamar Kost Putra</option>
+                                                                <option value="Kamar Kost Populer">Kamar Kost Populer</option>
+                                                                <option value="Kamar Kost Putri">Kamar Kost Putri</option>
+                                                                <option value="Area Surabaya Barat">Area Surabaya Barat</option>
+                                                                <option value="Rekomendasi Kamar Kost">Rekomendasi Kamar Kost</option>
+                                                                <option value="Promo Kamar Kost">Promo Kamar Kost</option>
+                                                                <option value="Kamar Kost Terpopuler">Kamar Kost Terpopuler</option>
+                                                                <option value="Kamar Kost Terbaru">Kamar Kost Terbaru</option>
+                                                                <option value="Area Jemursari">Area Jemursari</option>
+                                                                <option value="Area Semolowaru">Area Semolowaru</option>
+                                                                <option value="Area Benowo">Area Benowo</option>
+                                                                <option value="Area Sukolilo">Area Sukolilo</option>
+                                                                <option value="Area Rungkut">Area Rungkut</option>
+                                                                @error('lokasi_kost')
                                                                     {{ $message }}
                                                                 @enderror
                                                             </select>

@@ -157,8 +157,12 @@
                                                 <div class="input-group">
                                                     <select class="form-select" id="lokasi_banner" name="lokasi_banner" value="{{ old('lokasi_banner') }}" x-model="lokasi" required>
                                                         <option selected>Pilih Kategori Banner...</option>
-                                                        <option value="Home">Home</option>
-                                                        <option value="Area Kost">Area Kost</option>
+                                                        <option value="Home Utama">Home Utama</option>
+                                                        <option value="Home Promo">Home Promo</option>
+                                                        <option value="Home Ketiga">Home Ketiga</option>
+                                                        <option value="Home Terakhir">Home Terakhir</option>
+                                                        <option value="Area Kost Utama">Area Kost Utama</option>
+                                                        <option value="Area Kost Terakhir">Area Kost Terakhir</option>
                                                         @error('lokasi_banner')
                                                             {{ $message }}
                                                         @enderror
@@ -322,8 +326,12 @@
                                                                             <div class="mt-3">
                                                                                 <div class="input-group">
                                                                                     <select class="form-select" id="lokasi_banner" name="lokasi_banner">
-                                                                                        <option value="Home" {{ $item->lokasi_banner == 'Home' ? 'selected' : '' }}>Home</option>
-                                                                                        <option value="Area Kost" {{ $item->lokasi_banner == 'Area Kost' ? 'selected' : '' }}>Area Kost</option>
+                                                                                        <option value="Home Utama" {{ $item->lokasi_banner == 'Home Utama' ? 'selected' : '' }}>Home Utama</option>
+                                                                                        <option value="Home Promo" {{ $item->lokasi_banner == 'Home Promo' ? 'selected' : '' }}>Home Promo</option>
+                                                                                        <option value="Home Ketiga" {{ $item->lokasi_banner == 'Home Ketiga' ? 'selected' : '' }}>Home Ketiga</option>
+                                                                                        <option value="Home Terakhir" {{ $item->lokasi_banner == 'Home Terakhir' ? 'selected' : '' }}>Home Terakhir</option>
+                                                                                        <option value="Area Kost Utama" {{ $item->lokasi_banner == 'Area Kost Utama' ? 'selected' : '' }}>Area Kost Utama</option>
+                                                                                        <option value="Area Kost Terakhir" {{ $item->lokasi_banner == 'Area Kost Terakhir' ? 'selected' : '' }}>Area Kost Terakhir</option>
                                                                                         @error('lokasi_banner')
                                                                                             {{ $message }}
                                                                                         @enderror
@@ -390,6 +398,7 @@
                         <i class="ti ti-plus text-white me-1 fs-5"></i> Tambah Banner
                     </a>
                 </div>
+                <!-- Modal -->
                 <div class="modal fade" id="modaltambah" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document" x-data="{ gambar: '', kategori: '', lokasi: '', status: '' }">
                         <div class="modal-content" style="width: 100%; height: 540px;">
@@ -438,8 +447,12 @@
                                                         <div class="input-group">
                                                             <select class="form-select" id="lokasi_banner" name="lokasi_banner" value="{{ old('lokasi_banner') }}" x-model="lokasi" required>
                                                                 <option selected>Pilih Kategori Banner...</option>
-                                                                <option value="Home">Home</option>
-                                                                <option value="Area Kost">Area Kost</option>
+                                                                <option value="Home Utama">Home Utama</option>
+                                                                <option value="Home Promo">Home Promo</option>
+                                                                <option value="Home Ketiga">Home Ketiga</option>
+                                                                <option value="Home Terakhir">Home Terakhir</option>
+                                                                <option value="Area Kost Utama">Area Kost Utama</option>
+                                                                <option value="Area Kost Terakhir">Area Kost Terakhir</option>
                                                                 @error('lokasi_banner')
                                                                     {{ $message }}
                                                                 @enderror

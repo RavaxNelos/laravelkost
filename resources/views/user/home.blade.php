@@ -258,7 +258,7 @@
                         </li>
                     @else
                         @foreach ($banner as $item)
-                            @if ($item->kategori_banner == 'Slider')
+                            @if ($item->kategori_banner == 'Slider' && $item->lokasi_banner == 'Home Utama')
                                 <li class="splide__slide">
                                     <div style="max-width: 300%; min-height: 200px; min-width: 250px;">
                                         <div class="">
@@ -446,7 +446,14 @@
             <section class="splide new-3" aria-label="Splide Basic HTML Example">
                 <div class="splide__track">
                     <ul class="splide__list">
-                        <li class="splide__slide">
+                        @foreach ($banner as $item)
+                            @if ($item->kategori_banner == 'Slider' && $item->lokasi_banner == 'Home Promo')
+                                <li class="splide__slide">
+                                    <img src="{{ asset('uploadkamar/' . $item->gambar_banner) }}" width="336" height="80" style="border-radius: 8px;">
+                                </li>
+                            @endif
+                        @endforeach
+                        {{-- <li class="splide__slide">
                             <img src="{{ asset('/img/banner11.png') }}" width="336" height="80" style="border-radius: 8px;">
                         </li>
                         <li class="splide__slide">
@@ -460,7 +467,7 @@
                         </li>
                         <li class="splide__slide">
                             <img src="{{ asset('/img/banner15.png') }}" width="336" height="80" style="border-radius: 8px;">
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </section>
@@ -762,7 +769,14 @@
             <section class="splide new" aria-label="Splide Basic HTML Example" style="margin-top: -10px;">
                 <div class="splide__track">
                     <ul class="splide__list">
-                        <li class="splide__slide">
+                        @foreach ($banner as $item)
+                            @if ($item->kategori_banner == 'Slider' && $item->lokasi_banner == 'Home Ketiga')
+                                <li class="splide__slide">
+                                    <img src="{{ asset('uploadkamar/' . $item->gambar_banner) }}" style="border-radius: 15px; width: 334px; height: 150px; object-fit: cover;">
+                                </li>
+                            @endif
+                        @endforeach
+                        {{-- <li class="splide__slide">
                             <img src="{{ asset('/img/banner5.png') }}" style="border-radius: 15px; width: 334px; height: 150px; object-fit: cover;">
                         </li>
                         <li class="splide__slide">
@@ -770,7 +784,7 @@
                         </li>
                         <li class="splide__slide">
                             <img src="{{ asset('/img/banner7.png') }}" style="border-radius: 15px; width: 334px; height: 150px; object-fit: cover;">
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </section>
@@ -787,23 +801,46 @@
                 </div>
             </div>
             <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-top: -10px; margin-bottom: 2rem;" id="kategori-sewa-putra">
-                <div x-show="filter == 'bulanan'">
-                    <div class="card" style="padding: 10px; border-radius: 15px;">
-                        <div class="position-relative mb-2">
-                            <img src="{{ asset('/img/kamarkostputra1.jpg') }}" style="border-radius: 15px; width: 220px; height: 150px; object-fit: cover;">
-                            <button id="btn-like-timur" class="btn-like-putra" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                        </div>
-                        <div class="row">
-                            <div class="col-7 mt-2">
-                                <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. 1.000.000</h3>
+                @foreach ($kamarkost->where('lokasi_kost', 'Kamar Kost Putra') as $item)
+                    <div x-show="filter == '{{ strtolower($item->tipe_kost) }}'">
+                        <div class="card" style="padding: 10px; border-radius: 15px;">
+                            <div class="position-relative mb-2">
+                                <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" style="border-radius: 15px; width: 220px; height: 150px; object-fit: cover;">
+                                <button id="btn-like-timur" class="btn-like-putra" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
                             </div>
-                            <div class="col-5">
-                                <button class="btn-kamar-kost-putra">Lihat</button>
+                            <div class="row">
+                                <div class="col-7 mt-2">
+                                    <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. {{ $item->harga_kost }}</h3>
+                                </div>
+                                <div class="col-5">
+                                    <button class="btn-kamar-kost-putra">Lihat</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div x-show="filter == 'bulanan'">
+                @endforeach
+                {{-- <div x-show="filter == 'harian'">
+                    @foreach ($kamarkost as $item)
+                        @if ($item->lokasi_kost == 'Kamar Kost Putra' && $item->tipe_kost == 'Harian')
+                            <div class="card" style="padding: 10px; border-radius: 15px;">
+                                <div class="position-relative mb-2">
+                                    <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" style="border-radius: 15px; width: 220px; height: 150px; object-fit: cover;">
+                                    <button id="btn-like-timur" class="btn-like-putra" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
+                                </div>
+                                <div class="row">
+                                    <div class="col-7 mt-2">
+                                        <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. {{ $item->harga_kost }}</h3>
+                                    </div>
+                                    <div class="col-5">
+                                        <button class="btn-kamar-kost-putra">Lihat</button>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+                </div> --}}
+
+                {{-- <div x-show="filter == 'bulanan'">
                     <div class="card" style="padding: 10px; border-radius: 15px;">
                         <div class="position-relative mb-2">
                             <img src="{{ asset('/img/kamarkostputra2.jpg') }}" style="border-radius: 15px; width: 220px; height: 150px; object-fit: cover;">
@@ -866,8 +903,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div x-show="filter == 'harian'">
+                </div> --}}
+                {{-- <div x-show="filter == 'harian'">
                     <div class="card" style="padding: 10px; border-radius: 15px;">
                         <div class="position-relative mb-2">
                             <img src="{{ asset('/img/kamarkostputraharian1.jpg') }}" style="border-radius: 15px; width: 220px; height: 150px; object-fit: cover;">
@@ -946,7 +983,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="row mt-3 mb-0">
                 <div class="col-8">
@@ -958,7 +995,27 @@
             </div>
             <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-top: -10px; margin-bottom: 2rem;" id="kategori-sewa-populer">
                 <!-- Kamar Populer -->
-                <div x-show="filter == 'bulanan'">
+                @foreach ($kamarkost->where('lokasi_kost', 'Kamar Kost Populer') as $item)
+                    <div x-show="filter == '{{ strtolower($item->tipe_kost) }}'">
+                        <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
+                            <div class="position-relative mb-2">
+                                <div class="row">
+                                    <div class="col-4 mb-0">
+                                        <img src="{{ asset('/img/kostsurabaya11.jpg') }}" style="border-radius: 15px; width: 90px; height: 90px; object-fit: cover;">
+                                    </div>
+                                    <div class="col-4" style="width: 130px; margin-left: 16px;">
+                                        <h6 style="font-size: 16px; margin-top: 10px;" class="fw-bold">{{ $item->kategori->kategori }}</h6>
+                                        <p style="margin-top: -5px; font-size: 12px; color: #6a6666fa;" class="mb-2 fw-normal">Uk. Kamar {{ $item->ukuran_kost }}</p>
+                                        <button class="btn-kost-populer" style="width: 125px; height: 33px; padding: 4px;">
+                                            <p>Cek</p>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+                {{-- <div x-show="filter == 'bulanan'">
                     <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
                         <div class="position-relative mb-2">
                             <div class="row">
@@ -1047,7 +1104,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <div x-show="filter == 'harian'">
                     <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
                         <div class="position-relative mb-2">
@@ -1318,7 +1375,14 @@
                 <section class="splide new-1" aria-label="Splide Basic HTML Example">
                     <div class="splide__track">
                         <ul class="splide__list">
-                            <li class="splide__slide">
+                            @foreach ($banner as $item)
+                                @if ($item->kategori_banner == 'Slider' && $item->lokasi_banner == 'Home Terakhir')
+                                    <li class="splide__slide">
+                                        <img src="{{ asset('uploadkamar/' . $item->gambar_banner) }}" style="border-radius: 15px; width: 334px; height: 160px; object-fit: cover;">
+                                    </li>
+                                @endif
+                            @endforeach
+                            {{-- <li class="splide__slide">
                                 <img src="{{ asset('/img/banner8.png') }}" style="border-radius: 15px; width: 334px; height: 160px; object-fit: cover;">
                             </li>
                             <li class="splide__slide">
@@ -1326,7 +1390,7 @@
                             </li>
                             <li class="splide__slide">
                                 <img src="{{ asset('/img/banner10.png') }}" style="border-radius: 15px; width: 334px; height: 160px; object-fit: cover;">
-                            </li>
+                            </li> --}}
                         </ul>
                     </div>
                 </section>

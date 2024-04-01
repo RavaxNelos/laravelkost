@@ -110,7 +110,7 @@
                     </li>
                 @else
                     @foreach ($banner as $item)
-                        @if ($item->kategori_banner == 'Slider')
+                        @if ($item->kategori_banner == 'Slider' && $item->lokasi_banner == 'Area Kost Utama')
                             <li class="splide__slide">
                                 <img src="{{ asset('uploadkamar/' . $item->gambar_banner) }}" style="width: 360px; height: 180px;">
                             </li>
@@ -248,10 +248,11 @@
                 </div>
             </div>
             @foreach ($banner as $item)
-                @if ($item->kategori_banner == 'Banner')
-                    <img src="{{ asset('uploadkamar/' . $item->gambar_banner) }}" style="border-radius: 10px; margin-top: 1rem; width: 334px; height: 140px;">
-                @endif
-            @endforeach
+                        @if ($item->kategori_banner == 'Banner' && $item->lokasi_banner == 'Area Kost Terakhir')
+                                <img src="{{ asset('uploadkamar/' . $item->gambar_banner) }}" style="border-radius: 10px; margin-top: 1rem; width: 334px; height: 140px;">
+                        @endif
+                    @endforeach
+            {{-- <img src="{{ asset('img/banner16.png') }}" style="border-radius: 10px; margin-top: 1rem; width: 334px; height: 140px;"> --}}
         </div>
         <hr class="hr-2" style="margin-bottom: 1rem; border-top: 10px solid #ccc;">
         <div class="container">

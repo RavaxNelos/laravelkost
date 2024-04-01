@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Banner;
+use App\Models\KamarKost;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -21,8 +22,9 @@ class UserController extends Controller
     }
     public function detail()
     {
-        $banner = Banner::where('status_banner', 'Publish')->where('lokasi_banner', 'Home')->get();
-        return view('user.home',compact('banner')
+        $banner = Banner::where('status_banner', 'Publish')->get();
+        $kamarkost = KamarKost::where('status_kost', 'Publish')->get();
+        return view('user.home',compact('banner', 'kamarkost')
         );
     }
     public function transaksi()

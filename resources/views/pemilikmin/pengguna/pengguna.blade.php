@@ -52,11 +52,11 @@
         <div class="card-body px-4 py-3">
             <div class="row align-items-center">
                 <div class="col-9">
-                    <h4 class="fw-semibold mb-8">Pengguna</h4>
+                    <h4 class="fw-semibold mb-8">User</h4>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a class="text-muted " href="./index.html">Dashboard</a></li>
-                            <li class="breadcrumb-item" aria-current="page">Pengguna</li>
+                            <li class="breadcrumb-item" aria-current="page">User</li>
                         </ol>
                     </nav>
                 </div>
@@ -87,40 +87,40 @@
                                 </a>
                             </div>
                             <a data-bs-toggle="modal" data-bs-target="#modaltambah" id="btn-add-contact" class="btn btn-info d-flex align-items-center">
-                                <i class="ti ti-plus text-white me-1 fs-5"></i> Tambah Pengguna
+                                <i class="ti ti-plus text-white me-1 fs-5"></i> Tambah User
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal fade" id="modaltambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document" x-data="{ gambar: '', nama: '', email: '', nomer: '', status: '' }">
+                <div class="modal-dialog" role="document" x-data="{ gambar: '', nama: '', email: '', nomer: '', lokasi: '', status: '' }">
                     <div class="modal-content" style="width: 100%; height: 540px;">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5 fw-semibold" id="exampleModalLabel">Tambah Pengguna</h1>
                         </div>
-                        <div class="modal-body" style="margin-top: -20px;">
+                        <div class="modal-body" style="margin-top: -30px;">
                             <div class="container">
                                 <div class="row">
                                     <form action="{{ route('pengguna.store') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         <div class="row">
-                                            <div class="col-12 text-start">
+                                            <div class="col-12 text-start mt-4">
                                                 <label for="Gambar User">Gambar User <span class="text-danger">*</span></label>
                                             </div>
                                             <div class="col-md-12">
-                                                <div class="mt-3">
+                                                <div class="mt-1">
                                                     <input class="form-control" type="file" name="gambar" id="gambar" value="{{ old('gambar') }}" x-model="gambar" required>
                                                     @error('gambar')
                                                         {{ $message }}
                                                     @enderror
                                                 </div>
                                             </div>
-                                            <div class="col-12 text-start">
+                                            <div class="col-12 text-start mt-4">
                                                 <label for="Nama Pengguna">Nama Pengguna <span class="text-danger">*</span></label>
                                             </div>
                                             <div class="col-md-12">
-                                                <div class="mt-3">
+                                                <div class="mt-1">
                                                     <div class="form-group">
                                                         <input type="text" class="form-control" maxlength="20" name="name" value="{{ old('name') }}" id="name" placeholder="Masukkan Nama Pengguna" x-model="nama" required>
                                                         @error('name')
@@ -129,11 +129,11 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12 text-start">
+                                            <div class="col-12 text-start mt-4">
                                                 <label for="Email Pengguna">Email Pengguna <span class="text-danger">*</span></label>
                                             </div>
                                             <div class="col-md-12">
-                                                <div class="mt-3">
+                                                <div class="mt-1">
                                                     <div class="form-group">
                                                         <input type="email" class="form-control" maxlength="20" name="email" value="{{ old('email') }}" id="email" placeholder="Masukkan Email Pengguna" x-model="email" required>
                                                         @error('email')
@@ -142,11 +142,11 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12 text-start">
+                                            <div class="col-12 text-start mt-4">
                                                 <label for="Nomor Handphone">Nomer Handphone <span class="text-danger">*</span></label>
                                             </div>
                                             <div class="col-md-12">
-                                                <div class="mt-3">
+                                                <div class="mt-1">
                                                     <div class="form-group">
                                                         <input type="number" class="form-control" min="0" oninput="limitLength(this, 12)" name="nomorhp" value="{{ old('nomorhp') }}" id="nomorhp" placeholder="Masukkan Nomer Pengguna" x-model="nomer" required>
                                                         @error('nomorhp')
@@ -155,11 +155,24 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12 text-start">
+                                            <div class="col-6 text-start mt-2">
+                                                <label for="">Lokasi <span class="text-danger">*</span></label>
+                                            </div>
+                                            <div class="col-6 text-start mt-2">
                                                 <label for="Status">Status <span class="text-danger">*</span></label>
                                             </div>
-                                            <div class="col-md-12">
-                                                <div class="input-group">
+                                            <div class="col-md-6">
+                                                <div class="mt-1">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" maxlength="50" name="lokasi" value="{{ old('lokasi') }}" id="lokasi" placeholder="Masukkan Lokasi Pengguna" x-model="lokasi" required>
+                                                        @error('lokasi')
+                                                            {{ $message }}
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-group mt-1">
                                                     <select class="form-select" id="status" name="status" value="{{ old('status') }}" x-model="status" required>
                                                         <option selected>Status...</option>
                                                         <option value="Pengguna">Pengguna</option>
@@ -214,7 +227,7 @@
                                 <tr class="search-items" x-show="filter == 'all'">
                                     <td class="text-center">
                                         <div class="d-flex align-items-center">
-                                            <img src="{{ asset($item->gambar ? 'uploadkamar/' . $item->gambar : '/img/avatar.png') }}" alt="avatar" class="rounded-circle" width="35" />
+                                            <img src="{{ asset($item->gambar ? 'uploadkamar/' . $item->gambar : '/img/customer1.jpg') }}" alt="avatar" class="rounded-1" width="30" />
                                             <div class="ms-3">
                                                 <div class="user-meta-info">
                                                     <h6 class="user-name mb-0">{{ $item->name }}</h6>
@@ -334,7 +347,7 @@
                                 <tr class="search-items" x-show="filter === '{{ $item->status }}'">
                                     <td class="text-center">
                                         <div class="d-flex align-items-center">
-                                            <img src="{{ asset('uploadkamar/' . $item->gambar) }}" alt="avatar" class="rounded-circle" width="35" />
+                                            <img src="{{ asset($item->gambar ? 'uploadkamar/' . $item->gambar : '/img/avatar.png') }}" alt="avatar" class="rounded-circle" width="35" />
                                             <div class="ms-3">
                                                 <div class="user-meta-info">
                                                     <h6 class="user-name mb-0">{{ $item->name }}</h6>
@@ -353,11 +366,11 @@
                                     </td>
                                     <td class="text-center">
                                         <div class="action-btn">
-                                            <a href="#" class="btn btn-danger" style="width: 30px; height: 30px; padding: 4.5px;" onclick="confirmDelete('{{ $item->id }}')">
+                                            <a href="#" class="btn btn-danger" style="width: 30px; height: 30px; padding: 4.5px;" onclick="confirmDelete2('{{ $item->id }}')">
                                                 <i class="ti ti-trash fs-5"></i>
                                             </a>
                                             <!-- Modal -->
-                                            <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="deleteConfirmationModal2" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content" style="margin-top: 12rem;">
                                                         <div class="modal-header">
@@ -378,9 +391,72 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <a href="/pemilikmin/editpengguna/{id}" type="button" class="btn btn-info" style="width: 30px; height: 30px; padding: 4.5px;">
+                                            <a href="/pemilikmin/editpengguna/{{ $item->id }}" type="button" class="btn btn-info" style="width: 30px; height: 30px; padding: 4.5px;">
                                                 <i class="ti ti-eye fs-5"></i>
                                             </a>
+                                            {{-- <div class="modal fade" id="modallihat-{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content" style="width: 100%; height: 540px;">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Pengguna</h1>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="container">
+                                                                <div class="col-12 text-center">
+                                                                    <img src="{{ asset($item->gambar ? 'uploadkamar/' . $item->gambar : '/img/avatar.png') }}" class="rounded-1" width="100">
+                                                                </div>
+                                                                <input type="hidden" name="id" value="{{ $item->id }}">
+                                                                <div class="row">
+                                                                    <div class="col-md-12 text-center">
+                                                                        <div class="mt-3">
+                                                                            <label for="Profil Pengguna" class="fs-4 fw-medium mt-3">Profil Pengguna</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-12 text-start mt-3">
+                                                                        <label for="Nama Pengguna">Nama Pengguna</label>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div class="mt-3">
+                                                                            <div class="form-group">
+                                                                                <input type="text" class="form-control" name="name" value="{{ $item->name }}" id="name" placeholder="Masukkan Nama Pengguna">
+                                                                                @error('name')
+                                                                                    {{ $message }}
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-12 text-start mt-3">
+                                                                        <label for="Email Pengguna">Email Pengguna</label>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div class="mt-3">
+                                                                            <div class="form-group">
+                                                                                <input type="email" class="form-control" name="email" value="{{ $item->email }}" id="email" placeholder="Masukkan Email Pengguna">
+                                                                                @error('email')
+                                                                                    {{ $message }}
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-12 text-start mt-3">
+                                                                        <label for="Nomor Pengguna">Nomor Pengguna</label>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div class="mt-3">
+                                                                            <div class="form-group">
+                                                                                <input type="number" class="form-control" name="nomorhp" value="{{ $item->nomorhp }}" id="nomorhp" placeholder="Masukkan Nomer Pengguna">
+                                                                                @error('nomorhp')
+                                                                                    {{ $message }}
+                                                                                @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> --}}
                                             {{-- <form action="/pemilikmin/pengguna/destroy" method="POST">
                                         @csrf
                                         <input type="hidden" name="id" value="{{ $item->id }}">
@@ -404,33 +480,33 @@
                         </a>
                     </div>
                     <div class="modal fade" id="modaltambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document" x-data="{ gambar: '', nama: '', email: '', nomer: '', status: '' }">
+                        <div class="modal-dialog" role="document" x-data="{ gambar: '', nama: '', email: '', nomer: '', lokasi: '', status: '' }">
                             <div class="modal-content" style="width: 100%; height: 540px;">
                                 <div class="modal-header">
                                     <h1 class="modal-title fs-5 fw-semibold" id="exampleModalLabel">Tambah Pengguna</h1>
                                 </div>
-                                <div class="modal-body" style="margin-top: -20px;">
+                                <div class="modal-body" style="margin-top: -30px;">
                                     <div class="container">
                                         <div class="row">
                                             <form action="{{ route('pengguna.store') }}" method="POST" enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="row">
-                                                    <div class="col-12 text-start">
+                                                    <div class="col-12 text-start mt-4">
                                                         <label for="Gambar User">Gambar User <span class="text-danger">*</span></label>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <div class="mt-3">
+                                                        <div class="mt-1">
                                                             <input class="form-control" type="file" name="gambar" id="gambar" value="{{ old('gambar') }}" x-model="gambar" required>
                                                             @error('gambar')
                                                                 {{ $message }}
                                                             @enderror
                                                         </div>
                                                     </div>
-                                                    <div class="col-12 text-start">
+                                                    <div class="col-12 text-start mt-4">
                                                         <label for="Nama Pengguna">Nama Pengguna <span class="text-danger">*</span></label>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <div class="mt-3">
+                                                        <div class="mt-1">
                                                             <div class="form-group">
                                                                 <input type="text" class="form-control" maxlength="20" name="name" value="{{ old('name') }}" id="name" placeholder="Masukkan Nama Pengguna" x-model="nama" required>
                                                                 @error('name')
@@ -439,11 +515,11 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-12 text-start">
+                                                    <div class="col-12 text-start mt-4">
                                                         <label for="Email Pengguna">Email Pengguna <span class="text-danger">*</span></label>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <div class="mt-3">
+                                                        <div class="mt-1">
                                                             <div class="form-group">
                                                                 <input type="email" class="form-control" maxlength="20" name="email" value="{{ old('email') }}" id="email" placeholder="Masukkan Email Pengguna" x-model="email" required>
                                                                 @error('email')
@@ -452,11 +528,11 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-12 text-start">
+                                                    <div class="col-12 text-start mt-4">
                                                         <label for="Nomor Handphone">Nomer Handphone <span class="text-danger">*</span></label>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <div class="mt-3">
+                                                        <div class="mt-1">
                                                             <div class="form-group">
                                                                 <input type="number" class="form-control" min="0" oninput="limitLength(this, 12)" name="nomorhp" value="{{ old('nomorhp') }}" id="nomorhp" placeholder="Masukkan Nomer Pengguna" x-model="nomer" required>
                                                                 @error('nomorhp')
@@ -465,11 +541,24 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-12 text-start">
+                                                    <div class="col-6 text-start mt-2">
+                                                        <label for="">Lokasi <span class="text-danger">*</span></label>
+                                                    </div>
+                                                    <div class="col-6 text-start mt-2">
                                                         <label for="Status">Status <span class="text-danger">*</span></label>
                                                     </div>
-                                                    <div class="col-md-12">
-                                                        <div class="input-group">
+                                                    <div class="col-md-6">
+                                                        <div class="mt-1">
+                                                            <div class="form-group">
+                                                                <input type="text" class="form-control" maxlength="50" name="lokasi" value="{{ old('lokasi') }}" id="lokasi" placeholder="Masukkan Lokasi Pengguna" x-model="lokasi" required>
+                                                                @error('lokasi')
+                                                                    {{ $message }}
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="input-group mt-1">
                                                             <select class="form-select" id="status" name="status" value="{{ old('status') }}" x-model="status" required>
                                                                 <option selected>Status...</option>
                                                                 <option value="Pengguna">Pengguna</option>
@@ -638,6 +727,12 @@
             var deleteForm = document.getElementById('deleteForm');
             deleteForm.action = '/pemilikmin/pengguna/destroy/' + itemId;
             $('#deleteConfirmationModal').modal('show');
+        }
+
+        function confirmDelete2(itemId) {
+            var deleteForm = document.getElementById('deleteForm');
+            deleteForm.action = '/pemilikmin/pengguna/destroy/' + itemId;
+            $('#deleteConfirmationModal2').modal('show');
         }
     </script>
     @if (Session::has('success'))

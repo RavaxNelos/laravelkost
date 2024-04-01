@@ -13,7 +13,7 @@ class PemilikController extends Controller
     }
     public function area()
     {
-        $banner = Banner::where('status_banner', 'Publish')->where('lokasi_banner', 'Area Kost')->get();
+        $banner = Banner::where('status_banner', 'Publish')->get();
         return view('pemilik.areakost', compact('banner'));
     }
     public function transaksi()

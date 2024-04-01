@@ -58,7 +58,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('pengguna') }}" aria-expanded="false">
+                    <a class="sidebar-link {{ Request::is('pemilikmin/pengguna', 'pemilikmin/editpengguna/*') ? 'active' : null }}" href="{{ route('pengguna') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-user-check"></i>
                         </span>
