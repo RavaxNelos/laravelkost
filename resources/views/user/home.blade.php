@@ -312,7 +312,23 @@
                 <div class="col-12">
                     <h1 style="font-weight: bold; font-size: 18px; font-family: 'Inter', sans-serif;">Didekat Kamu</h1>
                     <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay;" id="kategori-sewa">
-                        <div x-show="filter == 'bulanan'">
+                        @foreach ($kamarkost->where('lokasi_kost', 'Didekat Kamu') as $item)
+                            <div x-show="filter == '{{ strtolower($item->tipe_kost) }}'">
+                                <div class="position-relative mb-2">
+                                    <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" style="border-top-right-radius: 15px; border-top-left-radius: 15px; width: 226px; height: 236px; object-fit: cover;">
+                                    <button id="btn-like-timur" class="btn-like-didekat-mu" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
+                                </div>
+                                <div class="card-black" style="position: relative; margin-top: -8px; width: 226px; height: 100px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; opacity: 0.9;">
+                                    <h6 style="top: 10px; left: 10px; font-size: 18px; position: absolute; color: #333;" class="fw-semibold">{{ $item->kategori->kategori }}</h6>
+                                    <i style="position: absolute; top: 32px; left: 10px; color: #333; font-size: 12px" class="bi bi-geo-alt text-info"></i><small style="position: absolute; top: 32px; left: 26px; font-size: 12px; color: #333" class="text-secondary;"> {{ $item->alamat_kost }}, Surabaya</small>
+                                    <h6 style="position: absolute; top: 58px; left: 10px; font-size: 16px; color: #333;" class="fw-bold">Rp. {{ $item->harga_kost }}</h6>
+                                    <form action="/user/detail/{{ $item->id }}">
+                                        <button class="btn-didekat-mu">Lihat</button>
+                                    </form>
+                                </div>
+                            </div>
+                        @endforeach
+                        {{-- <div x-show="filter == 'bulanan'">
                             <div class="position-relative mb-2">
                                 <img src="{{ asset('/img/rumahkost6.jpg') }}" style="border-top-right-radius: 15px; border-top-left-radius: 15px; width: 226px; height: 236px; object-fit: cover;">
                                 <button id="btn-like-timur" class="btn-like-didekat-mu" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
@@ -373,8 +389,8 @@
                                 <h6 style="position: absolute; top: 58px; left: 10px; font-size: 16px; color: #333;" class="fw-bold">Rp. 2.000.000</h6>
                                 <button class="btn-didekat-mu">Lihat</button>
                             </div>
-                        </div>
-                        <div x-show="filter == 'harian'">
+                        </div> --}}
+                        {{-- <div x-show="filter == 'harian'">
                             <div class="position-relative mb-2">
                                 <img src="{{ asset('/img/rumahkostharian6.jpg') }}" style="border-top-right-radius: 15px; border-top-left-radius: 15px; width: 226px; height: 236px; object-fit: cover;">
                                 <button id="btn-like-timur" class="btn-like-didekat-mu" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
@@ -433,7 +449,7 @@
                                 <h6 style="position: absolute; top: 58px; left: 10px; font-size: 16px; color: #333;" class="fw-bold">Rp. 2.000.000</h6>
                                 <button class="btn-didekat-mu">Lihat</button>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     {{-- @endfor --}}
                 </div>
@@ -541,7 +557,33 @@
                 </div>
             </div>
             <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-top: -10px; margin-bottom: 2rem;" id="katagori-sewa-timur">
-                <div x-show="filter == 'bulanan'">
+                @foreach ($kamarkost->where('lokasi_kost', 'Area Surabaya Timur') as $item)
+                    <div x-show="filter == '{{ strtolower($item->tipe_kost) }}'">
+                        <div class="custom-card" style="width: 180px; height: 290px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
+                            <div class="position-relative mb-2">
+                                <a href="/user/detail">
+                                    <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" style="border-radius: 15px; width: 160px; height: 160px; object-fit: cover;">
+                                </a>
+                                <button id="btn-like-timur" class="btn-like-timur" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
+                            </div>
+                            <div style="width: 195px" class="row">
+                                <div class="col-12 mt-1">
+                                    <h6 style="font-size: 14px;" class="fw-medium mb-1">Kamar Uk. {{ $item->ukuran_kost }}</h6>
+                                </div>
+                                <div class="col-12">
+                                    <h6 style="font-size: 10px;" class="text-secondary">Fasilitas: {{ Illuminate\Support\Str::limit($item->fasilitas_kost, 24, '...') }}</h6>
+                                </div>
+                                <div class="col-12 text-center">
+                                    <h3 style="font-size: 17px; margin-right: 12px;" class="text-dark mb-0 fw-bold text-center">Rp. {{ $item->harga_kost }}</h3>
+                                </div>
+                                <div class="col-12 mt-2 text-center">
+                                    <button class="btn-area-timur-surabaya justify-content-center" style="margin-right: 11px;">Pesan Sekarang</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+                {{-- <div x-show="filter == 'bulanan'">
                     <div class="custom-card" style="width: 180px; height: 290px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
                         <div class="position-relative mb-2">
                             <a href="/user/detail">
@@ -683,7 +725,7 @@
                         </div>
                         <div style="width: 195px" class="row">
                             <div class="col-12 mt-1">
-                                <h6 style="font-size: 14px;" class="fw-medium mb-1">Kamar Kos Uk. 7 x 8 M</h6>
+                                <h6 style="font-size: 14px;" class="fw-medium mb-1">Kamar Uk. 7 x 8 Meter</h6>
                             </div>
                             <div class="col-12">
                                 <h6 style="font-size: 10px;" class="text-secondary">Fasilitas: Uk. 7 x 8 M | AC 1 | toi...</h6>
@@ -762,7 +804,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <!-- end Area timur surabaya -->
             </div>
             <!-- banner biasa ke-1 -->
@@ -995,26 +1037,37 @@
             </div>
             <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-top: -10px; margin-bottom: 2rem;" id="kategori-sewa-populer">
                 <!-- Kamar Populer -->
-                @foreach ($kamarkost->where('lokasi_kost', 'Kamar Kost Populer') as $item)
-                    <div x-show="filter == '{{ strtolower($item->tipe_kost) }}'">
-                        <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
-                            <div class="position-relative mb-2">
-                                <div class="row">
-                                    <div class="col-4 mb-0">
-                                        <img src="{{ asset('/img/kostsurabaya11.jpg') }}" style="border-radius: 15px; width: 90px; height: 90px; object-fit: cover;">
-                                    </div>
-                                    <div class="col-4" style="width: 130px; margin-left: 16px;">
-                                        <h6 style="font-size: 16px; margin-top: 10px;" class="fw-bold">{{ $item->kategori->kategori }}</h6>
-                                        <p style="margin-top: -5px; font-size: 12px; color: #6a6666fa;" class="mb-2 fw-normal">Uk. Kamar {{ $item->ukuran_kost }}</p>
-                                        <button class="btn-kost-populer" style="width: 125px; height: 33px; padding: 4px;">
-                                            <p>Cek</p>
-                                        </button>
+                @if ($kamarkost->where('lokasi_kost', 'Kamar Kost Populer')->isEmpty())
+                    <div class="custom-card" style="width: 100%; height: 116px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
+                        <div class="position-relative mb-2">
+                            <div class="text-center">
+                                <img src="{{ asset('img/house.png') }}" width="50">
+                                <p class="mt-3 fw-normal" style="font-size: 12px;">Maaf, kamar kost saat ini masih kosong.</p>
+                            </div>
+                        </div>
+                    </div>
+                @else
+                    @foreach ($kamarkost->where('lokasi_kost', 'Kamar Kost Populer') as $item)
+                        <div x-show="filter == '{{ strtolower($item->tipe_kost) }}'">
+                            <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
+                                <div class="position-relative mb-2">
+                                    <div class="row">
+                                        <div class="col-4 mb-0">
+                                            <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" style="border-radius: 15px; width: 90px; height: 90px; object-fit: cover;">
+                                        </div>
+                                        <div class="col-4" style="width: 150px; margin-left: 16px;">
+                                            <h6 style="font-size: 16px; margin-top: 10px;" class="fw-bold">{{ $item->kategori->kategori }}</h6>
+                                            <p style="margin-top: -5px; font-size: 12px; color: #6a6666fa;" class="mb-2 fw-normal">Uk. Kamar {{ $item->ukuran_kost }}</p>
+                                            <button class="btn-kost-populer" style="width: 125px; height: 33px; padding: 4px;">
+                                                <p>Cek</p>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                @endif
                 {{-- <div x-show="filter == 'bulanan'">
                     <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
                         <div class="position-relative mb-2">
@@ -1105,7 +1158,7 @@
                         </div>
                     </div>
                 </div> --}}
-                <div x-show="filter == 'harian'">
+                {{-- <div x-show="filter == 'harian'">
                     <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
                         <div class="position-relative mb-2">
                             <div class="row">
@@ -1194,7 +1247,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <!-- end kamar populer -->
             </div>
         </div>
@@ -1209,7 +1262,25 @@
                 </div>
             </div>
             <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-top: -10px; margin-bottom: 2rem;" id="kategori-sewa-putri">
-                <div x-show="filter == 'bulanan'">
+                @foreach ($kamarkost->where('lokasi_kost', 'Kamar Kost Putri') as $item)
+                    <div x-show="filter == '{{ strtolower($item->tipe_kost) }}'">
+                        <div class="card" style="padding: 10px; border-radius: 15px;">
+                            <div class="position-relative mb-2">
+                                <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" style="border-radius: 15px; width: 220px; height: 150px; object-fit: cover;">
+                                <button id="btn-like-timur" class="btn-like-putri" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
+                            </div>
+                            <div class="row">
+                                <div class="col-7 mt-2">
+                                    <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. {{ $item->harga_kost }}</h3>
+                                </div>
+                                <div class="col-5">
+                                    <button class="btn-kamar-kost-putra">Lihat</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+                {{-- <div x-show="filter == 'bulanan'">
                     <div class="card" style="padding: 10px; border-radius: 15px;">
                         <div class="position-relative mb-2">
                             <img src="{{ asset('/img/kamarkostputri1.jpg') }}" style="border-radius: 15px; width: 220px; height: 150px; object-fit: cover;">
@@ -1368,7 +1439,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="col-12" style="margin-top: -10px;">
                 <!-- banner biasa ke-2 -->
@@ -1410,7 +1481,30 @@
             </div>
             <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-top: -10px; margin-bottom: 2rem;" id="kategori-sewa-barat">
                 <!-- Area barat surabaya -->
-                <div x-show="filter == 'bulanan'">
+                @foreach ($kamarkost->where('lokasi_kost', 'Area Surabaya Barat') as $item)
+                    <div x-show="filter == '{{ strtolower($item->tipe_kost) }}'">
+                        <div class="custom-card" style="width: 266px; height: 180px; padding: 0px; border-radius: 15px; border: 1px solid #ccc;">
+                            <div class="position-relative mb-2">
+                                <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" style="border-top-left-radius: 15px; border-top-right-radius: 15px; width: 265px; height: 80px; object-fit: cover;">
+                                <button id="btn-like-timur" class="btn-like-barat" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
+                            </div>
+                            <div style="width: 280px; margin-left: 5px;" class="row">
+                                <div class="col-12 mt-1">
+                                    <h6 style="font-size: 16px;" class="fw-bold mb-1">Kamar Kost Uk. {{ $item->ukuran_kost }}</h6>
+                                </div>
+                                <div class="col-12">
+                                    <h6 style="font-size: 12px;" class="text-secondary">Fasilitas: {{ Illuminate\Support\Str::limit($item->fasilitas_kost, 32, '...') }}</h6>
+                                </div>
+                                <div class="col-12">
+                                    <form action="{{ route('detailrumah') }}">
+                                        <button class="btn-area-barat">Lihat Detail dan Lokasi</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+                {{-- <div x-show="filter == 'bulanan'">
                     <div class="custom-card" style="width: 266px; height: 180px; padding: 0px; border-radius: 15px; border: 1px solid #ccc;">
                         <div class="position-relative mb-2">
                             <img src="{{ asset('/img/kostsurabaya6.jpg') }}" style="border-top-left-radius: 15px; border-top-right-radius: 15px; width: 265px; height: 80px; object-fit: cover;">
@@ -1617,7 +1711,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <!-- end Area barat surabaya -->
             </div>
             <!-- rekomendasi rumah -->
@@ -1625,7 +1719,35 @@
                 <div class="col-12">
                     <h1 style="font-weight: bold; font-size: 18px; font-family: 'Inter', sans-serif;">Rekomendasi Kamar Kost</h1>
                     <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-bottom: 4.8rem;" id="kategori-sewa-rekomendasi">
-                        <div x-show="filter == 'bulanan'">
+                        @foreach ($kamarkost->where('lokasi_kost', 'Rekomendasi Kamar Kost') as $item)
+                            <div x-show="filter == '{{ strtolower($item->tipe_kost) }}'">
+                                <div class="card" style="padding: 10px; border-radius: 15px;">
+                                    <div class="position-relative mb-2">
+                                        <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" style="border-radius: 15px; width: 220px; height: 140px; object-fit: cover;">
+                                        <button id="btn-like-timur" class="btn-like-rekomendasi" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
+                                    </div>
+                                    <div class="row g-3">
+                                        <div class="col-10">
+                                            <h6 style="font-size: 16px; margin-bottom: -0.3rem;" class="fw-bold"> {{ $item->kategori->kategori }}</h6>
+                                        </div>
+                                    </div>
+                                    <div class="row g-3 mb-3">
+                                        <div class="col-12">
+                                            <small style="font-size: 12px; margin-top: -40px;" class="mb-0 text-secondary fw-normal"><i class="bi bi-geo-alt-fill text-danger"></i> {{ $item->alamat_kost }}, Surabaya</small>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-top: -10px;">
+                                        <div class="col-8">
+                                            <h3 style="margin-top: 5px; font-size: 18px; color: #9370DB;" class="mb-0 fw-bold">Rp. {{ $item->harga_kost }}</h3>
+                                        </div>
+                                        <div class="col-4">
+                                            <button class="btn-rekomendasi-rumah" style="margin-left: -20px;">Lihat</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                        {{-- <div x-show="filter == 'bulanan'">
                             <div class="card" style="padding: 10px; border-radius: 15px;">
                                 <div class="position-relative mb-2">
                                     <img src="{{ asset('/img/rumahkost1.jpg') }}" style="border-radius: 15px; width: 220px; height: 140px; object-fit: cover;">
@@ -1884,7 +2006,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

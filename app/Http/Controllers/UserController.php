@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Banner;
 use App\Models\KamarKost;
+use App\Models\Kategori;
+use App\Models\Pengguna;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -14,7 +17,9 @@ class UserController extends Controller
     }
     public function detailrumah()
     {
-        return view('user.detail.index');
+        $categories = Kategori::where('lokasi', 'Kategori Kost')->get();
+        $kamarkost = KamarKost::where('status_kost', 'Publish')->get();
+        return view('user.detail.index',compact('kamarkost', 'categories'));
     }
     public function menujudetail()
     {
@@ -62,12 +67,36 @@ class UserController extends Controller
     }
     public function profil()
     {
-        return view('user.profil');
+        $users = Auth::user();
+        return view('user.profil',compact('users'));
+    }
+    public function profiledit(Request $request) {
+        $request->validate([
+            'name' => 'nullable',
+            'gambar' => 'nullable',
+        ]);
+
+         // Proses gambar jika diunggah
+    if ($request->hasFile('gambar')) {
+        $gambarBarang = $request->file('gambar');
+        $namaFile = time().'.'.$gambarBarang->getClientOriginalExtension();
+        $gambarBarang->move(public_path('uploadkamar'), $namaFile);
+    } else {
+        $namaFile = ''; // Tetapkan string kosong jika tidak ada gambar yang diunggah
+    }
+
+    // Perbarui data pengguna
+    $users = Pengguna::find($request->id);
+    if ($users) {
+        $users->name = $request->name;
+        $users->gambar = $namaFile ?: $users->gambar; // Gunakan gambar baru jika diunggah, jika tidak, gunakan gambar yang ada
+        $users->save();
+    }
+
+    return back();
     }
     public function favorit()
     {
         return view('user.kamarfavorit');
     }
-
-
 }

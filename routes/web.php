@@ -12,6 +12,7 @@ use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PemilikTabelControlller;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\TransaksiController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,15 +30,33 @@ Route::get('/', function () {
 });
 
 //user controller
+// Route::get('/user/kamar', [UserController::class, 'kamar'])->name('kamar');
+// Route::get('/user/riwayat', [UserController::class, 'riwayat'])->name('riwayat');
+// Route::get('/user/profil', [UserController::class, 'profil'])->name('profil');
+// Route::get('/user/kerusakan', [UserController::class, 'kerusakan'])->name('kerusakan');
+// Route::get('/user/kehilangan', [UserController::class, 'kehilangan'])->name('kehilangan');
+// Route::get('/user/home', [UserController::class, 'detail'])->name('detail');
+// Route::get('/user/detail/{id}', [UserController::class, 'detailrumah'])->name('detailrumah');
+// Route::get('/user/transaksi', [UserController::class, 'transaksi'])->name('transaksi');
+// Route::get('/user/konfirmasitransaksi', [UserController::class, 'konfirmasitransaksi'])->name('konfirmasitransaksi');
+
+//user controller percobaan
+Route::group(['middleware' => 'auth'], function () {
 Route::get('/user/kamar', [UserController::class, 'kamar'])->name('kamar');
 Route::get('/user/riwayat', [UserController::class, 'riwayat'])->name('riwayat');
 Route::get('/user/profil', [UserController::class, 'profil'])->name('profil');
+Route::post('/user/profil/edit', [UserController::class, 'profiledit'])->name('user.profil');
 Route::get('/user/kerusakan', [UserController::class, 'kerusakan'])->name('kerusakan');
 Route::get('/user/kehilangan', [UserController::class, 'kehilangan'])->name('kehilangan');
 Route::get('/user/home', [UserController::class, 'detail'])->name('detail');
-Route::get('/user/detail', [UserController::class, 'detailrumah'])->name('detailrumah');
+Route::get('/user/detail/{id}', [UserController::class, 'detailrumah'])->name('detailrumah');
 Route::get('/user/transaksi', [UserController::class, 'transaksi'])->name('transaksi');
 Route::get('/user/konfirmasitransaksi', [UserController::class, 'konfirmasitransaksi'])->name('konfirmasitransaksi');
+Route::get('/logout', function() {
+    Auth::logout();
+    return redirect('/login');
+})->name('logout');
+});
 
 //pemilik controller
 Route::get('/pemilik/home', [PemilikController::class, 'home'])->name('home');

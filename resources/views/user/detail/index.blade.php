@@ -275,33 +275,37 @@
     <section class="splide new-2" aria-label="Splide Basic HTML Example">
         <div class="splide__track">
             <ul class="splide__list">
-                <li class="splide__slide">
-                    <img src="{{ asset('img/kostsurabaya6.jpg') }}" style="height: 270px; position: relative; object-fit: cover;border-radius: 0px;" class="w-100">
-                </li>
-                <li class="splide__slide">
+                @foreach ($kamarkost as $item)
+                    <li class="splide__slide">
+                        <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" style="height: 270px; position: relative; object-fit: cover; border-radius: 0px;" class="w-100">
+                    </li>
+                @endforeach
+                {{-- <li class="splide__slide">
                     <img src="{{ asset('img/kostsurabaya7.jpg') }}" style="height: 270px; position: relative; object-fit: cover;border-radius: 0px;" class="w-100">
                 </li>
                 <li class="splide__slide">
                     <img src="{{ asset('img/kostsurabaya8.jpg') }}" style="height: 270px; position: relative; object-fit: cover;border-radius: 0px;" class="w-100">
-                </li>
+                </li> --}}
             </ul>
         </div>
     </section>
     <div class="container">
         <!-- Judul kamar -->
         <div class="col-7 text-start mt-2">
-            <h6 class="fw-bold" style="font-size: 18px; color: #1e1e1ee5">Kamar Kost Putra</h6>
+            @foreach ($categories as $category)
+                <h6 class="fw-semibold" style="font-size: 18px; color: #1e1e1ee5">{{ $item->kategori->kategori }}</h6>
+            @endforeach
         </div>
         <div class="row">
             <div class="col-9 text-start">
-                <p class="text-secondary" style="margin-top: -8px; font-size: 12px;">Ukuran Kamar Kostnya 3 x 4 Meter</p>
+                <p class="text-secondary" style="margin-top: -8px; font-size: 12px;">Ukuran Kamar Kostnya {{ $item->ukuran_kost }}</p>
             </div>
         </div>
         <!-- end Judul kamar -->
         <!-- harga kamar -->
         <div class="row" style="margin-top: -8px; margin-bottom: 6px;">
             <div class="col-6 text-start">
-                <h6 class="fw-bold" style="font-size: 22px; color: rgba(128, 0, 128, 0.9); font-family: Poppins;">Rp. 2.000.000</h6>
+                <h6 class="fw-bold" style="font-size: 22px; color: rgba(128, 0, 128, 0.9); font-family: Poppins;">Rp. {{ $item->harga_kost }}</h6>
             </div>
             <div class="col-6" style="margin-top: 12px; margin-left: -26px;">
                 <p class="text-danger" style="margin-top: -8px; font-size: 10px; font-style: italic; font-family: Ubuntu;">(Tidak Termasuk Listrik) <i class="bi bi-info-circle" data-bs-toggle="modal" data-bs-target="#exampleModal" style="color: #000000; margin-left: 4px; font-size: 12px;"></i></p>
@@ -663,7 +667,7 @@
         splide.mount();
 
         var splide = new Splide('.splide.new-2', {
-            type: 'loop',
+            // type: 'loop',
             autoplay: true,
             lazyLoad: 'nearby',
             arrows: false,

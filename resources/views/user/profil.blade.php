@@ -91,49 +91,53 @@
     <section class="position-relative">
         <section class="header">
             <div class="col-12 text-center">
-                <img id="profileImage" src="{{ asset('img/avatar.png') }}" style="margin-top: 50px; width: 90px; height: 90px; border: 1px solid white; border-radius: 50%; position: relative;">
-                <h3 class="fw-medium" style="font-size: 18px; color: white; margin-top: 16px;">Muhammad Ravanelo Akhtar</h3>
-                <button class="btn-status">Pengunjung</button>
+                <img id="profileImage" src="{{ asset($users->gambar ? 'uploadkamar/' . $users->gambar : '/img/customer1.jpg') }}" style="margin-top: 50px; width: 90px; height: 90px; border: 1px solid white; border-radius: 50%; position: relative;">
+                <h3 class="fw-medium" style="font-size: 18px; color: white; margin-top: 16px;">{{ $users->name }}</h3>
+                <button class="btn-status">{{ $users->status }}</button>
             </div>
         </section>
     </section>
     <div class="container px-4">
         <section class="card-list">
-            <button class="btn-edit-profil" data-bs-toggle="modal" data-bs-target="#editprofil"><i class="bi bi-pencil-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: #9370DB;"></i>Profil<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 12.8rem;"></i></button>
+            <button class="btn-edit-profil" data-bs-toggle="modal" data-bs-target="#editprofil-{{ $users->id }}"><i class="bi bi-pencil-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: #9370DB;"></i>Profil<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 12.8rem;"></i></button>
             <!-- Modal -->
-            <div class="modal fade" id="editprofil" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="editprofil-{{ $users->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content" style="border: 1px solid #800080; border-radius: 20px; margin-top: 10rem;">
                         <div class="modal-body">
                             <div class="container">
-                                <div class="row">
-                                    <div class="col-12 text-center">
-                                        <h3 class="fw-semibold" style="font-size: 16px;">Edit Profil</h3>
-                                    </div>
-                                    <div class="col-12 text-center">
-                                        <div class="position-relative">
-                                            <img id="frame" src="{{ asset('img/avatar.png') }}" style="width: 100px; height: 100px; border-radius: 100px; cursor: pointer;" onclick="deleteImage()">
-                                            <label for="uploadfoto" class="label-upload">
-                                                <div class="box-icon">
-                                                    <div class="bg-kategori rounded-5">
-                                                        <i id="uploadIcon" class="bi bi-cloud-upload" style="position: absolute; font-size: 30px; color: white; top: 30px; left: 126px;"></i>
+                                <form action="/user/profil/edit" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{ $users->id }}">
+                                    <div class="row">
+                                        <div class="col-12 text-center">
+                                            <h3 class="fw-semibold" style="font-size: 16px;">Edit Profil</h3>
+                                        </div>
+                                        <div class="col-12 text-center">
+                                            <div class="position-relative">
+                                                <img id="frame" src="{{ asset($users->gambar ? 'uploadkamar/' . $users->gambar : '/img/customer1.jpg') }}" style="width: 100px; height: 100px; border-radius: 100px; cursor: pointer;" onclick="deleteImage()">
+                                                <label for="uploadfoto" class="label-upload">
+                                                    <div class="box-icon">
+                                                        <div class="bg-kategori rounded-5">
+                                                            <i id="uploadIcon" class="bi bi-cloud-upload" style="position: absolute; font-size: 30px; color: white; top: 30px; left: 126px;"></i>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <input type="file" onchange="preview()" hidden id="uploadfoto" accept="image/*">
-                                            </label>
+                                                    <input type="file" onchange="preview()" hidden id="uploadfoto" accept="image/*">
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 text-center mt-2">
+                                            <p class="fw-medium" style="font-size: 14px;">Upload Foto Profil</p>
+                                        </div>
+                                        <div class="col-12 text-start">
+                                            <label for="name" class="fw-medium" style="font-size: 14px;">Nama Barumu</label>
+                                            <input type="text" class="input-nama" id="name" name="name" value="{{ $users->name }}" placeholder="Ketik Nama Barumu..." style="font-size: 14px;">
+                                        </div>
+                                        <div class="col-12 text-center mt-3">
+                                            <button type="submit" class="btn btn-secondary" style="color: white; border: none;">Simpan</button>
                                         </div>
                                     </div>
-                                    <div class="col-12 text-center mt-2">
-                                        <p class="fw-medium" style="font-size: 14px;">Upload Foto Profil</p>
-                                    </div>
-                                    <div class="col-12 text-start">
-                                        <label for="name" class="fw-medium" style="font-size: 14px;">Nama Barumu</label>
-                                        <input type="text" class="input-nama" id="name-user" value="Muhammad Ravanelo Akhtar" placeholder="Ketik Nama Barumu..." oninput="checkInputs()" style="font-size: 14px;">
-                                    </div>
-                                    <div class="col-12 text-center mt-3">
-                                        <button id="saveButton" class="btn btn-secondary" style="color: white; border: none;" disabled>Simpan</button>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>

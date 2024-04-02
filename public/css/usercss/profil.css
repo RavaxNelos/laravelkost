@@ -203,9 +203,10 @@ button.btn-wa {
 }
 
 button.btn-status {
+    padding-bottom: 4px;
     margin-top: -20px;
-    width: 110px;
-    height: 30px;
+    width: auto;
+    height: 34px;
     border: 1px solid #ffffff;
     color: #ffffff;
     font-size: 14px;
