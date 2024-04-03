@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Banner;
 use App\Models\KamarKost;
 use App\Models\Kategori;
+use App\Models\Pembayaran;
 use App\Models\Pengguna;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -15,10 +17,10 @@ class UserController extends Controller
     {
         return view('user.home');
     }
-    public function detailrumah()
+    public function detailrumah(string $id)
     {
         $categories = Kategori::where('lokasi', 'Kategori Kost')->get();
-        $kamarkost = KamarKost::where('status_kost', 'Publish')->get();
+        $kamarkost = KamarKost::find($id)->get();
         return view('user.detail.index',compact('kamarkost', 'categories'));
     }
     public function menujudetail()
@@ -34,7 +36,9 @@ class UserController extends Controller
     }
     public function transaksi()
     {
-        return view('user.transaksi.index');
+        $pembayaran = Pembayaran::orderBy('created_at', 'desc')->get();
+        return view('user.transaksi.index',compact('pembayaran')
+    );
     }
     public function konfirmasitransaksi()
     {
@@ -93,7 +97,51 @@ class UserController extends Controller
         $users->save();
     }
 
-    return back();
+    return back()->with('success', "Profil Berhasil Dirubah");
+    }
+
+    public function akunedit(Request $request) {
+        $request->validate([
+            'email' => 'nullable',
+            'nomorhp' => 'nullable',
+        ]);
+
+        $users = Pengguna::find($request->id);
+        $users->email = $request->email;
+        $users->nomorhp = $request->nomorhp;
+        $users->save();
+
+        return back()->with('success', "Akun Berhasil Dirubah");
+    }
+
+    public function sandiedit(Request $request) {
+        $request->validate([
+            'password' => 'required',
+            'new_password' => 'required',
+        ]);
+
+        $this->validate($request, [
+            'password' => 'required|string',
+            'new_password' => 'required|confirmed|min:8|string'
+        ]);
+        $auth = Auth::user();
+
+        // The passwords matches
+        if (!Hash::check($request->get('password'), $auth->password))
+        {
+            return back()->with('error', "Password Tidak Sama");
+        }
+
+        // Current Password And New Password Same
+        if (strcmp($request->get('password'), $request->new_password) == 0)
+        {
+            return redirect()->back()->with("error", "Sandi Baru Tidak Sama Dengan Password Kamu.");
+        }
+
+        $users = Pengguna::find($auth->id);
+        $users->password = Hash::make($request->new_password);
+        $users->save();
+        return back()->with('success', "Password Berhasil Dirubah");
     }
     public function favorit()
     {

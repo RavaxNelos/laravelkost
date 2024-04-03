@@ -15,7 +15,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style>
         #jam-container {
@@ -69,7 +71,7 @@
         }
 
         * {
-            font-family: 'Ubuntu', sans-serif;
+            font-family: 'Ubuntu';
             box-sizing: border-box;
         }
 
@@ -275,11 +277,9 @@
     <section class="splide new-2" aria-label="Splide Basic HTML Example">
         <div class="splide__track">
             <ul class="splide__list">
-                @foreach ($kamarkost as $item)
-                    <li class="splide__slide">
-                        <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" style="height: 270px; position: relative; object-fit: cover; border-radius: 0px;" class="w-100">
-                    </li>
-                @endforeach
+                <li class="splide__slide">
+                    <img src="{{ asset('uploadkamar/' . $kamarkost->gambar_kost) }}" style="height: 270px; position: relative; object-fit: cover; border-radius: 0px;" class="w-100">
+                </li>
                 {{-- <li class="splide__slide">
                     <img src="{{ asset('img/kostsurabaya7.jpg') }}" style="height: 270px; position: relative; object-fit: cover;border-radius: 0px;" class="w-100">
                 </li>
@@ -292,24 +292,22 @@
     <div class="container">
         <!-- Judul kamar -->
         <div class="col-7 text-start mt-2">
-            @foreach ($categories as $category)
-                <h6 class="fw-semibold" style="font-size: 18px; color: #1e1e1ee5">{{ $item->kategori->kategori }}</h6>
-            @endforeach
+            <h6 class="fw-semibold" style="font-size: 18px; color: #1e1e1ee5">{{ $kamarkost->kategori->kategori }}</h6>
         </div>
         <div class="row">
             <div class="col-9 text-start">
-                <p class="text-secondary" style="margin-top: -8px; font-size: 12px;">Ukuran Kamar Kostnya {{ $item->ukuran_kost }}</p>
+                <p class="text-secondary" style="margin-top: -8px; font-size: 12px;">Ukuran Kamar Kostnya {{ $kamarkost->ukuran_kost }}</p>
             </div>
         </div>
         <!-- end Judul kamar -->
         <!-- harga kamar -->
         <div class="row" style="margin-top: -8px; margin-bottom: 6px;">
             <div class="col-6 text-start">
-                <h6 class="fw-bold" style="font-size: 22px; color: rgba(128, 0, 128, 0.9); font-family: Poppins;">Rp. {{ $item->harga_kost }}</h6>
+                <h6 class="fw-bold" style="font-size: 22px; color: rgba(128, 0, 128, 0.9); font-family: Ubuntu;">Rp. {{ $kamarkost->harga_kost }}</h6>
             </div>
-            <div class="col-6" style="margin-top: 12px; margin-left: -26px;">
+            {{-- <div class="col-6" style="margin-top: 12px; margin-left: -26px;">
                 <p class="text-danger" style="margin-top: -8px; font-size: 10px; font-style: italic; font-family: Ubuntu;">(Tidak Termasuk Listrik) <i class="bi bi-info-circle" data-bs-toggle="modal" data-bs-target="#exampleModal" style="color: #000000; margin-left: 4px; font-size: 12px;"></i></p>
-            </div>
+            </div> --}}
         </div>
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -323,7 +321,7 @@
         </div>
         <!-- end harga kamar -->
         <div class="col-12 text-start" style="margin-top: -10px;">
-            <h6 class="fw-semibold" style="font-size: 18px; font-family: Poppins;">Fasilitas</h6>
+            <h6 class="fw-semibold" style="font-size: 18px; font-family: Ubuntu;">Fasilitas</h6>
         </div>
         <section class="splide new" aria-label="Splide Basic HTML Example" style="margin-top: -36px">
             <div class="splide__track">
@@ -396,7 +394,7 @@
             </div>
         </section>
         <div class="col-12">
-            <h6 class="fw-semibold" style="font-family: Poppins;">Tentang Kamar Kost</h6>
+            <h6 class="fw-semibold" style="font-family: Ubuntu;">Tentang Kamar Kost</h6>
             <p class="text-secondary" style="font-size: 12px;">
                 Besar ukuran kamar kostnya 3 x 4 Meter. Kamar kost Putra ini juga memiliki fasilitas berbagai macam seperti ac, toilet, dan lain-lain<span class="ellipsis">...</span>
                 <span class="additional-text">. Beserta ada sebuah kamar mandi vip ynag di dalamnya terdapat sebuah alat untuk mandi</span>
@@ -501,7 +499,7 @@
             </div>
         </div>
         <div class="col-12">
-            <h6 class="fw-semibold" style="margin-bottom: 10px; font-family: Poppins;">Fasilitas</h6>
+            <h6 class="fw-semibold" style="margin-bottom: 10px; font-family: Ubuntu;">Fasilitas</h6>
             <section class="splide new-1" aria-label="Splide Basic HTML Example">
                 <div class="splide__track">
                     <ul class="splide__list">

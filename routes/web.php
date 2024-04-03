@@ -46,6 +46,8 @@ Route::get('/user/kamar', [UserController::class, 'kamar'])->name('kamar');
 Route::get('/user/riwayat', [UserController::class, 'riwayat'])->name('riwayat');
 Route::get('/user/profil', [UserController::class, 'profil'])->name('profil');
 Route::post('/user/profil/edit', [UserController::class, 'profiledit'])->name('user.profil');
+Route::post('/user/akun/edit', [UserController::class, 'akunedit']);
+Route::post('/user/sandi/edit', [UserController::class, 'sandiedit']);
 Route::get('/user/kerusakan', [UserController::class, 'kerusakan'])->name('kerusakan');
 Route::get('/user/kehilangan', [UserController::class, 'kehilangan'])->name('kehilangan');
 Route::get('/user/home', [UserController::class, 'detail'])->name('detail');

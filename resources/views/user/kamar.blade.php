@@ -147,7 +147,7 @@
         <div class="cardsidebar" id="cardContent">
             <a href="" class="jadwal fw-medium"><i class="bi bi-calendar-date-fill"></i></i> Jadwal Pembayaran</a>
             <hr class="garispemisah" style="border-top: 1px solid #ccc; margin-top: 40px;">
-            <a href="" class="lapor fw-medium"><i class="bi bi-exclamation-circle-fill"></i> Laporkan Kerusakan</a>
+            <a href="{{ asset('/user/kerusakan') }}" class="lapor fw-medium"><i class="bi bi-exclamation-circle-fill"></i> Laporkan Kerusakan</a>
         </div>
         <div class="row">
             <div class="col-3 text-start">

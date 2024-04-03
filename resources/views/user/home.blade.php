@@ -1037,37 +1037,36 @@
             </div>
             <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-top: -10px; margin-bottom: 2rem;" id="kategori-sewa-populer">
                 <!-- Kamar Populer -->
-                @if ($kamarkost->where('lokasi_kost', 'Kamar Kost Populer')->isEmpty())
-                    <div class="custom-card" style="width: 100%; height: 116px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
-                        <div class="position-relative mb-2">
-                            <div class="text-center">
-                                <img src="{{ asset('img/house.png') }}" width="50">
-                                <p class="mt-3 fw-normal" style="font-size: 12px;">Maaf, kamar kost saat ini masih kosong.</p>
-                            </div>
-                        </div>
-                    </div>
-                @else
-                    @foreach ($kamarkost->where('lokasi_kost', 'Kamar Kost Populer') as $item)
-                        <div x-show="filter == '{{ strtolower($item->tipe_kost) }}'">
-                            <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
-                                <div class="position-relative mb-2">
-                                    <div class="row">
-                                        <div class="col-4 mb-0">
-                                            <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" style="border-radius: 15px; width: 90px; height: 90px; object-fit: cover;">
-                                        </div>
-                                        <div class="col-4" style="width: 150px; margin-left: 16px;">
-                                            <h6 style="font-size: 16px; margin-top: 10px;" class="fw-bold">{{ $item->kategori->kategori }}</h6>
-                                            <p style="margin-top: -5px; font-size: 12px; color: #6a6666fa;" class="mb-2 fw-normal">Uk. Kamar {{ $item->ukuran_kost }}</p>
-                                            <button class="btn-kost-populer" style="width: 125px; height: 33px; padding: 4px;">
-                                                <p>Cek</p>
-                                            </button>
-                                        </div>
+                @foreach ($kamarkost->where('lokasi_kost', 'Kamar Kost Populer') as $item)
+                    <div x-show="filter == '{{ strtolower($item->tipe_kost) }}'">
+                        <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
+                            <div class="position-relative mb-2">
+                                <div class="row">
+                                    <div class="col-4 mb-0">
+                                        <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" style="border-radius: 15px; width: 90px; height: 90px; object-fit: cover;">
+                                    </div>
+                                    <div class="col-4" style="width: 150px; margin-left: 16px;">
+                                        <h6 style="font-size: 16px; margin-top: 10px;" class="fw-bold">{{ $item->kategori->kategori }}</h6>
+                                        <p style="margin-top: -5px; font-size: 12px; color: #6a6666fa;" class="mb-2 fw-normal">Uk. Kamar {{ $item->ukuran_kost }}</p>
+                                        <button class="btn-kost-populer" style="width: 125px; height: 33px; padding: 4px;">
+                                            <p>Cek</p>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
-                @endif
+                    </div>
+                @endforeach
+                {{-- @if ($kamarkost->where('lokasi_kost', 'Kamar Kost Populer')->isEmpty())
+                            <div class="custom-card" style="width: 100%; height: 116px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
+                                <div class="position-relative mb-2">
+                                    <div class="text-center">
+                                        <img src="{{ asset('img/house.png') }}" width="50">
+                                        <p class="mt-3 fw-normal" style="font-size: 12px;">Maaf, kamar kost saat ini masih kosong.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        @else --}}
                 {{-- <div x-show="filter == 'bulanan'">
                     <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
                         <div class="position-relative mb-2">

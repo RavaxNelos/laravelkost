@@ -165,7 +165,7 @@
                 <h3 class="fw-normal text-secondary" style="font-size: 14px;">Nama User</h3>
             </div>
             <div class="col-7 text-end">
-                <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">Muhammad Ravanelo</h3>
+                <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">Muhammad Ravanelo Akhtar</h3>
             </div>
         </div>
         <div class="row">

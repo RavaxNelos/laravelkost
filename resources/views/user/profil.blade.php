@@ -113,7 +113,7 @@
                                         <div class="col-12 text-center">
                                             <h3 class="fw-semibold" style="font-size: 16px;">Edit Profil</h3>
                                         </div>
-                                        <div class="col-12 text-center">
+                                        <div class="col-12 text-center mt-2">
                                             <div class="position-relative">
                                                 <img id="frame" src="{{ asset($users->gambar ? 'uploadkamar/' . $users->gambar : '/img/customer1.jpg') }}" style="width: 100px; height: 100px; border-radius: 100px; cursor: pointer;" onclick="deleteImage()">
                                                 <label for="uploadfoto" class="label-upload">
@@ -122,16 +122,16 @@
                                                             <i id="uploadIcon" class="bi bi-cloud-upload" style="position: absolute; font-size: 30px; color: white; top: 30px; left: 126px;"></i>
                                                         </div>
                                                     </div>
-                                                    <input type="file" onchange="preview()" hidden id="uploadfoto" accept="image/*">
+                                                    <input type="file" onchange="preview()" hidden id="uploadfoto" name="gambar" accept="image/*">
                                                 </label>
                                             </div>
                                         </div>
                                         <div class="col-12 text-center mt-2">
                                             <p class="fw-medium" style="font-size: 14px;">Upload Foto Profil</p>
                                         </div>
-                                        <div class="col-12 text-start">
+                                        <div class="col-12 text-start" style="margin-top: -10px;">
                                             <label for="name" class="fw-medium" style="font-size: 14px;">Nama Barumu</label>
-                                            <input type="text" class="input-nama" id="name" name="name" value="{{ $users->name }}" placeholder="Ketik Nama Barumu..." style="font-size: 14px;">
+                                            <input type="text" class="input-nama" maxlength="24" id="name" name="name" value="{{ $users->name }}" placeholder="Ketik Nama Barumu..." style="font-size: 14px;">
                                         </div>
                                         <div class="col-12 text-center mt-3">
                                             <button type="submit" class="btn btn-secondary" style="color: white; border: none;">Simpan</button>
@@ -143,32 +143,36 @@
                     </div>
                 </div>
             </div>
-            <button class="btn-edit-akun" data-bs-toggle="modal" data-bs-target="#editakun"><i class="bi bi-person-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: #9370DB;"></i>Akun<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 12.8rem;"></i></button>
+            <button class="btn-edit-akun" data-bs-toggle="modal" data-bs-target="#editakun-{{ $users->id }}"><i class="bi bi-person-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: #9370DB;"></i>Akun<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 12.8rem;"></i></button>
             <!-- Modal -->
-            <div class="modal fade" id="editakun" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="editakun-{{ $users->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content" style="border: 1px solid #800080; border-radius: 20px; margin-top: 10rem;">
                         <div class="modal-body">
                             <div class="container">
-                                <div class="row">
-                                    <div class="col-12 text-center">
-                                        <img src="{{ asset('img/user.png') }}" width="100" height="100">
+                                <form action="/user/akun/edit" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{ $users->id }}">
+                                    <div class="row">
+                                        <div class="col-12 text-center">
+                                            <img src="{{ asset('img/user.png') }}" width="100" height="100">
+                                        </div>
+                                        <div class="col-12 text-center mt-2">
+                                            <h3 class="fw-semibold" style="font-size: 16px;">Edit Akun</h3>
+                                        </div>
+                                        <div class="col-12 text-start">
+                                            <label for="name" class="fw-medium" style="font-size: 14px;">Email Baru</label>
+                                            <input type="email" class="input-email" maxlength="30" id="email" name="email" value="{{ $users->email }}" placeholder="Ketik Email Barumu..." oninput="checkInputsAkun()" style="font-size: 14px;">
+                                        </div>
+                                        <div class="col-12 text-start mt-2">
+                                            <label for="name" class="fw-medium" style="font-size: 14px;">No. Tlpn Baru</label>
+                                            <input type="number" class="input-nohp" id="nomorhp" name="nomorhp" value="{{ $users->nomorhp }}" placeholder="Ketik Nomor Tlpn Barumu..." oninput="checkInputsAkun()" style="font-size: 14px;">
+                                        </div>
+                                        <div class="col-12 text-center mt-3">
+                                            <button type="submit" class="btn btn-secondary" style="color: white; border: none;">Simpan</button>
+                                        </div>
                                     </div>
-                                    <div class="col-12 text-center mt-2">
-                                        <h3 class="fw-semibold" style="font-size: 16px;">Edit Akun</h3>
-                                    </div>
-                                    <div class="col-12 text-start">
-                                        <label for="name" class="fw-medium" style="font-size: 14px;">Email Baru</label>
-                                        <input type="email" class="input-email" id="email" value="muhammadravaneloakhtar@gmail.com" placeholder="Ketik Email Barumu..." oninput="checkInputsAkun()" style="font-size: 14px;">
-                                    </div>
-                                    <div class="col-12 text-start mt-2">
-                                        <label for="name" class="fw-medium" style="font-size: 14px;">No. Tlpn Baru</label>
-                                        <input type="number" class="input-nohp" id="no_hp" value="082332724688" placeholder="Ketik Nomor Tlpn Barumu..." oninput="checkInputsAkun()" style="font-size: 14px;">
-                                    </div>
-                                    <div class="col-12 text-center mt-3">
-                                        <button id="simpanAkunButton" class="btn btn-secondary" style="color: white; border: none;" disabled>Simpan</button>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -203,42 +207,46 @@
                     </div>
                 </div>
             </div>
-            <button class="btn-edit-akun" data-bs-toggle="modal" data-bs-target="#editsandi"><i class="bi bi-lock-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: #9370DB;"></i>Edit Kata Sandi<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 8.4rem;"></i></button>
+            <button class="btn-edit-akun" data-bs-toggle="modal" data-bs-target="#editsandi-{{ $users->id }}"><i class="bi bi-lock-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: #9370DB;"></i>Edit Kata Sandi<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 8.4rem;"></i></button>
             <!-- Modal -->
-            <div class="modal fade" id="editsandi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="editsandi-{{ $users->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content" style="border: 1px solid #800080; border-radius: 20px; margin-top: 6rem;">
                         <div class="modal-body">
                             <div class="container">
-                                <div class="row">
-                                    <div class="col-12 text-center">
-                                        <img src="{{ asset('img/security.png') }}" width="100" height="100">
+                                <form action="/user/sandi/edit" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{ $users->id }}">
+                                    <div class="row">
+                                        <div class="col-12 text-center">
+                                            <img src="{{ asset('img/security.png') }}" width="100" height="100">
+                                        </div>
+                                        <div class="col-12 text-center mt-2">
+                                            <h3 class="fw-semibold" style="font-size: 16px;">Ubah Kata Sandi</h3>
+                                        </div>
+                                        <div class="col-12 text-start">
+                                            <label for="name" class="fw-medium" style="font-size: 14px;">Kata Sandi Lama <span class="text-danger">*</span></label>
+                                            <input type="text" class="input-password" id="password" name="password" placeholder="Ketik Kata Sandi Lamamu..." style="font-size: 14px;">
+                                            <i class="bi bi-eye" id="togglePasswordLama" onclick="togglePassword('katasandilama')" style="position: absolute; font-size: 20px; right: 40px; top: 180px; cursor: pointer;"></i>
+                                        </div>
+                                        <div class="col-12 text-start mt-2">
+                                            <label for="name" class="fw-medium" style="font-size: 14px;">Kata Sandi Baru <span class="text-danger">*</span></label>
+                                            <input type="password" class="input-password" id="new_password" name="new_password" placeholder="Ketik Kata Sandi Barumu..." style="font-size: 14px;">
+                                            <i class="bi bi-eye-slash" id="togglePasswordBaru" onclick="togglePassword('katasandibaru')" style="position: absolute; font-size: 20px; right: 40px; top: 252px; cursor: pointer;"></i>
+                                        </div>
+                                        <div class="col-12 text-start mt-2">
+                                            <label for="name" class="fw-medium" style="font-size: 14px;">Konfirmasi Kata Sandi Baru <span class="text-danger">*</span></label>
+                                            <input type="password" class="input-password" id="konfirmasikatasandibaru" placeholder="Ketik Ulang Kata Sandi Barumu..." style="font-size: 14px;">
+                                            <i class="bi bi-eye-slash" id="toggleKonfirmasiBaru" onclick="togglePassword('konfirmasikatasandibaru')" style="position: absolute; font-size: 20px; right: 40px; top: 324px; cursor: pointer;"></i>
+                                        </div>
+                                        <div class="col-12 text-start">
+                                            <p class="fw-normal" style="font-size: 14px;">Lupa kata Sandi?<a href="#" style="font-style: italic; color: #9370DB; text-decoration: none; margin-left: 4px;">Klik Disini</a></p>
+                                        </div>
+                                        <div class="col-12 text-center mt-2">
+                                            <button type="submit" class="btn btn-secondary" style="color: white; border: none;">Simpan</button>
+                                        </div>
                                     </div>
-                                    <div class="col-12 text-center mt-2">
-                                        <h3 class="fw-semibold" style="font-size: 16px;">Ubah Kata Sandi</h3>
-                                    </div>
-                                    <div class="col-12 text-start">
-                                        <label for="name" class="fw-medium" style="font-size: 14px;">Kata Sandi Lama <span class="text-danger">*</span></label>
-                                        <input type="text" class="input-password" id="katasandilama" placeholder="Ketik Kata Sandi Lamamu..." oninput="checkInputsPassword()" style="font-size: 14px;">
-                                        <i class="bi bi-eye" id="togglePasswordLama" onclick="togglePassword('katasandilama')" style="position: absolute; font-size: 20px; right: 40px; top: 180px; cursor: pointer;"></i>
-                                    </div>
-                                    <div class="col-12 text-start mt-2">
-                                        <label for="name" class="fw-medium" style="font-size: 14px;">Kata Sandi Baru <span class="text-danger">*</span></label>
-                                        <input type="password" class="input-password" id="katasandibaru" placeholder="Ketik Kata Sandi Barumu..." oninput="checkInputsPassword()" style="font-size: 14px;">
-                                        <i class="bi bi-eye-slash" id="togglePasswordBaru" onclick="togglePassword('katasandibaru')" style="position: absolute; font-size: 20px; right: 40px; top: 252px; cursor: pointer;"></i>
-                                    </div>
-                                    <div class="col-12 text-start mt-2">
-                                        <label for="name" class="fw-medium" style="font-size: 14px;">Konfirmasi Kata Sandi Baru <span class="text-danger">*</span></label>
-                                        <input type="password" class="input-password" id="konfirmasikatasandibaru" placeholder="Ketik Ulang Kata Sandi Barumu..." oninput="checkInputsPassword()" style="font-size: 14px;">
-                                        <i class="bi bi-eye-slash" id="toggleKonfirmasiBaru" onclick="togglePassword('konfirmasikatasandibaru')" style="position: absolute; font-size: 20px; right: 40px; top: 324px; cursor: pointer;"></i>
-                                    </div>
-                                    <div class="col-12 text-start">
-                                        <p class="fw-normal" style="font-size: 14px;">Lupa kata Sandi?<a href="#" style="font-style: italic; color: #9370DB; text-decoration: none; margin-left: 4px;">Klik Disini</a></p>
-                                    </div>
-                                    <div class="col-12 text-center mt-2">
-                                        <button id="simpanPasswordButton" class="btn btn-secondary" style="color: white; border: none;" disabled>Simpan</button>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -279,6 +287,18 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (Session::has('success'))
+        <script>
+            Swal.fire({
+                title: 'Sukses!',
+                text: '{{ Session::get('success') }}',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 3000 // Waktu penampilan Sweet Alert (dalam milidetik)
+            });
+        </script>
+    @endif
     <script>
         function preview() {
             var frame = document.getElementById('frame');
@@ -301,48 +321,48 @@
             var uploadInput = document.getElementById('uploadfoto');
 
             // Kembalikan ke gambar semula dan tampilkan ikon upload
-            frame.src = "{{ asset('img/avatar.png') }}";
+            frame.src = "{{ asset($users->gambar ? 'uploadkamar/' . $users->gambar : '/img/customer1.jpg') }}";
             uploadIcon.style.display = 'block';
             uploadInput.value = ''; // Bersihkan nilai input file
             checkInputs();
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            var passwordLamaInput = document.getElementById('katasandilama');
-            var toggleLamaIcon = document.getElementById('togglePasswordLama');
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     var passwordLamaInput = document.getElementById('katasandilama');
+        //     var toggleLamaIcon = document.getElementById('togglePasswordLama');
 
-            var passwordBaruInput = document.getElementById('katasandibaru');
-            var toggleBaruIcon = document.getElementById('togglePasswordBaru');
+        //     var passwordBaruInput = document.getElementById('katasandibaru');
+        //     var toggleBaruIcon = document.getElementById('togglePasswordBaru');
 
-            var konfirmasiBaruInput = document.getElementById('konfirmasikatasandibaru');
-            var toggleKonfirmasiIcon = document.getElementById('toggleKonfirmasiBaru');
+        //     var konfirmasiBaruInput = document.getElementById('konfirmasikatasandibaru');
+        //     var toggleKonfirmasiIcon = document.getElementById('toggleKonfirmasiBaru');
 
-            // Fungsi untuk toggle password dan mengganti ikon
-            function togglePassword(input, toggleIcon) {
-                if (input.type === 'password') {
-                    input.type = 'text';
-                    toggleIcon.classList.remove('bi-eye-slash');
-                    toggleIcon.classList.add('bi-eye');
-                } else {
-                    input.type = 'password';
-                    toggleIcon.classList.remove('bi-eye');
-                    toggleIcon.classList.add('bi-eye-slash');
-                }
-            }
+        //     // Fungsi untuk toggle password dan mengganti ikon
+        //     function togglePassword(input, toggleIcon) {
+        //         if (input.type === 'password') {
+        //             input.type = 'text';
+        //             toggleIcon.classList.remove('bi-eye-slash');
+        //             toggleIcon.classList.add('bi-eye');
+        //         } else {
+        //             input.type = 'password';
+        //             toggleIcon.classList.remove('bi-eye');
+        //             toggleIcon.classList.add('bi-eye-slash');
+        //         }
+        //     }
 
-            // Menambahkan event listener untuk setiap input
-            toggleLamaIcon.addEventListener('click', function() {
-                togglePassword(passwordLamaInput, toggleLamaIcon);
-            });
+        //     // Menambahkan event listener untuk setiap input
+        //     toggleLamaIcon.addEventListener('click', function() {
+        //         togglePassword(passwordLamaInput, toggleLamaIcon);
+        //     });
 
-            toggleBaruIcon.addEventListener('click', function() {
-                togglePassword(passwordBaruInput, toggleBaruIcon);
-            });
+        //     toggleBaruIcon.addEventListener('click', function() {
+        //         togglePassword(passwordBaruInput, toggleBaruIcon);
+        //     });
 
-            toggleKonfirmasiIcon.addEventListener('click', function() {
-                togglePassword(konfirmasiBaruInput, toggleKonfirmasiIcon);
-            });
-        });
+        //     toggleKonfirmasiIcon.addEventListener('click', function() {
+        //         togglePassword(konfirmasiBaruInput, toggleKonfirmasiIcon);
+        //     });
+        // });
         // edit profil
         function checkInputs() {
             var nameInput = document.getElementById('name-user').value;
@@ -376,20 +396,27 @@
             checkInputsAkun();
         }
 
-        //edit sandi
-        function checkInputsPassword() {
-            var katasandilamaInput = document.getElementById('katasandilama').value;
-            var katasandibaruInput = document.getElementById('katasandibaru').value;
-            var konfirmasikatasandibaruInput = document.getElementById('konfirmasikatasandibaru').value;
+        // //edit sandi
+        // function checkInputsPassword() {
+        //     var katasandilamaInput = document.getElementById('katasandilama').value;
+        //     var katasandibaruInput = document.getElementById('katasandibaru').value;
+        //     var konfirmasikatasandibaruInput = document.getElementById('konfirmasikatasandibaru').value;
 
-            // Jika semua input diisi, aktifkan tombol Simpan
-            if (katasandilamaInput.trim() !== '' && katasandibaruInput.trim() !== '' && konfirmasikatasandibaruInput.trim() !== '') {
-                document.getElementById('simpanPasswordButton').removeAttribute('disabled');
-            } else {
-                // Jika salah satu input kosong, nonaktifkan tombol Simpan
-                document.getElementById('simpanPasswordButton').setAttribute('disabled', 'disabled');
+        //     // Jika semua input diisi, aktifkan tombol Simpan
+        //     if (katasandilamaInput.trim() !== '' && katasandibaruInput.trim() !== '' && konfirmasikatasandibaruInput.trim() !== '') {
+        //         document.getElementById('simpanPasswordButton').removeAttribute('disabled');
+        //     } else {
+        //         // Jika salah satu input kosong, nonaktifkan tombol Simpan
+        //         document.getElementById('simpanPasswordButton').setAttribute('disabled', 'disabled');
+        //     }
+        // }
+
+        // Batasan jumlah digit
+        document.getElementById('nomorhp').addEventListener('input', function() {
+            if (this.value.length > 11) {
+                this.value = this.value.slice(0, 11); // Menyimpan hanya 10 digit pertama
             }
-        }
+        });
     </script>
 </body>
 

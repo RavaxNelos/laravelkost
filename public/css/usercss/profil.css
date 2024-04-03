@@ -203,13 +203,15 @@ button.btn-wa {
 }
 
 button.btn-status {
+    padding-left: 6px;
+    padding-right: 6px;
     padding-bottom: 4px;
     margin-top: -20px;
     width: auto;
-    height: 34px;
+    height: 24px;
     border: 1px solid #ffffff;
     color: #ffffff;
-    font-size: 14px;
+    font-size: 12px;
     border-radius: 4px;
     background: transparent;
 }

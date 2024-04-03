@@ -23,6 +23,9 @@ return new class extends Migration
             $table->string('status_kost');
             $table->string('fasilitas_kost');
             $table->string('lokasi_kost');
+            $table->string('air_kost');
+            $table->string('listrik_kost');
+            $table->string('alamat_lengkap_kost');
             $table->timestamps();
         });
     }

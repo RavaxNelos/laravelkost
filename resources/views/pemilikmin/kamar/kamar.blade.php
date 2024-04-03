@@ -123,7 +123,7 @@
             </div>
         </div>
         <div class="modal fade" id="tambahkamar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable" role="document" x-data="{ gambar: '', kategori: '', harga: '', alamat: '', ukuran: '', tipe: '', status: '', fasilitas: '', lokasi: '' }">
+            <div class="modal-dialog modal-dialog-scrollable" role="document" x-data="{ gambar: '', kategori: '', harga: '', alamat: '', ukuran: '', tipe: '', status: '', fasilitas: '', lokasi: '', air: '', listik: '', alamatlengkap: '' }">
                 <div class="modal-content" style="width: 100%; height: 540px;">
                     <div class="modal-header" style=" height: 70px;">
                         <h1 class="modal-title fs-5 fw-semibold" id="exampleModalLabel" style="margin-top: -24px;">Tambah Kamar</h1>
@@ -264,11 +264,52 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="col-md-6">
+                                            <label class="mt-2" for="Air">Air Kost <span class="text-danger">*</span></label>
+                                            <div class="mt-1">
+                                                <div class="input-group">
+                                                    <select class="form-select" id="air_kost" name="air_kost" value="{{ old('air_kost') }}" x-model="air" required>
+                                                        <option selected>Pilih Air Kost...</option>
+                                                        <option value="Pdam">Pdam</option>
+                                                        <option value="Sumur">Sumur</option>
+                                                        @error('air_kost')
+                                                            {{ $message }}
+                                                        @enderror
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="mt-2" for="Listrik">Listrik Kost <span class="text-danger">*</span></label>
+                                            <div class="mt-1">
+                                                <div class="input-group">
+                                                    <select class="form-select" id="listrik_kost" name="listrik_kost" value="{{ old('listrik_kost') }}" x-model="listrik" required>
+                                                        <option selected>Pilih listrik Kost...</option>
+                                                        <option value="Token">Token</option>
+                                                        <option value="Pln">Pln</option>
+                                                        @error('air_kost')
+                                                            {{ $message }}
+                                                        @enderror
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label class="mt-2" for="Alamat Lengkap">Alamat Lengkap Kost <span class="text-danger">*</span></label>
+                                            <div class="mt-1">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" maxlength="30" name="alamat_lengkap_kost" id="alamat_lengkap_kost" placeholder="Masukkan Alamat Lengkap Kost" value="{{ old('alamat_lengkap_kost') }}" x-model="alamatlengkap" required>
+                                                    @error('alamat_lengkap_kost')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="col-12 text-end sticky-bottom bg-white">
                                             <div class="align-items-center mt-3 mb-3">
                                                 <div class="ms-auto mt-3 mt-md-0">
                                                     <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Batal</button>
-                                                    <button type="submit" class="btn btn-info font-medium" :class="gambar && kategori && harga && lokasi && ukuran && tipe && status && fasilitas ? null : 'disabled'">
+                                                    <button type="submit" class="btn btn-info font-medium" :class="gambar && kategori && harga && alamat && ukuran && tipe && status && fasilitas && lokasi && air && listrik && alamatlengkap ? null : 'disabled'">
                                                         <div class="align-items-center">
                                                             Tambahkan
                                                         </div>
@@ -490,6 +531,45 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                                <div class="col-6 text-start mt-3">
+                                                                    <label for="Air Kost">Air Kost</label>
+                                                                </div>
+                                                                <div class="col-6 text-start mt-3">
+                                                                    <label for="Listrik Kost">Listrik Kost</label>
+                                                                </div>
+                                                                <div class="col-md-6" style="margin-top: -12px;">
+                                                                    <div class="mt-3">
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control" name="air_kost" value="{{ $item->air_kost }}" id="air_kost" disabled>
+                                                                            @error('air_kost')
+                                                                                {{ $message }}
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6" style="margin-top: -12px;">
+                                                                    <div class="mt-3">
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control" name="listrik_kost" value="{{ $item->listrik_kost }}" id="listrik_kost" disabled>
+                                                                            @error('listrik_kost')
+                                                                                {{ $message }}
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 text-start mt-3">
+                                                                    <label for="Alamat Lengkap Kost">Alamat Lengkap Kost</label>
+                                                                </div>
+                                                                <div class="col-md-12" style="margin-top: -12px;">
+                                                                    <div class="mt-3">
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control" name="alamat_lengkap_kost" value="{{ $item->alamat_lengkap_kost }}" id="alamat_lengkap_kost" disabled>
+                                                                            @error('alamat_lengkap_kost')
+                                                                                {{ $message }}
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -655,6 +735,51 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
+                                                                        <div class="col-6 text-start mt-3">
+                                                                            <label for="Air Kost">Air Kost</label>
+                                                                        </div>
+                                                                        <div class="col-6 text-start mt-3">
+                                                                            <label for="Listrik Kost">Listrik Kost</label>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="mt-0">
+                                                                                <div class="input-group">
+                                                                                    <select class="form-select" id="air_kost" name="air_kost">
+                                                                                        <option value="Pdam" {{ $item->air_kost == 'Pdam' ? 'selected' : '' }}>Pdam</option>
+                                                                                        <option value="Sumur" {{ $item->air_kost == 'Sumur' ? 'selected' : '' }}>Sumur</option>
+                                                                                        @error('air_kost')
+                                                                                            {{ $message }}
+                                                                                        @enderror
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="mt-0">
+                                                                                <div class="input-group">
+                                                                                    <select class="form-select" id="listrik_kost" name="listrik_kost">
+                                                                                        <option value="Token" {{ $item->listrik_kost == 'Token' ? 'selected' : '' }}>Token</option>
+                                                                                        <option value="Pln" {{ $item->listrik_kost == 'Pln' ? 'selected' : '' }}>Pln</option>
+                                                                                        @error('listrik_kost')
+                                                                                            {{ $message }}
+                                                                                        @enderror
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-12 text-start mt-3">
+                                                                            <label for="Alamat Lengkap Kost"> Alamat Lengkap Kost</label>
+                                                                        </div>
+                                                                        <div class="col-md-12">
+                                                                            <div class="mt-0">
+                                                                                <div class="form-group">
+                                                                                    <input type="text" class="form-control" maxlength="30" name="alamat_lengkap_kost" id="alamat_lengkap_kost" value="{{ $item->alamat_lengkap_kost }}">
+                                                                                    @error('alamat_lengkap_kost')
+                                                                                        {{ $message }}
+                                                                                    @enderror
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
                                                                         <div class="col-12 text-end sticky-bottom bg-white">
                                                                             <div class="align-items-center mt-3">
                                                                                 <div class="ms-auto mt-3 mb-3 mt-md-0">
@@ -700,7 +825,7 @@
                     </a>
                 </div>
                 <div class="modal fade" id="tambahkamar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-scrollable" role="document" x-data="{ gambar: '', kategori: '', harga: '', alamat: '', ukuran: '', tipe: '', status: '', fasilitas: '', lokasi: '' }">
+                    <div class="modal-dialog modal-dialog-scrollable" role="document" x-data="{ gambar: '', kategori: '', harga: '', alamat: '', ukuran: '', tipe: '', status: '', fasilitas: '', lokasi: '', air: '', listik: '', alamatlengkap: '' }">
                         <div class="modal-content" style="width: 100%; height: 540px;">
                             <div class="modal-header" style=" height: 70px;">
                                 <h1 class="modal-title fs-5 fw-semibold" id="exampleModalLabel" style="margin-top: -24px;">Tambah Kamar</h1>
@@ -841,11 +966,52 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="col-md-6">
+                                                    <label class="mt-2" for="Air">Air Kost <span class="text-danger">*</span></label>
+                                                    <div class="mt-1">
+                                                        <div class="input-group">
+                                                            <select class="form-select" id="air_kost" name="air_kost" value="{{ old('air_kost') }}" x-model="air" required>
+                                                                <option selected>Pilih Air Kost...</option>
+                                                                <option value="Pdam">Pdam</option>
+                                                                <option value="Sumur">Sumur</option>
+                                                                @error('air_kost')
+                                                                    {{ $message }}
+                                                                @enderror
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="mt-2" for="Listrik">Listrik Kost <span class="text-danger">*</span></label>
+                                                    <div class="mt-1">
+                                                        <div class="input-group">
+                                                            <select class="form-select" id="listrik_kost" name="listrik_kost" value="{{ old('listrik_kost') }}" x-model="listrik" required>
+                                                                <option selected>Pilih listrik Kost...</option>
+                                                                <option value="Token">Token</option>
+                                                                <option value="Pln">Pln</option>
+                                                                @error('air_kost')
+                                                                    {{ $message }}
+                                                                @enderror
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <label class="mt-2" for="Alamat Lengkap">Alamat Lengkap Kost <span class="text-danger">*</span></label>
+                                                    <div class="mt-1">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" maxlength="30" name="alamat_lengkap_kost" id="alamat_lengkap_kost" placeholder="Masukkan Alamat Lengkap Kost" value="{{ old('alamat_lengkap_kost') }}" x-model="alamatlengkap" required>
+                                                            @error('alamat_lengkap_kost')
+                                                                {{ $message }}
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div class="col-12 text-end sticky-bottom bg-white">
                                                     <div class="align-items-center mt-3 mb-3">
                                                         <div class="ms-auto mt-3 mt-md-0">
                                                             <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Batal</button>
-                                                            <button type="submit" class="btn btn-info font-medium" :class="gambar && kategori && harga && lokasi && ukuran && tipe && status && fasilitas ? null : 'disabled'">
+                                                            <button type="submit" class="btn btn-info font-medium" :class="gambar && kategori && harga && alamat && ukuran && tipe && status && fasilitas && lokasi && air && listrik && alamatlengkap ? null : 'disabled'">
                                                                 <div class="align-items-center">
                                                                     Tambahkan
                                                                 </div>
@@ -990,6 +1156,7 @@
     <script src="{{ asset('admin') }}dist/js/apps/contact.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
     <script>
         $(document).ready(function() {
             $('.form-check-input').click(function(event) {
