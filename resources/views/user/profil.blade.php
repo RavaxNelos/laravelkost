@@ -91,7 +91,7 @@
     <section class="position-relative">
         <section class="header">
             <div class="col-12 text-center">
-                <img id="profileImage" src="{{ asset($users->gambar ? 'uploadkamar/' . $users->gambar : '/img/customer1.jpg') }}" style="margin-top: 50px; width: 90px; height: 90px; border: 1px solid white; border-radius: 50%; position: relative;">
+                <img id="profileImage" src="{{ asset($users->gambar ? 'uploadkamar/' . $users->gambar : '/img/customer1.jpg') }}" style="margin-top: 50px; border: 1px solid white; border-radius: 50%; position: relative;" width="100" height="100">
                 <h3 class="fw-medium" style="font-size: 18px; color: white; margin-top: 16px;">{{ $users->name }}</h3>
                 <button class="btn-status">{{ $users->status }}</button>
             </div>
@@ -110,12 +110,9 @@
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $users->id }}">
                                     <div class="row">
-                                        <div class="col-12 text-center">
-                                            <h3 class="fw-semibold" style="font-size: 16px;">Edit Profil</h3>
-                                        </div>
                                         <div class="col-12 text-center mt-2">
                                             <div class="position-relative">
-                                                <img id="frame" src="{{ asset($users->gambar ? 'uploadkamar/' . $users->gambar : '/img/customer1.jpg') }}" style="width: 100px; height: 100px; border-radius: 100px; cursor: pointer;" onclick="deleteImage()">
+                                                <img id="frame" src="{{ asset($users->gambar ? 'uploadkamar/' . $users->gambar : '/img/customer1.jpg') }}" width="100" height="100" style="border-radius: 100px; cursor: pointer;" onclick="deleteImage()">
                                                 <label for="uploadfoto" class="label-upload">
                                                     <div class="box-icon">
                                                         <div class="bg-kategori rounded-5">
@@ -127,9 +124,12 @@
                                             </div>
                                         </div>
                                         <div class="col-12 text-center mt-2">
-                                            <p class="fw-medium" style="font-size: 14px;">Upload Foto Profil</p>
+                                            <h3 class="fw-semibold" style="font-size: 16px;">Edit Profil</h3>
                                         </div>
-                                        <div class="col-12 text-start" style="margin-top: -10px;">
+                                        {{-- <div class="col-12 text-center mt-2">
+                                            <p class="fw-medium" style="font-size: 14px;">Upload Foto Profil</p>
+                                        </div> --}}
+                                        <div class="col-12 text-start">
                                             <label for="name" class="fw-medium" style="font-size: 14px;">Nama Barumu</label>
                                             <input type="text" class="input-nama" maxlength="24" id="name" name="name" value="{{ $users->name }}" placeholder="Ketik Nama Barumu..." style="font-size: 14px;">
                                         </div>
@@ -207,14 +207,14 @@
                     </div>
                 </div>
             </div>
-            <button class="btn-edit-akun" data-bs-toggle="modal" data-bs-target="#editsandi-{{ $users->id }}"><i class="bi bi-lock-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: #9370DB;"></i>Edit Kata Sandi<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 8.4rem;"></i></button>
+            <button class="btn-edit-akun" data-bs-toggle="modal" data-bs-target="#editsandi-modal"><i class="bi bi-lock-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: #9370DB;"></i>Edit Kata Sandi<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 8.4rem;"></i></button>
             <!-- Modal -->
-            <div class="modal fade" id="editsandi-{{ $users->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="editsandi-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content" style="border: 1px solid #800080; border-radius: 20px; margin-top: 6rem;">
                         <div class="modal-body">
                             <div class="container">
-                                <form action="/user/sandi/edit" method="POST" enctype="multipart/form-data">
+                                <form id="editForm">
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $users->id }}">
                                     <div class="row">
@@ -226,19 +226,26 @@
                                         </div>
                                         <div class="col-12 text-start">
                                             <label for="name" class="fw-medium" style="font-size: 14px;">Kata Sandi Lama <span class="text-danger">*</span></label>
-                                            <input type="text" class="input-password" id="password" name="password" placeholder="Ketik Kata Sandi Lamamu..." style="font-size: 14px;">
-                                            <i class="bi bi-eye" id="togglePasswordLama" onclick="togglePassword('katasandilama')" style="position: absolute; font-size: 20px; right: 40px; top: 180px; cursor: pointer;"></i>
+                                            <div style="position: relative;">
+                                                <input type="text" class="input-password" id="password" name="password" placeholder="Ketik Kata Sandi Lamamu..." style="font-size: 14px;">
+                                                <i class="bi bi-eye" id="togglePasswordLama" style="position: absolute; font-size: 20px; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;" onclick="togglePasswordVisibility('password', 'togglePasswordLama')"></i>
+                                            </div>
                                         </div>
                                         <div class="col-12 text-start mt-2">
                                             <label for="name" class="fw-medium" style="font-size: 14px;">Kata Sandi Baru <span class="text-danger">*</span></label>
-                                            <input type="password" class="input-password" id="new_password" name="new_password" placeholder="Ketik Kata Sandi Barumu..." style="font-size: 14px;">
-                                            <i class="bi bi-eye-slash" id="togglePasswordBaru" onclick="togglePassword('katasandibaru')" style="position: absolute; font-size: 20px; right: 40px; top: 252px; cursor: pointer;"></i>
+                                            <div style="position: relative;">
+                                                <input type="password" class="input-password" id="new_password" name="new_password" placeholder="Ketik Kata Sandi Barumu..." style="font-size: 14px;">
+                                                <i class="bi bi-eye-slash" id="togglePasswordBaru" style="position: absolute; font-size: 20px; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;" onclick="togglePasswordVisibility('new_password', 'togglePasswordBaru')"></i>
+                                            </div>
                                         </div>
                                         <div class="col-12 text-start mt-2">
                                             <label for="name" class="fw-medium" style="font-size: 14px;">Konfirmasi Kata Sandi Baru <span class="text-danger">*</span></label>
-                                            <input type="password" class="input-password" id="konfirmasikatasandibaru" placeholder="Ketik Ulang Kata Sandi Barumu..." style="font-size: 14px;">
-                                            <i class="bi bi-eye-slash" id="toggleKonfirmasiBaru" onclick="togglePassword('konfirmasikatasandibaru')" style="position: absolute; font-size: 20px; right: 40px; top: 324px; cursor: pointer;"></i>
+                                            <div style="position: relative;">
+                                                <input type="password" class="input-password" id="konfirmasikatasandibaru" name="new_password_confirmation" placeholder="Ketik Ulang Kata Sandi Barumu..." style="font-size: 14px;">
+                                                <i class="bi bi-eye-slash" id="toggleKonfirmasiBaru" style="position: absolute; font-size: 20px; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;" onclick="togglePasswordVisibility('konfirmasikatasandibaru', 'toggleKonfirmasiBaru')"></i>
+                                            </div>
                                         </div>
+                                        <div id="validation-errors" style="display: none;"></div>
                                         <div class="col-12 text-start">
                                             <p class="fw-normal" style="font-size: 14px;">Lupa kata Sandi?<a href="#" style="font-style: italic; color: #9370DB; text-decoration: none; margin-left: 4px;">Klik Disini</a></p>
                                         </div>
@@ -282,6 +289,7 @@
             </div>
         </section>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -418,6 +426,51 @@
             }
         });
     </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#editForm').submit(function(e) {
+                e.preventDefault();
+
+                var formData = $(this).serialize();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/user/sandi/edit',
+                    data: formData,
+                    success: function(data) {
+                        $('#editsandi-modal').modal('hide');
+                        alert(data.success);
+                    },
+                    error: function(data) {
+                        var errors = data.responseJSON;
+                        $('#validation-errors').html('');
+                        $.each(errors.errors, function(key, value) {
+                            $('#validation-errors').show();
+                            $('#validation-errors').append('<div class="alert alert-danger">' + value + '</div>');
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        function togglePasswordVisibility(inputId, iconId) {
+            const input = document.getElementById(inputId);
+            const icon = document.getElementById(iconId);
+
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.remove("bi-eye-slash");
+                icon.classList.add("bi-eye");
+            } else {
+                input.type = "password";
+                icon.classList.remove("bi-eye");
+                icon.classList.add("bi-eye-slash");
+            }
+        }
+    </script>
+
 </body>
 
 </html>

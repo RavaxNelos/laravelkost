@@ -112,9 +112,8 @@
                                             <div class="input-group mb-3">
                                                 <select class="form-select" id="nama_pembayaran" name="nama_pembayaran" x-model="pembayaran" required>
                                                     <option selected>Pilih Nama Pembayaran...</option>
-                                                    <option value="Bank BRI">Bank BRI</option>
-                                                    <option value="Bank BCA">Bank BCA</option>
-                                                    <option value="Visa">Visa</option>
+                                                    <option value="Transfer Bank BRI">Transfer Bank BRI</option>
+                                                    <option value="Transfer Bank BCA">Transfer Bank BCA</option>
                                                     <option value="Gopay">Gopay</option>
                                                     <option value="Ovo">Ovo</option>
                                                     <option value="Dana">Dana</option>
@@ -363,8 +362,8 @@
                                                                             <div class="mt-3">
                                                                                 <div class="input-group mb-3">
                                                                                     <select class="form-select" id="nama_pembayaran" name="nama_pembayaran">
-                                                                                        <option value="Bank BRI" {{ $item->nama_pembayaran == 'Bank BRI' ? 'selected' : '' }}>Bank BRI</option>
-                                                                                        <option value="Bank BCA" {{ $item->nama_pembayaran == 'Bank BCA' ? 'selected' : '' }}>Bank BCA</option>
+                                                                                        <option value="Transfer Bank BRI" {{ $item->nama_pembayaran == 'Transfer Bank BRI' ? 'selected' : '' }}>Transfer Bank BRI</option>
+                                                                                        <option value="Transfer Bank BCA" {{ $item->nama_pembayaran == 'Transfer Bank BCA' ? 'selected' : '' }}>Transfer Bank BCA</option>
                                                                                         <option value="Visa" {{ $item->nama_pembayaran == 'Visa' ? 'selected' : '' }}>Visa</option>
                                                                                         <option value="Gopay" {{ $item->nama_pembayaran == 'Gopay' ? 'selected' : '' }}>Gopay</option>
                                                                                         <option value="Ovo" {{ $item->nama_pembayaran == 'Ovo' ? 'selected' : '' }}>Ovo</option>
@@ -489,16 +488,15 @@
                                         <form action="{{ route('pembayaran.store') }}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <div class="col-12 text-start">
-                                                <label for="Metode Pembayaran">Metode Pembayaran <span class="text-danger">*</span></label>
+                                                <label for="Metode Pembayaran">Nama Pembayaran <span class="text-danger">*</span></label>
                                             </div>
                                             <div class="col-md-12" style="margin-top: -6px;">
                                                 <div class="mt-3">
                                                     <div class="input-group mb-3">
                                                         <select class="form-select" id="nama_pembayaran" name="nama_pembayaran" x-model="pembayaran" required>
                                                             <option selected>Pilih Nama Pembayaran...</option>
-                                                            <option value="Bank BRI">Bank BRI</option>
-                                                            <option value="Bank BCA">Bank BCA</option>
-                                                            <option value="Visa">Visa</option>
+                                                            <option value="Transfer Bank BRI">Transfer Bank BRI</option>
+                                                            <option value="Transfer Bank BCA">Transfer Bank BCA</option>
                                                             <option value="Gopay">Gopay</option>
                                                             <option value="Ovo">Ovo</option>
                                                             <option value="Dana">Dana</option>

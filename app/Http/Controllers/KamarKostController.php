@@ -55,6 +55,7 @@ class KamarKostController extends Controller
         'air_kost' => 'required',
         'listrik_kost' => 'required',
         'alamat_lengkap_kost' => 'required',
+        'deskripsi_kost' => 'required',
     ]);
 
     $gambarBarang = $request->file('gambar_kost');
@@ -73,6 +74,7 @@ class KamarKostController extends Controller
     $kamarkost->air_kost = $request->air_kost;
     $kamarkost->listrik_kost = $request->listrik_kost;
     $kamarkost->alamat_lengkap_kost = $request->alamat_lengkap_kost;
+    $kamarkost->deskripsi_kost = $request->deskripsi_kost;
     $kamarkost->gambar_kost = $namaFile;
     $kamarkost->save();
 
@@ -116,6 +118,7 @@ class KamarKostController extends Controller
             'air_kost' => 'required',
             'listrik_kost' => 'required',
             'alamat_lengkap_kost' => 'required',
+            'deskripsi_kost' => 'required',
         ]);
 
         if($request->gambar_kost) {
@@ -138,6 +141,7 @@ class KamarKostController extends Controller
         $kamarkost->air_kost = $request->air_kost;
         $kamarkost->listrik_kost = $request->listrik_kost;
         $kamarkost->alamat_lengkap_kost = $request->alamat_lengkap_kost;
+        $kamarkost->deskripsi_kost = $request->deskripsi_kost;
         // $kamarkost->layanan_barang = $request->layanan_barang;
         $kamarkost->gambar_kost = $namaFile;
         $kamarkost->save();

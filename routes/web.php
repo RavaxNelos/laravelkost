@@ -47,13 +47,18 @@ Route::get('/user/riwayat', [UserController::class, 'riwayat'])->name('riwayat')
 Route::get('/user/profil', [UserController::class, 'profil'])->name('profil');
 Route::post('/user/profil/edit', [UserController::class, 'profiledit'])->name('user.profil');
 Route::post('/user/akun/edit', [UserController::class, 'akunedit']);
+
+Route::group(['middleware' => 'auth'], function ()
+{
 Route::post('/user/sandi/edit', [UserController::class, 'sandiedit']);
+});
+
 Route::get('/user/kerusakan', [UserController::class, 'kerusakan'])->name('kerusakan');
 Route::get('/user/kehilangan', [UserController::class, 'kehilangan'])->name('kehilangan');
 Route::get('/user/home', [UserController::class, 'detail'])->name('detail');
 Route::get('/user/detail/{id}', [UserController::class, 'detailrumah'])->name('detailrumah');
-Route::get('/user/transaksi', [UserController::class, 'transaksi'])->name('transaksi');
-Route::get('/user/konfirmasitransaksi', [UserController::class, 'konfirmasitransaksi'])->name('konfirmasitransaksi');
+Route::get('/user/transaksi/{id}', [UserController::class, 'transaksi'])->name('transaksi');
+Route::get('/user/konfirmasitransaksi/{id}', [UserController::class, 'konfirmasitransaksi'])->name('konfirmasitransaksi');
 Route::get('/logout', function() {
     Auth::logout();
     return redirect('/login');

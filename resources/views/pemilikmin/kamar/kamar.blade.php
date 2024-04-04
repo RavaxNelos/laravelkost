@@ -123,7 +123,7 @@
             </div>
         </div>
         <div class="modal fade" id="tambahkamar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable" role="document" x-data="{ gambar: '', kategori: '', harga: '', alamat: '', ukuran: '', tipe: '', status: '', fasilitas: '', lokasi: '', air: '', listik: '', alamatlengkap: '' }">
+            <div class="modal-dialog modal-dialog-scrollable" role="document" x-data="{ gambar: '', kategori: '', harga: '', alamat: '', ukuran: '', tipe: '', status: '', fasilitas: '', lokasi: '', air: '', listik: '', alamatlengkap: '', deskripsi: '' }">
                 <div class="modal-content" style="width: 100%; height: 540px;">
                     <div class="modal-header" style=" height: 70px;">
                         <h1 class="modal-title fs-5 fw-semibold" id="exampleModalLabel" style="margin-top: -24px;">Tambah Kamar</h1>
@@ -138,7 +138,7 @@
                                             <label class="mt-2" for="Fasilitas">Fasilitas Kost <span class="text-danger">*</span></label>
                                             <div class="mt-1">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" name="fasilitas_kost" maxlength="50" id="fasilitas_kost" placeholder="Masukkan Fasilitas Kost" value="{{ old('fasilitas_kost') }}" x-model="fasilitas" required>
+                                                    <input type="text" class="form-control" name="fasilitas_kost" maxlength="65" id="fasilitas_kost" placeholder="Masukkan Fasilitas Kost" value="{{ old('fasilitas_kost') }}" x-model="fasilitas" required>
                                                     @error('fasilitas_kost')
                                                         {{ $message }}
                                                     @enderror
@@ -305,11 +305,22 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="col-md-12">
+                                            <label class="mt-2" for="Deskripsi">Deskripsi Kost <span class="text-danger">*</span></label>
+                                            <div class="mt-1">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" maxlength="100" name="deskripsi_kost" id="deskripsi_kost" placeholder="Masukkan Deskripsi Kost" value="{{ old('deskripsi_kost') }}" x-model="deskripsi" required>
+                                                    @error('deskripsi_kost')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="col-12 text-end sticky-bottom bg-white">
                                             <div class="align-items-center mt-3 mb-3">
                                                 <div class="ms-auto mt-3 mt-md-0">
                                                     <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Batal</button>
-                                                    <button type="submit" class="btn btn-info font-medium" :class="gambar && kategori && harga && alamat && ukuran && tipe && status && fasilitas && lokasi && air && listrik && alamatlengkap ? null : 'disabled'">
+                                                    <button type="submit" class="btn btn-info font-medium" :class="gambar && kategori && harga && alamat && ukuran && tipe && status && fasilitas && lokasi && air && listrik && alamatlengkap && deskripsi ? null : 'disabled'">
                                                         <div class="align-items-center">
                                                             Tambahkan
                                                         </div>
@@ -570,6 +581,19 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                                <div class="col-12 text-start mt-3">
+                                                                    <label for="Deskripsi Kost">Deskripsi Kost</label>
+                                                                </div>
+                                                                <div class="col-md-12" style="margin-top: -12px;">
+                                                                    <div class="mt-3">
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control" name="deskripsi_kost" value="{{ $item->deskripsi_kost }}" id="deskripsi_kost" disabled>
+                                                                            @error('deskripsi_kost')
+                                                                                {{ $message }}
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -768,13 +792,26 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-12 text-start mt-3">
-                                                                            <label for="Alamat Lengkap Kost"> Alamat Lengkap Kost</label>
+                                                                            <label for="Alamat Lengkap Kost">Alamat Lengkap Kost</label>
                                                                         </div>
                                                                         <div class="col-md-12">
                                                                             <div class="mt-0">
                                                                                 <div class="form-group">
                                                                                     <input type="text" class="form-control" maxlength="30" name="alamat_lengkap_kost" id="alamat_lengkap_kost" value="{{ $item->alamat_lengkap_kost }}">
                                                                                     @error('alamat_lengkap_kost')
+                                                                                        {{ $message }}
+                                                                                    @enderror
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-12 text-start mt-3">
+                                                                            <label for="Deskripsi Kost">Alamat Lengkap Kost</label>
+                                                                        </div>
+                                                                        <div class="col-md-12">
+                                                                            <div class="mt-0">
+                                                                                <div class="form-group">
+                                                                                    <input type="text" class="form-control" maxlength="30" name="deskripsi_kost" id="deskripsi_kost" value="{{ $item->deskripsi_kost }}">
+                                                                                    @error('deskripsi_kost')
                                                                                         {{ $message }}
                                                                                     @enderror
                                                                                 </div>
@@ -825,7 +862,7 @@
                     </a>
                 </div>
                 <div class="modal fade" id="tambahkamar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-scrollable" role="document" x-data="{ gambar: '', kategori: '', harga: '', alamat: '', ukuran: '', tipe: '', status: '', fasilitas: '', lokasi: '', air: '', listik: '', alamatlengkap: '' }">
+                    <div class="modal-dialog modal-dialog-scrollable" role="document" x-data="{ gambar: '', kategori: '', harga: '', alamat: '', ukuran: '', tipe: '', status: '', fasilitas: '', lokasi: '', air: '', listik: '', alamatlengkap: '', deskripsi: '' }">
                         <div class="modal-content" style="width: 100%; height: 540px;">
                             <div class="modal-header" style=" height: 70px;">
                                 <h1 class="modal-title fs-5 fw-semibold" id="exampleModalLabel" style="margin-top: -24px;">Tambah Kamar</h1>
@@ -1007,11 +1044,22 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="col-md-12">
+                                                    <label class="mt-2" for="Deskripsi">Deskripsi Kost <span class="text-danger">*</span></label>
+                                                    <div class="mt-1">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" maxlength="100" name="deskripsi_kost" id="deskripsi_kost" placeholder="Masukkan Deskripsi Kost" value="{{ old('deskripsi_kost') }}" x-model="deskripsi" required>
+                                                            @error('deskripsi_kost')
+                                                                {{ $message }}
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div class="col-12 text-end sticky-bottom bg-white">
                                                     <div class="align-items-center mt-3 mb-3">
                                                         <div class="ms-auto mt-3 mt-md-0">
                                                             <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Batal</button>
-                                                            <button type="submit" class="btn btn-info font-medium" :class="gambar && kategori && harga && alamat && ukuran && tipe && status && fasilitas && lokasi && air && listrik && alamatlengkap ? null : 'disabled'">
+                                                            <button type="submit" class="btn btn-info font-medium" :class="gambar && kategori && harga && alamat && ukuran && tipe && status && fasilitas && lokasi && air && listrik && alamatlengkap && deskripsi ? null : 'disabled'">
                                                                 <div class="align-items-center">
                                                                     Tambahkan
                                                                 </div>

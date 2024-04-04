@@ -278,7 +278,7 @@
         <div class="splide__track">
             <ul class="splide__list">
                 <li class="splide__slide">
-                    <img src="{{ asset('uploadkamar/' . $kamarkost->gambar_kost) }}" style="height: 270px; position: relative; object-fit: cover; border-radius: 0px;" class="w-100">
+                    <img src="{{ asset('uploadkamar/' . $kamarkost->gambar_kost) }}" style="height: 270px; width: 100%; position: relative; object-fit: cover; border-radius: 0px;">
                 </li>
                 {{-- <li class="splide__slide">
                     <img src="{{ asset('img/kostsurabaya7.jpg') }}" style="height: 270px; position: relative; object-fit: cover;border-radius: 0px;" class="w-100">
@@ -320,7 +320,7 @@
             </div>
         </div>
         <!-- end harga kamar -->
-        <div class="col-12 text-start" style="margin-top: -10px;">
+        <div class="col-12 text-start" style="margin-top: 0px;">
             <h6 class="fw-semibold" style="font-size: 18px; font-family: Ubuntu;">Fasilitas</h6>
         </div>
         <section class="splide new" aria-label="Splide Basic HTML Example" style="margin-top: -36px">
@@ -614,7 +614,7 @@
                     </a>
                 </div>
                 <div class="col-8 mt-3">
-                    <form action="{{ asset('/user/transaksi') }}">
+                    <form action="/user/transaksi/{{ $kamarkost->id }}">
                         <button type="submit" class="btn btn-dark" id="btnPesanSekarang" disabled>Pesan Sekarang</button>
                     </form>
                 </div>
@@ -646,7 +646,7 @@
             pagination: false,
             perPage: 3,
             autoWidth: true,
-            gap: '1.6rem',
+            gap: '1.65rem',
             lazyLoad: 'nearby',
             drag: 'free',
         });
@@ -666,11 +666,12 @@
 
         var splide = new Splide('.splide.new-2', {
             // type: 'loop',
+            pagination: false,
             autoplay: true,
             lazyLoad: 'nearby',
             arrows: false,
             interval: '2000',
-            autoWidth: true
+            // autoWidth: true
         });
         splide.mount();
         // var splide = new Splide('.splide.new-3', {
@@ -843,16 +844,13 @@
             }
         });
 
+        // Fungsi untuk menambahkan waktu
         function updateTime() {
             $("#chooseTime").modal('hide');
             $("#addWaktu").addClass('d-none');
-            // <button x-on:click="new_schedule = 'time-1'" :class="new_schedule == 'time-1' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'" type="button">08.00 WIB</button>
-            $("#jam-container").append("<div class='col-4'><button id='jam-container-button'>" + $("#waktu").val() + " WIB</button></div>");
-            $("#jam-container-button").attr({
-                "x-on:click": "new_schedule = 'time-10'",
-                ":class": "new_schedule == 'time-10' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'",
-                "type": "button",
-            });
+            var waktu = $("#waktu").val();
+            var buttonHtml = "<div class='col-4'><button class='btn time-btn fw-semibold active btn-waktu' data-waktu='" + waktu + "' type='button'>" + waktu + " WIB</button></div>";
+            $("#jam-container").append(buttonHtml);
         }
 
         document.addEventListener("DOMContentLoaded", function() {

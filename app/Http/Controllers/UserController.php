@@ -20,8 +20,9 @@ class UserController extends Controller
     public function detailrumah(string $id)
     {
         $categories = Kategori::where('lokasi', 'Kategori Kost')->get();
-        $kamarkost = KamarKost::find($id)->get();
-        return view('user.detail.index',compact('kamarkost', 'categories'));
+        $kamarkost = KamarKost::find($id);
+        $users = Auth::user();
+        return view('user.detail.index',compact('kamarkost', 'categories', 'users'));
     }
     public function menujudetail()
     {
@@ -34,15 +35,22 @@ class UserController extends Controller
         return view('user.home',compact('banner', 'kamarkost')
         );
     }
-    public function transaksi()
+    public function transaksi(string $id)
     {
-        $pembayaran = Pembayaran::orderBy('created_at', 'desc')->get();
-        return view('user.transaksi.index',compact('pembayaran')
+        $users = Auth::user();
+        $kamarkost = KamarKost::find($id);
+        $pembayaran = Pembayaran::all();
+        $pembayaransSelected = Pembayaran::find($id);
+        return view('user.transaksi.index',compact('pembayaran', 'kamarkost', 'users', 'pembayaransSelected')
     );
     }
-    public function konfirmasitransaksi()
+    public function konfirmasitransaksi(string $id)
     {
-        return view('user.transaksi.konfirmasitransaksi');
+        $users = Auth::user();
+        $kamarkost = KamarKost::find($id);
+        $pembayaran = Pembayaran::orderBy('created_at', 'desc')->get();
+        return view('user.transaksi.konfirmasitransaksi',compact('pembayaran', 'kamarkost', 'users')
+    );
     }
     public function back()
     {
@@ -118,31 +126,51 @@ class UserController extends Controller
         $request->validate([
             'password' => 'required',
             'new_password' => 'required',
+            'new_password_confirmation' => 'required|same:new_password'
         ]);
 
-        $this->validate($request, [
-            'password' => 'required|string',
-            'new_password' => 'required|confirmed|min:8|string'
-        ]);
-        $auth = Auth::user();
+        $user = Auth::user();
 
-        // The passwords matches
-        if (!Hash::check($request->get('password'), $auth->password))
-        {
-            return back()->with('error', "Password Tidak Sama");
+        if (!Hash::check($request->password, $user->password)) {
+            return response()->json(['error' => 'Password Tidak Sama'], 422);
         }
 
-        // Current Password And New Password Same
-        if (strcmp($request->get('password'), $request->new_password) == 0)
-        {
-            return redirect()->back()->with("error", "Sandi Baru Tidak Sama Dengan Password Kamu.");
+        if (strcmp($request->password, $request->new_password) == 0) {
+            return response()->json(['error' => 'Sandi Baru Tidak Sama Dengan Password Kamu.'], 422);
         }
 
-        $users = Pengguna::find($auth->id);
-        $users->password = Hash::make($request->new_password);
-        $users->save();
-        return back()->with('success', "Password Berhasil Dirubah");
+        $user = Pengguna::find($user->id);
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        return response()->json(['success' => 'Password Berhasil Dirubah']);
+
+        // $request->validate([
+        //     'password' => 'required',
+        //     'new_password' => 'min:6',
+        //     'new_password_confirmation' => 'required_with:new_password|same:new_password|min:6'
+        // ]);
+
+        // $auth = Auth::user();
+
+        // // The passwords matches
+        // if (!Hash::check($request->get('password'), $auth->password))
+        // {
+        //     return back()->with('error', "Password Tidak Sama");
+        // }
+
+        // // Current Password And New Password Same
+        // if (strcmp($request->get('password'), $request->new_password) == 0)
+        // {
+        //     return redirect()->back()->with("error", "Sandi Baru Tidak Sama Dengan Password Kamu.");
+        // }
+
+        // $users = Pengguna::find($auth->id);
+        // $users->password = Hash::make($request->new_password);
+        // $users->save();
+        // return back()->with('success', "Password Berhasil Dirubah");
     }
+
     public function favorit()
     {
         return view('user.kamarfavorit');

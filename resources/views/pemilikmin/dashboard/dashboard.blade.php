@@ -2,13 +2,42 @@
 
 @section('title', 'Dashboard')
 
-{{-- @section('styles')
+@section('styles')
     <style>
         .card {
             width: 10px;
         }
+
+        * {
+            font-family: 'Ubuntu';
+        }
+
+        .logo {
+            position: absolute;
+            top: 30%;
+            left: 42%;
+            animation: zoom 2s infinite alternate;
+            /* Menerapkan animasi 'zoom' */
+        }
+
+        @keyframes zoom {
+            0% {
+                transform: scale(1);
+                /* Skala awal */
+            }
+
+            50% {
+                transform: scale(1.2);
+                /* Skala tengah */
+            }
+
+            100% {
+                transform: scale(1);
+                /* Skala akhir, kembali ke skala awal */
+            }
+        }
     </style>
-@endsection --}}
+@endsection
 
 @section('content')
     <!--  Owl carousel -->

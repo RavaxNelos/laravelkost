@@ -577,7 +577,9 @@
                                     <h3 style="font-size: 17px; margin-right: 12px;" class="text-dark mb-0 fw-bold text-center">Rp. {{ $item->harga_kost }}</h3>
                                 </div>
                                 <div class="col-12 mt-2 text-center">
-                                    <button class="btn-area-timur-surabaya justify-content-center" style="margin-right: 11px;">Pesan Sekarang</button>
+                                    <form action="/user/detail/{{ $item->id }}">
+                                        <button class="btn-area-timur-surabaya justify-content-center" style="margin-right: 11px;">Pesan Sekarang</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -855,7 +857,9 @@
                                     <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. {{ $item->harga_kost }}</h3>
                                 </div>
                                 <div class="col-5">
-                                    <button class="btn-kamar-kost-putra">Lihat</button>
+                                    <form action="/user/detail/{{ $item->id }}">
+                                        <button class="btn-kamar-kost-putra">Lihat</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -1048,9 +1052,11 @@
                                     <div class="col-4" style="width: 150px; margin-left: 16px;">
                                         <h6 style="font-size: 16px; margin-top: 10px;" class="fw-bold">{{ $item->kategori->kategori }}</h6>
                                         <p style="margin-top: -5px; font-size: 12px; color: #6a6666fa;" class="mb-2 fw-normal">Uk. Kamar {{ $item->ukuran_kost }}</p>
-                                        <button class="btn-kost-populer" style="width: 125px; height: 33px; padding: 4px;">
-                                            <p>Cek</p>
-                                        </button>
+                                        <form action="/user/detail/{{ $item->id }}">
+                                            <button class="btn-kost-populer" style="width: 125px; height: 33px; padding: 4px;">
+                                                <p>Cek</p>
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -1273,7 +1279,9 @@
                                     <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. {{ $item->harga_kost }}</h3>
                                 </div>
                                 <div class="col-5">
-                                    <button class="btn-kamar-kost-putra">Lihat</button>
+                                    <form action="/user/detail/{{ $item->id }}">
+                                        <button class="btn-kamar-kost-putra">Lihat</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -1495,7 +1503,7 @@
                                     <h6 style="font-size: 12px;" class="text-secondary">Fasilitas: {{ Illuminate\Support\Str::limit($item->fasilitas_kost, 32, '...') }}</h6>
                                 </div>
                                 <div class="col-12">
-                                    <form action="{{ route('detailrumah') }}">
+                                    <form action="/user/detail/{{ $item->id }}">
                                         <button class="btn-area-barat">Lihat Detail dan Lokasi</button>
                                     </form>
                                 </div>
@@ -1740,7 +1748,9 @@
                                             <h3 style="margin-top: 5px; font-size: 18px; color: #9370DB;" class="mb-0 fw-bold">Rp. {{ $item->harga_kost }}</h3>
                                         </div>
                                         <div class="col-4">
-                                            <button class="btn-rekomendasi-rumah" style="margin-left: -20px;">Lihat</button>
+                                            <form action="/user/detail/{{ $item->id }}">
+                                                <button class="btn-rekomendasi-rumah" style="margin-left: -20px;">Lihat</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

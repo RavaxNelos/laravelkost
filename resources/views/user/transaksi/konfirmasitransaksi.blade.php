@@ -12,7 +12,7 @@
     <!-- google font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
     <!-- end google font -->
     <!-- css rava -->
@@ -20,7 +20,7 @@
     <!-- end css rava -->
     <style>
         * {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Ubuntu', sans-serif;
         }
 
         /* html,
@@ -52,7 +52,7 @@
         <div class="container py-2">
             <div class="row g-3">
                 <div class="col-1">
-                    <a href="/transaksi" class="btn-back-home"><ion-icon name="chevron-back-outline" style="margin-bottom: -4px;"></ion-icon></a>
+                    <a href="/user/transaksi/{{ $kamarkost->id }}" class="btn-back-home"><ion-icon name="chevron-back-outline" style="margin-bottom: -4px;"></ion-icon></a>
                 </div>
                 <div class="col-6 mt-4 text-start" style="margin-top: 25px !important;">
                     <h3 class="text-dark fw-semibold teks-detail" style="font-size: 16px; transition: color 0.3s ease;">Rincian Bookingan</h3>
@@ -64,11 +64,11 @@
     <!-- rincian pembayaran -->
     <div class="container">
         <div class="row">
-            <div class="col-5 text-start">
+            <div class="col-4 text-start">
                 <h3 class="fw-normal text-secondary" style="font-size: 14px;">Nama User</h3>
             </div>
-            <div class="col-7 text-end">
-                <h3 class="fw-semibold text-secondary-emphesis" style="font-size: 14px;">Muhammad Ravanelo</h3>
+            <div class="col-8 text-end">
+                <h3 class="fw-semibold text-secondary-emphesis" style="font-size: 14px;">{{ $users->name }}</h3>
             </div>
         </div>
         <div class="row">
@@ -76,7 +76,7 @@
                 <h3 class="fw-normal text-secondary" style="font-size: 14px;">Pilihan Kost</h3>
             </div>
             <div class="col-7 text-end">
-                <h3 class="fw-semibold text-secondary-emphesis" style="font-size: 14px;">Bulanan</h3>
+                <h3 class="fw-semibold text-secondary-emphesis" style="font-size: 14px;">{{ $kamarkost->tipe_kost }}</h3>
             </div>
         </div>
         <div class="row">
@@ -99,13 +99,23 @@
     <!-- rincian pembayaran -->
     <hr class="garis-2">
     <!-- konfirmasi nomer dana -->
+    @php
+        // Menghapus titik dari nilai yang diambil dari database
+        $hargaKost = str_replace('.', '', $kamarkost->harga_kost);
+
+        // Mengonversi string ke tipe data integer
+        $hargaKost = (int) $hargaKost;
+
+        // Melakukan perhitungan dengan nilai yang sudah dikonversi
+        $totalPembayaran = $hargaKost + 200000 - 25000;
+    @endphp
     <div class="container">
         <div class="row">
             <div class="col-5 text-start">
                 <h3 class="fw-semibold" style="font-size: 18px; font-family: Poppins; width: 180px;">Total Pembayaran</h3>
             </div>
             <div class="col-7 text-end">
-                <h3 class="fw-semibold" style="font-size: 18px; font-family: Poppins; color: #9370DB;">Rp.2.300.000</h3>
+                <h3 class="fw-semibold" style="font-size: 18px; font-family: Poppins; color: #9370DB;">Rp. {{ number_format($totalPembayaran, 0, ',', '.') }}</h3>
             </div>
         </div>
         <div class="row mt-3">
@@ -123,7 +133,7 @@
         </div>
         <div class="row">
             <div class="col-12 text-start">
-                <p style="margin-top:-20px"><span class="fw-semibold" id="nomorTelp" style="font-size:16px; color: #800080;">082332724688</span><button class="btn fw-semibold text-success" style="font-size:12px; margin-left:-8px; margin-bottom:3px;" onclick="copyText()"><img id="copyIcon" src="{{ asset('img/copy.png') }}" height="15" alt=""></button>
+                <p style="margin-top:-20px"><span class="fw-semibold" id="nomorTelp" style="font-size:16px; color: #800080;">0{{ $users->nomorhp }}</span><button class="btn fw-semibold text-success" style="font-size:12px; margin-left:-8px; margin-bottom:3px;" onclick="copyText()"><img id="copyIcon" src="{{ asset('img/copy.png') }}" height="15" alt=""></button>
                 </p>
             </div>
             <div class="col-12 text-start mb-2">
