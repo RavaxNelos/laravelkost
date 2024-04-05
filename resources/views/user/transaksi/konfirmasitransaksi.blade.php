@@ -120,10 +120,10 @@
         </div>
         <div class="row mt-3">
             <div class="col-1 text-start">
-                <img src="{{ asset('img/gopay.png') }}" height="30" width="30">
+                <img src="{{ asset('uploadkamar/' . $pembayaranSelected->logo_pembayaran) }}" height="30" width="30">
             </div>
             <div class="col-11">
-                <h3 class="fw-medium" style="font-size: 16px; font-family: Poppins; margin-left: 6px; margin-top: 8px;">Gopay</h3>
+                <h3 class="fw-medium" style="font-size: 16px; font-family: Poppins; margin-left: 6px; margin-top: 8px;">{{ $pembayaranSelected->nama_pembayaran }}</h3>
             </div>
         </div>
         <div class="row">
@@ -194,7 +194,57 @@
         <section class="splide new-1" aria-label="Splide Basic HTML Example" style="margin-bottom: 1rem;">
             <div class="splide__track">
                 <ul class="splide__list">
-                    <li class="splide__slide">
+                    @foreach ($kamarkosts->where('lokasi_kost', 'Promo Kamar Kost') as $item)
+                        <li class="splide__slide">
+                            @php
+                                // Menghapus titik dari nilai yang diambil dari database
+                                $hargaKost = str_replace('.', '', $item->harga_kost);
+
+                                // Mengonversi string ke tipe data integer
+                                $hargaKost = (int) $hargaKost;
+
+                                // Diskon
+                                $diskon = 195000;
+
+                                // Hitung harga setelah diskon
+                                $harga_setelah_diskon = $hargaKost - $diskon;
+                            @endphp
+                            <a href="/user/detail/{{ $item->id }}">
+                                <div class="card" style="width: 14rem; height: 16rem; border-radius: 8px;">
+                                    <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" width="222" height="130" style="border-top-left-radius: 6px; border-top-right-radius: 6px; position: relative;">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <a type="submit" style="background-color: rgba(255, 255, 255, 0.4); border: 1px solid #ccc; width: auto; height: 28px; border-radius: 8px; text-align: center; font-weight: 500; padding-top: 2px; padding-bottom: 2px; padding-left: 10px; padding-right: 10px; font-size: 14px; position: absolute; top: 10px; left: 16px;">{{ $item->kategori->kategori }}</a>
+                                        </div>
+                                    </div>
+                                    <div class="card-body" style="margin-top: -10px;">
+                                        <div class="row">
+                                            <div class="col-1 text-start mt-1">
+                                                <i class="bi bi-geo-alt"></i>
+                                            </div>
+                                            <div class="col-11 mt-2" style="width: 180px;">
+                                                <h3 class="fw-medium" style="font-size: 14px; margin-left: -4px;">Kecamatan {{ $item->alamat_kost }}</h3>
+                                            </div>
+                                        </div>
+                                        <p class="text-secondary" style="font-size: 10px; margin-top: -4px;">{{ Illuminate\Support\Str::limit($item->fasilitas_kost, 34, '...') }}</p>
+                                        <div class="row" style="margin-top: -14px">
+                                            <div class="col-1 text-start">
+                                                <i class="bi bi-lightning-fill" style="color: red;"></i>
+                                            </div>
+                                            <div class="col-5" style="margin-top: 2px;">
+                                                <p class="fw-medium" style="color: red; font-size: 12px; margin-left: -4px; width: 96px;">Diskon 195rb</p>
+                                            </div>
+                                            <div class="col-5" style="margin-top: 2px;">
+                                                <p class="text-secondary" style="font-size: 12px; text-decoration: line-through; width: 96px; margin-left: -12px;">Rp. {{ number_format($hargaKost, 0, ',', '.') }}</p>
+                                            </div>
+                                            <h3 class="fw-semibold" style="font-size: 18px; font-family: Poppins; color: #9370DB; margin-top: -10px;">Rp. {{ number_format($harga_setelah_diskon, 0, ',', '.') }}<span style="font-size: 14px; color: gray; font-weight: 400;">/bulan</span></h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    @endforeach
+                    {{-- <li class="splide__slide">
                         <div class="card" style="width: 14rem; height: 16.6rem; border-radius: 8px;">
                             <img src="{{ asset('img/kamarkostputri1.jpg') }}" height="150" width="222" style="border-top-left-radius: 4px; border-top-right-radius: 4px; position: relative;">
                             <div class="row">
@@ -358,7 +408,7 @@
                                 </div>
                             </div>
                         </div>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
         </section>
@@ -373,49 +423,53 @@
         <section class="splide new-2" aria-label="Splide Basic HTML Example">
             <div class="splide__track">
                 <ul class="splide__list">
-                    <li class="splide__slide">
-                        <div class="card populer" style="width: 10.1rem; height: 14rem; border: none;">
-                            <img src="{{ asset('img/kamarkostputra1.jpg') }}" style="border-radius: 15px; width: 160px; height: 100px;  object-fit: cover;">
-                            <div class="card-body">
-                                <h3 class="fw-bold" style="font-size: 14px; font-family: Poppins;">Kost Putra</h3>
-                                <p class="text-secondary" style="font-size: 12px; margin-top: -2px;">Kalijudan, Surabaya</p>
-                                <div class="row" style="margin-top: -10px;">
-                                    <div class="col-1">
-                                        <i class="bi bi-wifi" style="color: #ccc;"></i>
+                    @foreach ($kamarkosts->where('lokasi_kost', 'Kamar Kost Terpopuler') as $item)
+                        <li class="splide__slide">
+                            <div class="card populer" style="width: 10rem; height: 14rem; border: none;">
+                                <a href="/user/detail/{{ $item->id }}">
+                                    <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" class="rounded-1" width="160" height="80" />
+                                </a>
+                                <div class="card-body">
+                                    <h3 class="fw-bold" style="font-size: 14px; font-family: Poppins;">{{ $item->kategori->kategori }}</h3>
+                                    <p class="text-secondary" style="font-size: 12px; margin-top: -2px;">{{ $item->alamat_kost }}, Surabaya</p>
+                                    <div class="row" style="margin-top: -10px;">
+                                        <div class="col-1">
+                                            <i class="bi bi-wifi" style="color: #ccc;"></i>
+                                        </div>
+                                        <div class="col-4">
+                                            <p class="text-secondary" style="font-size: 12px; margin-top: 2px;">WiFi</p>
+                                        </div>
+                                        <div class="col-1">
+                                            <i class="bi bi-snow" style="color: #ccc"></i>
+                                        </div>
+                                        <div class="col-4">
+                                            <p class="text-secondary" style="font-size: 12px; margin-top: 2px;">AC</p>
+                                        </div>
                                     </div>
-                                    <div class="col-4">
-                                        <p class="text-secondary" style="font-size: 12px; margin-top: 2px;">WiFi</p>
-                                    </div>
-                                    <div class="col-1">
-                                        <i class="bi bi-snow" style="color: #ccc"></i>
-                                    </div>
-                                    <div class="col-4">
-                                        <p class="text-secondary" style="font-size: 12px; margin-top: 2px;">AC</p>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-top: -14px;">
-                                    <div class="col-1">
-                                        <ion-icon name="bed" style="color: #ccc; margin-top: 4px;"></ion-icon>
-                                    </div>
-                                    <div class="col-4">
-                                        <p class="text-secondary" style="font-size: 12px; margin-top: 2px; width: 100px;">Kasur</p>
-                                    </div>
-                                    <div class="col-1">
-                                        <i class="bi bi-tv" style="color: #ccc;"></i>
-                                    </div>
-                                    <div class="col-4">
-                                        <p class="text-secondary" style="font-size: 12px; margin-top: 2px;">TV</p>
+                                    <div class="row" style="margin-top: -14px;">
+                                        <div class="col-1">
+                                            <ion-icon name="bed" style="color: #ccc; margin-top: 4px;"></ion-icon>
+                                        </div>
+                                        <div class="col-4">
+                                            <p class="text-secondary" style="font-size: 12px; margin-top: 2px; width: 100px;">Kasur</p>
+                                        </div>
+                                        <div class="col-1">
+                                            <i class="bi bi-tv" style="color: #ccc;"></i>
+                                        </div>
+                                        <div class="col-4">
+                                            <p class="text-secondary" style="font-size: 12px; margin-top: 2px;">TV</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="container">
-                            <p class="fw-medium" style="font-size: 12px; font-family: Poppins;">
-                            <h3 style="color: #800080; font-size: 14px;">Rp.2.300.000<span class="text-secondary" style="font-size: 12px;">/bulan</span></h3>
-                            </p>
-                        </div>
-                    </li>
-                    <li class="splide__slide">
+                            <div class="container" style="margin-top: -16px;">
+                                <p class="fw-medium" style="font-size: 12px; font-family: Poppins;">
+                                <h3 style="color: #800080; font-size: 14px;">Rp. {{ $item->harga_kost }}<span class="text-secondary" style="font-size: 12px;">/bulan</span></h3>
+                                </p>
+                            </div>
+                        </li>
+                    @endforeach
+                    {{-- <li class="splide__slide">
                         <div class="card populer" style="width: 10.1rem; height: 14rem; border: none;">
                             <img src="{{ asset('img/kamarkostputra2.jpg') }}" style="border-radius: 15px; width: 160px; height: 100px;  object-fit: cover;">
                             <div class="card-body">
@@ -582,7 +636,7 @@
                             <h3 style="color: #800080; font-size: 14px;">Rp.2.300.000<span class="text-secondary" style="font-size: 12px;">/bulan</span></h3>
                             </p>
                         </div>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
         </section>
@@ -600,25 +654,29 @@
         <section class="splide new-3" aria-label="Splide Basic HTML Example" style="margin-bottom: 2rem;">
             <div class="splide__track">
                 <ul class="splide__list">
-                    <li class="splide__slide">
-                        <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
-                            <div class="position-relative mb-2">
-                                <div class="row">
-                                    <div class="col-4 mb-0">
-                                        <img src="{{ asset('/img/kostsurabaya11.jpg') }}" style="border-radius: 15px; width: 90px; height: 90px; object-fit: cover;">
-                                    </div>
-                                    <div class="col-4" style="width: 130px; margin-left: 16px;">
-                                        <h6 style="font-size: 16px; margin-top: 10px;" class="fw-bold">Kost Putra</h6>
-                                        <p style="margin-top: -5px; font-size: 12px; color: #6a6666fa;" class="mb-2 fw-normal">Uk. Kamar 5 x 6 M</p>
-                                        <button class="btn-kost-populer" style="width: 125px; height: 33px; padding: 4px;">
-                                            <p>Cek</p>
-                                        </button>
+                    @foreach ($kamarkosts->where('lokasi_kost', 'Kamar Kost Terbaru') as $item)
+                        <li class="splide__slide">
+                            <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
+                                <div class="position-relative mb-2">
+                                    <div class="row">
+                                        <div class="col-4 mb-0">
+                                            <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" style="border-radius: 15px; width: 90px; height: 90px; object-fit: cover;">
+                                        </div>
+                                        <div class="col-4" style="width: 150px; margin-left: 16px;">
+                                            <h6 style="font-size: 16px; margin-top: 10px;" class="fw-bold">{{ $item->kategori->kategori }}</h6>
+                                            <p style="margin-top: -5px; font-size: 12px; color: #6a6666fa;" class="mb-2 fw-normal">Uk. {{ Illuminate\Support\Str::limit($item->ukuran_kost, 13, '') }}</p>
+                                            <form action="/user/detail/{{ $item->id }}">
+                                                <button class="btn-kost-populer" style="width: 125px; height: 33px; padding: 4px;">
+                                                    <p>Cek</p>
+                                                </button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </li>
-                    <li class="splide__slide">
+                        </li>
+                    @endforeach
+                    {{-- <li class="splide__slide">
                         <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
                             <div class="position-relative mb-2">
                                 <div class="row">
@@ -689,7 +747,7 @@
                                 </div>
                             </div>
                         </div>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
         </section>
@@ -738,7 +796,7 @@
             pagination: false,
             perPage: 1,
             autoWidth: true,
-            gap: '0.5rem',
+            gap: '0.4rem',
             lazyLoad: 'nearby',
             drag: 'free',
         });

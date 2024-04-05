@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Banner;
+use App\Models\Jamkamarkost;
 use App\Models\KamarKost;
 use App\Models\Kategori;
 use App\Models\Pembayaran;
@@ -21,8 +22,9 @@ class UserController extends Controller
     {
         $categories = Kategori::where('lokasi', 'Kategori Kost')->get();
         $kamarkost = KamarKost::find($id);
+        $jamkamarkost = Jamkamarkost::all();
         $users = Auth::user();
-        return view('user.detail.index',compact('kamarkost', 'categories', 'users'));
+        return view('user.detail.index',compact('kamarkost', 'categories', 'jamkamarkost', 'users'));
     }
     public function menujudetail()
     {
@@ -30,26 +32,32 @@ class UserController extends Controller
     }
     public function detail()
     {
+        $users = Auth::user();
         $banner = Banner::where('status_banner', 'Publish')->get();
         $kamarkost = KamarKost::where('status_kost', 'Publish')->get();
-        return view('user.home',compact('banner', 'kamarkost')
+        return view('user.home',compact('banner', 'kamarkost', 'users')
         );
     }
     public function transaksi(string $id)
     {
         $users = Auth::user();
         $kamarkost = KamarKost::find($id);
-        $pembayaran = Pembayaran::all();
-        $pembayaransSelected = Pembayaran::find($id);
-        return view('user.transaksi.index',compact('pembayaran', 'kamarkost', 'users', 'pembayaransSelected')
-    );
+        $pembayaran = Pembayaran::get();
+        $pembayaran_e_wallet = Pembayaran::where('kategori_pembayaran', 'E-Wallet')->get();
+        $pembayaran_transfer_bank = Pembayaran::where('kategori_pembayaran', 'Transfer Bank')->get();
+        $pembayaranSelected = Pembayaran::find($id);
+
+        // Kirim data metode pembayaran yang dipilih ke tampilan
+        return view('user.transaksi.index', compact('pembayaran', 'kamarkost', 'users', 'pembayaranSelected', 'pembayaran_e_wallet', 'pembayaran_transfer_bank'));
     }
     public function konfirmasitransaksi(string $id)
     {
         $users = Auth::user();
         $kamarkost = KamarKost::find($id);
+        $kamarkosts = KamarKost::where('status_kost', 'Publish')->get();
         $pembayaran = Pembayaran::orderBy('created_at', 'desc')->get();
-        return view('user.transaksi.konfirmasitransaksi',compact('pembayaran', 'kamarkost', 'users')
+        $pembayaranSelected = Pembayaran::find($id);
+        return view('user.transaksi.konfirmasitransaksi',compact('pembayaran', 'kamarkost', 'kamarkosts', 'users', 'pembayaranSelected')
     );
     }
     public function back()
@@ -173,6 +181,25 @@ class UserController extends Controller
 
     public function favorit()
     {
+        $users = Auth::user();
+        return view('user.kamarfavorit', compact('users'));
+    }
+    public function favoritPost($id)
+    {
+        // Cek apakah pengguna sudah autentikasi
+        if (Auth::check()) {
+            // Dapatkan objek KamarKost berdasarkan ID
+            $kamarkost = KamarKost::findOrFail($id);
+
+            // Tambahkan kamar kost ke daftar favorit pengguna saat ini
+            Auth::user()->favorites()->attach($kamarkost);
+
+            // Balas dengan pesan atau respon JSON sesuai kebutuhan aplikasi Anda
+            return response()->json(['message' => 'Kamar Kost telah ditambahkan ke favorit.']);
+        }
+
+        // Jika pengguna tidak terautentikasi, balas dengan respon status 401 (Unauthorized)
+        return response()->json(['error' => 'Unauthenticated.'], 401);
         return view('user.kamarfavorit');
     }
 }

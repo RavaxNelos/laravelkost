@@ -58,6 +58,14 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('jamkamarkost') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-clock"></i>
+                        </span>
+                        <span class="hide-menu">Jam Masuk Kost</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a class="sidebar-link {{ Request::is('pemilikmin/pengguna', 'pemilikmin/editpengguna/*') ? 'active' : null }}" href="{{ route('pengguna') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-user-check"></i>

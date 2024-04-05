@@ -201,7 +201,9 @@
                 <!-- Avatar icon  -->
                 <div class="col-5 text-end" style="margin-top: 7px;">
                     <div class="header-kanan">
-                        <img src="{{ asset('/img/avatar.png') }}" loading="lazy">
+                        <a href="/user/profil">
+                            <img src="{{ asset($users->gambar ? 'uploadkamar/' . $users->gambar : '/img/customer1.jpg') }}" loading="lazy">
+                        </a>
                     </div>
                 </div>
                 <!-- end Avatar icon -->

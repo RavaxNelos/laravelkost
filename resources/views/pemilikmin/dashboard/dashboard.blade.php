@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('styles')
-    <style>
+    {{-- <style>
         .card {
             width: 10px;
         }
@@ -36,7 +36,7 @@
                 /* Skala akhir, kembali ke skala awal */
             }
         }
-    </style>
+    </style> --}}
 @endsection
 
 @section('content')

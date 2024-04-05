@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PemilikMinController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\JamkamarkostController;
 use App\Http\Controllers\KamarKostController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PembayaranController;
@@ -59,6 +60,9 @@ Route::get('/user/home', [UserController::class, 'detail'])->name('detail');
 Route::get('/user/detail/{id}', [UserController::class, 'detailrumah'])->name('detailrumah');
 Route::get('/user/transaksi/{id}', [UserController::class, 'transaksi'])->name('transaksi');
 Route::get('/user/konfirmasitransaksi/{id}', [UserController::class, 'konfirmasitransaksi'])->name('konfirmasitransaksi');
+Route::get('/user/semua/{id}', [UserController::class, 'semua'])->name('semua');
+Route::get('/user/favorit', [UserController::class, 'favorit'])->name('favorit');
+Route::post('/user/favorit/{id}', [UserController::class, 'favoritPost'])->name('favoritPost');
 Route::get('/logout', function() {
     Auth::logout();
     return redirect('/login');
@@ -115,6 +119,12 @@ Route::post('/pemilikmin/kategori', [KategoriController::class, 'store'])->name(
 Route::get('/pemilikmin/editkategori/{id}', [KategoriController::class, 'edit'])->name('editkategori');
 Route::post('/pemilikmin/editkategori', [KategoriController::class, 'update'])->name('editkategoriPost');
 Route::delete('/pemilikmin/kategori/destroy/{id}', [KategoriController::class, 'destroy'])->name('destroy');
+Route::get('/pemilikmin/jamkamarkost', [JamkamarkostController::class, 'index'])->name('jamkamarkost');
+Route::get('/pemilikmin/tambahjamkamarkost', [JamkamarkostController::class, 'create'])->name('tambahjamkamarkost');
+Route::post('/pemilikmin/jamkamarkost', [JamkamarkostController::class, 'store'])->name('jamkamarkost.store');
+Route::get('/pemilikmin/editjamkamarkost/{id}', [JamkamarkostController::class, 'edit'])->name('editjamkamarkost');
+Route::post('/pemilikmin/editjamkamarkost', [JamkamarkostController::class, 'update'])->name('editjamkamarkostPost');
+Route::delete('/pemilikmin/jamkamarkost/destroy/{id}', [JamkamarkostController::class, 'destroy'])->name('destroy');
 
 //pemilik2 controller
 // Route::get('/pemilik2/dashboard', [])

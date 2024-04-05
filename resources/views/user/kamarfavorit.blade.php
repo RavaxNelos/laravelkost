@@ -63,7 +63,7 @@
         <div class="container py-1">
             <div class="row g-3">
                 <div class="col-1" style="margin-top: 22px;">
-                    <a href="/profil" class="btn-back-home"><ion-icon name="chevron-back-outline"></ion-icon></a>
+                    <a href="/user/profil/" class="btn-back-home"><ion-icon name="chevron-back-outline"></ion-icon></a>
                 </div>
                 <div class="col-6 text-start" style="margin-top: 26px;">
                     <h3 class="text-dark fw-semibold teks-detail" style="font-size: 16px; transition: color 0.3s ease;">Favorit</h3>

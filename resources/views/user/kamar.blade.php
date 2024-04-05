@@ -151,14 +151,13 @@
         </div>
         <div class="row">
             <div class="col-3 text-start">
-                <a type="submit" style="width: 100px; height: 30px; text-align: center; text-decoration: none; border: 1px solid #ccc; border-radius: 6px; padding: 2px;" class="text-dark fs-6 fw-medium">Kos Putra</a>
+                <a type="submit" style="width: 120px; height: 30px; text-align: center; text-decoration: none; border: 1px solid #ccc; border-radius: 6px; font-size: 12px; padding-top: 4px;" class="text-dark fw-medium">Kost Mahasiswa</a>
             </div>
             <div class="col-1" style="margin-top: 0px;">
-                <i class="bi bi-dot text-secondary" style="margin-left: 22px; font-size:20px;"></i>
+                <i class="bi bi-dot text-secondary" style="margin-left: 32px; font-size:20px;"></i>
             </div>
             <div class="col-8 text-end">
-                <a type="submit" style="width: 190px; height: 30px; text-align: center; text-decoration: none; background-color: green; border-radius: 6px; padding: 8px; opacity: 0.4; position: relative; border: 2px solid #006400;" class="text-dark fs-6 fw-medium"></a>
-                <p class="fw-normal" style="color: white; position: absolute; top: 16.9rem; margin-left: 4px; width: 190px; font-size: 14px; font-family: 'Poppins";>Kost Sudah Terbayar</p>
+                <a type="submit" style="width: 190px; height: 30px; text-align: center; text-decoration: none; background-color: rgb(0, 128, 0, 0.4); border-radius: 6px; padding-top: 4px; position: relative; border: 2px solid #00af00; font-family: Poppins; color: white !important; font-size: 12px;" class="text-dark fw-medium">Kost Sudah Terbayar</a>
             </div>
         </div>
         <div class="row mt-2">
