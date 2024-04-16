@@ -8,6 +8,7 @@ use App\Models\KamarKost;
 use App\Models\Kategori;
 use App\Models\Pembayaran;
 use App\Models\Pengguna;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -35,20 +36,34 @@ class UserController extends Controller
         $users = Auth::user();
         $banner = Banner::where('status_banner', 'Publish')->get();
         $kamarkost = KamarKost::where('status_kost', 'Publish')->get();
-        return view('user.home',compact('banner', 'kamarkost', 'users')
+        $kamarpopulerbulanan = KamarKost::where('status_kost', 'Publish')->where('tipe_kost', 'Bulanan')->where('lokasi_kost', 'Kamar Kost Populer')->get();
+        $kamarpopulerharian = KamarKost::where('status_kost', 'Publish')->where('tipe_kost', 'Harian')->where('lokasi_kost', 'Kamar Kost Populer')->get();
+        return view('user.home',compact('banner', 'kamarkost', 'users', 'kamarpopulerbulanan', 'kamarpopulerharian')
         );
     }
-    public function transaksi(string $id)
+    public function getTime(Request $request)
     {
+        session()->put('selectedDate', $request->selectedDate);
+        session()->put('getDate', $request->getDate);
+        session()->put('waktu', $request->time);
+        session()->put('time', $request->getDate);
+        return redirect()->to('/user/payment/' . $request->productId);
+    }
+    public function transaksi($id)
+    {
+        $time = session()->get('time');
         $users = Auth::user();
+        // $jamkamarkost = Jamkamarkost::find($id);
         $kamarkost = KamarKost::find($id);
         $pembayaran = Pembayaran::get();
         $pembayaran_e_wallet = Pembayaran::where('kategori_pembayaran', 'E-Wallet')->get();
         $pembayaran_transfer_bank = Pembayaran::where('kategori_pembayaran', 'Transfer Bank')->get();
         $pembayaranSelected = Pembayaran::find($id);
+        $selectedTime = Carbon::parse(session()->get('selectedDate'))->isoFormat('D MMMM Y') . ' ' . session()->get('waktu');
+        $jamkamarkost = Jamkamarkost::all();
 
         // Kirim data metode pembayaran yang dipilih ke tampilan
-        return view('user.transaksi.index', compact('pembayaran', 'kamarkost', 'users', 'pembayaranSelected', 'pembayaran_e_wallet', 'pembayaran_transfer_bank'));
+        return view('user.transaksi.index', compact('pembayaran', 'kamarkost', 'users', 'pembayaranSelected', 'pembayaran_e_wallet', 'pembayaran_transfer_bank', 'selectedTime', 'jamkamarkost'));
     }
     public function konfirmasitransaksi(string $id)
     {
@@ -63,6 +78,11 @@ class UserController extends Controller
     public function back()
     {
         return view('user.detail.index');
+    }
+    public function semua(string $id)
+    {
+        $kamarkost = KamarKost::where('status_kost', 'Publish')->get();
+        return view('user.semua', compact('kamarkost'));
     }
 
     public function kamar()

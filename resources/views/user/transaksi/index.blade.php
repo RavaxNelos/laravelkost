@@ -181,7 +181,7 @@
                 <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 150px;">Tgl. Pesanan</h3>
             </div>
             <div class="col-7 text-end">
-                <h3 class="fw-semibold" style="font-size: 14px; color: rgb(106, 5, 114);">21 Februari 2024, 17.00 WIB</h3>
+                <h3 id="tanggal-pesanan" class="fw-semibold text-secondary-emphasis" style="font-size: 14px;"></h3>
             </div>
         </div>
         <div class="row">
@@ -189,7 +189,7 @@
                 <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 150px;">Est. Masuk Kost</h3>
             </div>
             <div class="col-8 text-end">
-                <h3 class="fw-semibold" style="font-size: 14px; color: rgb(106, 5, 114);">23 Februari 2024, 17.00 WIB</h3>
+                <h3 class="fw-semibold" style="font-size: 14px; color: rgb(106, 5, 114);">{{ $selectedTime }}</h3>
             </div>
         </div>
     </div>
@@ -462,6 +462,26 @@
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
         });
+    </script>
+    <script>
+        // Fungsi untuk memperbarui tanggal secara satu kali saat halaman dimuat
+        function updateTanggal() {
+            var tanggalElement = document.getElementById('tanggal-pesanan');
+            var now = new Date();
+            var options = {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            };
+            var formattedDate = now.toLocaleString('id-ID', options).replace(/\u200E/g, '') + ', ' + now.toLocaleString('id-ID', {
+                hour: 'numeric',
+                minute: 'numeric'
+            }) + ' WIB'; // Menambahkan " WIB" setelah jam
+            tanggalElement.innerText = formattedDate;
+        }
+
+        // Panggil fungsi updateTanggal saat halaman dimuat
+        updateTanggal();
     </script>
 </body>
 

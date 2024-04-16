@@ -396,7 +396,7 @@
         <div class="col-12">
             <h6 class="fw-semibold" style="font-family: Ubuntu;">Tentang Kamar Kost</h6>
             <p class="text-secondary" style="font-size: 12px;">
-                Besar ukuran kamar kostnya 3 x 4 Meter. Kamar kost Putra ini juga memiliki fasilitas berbagai macam seperti ac, toilet, dan lain-lain<span class="ellipsis">...</span>
+                Besar ukuran kamar kostnya {{ $kamarkost->ukuran_kost }}. Kamar kost Putra ini juga memiliki fasilitas berbagai macam seperti ac, toilet, dan lain-lain<span class="ellipsis">...</span>
                 <span class="additional-text">. Beserta ada sebuah kamar mandi vip ynag di dalamnya terdapat sebuah alat untuk mandi</span>
                 <span class="read-more-btn" onclick="toggleReadMore()">Lihat Selengkapnya</span>
             </p>
@@ -564,7 +564,7 @@
             <div class="row mt-2 g-2 justify-content-center" x-data="{ new_schedule: '' }" id="jam-container">
                 @foreach ($jamkamarkost as $item)
                     <div class="col-4">
-                        <button x-on:click="new_schedule = 'time'" :class="new_schedule == 'time' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'" type="button">{{ $item->jamkamar_kost }} WIB</button>
+                        <button x-on:click="new_schedule = '{{ $item->jamkamar_kost }}'" :class="new_schedule == '{{ $item->jamkamar_kost }}' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'" type="button">{{ $item->jamkamar_kost }} WIB</button>
                     </div>
                     {{-- <div class="col-4">
                     <button x-on:click="new_schedule = 'time-2'" :class="new_schedule == 'time-2' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'" type="button">09.00 WIB</button>
@@ -632,16 +632,149 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
     <script src="https://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
+    <script>
+        var selectedTime = ''; // Variabel global untuk menyimpan waktu yang dipilih
+
+        function setSelectedTime(time) {
+            document.getElementById('time').value = time;
+        }
+    </script>
     <script id="rendered-js">
         $(function() {
             $('#datetimepicker').datetimepicker({
                 inline: true,
                 sideBySide: true,
                 locale: 'id',
-                format: 'DD.MM.YYYY'
+                format: 'DD/MM/YYYY',
+                minDate: new Date(),
+            });
+
+            $('#datetimepicker').on('dp.change', function(e) {
+                var selectedDate = e.date.format('YYYY-MM-DD');
+                document.getElementById('selectedDate').value = selectedDate;
+                var tglActive = document.querySelector('.day.active');
+                var jamActive = document.querySelector('.jam-item.terselect');
+                var Btarget = document.getElementById('ok-button');
+
+                if (tglActive && jamActive) {
+                    Btarget.classList.remove('death');
+                    Btarget.removeAttribute('disabled');
+                } else {
+                    Btarget.classList.add('death');
+                    Btarget.setAttribute('disabled', true);
+                }
+
+                console.log($("#datetimepicker").find("input").val());
+            });
+
+            var bulan = document.querySelector('.picker-switch');
+            bulan.addEventListener('click', function(event) {
+                event.preventDefault();
+                event.stopPropagation();
+            });
+
+            var currentDate = new Date();
+            var currentDay = currentDate.getDate();
+            var currentMonthIndex = currentDate.getMonth();
+            var currentYear = currentDate.getFullYear();
+            var tanggalItems = document.querySelectorAll('.day');
+            var jamItems = document.querySelectorAll('.jam-item');
+
+            jamItems.forEach(function(divItem) {
+                divItem.addEventListener('click', function() {
+
+                    var isSelected = this.classList.contains('terselect');
+                    jamItems.forEach(function(item) {
+                        item.classList.remove('terselect');
+                    });
+                    if (!isSelected) {
+                        this.classList.add('terselect');
+                    }
+                    check();
+                });
+            });
+
+            function check() {
+                var tglActive = document.querySelector('.day.active');
+                var jamActive = document.querySelector('.jam-item.terselect');
+                var Btarget = document.getElementById('ok-button');
+                if (tglActive && jamActive) {
+                    Btarget.classList.remove('death');
+                    Btarget.removeAttribute('disabled');
+                } else {
+                    Btarget.classList.add('death');
+                    Btarget.setAttribute('disabled', true);
+                }
+            }
+
+            function uncheck() {
+                var tglActive = document.querySelector('.day.active');
+                var jamActive = document.querySelector('.jam-item.terselect');
+                var Btarget = document.getElementById('ok-button');
+                Btarget.classList.add('death');
+                Btarget.setAttribute('disabled', true);
+            }
+
+            document.addEventListener('change', function() {
+                check();
+            });
+
+            var okButton = document.getElementById('ok-button');
+            okButton.addEventListener('click', function() {
+                uncheck();
+
+                var tanggalAktif = document.querySelector('.day.active');
+                var jamAktif = document.querySelector('.jam-item.terselect');
+
+                tanggalAktif = tanggalAktif.getAttribute('data-day');
+                jamAktif = jamAktif.querySelector('input').value;
+
+                // Lanjutkan dengan pemrosesan seperti yang Anda lakukan sebelumnya
+                var takeOffFormatted = tanggalAktif + ', ' + jamAktif;
+                var kananDiv = document.querySelector('#tgl-pick');
+                kananDiv.textContent = takeOffFormatted;
+
+                var nextDayDate = moment(tanggalAktif, 'DD/MM/YYYY').add(1, 'day').format('DD/MM/YYYY');
+                var nextDayFormatted = nextDayDate + ', ' + jamAktif;
+
+                var kiriDiv = document.querySelector('#tgl-selesai');
+                kiriDiv.textContent = nextDayFormatted;
+                kiriDiv.classList.add('kuning');
+
+            });
+
+            // Mendapatkan waktu saat ini
+            var currentTime = new Date();
+            // Mendapatkan jam, menit, dan detik dari waktu saat ini
+            var currentHour = currentTime.getHours();
+            var currentMinute = currentTime.getMinutes();
+            var currentSecond = currentTime.getSeconds();
+
+            // Menghitung waktu saat ini dalam format "HH:MM:SS"
+            var formattedCurrentTime = currentHour + ":" + currentMinute + ":" + currentSecond;
+
+            // Mendapatkan semua elemen jam
+            var jamItems = document.querySelectorAll('.jam-item');
+
+            // Iterasi melalui setiap elemen jam
+            jamItems.forEach(function(jamItem) {
+
+                var jamValue = jamItem.querySelector('input[type="hidden"]').value;
+
+                if (formattedCurrentTime > jamValue) {
+                    jamItem.classList.add('disabled');
+                    jamItem.setAttribute('disabled', true);
+                }
+
+                function jamItemClickHandler(event) {
+                    event.preventDefault();
+                }
+
             });
 
         });
+    </script>
+    <script>
         var splide = new Splide('.splide.new', {
             arrows: false,
             pagination: false,
@@ -884,6 +1017,36 @@
             // Panggil cekPilihan saat halaman dimuat untuk menentukan status awal tombol
             cekPilihan();
         });
+    </script>
+    <script>
+        function redirectToPaymentPage(productId) {
+            var currentTime = new Date();
+            var day = currentTime.getDate();
+            var month = currentTime.getMonth() + 1; // January is 0!
+            var year = currentTime.getFullYear();
+            var hours = currentTime.getHours();
+            var minutes = currentTime.getMinutes();
+            var seconds = currentTime.getSeconds();
+
+            var formattedTime =
+                "{{ Carbon\Carbon::now()->locale('id')->settings(['formatFunction' => 'translatedFormat'])->format('j F Y, h:i') }} WIB";
+            getTime(productId, formattedTime);
+        }
+
+        function getTime(productId, formattedTime) {
+            $.ajax({
+                url: '/user/getDate',
+                type: 'POST',
+                data: {
+                    product_id: productId,
+                    formattedTime: formattedTime,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    window.location.href = '/user/transaksi/{{ $kamarkost->id }}';
+                }
+            });
+        }
     </script>
 </body>
 
