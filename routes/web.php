@@ -58,11 +58,15 @@ Route::get('/user/kerusakan', [UserController::class, 'kerusakan'])->name('kerus
 Route::get('/user/kehilangan', [UserController::class, 'kehilangan'])->name('kehilangan');
 Route::get('/user/home', [UserController::class, 'detail'])->name('detail');
 Route::get('/user/detail/{id}', [UserController::class, 'detailrumah'])->name('detailrumah');
+Route::post('/user/getTime', [UserController::class, 'getTime']);
+Route::post('/user/getDate', [UserController::class, 'getDate']);
 Route::get('/user/transaksi/{id}', [UserController::class, 'transaksi'])->name('transaksi');
+Route::post('/user/transaksi/check', [UserController::class, 'paymentCheck']);
+Route::post('/user/transaksi/confirmation', [UserController::class, 'checkPayment']);
 Route::get('/user/konfirmasitransaksi/{id}', [UserController::class, 'konfirmasitransaksi'])->name('konfirmasitransaksi');
 Route::get('/user/semua/{id}', [UserController::class, 'semua'])->name('semua');
 Route::get('/user/favorit', [UserController::class, 'favorit'])->name('favorit');
-Route::post('/user/favorit/{id}', [UserController::class, 'favoritPost'])->name('favoritPost');
+Route::post('/favorite/add', [UserController::class, 'favoritadd']);
 Route::get('/logout', function() {
     Auth::logout();
     return redirect('/login');

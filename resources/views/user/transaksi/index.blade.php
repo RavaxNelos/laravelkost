@@ -181,7 +181,7 @@
                 <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 150px;">Tgl. Pesanan</h3>
             </div>
             <div class="col-7 text-end">
-                <h3 id="tanggal-pesanan" class="fw-semibold text-secondary-emphasis" style="font-size: 14px;"></h3>
+                <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">{{ $time }}</h3>
             </div>
         </div>
         <div class="row">
@@ -256,189 +256,144 @@
             </div>
         </div>
     </div>
-    <section class="payment-method" x-data="{ confirmation: true }" style="background-color: rgba(104, 41, 145, 0.8);">
-        <div x-data="{ selected: false }">
-            <div x-data="{ openPayment: false }" x-init="confirmation = true ? 'setTimeout(() => openPayment = false, 1000)' : null">
-                <div class="payment-accordion">
-                    <div class="payment-accordion-item">
-                        <button class="payment-accordion-button payment-method-text" @click="openPayment = !openPayment" keydown.escape="openPayment = false">
-                            <div class="d-flex align-items-center">
-                                <div class="flex-fill">
-                                    <div class="d-flex align-items-center">
-                                        <div class="flex-fill">
-                                            <p class="fw-normal ms-2 my-auto text-white text-size">
-                                                Metode Pembayaran</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="ms-auto">
-                                    <i :class="openPayment ? 'fa-solid fa-chevron-up text-white fa-sm' :
-                                        'fa-solid fa-chevron-down text-white fa-sm'">
-                                    </i>
-                                </div>
-                            </div>
-                        </button>
-                    </div>
-                </div>
-                {{-- bank --}}
-                <div x-show="openPayment" x-transition.scale.origin.bottom>
-                    <div class="payment-accordion" x-data="{ openPaymentBank: false }" @click.away="openPaymentBank= false" style="margin-top: -20px !important;">
+    <div x-data="{ confirmation: true }">
+        <section class="payment-method" style="background-color: rgba(104, 41, 145, 0.8);">
+            <div x-data="{ selected: false }">
+                <div x-data="{ openPayment: false }" x-init="confirmation = true ? 'setTimeout(() => openPayment = false, 1000)' : null">
+                    <div class="payment-accordion">
                         <div class="payment-accordion-item">
-                            <button class="payment-accordion-button payment-method-text text-white" style="padding: 1rem; border: 1px solid #30323e; border-top-left-radius: 15px !important; border-top-right-radius: 15px !important; !important; border-bottom-left-radius: 15px !important; border-bottom-right-radius: 15px !important;" @click="openPaymentBank = !openPaymentBank" keydown.escape="openPaymentBank = false">
+                            <button class="payment-accordion-button payment-method-text" @click="openPayment = !openPayment" keydown.escape="openPayment = false">
                                 <div class="d-flex align-items-center">
                                     <div class="flex-fill">
                                         <div class="d-flex align-items-center">
-                                            <p class="fw-normal ms-2 my-auto text-white text-size">
-                                                Transfer Bank</p>
+                                            <div class="flex-fill">
+                                                <p class="fw-normal ms-2 my-auto text-white text-size">
+                                                    Metode Pembayaran</p>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="ms-auto">
-                                        <i :class="openPaymentBank ? 'fa-solid fa-chevron-up text-white fa-sm' :
+                                        <i :class="openPayment ? 'fa-solid fa-chevron-up text-white fa-sm' :
                                             'fa-solid fa-chevron-down text-white fa-sm'">
                                         </i>
                                     </div>
                                 </div>
                             </button>
                         </div>
-                        @foreach ($pembayaran_transfer_bank as $item)
-                            <div x-show="openPaymentBank" x-transition.scale.origin.bottom>
-                                <div class="payment-accordion-item">
-                                    <div style="padding: 1rem; border-left: 1px solid #30323e; border-right: 1px solid #30323e; border-top: 0px solid #30323e; border-bottom: 1px solid #30323e;" x-on:click="selected !== '{{ $item->nama_pembayaran }}' ? selected = '{{ $item->nama_pembayaran }}' : selected = false; confirmation = true;" @click="confirmation = true" :class="selected == '{{ $item->nama_pembayaran }}' ? 'payment-accordion-button payment-method-text text-white clicked' : 'payment-accordion-button payment-method-text text-white'">
-                                        <div class="d-flex align-items-center">
-                                            <div class="mx-auto">
-                                                <img src="{{ asset('uploadkamar/' . $item->logo_pembayaran) }}" height="30" alt="">
-                                            </div>
-                                            <div class="flex-fill">
-                                                <p class="my-auto ms-2">{{ $item->nama_pembayaran }}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
                     </div>
-                </div>
-                <div x-show="openPayment" x-transition.scale.origin.bottom>
-                    <div class="payment-accordion" x-data="{ openPaymentBank: false }" @click.away="openPaymentBank= false" style="margin-top: -20px !important;">
-                        <div class="payment-accordion-item">
-                            <button class="payment-accordion-button payment-method-text text-white" style="padding: 1rem; border: 1px solid #30323e; border-top-left-radius: 15px !important; border-top-right-radius: 15px !important; border-bottom-left-radius: 15px !important; border-bottom-right-radius: 15px !important;" @click="openPaymentBank = !openPaymentBank" keydown.escape="openPaymentBank = false">
-                                <div class="d-flex align-items-center">
-                                    <div class="flex-fill">
-                                        <div class="d-flex align-items-center">
-                                            <p class="fw-normal ms-2 my-auto text-white text-size">
-                                                E-Wallet</p>
-                                        </div>
-                                    </div>
-                                    <div class="ms-auto">
-                                        <i :class="openPaymentBank ? 'fa-solid fa-chevron-up text-white fa-sm' :
-                                            'fa-solid fa-chevron-down text-white fa-sm'">
-                                        </i>
-                                    </div>
-                                </div>
-                            </button>
-                        </div>
-                        @foreach ($pembayaran_e_wallet as $item)
-                            <div x-show="openPaymentBank" x-transition.scale.origin.bottom>
-                                <div class="payment-accordion-item">
-                                    <button :class="selected == '{{ $item->nama_pembayaran }}' ?
-                                        'payment-accordion-button payment-method-text text-white clicked' :
-                                        'payment-accordion-button payment-method-text text-white'" style="padding: 1rem; border-left: 1px solid #30323e; border-right: 1px solid #30323e; border-top: 0px solid #30323e; border-bottom: 1px solid #30323e; border-radius: 0px !important;" x-on:click="selected !== '{{ $item->nama_pembayaran }}' ? selected = '{{ $item->nama_pembayaran }}' : selected = false" @click="confirmation = true">
-                                        <div class="d-flex align-items-center">
-                                            <div class="mx-auto">
-                                                <img src="{{ asset('uploadkamar/' . $item->logo_pembayaran) }}" height="30" alt="">
-                                            </div>
-                                            <div class="flex-fill">
-                                                <p class="my-auto ms-2"> {{ $item->nama_pembayaran }}</p>
-                                            </div>
-                                        </div>
-                                    </button>
-
-                                    {{-- <button :class="selected == 'ovo' ?
-                                    'payment-accordion-button payment-method-text text-white clicked' :
-                                    'payment-accordion-button payment-method-text text-white'" style="padding: 1rem; border: 1px solid #30323e; border-radius: 0px !important;" x-on:click="selected !== 'ovo' ? selected = 'ovo' : selected = false" @click="confirmation = true">
+                    {{-- bank --}}
+                    <div x-show="openPayment" x-transition.scale.origin.bottom>
+                        <div class="payment-accordion" x-data="{ openPaymentBank: false }" @click.away="openPaymentBank= false" style="margin-top: -20px !important;">
+                            <div class="payment-accordion-item">
+                                <button class="payment-accordion-button payment-method-text text-white" style="padding: 1rem; border: 1px solid #30323e; border-top-left-radius: 15px !important; border-top-right-radius: 15px !important; !important; border-bottom-left-radius: 15px !important; border-bottom-right-radius: 15px !important;" @click="openPaymentBank = !openPaymentBank" keydown.escape="openPaymentBank = false">
                                     <div class="d-flex align-items-center">
-                                        <div class="mx-auto">
-                                            <img src="{{ asset('img/ovo.png') }}" height="30" alt="">
-                                        </div>
                                         <div class="flex-fill">
-                                            <p class="my-auto ms-2">Ovo</p>
+                                            <div class="d-flex align-items-center">
+                                                <p class="fw-normal ms-2 my-auto text-white text-size">
+                                                    Transfer Bank</p>
+                                            </div>
+                                        </div>
+                                        <div class="ms-auto">
+                                            <i :class="openPaymentBank ? 'fa-solid fa-chevron-up text-white fa-sm' :
+                                                'fa-solid fa-chevron-down text-white fa-sm'">
+                                            </i>
                                         </div>
                                     </div>
                                 </button>
-                                <button :class="selected == 'dana' ?
-                                    'payment-accordion-button payment-method-text text-white clicked' :
-                                    'payment-accordion-button payment-method-text text-white'" style="padding: 1rem; border: 1px solid #30323e; border-radius: 0px !important;" x-on:click="selected !== 'dana' ? selected = 'dana' : selected = false" @click="confirmation = true">
-                                    <div class="d-flex align-items-center">
-                                        <div class="mx-auto">
-                                            <img src="{{ asset('img/dana.png') }}" height="30" alt="">
-                                        </div>
-                                        <div class="flex-fill">
-                                            <p class="my-auto ms-2">Dana</p>
-                                        </div>
-                                    </div>
-                                </button>
-                                <button :class="selected == 'shoopepay' ?
-                                    'payment-accordion-button payment-method-text text-white clicked' :
-                                    'payment-accordion-button payment-method-text text-white'" style="padding: 1rem; border: 1px solid #30323e;border-top-left-radius: 0px !important; border-top-right-radius: 0px !important; border-bottom-left-radius: 15px !important; border-bottom-right-radius: 15px; !important" x-on:click="selected !== 'shoopepay' ? selected = 'shoopepay' : selected = false" @click="confirmation = true">
-                                    <div class="d-flex align-items-center">
-                                        <div class="mx-auto">
-                                            <img src="{{ asset('img/shopee.png') }}" height="30" alt="">
-                                        </div>
-                                        <div class="flex-fill">
-                                            <p class="my-auto ms-2">Shopee Pay</p>
-                                        </div>
-                                    </div>
-                                </button> --}}
-                                </div>
                             </div>
-                        @endforeach
-                    </div>
-                </div>
-                <div x-show="selected">
-                    <div style="background-color: rgba(104, 41, 145, 0.8);">
-                        <template x-if="confirmation == true" class="">
-                            <button x-on:click="confirmation = false;openPayment = false" class="ms-3 mb-2 btn btn-confirm " style="--bs-btn-padding-y: .4rem; --bs-btn-padding-x: 8rem; --bs-btn-font-size: 14px;">Konfirmasi
-                            </button>
-                        </template>
-                        @foreach ($pembayaran as $item)
-                            <template x-if="confirmation == false">
-                                <div x-show="selected === '{{ $item->nama_pembayaran }}'">
-                                    <template x-if="selected == '{{ $item->nama_pembayaran }}'">
-                                        <div class="payment-accordion-item">
-                                            <div class="payment-accordion-button payment-method-text text-white" style="border-top: 1px solid #4e4f5b">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="mx-auto">
-                                                        <img src="{{ asset('uploadkamar/' . $item->logo_pembayaran) }}" class="mb-3 ms-3 mt-3" height="30" alt="">
-                                                    </div>
-                                                    <div class="flex-fill">
-                                                        <p class="my-auto ms-2 mb-3 mt-3">{{ $item->nama_pembayaran }}</p>
-                                                    </div>
+                            @foreach ($pembayaran_transfer_bank as $item)
+                                <div x-show="openPaymentBank" x-transition.scale.origin.bottom>
+                                    <div class="payment-accordion-item">
+                                        <div style="padding: 1rem; border-left: 1px solid #30323e; border-right: 1px solid #30323e; border-top: 0px solid #30323e; border-bottom: 1px solid #30323e;" x-on:click="selected !== '{{ $item->nama_pembayaran }}' ? selected = '{{ $item->nama_pembayaran }}' : selected = false; confirmation = true;" @click="confirmation = true" :class="selected == '{{ $item->nama_pembayaran }}' ? 'payment-accordion-button payment-method-text text-white clicked' : 'payment-accordion-button payment-method-text text-white'" onclick="getPayment({{ $item->id }})">
+                                            <div class="d-flex align-items-center">
+                                                <div class="mx-auto">
+                                                    <img src="{{ asset('uploadkamar/' . $item->logo_pembayaran) }}" height="30" alt="">
+                                                </div>
+                                                <div class="flex-fill">
+                                                    <p class="my-auto ms-2">{{ $item->nama_pembayaran }}</p>
                                                 </div>
                                             </div>
                                         </div>
-                                    </template>
+                                    </div>
                                 </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div x-show="openPayment" x-transition.scale.origin.bottom>
+                        <div class="payment-accordion" x-data="{ openPaymentBank: false }" @click.away="openPaymentBank= false" style="margin-top: -20px !important;">
+                            <div class="payment-accordion-item">
+                                <button class="payment-accordion-button payment-method-text text-white" style="padding: 1rem; border: 1px solid #30323e; border-top-left-radius: 15px !important; border-top-right-radius: 15px !important; border-bottom-left-radius: 15px !important; border-bottom-right-radius: 15px !important;" @click="openPaymentBank = !openPaymentBank" keydown.escape="openPaymentBank = false">
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-fill">
+                                            <div class="d-flex align-items-center">
+                                                <p class="fw-normal ms-2 my-auto text-white text-size">
+                                                    E-Wallet</p>
+                                            </div>
+                                        </div>
+                                        <div class="ms-auto">
+                                            <i :class="openPaymentBank ? 'fa-solid fa-chevron-up text-white fa-sm' :
+                                                'fa-solid fa-chevron-down text-white fa-sm'">
+                                            </i>
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                            @foreach ($pembayaran_e_wallet as $item)
+                                <div x-show="openPaymentBank" x-transition.scale.origin.bottom>
+                                    <div class="payment-accordion-item">
+                                        <button :class="selected == '{{ $item->nama_pembayaran }}' ? 'payment-accordion-button payment-method-text text-white clicked' : 'payment-accordion-button payment-method-text text-white'" style="padding: 1rem; border-left: 1px solid #30323e; border-right: 1px solid #30323e; border-top: 0px solid #30323e; border-bottom: 1px solid #30323e; border-radius: 0px !important;" x-on:click="selected !== '{{ $item->nama_pembayaran }}' ? selected = '{{ $item->nama_pembayaran }}' : selected = false" @click="confirmation = true" onclick="getPayment({{ $item->id }})">
+                                            <div class="d-flex align-items-center">
+                                                <div class="mx-auto">
+                                                    <img src="{{ asset('uploadkamar/' . $item->logo_pembayaran) }}" height="30" alt="">
+                                                </div>
+                                                <div class="flex-fill">
+                                                    <p class="my-auto ms-2"> {{ $item->nama_pembayaran }}</p>
+                                                </div>
+                                            </div>
+                                        </button>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div x-show="selected">
+                        <div style="background-color: rgba(104, 41, 145, 0.8);">
+                            <template x-if="confirmation == true" class="">
+                                <button x-on:click="confirmation = false; openPayment = false;" class="ms-3 mb-2 btn btn-confirm " style="--bs-btn-padding-y: .4rem; --bs-btn-padding-x: 8rem; --bs-btn-font-size: 14px;" onclick="konfirmasi()">Konfirmasi</button>
                             </template>
-                        @endforeach
+                            <div class="payment-accordion-item" id="open">
+                                <div class="payment-accordion-button payment-method-text text-white" style="border-top: 1px solid #4e4f5b">
+                                    <div class="d-flex align-items-center">
+                                        <div class="mx-auto">
+                                            <img id="imageContainer" src="" class="mb-3 ms-3 mt-3" height="30" alt="">
+                                        </div>
+                                        <div class="flex-fill">
+                                            <p class="my-auto ms-2 mb-3 mt-3 text-white" id="name_bank">
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <hr class="hr-terakhir">
-    <div class="sticky-bottom">
-        <div class="container py-2">
-            <div class="row">
-                <div class="col-12 text-start">
-                    <h3 class="mb-1 mt-1" style="font-size: 12px;">Total Pembayaran</h3>
-                </div>
-                <div class="col-6 text-start">
-                    <h3 class="fw-semibold" style="font-size: 23,5; color: #9370DB">Rp. {{ number_format($totalPembayaran, 0, ',', '.') }}</h3>
-                </div>
-                <div class="col-6 text-end">
-                    <form action="/user/konfirmasitransaksi/{{ $kamarkost->id }}">
-                        <button type="submit" class="btn btn-bayar text-end" id="btnBayar">Bayar</button>
-                    </form>
+        </section>
+        <hr class="hr-terakhir">
+        <div class="sticky-bottom">
+            <div class="container py-2">
+                <div class="row">
+                    <div class="col-12 text-start">
+                        <h3 class="mb-1 mt-1" style="font-size: 12px;">Total Pembayaran</h3>
+                    </div>
+                    <div class="col-6 text-start">
+                        <h3 class="fw-semibold" style="font-size: 23,5; color: #9370DB">Rp. {{ number_format($totalPembayaran, 0, ',', '.') }}</h3>
+                    </div>
+                    <div class="col-6 text-end">
+                        <form action="/user/konfirmasitransaksi/{{ $kamarkost->id }}">
+                            <button type="submit" class="btn btn-bayar text-end" id="btnBayar" x-bind:disabled="confirmation">Bayar</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -447,6 +402,7 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
         window.addEventListener('scroll', function() {
             var header = document.getElementById('stickyHeader');
@@ -463,7 +419,7 @@
             e.preventDefault();
         });
     </script>
-    <script>
+    {{-- <script>
         // Fungsi untuk memperbarui tanggal secara satu kali saat halaman dimuat
         function updateTanggal() {
             var tanggalElement = document.getElementById('tanggal-pesanan');
@@ -482,6 +438,38 @@
 
         // Panggil fungsi updateTanggal saat halaman dimuat
         updateTanggal();
+    </script> --}}
+    <script>
+        function getPayment(paymentId) {
+            $.ajax({
+                url: '/user/transaksi/check',
+                type: 'POST',
+                data: {
+                    payment_id: paymentId,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(response) {
+
+                    // Handle the processed data
+                },
+            });
+        }
+
+        function konfirmasi() {
+            console.log('test');
+            $.ajax({
+                url: '/user/transaksi/confirmation',
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    // console.log(response);
+                    $('#imageContainer').attr('src', response.gambar);
+                    $('#name_bank').html(response.name);
+                },
+            });
+        }
     </script>
 </body>
 

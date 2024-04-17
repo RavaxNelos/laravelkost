@@ -79,18 +79,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 d-flex gap-2">
-                    <button :class="{ 'btn-nyala': filter === 'bulanan', 'btn-mati': filter === 'harian' }" x-on:click="filter = 'bulanan'" class="btn-animated">
+                    <button :class="{ 'btn-nyala': filter === 'Bulanan', 'btn-mati': filter === 'Harian' }" x-on:click="filter = 'Bulanan'" class="btn-animated">
                         <span class="btn-overlay"></span>
                         Kost Bulanan
                     </button>
-                    <button :class="{ 'btn-nyala': filter === 'harian', 'btn-mati': filter === 'bulanan' }" x-on:click="filter = 'harian'" class="btn-animated">
+                    <button :class="{ 'btn-nyala': filter === 'Harian', 'btn-mati': filter === 'Bulanan' }" x-on:click="filter = 'Harian'" class="btn-animated">
                         <span class="btn-overlay"></span>
                         Sewa Harian
                     </button>
                 </div>
             </div>
         </div>
-        <div class="container px-3" x-show="filter == 'bulanan'">
+        {{-- <div class="container px-3" x-show="filter == 'bulanan'">
             <div class="row">
                 <div class="col-12 text-center" style="margin-top: 8rem;">
                     <img src="{{ asset('img/planet.png') }}" width="180" height="180">
@@ -104,59 +104,25 @@
                     </form>
                 </div>
             </div>
+        </div> --}}
+        @foreach ($favorit as $item)
+            <div class="container mt-3" x-show="filter == '{{ $item->category }}'">
+                <div class="row">
+                    <div class="col-5">
+                        <img src="{{ asset('img/kamarkostputraharian1.jpg') }}" style="width: 120px; height: 160px; border-radius: 10px;">
+                    </div>
+                    <div class="col-7" style="margin-left: -20px;">
+                        <a href="#" class="btn btn-outline-secondary text-dark fw-medium" style="font-size: 14px; width: 80px; height: 30px; padding: 4px;">{{ $item->kategori_id }}</a><i class="bi bi-star-fill star-icon" style="color: purple; font-size: 20px; margin-left: 5.2rem;"></i>
+                        <p class="text-secondary fw-normal mt-2" style="font-size: 12px;">{{ $item->kategori_id }} Uk {{ $item->ukuran_kost }}</p>
+                        <p class="fw-medium text-dark" style="font-size: 14px; margin-top: -14px;"><i class="bi bi-geo-alt" style="margin-right: 4px;"></i>{{ $item->alamat_kost }}</p>
+                        <p class="text-secondary fw-normal" style="font-size: 12px; margin-top: -14px;">K. Mandi Dalam | Wifi | Lemari | Kulkas | 1 PK AC... </p>
+                        <p class="fw-semibold" style="font-size: 16px; margin-top: 18px;">Rp. {{ $item->harga_kost }} <span class="text-secondary fw-normal" style="font-size: 12px;">/{{ $item->tipe_kost }}</span></p>
+                    </div>
+                </div>
+        @endforeach
+        <div id="popup" class="popup">
+            <span class="popup-text" id="popupText">Dihapus dari favorit</span>
         </div>
-        <div class="container mt-3" x-show="filter == 'harian'">
-            <div class="row">
-                <div class="col-5">
-                    <img src="{{ asset('img/kamarkostputraharian1.jpg') }}" style="width: 120px; height: 160px; border-radius: 10px;">
-                </div>
-                <div class="col-7" style="margin-left: -20px;">
-                    <a href="#" class="btn btn-outline-secondary text-dark fw-medium" style="font-size: 14px; width: 80px; height: 30px; padding: 4px;">Putra</a><i class="bi bi-star-fill star-icon" style="color: purple; font-size: 20px; margin-left: 5.2rem;"></i>
-                    <p class="text-secondary fw-normal mt-2" style="font-size: 12px;">Kost Putra Uk 3 x 4 Meter</p>
-                    <p class="fw-medium text-dark" style="font-size: 14px; margin-top: -14px;"><i class="bi bi-geo-alt" style="margin-right: 4px;"></i>Mulyosari</p>
-                    <p class="text-secondary fw-normal" style="font-size: 12px; margin-top: -14px;">K. Mandi Dalam | Wifi | Lemari | Kulkas | 1 PK AC... </p>
-                    <p class="fw-semibold" style="font-size: 16px; margin-top: 18px;">Rp. 540.000 <span class="text-secondary fw-normal" style="font-size: 12px;">/harian</span></p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-5">
-                    <img src="{{ asset('img/kamarkostputraharian2.jpg') }}" style="width: 120px; height: 160px; border-radius: 10px;">
-                </div>
-                <div class="col-7" style="margin-left: -20px;">
-                    <a href="#" class="btn btn-outline-secondary text-dark fw-medium" style="font-size: 14px; width: 80px; height: 30px; padding: 4px;">Putra</a><i class="bi bi-star-fill star-icon" style="color: purple; font-size: 20px; margin-left: 5.2rem;"></i>
-                    <p class="text-secondary fw-normal mt-2" style="font-size: 12px;">Kost Putra Uk 7 x 4 Meter</p>
-                    <p class="fw-medium text-dark" style="font-size: 14px; margin-top: -14px;"><i class="bi bi-geo-alt" style="margin-right: 4px;"></i>Mulyorejo</p>
-                    <p class="text-secondary fw-normal" style="font-size: 12px; margin-top: -14px;">K. Mandi Dalam | Wifi | Lemari | Kulkas | 1 PK AC... </p>
-                    <p class="fw-semibold" style="font-size: 16px; margin-top: 18px;">Rp. 500.000 <span class="text-secondary fw-normal" style="font-size: 12px;">/harian</span></p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-5">
-                    <img src="{{ asset('img/kamarkostputriharian1.jpg') }}" style="width: 120px; height: 160px; border-radius: 10px;">
-                </div>
-                <div class="col-7" style="margin-left: -20px;">
-                    <a href="#" class="btn btn-outline-secondary text-dark fw-medium" style="font-size: 14px; width: 80px; height: 30px; padding: 4px;">Putra</a><i class="bi bi-star-fill star-icon" style="color: purple; font-size: 20px; margin-left: 5.2rem;"></i>
-                    <p class="text-secondary fw-normal mt-2" style="font-size: 12px;">Kost Putra Uk 4 x 4 Meter</p>
-                    <p class="fw-medium text-dark" style="font-size: 14px; margin-top: -14px;"><i class="bi bi-geo-alt" style="margin-right: 4px;"></i>Benowo</p>
-                    <p class="text-secondary fw-normal" style="font-size: 12px; margin-top: -14px;">K. Mandi Dalam | Wifi | Lemari | Kulkas | 1 PK AC... </p>
-                    <p class="fw-semibold" style="font-size: 16px; margin-top: 18px;">Rp. 530.000 <span class="text-secondary fw-normal" style="font-size: 12px;">/harian</span></p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-5">
-                    <img src="{{ asset('img/kamarkostputriharian2.jpg') }}" style="width: 120px; height: 160px; border-radius: 10px;">
-                </div>
-                <div class="col-7" style="margin-left: -20px;">
-                    <a href="#" class="btn btn-outline-secondary text-dark fw-medium" style="font-size: 14px; width: 80px; height: 30px; padding: 4px;">Putra</a><i class="bi bi-star-fill star-icon" style="color: purple; font-size: 20px; margin-left: 5.2rem;"></i>
-                    <p class="text-secondary fw-normal mt-2" style="font-size: 12px;">Kost Putra Uk 5 x 4 Meter</p>
-                    <p class="fw-medium text-dark" style="font-size: 14px; margin-top: -14px;"><i class="bi bi-geo-alt" style="margin-right: 4px;"></i>Gunung Anyar</p>
-                    <p class="text-secondary fw-normal" style="font-size: 12px; margin-top: -14px;">K. Mandi Dalam | Wifi | Lemari | Kulkas | 1 PK AC... </p>
-                    <p class="fw-semibold" style="font-size: 16px; margin-top: 18px;">Rp. 525.000 <span class="text-secondary fw-normal" style="font-size: 12px;">/harian</span></p>
-                </div>
-            </div>
-            <div id="popup" class="popup">
-                <span class="popup-text" id="popupText">Dihapus dari favorit</span>
-            </div>
         </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

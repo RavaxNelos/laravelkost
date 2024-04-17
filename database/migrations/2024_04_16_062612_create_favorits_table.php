@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('favorit', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('');
+            $table->string('category');
+            $table->foreignId('kamar_kost_id')->nullable();
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }

@@ -265,7 +265,7 @@
                     <h3 class="fw-bold" style="font-size: 16px; transition: color 0.3s ease;">Detail Kamar Kost</h3>
                 </div>
                 <div class="col-5 text-end">
-                    <button class="btn-like-detail" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
+                    <button class="btn-like-detail" onclick="changeIconAndColor(this)"><i class="bi {{ $favorit ? 'bi-star-fill' : 'bi-star' }} text-danger"></i></button>
                 </div>
             </div>
         </div>
@@ -564,7 +564,7 @@
             <div class="row mt-2 g-2 justify-content-center" x-data="{ new_schedule: '' }" id="jam-container">
                 @foreach ($jamkamarkost as $item)
                     <div class="col-4">
-                        <button x-on:click="new_schedule = '{{ $item->jamkamar_kost }}'" :class="new_schedule == '{{ $item->jamkamar_kost }}' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'" type="button">{{ $item->jamkamar_kost }} WIB</button>
+                        <button x-on:click="new_schedule = '{{ $item->jamkamar_kost }}'; setSelectedTime('{{ $item->jamkamar_kost }} WIB')" " :class="new_schedule == '{{ $item->jamkamar_kost }}' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'" type="button">{{ $item->jamkamar_kost }} WIB</button>
                     </div>
                     {{-- <div class="col-4">
                     <button x-on:click="new_schedule = 'time-2'" :class="new_schedule == 'time-2' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'" type="button">09.00 WIB</button>
@@ -590,464 +590,488 @@
                 <div class="col-4">
                     <button x-on:click="new_schedule = 'time-9'" :class="new_schedule == 'time-9' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'" type="button">17.00 WIB</button>
                 </div> --}}
-                @endforeach
+ @endforeach
+                    </div>
+                    <label id="addWaktu" class="btn-lainnya" data-bs-toggle="modal" data-bs-target="#chooseTime">Waktu Lainnya</label>
+                    {{-- <div id="jam-container"> --}}
+                    {{-- <input type="time" id="waktu" onchange="updateWaktu()"> --}}
+                    {{-- <button id="waktu-btn" onclick="submitWaktu()">Set Waktu</button> --}}
+                    {{-- </div> --}}
             </div>
-            <label id="addWaktu" class="btn-lainnya" data-bs-toggle="modal" data-bs-target="#chooseTime">Waktu Lainnya</label>
-            {{-- <div id="jam-container"> --}}
-            {{-- <input type="time" id="waktu" onchange="updateWaktu()"> --}}
-            {{-- <button id="waktu-btn" onclick="submitWaktu()">Set Waktu</button> --}}
-            {{-- </div> --}}
+            <!-- booking kost -->
         </div>
-        <!-- booking kost -->
-    </div>
-    <div class="garis-pembatas-2"></div>
-    <div class="sticky-bottom">
-        <div class="container">
-            <div class="row">
-                <div class="col-2 mt-3">
-                    <a href="https://api.whatsapp.com/send?phone=6282332724688" target="_blank" rel="noopener noreferrer">
-                        <button class="btn-wa"><i class="bi bi-whatsapp"></i></button>
-                    </a>
-                </div>
-                <div class="col-2 mt-3">
-                    <a href="https://maps.app.goo.gl/pWPjQFsNmoAjsngG7" target="_blank" rel="noopener noreferrer">
-                        <button class="btn-lokasi"><i class="bi bi-geo-alt-fill"></i></button>
-                    </a>
-                </div>
-                <div class="col-8 mt-3">
-                    <form action="/user/transaksi/{{ $kamarkost->id }}">
-                        <button type="submit" class="btn btn-dark" id="btnPesanSekarang" disabled>Pesan Sekarang</button>
-                    </form>
+        <div class="garis-pembatas-2"></div>
+        <div class="sticky-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-2 mt-3">
+                        <a href="https://api.whatsapp.com/send?phone=6282332724688" target="_blank" rel="noopener noreferrer">
+                            <button class="btn-wa"><i class="bi bi-whatsapp"></i></button>
+                        </a>
+                    </div>
+                    <div class="col-2 mt-3">
+                        <a href="https://maps.app.goo.gl/pWPjQFsNmoAjsngG7" target="_blank" rel="noopener noreferrer">
+                            <button class="btn-lokasi"><i class="bi bi-geo-alt-fill"></i></button>
+                        </a>
+                    </div>
+                    <div class="col-8 mt-3">
+                        <form method="POST" action="/user/getTime">
+                            @csrf
+                            <input type="hidden" name="productId" value="{{ $kamarkost->id }}">
+                            <input type="hidden" name="selectedDate" id="selectedDate" x-model="selectedDate">
+                            <input type="hidden" name="time" id="time" x-model="time">
+                            <input type="hidden" name="getDate" value="{{ Carbon\Carbon::now()->locale('id')->settings(['formatFunction' => 'translatedFormat'])->format('j F Y, h:i') }} WIB">
+                            <button type="submit" class="btn btn-dark" id="btnPesanSekarang" disabled>Pesan Sekarang</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    {{-- <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> --}}
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
-    <script src="https://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
-    <script>
-        var selectedTime = ''; // Variabel global untuk menyimpan waktu yang dipilih
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        {{-- <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> --}}
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+        <script src="https://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
+        <script>
+            var selectedTime = ''; // Variabel global untuk menyimpan waktu yang dipilih
 
-        function setSelectedTime(time) {
-            document.getElementById('time').value = time;
-        }
-    </script>
-    <script id="rendered-js">
-        $(function() {
-            $('#datetimepicker').datetimepicker({
-                inline: true,
-                sideBySide: true,
-                locale: 'id',
-                format: 'DD/MM/YYYY',
-                minDate: new Date(),
-            });
+            function setSelectedTime(time) {
+                document.getElementById('time').value = time;
+            }
+        </script>
+        <script id="rendered-js">
+            $(function() {
+                $('#datetimepicker').datetimepicker({
+                    inline: true,
+                    sideBySide: true,
+                    locale: 'id',
+                    format: 'DD/MM/YYYY',
+                    minDate: new Date(),
+                });
 
-            $('#datetimepicker').on('dp.change', function(e) {
-                var selectedDate = e.date.format('YYYY-MM-DD');
-                document.getElementById('selectedDate').value = selectedDate;
-                var tglActive = document.querySelector('.day.active');
-                var jamActive = document.querySelector('.jam-item.terselect');
-                var Btarget = document.getElementById('ok-button');
+                $('#datetimepicker').on('dp.change', function(e) {
+                    var selectedDate = e.date.format('YYYY-MM-DD');
+                    document.getElementById('selectedDate').value = selectedDate;
+                    var tglActive = document.querySelector('.day.active');
+                    var jamActive = document.querySelector('.jam-item.terselect');
+                    var Btarget = document.getElementById('ok-button');
 
-                if (tglActive && jamActive) {
-                    Btarget.classList.remove('death');
-                    Btarget.removeAttribute('disabled');
-                } else {
+                    if (tglActive && jamActive) {
+                        Btarget.classList.remove('death');
+                        Btarget.removeAttribute('disabled');
+                    } else {
+                        Btarget.classList.add('death');
+                        Btarget.setAttribute('disabled', true);
+                    }
+
+                    console.log($("#datetimepicker").find("input").val());
+                });
+
+                var bulan = document.querySelector('.picker-switch');
+                bulan.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                });
+
+                var currentDate = new Date();
+                var currentDay = currentDate.getDate();
+                var currentMonthIndex = currentDate.getMonth();
+                var currentYear = currentDate.getFullYear();
+                var tanggalItems = document.querySelectorAll('.day');
+                var jamItems = document.querySelectorAll('.jam-item');
+
+                jamItems.forEach(function(divItem) {
+                    divItem.addEventListener('click', function() {
+
+                        var isSelected = this.classList.contains('terselect');
+                        jamItems.forEach(function(item) {
+                            item.classList.remove('terselect');
+                        });
+                        if (!isSelected) {
+                            this.classList.add('terselect');
+                        }
+                        check();
+                    });
+                });
+
+                function check() {
+                    var tglActive = document.querySelector('.day.active');
+                    var jamActive = document.querySelector('.jam-item.terselect');
+                    var Btarget = document.getElementById('ok-button');
+                    if (tglActive && jamActive) {
+                        Btarget.classList.remove('death');
+                        Btarget.removeAttribute('disabled');
+                    } else {
+                        Btarget.classList.add('death');
+                        Btarget.setAttribute('disabled', true);
+                    }
+                }
+
+                function uncheck() {
+                    var tglActive = document.querySelector('.day.active');
+                    var jamActive = document.querySelector('.jam-item.terselect');
+                    var Btarget = document.getElementById('ok-button');
                     Btarget.classList.add('death');
                     Btarget.setAttribute('disabled', true);
                 }
 
-                console.log($("#datetimepicker").find("input").val());
-            });
-
-            var bulan = document.querySelector('.picker-switch');
-            bulan.addEventListener('click', function(event) {
-                event.preventDefault();
-                event.stopPropagation();
-            });
-
-            var currentDate = new Date();
-            var currentDay = currentDate.getDate();
-            var currentMonthIndex = currentDate.getMonth();
-            var currentYear = currentDate.getFullYear();
-            var tanggalItems = document.querySelectorAll('.day');
-            var jamItems = document.querySelectorAll('.jam-item');
-
-            jamItems.forEach(function(divItem) {
-                divItem.addEventListener('click', function() {
-
-                    var isSelected = this.classList.contains('terselect');
-                    jamItems.forEach(function(item) {
-                        item.classList.remove('terselect');
-                    });
-                    if (!isSelected) {
-                        this.classList.add('terselect');
-                    }
+                document.addEventListener('change', function() {
                     check();
                 });
+
+                var okButton = document.getElementById('ok-button');
+                okButton.addEventListener('click', function() {
+                    uncheck();
+
+                    var tanggalAktif = document.querySelector('.day.active');
+                    var jamAktif = document.querySelector('.jam-item.terselect');
+
+                    tanggalAktif = tanggalAktif.getAttribute('data-day');
+                    jamAktif = jamAktif.querySelector('input').value;
+
+                    // Lanjutkan dengan pemrosesan seperti yang Anda lakukan sebelumnya
+                    var takeOffFormatted = tanggalAktif + ', ' + jamAktif;
+                    var kananDiv = document.querySelector('#tgl-pick');
+                    kananDiv.textContent = takeOffFormatted;
+
+                    var nextDayDate = moment(tanggalAktif, 'DD/MM/YYYY').add(1, 'day').format('DD/MM/YYYY');
+                    var nextDayFormatted = nextDayDate + ', ' + jamAktif;
+
+                    var kiriDiv = document.querySelector('#tgl-selesai');
+                    kiriDiv.textContent = nextDayFormatted;
+                    kiriDiv.classList.add('kuning');
+
+                });
+
+                // Mendapatkan waktu saat ini
+                var currentTime = new Date();
+                // Mendapatkan jam, menit, dan detik dari waktu saat ini
+                var currentHour = currentTime.getHours();
+                var currentMinute = currentTime.getMinutes();
+                var currentSecond = currentTime.getSeconds();
+
+                // Menghitung waktu saat ini dalam format "HH:MM:SS"
+                var formattedCurrentTime = currentHour + ":" + currentMinute + ":" + currentSecond;
+
+                // Mendapatkan semua elemen jam
+                var jamItems = document.querySelectorAll('.jam-item');
+
+                // Iterasi melalui setiap elemen jam
+                jamItems.forEach(function(jamItem) {
+
+                    var jamValue = jamItem.querySelector('input[type="hidden"]').value;
+
+                    if (formattedCurrentTime > jamValue) {
+                        jamItem.classList.add('disabled');
+                        jamItem.setAttribute('disabled', true);
+                    }
+
+                    function jamItemClickHandler(event) {
+                        event.preventDefault();
+                    }
+
+                });
+
+            });
+        </script>
+        <script>
+            var splide = new Splide('.splide.new', {
+                arrows: false,
+                pagination: false,
+                perPage: 3,
+                autoWidth: true,
+                gap: '1.65rem',
+                lazyLoad: 'nearby',
+                drag: 'free',
             });
 
-            function check() {
-                var tglActive = document.querySelector('.day.active');
-                var jamActive = document.querySelector('.jam-item.terselect');
-                var Btarget = document.getElementById('ok-button');
-                if (tglActive && jamActive) {
-                    Btarget.classList.remove('death');
-                    Btarget.removeAttribute('disabled');
+            splide.mount();
+            var splide = new Splide('.splide.new-1', {
+                arrows: false,
+                pagination: false,
+                perPage: 1,
+                autoWidth: true,
+                gap: '-0.2rem',
+                lazyLoad: 'nearby',
+                drag: 'free',
+            });
+
+            splide.mount();
+
+            var splide = new Splide('.splide.new-2', {
+                // type: 'loop',
+                pagination: false,
+                autoplay: true,
+                lazyLoad: 'nearby',
+                arrows: false,
+                interval: '2000',
+                // autoWidth: true
+            });
+            splide.mount();
+            // var splide = new Splide('.splide.new-3', {
+            //     type: 'loop',
+            //     lazyLoad: 'nearby',
+            //     pagination: false,
+            //     interval: '2000'
+            // });
+            // splide.mount();
+
+            let isFavorite = false;
+
+            function toggleReadMore() {
+                const ellipsis = document.querySelector(".ellipsis");
+                const textSecondary = document.querySelector('.text-secondary');
+                const readMoreBtn = document.querySelector('.read-more-btn');
+                const additionalText = document.querySelector('.additional-text');
+
+                textSecondary.classList.toggle('expanded');
+
+                if (textSecondary.classList.contains('expanded')) {
+                    additionalText.style.display = 'inline';
+                    ellipsis.classList.add("hide-ellipsis");
+                    readMoreBtn.textContent = 'Tutup';
                 } else {
-                    Btarget.classList.add('death');
-                    Btarget.setAttribute('disabled', true);
+                    additionalText.style.display = 'none';
+                    ellipsis.classList.remove("hide-ellipsis");
+                    readMoreBtn.textContent = 'Lihat Selengkapnya';
                 }
             }
 
-            function uncheck() {
-                var tglActive = document.querySelector('.day.active');
-                var jamActive = document.querySelector('.jam-item.terselect');
-                var Btarget = document.getElementById('ok-button');
-                Btarget.classList.add('death');
-                Btarget.setAttribute('disabled', true);
+            let isAlertShown = false;
+
+            function changeIconAndColor(button) {
+                // Mengambil elemen ikon pada tombol
+                var iconElement = button.querySelector("i");
+
+                // Mengganti kelas ikon untuk mengubahnya menjadi bintang terisi (filled star)
+                iconElement.classList.toggle("bi-star");
+                iconElement.classList.toggle("bi-star-fill");
+
+                // Mengubah warna ikon menjadi kuning
+                var currentColor = iconElement.style.color;
+                iconElement.style.color = (currentColor === "purple") ? "" : "purple";
+
+                // button.classList.toggle('favorited');
+
+                // var popupText = document.getElementById('popup-text');
+
+                // if (button.classList.contains('favorited')) {
+                //     popupText.innerText = 'Berhasil Difavoritkan';
+                // } else {
+                //     popupText.innerText = 'Dihapus Dari Favorit';
+                // }
+
+                // Tampilkan pop-up
+                showPopup();
+                // Favorit
+                favoritadd();
+
             }
 
-            document.addEventListener('change', function() {
-                check();
-            });
+            function showPopup() {
+                var popupBackground = document.getElementById('popup-background');
+                var popup = document.getElementById('popup');
 
-            var okButton = document.getElementById('ok-button');
-            okButton.addEventListener('click', function() {
-                uncheck();
+                popupBackground.style.display = 'block';
+                popup.style.display = 'block';
 
-                var tanggalAktif = document.querySelector('.day.active');
-                var jamAktif = document.querySelector('.jam-item.terselect');
-
-                tanggalAktif = tanggalAktif.getAttribute('data-day');
-                jamAktif = jamAktif.querySelector('input').value;
-
-                // Lanjutkan dengan pemrosesan seperti yang Anda lakukan sebelumnya
-                var takeOffFormatted = tanggalAktif + ', ' + jamAktif;
-                var kananDiv = document.querySelector('#tgl-pick');
-                kananDiv.textContent = takeOffFormatted;
-
-                var nextDayDate = moment(tanggalAktif, 'DD/MM/YYYY').add(1, 'day').format('DD/MM/YYYY');
-                var nextDayFormatted = nextDayDate + ', ' + jamAktif;
-
-                var kiriDiv = document.querySelector('#tgl-selesai');
-                kiriDiv.textContent = nextDayFormatted;
-                kiriDiv.classList.add('kuning');
-
-            });
-
-            // Mendapatkan waktu saat ini
-            var currentTime = new Date();
-            // Mendapatkan jam, menit, dan detik dari waktu saat ini
-            var currentHour = currentTime.getHours();
-            var currentMinute = currentTime.getMinutes();
-            var currentSecond = currentTime.getSeconds();
-
-            // Menghitung waktu saat ini dalam format "HH:MM:SS"
-            var formattedCurrentTime = currentHour + ":" + currentMinute + ":" + currentSecond;
-
-            // Mendapatkan semua elemen jam
-            var jamItems = document.querySelectorAll('.jam-item');
-
-            // Iterasi melalui setiap elemen jam
-            jamItems.forEach(function(jamItem) {
-
-                var jamValue = jamItem.querySelector('input[type="hidden"]').value;
-
-                if (formattedCurrentTime > jamValue) {
-                    jamItem.classList.add('disabled');
-                    jamItem.setAttribute('disabled', true);
-                }
-
-                function jamItemClickHandler(event) {
-                    event.preventDefault();
-                }
-
-            });
-
-        });
-    </script>
-    <script>
-        var splide = new Splide('.splide.new', {
-            arrows: false,
-            pagination: false,
-            perPage: 3,
-            autoWidth: true,
-            gap: '1.65rem',
-            lazyLoad: 'nearby',
-            drag: 'free',
-        });
-
-        splide.mount();
-        var splide = new Splide('.splide.new-1', {
-            arrows: false,
-            pagination: false,
-            perPage: 1,
-            autoWidth: true,
-            gap: '-0.2rem',
-            lazyLoad: 'nearby',
-            drag: 'free',
-        });
-
-        splide.mount();
-
-        var splide = new Splide('.splide.new-2', {
-            // type: 'loop',
-            pagination: false,
-            autoplay: true,
-            lazyLoad: 'nearby',
-            arrows: false,
-            interval: '2000',
-            // autoWidth: true
-        });
-        splide.mount();
-        // var splide = new Splide('.splide.new-3', {
-        //     type: 'loop',
-        //     lazyLoad: 'nearby',
-        //     pagination: false,
-        //     interval: '2000'
-        // });
-        // splide.mount();
-
-        let isFavorite = false;
-
-        function toggleReadMore() {
-            const ellipsis = document.querySelector(".ellipsis");
-            const textSecondary = document.querySelector('.text-secondary');
-            const readMoreBtn = document.querySelector('.read-more-btn');
-            const additionalText = document.querySelector('.additional-text');
-
-            textSecondary.classList.toggle('expanded');
-
-            if (textSecondary.classList.contains('expanded')) {
-                additionalText.style.display = 'inline';
-                ellipsis.classList.add("hide-ellipsis");
-                readMoreBtn.textContent = 'Tutup';
-            } else {
-                additionalText.style.display = 'none';
-                ellipsis.classList.remove("hide-ellipsis");
-                readMoreBtn.textContent = 'Lihat Selengkapnya';
-            }
-        }
-
-        let isAlertShown = false;
-
-        function changeIconAndColor(button) {
-            // Mengambil elemen ikon pada tombol
-            var iconElement = button.querySelector("i");
-
-            // Mengganti kelas ikon untuk mengubahnya menjadi bintang terisi (filled star)
-            iconElement.classList.toggle("bi-star");
-            iconElement.classList.toggle("bi-star-fill");
-
-            // Mengubah warna ikon menjadi kuning
-            var currentColor = iconElement.style.color;
-            iconElement.style.color = (currentColor === "purple") ? "" : "purple";
-
-            button.classList.toggle('favorited');
-
-            var popupText = document.getElementById('popup-text');
-
-            if (button.classList.contains('favorited')) {
-                popupText.innerText = 'Berhasil Difavoritkan';
-            } else {
-                popupText.innerText = 'Dihapus Dari Favorit';
+                // Sembunyikan pop-up setelah beberapa detik (misalnya, 3 detik)
+                setTimeout(function() {
+                    closePopup();
+                }, 3000);
             }
 
-            // Tampilkan pop-up
-            showPopup();
+            function closePopup() {
+                var popupBackground = document.getElementById('popup-background');
+                var popup = document.getElementById('popup');
 
-        }
-
-        function showPopup() {
-            var popupBackground = document.getElementById('popup-background');
-            var popup = document.getElementById('popup');
-
-            popupBackground.style.display = 'block';
-            popup.style.display = 'block';
-
-            // Sembunyikan pop-up setelah beberapa detik (misalnya, 3 detik)
-            setTimeout(function() {
-                closePopup();
-            }, 3000);
-        }
-
-        function closePopup() {
-            var popupBackground = document.getElementById('popup-background');
-            var popup = document.getElementById('popup');
-
-            popupBackground.style.display = 'none';
-            popup.style.display = 'none';
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            var stickyTop = document.getElementById("stickyTop");
-            var lastScrollTop = 0;
-            var scrollThreshold = 0; // Ubah nilai sesuai dengan ukuran y yang diinginkan
-
-            window.addEventListener("scroll", function() {
-                var scrollTop = window.scrollY || document.documentElement.scrollTop;
-
-                if (scrollTop > scrollThreshold) {
-                    // User sedang scroll ke bawah, dan sudah scroll melebihi nilai y yang ditentukan
-                    stickyTop.classList.add("scrolled");
-                } else {
-                    // User sedang di atas sendiri
-                    stickyTop.classList.remove("scrolled");
-                }
-
-                lastScrollTop = scrollTop;
-            });
-
-        });
-        document.addEventListener('DOMContentLoaded', function() {
-            var kamarKost = document.getElementById('kamarKost');
-
-            window.addEventListener('scroll', function() {
-                var scrollPosition = window.scrollY;
-
-                if (scrollPosition > 0) { // Ubah angka ini sesuai dengan tinggi scroll yang diinginkan
-                    kamarKost.style.opacity = '1';
-                    kamarKost.style.transform = 'translateY(0)';
-                } else {
-                    kamarKost.style.opacity = '0';
-                    kamarKost.style.transform = 'translateY(-25px)';
-                }
-            });
-        });
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-        });
-
-        function makeActive(element) {
-            // Menghapus kelas 'active' dari semua elemen
-            var links = document.querySelectorAll('.scrollmenu a');
-            links.forEach(function(link) {
-                link.classList.remove('active');
-            });
-
-            // Menambahkan kelas 'active' pada elemen yang dipilih
-            element.classList.add('active');
-
-            // Mengukur tinggi dan lebar elemen yang dipilih
-            var height = element.clientHeight;
-            var width = element.clientWidth;
-
-            // Lakukan sesuatu dengan nilai tinggi dan lebar, contohnya:
-            console.log('Tinggi:', height, 'px');
-            console.log('Lebar:', width, 'px');
-        }
-
-        function addInput() {
-            // Menyembunyikan tombol
-            var btnLainnya = document.querySelector('.btn-lainnya');
-            btnLainnya.style.display = 'none';
-
-            // Menampilkan input
-            var inputContainer = document.getElementById('inputContainer');
-            inputContainer.style.display = 'block';
-
-            // Jika Anda ingin melakukan lebih banyak tindakan, tambahkan logika lainnya di sini
-        }
-
-        function toggleJam() {
-            var waktuInput = document.getElementById("waktu");
-            waktuInput.style.display = (waktuInput.style.display === "block") ? "none" : "block";
-        }
-
-        function updateWaktu() {
-            var waktuValue = document.getElementById("waktu").value;
-            console.log("Waktu yang dipilih:", waktuValue);
-
-            // Tambahkan kode lain sesuai kebutuhan Anda
-        }
-
-        const waktu = document.getElementById("waktu");
-
-        waktu.addEventListener("input", function() {
-            const value = this.value.replace(/[^0-9]/g, "");
-            if (value.length > 2) {
-                this.value = value.slice(0, 2) + ":" + value.slice(2);
-            }
-        });
-
-        // Fungsi untuk menambahkan waktu
-        function updateTime() {
-            $("#chooseTime").modal('hide');
-            $("#addWaktu").addClass('d-none');
-            var waktu = $("#waktu").val();
-            var buttonHtml = "<div class='col-4'><button class='btn time-btn fw-semibold active btn-waktu' data-waktu='" + waktu + "' type='button'>" + waktu + " WIB</button></div>";
-            $("#jam-container").append(buttonHtml);
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            // Fungsi untuk memeriksa apakah tanggal dan jam sudah dipilih
-            function cekPilihan() {
-                var tanggal = document.getElementById("datetimepicker").value;
-                var jam = document.querySelector(".btn-waktu.active");
-
-                // Jika tanggal dan jam sudah dipilih, aktifkan tombol "Pesan Sekarang"
-                if (tanggal !== '' && jam !== null) {
-                    document.getElementById("btnPesanSekarang").disabled = false;
-                } else {
-                    document.getElementById("btnPesanSekarang").disabled = true;
-                }
+                popupBackground.style.display = 'none';
+                popup.style.display = 'none';
+                $('#popup-text').html('');
             }
 
-            // Panggil fungsi cekPilihan setiap kali ada perubahan pada tanggal atau jam
-            document.getElementById("datetimepicker").addEventListener("change", cekPilihan);
-            var waktuButtons = document.querySelectorAll(".btn-waktu");
-            waktuButtons.forEach(function(button) {
-                button.addEventListener("click", function() {
-                    waktuButtons.forEach(function(btn) {
-                        btn.classList.remove("active");
-                    });
-                    button.classList.add("active");
-                    cekPilihan();
+            document.addEventListener("DOMContentLoaded", function() {
+                var stickyTop = document.getElementById("stickyTop");
+                var lastScrollTop = 0;
+                var scrollThreshold = 0; // Ubah nilai sesuai dengan ukuran y yang diinginkan
+
+                window.addEventListener("scroll", function() {
+                    var scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+                    if (scrollTop > scrollThreshold) {
+                        // User sedang scroll ke bawah, dan sudah scroll melebihi nilai y yang ditentukan
+                        stickyTop.classList.add("scrolled");
+                    } else {
+                        // User sedang di atas sendiri
+                        stickyTop.classList.remove("scrolled");
+                    }
+
+                    lastScrollTop = scrollTop;
+                });
+
+            });
+            document.addEventListener('DOMContentLoaded', function() {
+                var kamarKost = document.getElementById('kamarKost');
+
+                window.addEventListener('scroll', function() {
+                    var scrollPosition = window.scrollY;
+
+                    if (scrollPosition > 0) { // Ubah angka ini sesuai dengan tinggi scroll yang diinginkan
+                        kamarKost.style.opacity = '1';
+                        kamarKost.style.transform = 'translateY(0)';
+                    } else {
+                        kamarKost.style.opacity = '0';
+                        kamarKost.style.transform = 'translateY(-25px)';
+                    }
                 });
             });
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+            });
 
-            // Panggil cekPilihan saat halaman dimuat untuk menentukan status awal tombol
-            cekPilihan();
-        });
-    </script>
-    <script>
-        function redirectToPaymentPage(productId) {
-            var currentTime = new Date();
-            var day = currentTime.getDate();
-            var month = currentTime.getMonth() + 1; // January is 0!
-            var year = currentTime.getFullYear();
-            var hours = currentTime.getHours();
-            var minutes = currentTime.getMinutes();
-            var seconds = currentTime.getSeconds();
+            function makeActive(element) {
+                // Menghapus kelas 'active' dari semua elemen
+                var links = document.querySelectorAll('.scrollmenu a');
+                links.forEach(function(link) {
+                    link.classList.remove('active');
+                });
 
-            var formattedTime =
-                "{{ Carbon\Carbon::now()->locale('id')->settings(['formatFunction' => 'translatedFormat'])->format('j F Y, h:i') }} WIB";
-            getTime(productId, formattedTime);
-        }
+                // Menambahkan kelas 'active' pada elemen yang dipilih
+                element.classList.add('active');
 
-        function getTime(productId, formattedTime) {
-            $.ajax({
-                url: '/user/getDate',
-                type: 'POST',
-                data: {
-                    product_id: productId,
-                    formattedTime: formattedTime,
-                    _token: '{{ csrf_token() }}'
-                },
-                success: function(response) {
-                    window.location.href = '/user/transaksi/{{ $kamarkost->id }}';
+                // Mengukur tinggi dan lebar elemen yang dipilih
+                var height = element.clientHeight;
+                var width = element.clientWidth;
+
+                // Lakukan sesuatu dengan nilai tinggi dan lebar, contohnya:
+                console.log('Tinggi:', height, 'px');
+                console.log('Lebar:', width, 'px');
+            }
+
+            function addInput() {
+                // Menyembunyikan tombol
+                var btnLainnya = document.querySelector('.btn-lainnya');
+                btnLainnya.style.display = 'none';
+
+                // Menampilkan input
+                var inputContainer = document.getElementById('inputContainer');
+                inputContainer.style.display = 'block';
+
+                // Jika Anda ingin melakukan lebih banyak tindakan, tambahkan logika lainnya di sini
+            }
+
+            function toggleJam() {
+                var waktuInput = document.getElementById("waktu");
+                waktuInput.style.display = (waktuInput.style.display === "block") ? "none" : "block";
+            }
+
+            function updateWaktu() {
+                var waktuValue = document.getElementById("waktu").value;
+                console.log("Waktu yang dipilih:", waktuValue);
+
+                // Tambahkan kode lain sesuai kebutuhan Anda
+            }
+
+            const waktu = document.getElementById("waktu");
+
+            waktu.addEventListener("input", function() {
+                const value = this.value.replace(/[^0-9]/g, "");
+                if (value.length > 2) {
+                    this.value = value.slice(0, 2) + ":" + value.slice(2);
                 }
             });
-        }
-    </script>
+
+            // Fungsi untuk menambahkan waktu
+            function updateTime() {
+                $("#chooseTime").modal('hide');
+                $("#addWaktu").addClass('d-none');
+                var waktu = $("#waktu").val();
+                var buttonHtml = "<div class='col-4'><button class='btn time-btn fw-semibold active btn-waktu' data-waktu='" + waktu + "' type='button'>" + waktu + " WIB</button></div>";
+                $("#jam-container").append(buttonHtml);
+            }
+
+            document.addEventListener("DOMContentLoaded", function() {
+                // Fungsi untuk memeriksa apakah tanggal dan jam sudah dipilih
+                function cekPilihan() {
+                    var tanggal = document.getElementById("datetimepicker").value;
+                    var jam = document.querySelector(".btn-waktu.active");
+
+                    // Jika tanggal dan jam sudah dipilih, aktifkan tombol "Pesan Sekarang"
+                    if (tanggal !== '' && jam !== null) {
+                        document.getElementById("btnPesanSekarang").disabled = false;
+                    } else {
+                        document.getElementById("btnPesanSekarang").disabled = true;
+                    }
+                }
+
+                // Panggil fungsi cekPilihan setiap kali ada perubahan pada tanggal atau jam
+                document.getElementById("datetimepicker").addEventListener("change", cekPilihan);
+                var waktuButtons = document.querySelectorAll(".btn-waktu");
+                waktuButtons.forEach(function(button) {
+                    button.addEventListener("click", function() {
+                        waktuButtons.forEach(function(btn) {
+                            btn.classList.remove("active");
+                        });
+                        button.classList.add("active");
+                        cekPilihan();
+                    });
+                });
+
+                // Panggil cekPilihan saat halaman dimuat untuk menentukan status awal tombol
+                cekPilihan();
+            });
+        </script>
+        <script>
+            function redirectToPaymentPage(productId) {
+                var currentTime = new Date();
+                var day = currentTime.getDate();
+                var month = currentTime.getMonth() + 1; // January is 0!
+                var year = currentTime.getFullYear();
+                var hours = currentTime.getHours();
+                var minutes = currentTime.getMinutes();
+                var seconds = currentTime.getSeconds();
+
+                var formattedTime =
+                    "{{ Carbon\Carbon::now()->locale('id')->settings(['formatFunction' => 'translatedFormat'])->format('j F Y, h:i') }} WIB";
+                getTime(productId, formattedTime);
+            }
+
+            function getTime(productId, formattedTime) {
+                $.ajax({
+                    url: '/user/getDate',
+                    type: 'POST',
+                    data: {
+                        product_id: productId,
+                        formattedTime: formattedTime,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        window.location.href = '/user/transaksi/{{ $kamarkost->id }}';
+                    }
+                });
+            }
+        </script>
+        <script>
+            function favoritadd() {
+                $.ajax({
+                    url: '/favorite/add',
+                    type: 'POST',
+                    data: {
+                        kamar_kost_id: '{{ $kamarkost->id }}',
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        console.log(response.alert);
+                        $('#popup-text').html(response.alert);
+                    }
+                });
+            }
+        </script>
 </body>
 
 </html>

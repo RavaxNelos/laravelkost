@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Banner;
+use App\Models\Favorit;
 use App\Models\Jamkamarkost;
 use App\Models\KamarKost;
 use App\Models\Kategori;
@@ -25,7 +26,29 @@ class UserController extends Controller
         $kamarkost = KamarKost::find($id);
         $jamkamarkost = Jamkamarkost::all();
         $users = Auth::user();
-        return view('user.detail.index',compact('kamarkost', 'categories', 'jamkamarkost', 'users'));
+        $favorit = Favorit::where('kamar_kost_id', $id)->where('category', $kamarkost->tipe_kost)->where('user_id', Auth::user()->id)->first();
+        return view('user.detail.index',compact('kamarkost', 'categories', 'jamkamarkost', 'users', 'favorit'));
+    }
+
+    public function favoritadd(Request $request)
+    {
+
+        $kamarkost = KamarKost::find($request->kamar_kost_id);
+        // Simpan informasi ke dalam tabel favorit
+        $favorit = Favorit::where('user_id', Auth::user()->id)->where('kamar_kost_id', $request->kamar_kost_id)->where('category', $kamarkost->tipe_kost)->first();
+
+        if ($favorit) {
+            $favorit->delete();
+        } else {
+            Favorit::create([
+                'user_id' => Auth::user()->id,
+                'kamar_kost_id' => $request->kamar_kost_id,
+                'category' => $kamarkost->tipe_kost,
+            ]);
+        }
+
+        // Response
+        return response()->json(['message' => 'Success', 'alert' => $favorit ? 'Dihapus Dari Favorit' : 'Berhasil Difavoritkan'],200);
     }
     public function menujudetail()
     {
@@ -43,36 +66,58 @@ class UserController extends Controller
     }
     public function getTime(Request $request)
     {
+
         session()->put('selectedDate', $request->selectedDate);
         session()->put('getDate', $request->getDate);
         session()->put('waktu', $request->time);
-        session()->put('time', $request->getDate);
-        return redirect()->to('/user/payment/' . $request->productId);
+        return redirect()->to('/user/transaksi/' . $request->productId);
+    }
+    public function getDate(Request $request)
+    {
+        session()->put('selectedDate', $request->selectedDate);
+        session()->put('getDate', $request->getDate);
+        session()->put('waktu', $request->time);
+        session()->put('time', $request->formattedTime);
     }
     public function transaksi($id)
     {
-        $time = session()->get('time');
+        $time = session()->get('getDate');
         $users = Auth::user();
-        // $jamkamarkost = Jamkamarkost::find($id);
+        $jamkamarkost = Jamkamarkost::find($id);
         $kamarkost = KamarKost::find($id);
         $pembayaran = Pembayaran::get();
         $pembayaran_e_wallet = Pembayaran::where('kategori_pembayaran', 'E-Wallet')->get();
         $pembayaran_transfer_bank = Pembayaran::where('kategori_pembayaran', 'Transfer Bank')->get();
         $pembayaranSelected = Pembayaran::find($id);
-        $selectedTime = Carbon::parse(session()->get('selectedDate'))->isoFormat('D MMMM Y') . ' ' . session()->get('waktu');
+        $selectedTime = Carbon::parse(session()->get('selectedDate'))->isoFormat('D MMMM Y') . ', ' . session()->get('waktu');
         $jamkamarkost = Jamkamarkost::all();
 
         // Kirim data metode pembayaran yang dipilih ke tampilan
-        return view('user.transaksi.index', compact('pembayaran', 'kamarkost', 'users', 'pembayaranSelected', 'pembayaran_e_wallet', 'pembayaran_transfer_bank', 'selectedTime', 'jamkamarkost'));
+        return view('user.transaksi.index', compact('pembayaran', 'kamarkost', 'users', 'pembayaranSelected', 'pembayaran_e_wallet', 'pembayaran_transfer_bank', 'selectedTime', 'jamkamarkost', 'time'));
+    }
+    public function paymentCheck(Request $request)
+    {
+        $pembayaran = Pembayaran::find($request->payment_id);
+        session()->put('payment_id', $request->payment_id);
+        return response()->json(['gambar' => '/uploadkamar/' . $pembayaran->logo_pembayaran, 'name' => $pembayaran->nama_pembayaran]);
+    }
+    public function checkPayment()
+    {
+        $pembayaran = Pembayaran::find(session()->get('payment_id'));
+        return response()->json(['gambar' => '/uploadkamar/' . $pembayaran->logo_pembayaran, 'name' => $pembayaran->nama_pembayaran]);
+        // return response()->json(['gambar' => 'test']);
     }
     public function konfirmasitransaksi(string $id)
     {
+        $time = session()->get('getDate');
+        $selectedTime = Carbon::parse(session()->get('selectedDate'))->isoFormat('D MMMM Y') . ', ' . session()->get('waktu');
         $users = Auth::user();
         $kamarkost = KamarKost::find($id);
         $kamarkosts = KamarKost::where('status_kost', 'Publish')->get();
-        $pembayaran = Pembayaran::orderBy('created_at', 'desc')->get();
+        $pembayaran = Pembayaran::find(session()->get('payment_id'));
         $pembayaranSelected = Pembayaran::find($id);
-        return view('user.transaksi.konfirmasitransaksi',compact('pembayaran', 'kamarkost', 'kamarkosts', 'users', 'pembayaranSelected')
+        // $transaksi = transaksi::find(session()->get('payment_id'));
+        return view('user.transaksi.konfirmasitransaksi',compact('pembayaran', 'kamarkost', 'kamarkosts', 'users', 'pembayaranSelected', 'time', 'selectedTime')
     );
     }
     public function back()
@@ -201,6 +246,7 @@ class UserController extends Controller
 
     public function favorit()
     {
+        $favorit = Favorit::all();
         $users = Auth::user();
         return view('user.kamarfavorit', compact('users'));
     }
