@@ -362,7 +362,7 @@
                                 <button x-on:click="confirmation = false; openPayment = false;" class="ms-3 mb-2 btn btn-confirm " style="--bs-btn-padding-y: .4rem; --bs-btn-padding-x: 8rem; --bs-btn-font-size: 14px;" onclick="konfirmasi()">Konfirmasi</button>
                             </template>
                             <div class="payment-accordion-item" id="open">
-                                <div class="payment-accordion-button payment-method-text text-white" style="border-top: 1px solid #4e4f5b">
+                                <div class="payment-accordion-button payment-method-text text-white" style="border-top: 1px solid #ffffff">
                                     <div class="d-flex align-items-center">
                                         <div class="mx-auto">
                                             <img id="imageContainer" src="" class="mb-3 ms-3 mt-3" height="30" alt="">

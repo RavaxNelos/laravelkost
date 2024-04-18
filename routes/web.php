@@ -54,8 +54,8 @@ Route::group(['middleware' => 'auth'], function ()
 Route::post('/user/sandi/edit', [UserController::class, 'sandiedit']);
 });
 
-Route::get('/user/kerusakan', [UserController::class, 'kerusakan'])->name('kerusakan');
-Route::get('/user/kehilangan', [UserController::class, 'kehilangan'])->name('kehilangan');
+Route::get('/user/kerusakan/{id}', [UserController::class, 'kerusakan'])->name('kerusakan');
+Route::get('/user/kehilangan/{id}', [UserController::class, 'kehilangan'])->name('kehilangan');
 Route::get('/user/home', [UserController::class, 'detail'])->name('detail');
 Route::get('/user/detail/{id}', [UserController::class, 'detailrumah'])->name('detailrumah');
 Route::post('/user/getTime', [UserController::class, 'getTime']);
@@ -67,6 +67,7 @@ Route::get('/user/konfirmasitransaksi/{id}', [UserController::class, 'konfirmasi
 Route::get('/user/semua/{id}', [UserController::class, 'semua'])->name('semua');
 Route::get('/user/favorit', [UserController::class, 'favorit'])->name('favorit');
 Route::post('/favorite/add', [UserController::class, 'favoritadd']);
+Route::delete('/favorit/{id}', [UserController::class, 'favoritdelete'])->name('favorit.delete');
 Route::get('/logout', function() {
     Auth::logout();
     return redirect('/login');

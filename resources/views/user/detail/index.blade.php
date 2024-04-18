@@ -265,14 +265,14 @@
                     <h3 class="fw-bold" style="font-size: 16px; transition: color 0.3s ease;">Detail Kamar Kost</h3>
                 </div>
                 <div class="col-5 text-end">
-                    <button class="btn-like-detail" onclick="changeIconAndColor(this)"><i class="bi {{ $favorit ? 'bi-star-fill' : 'bi-star' }} text-danger"></i></button>
+                    <button class="btn-like-detail" onclick="changeIconAndColor(this)"><i class="bi {{ $favorit ? 'bi-star-fill' : 'bi-star' }}" style="color: purple;"></i></button>
                 </div>
             </div>
         </div>
     </nav>
     <div id="popup-background" onclick="closePopup()"></div>
     <div id="popup">
-        <p id="popup-text" style="font-size: 14px;">Berhasil DiFavoritkan</p>
+        <p id="popup-text" style="font-size: 14px;"></p>
     </div>
     <section class="splide new-2" aria-label="Splide Basic HTML Example">
         <div class="splide__track">
@@ -395,10 +395,8 @@
         </section>
         <div class="col-12">
             <h6 class="fw-semibold" style="font-family: Ubuntu;">Tentang Kamar Kost</h6>
-            <p class="text-secondary" style="font-size: 12px;">
-                Besar ukuran kamar kostnya {{ $kamarkost->ukuran_kost }}. Kamar kost Putra ini juga memiliki fasilitas berbagai macam seperti ac, toilet, dan lain-lain<span class="ellipsis">...</span>
-                <span class="additional-text">. Beserta ada sebuah kamar mandi vip ynag di dalamnya terdapat sebuah alat untuk mandi</span>
-                <span class="read-more-btn" onclick="toggleReadMore()">Lihat Selengkapnya</span>
+            <p class="text-secondary tentang-kamar" style="font-size: 12px;">
+                Besar ukuran kamar kostnya {{ $kamarkost->ukuran_kost }}. Kamar kost Putra ini juga memiliki fasilitas berbagai macam seperti ac, toilet, dan lain-lain
             </p>
         </div>
         <!-- Modal -->
@@ -823,24 +821,24 @@
 
             let isFavorite = false;
 
-            function toggleReadMore() {
-                const ellipsis = document.querySelector(".ellipsis");
-                const textSecondary = document.querySelector('.text-secondary');
-                const readMoreBtn = document.querySelector('.read-more-btn');
-                const additionalText = document.querySelector('.additional-text');
+            // function toggleReadMore() {
+            //     const ellipsis = document.querySelector(".ellipsis");
+            //     const textSecondary = document.querySelector('.text-secondary');
+            //     const readMoreBtn = document.querySelector('.read-more-btn');
+            //     const additionalText = document.querySelector('.additional-text');
 
-                textSecondary.classList.toggle('expanded');
+            //     textSecondary.classList.toggle('expanded');
 
-                if (textSecondary.classList.contains('expanded')) {
-                    additionalText.style.display = 'inline';
-                    ellipsis.classList.add("hide-ellipsis");
-                    readMoreBtn.textContent = 'Tutup';
-                } else {
-                    additionalText.style.display = 'none';
-                    ellipsis.classList.remove("hide-ellipsis");
-                    readMoreBtn.textContent = 'Lihat Selengkapnya';
-                }
-            }
+            //     if (textSecondary.classList.contains('expanded')) {
+            //         additionalText.style.display = 'inline';
+            //         ellipsis.classList.add("hide-ellipsis");
+            //         readMoreBtn.textContent = 'Tutup';
+            //     } else {
+            //         additionalText.style.display = 'none';
+            //         ellipsis.classList.remove("hide-ellipsis");
+            //         readMoreBtn.textContent = 'Lihat Selengkapnya';
+            //     }
+            // }
 
             let isAlertShown = false;
 

@@ -166,7 +166,7 @@
                             <h3 class="fw-medium text-secondary" style="font-size: 14px;">Nama User</h3>
                         </div>
                         <div class="col-12">
-                            <input type="text" class="input-nama" value="Muhammad Ravanelo" disabled>
+                            <input type="text" class="input-nama" value="{{ $users->name }}" disabled>
                         </div>
                     </div>
                     <div class="row mt-3">

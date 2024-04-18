@@ -14,6 +14,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
+    <!-- alphine js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <!-- end google font -->
     <!-- css rava -->
     <link rel="stylesheet" href="{{ asset('css/usercss/buktipembayaran.css') }}">
@@ -155,21 +157,23 @@
                             <div class="modal-body">
                                 <div class="container">
                                     <div class="row">
-                                        <div class="col-12 text-center">
-                                            <h3 class="fw-semibold" style="font-size: 16px;">Bukti Pembayaran</h3>
-                                            <div class="position-relative">
-                                                <img id="frame" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 200px; height: 200px; border-radius: 8px; cursor: pointer;" onclick="deleteImage()">
-                                                <label for="uploadfoto" class="label-upload">
-                                                    <div class="box-icon">
-                                                        <div class="bg-kategori rounded-5">
-                                                            <i id="uploadIcon" class="bi bi-cloud-upload" style="position: absolute; font-size: 50px; color: white; top: 66px; left: 116px;"></i>
+                                        <div x-data="{ confirmation: false, imageFile: null }">
+                                            <div class="col-12 text-center">
+                                                <h3 class="fw-semibold" style="font-size: 16px;">Bukti Pembayaran</h3>
+                                                <div class="position-relative">
+                                                    <img id="frame" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 210px; height: 200px; border-radius: 8px; cursor: pointer;" onclick="deleteImage()">
+                                                    <label for="uploadfoto" class="label-upload">
+                                                        <div class="box-icon">
+                                                            <div class="bg-kategori rounded-5">
+                                                                <i id="uploadIcon" class="bi bi-cloud-upload" style="position: absolute; font-size: 50px; color: white; top: 66px; left: 116px;"></i>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <input type="file" onchange="preview()" hidden id="uploadfoto" accept="image/*">
-                                                </label>
-                                            </div>
-                                            <div class="col-12 text-center mt-3">
-                                                <button class="btn" style="background-color: #9370DB; color: white; border: none; width: 150px;">Kirim</button>
+                                                    </label>
+                                                    <input type="file" @change="confirmation = true; imageFile = $event.target.files[0]; preview()" hidden id="uploadfoto" accept="image/*">
+                                                </div>
+                                                <div class="col-12 text-center mt-3">
+                                                    <button class="btn btn-kirim" style="color: white; border: none; width: 150px;" :disabled="!confirmation || !imageFile">Kirim</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -850,6 +854,10 @@
             frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
             uploadIcon.style.display = 'block';
             uploadInput.value = ''; // Bersihkan nilai input file
+
+            // Reset confirmation variable to disable "Kirim" button
+            confirmation = false;
+            imageFile = null;
         }
     </script>
     {{-- <script>

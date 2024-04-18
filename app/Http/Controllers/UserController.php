@@ -48,20 +48,23 @@ class UserController extends Controller
         }
 
         // Response
-        return response()->json(['message' => 'Success', 'alert' => $favorit ? 'Dihapus Dari Favorit' : 'Berhasil Difavoritkan'],200);
+        return response()->json(['message' => 'Success', 'alert' => $favorit ? 'Dihapus Dari Favorit' : 'Berhasil difavoritkan'],200);
     }
     public function menujudetail()
     {
         return view('user.detail.index');
     }
     public function detail()
+    // string $id
     {
+        // $categories = Kategori::where('lokasi', 'Kategori Kost')->get();
         $users = Auth::user();
         $banner = Banner::where('status_banner', 'Publish')->get();
         $kamarkost = KamarKost::where('status_kost', 'Publish')->get();
         $kamarpopulerbulanan = KamarKost::where('status_kost', 'Publish')->where('tipe_kost', 'Bulanan')->where('lokasi_kost', 'Kamar Kost Populer')->get();
         $kamarpopulerharian = KamarKost::where('status_kost', 'Publish')->where('tipe_kost', 'Harian')->where('lokasi_kost', 'Kamar Kost Populer')->get();
-        return view('user.home',compact('banner', 'kamarkost', 'users', 'kamarpopulerbulanan', 'kamarpopulerharian')
+        // $favorit = Favorit::where('kamar_kost_id', $id)->where('category', $kamarkost->tipe_kost)->where('user_id', Auth::user()->id)->first();
+        return view('user.home',compact('users', 'banner', 'kamarkost', 'kamarpopulerbulanan', 'kamarpopulerharian')
         );
     }
     public function getTime(Request $request)
@@ -138,13 +141,15 @@ class UserController extends Controller
     {
         return view('coba');
     }
-    public function kerusakan()
+    public function kerusakan($id)
     {
-        return view('user.laporkan.laporkankerusakan');
+        $users = Auth::user();
+        return view('user.laporkan.laporkankerusakan', compact('users'));
     }
-    public function kehilangan()
+    public function kehilangan($id)
     {
-        return view('user.laporkan.laporkankehilangan');
+        $users = Auth::user();
+        return view('user.laporkan.laporkankehilangan', compact('users'));
     }
     public function riwayat()
     {
@@ -246,26 +251,35 @@ class UserController extends Controller
 
     public function favorit()
     {
-        $favorit = Favorit::all();
+        $categories = Kategori::where('lokasi', 'Kategori Kost')->get();
+        $favorites = Favorit::orderBy('created_at', 'desc')->where('user_id', Auth::user()->id)->get();
         $users = Auth::user();
-        return view('user.kamarfavorit', compact('users'));
+        $kamarkost = KamarKost::whereIn('id', $favorites->pluck('kamar_kost_id'))->get();
+        return view('user.kamarfavorit', compact('users', 'favorites', 'categories', 'kamarkost'));
     }
-    public function favoritPost($id)
+
+    public function favoritdelete(Favorit $favorites)
     {
-        // Cek apakah pengguna sudah autentikasi
-        if (Auth::check()) {
-            // Dapatkan objek KamarKost berdasarkan ID
-            $kamarkost = KamarKost::findOrFail($id);
+    $favorites->delete();
 
-            // Tambahkan kamar kost ke daftar favorit pengguna saat ini
-            Auth::user()->favorites()->attach($kamarkost);
-
-            // Balas dengan pesan atau respon JSON sesuai kebutuhan aplikasi Anda
-            return response()->json(['message' => 'Kamar Kost telah ditambahkan ke favorit.']);
-        }
-
-        // Jika pengguna tidak terautentikasi, balas dengan respon status 401 (Unauthorized)
-        return response()->json(['error' => 'Unauthenticated.'], 401);
-        return view('user.kamarfavorit');
+    return response()->json(['success' => true]);
     }
+    // public function favoritPost($id)
+    // {
+    //     // Cek apakah pengguna sudah autentikasi
+    //     if (Auth::check()) {
+    //         // Dapatkan objek KamarKost berdasarkan ID
+    //         $kamarkost = KamarKost::findOrFail($id);
+
+    //         // Tambahkan kamar kost ke daftar favorit pengguna saat ini
+    //         Auth::user()->favorites()->attach($kamarkost);
+
+    //         // Balas dengan pesan atau respon JSON sesuai kebutuhan aplikasi Anda
+    //         return response()->json(['message' => 'Kamar Kost telah ditambahkan ke favorit.']);
+    //     }
+
+    //     // Jika pengguna tidak terautentikasi, balas dengan respon status 401 (Unauthorized)
+    //     return response()->json(['error' => 'Unauthenticated.'], 401);
+    //     return view('user.kamarfavorit');
+    // }
 }

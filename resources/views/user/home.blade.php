@@ -215,11 +215,11 @@
             <!-- Konten modal, dapat diedit sesuai kebutuhan -->
             <div class="row">
                 <div class="col-12">
-                    <a href="{{ asset('/user/kerusakan') }}" class="kerusakan fw-medium"><i class="bi bi-exclamation-triangle-fill"></i> Laporkan Kerusakan</a>
+                    <a href="/user/kerusakan/{{ $users->id }}" class="kerusakan fw-medium"><i class="bi bi-exclamation-triangle-fill"></i> Laporkan Kerusakan</a>
                 </div>
                 <hr class="garis-pembatas-laporkan" style="border-top: 1px solid #ccc; margin-top: 10px;">
                 <div class="col-12" style="margin-top: -10px">
-                    <a href="{{ asset('/user/kehilangan') }}" class="kehilangan fw-medium"><i class='bx bxs-search-alt-2'></i> Laporkan Kehilangan</a>
+                    <a href="/user/kehilangan/{{ $users->id }}" class="kehilangan fw-medium"><i class='bx bxs-search-alt-2'></i> Laporkan Kehilangan</a>
                 </div>
             </div>
         </div>
@@ -322,7 +322,7 @@
                         <div x-show="filter == '{{ strtolower($item->tipe_kost) }}'">
                             <div class="position-relative mb-2">
                                 <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" style="border-top-right-radius: 15px; border-top-left-radius: 15px; width: 226px; height: 236px; object-fit: cover;">
-                                <button id="btn-like-timur" class="btn-like-didekat-mu" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
+                                {{-- <button id="btn-like-timur" class="btn-like-didekat-mu" onclick="changeIconAndColor(this)"><i class="bi {{ $favorit ? 'bi-star-fill' : 'bi-star' }} text-danger"></i></button> --}}
                             </div>
                             <div class="card-black" style="position: relative; margin-top: -8px; width: 226px; height: 100px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; opacity: 0.9;">
                                 <h6 style="top: 10px; left: 10px; font-size: 18px; position: absolute; color: #333;" class="fw-semibold">{{ $item->kategori->kategori }}</h6>
@@ -1958,20 +1958,21 @@
             var currentColor = iconElement.style.color;
             iconElement.style.color = (currentColor === "purple") ? "" : "purple";
 
-            // Ganti ikon atau warna sesuai keinginan Anda
-            // Misalnya, di sini saya hanya menambahkan kelas 'favorited'
-            button.classList.toggle('favorited');
+            // button.classList.toggle('favorited');
 
-            var popupText = document.getElementById('popup-text');
+            // var popupText = document.getElementById('popup-text');
 
-            if (button.classList.contains('favorited')) {
-                popupText.innerText = 'Berhasil Difavoritkan';
-            } else {
-                popupText.innerText = 'Dihapus Dari Favorit';
-            }
+            // if (button.classList.contains('favorited')) {
+            //     popupText.innerText = 'Berhasil Difavoritkan';
+            // } else {
+            //     popupText.innerText = 'Dihapus Dari Favorit';
+            // }
 
             // Tampilkan pop-up
             showPopup();
+            // Favorit
+            favoritadd();
+
         }
 
         function showPopup() {
@@ -2031,6 +2032,22 @@
             }
         }
     </script>
+    {{-- <script>
+        function favoritadd() {
+            $.ajax({
+                url: '/favorite/add',
+                type: 'POST',
+                data: {
+                    kamar_kost_id: '{{ $kamarkost->id }}',
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    console.log(response.alert);
+                    $('#popup-text').html(response.alert);
+                }
+            });
+        }
+    </script> --}}
 </body>
 
 </html>

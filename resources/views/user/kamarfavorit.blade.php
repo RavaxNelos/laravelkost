@@ -59,24 +59,27 @@
 </head>
 
 <body>
-    <div class="sticky-top" id="stickyHeader">
-        <div class="container py-1">
-            <div class="row g-3">
-                <div class="col-1" style="margin-top: 22px;">
-                    <a href="/user/profil/" class="btn-back-home"><ion-icon name="chevron-back-outline"></ion-icon></a>
+    <section x-data="{ filter: 'Bulanan', openSearch: false }">
+        <div class="sticky-top" id="stickyHeader">
+            <div class="container py-1">
+                <div class="row g-3" x-show="openSearch === false">
+                    <div class="col-1" style="margin-top: 22px;">
+                        <a href="/user/profil/" class="btn-back-home"><ion-icon name="chevron-back-outline"></ion-icon></a>
+                    </div>
+                    <div class="col-6 text-start" style="margin-top: 26px;">
+                        <h3 class="text-dark fw-semibold teks-detail" style="font-size: 16px; transition: color 0.3s ease;">Favorit</h3>
+                    </div>
+                    <div class="col-5 text-end" style="margin-top: 22px;">
+                        <button class="btn-search"><i id="searchIcon" class="bi bi-search" x-on:click="openSearch = true"></i></button>
+                    </div>
                 </div>
-                <div class="col-6 text-start" style="margin-top: 26px;">
-                    <h3 class="text-dark fw-semibold teks-detail" style="font-size: 16px; transition: color 0.3s ease;">Favorit</h3>
-                </div>
-                <div class="col-5 text-end" style="margin-top: 22px;">
-                    <button class="btn-search"><i class="bi bi-search"></i></button>
+                <div class="mt-2" style="margin-bottom: 4px;" x-show="openSearch === true">
+                    <input id="searchInput" type="text" class="form-control  search-input w-100" placeholder="Cari Kamar Favorit..." style="height: 30px;">
                 </div>
             </div>
         </div>
-    </div>
-    <hr class="hr-divider">
-    <section x-data="{ filter: 'bulanan' }">
-        <div class="container">
+        <hr class="hr-divider" @click="openSearch = false">
+        <div class="container" @click="openSearch = false">
             <div class="row">
                 <div class="col-12 d-flex gap-2">
                     <button :class="{ 'btn-nyala': filter === 'Bulanan', 'btn-mati': filter === 'Harian' }" x-on:click="filter = 'Bulanan'" class="btn-animated">
@@ -105,30 +108,34 @@
                 </div>
             </div>
         </div> --}}
-        @foreach ($favorit as $item)
-            <div class="container mt-3" x-show="filter == '{{ $item->category }}'">
+        @foreach ($favorites as $item)
+            <div class="container mt-3" x-show="filter == '{{ $item->category }}'" @click="openSearch = false" id="favorite-item-{{ $item->id }}">
                 <div class="row">
                     <div class="col-5">
-                        <img src="{{ asset('img/kamarkostputraharian1.jpg') }}" style="width: 120px; height: 160px; border-radius: 10px;">
+                        <img src="{{ asset('uploadkamar/' . $item->kamarkost->gambar_kost) }}" style="width: 120px; height: 160px; border-radius: 10px;">
                     </div>
-                    <div class="col-7" style="margin-left: -20px;">
-                        <a href="#" class="btn btn-outline-secondary text-dark fw-medium" style="font-size: 14px; width: 80px; height: 30px; padding: 4px;">{{ $item->kategori_id }}</a><i class="bi bi-star-fill star-icon" style="color: purple; font-size: 20px; margin-left: 5.2rem;"></i>
-                        <p class="text-secondary fw-normal mt-2" style="font-size: 12px;">{{ $item->kategori_id }} Uk {{ $item->ukuran_kost }}</p>
-                        <p class="fw-medium text-dark" style="font-size: 14px; margin-top: -14px;"><i class="bi bi-geo-alt" style="margin-right: 4px;"></i>{{ $item->alamat_kost }}</p>
-                        <p class="text-secondary fw-normal" style="font-size: 12px; margin-top: -14px;">K. Mandi Dalam | Wifi | Lemari | Kulkas | 1 PK AC... </p>
-                        <p class="fw-semibold" style="font-size: 16px; margin-top: 18px;">Rp. {{ $item->harga_kost }} <span class="text-secondary fw-normal" style="font-size: 12px;">/{{ $item->tipe_kost }}</span></p>
+                    <div class="col-5" style="margin-left: -20px;">
+                        <a href="#" class="btn btn-outline-secondary text-dark fw-medium" style="font-size: 14px; height: 30px; padding-top: 4px; padding-bottom: 4px; padding-left: 6px; padding-right: 6px;">{{ $item->kamarkost->kategori->kategori }}</a>
+                        <p class="text-secondary fw-normal mt-2" style="font-size: 12px; width: 180px;">{{ $item->kamarkost->kategori->kategori }} Uk {{ $item->kamarkost->ukuran_kost }}</p>
+                        <p class="fw-medium text-dark" style="font-size: 14px; margin-top: -14px;"><i class="bi bi-geo-alt" style="margin-right: 4px;"></i>{{ $item->kamarkost->alamat_kost }}</p>
+                        <p class="text-secondary fw-normal" style="font-size: 12px; margin-top: -14px; width: 200px;">{{ Illuminate\Support\Str::limit($item->kamarkost->fasilitas_kost, 55, '...') }}</p>
+                        <p class="fw-semibold" style="font-size: 16px; margin-top: 18px; width: 200px;">Rp. {{ $item->kamarkost->harga_kost }} <span class="text-secondary fw-normal" style="font-size: 12px;">/{{ $item->kamarkost->tipe_kost }}</span></p>
+                    </div>
+                    <div class="col-2 text-end">
+                        <i class="bi bi-star-fill star-icon" style="color: purple; font-size: 20px;" onclick="removeFavorite({{ $item->id }})"></i>
                     </div>
                 </div>
+            </div>
         @endforeach
         <div id="popup" class="popup">
             <span class="popup-text" id="popupText">Dihapus dari favorit</span>
-        </div>
         </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script>
     <script>
         window.addEventListener('scroll', function() {
             var header = document.getElementById('stickyHeader');
@@ -163,6 +170,27 @@
                 }, 1500); // Hide popup after 1.5 seconds
             });
         });
+
+        function removeFavorite(id) {
+            // Send an AJAX request to the server to delete the favorite item
+            axios.delete('/favorit/' + id)
+                .then(response => {
+                    // Remove the favorite item from the DOM
+                    const favoriteItem = document.getElementById('favorite-item-' + id);
+                    if (favoriteItem) {
+                        favoriteItem.remove();
+                    }
+
+                    // Show a success message or update the UI
+                    alert('Favorite item deleted successfully!');
+                })
+                .catch(error => {
+                    console.error(error);
+
+                    // Show an error message
+                    alert('Error deleting favorite item. Please try again later.');
+                });
+        }
     </script>
 </body>
 
