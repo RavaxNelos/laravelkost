@@ -67,7 +67,7 @@ Route::get('/user/konfirmasitransaksi/{id}', [UserController::class, 'konfirmasi
 Route::get('/user/semua/{id}', [UserController::class, 'semua'])->name('semua');
 Route::get('/user/favorit', [UserController::class, 'favorit'])->name('favorit');
 Route::post('/favorite/add', [UserController::class, 'favoritadd']);
-Route::delete('/favorit/{id}', [UserController::class, 'favoritdelete'])->name('favorit.delete');
+Route::post('/favorit/delete', [UserController::class, 'favoritdelete']);
 Route::get('/logout', function() {
     Auth::logout();
     return redirect('/login');

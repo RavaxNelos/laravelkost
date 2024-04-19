@@ -108,21 +108,21 @@
                 </div>
             </div>
         </div> --}}
-        @foreach ($favorites as $item)
-            <div class="container mt-3" x-show="filter == '{{ $item->category }}'" @click="openSearch = false" id="favorite-item-{{ $item->id }}">
+        @foreach ($favorites as $favorite)
+            <div class="container mt-3" x-show="filter == '{{ $favorite->category }}'" @click="openSearch = false" data-favorite-id="{{ $favorite->id }}">
                 <div class="row">
                     <div class="col-5">
-                        <img src="{{ asset('uploadkamar/' . $item->kamarkost->gambar_kost) }}" style="width: 120px; height: 160px; border-radius: 10px;">
+                        <img src="{{ asset('uploadkamar/' . $favorite->kamarkost->gambar_kost) }}" style="width: 120px; height: 160px; border-radius: 10px;">
                     </div>
                     <div class="col-5" style="margin-left: -20px;">
-                        <a href="#" class="btn btn-outline-secondary text-dark fw-medium" style="font-size: 14px; height: 30px; padding-top: 4px; padding-bottom: 4px; padding-left: 6px; padding-right: 6px;">{{ $item->kamarkost->kategori->kategori }}</a>
-                        <p class="text-secondary fw-normal mt-2" style="font-size: 12px; width: 180px;">{{ $item->kamarkost->kategori->kategori }} Uk {{ $item->kamarkost->ukuran_kost }}</p>
-                        <p class="fw-medium text-dark" style="font-size: 14px; margin-top: -14px;"><i class="bi bi-geo-alt" style="margin-right: 4px;"></i>{{ $item->kamarkost->alamat_kost }}</p>
-                        <p class="text-secondary fw-normal" style="font-size: 12px; margin-top: -14px; width: 200px;">{{ Illuminate\Support\Str::limit($item->kamarkost->fasilitas_kost, 55, '...') }}</p>
-                        <p class="fw-semibold" style="font-size: 16px; margin-top: 18px; width: 200px;">Rp. {{ $item->kamarkost->harga_kost }} <span class="text-secondary fw-normal" style="font-size: 12px;">/{{ $item->kamarkost->tipe_kost }}</span></p>
+                        <a href="#" class="btn btn-outline-secondary text-dark fw-medium" style="font-size: 14px; height: 30px; padding-top: 4px; padding-bottom: 4px; padding-left: 6px; padding-right: 6px;">{{ $favorite->kamarkost->kategori->kategori }}</a>
+                        <p class="text-secondary fw-normal mt-2" style="font-size: 12px; width: 180px;">{{ $favorite->kamarkost->kategori->kategori }} Uk {{ $favorite->kamarkost->ukuran_kost }}</p>
+                        <p class="fw-medium text-dark" style="font-size: 14px; margin-top: -14px;"><i class="bi bi-geo-alt" style="margin-right: 4px;"></i>{{ $favorite->kamarkost->alamat_kost }}</p>
+                        <p class="text-secondary fw-normal" style="font-size: 12px; margin-top: -14px; width: 200px;">{{ Illuminate\Support\Str::limit($favorite->kamarkost->fasilitas_kost, 55, '...') }}</p>
+                        <p class="fw-semibold" style="font-size: 16px; margin-top: 18px; width: 200px;">Rp. {{ $favorite->kamarkost->harga_kost }} <span class="text-secondary fw-normal" style="font-size: 12px;">/{{ $favorite->kamarkost->tipe_kost }}</span></p>
                     </div>
                     <div class="col-2 text-end">
-                        <i class="bi bi-star-fill star-icon" style="color: purple; font-size: 20px;" onclick="removeFavorite({{ $item->id }})"></i>
+                        <i class="bi bi-star-fill star-icon btn" style="color: purple; font-size: 20px; width: 40px; height: auto; border: none; border-radius: 50%;  background-color: rgba(0, 0, 0, 0.8); padding-left: 4px; padding-right: 4px;" onclick="deleteFavoriteProduct({{ $favorite->id }},'{{ $favorite->category }}')"></i>
                     </div>
                 </div>
             </div>
@@ -136,6 +136,7 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script>
+    <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
         window.addEventListener('scroll', function() {
             var header = document.getElementById('stickyHeader');
@@ -171,26 +172,41 @@
             });
         });
 
-        function removeFavorite(id) {
-            // Send an AJAX request to the server to delete the favorite item
-            axios.delete('/favorit/' + id)
-                .then(response => {
-                    // Remove the favorite item from the DOM
-                    const favoriteItem = document.getElementById('favorite-item-' + id);
-                    if (favoriteItem) {
-                        favoriteItem.remove();
-                    }
-
-                    // Show a success message or update the UI
-                    alert('Favorite item deleted successfully!');
-                })
-                .catch(error => {
-                    console.error(error);
-
-                    // Show an error message
-                    alert('Error deleting favorite item. Please try again later.');
-                });
+        function deleteFavoriteProduct(favoriteID, category) {
+            $.ajax({
+                url: '/favorit/delete',
+                type: 'POST',
+                data: {
+                    favorite_id: favoriteID,
+                    category: category,
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    console.log(response.alert);
+                    $('#popup-text').html(response.alert);
+                    $('[data-favorite-id="' + favoriteID + '"]').remove();
+                }
+            });
         }
+        // function removeFavorite(id) {
+        //     axios.delete('/favorit/' + id)
+        //         .then(response => {
+        //             // Remove the favorite item from the DOM
+        //             const favoriteItem = document.getElementById('favorite-item-' + id);
+        //             if (favoriteItem) {
+        //                 favoriteItem.remove();
+        //             }
+
+        //             // Show a success message or update the UI
+        //             alert('Kamar dihapus dari favorit');
+        //         })
+        //         .catch(error => {
+        //             console.error(error);
+
+        //             // Show an error message
+        //             alert('Error deleting favorite item. Please try again later.');
+        //         });
+        // }
     </script>
 </body>
 

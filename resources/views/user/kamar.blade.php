@@ -119,11 +119,11 @@
             <!-- Konten modal, dapat diedit sesuai kebutuhan -->
             <div class="row">
                 <div class="col-12">
-                    <a href="{{ asset('/user/kerusakan') }}" class="kerusakan fw-medium"><i class="bi bi-exclamation-triangle-fill"></i> Laporkan Kerusakan</a>
+                    <a href="/user/kerusakan/{{ $users->id }}" class="kerusakan fw-medium"><i class="bi bi-exclamation-triangle-fill"></i> Laporkan Kerusakan</a>
                 </div>
                 <hr class="garis-pembatas-laporkan" style="border-top: 1px solid #ccc; margin-top: 10px;">
                 <div class="col-12" style="margin-top: -10px">
-                    <a href="{{ asset('/user/kehilangan') }}" class="kehilangan fw-medium"><i class='bx bxs-search-alt-2'></i> Laporkan Kehilangan</a>
+                    <a href="/user/kehilangan/{{ $users->id }}" class="kehilangan fw-medium"><i class='bx bxs-search-alt-2'></i> Laporkan Kehilangan</a>
                 </div>
             </div>
         </div>
@@ -147,7 +147,7 @@
         <div class="cardsidebar" id="cardContent">
             <a href="" class="jadwal fw-medium"><i class="bi bi-calendar-date-fill"></i></i> Jadwal Pembayaran</a>
             <hr class="garispemisah" style="border-top: 1px solid #ccc; margin-top: 40px;">
-            <a href="{{ asset('/user/kerusakan') }}" class="lapor fw-medium"><i class="bi bi-exclamation-circle-fill"></i> Laporkan Kerusakan</a>
+            <a href="/user/kerusakan/{{ $users->id }}" class="lapor fw-medium"><i class="bi bi-exclamation-circle-fill"></i> Laporkan Kerusakan</a>
         </div>
         <div class="row">
             <div class="col-3 text-start">

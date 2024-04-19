@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Konfirmasi</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
     <!-- icon bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- end icon bootstrap -->
@@ -172,7 +174,9 @@
                                                     <input type="file" @change="confirmation = true; imageFile = $event.target.files[0]; preview()" hidden id="uploadfoto" accept="image/*">
                                                 </div>
                                                 <div class="col-12 text-center mt-3">
-                                                    <button class="btn btn-kirim" style="color: white; border: none; width: 150px;" :disabled="!confirmation || !imageFile">Kirim</button>
+                                                    <form action="/pemilikmin/transaksi">
+                                                        <button class="btn btn-kirim" style="color: white; border: none; width: 150px;" x-bind:disabled="!confirmation || !imageFile">Kirim</button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -193,9 +197,9 @@
             <div class="col-8 text-start">
                 <h3 class="fw-semibold" style="font-size: 16px; font-family: Poppins;">Promo Kamar Kost</h3>
             </div>
-            <div class="col-4 text-end">
+            {{-- <div class="col-4 text-end">
                 <p class="text-primary">Semua</p>
-            </div>
+            </div> --}}
         </div>
         <section class="splide new-1" aria-label="Splide Basic HTML Example" style="margin-bottom: 1rem;">
             <div class="splide__track">
@@ -422,9 +426,9 @@
             <div class="col-8 text-start">
                 <h3 class="fw-semibold" style="font-size: 16px; font-family: Poppins;">Kamar Kost Terpopuler</h3>
             </div>
-            <div class="col-4 text-end">
+            {{-- <div class="col-4 text-end">
                 <p class="text-primary">Semua</p>
-            </div>
+            </div> --}}
         </div>
         <section class="splide new-2" aria-label="Splide Basic HTML Example">
             <div class="splide__track">
@@ -653,9 +657,9 @@
             <div class="col-8 text-start">
                 <h3 class="fw-semibold" style="font-size: 16px; font-family: Poppins;">Kamar Kost Terbaru</h3>
             </div>
-            <div class="col-4 text-end">
+            {{-- <div class="col-4 text-end">
                 <p class="text-primary">Semua</p>
-            </div>
+            </div> --}}
         </div>
         <section class="splide new-3" aria-label="Splide Basic HTML Example" style="margin-bottom: 2rem;">
             <div class="splide__track">
@@ -856,8 +860,12 @@
             uploadInput.value = ''; // Bersihkan nilai input file
 
             // Reset confirmation variable to disable "Kirim" button
-            confirmation = false;
-            imageFile = null;
+            app.confirmation = false; // Mengakses confirmation menggunakan x-model
+            app.imageFile = null; // Mengakses imageFile menggunakan x-model
+
+            // Nonaktifkan tombol "Kirim"
+            var sendButton = document.querySelector('.btn-kirim');
+            sendButton.disabled = true;
         }
     </script>
     {{-- <script>

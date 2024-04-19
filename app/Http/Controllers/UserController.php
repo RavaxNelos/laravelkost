@@ -135,7 +135,8 @@ class UserController extends Controller
 
     public function kamar()
     {
-        return view('user.kamar');
+        $users = Auth::user();
+        return view('user.kamar', compact('users'));
     }
     public function coba()
     {
@@ -153,7 +154,8 @@ class UserController extends Controller
     }
     public function riwayat()
     {
-        return view('user.riwayat');
+        $users = Auth::user();
+        return view('user.riwayat', compact('users'));
     }
     public function profil()
     {
@@ -258,11 +260,12 @@ class UserController extends Controller
         return view('user.kamarfavorit', compact('users', 'favorites', 'categories', 'kamarkost'));
     }
 
-    public function favoritdelete(Favorit $favorites)
+    public function favoritdelete (Request $request)
     {
-    $favorites->delete();
+        $favorites = Favorit::find($request->favorite_id);
+        $favorites->delete();
 
-    return response()->json(['success' => true]);
+        return response()->json(['message' => 'Success', 'alert' => 'DiHapus dari Favorite'], 200);
     }
     // public function favoritPost($id)
     // {

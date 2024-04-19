@@ -843,33 +843,33 @@
             let isAlertShown = false;
 
             function changeIconAndColor(button) {
-                // Mengambil elemen ikon pada tombol
-                var iconElement = button.querySelector("i");
-
-                // Mengganti kelas ikon untuk mengubahnya menjadi bintang terisi (filled star)
-                iconElement.classList.toggle("bi-star");
-                iconElement.classList.toggle("bi-star-fill");
-
-                // Mengubah warna ikon menjadi kuning
-                var currentColor = iconElement.style.color;
-                iconElement.style.color = (currentColor === "purple") ? "" : "purple";
-
-                // button.classList.toggle('favorited');
-
-                // var popupText = document.getElementById('popup-text');
-
-                // if (button.classList.contains('favorited')) {
-                //     popupText.innerText = 'Berhasil Difavoritkan';
-                // } else {
-                //     popupText.innerText = 'Dihapus Dari Favorit';
-                // }
-
-                // Tampilkan pop-up
+                var icon = button.querySelector('i');
+                if (icon.classList.contains('bi-star-fill')) {
+                    icon.classList.remove('bi-star-fill');
+                    icon.classList.add('bi-star');
+                    icon.style.color = 'purple'; // tambahkan warna langsung ke ikon
+                } else {
+                    icon.classList.remove('bi-star');
+                    icon.classList.add('bi-star-fill');
+                    icon.style.color = 'purple'; // tambahkan warna langsung ke ikon
+                }
                 showPopup();
                 // Favorit
                 favoritadd();
-
             }
+
+            // button.classList.toggle('favorited');
+
+            // var popupText = document.getElementById('popup-text');
+
+            // if (button.classList.contains('favorited')) {
+            //     popupText.innerText = 'Berhasil Difavoritkan';
+            // } else {
+            //     popupText.innerText = 'Dihapus Dari Favorit';
+            // }
+
+            // Tampilkan pop-up
+
 
             function showPopup() {
                 var popupBackground = document.getElementById('popup-background');
