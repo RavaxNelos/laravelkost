@@ -64,6 +64,7 @@ Route::get('/user/transaksi/{id}', [UserController::class, 'transaksi'])->name('
 Route::post('/user/transaksi/check', [UserController::class, 'paymentCheck']);
 Route::post('/user/transaksi/confirmation', [UserController::class, 'checkPayment']);
 Route::get('/user/konfirmasitransaksi/{id}', [UserController::class, 'konfirmasitransaksi'])->name('konfirmasitransaksi');
+Route::post('/user/konfirmasitransaksi/admin', [UserController::class, 'konfirmasitransaksiPost']);
 Route::get('/user/semua/{id}', [UserController::class, 'semua'])->name('semua');
 Route::get('/user/favorit', [UserController::class, 'favorit'])->name('favorit');
 Route::post('/favorite/add', [UserController::class, 'favoritadd']);

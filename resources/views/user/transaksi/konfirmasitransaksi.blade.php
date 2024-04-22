@@ -174,7 +174,7 @@
                                                     <input type="file" @change="confirmation = true; imageFile = $event.target.files[0]; preview()" hidden id="uploadfoto" accept="image/*">
                                                 </div>
                                                 <div class="col-12 text-center mt-3">
-                                                    <form action="/pemilikmin/transaksi">
+                                                    <form action="/user/konfirmasitransaksi/admin">
                                                         <button class="btn btn-kirim" style="color: white; border: none; width: 150px;" x-bind:disabled="!confirmation || !imageFile">Kirim</button>
                                                     </form>
                                                 </div>

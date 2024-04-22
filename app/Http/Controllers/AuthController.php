@@ -18,9 +18,9 @@ class AuthController extends Controller
     {
         $user = new User();
 
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->nomorhp = $request->nomorhp;
+        $user->name     = $request->name;
+        $user->email    = $request->email;
+        $user->nomorhp  = $request->nomorhp;
         $user->password = Hash::make($request->password);
 
         $user->save();
@@ -35,8 +35,9 @@ class AuthController extends Controller
 
     public function loginPost(Request $request)
     {
+        $users      = Auth::user();
         $credetials = [
-            'name' => $request->name,
+            'name'     => $request->name,
             'password' => $request->password,
         ];
 

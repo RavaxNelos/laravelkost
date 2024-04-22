@@ -157,96 +157,99 @@
 </head>
 
 <body>
-    <div class="sticky-bottom">
-        <nav class="nav">
-            <a href="#" class="nav__link nav-active">
-                <i class="bi bi-house-door-fill"></i>
-                <span class="nav__text">Beranda</span>
-            </a>
-            <a href="{{ asset('/user/kamar') }}" class="nav__link">
-                <i class="bi bi-door-closed"></i>
-                <span class="nav__text">Kamar</span>
-            </a>
-            <div class="nav__link" id="openModalBtn">
-                <i class="bi bi-chat-dots"></i>
-                <span class="nav__text">Lapor</span>
+    <section x-data="{ filter: 'bulanan' }">
+        <div class="sticky-bottom">
+            <nav class="nav">
+                <a href="#" class="nav__link nav-active">
+                    <i class="bi bi-house-door-fill"></i>
+                    <span class="nav__text">Beranda</span>
+                </a>
+                <a href="{{ asset('/user/kamar') }}" class="nav__link">
+                    <i class="bi bi-door-closed"></i>
+                    <span class="nav__text">Kamar</span>
+                </a>
+                <div class="nav__link" id="openModalBtn">
+                    <i class="bi bi-chat-dots"></i>
+                    <span class="nav__text">Lapor</span>
+                </div>
+                <a href="{{ asset('/user/riwayat') }}" class="nav__link">
+                    <i class="bi bi-clock"></i>
+                    <span class="nav__text">Riwayat</span>
+                </a>
+                <a href="{{ asset('/user/profil') }}" class="nav__link">
+                    <i class="bi bi-person"></i>
+                    <span class="nav__text">Profil</span>
+                </a>
+            </nav>
+        </div>
+        <div class="sticky-top" id="stickyTop">
+            <div class="container py-2">
+                <div class="row">
+                    <div class="col-3">
+                        <!-- logo kost -->
+                        <div class="header" style="margin-left: -5px;">
+                            <img src="{{ asset('/img/logokosthomerava.png') }}" loading="lazy">
+                        </div>
+                        <!-- end logo kost -->
+                    </div>
+                    <div class="col-4" style="margin-top: 10px;">
+                        <!-- Search Bar -->
+                        <div class="search" style="padding-left: 10.2rem;">
+                            <button><i class="bi bi-search"></i></button>
+                        </div>
+                        <!-- end Search Bar -->
+                    </div>
+                    <!-- Avatar icon  -->
+                    <div class="col-5 text-end" style="margin-top: 7px;">
+                        <div class="header-kanan">
+                            <a href="/user/profil">
+                                <img src="{{ asset($users->gambar ? 'uploadkamar/' . $users->gambar : '/img/customer1.jpg') }}" loading="lazy">
+                            </a>
+                        </div>
+                    </div>
+                    <!-- end Avatar icon -->
+                </div>
+                {{-- <div class="mt-2" style="margin-bottom: 4px;" x-show="openSearch === true">
+                    <input id="searchInput" type="text" class="form-control  search-input w-100" placeholder="Cari Kamar..." style="height: 30px;">
+                </div> --}}
             </div>
-            <a href="{{ asset('/user/riwayat') }}" class="nav__link">
-                <i class="bi bi-clock"></i>
-                <span class="nav__text">Riwayat</span>
-            </a>
-            <a href="{{ asset('/user/profil') }}" class="nav__link">
-                <i class="bi bi-person"></i>
-                <span class="nav__text">Profil</span>
-            </a>
-        </nav>
-    </div>
-    <div class="sticky-top" id="stickyTop">
-        <div class="container py-2">
+        </div>
+        <div class="modal" id="myModal">
+            <div class="modal-content">
+                <!-- Konten modal, dapat diedit sesuai kebutuhan -->
+                <div class="row">
+                    <div class="col-12">
+                        <a href="/user/kerusakan/{{ $users->id }}" class="kerusakan fw-medium"><i class="bi bi-exclamation-triangle-fill"></i> Laporkan Kerusakan</a>
+                    </div>
+                    <hr class="garis-pembatas-laporkan" style="border-top: 1px solid #ccc; margin-top: 10px;">
+                    <div class="col-12" style="margin-top: -10px">
+                        <a href="/user/kehilangan/{{ $users->id }}" class="kehilangan fw-medium"><i class='bx bxs-search-alt-2'></i> Laporkan Kehilangan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-popup" id="scrollPopup">
+            <span onclick="scrollToTop()"><i class="bi bi-arrow-up-circle"></i> Kembali Ke Atas</span>
+        </div>
+        <div class="container">
             <div class="row">
-                <div class="col-3">
-                    <!-- logo kost -->
-                    <div class="header" style="margin-left: -5px;">
-                        <img src="{{ asset('/img/logokosthomerava.png') }}" loading="lazy">
+                <div class="col-lg-6 col-12">
+                    <div class="lokasi">
+                        <p class="lokasi-atas"><i class="bi bi-geo-alt-fill text-danger"></i> Ruko City Pride B-23, Jl. Nginden Semolo Waru 42 - Surabaya</p>
                     </div>
-                    <!-- end logo kost -->
-                </div>
-                <div class="col-4" style="margin-top: 10px;">
-                    <!-- Search Bar -->
-                    <div class="search" style="padding-left: 10.2rem;">
-                        <button><i class="bi bi-search"></i></button>
-                    </div>
-                    <!-- end Search Bar -->
-                </div>
-                <!-- Avatar icon  -->
-                <div class="col-5 text-end" style="margin-top: 7px;">
-                    <div class="header-kanan">
-                        <a href="/user/profil">
-                            <img src="{{ asset($users->gambar ? 'uploadkamar/' . $users->gambar : '/img/customer1.jpg') }}" loading="lazy">
-                        </a>
-                    </div>
-                </div>
-                <!-- end Avatar icon -->
-            </div>
-        </div>
-    </div>
-    <div class="modal" id="myModal">
-        <div class="modal-content">
-            <!-- Konten modal, dapat diedit sesuai kebutuhan -->
-            <div class="row">
-                <div class="col-12">
-                    <a href="/user/kerusakan/{{ $users->id }}" class="kerusakan fw-medium"><i class="bi bi-exclamation-triangle-fill"></i> Laporkan Kerusakan</a>
-                </div>
-                <hr class="garis-pembatas-laporkan" style="border-top: 1px solid #ccc; margin-top: 10px;">
-                <div class="col-12" style="margin-top: -10px">
-                    <a href="/user/kehilangan/{{ $users->id }}" class="kehilangan fw-medium"><i class='bx bxs-search-alt-2'></i> Laporkan Kehilangan</a>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="scroll-popup" id="scrollPopup">
-        <span onclick="scrollToTop()"><i class="bi bi-arrow-up-circle"></i> Kembali Ke Atas</span>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-12">
-                <div class="lokasi">
-                    <p class="lokasi-atas"><i class="bi bi-geo-alt-fill text-danger"></i> Ruko City Pride B-23, Jl. Nginden Semolo Waru 42 - Surabaya</p>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div id="popup-background" onclick="closePopup()"></div>
-    <div id="popup">
-        <p id="popup-text" style="font-size: 14px;">Berhasil DiFavoritkan</p>
-    </div>
+        <div id="popup-background" onclick="closePopup()"></div>
+        <div id="popup">
+            <p id="popup-text" style="font-size: 14px;">Berhasil DiFavoritkan</p>
+        </div>
 
-    {{-- <!-- pembatas 1 -->
+        {{-- <!-- pembatas 1 -->
     <div class="garis-pembatas-1"></div>
     <!-- end pembatas 1 --> --}}
-    <!-- Kost bulanan dan kost harian -->
-    <section x-data="{ filter: 'bulanan' }">
+        <!-- Kost bulanan dan kost harian -->
         <section class="splide new-2" aria-label="Splide Basic HTML Example">
             <div class="splide__track">
                 <ul class="splide__list">
@@ -318,11 +321,11 @@
                     <p class="text-primary">semua</p>
                 </div> --}}
                 <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay;" id="kategori-sewa">
-                    @foreach ($kamarkost->where('lokasi_kost', 'Didekat Kamu') as $item)
+                    @foreach ($kamarkost_didekat_kamu as $item)
                         <div x-show="filter == '{{ strtolower($item->tipe_kost) }}'">
                             <div class="position-relative mb-2">
                                 <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" style="border-top-right-radius: 15px; border-top-left-radius: 15px; width: 226px; height: 236px; object-fit: cover;">
-                                {{-- <button id="btn-like-timur" class="btn-like-didekat-mu" onclick="changeIconAndColor(this)"><i class="bi {{ $favorit ? 'bi-star-fill' : 'bi-star' }} text-danger"></i></button> --}}
+                                {{-- <button id="btn-like-timur" class="btn-like-didekat-mu" onclick="changeIconAndColor(this)"><i class="bi {{ $item->favorites()->where('user_id', Auth::user()->id)->first()? 'bi-star-fill': 'bi-star' }}" style="color: purple;"></i></button> --}}
                             </div>
                             <div class="card-black" style="position: relative; margin-top: -8px; width: 226px; height: 100px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; opacity: 0.9;">
                                 <h6 style="top: 10px; left: 10px; font-size: 18px; position: absolute; color: #333;" class="fw-semibold">{{ $item->kategori->kategori }}</h6>
@@ -559,14 +562,14 @@
                 </div>
             </div>
             <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-top: -10px; margin-bottom: 2rem;" id="katagori-sewa-timur">
-                @foreach ($kamarkost->where('lokasi_kost', 'Area Surabaya Timur') as $item)
+                @foreach ($kamarkost_area_surabaya_timur as $item)
                     <div x-show="filter == '{{ strtolower($item->tipe_kost) }}'">
                         <div class="custom-card" style="width: 180px; height: 290px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
                             <div class="position-relative mb-2">
                                 <a href="/user/detail">
                                     <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" style="border-radius: 15px; width: 160px; height: 160px; object-fit: cover;">
                                 </a>
-                                <button id="btn-like-timur" class="btn-like-timur" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
+                                {{-- <button id="btn-like-timur" class="btn-like-didekat-mu" onclick="changeIconAndColor(this)"><i class="bi {{ $item->favorites()->where('user_id', Auth::user()->id)->first()? 'bi-star-fill': 'bi-star' }}" style="color: purple;"></i></button> --}}
                             </div>
                             <div style="width: 195px" class="row">
                                 <div class="col-12 mt-1">
@@ -844,12 +847,12 @@
                 </div>
             </div>
             <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-top: -10px; margin-bottom: 2rem;" id="kategori-sewa-putra">
-                @foreach ($kamarkost->where('lokasi_kost', 'Kamar Kost Putra') as $item)
+                @foreach ($kamarkost_putra as $item)
                     <div x-show="filter == '{{ strtolower($item->tipe_kost) }}'">
                         <div class="card" style="padding: 10px; border-radius: 15px;">
                             <div class="position-relative mb-2">
                                 <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" style="border-radius: 15px; width: 220px; height: 150px; object-fit: cover;">
-                                <button id="btn-like-timur" class="btn-like-putra" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
+                                {{-- <button id="btn-like-timur" class="btn-like-putra" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button> --}}
                             </div>
                             <div class="row">
                                 <div class="col-7 mt-2">
@@ -1031,7 +1034,7 @@
                 </div> --}}
             </div>
 
-            @if (!$kamarkost->where('lokasi_kost', 'Kamar Kost Populer')->isEmpty())
+            @if ($kamarkost_populer)
                 <div class="row" style="margin-bottom: 0.5rem; margin-top: -0.5rem">
                     <div class="col-8">
                         <h1 style="font-weight: bold; font-size: 18px; font-family: 'Inter', sans-serif;">Kamar Kost Populer</h1>
@@ -1042,7 +1045,7 @@
                 </div>
                 <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-top: -10px; margin-bottom: 2rem;" id="kategori-sewa-populer">
                     <!-- Kamar Populer -->
-                    @foreach ($kamarkost->where('lokasi_kost', 'Kamar Kost Populer') as $item)
+                    @foreach ($kamarkost_populer as $item)
                         <div x-show="filter == '{{ strtolower($item->tipe_kost) }}'">
                             <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
                                 <div class="position-relative mb-2">
@@ -1075,12 +1078,12 @@
                 </div>
             </div>
             <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-top: -10px; margin-bottom: 2rem;" id="kategori-sewa-putri">
-                @foreach ($kamarkost->where('lokasi_kost', 'Kamar Kost Putri') as $item)
+                @foreach ($kamarkost_putri as $item)
                     <div x-show="filter == '{{ strtolower($item->tipe_kost) }}'">
                         <div class="card" style="padding: 10px; border-radius: 15px;">
                             <div class="position-relative mb-2">
                                 <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" style="border-radius: 15px; width: 220px; height: 150px; object-fit: cover;">
-                                <button id="btn-like-timur" class="btn-like-putri" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
+                                {{-- <button id="btn-like-timur" class="btn-like-putri" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button> --}}
                             </div>
                             <div class="row">
                                 <div class="col-7 mt-2">
@@ -1095,7 +1098,8 @@
                         </div>
                     </div>
                 @endforeach
-                {{-- <div x-show="filter == 'bulanan'">
+            </div>
+            {{-- <div x-show="filter == 'bulanan'">
                     <div class="card" style="padding: 10px; border-radius: 15px;">
                         <div class="position-relative mb-2">
                             <img src="{{ asset('/img/kamarkostputri1.jpg') }}" style="border-radius: 15px; width: 220px; height: 150px; object-fit: cover;">
@@ -1255,7 +1259,6 @@
                         </div>
                     </div>
                 </div> --}}
-            </div>
             <div class="col-12" style="margin-top: -10px;">
                 <!-- banner biasa ke-2 -->
                 <section class="splide new-1" aria-label="Splide Basic HTML Example">
@@ -1293,12 +1296,12 @@
             </div>
             <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-top: -10px; margin-bottom: 2rem;" id="kategori-sewa-barat">
                 <!-- Area barat surabaya -->
-                @foreach ($kamarkost->where('lokasi_kost', 'Area Surabaya Barat') as $item)
+                @foreach ($kamarkost_area_surabaya_barat as $item)
                     <div x-show="filter == '{{ strtolower($item->tipe_kost) }}'">
                         <div class="custom-card" style="width: 266px; height: 180px; padding: 0px; border-radius: 15px; border: 1px solid #ccc;">
                             <div class="position-relative mb-2">
                                 <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" style="border-top-left-radius: 13px; border-top-right-radius: 13px; width: 264px; height: 80px; object-fit: cover;">
-                                <button id="btn-like-timur" class="btn-like-barat" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
+                                {{-- <button id="btn-like-timur" class="btn-like-barat" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button> --}}
                             </div>
                             <div style="width: 280px; margin-left: 5px;" class="row">
                                 <div class="col-12 mt-1">
@@ -1531,12 +1534,12 @@
                 <div class="col-12">
                     <h1 style="font-weight: bold; font-size: 18px; font-family: 'Inter', sans-serif;">Rekomendasi Kamar Kost</h1>
                     <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-bottom: 4.8rem;" id="kategori-sewa-rekomendasi">
-                        @foreach ($kamarkost->where('lokasi_kost', 'Rekomendasi Kamar Kost') as $item)
+                        @foreach ($kamarkost_rekomendasi_kamar_kost as $item)
                             <div x-show="filter == '{{ strtolower($item->tipe_kost) }}'">
                                 <div class="card" style="padding: 10px; border-radius: 15px;">
                                     <div class="position-relative mb-2">
                                         <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" style="border-radius: 15px; width: 220px; height: 140px; object-fit: cover;">
-                                        <button id="btn-like-timur" class="btn-like-rekomendasi" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
+                                        {{-- <button id="btn-like-timur" class="btn-like-rekomendasi" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button> --}}
                                     </div>
                                     <div class="row g-3">
                                         <div class="col-10">
@@ -1946,34 +1949,34 @@
             document.getElementById('kategori-sewa-rekomendasi').scrollLeft = 0;
         }
 
-        function changeIconAndColor(button) {
-            // Mengambil elemen ikon pada tombol
-            var iconElement = button.querySelector("i");
+        // function changeIconAndColor(button) {
+        //     // Mengambil elemen ikon pada tombol
+        //     var iconElement = button.querySelector("i");
 
-            // Mengganti kelas ikon untuk mengubahnya menjadi bintang terisi (filled star)
-            iconElement.classList.toggle("bi-star");
-            iconElement.classList.toggle("bi-star-fill");
+        //     // Mengganti kelas ikon untuk mengubahnya menjadi bintang terisi (filled star)
+        //     iconElement.classList.toggle("bi-star");
+        //     iconElement.classList.toggle("bi-star-fill");
 
-            // Mengubah warna ikon menjadi kuning
-            var currentColor = iconElement.style.color;
-            iconElement.style.color = (currentColor === "purple") ? "" : "purple";
+        //     // Mengubah warna ikon menjadi kuning
+        //     var currentColor = iconElement.style.color;
+        //     iconElement.style.color = (currentColor === "purple") ? "" : "purple";
 
-            // button.classList.toggle('favorited');
+        //     // button.classList.toggle('favorited');
 
-            // var popupText = document.getElementById('popup-text');
+        //     // var popupText = document.getElementById('popup-text');
 
-            // if (button.classList.contains('favorited')) {
-            //     popupText.innerText = 'Berhasil Difavoritkan';
-            // } else {
-            //     popupText.innerText = 'Dihapus Dari Favorit';
-            // }
+        //     // if (button.classList.contains('favorited')) {
+        //     //     popupText.innerText = 'Berhasil Difavoritkan';
+        //     // } else {
+        //     //     popupText.innerText = 'Dihapus Dari Favorit';
+        //     // }
 
-            // Tampilkan pop-up
-            showPopup();
-            // Favorit
-            favoritadd();
+        //     // Tampilkan pop-up
+        //     showPopup();
+        //     // Favorit
+        //     favoritadd();
 
-        }
+        // }
 
         function showPopup() {
             var popupBackground = document.getElementById('popup-background');

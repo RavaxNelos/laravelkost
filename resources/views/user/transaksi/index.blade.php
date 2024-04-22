@@ -138,6 +138,29 @@
         :focus-visible {
             outline: none;
         }
+
+        .border-edit {
+            padding: 1rem;
+            border: 1px solid #30323e;
+            border-top-left-radius: 15px !important;
+            border-top-right-radius: 15px !important;
+            border-bottom-left-radius: 0px !important;
+            border-bottom-right-radius: 0px !important;
+        }
+
+        .border-non-edit {
+            padding: 1rem;
+            border: 1px solid #30323e;
+            border-top-left-radius: 15px !important;
+            border-top-right-radius: 15px !important;
+            border-bottom-left-radius: 15px !important;
+            border-bottom-right-radius: 15px !important;
+        }
+
+        .border-loop-bottom {
+            border-bottom-left-radius: 15px !important;
+            border-bottom-right-radius: 15px !important;
+        }
     </style>
 </head>
 
@@ -285,7 +308,7 @@
                     <div x-show="openPayment" x-transition.scale.origin.bottom>
                         <div class="payment-accordion" x-data="{ openPaymentBank: false }" @click.away="openPaymentBank= false" style="margin-top: -20px !important;">
                             <div class="payment-accordion-item">
-                                <button class="payment-accordion-button payment-method-text text-white" style="padding: 1rem; border: 1px solid #30323e; border-top-left-radius: 15px !important; border-top-right-radius: 15px !important; !important; border-bottom-left-radius: 15px !important; border-bottom-right-radius: 15px !important;" @click="openPaymentBank = !openPaymentBank" keydown.escape="openPaymentBank = false">
+                                <button class="payment-accordion-button payment-method-text text-white" style="" @click="openPaymentBank = !openPaymentBank" keydown.escape="openPaymentBank = false" :class="openPaymentBank ? 'border-edit' : 'border-non-edit'">
                                     <div class="d-flex align-items-center">
                                         <div class="flex-fill">
                                             <div class="d-flex align-items-center">
@@ -304,7 +327,7 @@
                             @foreach ($pembayaran_transfer_bank as $item)
                                 <div x-show="openPaymentBank" x-transition.scale.origin.bottom>
                                     <div class="payment-accordion-item">
-                                        <div style="padding: 1rem; border-left: 1px solid #30323e; border-right: 1px solid #30323e; border-top: 0px solid #30323e; border-bottom: 1px solid #30323e;" x-on:click="selected !== '{{ $item->nama_pembayaran }}' ? selected = '{{ $item->nama_pembayaran }}' : selected = false; confirmation = true;" @click="confirmation = true" :class="selected == '{{ $item->nama_pembayaran }}' ? 'payment-accordion-button payment-method-text text-white clicked' : 'payment-accordion-button payment-method-text text-white'" onclick="getPayment({{ $item->id }})">
+                                        <div class="{{ $loop->last ? 'border-loop-bottom' : null }}" style="padding: 1rem; border-left: 1px solid #30323e; border-right: 1px solid #30323e; border-top: 0px solid #30323e; border-bottom: 1px solid #30323e;" x-on:click="selected !== '{{ $item->nama_pembayaran }}' ? selected = '{{ $item->nama_pembayaran }}' : selected = false; confirmation = true;" @click="confirmation = true" :class="selected == '{{ $item->nama_pembayaran }}' ? 'payment-accordion-button payment-method-text text-white clicked' : 'payment-accordion-button payment-method-text text-white'" onclick="getPayment({{ $item->id }})">
                                             <div class="d-flex align-items-center">
                                                 <div class="mx-auto">
                                                     <img src="{{ asset('uploadkamar/' . $item->logo_pembayaran) }}" height="30" alt="">
@@ -322,7 +345,7 @@
                     <div x-show="openPayment" x-transition.scale.origin.bottom>
                         <div class="payment-accordion" x-data="{ openPaymentBank: false }" @click.away="openPaymentBank= false" style="margin-top: -20px !important;">
                             <div class="payment-accordion-item">
-                                <button class="payment-accordion-button payment-method-text text-white" style="padding: 1rem; border: 1px solid #30323e; border-top-left-radius: 15px !important; border-top-right-radius: 15px !important; border-bottom-left-radius: 15px !important; border-bottom-right-radius: 15px !important;" @click="openPaymentBank = !openPaymentBank" keydown.escape="openPaymentBank = false">
+                                <button class="payment-accordion-button payment-method-text text-white" style="" @click="openPaymentBank = !openPaymentBank" keydown.escape="openPaymentBank = false" :class="openPaymentBank ? 'border-edit' : 'border-non-edit'">
                                     <div class="d-flex align-items-center">
                                         <div class="flex-fill">
                                             <div class="d-flex align-items-center">
@@ -341,7 +364,7 @@
                             @foreach ($pembayaran_e_wallet as $item)
                                 <div x-show="openPaymentBank" x-transition.scale.origin.bottom>
                                     <div class="payment-accordion-item">
-                                        <button :class="selected == '{{ $item->nama_pembayaran }}' ? 'payment-accordion-button payment-method-text text-white clicked' : 'payment-accordion-button payment-method-text text-white'" style="padding: 1rem; border-left: 1px solid #30323e; border-right: 1px solid #30323e; border-top: 0px solid #30323e; border-bottom: 1px solid #30323e; border-radius: 0px !important;" x-on:click="selected !== '{{ $item->nama_pembayaran }}' ? selected = '{{ $item->nama_pembayaran }}' : selected = false" @click="confirmation = true" onclick="getPayment({{ $item->id }})">
+                                        <div class="{{ $loop->last ? 'border-loop-bottom' : null }}" style="padding: 1rem; border-left: 1px solid #30323e; border-right: 1px solid #30323e; border-top: 0px solid #30323e; border-bottom: 1px solid #30323e;" x-on:click="selected !== '{{ $item->nama_pembayaran }}' ? selected = '{{ $item->nama_pembayaran }}' : selected = false" @click="confirmation = true" :class="selected == '{{ $item->nama_pembayaran }}' ? 'payment-accordion-button payment-method-text text-white clicked' : 'payment-accordion-button payment-method-text text-white'" onclick="getPayment({{ $item->id }})">
                                             <div class="d-flex align-items-center">
                                                 <div class="mx-auto">
                                                     <img src="{{ asset('uploadkamar/' . $item->logo_pembayaran) }}" height="30" alt="">
@@ -350,7 +373,7 @@
                                                     <p class="my-auto ms-2"> {{ $item->nama_pembayaran }}</p>
                                                 </div>
                                             </div>
-                                        </button>
+                                        </div>
                                     </div>
                                 </div>
                             @endforeach

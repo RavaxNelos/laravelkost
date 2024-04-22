@@ -440,15 +440,26 @@
                     data: formData,
                     success: function(data) {
                         $('#editsandi-modal').modal('hide');
-                        alert(data.success);
+                        // Tampilkan SweetAlert dengan pesan sukses
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Sukses',
+                            text: data.success
+                        });
                     },
                     error: function(data) {
                         var errors = data.responseJSON;
                         $('#validation-errors').html('');
-                        $.each(errors.errors, function(key, value) {
-                            $('#validation-errors').show();
-                            $('#validation-errors').append('<div class="alert alert-danger">' + value + '</div>');
+                        // Tampilkan SweetAlert dengan pesan kesalahan
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Kesalahan',
+                            text: 'Password lama atau password baru tidak sama'
                         });
+                        // $.each(errors.errors, function(key, value) {
+                        //     $('#validation-errors').show();
+                        //     $('#validation-errors').append('<div class="alert alert-danger">' + value + '</div>');
+                        // });
                     }
                 });
             });
