@@ -56,7 +56,7 @@
         <div class="container py-2">
             <div class="row g-3">
                 <div class="col-1">
-                    <a href="/user/transaksi/{{ $kamarkost->id }}" class="btn-back-home"><ion-icon name="chevron-back-outline" style="margin-bottom: -4px;"></ion-icon></a>
+                    <a href="javascript:void(0)" onclick="window.history.go(-1); return false;" class="btn-back-home"><ion-icon name="chevron-back-outline" style="margin-bottom: -4px;"></ion-icon></a>
                 </div>
                 <div class="col-6 mt-4 text-start" style="margin-top: 25px !important;">
                     <h3 class="text-dark fw-semibold teks-detail" style="font-size: 16px; transition: color 0.3s ease;">Rincian Bookingan</h3>
@@ -66,6 +66,16 @@
     </div>
     <hr class="garis-1">
     <!-- rincian pembayaran -->
+    @php
+        // Menghapus titik dari nilai yang diambil dari database
+        $hargaKost = str_replace('.', '', $kamarkost->harga_kost);
+
+        // Mengonversi string ke tipe data integer
+        $hargaKost = (int) $hargaKost;
+
+        // Melakukan perhitungan dengan nilai yang sudah dikonversi
+        $totalPembayaran = $hargaKost + 200000 - 25000;
+    @endphp
     <div class="container">
         <div class="row">
             <div class="col-4 text-start">
@@ -103,16 +113,6 @@
     <!-- rincian pembayaran -->
     <hr class="garis-2">
     <!-- konfirmasi nomer dana -->
-    @php
-        // Menghapus titik dari nilai yang diambil dari database
-        $hargaKost = str_replace('.', '', $kamarkost->harga_kost);
-
-        // Mengonversi string ke tipe data integer
-        $hargaKost = (int) $hargaKost;
-
-        // Melakukan perhitungan dengan nilai yang sudah dikonversi
-        $totalPembayaran = $hargaKost + 200000 - 25000;
-    @endphp
     <div class="container">
         <div class="row">
             <div class="col-5 text-start">
@@ -122,7 +122,7 @@
                 <h3 class="fw-semibold" style="font-size: 18px; font-family: Poppins; color: #9370DB;">Rp. {{ number_format($totalPembayaran, 0, ',', '.') }}</h3>
             </div>
         </div>
-        @if ($pembayaranSelected)
+        @if ($pembayaran)
             <div class="row mt-3">
                 <div class="col-1 text-start">
                     <img src="{{ asset('uploadkamar/' . $pembayaran->logo_pembayaran) }}" height="30" width="30">
@@ -160,25 +160,27 @@
                                 <div class="container">
                                     <div class="row">
                                         <div x-data="{ confirmation: false, imageFile: null }">
-                                            <div class="col-12 text-center">
-                                                <h3 class="fw-semibold" style="font-size: 16px;">Bukti Pembayaran</h3>
-                                                <div class="position-relative">
-                                                    <img id="frame" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 210px; height: 200px; border-radius: 8px; cursor: pointer;" onclick="deleteImage()">
-                                                    <label for="uploadfoto" class="label-upload">
-                                                        <div class="box-icon">
-                                                            <div class="bg-kategori rounded-5">
-                                                                <i id="uploadIcon" class="bi bi-cloud-upload" style="position: absolute; font-size: 50px; color: white; top: 66px; left: 116px;"></i>
+                                            <form action="/user/konfirmasitransaksi/admin" method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="col-12 text-center">
+                                                    <input type="hidden" value="{{ $kamarkost->id }}" name="id">
+                                                    <h3 class="fw-semibold" style="font-size: 16px;">Bukti Pembayaran</h3>
+                                                    <div class="position-relative">
+                                                        <img id="frame" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 210px; height: 200px; border-radius: 8px; cursor: pointer;" onclick="deleteImage()">
+                                                        <label for="uploadfoto" class="label-upload">
+                                                            <div class="box-icon">
+                                                                <div class="bg-kategori rounded-5">
+                                                                    <i id="uploadIcon" class="bi bi-cloud-upload" style="position: absolute; font-size: 50px; color: white; top: 66px; left: 116px;"></i>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </label>
-                                                    <input type="file" @change="confirmation = true; imageFile = $event.target.files[0]; preview()" hidden id="uploadfoto" accept="image/*">
-                                                </div>
-                                                <div class="col-12 text-center mt-3">
-                                                    <form action="/user/konfirmasitransaksi/admin">
+                                                        </label>
+                                                        <input type="file" @change="confirmation = true; imageFile = $event.target.files[0]; preview()" hidden id="uploadfoto" name="gambar" accept="image/*">
+                                                    </div>
+                                                    <div class="col-12 text-center mt-3">
                                                         <button class="btn btn-kirim" style="color: white; border: none; width: 150px;" x-bind:disabled="!confirmation || !imageFile">Kirim</button>
-                                                    </form>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -772,6 +774,7 @@
     <!-- end sweet alert 2 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
         function copyText() {
             // Menyalin teks ke clipboard

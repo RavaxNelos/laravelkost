@@ -169,7 +169,7 @@
         <div class="container py-2">
             <div class="row g-3">
                 <div class="col-1">
-                    <a href="/user/detail/{{ $kamarkost->id }}" class="btn-back-home"><ion-icon name="chevron-back-outline" style="margin-bottom: -4px;"></ion-icon></a>
+                    <a href="javascript:void(0)" onclick="window.history.go(-1); return false;" class="btn-back-home"><ion-icon name="chevron-back-outline" style="margin-bottom: -4px;"></ion-icon></a>
                 </div>
                 <div class="col-6 mt-4 text-start" style="margin-top: 25px !important;">
                     <h3 class="text-dark fw-semibold teks-detail" style="font-size: 16px; transition: color 0.3s ease;">Transaksi</h3>
@@ -253,7 +253,6 @@
                 // Melakukan perhitungan dengan nilai yang sudah dikonversi
                 $totalPembayaran = $hargaKost + 200000 - 25000;
             @endphp
-
             <div class="col-7 text-end">
                 <h3 class="fw-normal text-secondary-emphasis" style="font-size: 14px;">Rp.{{ number_format($hargaKost, 0, ',', '.') }}</h3>
             </div>

@@ -651,7 +651,7 @@
                                                                         <div class="col-md-12">
                                                                             <div class="mt-0">
                                                                                 <div class="form-group">
-                                                                                    <input type="text" class="form-control" maxlength="50" name="fasilitas_kost" id="fasilitas_kost" value="{{ $item->fasilitas_kost }}">
+                                                                                    <input type="text" class="form-control" maxlength="65" name="fasilitas_kost" id="fasilitas_kost" value="{{ $item->fasilitas_kost }}">
                                                                                     @error('fasilitas_kost')
                                                                                         {{ $message }}
                                                                                     @enderror

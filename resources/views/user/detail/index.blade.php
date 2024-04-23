@@ -259,7 +259,7 @@
         <div class="container py-3">
             <div class="row g-3">
                 <div class="col-1">
-                    <a href="/user/home" class="btn-back-home"><ion-icon name="chevron-back-outline" style="margin-bottom: -4px;"></ion-icon></a>
+                    <a href="javascript:void(0)" onclick="window.history.go(-1); return false;" class="btn-back-home"><ion-icon name="chevron-back-outline" style="margin-bottom: -4px;"></ion-icon></a>
                 </div>
                 <div class="col-6 mt-4 text-start" id="kamarKost" style="margin-top: 25px !important;">
                     <h3 class="fw-bold" style="font-size: 16px; transition: color 0.3s ease;">Detail Kamar Kost</h3>

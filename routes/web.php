@@ -92,7 +92,7 @@ Route::post('/pemilikmin/kamar', [KamarKostController::class, 'store'])->name('k
 Route::get('/pemilikmin/editkamar/{id}', [KamarKostController::class, 'edit'])->name('editkamar');
 Route::post('/pemilikmin/editkamar', [KamarKostController::class, 'update'])->name('editkamarPost');
 Route::delete('/pemilikmin/kamar/destroy/{id}', [KamarKostController::class, 'destroy'])->name('destroy');
-Route::get('/pemilikmin/transaksi', [PemilikMinController::class, 'transaksi'])->name('transaksi');
+Route::get('/pemilikmin/transaksi', [TransaksiController::class, 'index'])->name('transaksi');
 Route::get('/pemilikmin/tambahkamar', [PemilikMinController::class, 'tambahkamar'])->name('tambahkamar');
 Route::get('/pemilikmin/banner', [BannerController::class, 'index'])->name('banner');
 Route::get('toggleStatusBanner/{id}', [BannerController::class, 'toggleStatusBanner'])->name('toggleStatusBanner');

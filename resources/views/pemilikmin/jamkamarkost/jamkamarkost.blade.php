@@ -125,7 +125,7 @@
                                             <label class="mt-2" for="Jam">Jam Masuk Kost <span class="text-danger">*</span></label>
                                             <div class="mt-1">
                                                 <div class="form-group">
-                                                    <input type="time" class="form-control" maxlength="11" name="jamkamar_kost" id="jamkamar_kost" placeholder="Masukkan Jam Masuk Kost" value="{{ old('jamkamar_kost') }}" x-model="jam" required>
+                                                    <input type="time" class="form-control" maxlength="5" name="jamkamar_kost" id="jamkamar_kost" placeholder="Masukkan Jam Masuk Kost" value="{{ old('jamkamar_kost') }}" x-model="jam" required>
                                                     @error('jamkamar_kost')
                                                         {{ $message }}
                                                     @enderror
@@ -215,7 +215,7 @@
                                                                             <label class="mt-2" for="Jam">Jam Masuk Kost <span class="text-danger">*</span></label>
                                                                             <div class="mt-1">
                                                                                 <div class="form-group">
-                                                                                    <input type="time" class="form-control" maxlength="11" name="jamkamar_kost" id="jamkamar_kost" placeholder="Masukkan Jam Masuk Kost" value="{{ $item->jamkamar_kost }}">
+                                                                                    <input type="time" class="form-control" maxlength="5" name="jamkamar_kost" id="jamkamar_kost" placeholder="Masukkan Jam Masuk Kost" value="{{ $item->jamkamar_kost }}">
                                                                                     @error('jamkamar_kost')
                                                                                         {{ $message }}
                                                                                     @enderror
@@ -282,7 +282,7 @@
                                                     <label class="mt-2" for="Jam">Jam Masuk Kost <span class="text-danger">*</span></label>
                                                     <div class="mt-1">
                                                         <div class="form-group">
-                                                            <input type="time" class="form-control" maxlength="11" name="jamkamar_kost" id="jamkamar_kost" placeholder="Masukkan Jam Masuk Kost" value="{{ old('jamkamar_kost') }}" x-model="jam" required>
+                                                            <input type="time" class="form-control" maxlength="5" name="jamkamar_kost" id="jamkamar_kost" placeholder="Masukkan Jam Masuk Kost" value="{{ old('jamkamar_kost') }}" x-model="jam" required>
                                                             @error('jamkamar_kost')
                                                                 {{ $message }}
                                                             @enderror
