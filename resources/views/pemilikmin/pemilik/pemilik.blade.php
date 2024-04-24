@@ -39,6 +39,18 @@
             background: rgb(204, 204, 204);
             border: none;
         }
+
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
     </style>
 @endsection
 @section('content')
@@ -115,7 +127,7 @@
                                         <div class="col-md-12" style="margin-bottom: 18px;">
                                             <div class="mt-3">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" maxlength="20" name="nama_pemilik" value="{{ old('nama_pemilik') }}" id="nama_pemilik" placeholder="Masukkan Nama pemilik" x-model="nama">
+                                                    <input type="text" class="form-control" maxlength="30" name="nama_pemilik" value="{{ old('nama_pemilik') }}" id="nama_pemilik" placeholder="Masukkan Nama pemilik" x-model="nama">
                                                     @error('nama_pemilik')
                                                         {{ $message }}
                                                     @enderror
@@ -250,7 +262,7 @@
                                                                 <div class="col-md-12">
                                                                     <div class="mt-3">
                                                                         <div class="form-group">
-                                                                            <input type="text" class="form-control" name="nama_pemilik" value="{{ $item->nama_pemilik }}" id="nama_pemilik" disabled>
+                                                                            <input type="text" class="form-control" maxlength="30" name="nama_pemilik" value="{{ $item->nama_pemilik }}" id="nama_pemilik" disabled>
                                                                             @error('nama_pemilik')
                                                                                 {{ $message }}
                                                                             @enderror
@@ -263,7 +275,7 @@
                                                                 <div class="col-md-12">
                                                                     <div class="mt-3">
                                                                         <div class="form-group">
-                                                                            <input type="email" class="form-control" name="email_pemilik" value="{{ $item->email_pemilik }}" id="email_pemilik" disabled>
+                                                                            <input type="email" class="form-control" maxlength="20" name="email_pemilik" value="{{ $item->email_pemilik }}" id="email_pemilik" disabled>
                                                                             @error('email_pemilik')
                                                                                 {{ $message }}
                                                                             @enderror
@@ -276,7 +288,7 @@
                                                                 <div class="col-md-12">
                                                                     <div class="mt-3">
                                                                         <div class="form-group">
-                                                                            <input type="number" class="form-control" name="nomer_pemilik" value="{{ $item->nomer_pemilik }}" id="nomer_pemilik" disabled>
+                                                                            <input type="number" class="form-control" maxlength="12" name="nomer_pemilik" value="{{ $item->nomer_pemilik }}" id="nomer_pemilik" disabled>
                                                                             @error('nomer_pemilik')
                                                                                 {{ $message }}
                                                                             @enderror
@@ -340,7 +352,7 @@
                                                 <div class="col-md-12" style="margin-bottom: 18px;">
                                                     <div class="mt-3">
                                                         <div class="form-group">
-                                                            <input type="text" class="form-control" maxlength="20" name="nama_pemilik" value="{{ old('nama_pemilik') }}" id="nama_pemilik" placeholder="Masukkan Nama pemilik" x-model="nama">
+                                                            <input type="text" class="form-control" maxlength="30" name="nama_pemilik" value="{{ old('nama_pemilik') }}" id="nama_pemilik" placeholder="Masukkan Nama pemilik" x-model="nama">
                                                             @error('nama_pemilik')
                                                                 {{ $message }}
                                                             @enderror

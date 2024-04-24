@@ -66,6 +66,22 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a class="sidebar-link" href="1" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-report"></i>
+                        </span>
+                        <span class="hide-menu">Lapor Kerusakan</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="2" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-search"></i>
+                        </span>
+                        <span class="hide-menu">Lapor Kehilangan</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a class="sidebar-link {{ Request::is('pemilikmin/pengguna', 'pemilikmin/editpengguna/*') ? 'active' : null }}" href="{{ route('pengguna') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-user-check"></i>

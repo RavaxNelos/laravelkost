@@ -42,6 +42,15 @@
   /* Hilangkan margin default dari <hr> */
 }
 
+.hr-terakhir {
+  border-top: 10px solid #ccc;
+  margin-bottom: 0px;
+}
+
+.hr-bukti {
+  border-top: 10px solid #ccc;
+}
+
 .metode-pembayaran {
   border-top: 2px solid #ccc;
   margin-top: 1rem;

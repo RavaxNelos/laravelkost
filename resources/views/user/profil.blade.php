@@ -131,7 +131,7 @@
                                         </div> --}}
                                         <div class="col-12 text-start">
                                             <label for="name" class="fw-medium" style="font-size: 14px;">Nama Barumu</label>
-                                            <input type="text" class="input-nama" maxlength="24" id="name" name="name" value="{{ $users->name }}" placeholder="Ketik Nama Barumu..." style="font-size: 14px;">
+                                            <input type="text" class="input-nama" maxlength="30" id="name" name="name" value="{{ $users->name }}" placeholder="Ketik Nama Barumu..." style="font-size: 14px;">
                                         </div>
                                         <div class="col-12 text-center mt-3">
                                             <button type="submit" class="btn btn-secondary" style="color: white; border: none;">Simpan</button>

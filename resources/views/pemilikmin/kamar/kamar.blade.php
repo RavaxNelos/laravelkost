@@ -731,7 +731,7 @@
                                                                         <div class="col-md-6">
                                                                             <div class="mt-0">
                                                                                 <div class="form-group">
-                                                                                    <input type="text" class="form-control" maxlength="30" name="alamat_kost" value="{{ $item->alamat_kost }}" id="alamat_kost" placeholder="Masukkan Alamat Kost">
+                                                                                    <input type="text" class="form-control" maxlength="25" name="alamat_kost" value="{{ $item->alamat_kost }}" id="alamat_kost" placeholder="Masukkan Alamat Kost">
                                                                                     @error('alamat_kost')
                                                                                         {{ $message }}
                                                                                     @enderror
@@ -843,7 +843,7 @@
                                                                         <div class="col-md-12">
                                                                             <div class="mt-0">
                                                                                 <div class="form-group">
-                                                                                    <input type="text" class="form-control" maxlength="30" name="deskripsi_kost" id="deskripsi_kost" value="{{ $item->deskripsi_kost }}">
+                                                                                    <input type="text" class="form-control" maxlength="100" name="deskripsi_kost" id="deskripsi_kost" value="{{ $item->deskripsi_kost }}">
                                                                                     @error('deskripsi_kost')
                                                                                         {{ $message }}
                                                                                     @enderror

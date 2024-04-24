@@ -159,29 +159,27 @@
                             <div class="modal-body">
                                 <div class="container">
                                     <div class="row">
-                                        <div x-data="{ confirmation: false, imageFile: null }">
-                                            <form action="/user/konfirmasitransaksi/admin" method="POST" enctype="multipart/form-data">
-                                                @csrf
-                                                <div class="col-12 text-center">
-                                                    <input type="hidden" value="{{ $kamarkost->id }}" name="id">
-                                                    <h3 class="fw-semibold" style="font-size: 16px;">Bukti Pembayaran</h3>
-                                                    <div class="position-relative">
-                                                        <img id="frame" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 210px; height: 200px; border-radius: 8px; cursor: pointer;" onclick="deleteImage()">
-                                                        <label for="uploadfoto" class="label-upload">
-                                                            <div class="box-icon">
-                                                                <div class="bg-kategori rounded-5">
-                                                                    <i id="uploadIcon" class="bi bi-cloud-upload" style="position: absolute; font-size: 50px; color: white; top: 66px; left: 116px;"></i>
-                                                                </div>
+                                        <form action="/user/konfirmasitransaksi/admin" method="POST" enctype="multipart/form-data" x-data="{ gambar: '' }">
+                                            @csrf
+                                            <div class="col-12 text-center">
+                                                <input type="hidden" value="{{ $kamarkost->id }}" name="id">
+                                                <h3 class="fw-semibold" style="font-size: 16px;">Bukti Pembayaran</h3>
+                                                <div class="position-relative">
+                                                    <img id="frame" @click="openFileUpload" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 210px; height: 200px; border-radius: 8px; cursor: pointer;">
+                                                    <label for="uploadfoto" class="label-upload">
+                                                        <div class="box-icon">
+                                                            <div class="bg-kategori rounded-5">
+                                                                <i id="uploadIcon" class="bi bi-cloud-upload" style="position: absolute; font-size: 50px; color: white; top: 66px; left: 116px;"></i>
                                                             </div>
-                                                        </label>
-                                                        <input type="file" @change="confirmation = true; imageFile = $event.target.files[0]; preview()" hidden id="uploadfoto" name="gambar" accept="image/*">
-                                                    </div>
-                                                    <div class="col-12 text-center mt-3">
-                                                        <button class="btn btn-kirim" style="color: white; border: none; width: 150px;" x-bind:disabled="!confirmation || !imageFile">Kirim</button>
-                                                    </div>
+                                                        </div>
+                                                    </label>
+                                                    <input type="file" x-model="gambar" @change="changePhoto($event)" id="uploadfoto" name="gambar" accept="image/*" hidden>
                                                 </div>
-                                            </form>
-                                        </div>
+                                                <div class="col-12 text-center mt-3">
+                                                    <button class="btn btn-kirim" style="color: white; border: none; width: 150px;" x-bind:disabled="!confirmation || !imageFile">Kirim</button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -852,24 +850,39 @@
             }
         }
 
-        function deleteImage() {
-            var frame = document.getElementById('frame');
-            var uploadIcon = document.getElementById('uploadIcon');
-            var uploadInput = document.getElementById('uploadfoto');
-
-            // Kembalikan ke gambar semula dan tampilkan ikon upload
-            frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
-            uploadIcon.style.display = 'block';
-            uploadInput.value = ''; // Bersihkan nilai input file
-
-            // Reset confirmation variable to disable "Kirim" button
-            app.confirmation = false; // Mengakses confirmation menggunakan x-model
-            app.imageFile = null; // Mengakses imageFile menggunakan x-model
-
-            // Nonaktifkan tombol "Kirim"
-            var sendButton = document.querySelector('.btn-kirim');
-            sendButton.disabled = true;
+        function openFileUpload() {
+            document.getElementById('uploadfoto').click();
         }
+
+        // Fungsi untuk mengubah gambar saat pengguna memilih file baru
+        function changePhoto(event) {
+            const input = event.target;
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('frame').src = e.target.result;
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        // function deleteImage() {
+        //     var frame = document.getElementById('frame');
+        //     var uploadIcon = document.getElementById('uploadIcon');
+        //     var uploadInput = document.getElementById('uploadfoto');
+
+        //     // Kembalikan ke gambar semula dan tampilkan ikon upload
+        //     frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
+        //     uploadIcon.style.display = 'block';
+        //     uploadInput.value = ''; // Bersihkan nilai input file
+
+        //     // Reset confirmation variable to disable "Kirim" button
+        //     app.confirmation = false; // Mengakses confirmation menggunakan x-model
+        //     app.imageFile = null; // Mengakses imageFile menggunakan x-model
+
+        //     // Nonaktifkan tombol "Kirim"
+        //     var sendButton = document.querySelector('.btn-kirim');
+        //     sendButton.disabled = true;
+        // }
     </script>
     {{-- <script>
             // Fungsi untuk memperbarui tanggal secara satu kali saat halaman dimuat

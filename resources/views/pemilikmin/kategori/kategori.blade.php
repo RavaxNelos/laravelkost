@@ -238,7 +238,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-12 text-start">
-                                                    <label for="Lokasi Kategori">Lokasi Kategori</label>
+                                                    <label for="Lokasi Kategori">Lokasi Kategori <span class="text-danger">*</span></label>
                                                 </div>
                                                 <div class="col-md-12" style="margin-bottom: 18px;">
                                                     <div class="mt-3">

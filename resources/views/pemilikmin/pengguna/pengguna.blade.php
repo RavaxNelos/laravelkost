@@ -122,7 +122,7 @@
                                             <div class="col-md-12">
                                                 <div class="mt-1">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" maxlength="20" name="name" value="{{ old('name') }}" id="name" placeholder="Masukkan Nama Pengguna" x-model="nama" required>
+                                                        <input type="text" class="form-control" maxlength="30" name="name" value="{{ old('name') }}" id="name" placeholder="Masukkan Nama Pengguna" x-model="nama" required>
                                                         @error('name')
                                                             {{ $message }}
                                                         @enderror
@@ -508,7 +508,7 @@
                                                     <div class="col-md-12">
                                                         <div class="mt-1">
                                                             <div class="form-group">
-                                                                <input type="text" class="form-control" maxlength="20" name="name" value="{{ old('name') }}" id="name" placeholder="Masukkan Nama Pengguna" x-model="nama" required>
+                                                                <input type="text" class="form-control" maxlength="30" name="name" value="{{ old('name') }}" id="name" placeholder="Masukkan Nama Pengguna" x-model="nama" required>
                                                                 @error('name')
                                                                     {{ $message }}
                                                                 @enderror

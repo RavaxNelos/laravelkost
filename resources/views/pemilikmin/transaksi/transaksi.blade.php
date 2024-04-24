@@ -57,284 +57,331 @@
             </div>
         </div>
     </div>
-    <div class="widget-content searchable-container list">
-        <!-- --------------------- start Contact ---------------- -->
-        <div class="card card-body" style="margin-bottom: 10px; margin-top: -30px; padding: 10px;">
-            <div class="row">
-                <div class="col-md-4 col-xl-3">
-                    <form class="position-relative">
-                        <input type="text" class="form-control product-search ps-5" id="input-search" placeholder="Cari Transaksi..." />
-                        <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
-                    </form>
-                </div>
-                <div class="col-md-8 col-xl-9 text-end d-flex justify-content-md-end justify-content-center mt-3 mt-md-0">
-                    <div class="action-btn show-btn" style="display: none">
-                        <a href="javascript:void(0)" class="delete-multiple btn-light-danger btn me-2 text-danger d-flex align-items-center font-medium">
-                            <i class="ti ti-trash text-danger me-1 fs-5"></i> Delete All Row
-                        </a>
+    @if (count($transaksi) > 0)
+        <div class="widget-content searchable-container list">
+            <!-- --------------------- start Contact ---------------- -->
+            <div class="card card-body" style="margin-bottom: 10px; margin-top: -30px; padding: 10px;">
+                <div class="row">
+                    <div class="col-md-4 col-xl-3">
+                        <form class="position-relative">
+                            <input type="text" class="form-control product-search ps-5" id="input-search" placeholder="Cari Transaksi..." />
+                            <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
+                        </form>
                     </div>
-                    <a href="javascript:void(0)" id="btn-add-contact" class="btn btn-info d-flex align-items-center">
-                        <i class="ti ti-notes text-white me-1 fs-5"></i> Bukti Transfer
-                    </a>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="dark-transparent sidebartoggler"></div>
-    <div class="dark-transparent sidebartoggler"></div>
-    <div class="card card-body">
-        <div class="table-responsive">
-            <table class="table search-table align-middle text-nowrap">
-                <thead class="header-item">
-                    <th class="text-center">Nama</th>
-                    <th class="text-center">Pilihan Kost</th>
-                    <th class="text-center">Tgl Pesanan</th>
-                    <th class="text-center">Tgl Masuk Kost</th>
-                    <th class="text-center">Total Harga</th>
-                    <th class="text-center">Aksi</th>
-                </thead>
-                <tbody>
-                    @foreach ($transaksi as $item)
-                        <!-- start row -->
-                        <tr class="search-items">
-                            <td class="text-center">
-                                <span class="">{{ $item->user->name }}</span>
-                            </td>
-                            <td class="text-center">
-                                <span class="">{{ $item->kamarkost->tipe_kost }}</span>
-                            </td>
-                            <td class="text-center">
-                                <span class="">{{ $item->tanggal_pesan_kost }}</span>
-                            </td>
-                            <td class="text-center">
-                                <span class="">{{ $item->tanggal_masuk_kost }}</span>
-                            </td>
-                            <td class="text-center">
-                                <span class="">Rp. {{ number_format($item->total_harga, 0, ',', '.') }}</span>
-                            </td>
-                            <td class="text-center">
-                                <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#kost-{{ $item->id }}">Lihat</button>
-                                <div class="modal fade" id="kost-{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-scrollable">
-                                        <div class="modal-content"style="width: 100%; height: 540px;">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5 fw-semibold" id="exampleModalLabel">Detail Transaksi</h1>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="container">
-                                                    <div class="row" style="margin-top: -20px;">
-                                                        <div class="col-12 text-start">
-                                                            <label for="Gambar Kost">Gambar Kost</label>
-                                                        </div>
-                                                        <div class="col-md-12 mt-1">
-                                                            <img src="{{ asset('uploadkamar/' . $item->kamarkost->gambar_kost) }}" class="rounded-1" style="width: 100%; height: 200px;">
-                                                        </div>
-                                                        <input type="hidden" name="id" value="{{ $item->id }}">
-                                                        <div class="col-12 text-start mt-2">
-                                                            <label for="Fasilitas Kost">Fasilitas Kost</label>
-                                                        </div>
-                                                        <div class="col-md-12" style="margin-top: -12px;">
-                                                            <div class="mt-3">
-                                                                <div class="form-group">
-                                                                    <input type="text" class="form-control" name="fasilitas_kost" id="fasilitas_kost" value="{{ $item->kamarkost->fasilitas_kost }}" disabled>
-                                                                    @error('fasilitas_kost')
-                                                                        {{ $message }}
-                                                                    @enderror
+        <div class="dark-transparent sidebartoggler"></div>
+        <div class="dark-transparent sidebartoggler"></div>
+        <div class="card card-body">
+            <div class="table-responsive">
+                <table class="table search-table align-middle text-nowrap">
+                    <thead class="header-item">
+                        <th class="text-center">Nama</th>
+                        <th class="text-center">Pilihan Kost</th>
+                        <th class="text-center">Tgl Pesanan</th>
+                        <th class="text-center">Tgl Masuk Kost</th>
+                        <th class="text-center">Total Harga</th>
+                        <th class="text-center">Aksi</th>
+                    </thead>
+                    <tbody>
+                        @foreach ($transaksi as $item)
+                            <!-- start row -->
+                            <tr class="search-items">
+                                <td class="text-center">
+                                    <span class="">{{ $item->user->name }}</span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="">{{ $item->kamarkost->tipe_kost }}</span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="">{{ $item->tanggal_pesan_kost }}</span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="">{{ $item->tanggal_masuk_kost }}</span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="">Rp. {{ number_format($item->total_harga, 0, ',', '.') }}</span>
+                                </td>
+                                <td class="text-center">
+                                    <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#kost-{{ $item->id }}">Lihat</button>
+                                    <div class="modal fade" id="kost-{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-scrollable">
+                                            <div class="modal-content"style="width: 100%; height: 540px;">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5 fw-semibold" id="exampleModalLabel">Detail Transaksi</h1>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="container">
+                                                        <div class="row" style="margin-top: -20px;">
+                                                            <div class="col-12 text-start">
+                                                                <label for="Gambar Kost">Gambar Kost</label>
+                                                            </div>
+                                                            <div class="col-md-12 mt-1">
+                                                                <img src="{{ asset('uploadkamar/' . $item->kamarkost->gambar_kost) }}" class="rounded-1" style="width: 100%; height: 200px;">
+                                                            </div>
+                                                            <input type="hidden" name="id" value="{{ $item->id }}">
+                                                            <div class="col-12 text-start mt-2">
+                                                                <label for="Fasilitas Kost">Fasilitas Kost</label>
+                                                            </div>
+                                                            <div class="col-md-12" style="margin-top: -12px;">
+                                                                <div class="mt-3">
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" name="fasilitas_kost" id="fasilitas_kost" value="{{ $item->kamarkost->fasilitas_kost }}" disabled>
+                                                                        @error('fasilitas_kost')
+                                                                            {{ $message }}
+                                                                        @enderror
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-6 text-start mt-3">
-                                                            <label for="Tipe Kost">Tipe Kost</label>
-                                                        </div>
-                                                        <div class="col-6 text-start mt-3">
-                                                            <label for="Status Kost">Status Kost</label>
-                                                        </div>
-                                                        <div class="col-md-6" style="margin-top: -12px;">
-                                                            <div class="mt-3">
-                                                                <div class="form-group">
-                                                                    <input type="text" class="form-control" name="tipe_kost" value="{{ $item->kamarkost->tipe_kost }}" id="tipe_kost" disabled>
-                                                                    @error('tipe_kost')
-                                                                        {{ $message }}
-                                                                    @enderror
+                                                            <div class="col-6 text-start mt-3">
+                                                                <label for="Tipe Kost">Tipe Kost</label>
+                                                            </div>
+                                                            <div class="col-6 text-start mt-3">
+                                                                <label for="Status Kost">Status Kost</label>
+                                                            </div>
+                                                            <div class="col-md-6" style="margin-top: -12px;">
+                                                                <div class="mt-3">
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" name="tipe_kost" value="{{ $item->kamarkost->tipe_kost }}" id="tipe_kost" disabled>
+                                                                        @error('tipe_kost')
+                                                                            {{ $message }}
+                                                                        @enderror
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-md-6" style="margin-top: -12px;">
-                                                            <div class="mt-3">
-                                                                <div class="form-group">
-                                                                    <input type="text" class="form-control" name="status_kost" value="{{ $item->kamarkost->status_kost }}" id="status_kost" disabled>
-                                                                    @error('status_kost')
-                                                                        {{ $message }}
-                                                                    @enderror
+                                                            <div class="col-md-6" style="margin-top: -12px;">
+                                                                <div class="mt-3">
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" name="status_kost" value="{{ $item->kamarkost->status_kost }}" id="status_kost" disabled>
+                                                                        @error('status_kost')
+                                                                            {{ $message }}
+                                                                        @enderror
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-6 text-start mt-3">
-                                                            <label for="Kategori Kost">Kategori Kost</label>
-                                                        </div>
-                                                        <div class="col-6 text-start mt-3">
-                                                            <label for="Harga Kost">Harga Kost</label>
-                                                        </div>
-                                                        <div class="col-6" style="margin-top: -12px;">
-                                                            <div class="mt-3">
-                                                                <div class="form-group">
-                                                                    <input type="text" class="form-control" name="kategori_id" value="{{ $item->kamarkost->kategori->kategori }}" id="kategori_id" disabled>
-                                                                    @error('kategori_id')
-                                                                        {{ $message }}
-                                                                    @enderror
+                                                            <div class="col-6 text-start mt-3">
+                                                                <label for="Kategori Kost">Kategori Kost</label>
+                                                            </div>
+                                                            <div class="col-6 text-start mt-3">
+                                                                <label for="Harga Kost">Harga Kost</label>
+                                                            </div>
+                                                            <div class="col-6" style="margin-top: -12px;">
+                                                                <div class="mt-3">
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" name="kategori_id" value="{{ $item->kamarkost->kategori->kategori }}" id="kategori_id" disabled>
+                                                                        @error('kategori_id')
+                                                                            {{ $message }}
+                                                                        @enderror
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-6" style="margin-top: -12px;">
-                                                            <div class="mt-3">
-                                                                <div class="form-group">
-                                                                    <input type="text" class="form-control" name="harga_kost" value="{{ $item->kamarkost->harga_kost }}" id="harga_kost" disabled>
-                                                                    @error('harga_kost')
-                                                                        {{ $message }}
-                                                                    @enderror
+                                                            <div class="col-6" style="margin-top: -12px;">
+                                                                <div class="mt-3">
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" name="harga_kost" value="{{ $item->kamarkost->harga_kost }}" id="harga_kost" disabled>
+                                                                        @error('harga_kost')
+                                                                            {{ $message }}
+                                                                        @enderror
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-6 text-start mt-3">
-                                                            <label for="Alamat Kost">Alamat Kost</label>
-                                                        </div>
-                                                        <div class="col-6 text-start mt-3">
-                                                            <label for="Ukuran Kost">Ukuran Kost</label>
-                                                        </div>
-                                                        <div class="col-md-6" style="margin-top: -12px;">
-                                                            <div class="mt-3">
-                                                                <div class="form-group">
-                                                                    <input type="text" class="form-control" name="alamat_kost" value="{{ $item->kamarkost->alamat_kost }}" id="alamat_kost" disabled>
-                                                                    @error('alamat_kost')
-                                                                        {{ $message }}
-                                                                    @enderror
+                                                            <div class="col-6 text-start mt-3">
+                                                                <label for="Alamat Kost">Alamat Kost</label>
+                                                            </div>
+                                                            <div class="col-6 text-start mt-3">
+                                                                <label for="Ukuran Kost">Ukuran Kost</label>
+                                                            </div>
+                                                            <div class="col-md-6" style="margin-top: -12px;">
+                                                                <div class="mt-3">
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" name="alamat_kost" value="{{ $item->kamarkost->alamat_kost }}" id="alamat_kost" disabled>
+                                                                        @error('alamat_kost')
+                                                                            {{ $message }}
+                                                                        @enderror
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-md-6" style="margin-top: -12px;">
-                                                            <div class="mt-3">
-                                                                <div class="form-group">
-                                                                    <input type="text" class="form-control" name="ukuran_kost" value="{{ $item->kamarkost->ukuran_kost }}" id="ukuran_kost" disabled>
-                                                                    @error('ukuran_kost')
-                                                                        {{ $message }}
-                                                                    @enderror
+                                                            <div class="col-md-6" style="margin-top: -12px;">
+                                                                <div class="mt-3">
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" name="ukuran_kost" value="{{ $item->kamarkost->ukuran_kost }}" id="ukuran_kost" disabled>
+                                                                        @error('ukuran_kost')
+                                                                            {{ $message }}
+                                                                        @enderror
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-6 text-start mt-3">
-                                                            <label for="Air Kost">Air Kost</label>
-                                                        </div>
-                                                        <div class="col-6 text-start mt-3">
-                                                            <label for="Listrik Kost">Listrik Kost</label>
-                                                        </div>
-                                                        <div class="col-md-6" style="margin-top: -12px;">
-                                                            <div class="mt-3">
-                                                                <div class="form-group">
-                                                                    <input type="text" class="form-control" name="air_kost" value="{{ $item->kamarkost->air_kost }}" id="air_kost" disabled>
-                                                                    @error('air_kost')
-                                                                        {{ $message }}
-                                                                    @enderror
+                                                            <div class="col-6 text-start mt-3">
+                                                                <label for="Air Kost">Air Kost</label>
+                                                            </div>
+                                                            <div class="col-6 text-start mt-3">
+                                                                <label for="Listrik Kost">Listrik Kost</label>
+                                                            </div>
+                                                            <div class="col-md-6" style="margin-top: -12px;">
+                                                                <div class="mt-3">
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" name="air_kost" value="{{ $item->kamarkost->air_kost }}" id="air_kost" disabled>
+                                                                        @error('air_kost')
+                                                                            {{ $message }}
+                                                                        @enderror
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-md-6" style="margin-top: -12px;">
-                                                            <div class="mt-3">
-                                                                <div class="form-group">
-                                                                    <input type="text" class="form-control" name="listrik_kost" value="{{ $item->kamarkost->listrik_kost }}" id="listrik_kost" disabled>
-                                                                    @error('listrik_kost')
-                                                                        {{ $message }}
-                                                                    @enderror
+                                                            <div class="col-md-6" style="margin-top: -12px;">
+                                                                <div class="mt-3">
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" name="listrik_kost" value="{{ $item->kamarkost->listrik_kost }}" id="listrik_kost" disabled>
+                                                                        @error('listrik_kost')
+                                                                            {{ $message }}
+                                                                        @enderror
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-6 text-start mt-3">
-                                                            <label for="Alamat Lengkap Kost">Alamat Lengkap Kost</label>
-                                                        </div>
-                                                        <div class="col-6 text-start mt-3">
-                                                            <label for="Nomer Kamar Kost">Nomer Kamar Kost</label>
-                                                        </div>
-                                                        <div class="col-md-6" style="margin-top: -12px;">
-                                                            <div class="mt-3">
-                                                                <div class="form-group">
-                                                                    <input type="text" class="form-control" name="alamat_lengkap_kost" value="{{ $item->kamarkost->alamat_lengkap_kost }}" id="alamat_lengkap_kost" disabled>
-                                                                    @error('alamat_lengkap_kost')
-                                                                        {{ $message }}
-                                                                    @enderror
+                                                            <div class="col-6 text-start mt-3">
+                                                                <label for="Alamat Lengkap Kost">Alamat Lengkap Kost</label>
+                                                            </div>
+                                                            <div class="col-6 text-start mt-3">
+                                                                <label for="Nomer Kamar Kost">Nomer Kamar Kost</label>
+                                                            </div>
+                                                            <div class="col-md-6" style="margin-top: -12px;">
+                                                                <div class="mt-3">
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" name="alamat_lengkap_kost" value="{{ $item->kamarkost->alamat_lengkap_kost }}" id="alamat_lengkap_kost" disabled>
+                                                                        @error('alamat_lengkap_kost')
+                                                                            {{ $message }}
+                                                                        @enderror
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-md-6" style="margin-top: -12px;">
-                                                            <div class="mt-3">
-                                                                <div class="form-group">
-                                                                    <input type="number" class="form-control" name="nomer_kost" value="{{ $item->kamarkost->nomer_kost }}" id="nomer_kost" disabled>
-                                                                    @error('nomer_kost')
-                                                                        {{ $message }}
-                                                                    @enderror
+                                                            <div class="col-md-6" style="margin-top: -12px;">
+                                                                <div class="mt-3">
+                                                                    <div class="form-group">
+                                                                        <input type="number" class="form-control" name="nomer_kost" value="{{ $item->kamarkost->nomer_kost }}" id="nomer_kost" disabled>
+                                                                        @error('nomer_kost')
+                                                                            {{ $message }}
+                                                                        @enderror
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-12 text-start mt-3">
-                                                            <label for="Deskripsi Kost">Deskripsi Kost</label>
-                                                        </div>
-                                                        <div class="col-md-12" style="margin-top: -12px;">
-                                                            <div class="mt-3">
-                                                                <div class="form-group">
-                                                                    <input type="text" class="form-control" name="deskripsi_kost" value="{{ $item->kamarkost->deskripsi_kost }}" id="deskripsi_kost" disabled>
-                                                                    @error('deskripsi_kost')
-                                                                        {{ $message }}
-                                                                    @enderror
+                                                            <div class="col-12 text-start mt-3">
+                                                                <label for="Deskripsi Kost">Deskripsi Kost</label>
+                                                            </div>
+                                                            <div class="col-md-12" style="margin-top: -12px;">
+                                                                <div class="mt-3">
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" name="deskripsi_kost" value="{{ $item->kamarkost->deskripsi_kost }}" id="deskripsi_kost" disabled>
+                                                                        @error('deskripsi_kost')
+                                                                            {{ $message }}
+                                                                        @enderror
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-6 text-start mt-3">
-                                                            <label for="Durasi Ngekost">Durasi Ngekost</label>
-                                                        </div>
-                                                        <div class="col-6 text-start mt-3">
-                                                            <label for="Nomer Transaksi">Nomer Transaksi</label>
-                                                        </div>
-                                                        <div class="col-md-6" style="margin-top: -12px;">
-                                                            <div class="mt-3">
-                                                                <div class="form-group">
-                                                                    <input type="text" class="form-control" name="durasi_ngekost" value="{{ $item->durasi_ngekost }}" id="durasi_ngekost" disabled>
-                                                                    @error('durasi_ngekost')
-                                                                        {{ $message }}
-                                                                    @enderror
+                                                            <div class="col-6 text-start mt-3">
+                                                                <label for="Durasi Ngekost">Durasi Ngekost</label>
+                                                            </div>
+                                                            <div class="col-6 text-start mt-3">
+                                                                <label for="Nomer Transaksi">Nomer Transaksi</label>
+                                                            </div>
+                                                            <div class="col-md-6" style="margin-top: -12px;">
+                                                                <div class="mt-3">
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" name="durasi_ngekost" value="{{ $item->durasi_ngekost }}" id="durasi_ngekost" disabled>
+                                                                        @error('durasi_ngekost')
+                                                                            {{ $message }}
+                                                                        @enderror
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-md-6" style="margin-top: -12px;">
-                                                            <div class="mt-3">
-                                                                <div class="form-group">
-                                                                    <input type="text" class="form-control" name="no_transaksi" value="{{ $item->no_transaksi }}" id="no_transaksi" disabled>
-                                                                    @error('no_transaksi')
-                                                                        {{ $message }}
-                                                                    @enderror
+                                                            <div class="col-md-6" style="margin-top: -12px;">
+                                                                <div class="mt-3">
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" name="no_transaksi" value="{{ $item->no_transaksi }}" id="no_transaksi" disabled>
+                                                                        @error('no_transaksi')
+                                                                            {{ $message }}
+                                                                        @enderror
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-12 text-center mt-3">
-                                                            <label for="Bukti Pembayaran" class="fw-medium">Bukti Pembayaran</label>
-                                                        </div>
-                                                        <div class="col-md-12 text-center mt-1">
-                                                            <img src="{{ asset('uploadkamar/' . $item->bukti_tf) }}" class="rounded-1" style="width: 200px; height: 300px;">
+                                                            <div class="col-6 text-start mt-3">
+                                                                <label for="Status Transaksi">Status Transaksi</label>
+                                                            </div>
+                                                            <div class="col-6 text-start mt-3">
+                                                                <label for="Pesan Transaksi">Pesan Transaksi</label>
+                                                            </div>
+                                                            <div class="col-md-6" style="margin-top: -12px;">
+                                                                <div class="mt-3">
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" name="status" value="{{ $item->status }}" id="status" disabled>
+                                                                        @error('status')
+                                                                            {{ $message }}
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6" style="margin-top: -12px;">
+                                                                <div class="mt-3">
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" name="pesan" value="{{ $item->pesan }}" id="pesan" disabled>
+                                                                        @error('pesan')
+                                                                            {{ $message }}
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-6 text-start mt-3">
+                                                                <label for="Metode Pembayaran">Metode Pembayaran</label>
+                                                                <div class="mt-1">
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" name="nama_pembayaran" value="{{ $item->pembayaran->nama_pembayaran }}" id="nama_pembayaran" disabled>
+                                                                        @error('nama_pembayaran')
+                                                                            {{ $message }}
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-6 text-start mt-3">
+                                                                <label for="Nama">Nama</label>
+                                                                <div class="mt-1">
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" name="name" value="{{ $item->user->name }}" id="name" disabled>
+                                                                        @error('name')
+                                                                            {{ $message }}
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12 text-center mt-3">
+                                                                <label for="Bukti Pembayaran" class="fw-medium">Bukti Pembayaran</label>
+                                                            </div>
+                                                            <div class="col-md-12 text-center mt-1">
+                                                                <img src="{{ asset('uploadkamar/' . $item->bukti_tf) }}" class="rounded-1" style="width: 200px; height: 300px;">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="modal-footer" style="height: 20px;">
+                                                <div class="modal-footer" style="height: 20px;">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <button class="btn btn-danger">Tolak</button>
-                                <button class="btn btn-success">Setuju</button>
-                            </td>
-                        </tr>
-                        <!-- end row -->
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+                                    <button class="btn btn-danger">Tolak</button>
+                                    <button class="btn btn-success">Approve</button>
+                                </td>
+                            </tr>
+                            <!-- end row -->
+                        @endforeach
+                    </tbody>
+                </table>
+            @else
+                <div class="col-12 text-center mt-5">
+                    <img src="{{ asset('img/planet.png') }}" width="150">
+                </div>
+                <div class="col-12 text-center mt-2">
+                    <h1 class="fw-medium fs-3">Belum Ada Data Transaksi</h1>
+                </div>
+    @endif
+    </div>
     </div>
 
     <!-- --------------------------------------------------- -->

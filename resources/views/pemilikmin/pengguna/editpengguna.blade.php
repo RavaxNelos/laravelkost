@@ -84,7 +84,7 @@
                             <label for="" class="mt-4" style="color: black;">Email User</label>
                             <div class="mt-0">
                                 <div class="form-group">
-                                    <input type="email" class="form-control" name="email" id="email" value="{{ $users->email }}" readonly>
+                                    <input type="email" class="form-control" maxlength="20" name="email" id="email" value="{{ $users->email }}" readonly>
                                     @error('email')
                                         {{ $message }}
                                     @enderror
@@ -93,7 +93,7 @@
                             <label for="" class="mt-4" style="color: black;">Nama Lengkap User</label>
                             <div class="mt-0">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="name" id="name" value="{{ $users->name }}" readonly>
+                                    <input type="text" class="form-control" name="name" maxlength="30 \" id="name" value="{{ $users->name }}" readonly>
                                     @error('name')
                                         {{ $message }}
                                     @enderror
@@ -104,7 +104,7 @@
                             <label for="" class="mt-4" style="color: black;">Nomer Handphone User</label>
                             <div class="mt-0">
                                 <div class="form-group">
-                                    <input type="number" class="form-control" name="nomorhp" id="nomorhp" value="{{ $users->nomorhp }}" readonly>
+                                    <input type="number" class="form-control" min="0" oninput="limitLength(this, 12)" name="nomorhp" id="nomorhp" value="{{ $users->nomorhp }}" readonly>
                                     @error('nomorhp')
                                         {{ $message }}
                                     @enderror
@@ -113,7 +113,7 @@
                             <label for="" class="mt-4" style="color: black;">Lokasi User</label>
                             <div class="mt-0">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="lokasi" id="lokasi" value="{{ $users->lokasi }}" readonly>
+                                    <input type="text" class="form-control" name="lokasi" maxlength="50" id="lokasi" value="{{ $users->lokasi }}" readonly>
                                     @error('lokasi')
                                         {{ $message }}
                                     @enderror
