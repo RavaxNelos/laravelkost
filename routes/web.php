@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PemilikMinController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\JamkamarkostController;
 use App\Http\Controllers\KamarKostController;
 use App\Http\Controllers\KategoriController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PemilikTabelControlller;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\TransaksiController;
+use App\Models\Fasilitas;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -94,6 +96,9 @@ Route::get('/pemilikmin/editkamar/{id}', [KamarKostController::class, 'edit'])->
 Route::post('/pemilikmin/editkamar', [KamarKostController::class, 'update'])->name('editkamarPost');
 Route::delete('/pemilikmin/kamar/destroy/{id}', [KamarKostController::class, 'destroy'])->name('destroy');
 Route::get('/pemilikmin/transaksi', [TransaksiController::class, 'index'])->name('transaksi');
+// Route::post('/approve-transaction', [TransaksiController::class, 'approve']);
+Route::post('/reject/{id}', [TransaksiController::class, 'reject']);
+Route::get('/approve/{id}', [TransaksiController::class, 'approve']);
 Route::get('/pemilikmin/tambahkamar', [PemilikMinController::class, 'tambahkamar'])->name('tambahkamar');
 Route::get('/pemilikmin/banner', [BannerController::class, 'index'])->name('banner');
 Route::get('toggleStatusBanner/{id}', [BannerController::class, 'toggleStatusBanner'])->name('toggleStatusBanner');
@@ -132,6 +137,12 @@ Route::post('/pemilikmin/jamkamarkost', [JamkamarkostController::class, 'store']
 Route::get('/pemilikmin/editjamkamarkost/{id}', [JamkamarkostController::class, 'edit'])->name('editjamkamarkost');
 Route::post('/pemilikmin/editjamkamarkost', [JamkamarkostController::class, 'update'])->name('editjamkamarkostPost');
 Route::delete('/pemilikmin/jamkamarkost/destroy/{id}', [JamkamarkostController::class, 'destroy'])->name('destroy');
+Route::get('/pemilikmin/fasilitas', [FasilitasController::class, 'index'])->name('fasilitas');
+Route::get('/pemilikmin/tambahfasilitas', [FasilitasController::class, 'create'])->name('tambahfasilitas');
+Route::post('/pemilikmin/fasilitas', [FasilitasController::class, 'store'])->name('fasilitas.store');
+Route::post('/pemilikmin/editfasilitas/{id}', [FasilitasController::class, 'edit'])->name('editfasilitas');
+Route::post('/pemilikmin/editfasilitas', [FasilitasController::class, 'update'])->name('editfasilitasPost');
+Route::post('/pemilikmin/fasilitas/destroy/{id}', [FasilitasController::class, 'destroy'])->name('destroy');
 
 //pemilik2 controller
 // Route::get('/pemilik2/dashboard', [])

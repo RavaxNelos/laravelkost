@@ -161,7 +161,9 @@
                                             <p class="text-secondary fw-normal" style="font-size: 12px; width: 200px;">{{ Carbon\Carbon::parse($item->created_at)->locale('id')->format('j F Y, H:i') . ' WIB' }}</p>
                                         </div>
                                         <div class="col-6 text-end" style="margin-top: -10px;">
-                                            <p class="text-warning fw-normal" style="font-size: 12px;">{{ $item->status }}</p>
+                                            <p class="text-{{ $item->status == 'proses' ? 'warning' : ($item->status == 'selesai' ? 'success' : 'danger') }}" style="font-size: 12px;">
+                                                {{ $item->status == 'proses' ? 'Proses Pembayaran' : ($item->status == 'selesai' ? 'Pembayaran Diterima' : 'Pembayaran Ditolak') }}
+                                            </p>
                                         </div>
                                     </div>
                                 </div>

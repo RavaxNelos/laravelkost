@@ -1035,7 +1035,7 @@
                 var seconds = currentTime.getSeconds();
 
                 var formattedTime =
-                    "{{ Carbon\Carbon::now()->locale('id')->settings(['formatFunction' => 'translatedFormat'])->format('j F Y, h:i') }} WIB";
+                    "{{ Carbon\Carbon::now()->locale('id')->settings(['formatFunction' => 'translatedFormat'])->format('j F Y, H:i') }} WIB";
                 getTime(productId, formattedTime);
             }
 

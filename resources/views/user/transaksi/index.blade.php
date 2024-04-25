@@ -204,7 +204,7 @@
                 <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 150px;">Tgl. Pesanan</h3>
             </div>
             <div class="col-7 text-end">
-                <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">{{ $time }}</h3>
+                <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">{{ Carbon\Carbon::parse($time)->locale('id')->format('j F Y, H:i') . ' WIB' }}</h3>
             </div>
         </div>
         <div class="row">
@@ -401,7 +401,7 @@
                 </div>
             </div>
         </section>
-        <hr class="hr-terakhir">
+        <hr class="hr-terakhir" style="margin-bottom: 4.4rem;">
         <div class="sticky-bottom">
             <div class="container py-2">
                 <div class="row">

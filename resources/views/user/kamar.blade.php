@@ -79,6 +79,25 @@
             background-color: black;
             border-color: var(--bs-btn-hover-border-color);
         }
+
+        .bayar {
+            border: 2px solid #00af00;
+            background-color: rgb(0, 128, 0, 0.4);
+        }
+
+        .proses {
+            border: 2px solid rgb(215, 140, 0);
+            background-color: rgb(255, 166, 0, 0.4);
+        }
+
+        .belum {
+            border: 2px solid rgb(124, 0, 0);
+            background-color: rgb(255, 0, 0, 0.4);
+        }
+
+        .btn-info:hover {
+            color: white;
+        }
     </style>
 </head>
 
@@ -107,28 +126,30 @@
             </a>
         </nav>
     </div>
-    <nav class="fixed-top" id="stickyTop">
-        <div class="container py-3">
-            <div class="col-12 text-end">
-                <button class="btn-like-detail" onclick="toggleCard()"><i class="bi bi-three-dots-vertical"></i></button>
-            </div>
-        </div>
-    </nav>
-    <div class="modal" id="myModal">
-        <div class="modal-content">
-            <!-- Konten modal, dapat diedit sesuai kebutuhan -->
-            <div class="row">
-                <div class="col-12">
-                    <a href="/user/kerusakan/{{ $users->id }}" class="kerusakan fw-medium"><i class="bi bi-exclamation-triangle-fill"></i> Laporkan Kerusakan</a>
-                </div>
-                <hr class="garis-pembatas-laporkan" style="border-top: 1px solid #ccc; margin-top: 10px;">
-                <div class="col-12" style="margin-top: -10px">
-                    <a href="/user/kehilangan/{{ $users->id }}" class="kehilangan fw-medium"><i class='bx bxs-search-alt-2'></i> Laporkan Kehilangan</a>
+    @if ($kamar_kost)
+        <nav class="fixed-top" id="stickyTop">
+            <div class="container py-3">
+                <div class="col-12 text-end">
+                    <button class="btn-like-detail" onclick="toggleCard()"><i class="bi bi-three-dots-vertical"></i></button>
                 </div>
             </div>
+        </nav>
+        <div class="modal" id="myModal">
+            <div class="modal-content">
+                <!-- Konten modal, dapat diedit sesuai kebutuhan -->
+                <div class="row">
+                    <div class="col-12">
+                        <a href="/user/kerusakan/{{ $users->id }}" class="kerusakan fw-medium"><i class="bi bi-exclamation-triangle-fill"></i> Laporkan Kerusakan</a>
+                    </div>
+                    <hr class="garis-pembatas-laporkan" style="border-top: 1px solid #ccc; margin-top: 10px;">
+                    <div class="col-12" style="margin-top: -10px">
+                        <a href="/user/kehilangan/{{ $users->id }}" class="kehilangan fw-medium"><i class='bx bxs-search-alt-2'></i> Laporkan Kehilangan</a>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <section class="splide new-1" aria-label="Splide Basic HTML Example">
+        <img src="{{ asset('uploadkamar/' . $kamar_kost->gambar_kost) }}" style="width: 360px; height: 250px;">
+        {{-- <section class="splide new-1" aria-label="Splide Basic HTML Example">
         <div class="splide__track">
             <ul class="splide__list">
                 <li class="splide__slide">
@@ -142,1083 +163,354 @@
                 </li>
             </ul>
         </div>
-    </section>
-    <div class="container mt-3">
-        <div class="cardsidebar" id="cardContent">
-            <a href="" class="jadwal fw-medium"><i class="bi bi-calendar-date-fill"></i></i> Jadwal Pembayaran</a>
-            <hr class="garispemisah" style="border-top: 1px solid #ccc; margin-top: 40px;">
-            <a href="/user/kerusakan/{{ $users->id }}" class="lapor fw-medium"><i class="bi bi-exclamation-circle-fill"></i> Laporkan Kerusakan</a>
-        </div>
-        <div class="row">
-            <div class="col-3 text-start">
-                <a type="submit" style="width: 120px; height: 30px; text-align: center; text-decoration: none; border: 1px solid #ccc; border-radius: 6px; font-size: 12px; padding-top: 4px;" class="text-dark fw-medium">Kost Mahasiswa</a>
-            </div>
-            <div class="col-1" style="margin-top: 0px;">
-                <i class="bi bi-dot text-secondary" style="margin-left: 32px; font-size:20px;"></i>
-            </div>
-            <div class="col-8 text-end">
-                <a type="submit" style="width: 190px; height: 30px; text-align: center; text-decoration: none; background-color: rgb(0, 128, 0, 0.4); border-radius: 6px; padding-top: 4px; position: relative; border: 2px solid #00af00; font-family: Poppins; color: white !important; font-size: 12px;" class="text-dark fw-medium">Kost Sudah Terbayar</a>
-            </div>
-        </div>
-        <div class="row mt-2">
-            <div class="col-6 text-start">
-                <h1 class="fw-normal" style="font-size: 12px; font-family: Poppins; color: #CCCCCC;">Tgl. Masuk Kost</h1>
-            </div>
-            <div class="col-6 text-end">
-                <h1 class="fw-nromal" style="font-size: 12px; font-family: Poppins; color: #CCCCCC;">Durasi Ngekost</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-6 text-start">
-                <p class="fw-medium" style="font-size: 14px; color: #9370DB; margin-top: -8px;">29 Februari 2024 </p>
-            </div>
-            <div class="col-6 text-end">
-                <p class="fw-medium" style="font-size: 14px; color: #9370DB; margin-top: -8px;">5 Bulan 3 Hari</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 text-center">
-                <h1 class="fw-medium" style="font-size: 12px; font-family: Poppins; color: #CCCCCC;">Harga /Bulan</h1>
-            </div>
-            <div class="col-12 text-center">
-                <p class="fw-semibold" style="font-size: 14px; color: #9b59b6; margin-top: -8px;">Rp. 2.300.000</p>
-            </div>
-        </div>
-    </div>
-    <hr class="hr-1" style="margin-top: -4px; border-top: 10px solid #ccc;">
-    <div class="container">
-        <h1 class="fw-semibold" style="font-size: 18px; font-family: Poppins;">Spesifikasi Kamar Kost</h1>
-        <div class="row">
-            <div class="col-12 text-start">
-                <h1 class="fw-normal" style="font-size: 12px; font-family: Poppins; color: #CCCCCC;">Ukuran Kamar</h1>
-            </div>
-            <p class="text-dark fw-medium" style="font-size: 12px; margin-top: -8px;">Ukuran Kamar 3 x 4 Meter</p>
-        </div>
-        <div class="row" style="margin-top: -10px;">
-            <div class="col-12 text-start">
-                <h1 class="fw-normal" style="font-size: 12px; font-family: Poppins; color: #CCCCCC;">Lokasi Kost</h1>
-            </div>
-            <p class="text-dark fw-medium" style="font-size: 12px; margin-top: -8px;">Jl. Mulyorejo No. 03, Surabaya Jawa Timur</p>
-        </div>
-        <div class="row" style="margin-top: -10px;">
-            <div class="col-12 text-start">
-                <h1 class="fw-normal" style="font-size: 12px; font-family: Poppins; color: #CCCCCC;">Air Bersih</h1>
-            </div>
-            <p class="text-secondary-emphasis fw-medium" style="font-size: 12px; margin-top: -8px;">PDAM</p>
-        </div>
-        <div class="row" style="margin-top: -10px;">
-            <div class="col-12 text-start">
-                <h1 class="fw-normal" style="font-size: 12px; font-family: Poppins; color: #CCCCCC;">Tipe Listrik</h1>
-            </div>
-            <p class="text-secondary-emphasis fw-medium" style="font-size: 12px; margin-top: -8px;">Token</p>
-        </div>
-    </div>
-    <hr class="hr-2" style="margin-top: 0px; border-top: 10px solid #ccc;">
-    <div class="container">
-        <h1 class="fw-semibold" style="font-size: 18px; font-family: Poppins;">Fasilitas Kamar</h1>
-        <section class="splide new-2" aria-label="Splide Basic HTML Example">
-            <div class="splide__track">
-                <ul class="splide__list">
-                    <li class="splide__slide">
-                        <img src="{{ asset('img/interior2.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                    </li>
-                    <li class="splide__slide">
-                        <img src="{{ asset('img/interior7.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                    </li>
-                    <li class="splide__slide">
-                        <img src="{{ asset('img/interior9.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                    </li>
-                    <li class="splide__slide">
-                        <img src="{{ asset('img/interior4.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                    </li>
-                    <li class="splide__slide">
-                        <img src="{{ asset('img/interior6.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                    </li>
-                    <li class="splide__slide">
-                        <img src="{{ asset('img/interior10.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                    </li>
-                    <li class="splide__slide">
-                        <img src="{{ asset('img/interior11.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                    </li>
-                </ul>
-            </div>
-        </section>
-        <hr class="hr-3" style="margin-top: 20px; border-top: 1px solid #ccc;">
-        <h1 class="fw-semibold" style="font-size: 18px; font-family: Poppins;">Fasilitas Kamar Mandi</h1>
-        <section class="splide new-3" aria-label="Splide Basic HTML Example">
-            <div class="splide__track">
-                <ul class="splide__list">
-                    <li class="splide__slide">
-                        <img src="{{ asset('img/interior12.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                    </li>
-                    <li class="splide__slide">
-                        <img src="{{ asset('img/interior13.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                    </li>
-                    <li class="splide__slide">
-                        <img src="{{ asset('img/interior14.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                    </li>
-                    <li class="splide__slide">
-                        <img src="{{ asset('img/interior15.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                    </li>
-                    <li class="splide__slide">
-                        <img src="{{ asset('img/interior11.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                    </li>
-                </ul>
-            </div>
-        </section>
-    </div>
-    <hr class="hr-4" style="margin-top: 20px; border-top: 10px solid #ccc;">
-    <div class="container">
-        <h1 class="fw-semibold" style="font-size: 18px; font-family: Poppins;">Fasilitas Umum</h1>
-        <section class="splide new-4" aria-label="Splide Basic HTML Example">
-            <div class="splide__track">
-                <ul class="splide__list">
-                    <li class="splide__slide">
-                        <img src="{{ asset('img/interior8.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                    </li>
-                    <li class="splide__slide">
-                        <img src="{{ asset('img/interior5.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                    </li>
-                    <li class="splide__slide">
-                        <img src="{{ asset('img/interior3.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                    </li>
-                    <li class="splide__slide">
-                        <img src="{{ asset('img/interior16.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                    </li>
-                    <li class="splide__slide">
-                        <img src="{{ asset('img/interior17.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                    </li>
-                    <li class="splide__slide">
-                        <img src="{{ asset('img/interior18.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                    </li>
-                </ul>
-            </div>
-        </section>
-        <hr class="hr-5" style="margin-top: 20px; border-top: 1px solid #ccc;">
-        <h1 class="fw-semibold" style="font-size: 18px; font-family: Poppins;">Fasilitas Parkir</h1>
-        <div class="row">
-            <div class="col-6">
-                <img src="{{ asset('img/interior19.jpg') }}" style="width: 164px; height: 100px; border-radius: 10px;">
-            </div>
-            <div class="col-6" style="margin-left: -8px;">
-                <img src="{{ asset('img/interior20.jpg') }}" style="width: 164px; height: 100px; border-radius: 10px;">
-            </div>
-        </div>
-    </div>
-    <hr class="hr-6" style="margin-top: 20px; border-top: 10px solid #ccc;">
-    <div class="container">
-        <div class="select-menu">
-            <div class="select-btn">
-                <span class="sBtn-text fw-semibold" style="font-size: 18px; font-family: Poppins;">Peraturan Kost</span>
-                <i class="bx bx-chevron-down"></i>
-            </div>
-            <ul class="options">
-                <li class="option">
-                    <span class="option-angka">1.</span><span class="option-text">Akses 24 Jam</span>
-                </li>
-                <li class="option">
-                    <span class="option-angka">2.</span><span class="option-text">Tidak Boleh Pasutri</span>
-                </li>
-                <li class="option">
-                    <span class="option-angka">3.</span><span class="option-text">Lawan Jenis Dilarang Ke Kamar</span>
-                </li>
-                <li class="option">
-                    <span class="option-angka">4.</span><span class="option-text">Maksimal 2 Orang/Kamar</span>
-                </li>
-                <li class="option">
-                    <span class="option-angka">5.</span><span class="option-text">Dilarang bawa hewan</span>
-                </li>
-                <li class="option">
-                    <span class="option-angka">6.</span><span class="option-text">Dilarang Merokok</span>
-                </li>
-                <li class="option">
-                    <span class="option-angka">7.</span><span class="option-text">Dilarang Mengganggu Ketenagan Penghuni</span>
-                </li>
-                <li class="option">
-                    <span class="option-angka">8.</span><span class="option-text">Dilarang Bawa Anak</span>
-                </li>
-                <li class="option">
-                    <span class="option-angka">9.</span><span class="option-text">Gunakan Fasilitas Dengan Benar</span>
-                </li>
-                <li class="option">
-                    <span class="option-angka">10.</span><span class="option-text">Jagalah Kebersihan Di Kamarmu</span>
-                </li>
-                <li class="option">
-                    <span class="option-angka">11.</span><span class="option-text">Dilarang Telat Membayar Kamar</span>
-                </li>
-                <li class="option">
-                    <span class="option-angka">12.</span><span class="option-text">Kunci Pintu Kamar Kost Ketika Pergi Ke Luar</span>
-                </li>
-                <li class="option">
-                    <span class="option-angka">13.</span><span class="option-text">Dilarang Minum Minuman Keras</span>
-                </li>
-                <li class="option">
-                    <span class="option-angka">14.</span><span class="option-text">Dilarang Merusak Fasilitas Di Kamar</span>
-                </li>
-                <li class="optionend">
-                    <span class="option-angka">15.</span><span class="option-text">Dilarang Mengadakan Pesta Di Kamar</span>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <hr class="garis-tepi-peraturan-kost" style="margin-top: 14x; border-top: 10px solid #ccc;">
-    <div class="container" style="margin-top: -10px;">
-        <h1 class="fw-semibold" style="font-size: 18px; font-family: Poppins; margin-top: 10px;">Kamar Kost Kamu</h1>
-        <p class="text-secondary" style="font-size: 10px; font-style: italic; margin-top: -6px;">Update tampilan terbaru kamarmu disini (Maks. 10 foto)</p>
-        <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay;">
-            <div class="position-relative">
-                <img id="frame" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage()">
-                <label for="uploadfoto" class="label-upload">
-                    <div class="box-icon">
-                        <div class="bg-kategori rounded-5">
-                            <i id="uploadIcon" class="bi bi-cloud-upload"></i>
-                        </div>
-                    </div>
-                    <input type="file" onchange="preview()" hidden id="uploadfoto" accept="image/*">
-                </label>
-            </div>
-            <div class="position-relative">
-                <img id="frame2" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage2()">
-                <label for="uploadfoto2" class="label-upload">
-                    <div class="box-icon">
-                        <div class="bg-kategori rounded-5">
-                            <i id="uploadIcon2" class="bi bi-cloud-upload"></i>
-                        </div>
-                    </div>
-                    <input type="file" onchange="preview2()" hidden id="uploadfoto2" accept="image/*">
-                </label>
-            </div>
-            <div class="position-relative">
-                <img id="frame3" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage3()">
-                <label for="uploadfoto3" class="label-upload">
-                    <div class="box-icon">
-                        <div class="bg-kategori rounded-5">
-                            <i id="uploadIcon3" class="bi bi-cloud-upload"></i>
-                        </div>
-                    </div>
-                    <input type="file" onchange="preview3()" hidden id="uploadfoto3" accept="image/*">
-                </label>
-            </div>
-            <div class="position-relative">
-                <img id="frame4" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage4()">
-                <label for="uploadfoto4" class="label-upload">
-                    <div class="box-icon">
-                        <div class="bg-kategori rounded-5">
-                            <i id="uploadIcon4" class="bi bi-cloud-upload"></i>
-                        </div>
-                    </div>
-                    <input type="file" onchange="preview4()" hidden id="uploadfoto4" accept="image/*">
-                </label>
-            </div>
-            <div class="position-relative">
-                <img id="frame5" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage5()">
-                <label for="uploadfoto5" class="label-upload">
-                    <div class="box-icon">
-                        <div class="bg-kategori rounded-5">
-                            <i id="uploadIcon5" class="bi bi-cloud-upload"></i>
-                        </div>
-                    </div>
-                    <input type="file" onchange="preview5()" hidden id="uploadfoto5" accept="image/*">
-                </label>
-            </div>
-            <div class="position-relative">
-                <img id="frame6" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage6()">
-                <label for="uploadfoto6" class="label-upload">
-                    <div class="box-icon">
-                        <div class="bg-kategori rounded-5">
-                            <i id="uploadIcon6" class="bi bi-cloud-upload"></i>
-                        </div>
-                    </div>
-                    <input type="file" onchange="preview6()" hidden id="uploadfoto6" accept="image/*">
-                </label>
-            </div>
-            <div class="position-relative">
-                <img id="frame7" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage7()">
-                <label for="uploadfoto7" class="label-upload">
-                    <div class="box-icon">
-                        <div class="bg-kategori rounded-5">
-                            <i id="uploadIcon7" class="bi bi-cloud-upload"></i>
-                        </div>
-                    </div>
-                    <input type="file" onchange="preview7()" hidden id="uploadfoto7" accept="image/*">
-                </label>
-            </div>
-            <div class="position-relative">
-                <img id="frame8" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage8()">
-                <label for="uploadfoto8" class="label-upload">
-                    <div class="box-icon">
-                        <div class="bg-kategori rounded-5">
-                            <i id="uploadIcon8" class="bi bi-cloud-upload"></i>
-                        </div>
-                    </div>
-                    <input type="file" onchange="preview8()" hidden id="uploadfoto8" accept="image/*">
-                </label>
-            </div>
-            <div class="position-relative">
-                <img id="frame9" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage9()">
-                <label for="uploadfoto9" class="label-upload">
-                    <div class="box-icon">
-                        <div class="bg-kategori rounded-5">
-                            <i id="uploadIcon9" class="bi bi-cloud-upload"></i>
-                        </div>
-                    </div>
-                    <input type="file" onchange="preview9()" hidden id="uploadfoto9" accept="image/*">
-                </label>
-            </div>
-            <div class="position-relative">
-                <img id="frame10" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage10()">
-                <label for="uploadfoto10" class="label-upload">
-                    <div class="box-icon">
-                        <div class="bg-kategori rounded-5">
-                            <i id="uploadIcon10" class="bi bi-cloud-upload"></i>
-                        </div>
-                    </div>
-                    <input type="file" onchange="preview10()" hidden id="uploadfoto10" accept="image/*">
-                </label>
-            </div>
-        </div>
-    </div>
-    <hr class="hr-9" style="margin-top: 20px; border-top: 10px solid #ccc; margin-bottom: 3.4rem;">
-
-    {{-- <div class="sticky-top" id="stickyHeader" style="background-color: transparent; transition: background-color 0.3s, box-shadow 0.3s;">
-        <div class="container py-2">
-            <div class="row">
-                <div class="search-container">
-                    <form class="p-0 m-0 d-flex" style="position: relative;" role="search">
-                        <input type="text" id="searchInput" name="searchInput" placeholder="Cari Kamar Kost..." style="width: 334px; height: 40px; text-indent: 40px; border: 1px solid #ccc; border-radius: 8px; font-style: italic;">
-                        <i class="bi bi-search" style="position: absolute; font-size: 20px; top: 4px; left: 16px;"></i>
-                        <i class="bi bi-x-circle-fill d-none" id="clearSearchIcon" style="position: absolute; font-size: 20px; top: 4px; right: 16px; cursor: pointer;"></i>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <section class="splide new-1" aria-label="Splide Basic HTML Example">
-            <div class="splide__track">
-                <ul class="splide__list">
-                    <li class="splide__slide">
-                        <img src="{{ asset('img/banner16.png') }}" style="border-radius: 8px; width: 334px; height: 150px;">
-                    </li>
-                    <li class="splide__slide">
-                        <img src="{{ asset('img/banner17.png') }}" style="border-radius: 8px; width: 334px; height: 150px;">
-                    </li>
-                    <li class="splide__slide">
-                        <img src="{{ asset('img/banner18.png') }}" style="border-radius: 8px; width: 334px; height: 150px;">
-                    </li>
-                </ul>
-            </div>
-        </section>
-    </div>
-    <hr class="hr-1" style="margin-bottom: 1rem;">
-    <section x-data="{ filter: 'bulanan' }">
-        <div class="container">
-            <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay;">
-                <button :class="filter == 'bulanan' ? 'btn btn-dark' : 'btn btn-outline-secondary text-secondary'" x-on:click="filter = 'bulanan';">Bulanan</button>
-                <button :class="filter == 'harian' ? 'btn btn-dark' : 'btn btn-outline-secondary text-secondary'" x-on:click="filter = 'harian';">Harian</button>
-                <button :class="filter == 'terbaru' ? 'btn btn-dark' : 'btn btn-outline-secondary text-secondary'" x-on:click="filter = 'terbaru';">Terbaru</button>
-                <button :class="filter == 'rekomendasi' ? 'btn btn-dark' : 'btn btn-outline-secondary text-secondary'" x-on:click="filter = 'rekomendasi';">Rekomendasi</button>
-                <button :class="filter == 'populer' ? 'btn btn-dark' : 'btn btn-outline-secondary text-secondary'" x-on:click="filter = 'populer';">Populer</button>
-            </div>
-            <div id="popup-background" onclick="closePopup()"></div>
-            <div id="popup">
-                <p id="popup-text" style="font-size: 14px;"></p>
-            </div>
-            <div class="row mt-3 mb-0" x-show="filter == 'harian'">
-                <div class="col-8">
-                    <h1 style="font-weight: 600; font-size: 16px; font-family: 'Poppins', sans-serif;">Kost Putra</h1>
-                </div>
-                <div class="col-4 text-end">
-                    <p class="fw-normal text-primary">Semua</p>
-                </div>
-            </div>
-            <div class="row mt-3 mb-0" x-show="filter == 'bulanan'">
-                <div class="col-8">
-                    <h1 style="font-weight: 600; font-size: 16px; font-family: 'Poppins', sans-serif;">Kost Putra</h1>
-                </div>
-                <div class="col-4 text-end">
-                    <p class="fw-normal text-primary">Semua</p>
-                </div>
-            </div>
-            <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-top: -16px;">
-                <div x-show="filter == 'bulanan'">
-                    <div class="custom-card" style="width: 14.4rem; height: 10.6rem; border: 1px solid #ccc; margin-top: 3.4rem; border-radius: 10px; position: relative;">
-                        <img src="{{ asset('img/kamarkostputra1.jpg') }}" style="width: 200px; height: 130px; border-radius: 10px; position: absolute; top: -50px; left: 14px;">
-                        <p class="text-dark fw-medium" style="position: absolute; left: 14px; top: 90px; font-size: 14px;">Kamar Kost Uk. 4 x 5 Meter</p>
-                        <p class="text-secondary" style="font-size: 12px; position: absolute; top: 110px; left: 14px;"><i class="bi bi-geo-alt-fill"></i> Kalijudan, Surabaya</p>
-                        <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 14px; top: 130px;">Rp. 2.000.000<span class="text-secondary" style="font-size: 14px;">/bln</span></p>
-                        <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; top: -44px; right: 20px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                    </div>
-                </div>
-                <div x-show="filter == 'bulanan'">
-                    <div class="custom-card" style="width: 14.4rem; height: 10.6rem; border: 1px solid #ccc; margin-top: 3.4rem; border-radius: 10px; position: relative;">
-                        <img src="{{ asset('img/kamarkostputra2.jpg') }}" style="width: 200px; height: 130px; border-radius: 10px; position: absolute; top: -50px; left: 14px;">
-                        <p class="text-dark fw-medium" style="position: absolute; left: 14px; top: 90px; font-size: 14px;">Kamar Kost Uk. 6 x 5 Meter</p>
-                        <p class="text-secondary" style="font-size: 12px; position: absolute; top: 110px; left: 14px;"><i class="bi bi-geo-alt-fill"></i> Jambangan, Surabaya</p>
-                        <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 14px; top: 130px;">Rp. 2.300.000<span class="text-secondary" style="font-size: 14px;">/bln</span></p>
-                        <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; top: -44px; right: 20px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7"><i class="bi bi-star"></i></button>
-                    </div>
-                </div>
-                <div x-show="filter == 'bulanan'">
-                    <div class="custom-card" style="width: 14.4rem; height: 10.6rem; border: 1px solid #ccc; margin-top: 3.4rem; border-radius: 10px; position: relative;">
-                        <img src="{{ asset('img/kamarkostputra3.jpg') }}" style="width: 200px; height: 130px; border-radius: 10px; position: absolute; top: -50px; left: 14px;">
-                        <p class="text-dark fw-medium" style="position: absolute; left: 14px; top: 90px; font-size: 14px;">Kamar Kost Uk. 4 x 4 Meter</p>
-                        <p class="text-secondary" style="font-size: 12px; position: absolute; top: 110px; left: 14px;"><i class="bi bi-geo-alt-fill"></i> Asemrowo, Surabaya</p>
-                        <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 14px; top: 130px;">Rp. 2.600.000<span class="text-secondary" style="font-size: 14px;">/bln</span></p>
-                        <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; top: -44px; right: 20px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7"><i class="bi bi-star"></i></button>
-                    </div>
-                </div>
-                <div x-show="filter == 'bulanan'">
-                    <div class="custom-card" style="width: 14.4rem; height: 10.6rem; border: 1px solid #ccc; margin-top: 3.4rem; border-radius: 10px; position: relative;">
-                        <img src="{{ asset('img/kamarkostputra4.jpg') }}" style="width: 200px; height: 130px; border-radius: 10px; position: absolute; top: -50px; left: 14px;">
-                        <p class="text-dark fw-medium" style="position: absolute; left: 14px; top: 90px; font-size: 14px;">Kamar Kost Uk. 7 x 4 Meter</p>
-                        <p class="text-secondary" style="font-size: 12px; position: absolute; top: 110px; left: 14px;"><i class="bi bi-geo-alt-fill"></i> Benowo, Surabaya</p>
-                        <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 14px; top: 130px;">Rp. 2.900.000<span class="text-secondary" style="font-size: 14px;">/bln</span></p>
-                        <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; top: -44px; right: 20px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7"><i class="bi bi-star"></i></button>
-                    </div>
-                </div>
-                <div x-show="filter == 'bulanan'">
-                    <div class="custom-card" style="width: 14.4rem; height: 10.6rem; border: 1px solid #ccc; margin-top: 3.4rem; border-radius: 10px; position: relative;">
-                        <img src="{{ asset('img/kamarkostputra5.jpg') }}" style="width: 200px; height: 130px; border-radius: 10px; position: absolute; top: -50px; left: 14px;">
-                        <p class="text-dark fw-medium" style="position: absolute; left: 14px; top: 90px; font-size: 14px;">Kamar Kost Uk. 5 x 5 Meter</p>
-                        <p class="text-secondary" style="font-size: 12px; position: absolute; top: 110px; left: 14px;"><i class="bi bi-geo-alt-fill"></i> Bubutan, Surabaya</p>
-                        <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 14px; top: 130px;">Rp. 3.200.000<span class="text-secondary" style="font-size: 14px;">/bln</span></p>
-                        <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; top: -44px; right: 20px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7"><i class="bi bi-star"></i></button>
-                    </div>
-                </div>
-                <div x-show="filter == 'harian'">
-                    <div class="custom-card" style="width: 14.4rem; height: 10.6rem; border: 1px solid #ccc; margin-top: 3.4rem; border-radius: 10px; position: relative;">
-                        <img src="{{ asset('img/kamarkostputra1.jpg') }}" style="width: 200px; height: 130px; border-radius: 10px; position: absolute; top: -50px; left: 14px;">
-                        <p class="text-dark fw-medium" style="position: absolute; left: 14px; top: 90px; font-size: 14px;">Kamar Kost Uk. 4 x 5 Meter</p>
-                        <p class="text-secondary" style="font-size: 12px; position: absolute; top: 110px; left: 14px;"><i class="bi bi-geo-alt-fill"></i> Kalijudan, Surabaya</p>
-                        <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 14px; top: 130px;">Rp. 500.000<span class="text-secondary" style="font-size: 14px;">/hrn</span></p>
-                        <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; top: -44px; right: 20px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                    </div>
-                </div>
-                <div x-show="filter == 'harian'">
-                    <div class="custom-card" style="width: 14.4rem; height: 10.6rem; border: 1px solid #ccc; margin-top: 3.4rem; border-radius: 10px; position: relative;">
-                        <img src="{{ asset('img/kamarkostputra2.jpg') }}" style="width: 200px; height: 130px; border-radius: 10px; position: absolute; top: -50px; left: 14px;">
-                        <p class="text-dark fw-medium" style="position: absolute; left: 14px; top: 90px; font-size: 14px;">Kamar Kost Uk. 6 x 5 Meter</p>
-                        <p class="text-secondary" style="font-size: 12px; position: absolute; top: 110px; left: 14px;"><i class="bi bi-geo-alt-fill"></i> Jambangan, Surabaya</p>
-                        <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 14px; top: 130px;">Rp. 530.000<span class="text-secondary" style="font-size: 14px;">/hrn</span></p>
-                        <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; top: -44px; right: 20px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7"><i class="bi bi-star"></i></button>
-                    </div>
-                </div>
-                <div x-show="filter == 'harian'">
-                    <div class="custom-card" style="width: 14.4rem; height: 10.6rem; border: 1px solid #ccc; margin-top: 3.4rem; border-radius: 10px; position: relative;">
-                        <img src="{{ asset('img/kamarkostputra3.jpg') }}" style="width: 200px; height: 130px; border-radius: 10px; position: absolute; top: -50px; left: 14px;">
-                        <p class="text-dark fw-medium" style="position: absolute; left: 14px; top: 90px; font-size: 14px;">Kamar Kost Uk. 4 x 4 Meter</p>
-                        <p class="text-secondary" style="font-size: 12px; position: absolute; top: 110px; left: 14px;"><i class="bi bi-geo-alt-fill"></i> Asemrowo, Surabaya</p>
-                        <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 14px; top: 130px;">Rp. 450.000<span class="text-secondary" style="font-size: 14px;">/hrn</span></p>
-                        <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; top: -44px; right: 20px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7"><i class="bi bi-star"></i></button>
-                    </div>
-                </div>
-                <div x-show="filter == 'harian'">
-                    <div class="custom-card" style="width: 14.4rem; height: 10.6rem; border: 1px solid #ccc; margin-top: 3.4rem; border-radius: 10px; position: relative;">
-                        <img src="{{ asset('img/kamarkostputra4.jpg') }}" style="width: 200px; height: 130px; border-radius: 10px; position: absolute; top: -50px; left: 14px;">
-                        <p class="text-dark fw-medium" style="position: absolute; left: 14px; top: 90px; font-size: 14px;">Kamar Kost Uk. 7 x 4 Meter</p>
-                        <p class="text-secondary" style="font-size: 12px; position: absolute; top: 110px; left: 14px;"><i class="bi bi-geo-alt-fill"></i> Benowo, Surabaya</p>
-                        <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 14px; top: 130px;">Rp. 670.000<span class="text-secondary" style="font-size: 14px;">/hrn</span></p>
-                        <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; top: -44px; right: 20px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7"><i class="bi bi-star"></i></button>
-                    </div>
-                </div>
-                <div x-show="filter == 'harian'">
-                    <div class="custom-card" style="width: 14.4rem; height: 10.6rem; border: 1px solid #ccc; margin-top: 3.4rem; border-radius: 10px; position: relative;">
-                        <img src="{{ asset('img/kamarkostputra5.jpg') }}" style="width: 200px; height: 130px; border-radius: 10px; position: absolute; top: -50px; left: 14px;">
-                        <p class="text-dark fw-medium" style="position: absolute; left: 14px; top: 90px; font-size: 14px;">Kamar Kost Uk. 5 x 5 Meter</p>
-                        <p class="text-secondary" style="font-size: 12px; position: absolute; top: 110px; left: 14px;"><i class="bi bi-geo-alt-fill"></i> Bubutan, Surabaya</p>
-                        <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 14px; top: 130px;">Rp. 400.000<span class="text-secondary" style="font-size: 14px;">/hrn</span></p>
-                        <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; top: -44px; right: 20px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7"><i class="bi bi-star"></i></button>
-                    </div>
-                </div>
-            </div>
-            <img src="{{ asset('img/banner19.png') }}" style="border-radius: 10px; margin-top: 1rem; width: 334px; height: 105px;">
-        </div>
-        <hr class="hr-2" style="margin-bottom: 1rem">
-        <div class="container">
-            <div class="row mt-3 mb-0" x-show="filter == 'harian'">
-                <div class="col-8">
-                    <h1 style="font-weight: 600; font-size: 16px; font-family: 'Poppins', sans-serif;">Kost Putri</h1>
-                </div>
-                <div class="col-4 text-end">
-                    <p class="fw-normal text-primary">Semua</p>
-                </div>
-            </div>
-            <div class="row mt-3 mb-0" x-show="filter == 'bulanan'">
-                <div class="col-8">
-                    <h1 style="font-weight: 600; font-size: 16px; font-family: 'Poppins', sans-serif;">Kost Putri</h1>
-                </div>
-                <div class="col-4 text-end">
-                    <p class="fw-normal text-primary">Semua</p>
-                </div>
-            </div>
-            <div class="scroll-container" style="overflow-x: auto; overflow: overlay; margin-top: -10px;">
-                <div class="col-12 d-flex gap-2">
-                    <!-- Your first set of cards -->
-                    <div x-show="filter == 'bulanan'">
-                        <div class="custom-card" style="width: 19rem; height: 14.8rem; border-radius: 10px; border: 1px solid #ccc; margin-bottom: 1rem; position: relative;">
-                            <img src="{{ asset('img/kamarkostputri1.jpg') }}" style="width: 288px; height: 140px; position: absolute; left: 7px; margin-top: 10px; border-radius: 4px;">
-                            <a type="submit" style="position: absolute; left: 12px; width: 100px; height: 26px; background-color: white; opacity: 0.7; color: #9370DB; margin-top: 118px; text-align: center; border-radius: 4px;">4 x 4 meter</a>
-                            <p class="fw-medium" style="font-size: 14px; position: absolute; left: 12px; margin-top: 160px;"><i class="bi bi-geo-alt-fill text-danger"></i> Kecamatan Jambangan, Surabaya</p>
-                            <p class="fw-normal text-secondary" style="font-size: 12px; position: absolute; left: 12px; margin-top: 180px;">Fasilitas Kost 1 AC | 1 Kasur | Kamar Mandi...</p>
-                            <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 12px; margin-top: 200px;">Rp. 2.000.000<span class="text-secondary" style="font-size: 14px;">/bln</span></p>
-                            <a type="submit" style="position: absolute; right: 6px; margin-top: 200px; width: 80px; height: 26px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; text-align: center; border-radius: 6px; border: 1px solid #9b59b6; font-size: 14px;">Lihat</a>
-                            <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 14px; right: 12px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                        </div>
-                    </div>
-                    <div x-show="filter == 'bulanan'">
-                        <div class="custom-card" style="width: 19rem; height: 14.8rem; border-radius: 10px; border: 1px solid #ccc; margin-bottom: 1rem; position: relative;">
-                            <img src="{{ asset('img/kamarkostputri2.jpg') }}" style="width: 288px; height: 140px; position: absolute; left: 7px; margin-top: 10px; border-radius: 4px;">
-                            <a type="submit" style="position: absolute; left: 12px; width: 100px; height: 26px; background-color: white; opacity: 0.7; color: #9370DB; margin-top: 118px; text-align: center; border-radius: 4px;">5 x 6 meter</a>
-                            <p class="fw-medium" style="font-size: 14px; position: absolute; left: 12px; margin-top: 160px;"><i class="bi bi-geo-alt-fill text-danger"></i> Kecamatan Asemrowo, Surabaya</p>
-                            <p class="fw-normal text-secondary" style="font-size: 12px; position: absolute; left: 12px; margin-top: 180px;">Fasilitas Kost 1 AC | 1 Kasur | Kamar Mandi...</p>
-                            <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 12px; margin-top: 200px;">Rp. 2.400.000<span class="text-secondary" style="font-size: 14px;">/bln</span></p>
-                            <a type="submit" style="position: absolute; right: 6px; margin-top: 200px; width: 80px; height: 26px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; text-align: center; border-radius: 6px; border: 1px solid #9b59b6; font-size: 14px;">Lihat</a>
-                            <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 14px; right: 12px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                        </div>
-                    </div>
-                    <div x-show="filter == 'bulanan'">
-                        <div class="custom-card" style="width: 19rem; height: 14.8rem; border-radius: 10px; border: 1px solid #ccc; margin-bottom: 1rem; position: relative;">
-                            <img src="{{ asset('img/kamarkostputri3.jpg') }}" style="width: 288px; height: 140px; position: absolute; left: 7px; margin-top: 10px; border-radius: 4px;">
-                            <a type="submit" style="position: absolute; left: 12px; width: 100px; height: 26px; background-color: white; opacity: 0.7; color: #9370DB; margin-top: 118px; text-align: center; border-radius: 4px;">5 x 5 meter</a>
-                            <p class="fw-medium" style="font-size: 14px; position: absolute; left: 12px; margin-top: 160px;"><i class="bi bi-geo-alt-fill text-danger"></i> Kecamatan Benowo, Surabaya</p>
-                            <p class="fw-normal text-secondary" style="font-size: 12px; position: absolute; left: 12px; margin-top: 180px;">Fasilitas Kost 1 AC | 1 Kasur | Kamar Mandi...</p>
-                            <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 12px; margin-top: 200px;">Rp. 2.450.000<span class="text-secondary" style="font-size: 14px;">/bln</span></p>
-                            <a type="submit" style="position: absolute; right: 6px; margin-top: 200px; width: 80px; height: 26px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; text-align: center; border-radius: 6px; border: 1px solid #9b59b6; font-size: 14px;">Lihat</a>
-                            <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 14px; right: 12px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                        </div>
-                    </div>
-                    <div x-show="filter == 'bulanan'">
-                        <div class="custom-card" style="width: 19rem; height: 14.8rem; border-radius: 10px; border: 1px solid #ccc; margin-bottom: 1rem; position: relative;">
-                            <img src="{{ asset('img/kamarkostputri4.jpg') }}" style="width: 288px; height: 140px; position: absolute; left: 7px; margin-top: 10px; border-radius: 4px;">
-                            <a type="submit" style="position: absolute; left: 12px; width: 100px; height: 26px; background-color: white; opacity: 0.7; color: #9370DB; margin-top: 118px; text-align: center; border-radius: 4px;">4 x 6 meter</a>
-                            <p class="fw-medium" style="font-size: 14px; position: absolute; left: 12px; margin-top: 160px;"><i class="bi bi-geo-alt-fill text-danger"></i> Kecamatan Bubutan, Surabaya</p>
-                            <p class="fw-normal text-secondary" style="font-size: 12px; position: absolute; left: 12px; margin-top: 180px;">Fasilitas Kost 1 AC | 1 Kasur | Kamar Mandi...</p>
-                            <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 12px; margin-top: 200px;">Rp. 2.550.000<span class="text-secondary" style="font-size: 14px;">/bln</span></p>
-                            <a type="submit" style="position: absolute; right: 6px; margin-top: 200px; width: 80px; height: 26px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; text-align: center; border-radius: 6px; border: 1px solid #9b59b6; font-size: 14px;">Lihat</a>
-                            <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 14px; right: 12px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                        </div>
-                    </div>
-                    <div x-show="filter == 'bulanan'">
-                        <div class="custom-card" style="width: 19rem; height: 14.8rem; border-radius: 10px; border: 1px solid #ccc; margin-bottom: 1rem; position: relative;">
-                            <img src="{{ asset('img/kamarkostputri5.jpg') }}" style="width: 288px; height: 140px; position: absolute; left: 7px; margin-top: 10px; border-radius: 4px;">
-                            <a type="submit" style="position: absolute; left: 12px; width: 100px; height: 26px; background-color: white; opacity: 0.7; color: #9370DB; margin-top: 118px; text-align: center; border-radius: 4px;">6 x 7 meter</a>
-                            <p class="fw-medium" style="font-size: 14px; position: absolute; left: 12px; margin-top: 160px;"><i class="bi bi-geo-alt-fill text-danger"></i> Kecamatan Bulak, Surabaya</p>
-                            <p class="fw-normal text-secondary" style="font-size: 12px; position: absolute; left: 12px; margin-top: 180px;">Fasilitas Kost 1 AC | 1 Kasur | Kamar Mandi...</p>
-                            <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 12px; margin-top: 200px;">Rp. 2.750.000<span class="text-secondary" style="font-size: 14px;">/bln</span></p>
-                            <a type="submit" style="position: absolute; right: 6px; margin-top: 200px; width: 80px; height: 26px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; text-align: center; border-radius: 6px; border: 1px solid #9b59b6; font-size: 14px;">Lihat</a>
-                            <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 14px; right: 12px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                        </div>
-                    </div>
-                    <div x-show="filter == 'harian'">
-                        <div class="custom-card" style="width: 19rem; height: 14.8rem; border-radius: 10px; border: 1px solid #ccc; margin-bottom: 1rem; position: relative;">
-                            <img src="{{ asset('img/kamarkostputri1.jpg') }}" style="width: 288px; height: 140px; position: absolute; left: 7px; margin-top: 10px; border-radius: 4px;">
-                            <a type="submit" style="position: absolute; left: 12px; width: 100px; height: 26px; background-color: white; opacity: 0.7; color: #9370DB; margin-top: 118px; text-align: center; border-radius: 4px;">4 x 4 meter</a>
-                            <p class="fw-medium" style="font-size: 14px; position: absolute; left: 12px; margin-top: 160px;"><i class="bi bi-geo-alt-fill text-danger"></i> Kecamatan Jambangan, Surabaya</p>
-                            <p class="fw-normal text-secondary" style="font-size: 12px; position: absolute; left: 12px; margin-top: 180px;">Fasilitas Kost 1 AC | 1 Kasur | Kamar Mandi...</p>
-                            <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 12px; margin-top: 200px;">Rp. 500.000<span class="text-secondary" style="font-size: 14px;">/hrn</span></p>
-                            <a type="submit" style="position: absolute; right: 6px; margin-top: 200px; width: 80px; height: 26px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; text-align: center; border-radius: 6px; border: 1px solid #9b59b6; font-size: 14px;">Lihat</a>
-                            <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 14px; right: 12px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                        </div>
-                    </div>
-                    <div x-show="filter == 'harian'">
-                        <div class="custom-card" style="width: 19rem; height: 14.8rem; border-radius: 10px; border: 1px solid #ccc; margin-bottom: 1rem; position: relative;">
-                            <img src="{{ asset('img/kamarkostputri2.jpg') }}" style="width: 288px; height: 140px; position: absolute; left: 7px; margin-top: 10px; border-radius: 4px;">
-                            <a type="submit" style="position: absolute; left: 12px; width: 100px; height: 26px; background-color: white; opacity: 0.7; color: #9370DB; margin-top: 118px; text-align: center; border-radius: 4px;">5 x 6 meter</a>
-                            <p class="fw-medium" style="font-size: 14px; position: absolute; left: 12px; margin-top: 160px;"><i class="bi bi-geo-alt-fill text-danger"></i> Kecamatan Asemrowo, Surabaya</p>
-                            <p class="fw-normal text-secondary" style="font-size: 12px; position: absolute; left: 12px; margin-top: 180px;">Fasilitas Kost 1 AC | 1 Kasur | Kamar Mandi...</p>
-                            <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 12px; margin-top: 200px;">Rp. 450.000<span class="text-secondary" style="font-size: 14px;">/hrn</span></p>
-                            <a type="submit" style="position: absolute; right: 6px; margin-top: 200px; width: 80px; height: 26px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; text-align: center; border-radius: 6px; border: 1px solid #9b59b6; font-size: 14px;">Lihat</a>
-                            <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 14px; right: 12px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                        </div>
-                    </div>
-                    <div x-show="filter == 'harian'">
-                        <div class="custom-card" style="width: 19rem; height: 14.8rem; border-radius: 10px; border: 1px solid #ccc; margin-bottom: 1rem; position: relative;">
-                            <img src="{{ asset('img/kamarkostputri3.jpg') }}" style="width: 288px; height: 140px; position: absolute; left: 7px; margin-top: 10px; border-radius: 4px;">
-                            <a type="submit" style="position: absolute; left: 12px; width: 100px; height: 26px; background-color: white; opacity: 0.7; color: #9370DB; margin-top: 118px; text-align: center; border-radius: 4px;">5 x 5 meter</a>
-                            <p class="fw-medium" style="font-size: 14px; position: absolute; left: 12px; margin-top: 160px;"><i class="bi bi-geo-alt-fill text-danger"></i> Kecamatan Benowo, Surabaya</p>
-                            <p class="fw-normal text-secondary" style="font-size: 12px; position: absolute; left: 12px; margin-top: 180px;">Fasilitas Kost 1 AC | 1 Kasur | Kamar Mandi...</p>
-                            <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 12px; margin-top: 200px;">Rp. 550.000<span class="text-secondary" style="font-size: 14px;">/hrn</span></p>
-                            <a type="submit" style="position: absolute; right: 6px; margin-top: 200px; width: 80px; height: 26px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; text-align: center; border-radius: 6px; border: 1px solid #9b59b6; font-size: 14px;">Lihat</a>
-                            <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 14px; right: 12px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                        </div>
-                    </div>
-                    <div x-show="filter == 'harian'">
-                        <div class="custom-card" style="width: 19rem; height: 14.8rem; border-radius: 10px; border: 1px solid #ccc; margin-bottom: 1rem; position: relative;">
-                            <img src="{{ asset('img/kamarkostputri4.jpg') }}" style="width: 288px; height: 140px; position: absolute; left: 7px; margin-top: 10px; border-radius: 4px;">
-                            <a type="submit" style="position: absolute; left: 12px; width: 100px; height: 26px; background-color: white; opacity: 0.7; color: #9370DB; margin-top: 118px; text-align: center; border-radius: 4px;">4 x 6 meter</a>
-                            <p class="fw-medium" style="font-size: 14px; position: absolute; left: 12px; margin-top: 160px;"><i class="bi bi-geo-alt-fill text-danger"></i> Kecamatan Bubutan, Surabaya</p>
-                            <p class="fw-normal text-secondary" style="font-size: 12px; position: absolute; left: 12px; margin-top: 180px;">Fasilitas Kost 1 AC | 1 Kasur | Kamar Mandi...</p>
-                            <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 12px; margin-top: 200px;">Rp. 560.000<span class="text-secondary" style="font-size: 14px;">/hrn</span></p>
-                            <a type="submit" style="position: absolute; right: 6px; margin-top: 200px; width: 80px; height: 26px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; text-align: center; border-radius: 6px; border: 1px solid #9b59b6; font-size: 14px;">Lihat</a>
-                            <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 14px; right: 12px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                        </div>
-                    </div>
-                    <div x-show="filter == 'harian'">
-                        <div class="custom-card" style="width: 19rem; height: 14.8rem; border-radius: 10px; border: 1px solid #ccc; margin-bottom: 1rem; position: relative;">
-                            <img src="{{ asset('img/kamarkostputri5.jpg') }}" style="width: 288px; height: 140px; position: absolute; left: 7px; margin-top: 10px; border-radius: 4px;">
-                            <a type="submit" style="position: absolute; left: 12px; width: 100px; height: 26px; background-color: white; opacity: 0.7; color: #9370DB; margin-top: 118px; text-align: center; border-radius: 4px;">6 x 7 meter</a>
-                            <p class="fw-medium" style="font-size: 14px; position: absolute; left: 12px; margin-top: 160px;"><i class="bi bi-geo-alt-fill text-danger"></i> Kecamatan Bulak, Surabaya</p>
-                            <p class="fw-normal text-secondary" style="font-size: 12px; position: absolute; left: 12px; margin-top: 180px;">Fasilitas Kost 1 AC | 1 Kasur | Kamar Mandi...</p>
-                            <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 12px; margin-top: 200px;">Rp. 490.000<span class="text-secondary" style="font-size: 14px;">/hrn</span></p>
-                            <a type="submit" style="position: absolute; right: 6px; margin-top: 200px; width: 80px; height: 26px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; text-align: center; border-radius: 6px; border: 1px solid #9b59b6; font-size: 14px;">Lihat</a>
-                            <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 14px; right: 12px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 d-flex gap-2">
-                    <!-- Your second set of cards -->
-                    <div x-show="filter == 'bulanan'">
-                        <div class="custom-card" style="width: 19rem; height: 14.8rem; border-radius: 10px; border: 1px solid #ccc; margin-bottom: 1rem; position: relative;">
-                            <img src="{{ asset('img/kamarkostputriharian1.jpg') }}" style="width: 288px; height: 140px; position: absolute; left: 7px; margin-top: 10px; border-radius: 4px;">
-                            <a type="submit" style="position: absolute; left: 12px; width: 100px; height: 26px; background-color: white; opacity: 0.7; color: #9370DB; margin-top: 118px; text-align: center; border-radius: 4px;">4 x 4 meter</a>
-                            <p class="fw-medium" style="font-size: 14px; position: absolute; left: 12px; margin-top: 160px;"><i class="bi bi-geo-alt-fill text-danger"></i> Kecamatan Jambangan, Surabaya</p>
-                            <p class="fw-normal text-secondary" style="font-size: 12px; position: absolute; left: 12px; margin-top: 180px;">Fasilitas Kost 1 AC | 1 Kasur | Kamar Mandi...</p>
-                            <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 12px; margin-top: 200px;">Rp. 2.000.000<span class="text-secondary" style="font-size: 14px;">/bln</span></p>
-                            <a type="submit" style="position: absolute; right: 6px; margin-top: 200px; width: 80px; height: 26px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; text-align: center; border-radius: 6px; border: 1px solid #9b59b6; font-size: 14px;">Lihat</a>
-                            <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 14px; right: 12px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                        </div>
-                    </div>
-                    <div x-show="filter == 'bulanan'">
-                        <div class="custom-card" style="width: 19rem; height: 14.8rem; border-radius: 10px; border: 1px solid #ccc; margin-bottom: 1rem; position: relative;">
-                            <img src="{{ asset('img/kamarkostputriharian2.jpg') }}" style="width: 288px; height: 140px; position: absolute; left: 7px; margin-top: 10px; border-radius: 4px;">
-                            <a type="submit" style="position: absolute; left: 12px; width: 100px; height: 26px; background-color: white; opacity: 0.7; color: #9370DB; margin-top: 118px; text-align: center; border-radius: 4px;">5 x 6 meter</a>
-                            <p class="fw-medium" style="font-size: 14px; position: absolute; left: 12px; margin-top: 160px;"><i class="bi bi-geo-alt-fill text-danger"></i> Kecamatan Asemrowo, Surabaya</p>
-                            <p class="fw-normal text-secondary" style="font-size: 12px; position: absolute; left: 12px; margin-top: 180px;">Fasilitas Kost 1 AC | 1 Kasur | Kamar Mandi...</p>
-                            <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 12px; margin-top: 200px;">Rp. 2.400.000<span class="text-secondary" style="font-size: 14px;">/bln</span></p>
-                            <a type="submit" style="position: absolute; right: 6px; margin-top: 200px; width: 80px; height: 26px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; text-align: center; border-radius: 6px; border: 1px solid #9b59b6; font-size: 14px;">Lihat</a>
-                            <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 14px; right: 12px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                        </div>
-                    </div>
-                    <div x-show="filter == 'bulanan'">
-                        <div class="custom-card" style="width: 19rem; height: 14.8rem; border-radius: 10px; border: 1px solid #ccc; margin-bottom: 1rem; position: relative;">
-                            <img src="{{ asset('img/kamarkostputriharian3.jpg') }}" style="width: 288px; height: 140px; position: absolute; left: 7px; margin-top: 10px; border-radius: 4px;">
-                            <a type="submit" style="position: absolute; left: 12px; width: 100px; height: 26px; background-color: white; opacity: 0.7; color: #9370DB; margin-top: 118px; text-align: center; border-radius: 4px;">5 x 5 meter</a>
-                            <p class="fw-medium" style="font-size: 14px; position: absolute; left: 12px; margin-top: 160px;"><i class="bi bi-geo-alt-fill text-danger"></i> Kecamatan Benowo, Surabaya</p>
-                            <p class="fw-normal text-secondary" style="font-size: 12px; position: absolute; left: 12px; margin-top: 180px;">Fasilitas Kost 1 AC | 1 Kasur | Kamar Mandi...</p>
-                            <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 12px; margin-top: 200px;">Rp. 2.450.000<span class="text-secondary" style="font-size: 14px;">/bln</span></p>
-                            <a type="submit" style="position: absolute; right: 6px; margin-top: 200px; width: 80px; height: 26px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; text-align: center; border-radius: 6px; border: 1px solid #9b59b6; font-size: 14px;">Lihat</a>
-                            <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 14px; right: 12px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                        </div>
-                    </div>
-                    <div x-show="filter == 'bulanan'">
-                        <div class="custom-card" style="width: 19rem; height: 14.8rem; border-radius: 10px; border: 1px solid #ccc; margin-bottom: 1rem; position: relative;">
-                            <img src="{{ asset('img/kamarkostputriharian4.jpg') }}" style="width: 288px; height: 140px; position: absolute; left: 7px; margin-top: 10px; border-radius: 4px;">
-                            <a type="submit" style="position: absolute; left: 12px; width: 100px; height: 26px; background-color: white; opacity: 0.7; color: #9370DB; margin-top: 118px; text-align: center; border-radius: 4px;">4 x 6 meter</a>
-                            <p class="fw-medium" style="font-size: 14px; position: absolute; left: 12px; margin-top: 160px;"><i class="bi bi-geo-alt-fill text-danger"></i> Kecamatan Bubutan, Surabaya</p>
-                            <p class="fw-normal text-secondary" style="font-size: 12px; position: absolute; left: 12px; margin-top: 180px;">Fasilitas Kost 1 AC | 1 Kasur | Kamar Mandi...</p>
-                            <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 12px; margin-top: 200px;">Rp. 2.550.000<span class="text-secondary" style="font-size: 14px;">/bln</span></p>
-                            <a type="submit" style="position: absolute; right: 6px; margin-top: 200px; width: 80px; height: 26px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; text-align: center; border-radius: 6px; border: 1px solid #9b59b6; font-size: 14px;">Lihat</a>
-                            <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 14px; right: 12px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                        </div>
-                    </div>
-                    <div x-show="filter == 'bulanan'">
-                        <div class="custom-card" style="width: 19rem; height: 14.8rem; border-radius: 10px; border: 1px solid #ccc; margin-bottom: 1rem; position: relative;">
-                            <img src="{{ asset('img/kamarkostputriharian5.jpg') }}" style="width: 288px; height: 140px; position: absolute; left: 7px; margin-top: 10px; border-radius: 4px;">
-                            <a type="submit" style="position: absolute; left: 12px; width: 100px; height: 26px; background-color: white; opacity: 0.7; color: #9370DB; margin-top: 118px; text-align: center; border-radius: 4px;">6 x 7 meter</a>
-                            <p class="fw-medium" style="font-size: 14px; position: absolute; left: 12px; margin-top: 160px;"><i class="bi bi-geo-alt-fill text-danger"></i> Kecamatan Bulak, Surabaya</p>
-                            <p class="fw-normal text-secondary" style="font-size: 12px; position: absolute; left: 12px; margin-top: 180px;">Fasilitas Kost 1 AC | 1 Kasur | Kamar Mandi...</p>
-                            <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 12px; margin-top: 200px;">Rp. 2.750.000<span class="text-secondary" style="font-size: 14px;">/bln</span></p>
-                            <a type="submit" style="position: absolute; right: 6px; margin-top: 200px; width: 80px; height: 26px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; text-align: center; border-radius: 6px; border: 1px solid #9b59b6; font-size: 14px;">Lihat</a>
-                            <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 14px; right: 12px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                        </div>
-                    </div>
-                    <div x-show="filter == 'harian'">
-                        <div class="custom-card" style="width: 19rem; height: 14.8rem; border-radius: 10px; border: 1px solid #ccc; margin-bottom: 1rem; position: relative;">
-                            <img src="{{ asset('img/kamarkostputriharian1.jpg') }}" style="width: 288px; height: 140px; position: absolute; left: 7px; margin-top: 10px; border-radius: 4px;">
-                            <a type="submit" style="position: absolute; left: 12px; width: 100px; height: 26px; background-color: white; opacity: 0.7; color: #9370DB; margin-top: 118px; text-align: center; border-radius: 4px;">4 x 4 meter</a>
-                            <p class="fw-medium" style="font-size: 14px; position: absolute; left: 12px; margin-top: 160px;"><i class="bi bi-geo-alt-fill text-danger"></i> Kecamatan Jambangan, Surabaya</p>
-                            <p class="fw-normal text-secondary" style="font-size: 12px; position: absolute; left: 12px; margin-top: 180px;">Fasilitas Kost 1 AC | 1 Kasur | Kamar Mandi...</p>
-                            <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 12px; margin-top: 200px;">Rp. 500.000<span class="text-secondary" style="font-size: 14px;">/hrn</span></p>
-                            <a type="submit" style="position: absolute; right: 6px; margin-top: 200px; width: 80px; height: 26px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; text-align: center; border-radius: 6px; border: 1px solid #9b59b6; font-size: 14px;">Lihat</a>
-                            <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 14px; right: 12px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                        </div>
-                    </div>
-                    <div x-show="filter == 'harian'">
-                        <div class="custom-card" style="width: 19rem; height: 14.8rem; border-radius: 10px; border: 1px solid #ccc; margin-bottom: 1rem; position: relative;">
-                            <img src="{{ asset('img/kamarkostputriharian2.jpg') }}" style="width: 288px; height: 140px; position: absolute; left: 7px; margin-top: 10px; border-radius: 4px;">
-                            <a type="submit" style="position: absolute; left: 12px; width: 100px; height: 26px; background-color: white; opacity: 0.7; color: #9370DB; margin-top: 118px; text-align: center; border-radius: 4px;">5 x 6 meter</a>
-                            <p class="fw-medium" style="font-size: 14px; position: absolute; left: 12px; margin-top: 160px;"><i class="bi bi-geo-alt-fill text-danger"></i> Kecamatan Asemrowo, Surabaya</p>
-                            <p class="fw-normal text-secondary" style="font-size: 12px; position: absolute; left: 12px; margin-top: 180px;">Fasilitas Kost 1 AC | 1 Kasur | Kamar Mandi...</p>
-                            <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 12px; margin-top: 200px;">Rp. 570.000<span class="text-secondary" style="font-size: 14px;">/hrn</span></p>
-                            <a type="submit" style="position: absolute; right: 6px; margin-top: 200px; width: 80px; height: 26px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; text-align: center; border-radius: 6px; border: 1px solid #9b59b6; font-size: 14px;">Lihat</a>
-                            <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 14px; right: 12px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                        </div>
-                    </div>
-                    <div x-show="filter == 'harian'">
-                        <div class="custom-card" style="width: 19rem; height: 14.8rem; border-radius: 10px; border: 1px solid #ccc; margin-bottom: 1rem; position: relative;">
-                            <img src="{{ asset('img/kamarkostputriharian3.jpg') }}" style="width: 288px; height: 140px; position: absolute; left: 7px; margin-top: 10px; border-radius: 4px;">
-                            <a type="submit" style="position: absolute; left: 12px; width: 100px; height: 26px; background-color: white; opacity: 0.7; color: #9370DB; margin-top: 118px; text-align: center; border-radius: 4px;">5 x 5 meter</a>
-                            <p class="fw-medium" style="font-size: 14px; position: absolute; left: 12px; margin-top: 160px;"><i class="bi bi-geo-alt-fill text-danger"></i> Kecamatan Benowo, Surabaya</p>
-                            <p class="fw-normal text-secondary" style="font-size: 12px; position: absolute; left: 12px; margin-top: 180px;">Fasilitas Kost 1 AC | 1 Kasur | Kamar Mandi...</p>
-                            <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 12px; margin-top: 200px;">Rp. 580.000<span class="text-secondary" style="font-size: 14px;">/hrn</span></p>
-                            <a type="submit" style="position: absolute; right: 6px; margin-top: 200px; width: 80px; height: 26px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; text-align: center; border-radius: 6px; border: 1px solid #9b59b6; font-size: 14px;">Lihat</a>
-                            <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 14px; right: 12px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                        </div>
-                    </div>
-                    <div x-show="filter == 'harian'">
-                        <div class="custom-card" style="width: 19rem; height: 14.8rem; border-radius: 10px; border: 1px solid #ccc; margin-bottom: 1rem; position: relative;">
-                            <img src="{{ asset('img/kamarkostputriharian4.jpg') }}" style="width: 288px; height: 140px; position: absolute; left: 7px; margin-top: 10px; border-radius: 4px;">
-                            <a type="submit" style="position: absolute; left: 12px; width: 100px; height: 26px; background-color: white; opacity: 0.7; color: #9370DB; margin-top: 118px; text-align: center; border-radius: 4px;">4 x 6 meter</a>
-                            <p class="fw-medium" style="font-size: 14px; position: absolute; left: 12px; margin-top: 160px;"><i class="bi bi-geo-alt-fill text-danger"></i> Kecamatan Bubutan, Surabaya</p>
-                            <p class="fw-normal text-secondary" style="font-size: 12px; position: absolute; left: 12px; margin-top: 180px;">Fasilitas Kost 1 AC | 1 Kasur | Kamar Mandi...</p>
-                            <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 12px; margin-top: 200px;">Rp. 600.000<span class="text-secondary" style="font-size: 14px;">/hrn</span></p>
-                            <a type="submit" style="position: absolute; right: 6px; margin-top: 200px; width: 80px; height: 26px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; text-align: center; border-radius: 6px; border: 1px solid #9b59b6; font-size: 14px;">Lihat</a>
-                            <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 14px; right: 12px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                        </div>
-                    </div>
-                    <div x-show="filter == 'harian'">
-                        <div class="custom-card" style="width: 19rem; height: 14.8rem; border-radius: 10px; border: 1px solid #ccc; margin-bottom: 1rem; position: relative;">
-                            <img src="{{ asset('img/kamarkostputriharian5.jpg') }}" style="width: 288px; height: 140px; position: absolute; left: 7px; margin-top: 10px; border-radius: 4px;">
-                            <a type="submit" style="position: absolute; left: 12px; width: 100px; height: 26px; background-color: white; opacity: 0.7; color: #9370DB; margin-top: 118px; text-align: center; border-radius: 4px;">6 x 7 meter</a>
-                            <p class="fw-medium" style="font-size: 14px; position: absolute; left: 12px; margin-top: 160px;"><i class="bi bi-geo-alt-fill text-danger"></i> Kecamatan Bulak, Surabaya</p>
-                            <p class="fw-normal text-secondary" style="font-size: 12px; position: absolute; left: 12px; margin-top: 180px;">Fasilitas Kost 1 AC | 1 Kasur | Kamar Mandi...</p>
-                            <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 12px; margin-top: 200px;">Rp. 750.000<span class="text-secondary" style="font-size: 14px;">/hrn</span></p>
-                            <a type="submit" style="position: absolute; right: 6px; margin-top: 200px; width: 80px; height: 26px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; text-align: center; border-radius: 6px; border: 1px solid #9b59b6; font-size: 14px;">Lihat</a>
-                            <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 14px; right: 12px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {{-- <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-top: -10px;">
-                <div x-show="filter == 'bulanan'">
-                    <div class="custom-card" style="width: 21rem; height: 14.8rem; border-radius: 10px; border: 1px solid #ccc; margin-bottom: 1rem; position: relative;">
-                        <img src="{{ asset('img/kamarkostputri1.jpg') }}" style="width: 320px; height: 140px; position: absolute; left: 7px; margin-top: 10px; border-radius: 4px;">
-                        <a type="submit" style="position: absolute; left: 12px; width: 100px; height: 26px; background-color: white; opacity: 0.7; color: #9370DB; margin-top: 118px; text-align: center; border-radius: 4px;">4 x 4 meter</a>
-                        <p class="fw-medium" style="font-size: 14px; position: absolute; left: 12px; margin-top: 160px;"><i class="bi bi-geo-alt-fill text-danger"></i> Kecamatan Jambangan, Surabaya</p>
-                        <p class="fw-normal text-secondary" style="font-size: 12px; position: absolute; left: 12px; margin-top: 180px;">Fasilitas Kost 1 AC | 1 Kasur | Kamar Mandri Dalam...</p>
-                        <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 12px; margin-top: 200px;">Rp.2.000.000<span class="text-secondary" style="font-size: 14px;">/bulan</span></p>
-                        <a type="submit" style="position: absolute; right: 12px; margin-top: 200px; width: 80px; height: 26px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; text-align: center; border-radius: 6px; border: 1px solid #9b59b6; font-size: 14px;">Lihat</a>
-                        <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 14px; right: 12px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                    </div>
-                </div>
-                <div x-show="filter == 'semua'">
-                    <div class="custom-card" style="width: 21rem; height: 14.8rem; border-radius: 10px; border: 1px solid #ccc; margin-bottom: 1rem; position: relative;">
-                        <img src="{{ asset('img/kamarkostputri2.jpg') }}" style="width: 320px; height: 140px; position: absolute; left: 7px; margin-top: 10px; border-radius: 4px;">
-                        <a type="submit" style="position: absolute; left: 12px; width: 100px; height: 26px; background-color: white; opacity: 0.7; color: #9370DB; margin-top: 118px; text-align: center; border-radius: 4px;">5 x 6 meter</a>
-                        <p class="fw-medium" style="font-size: 14px; position: absolute; left: 12px; margin-top: 160px;"><i class="bi bi-geo-alt-fill text-danger"></i> Kecamatan Asemrowo, Surabaya</p>
-                        <p class="fw-normal text-secondary" style="font-size: 12px; position: absolute; left: 12px; margin-top: 180px;">Fasilitas Kost 1 AC | 1 Kasur | Kamar Mandri Dalam...</p>
-                        <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 12px; margin-top: 200px;">Rp.2.400.000<span class="text-secondary" style="font-size: 14px;">/bulan</span></p>
-                        <a type="submit" style="position: absolute; right: 12px; margin-top: 200px; width: 80px; height: 26px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; text-align: center; border-radius: 6px; border: 1px solid #9b59b6; font-size: 14px;">Lihat</a>
-                        <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 14px; right: 12px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                    </div>
-                </div>
-                <div x-show="filter == 'semua'">
-                    <div class="custom-card" style="width: 21rem; height: 14.8rem; border-radius: 10px; border: 1px solid #ccc; margin-bottom: 1rem; position: relative;">
-                        <img src="{{ asset('img/kamarkostputri3.jpg') }}" style="width: 320px; height: 140px; position: absolute; left: 7px; margin-top: 10px; border-radius: 4px;">
-                        <a type="submit" style="position: absolute; left: 12px; width: 100px; height: 26px; background-color: white; opacity: 0.7; color: #9370DB; margin-top: 118px; text-align: center; border-radius: 4px;">5 x 5 meter</a>
-                        <p class="fw-medium" style="font-size: 14px; position: absolute; left: 12px; margin-top: 160px;"><i class="bi bi-geo-alt-fill text-danger"></i> Kecamatan Benowo, Surabaya</p>
-                        <p class="fw-normal text-secondary" style="font-size: 12px; position: absolute; left: 12px; margin-top: 180px;">Fasilitas Kost 1 AC | 1 Kasur | Kamar Mandri Dalam...</p>
-                        <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 12px; margin-top: 200px;">Rp.2.450.000<span class="text-secondary" style="font-size: 14px;">/bulan</span></p>
-                        <a type="submit" style="position: absolute; right: 12px; margin-top: 200px; width: 80px; height: 26px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; text-align: center; border-radius: 6px; border: 1px solid #9b59b6; font-size: 14px;">Lihat</a>
-                        <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 14px; right: 12px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                    </div>
-                </div>
-                <div x-show="filter == 'semua'">
-                    <div class="custom-card" style="width: 21rem; height: 14.8rem; border-radius: 10px; border: 1px solid #ccc; margin-bottom: 1rem; position: relative;">
-                        <img src="{{ asset('img/kamarkostputri4.jpg') }}" style="width: 320px; height: 140px; position: absolute; left: 7px; margin-top: 10px; border-radius: 4px;">
-                        <a type="submit" style="position: absolute; left: 12px; width: 100px; height: 26px; background-color: white; opacity: 0.7; color: #9370DB; margin-top: 118px; text-align: center; border-radius: 4px;">4 x 6 meter</a>
-                        <p class="fw-medium" style="font-size: 14px; position: absolute; left: 12px; margin-top: 160px;"><i class="bi bi-geo-alt-fill text-danger"></i> Kecamatan Bubutan, Surabaya</p>
-                        <p class="fw-normal text-secondary" style="font-size: 12px; position: absolute; left: 12px; margin-top: 180px;">Fasilitas Kost 1 AC | 1 Kasur | Kamar Mandri Dalam...</p>
-                        <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 12px; margin-top: 200px;">Rp.2.550.000<span class="text-secondary" style="font-size: 14px;">/bulan</span></p>
-                        <a type="submit" style="position: absolute; right: 12px; margin-top: 200px; width: 80px; height: 26px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; text-align: center; border-radius: 6px; border: 1px solid #9b59b6; font-size: 14px;">Lihat</a>
-                        <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 14px; right: 12px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                    </div>
-                </div>
-                <div x-show="filter == 'semua'">
-                    <div class="custom-card" style="width: 21rem; height: 14.8rem; border-radius: 10px; border: 1px solid #ccc; margin-bottom: 1rem; position: relative;">
-                        <img src="{{ asset('img/kamarkostputri5.jpg') }}" style="width: 320px; height: 140px; position: absolute; left: 7px; margin-top: 10px; border-radius: 4px;">
-                        <a type="submit" style="position: absolute; left: 12px; width: 100px; height: 26px; background-color: white; opacity: 0.7; color: #9370DB; margin-top: 118px; text-align: center; border-radius: 4px;">6 x 7 meter</a>
-                        <p class="fw-medium" style="font-size: 14px; position: absolute; left: 12px; margin-top: 160px;"><i class="bi bi-geo-alt-fill text-danger"></i> Kecamatan Bulak, Surabaya</p>
-                        <p class="fw-normal text-secondary" style="font-size: 12px; position: absolute; left: 12px; margin-top: 180px;">Fasilitas Kost 1 AC | 1 Kasur | Kamar Mandri Dalam...</p>
-                        <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 12px; margin-top: 200px;">Rp.2.750.000<span class="text-secondary" style="font-size: 14px;">/bulan</span></p>
-                        <a type="submit" style="position: absolute; right: 12px; margin-top: 200px; width: 80px; height: 26px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; text-align: center; border-radius: 6px; border: 1px solid #9b59b6; font-size: 14px;">Lihat</a>
-                        <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 14px; right: 12px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay;">
-                <div x-show="filter == 'semua'">
-                    <div class="custom-card" style="width: 21rem; height: 14.8rem; border-radius: 10px; border: 1px solid #ccc; margin-bottom: 1rem; position: relative;">
-                        <img src="{{ asset('img/kamarkostputriharian1.jpg') }}" style="width: 320px; height: 140px; position: absolute; left: 7px; margin-top: 10px; border-radius: 4px;">
-                        <a type="submit" style="position: absolute; left: 12px; width: 100px; height: 26px; background-color: white; opacity: 0.7; color: #9370DB; margin-top: 118px; text-align: center; border-radius: 4px;">4 x 4 meter</a>
-                        <p class="fw-medium" style="font-size: 14px; position: absolute; left: 12px; margin-top: 160px;"><i class="bi bi-geo-alt-fill text-danger"></i> Kecamatan Jambangan, Surabaya</p>
-                        <p class="fw-normal text-secondary" style="font-size: 12px; position: absolute; left: 12px; margin-top: 180px;">Fasilitas Kost 1 AC | 1 Kasur | Kamar Mandri Dalam...</p>
-                        <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 12px; margin-top: 200px;">Rp.2.000.000<span class="text-secondary" style="font-size: 14px;">/bulan</span></p>
-                        <a type="submit" style="position: absolute; right: 12px; margin-top: 200px; width: 80px; height: 26px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; text-align: center; border-radius: 6px; border: 1px solid #9b59b6; font-size: 14px;">Lihat</a>
-                        <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 14px; right: 12px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                    </div>
-                </div>
-                <div x-show="filter == 'semua'">
-                    <div class="custom-card" style="width: 21rem; height: 14.8rem; border-radius: 10px; border: 1px solid #ccc; margin-bottom: 1rem; position: relative;">
-                        <img src="{{ asset('img/kamarkostputriharian2.jpg') }}" style="width: 320px; height: 140px; position: absolute; left: 7px; margin-top: 10px; border-radius: 4px;">
-                        <a type="submit" style="position: absolute; left: 12px; width: 100px; height: 26px; background-color: white; opacity: 0.7; color: #9370DB; margin-top: 118px; text-align: center; border-radius: 4px;">5 x 6 meter</a>
-                        <p class="fw-medium" style="font-size: 14px; position: absolute; left: 12px; margin-top: 160px;"><i class="bi bi-geo-alt-fill text-danger"></i> Kecamatan Asemrowo, Surabaya</p>
-                        <p class="fw-normal text-secondary" style="font-size: 12px; position: absolute; left: 12px; margin-top: 180px;">Fasilitas Kost 1 AC | 1 Kasur | Kamar Mandri Dalam...</p>
-                        <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 12px; margin-top: 200px;">Rp.2.400.000<span class="text-secondary" style="font-size: 14px;">/bulan</span></p>
-                        <a type="submit" style="position: absolute; right: 12px; margin-top: 200px; width: 80px; height: 26px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; text-align: center; border-radius: 6px; border: 1px solid #9b59b6; font-size: 14px;">Lihat</a>
-                        <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 14px; right: 12px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                    </div>
-                </div>
-                <div x-show="filter == 'semua'">
-                    <div class="custom-card" style="width: 21rem; height: 14.8rem; border-radius: 10px; border: 1px solid #ccc; margin-bottom: 1rem; position: relative;">
-                        <img src="{{ asset('img/kamarkostputriharian3.jpg') }}" style="width: 320px; height: 140px; position: absolute; left: 7px; margin-top: 10px; border-radius: 4px;">
-                        <a type="submit" style="position: absolute; left: 12px; width: 100px; height: 26px; background-color: white; opacity: 0.7; color: #9370DB; margin-top: 118px; text-align: center; border-radius: 4px;">5 x 5 meter</a>
-                        <p class="fw-medium" style="font-size: 14px; position: absolute; left: 12px; margin-top: 160px;"><i class="bi bi-geo-alt-fill text-danger"></i> Kecamatan Benowo, Surabaya</p>
-                        <p class="fw-normal text-secondary" style="font-size: 12px; position: absolute; left: 12px; margin-top: 180px;">Fasilitas Kost 1 AC | 1 Kasur | Kamar Mandri Dalam...</p>
-                        <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 12px; margin-top: 200px;">Rp.2.450.000<span class="text-secondary" style="font-size: 14px;">/bulan</span></p>
-                        <a type="submit" style="position: absolute; right: 12px; margin-top: 200px; width: 80px; height: 26px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; text-align: center; border-radius: 6px; border: 1px solid #9b59b6; font-size: 14px;">Lihat</a>
-                        <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 14px; right: 12px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                    </div>
-                </div>
-                <div x-show="filter == 'semua'">
-                    <div class="custom-card" style="width: 21rem; height: 14.8rem; border-radius: 10px; border: 1px solid #ccc; margin-bottom: 1rem; position: relative;">
-                        <img src="{{ asset('img/kamarkostputriharian4.jpg') }}" style="width: 320px; height: 140px; position: absolute; left: 7px; margin-top: 10px; border-radius: 4px;">
-                        <a type="submit" style="position: absolute; left: 12px; width: 100px; height: 26px; background-color: white; opacity: 0.7; color: #9370DB; margin-top: 118px; text-align: center; border-radius: 4px;">4 x 6 meter</a>
-                        <p class="fw-medium" style="font-size: 14px; position: absolute; left: 12px; margin-top: 160px;"><i class="bi bi-geo-alt-fill text-danger"></i> Kecamatan Bubutan, Surabaya</p>
-                        <p class="fw-normal text-secondary" style="font-size: 12px; position: absolute; left: 12px; margin-top: 180px;">Fasilitas Kost 1 AC | 1 Kasur | Kamar Mandri Dalam...</p>
-                        <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 12px; margin-top: 200px;">Rp.2.550.000<span class="text-secondary" style="font-size: 14px;">/bulan</span></p>
-                        <a type="submit" style="position: absolute; right: 12px; margin-top: 200px; width: 80px; height: 26px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; text-align: center; border-radius: 6px; border: 1px solid #9b59b6; font-size: 14px;">Lihat</a>
-                        <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 14px; right: 12px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                    </div>
-                </div>
-                <div x-show="filter == 'semua'">
-                    <div class="custom-card" style="width: 21rem; height: 14.8rem; border-radius: 10px; border: 1px solid #ccc; margin-bottom: 1rem; position: relative;">
-                        <img src="{{ asset('img/kamarkostputriharian5.jpg') }}" style="width: 320px; height: 140px; position: absolute; left: 7px; margin-top: 10px; border-radius: 4px;">
-                        <a type="submit" style="position: absolute; left: 12px; width: 100px; height: 26px; background-color: white; opacity: 0.7; color: #9370DB; margin-top: 118px; text-align: center; border-radius: 4px;">6 x 7 meter</a>
-                        <p class="fw-medium" style="font-size: 14px; position: absolute; left: 12px; margin-top: 160px;"><i class="bi bi-geo-alt-fill text-danger"></i> Kecamatan Bulak, Surabaya</p>
-                        <p class="fw-normal text-secondary" style="font-size: 12px; position: absolute; left: 12px; margin-top: 180px;">Fasilitas Kost 1 AC | 1 Kasur | Kamar Mandri Dalam...</p>
-                        <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; position: absolute; left: 12px; margin-top: 200px;">Rp.2.750.000<span class="text-secondary" style="font-size: 14px;">/bulan</span></p>
-                        <a type="submit" style="position: absolute; right: 12px; margin-top: 200px; width: 80px; height: 26px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; text-align: center; border-radius: 6px; border: 1px solid #9b59b6; font-size: 14px;">Lihat</a>
-                        <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 14px; right: 12px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <hr class="hr-3" style="margin-bottom: 1rem; margin-top: -0.2rem">
-        <div class="container">
-            <div class="row mt-3 mb-0" x-show="filter == 'harian'">
-                <div class="col-8">
-                    <h1 style="font-weight: 600; font-size: 16px; font-family: 'Poppins', sans-serif;">Kost Karyawan</h1>
-                </div>
-                <div class="col-4 text-end">
-                    <p class="fw-normal text-primary">Semua</p>
-                </div>
-            </div>
-            <div class="row mt-3 mb-0" x-show="filter == 'bulanan'">
-                <div class="col-8">
-                    <h1 style="font-weight: 600; font-size: 16px; font-family: 'Poppins', sans-serif;">Kost Karyawan</h1>
-                </div>
-                <div class="col-4 text-end">
-                    <p class="fw-normal text-primary">Semua</p>
-                </div>
-            </div>
-            <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-top: -10px;">
-                <div x-show="filter == 'bulanan'">
-                    <div class="custom-card" style="width: 16rem; height: 14rem; background-color: #b8a1ea; position: relative; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;">
-                        <img src="{{ asset('img/kamarkostputraharian1.jpg') }}" style="position: absolute; width: 256px; height: 140px; border-top-left-radius: 10px; border-top-right-radius: 10px;">
-                        <p class="fw-medium" style="font-size: 14px; position: absolute; bottom: 40px; left: 10px">Kamar Kost Putra Uk 6 x 7 M</p>
-                        <p class="fw-normal text-secondary-emphasis" style="font-size: 12px; position: absolute; bottom: 20px; left: 10px;"><i class="bi bi-geo-alt-fill" style="color: #9b59b6;"></i> Mulyorejo, Surabaya</p>
-                        <p class="fw-semibold" style="font-size: 16px; position: absolute; bottom: -4px; left: 10px; color: #fff;">Rp. 2.500.000<span class="text-white" style="font-size: 12px;">/bln</span></p>
-                        <a type="submit" style="width: 80px; height: 30px; text-align: center; position: absolute; bottom: 8px; right: 10px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; border-radius: 6px; font-size: 14px; padding: 4px;">Cek</a>
-                        <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 10px; right: 10px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                    </div>
-                </div>
-                <div x-show="filter == 'bulanan'">
-                    <div class="custom-card" style="width: 16rem; height: 14rem; background-color: #b8a1ea; position: relative; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;">
-                        <img src="{{ asset('img/kamarkostputraharian2.jpg') }}" style="position: absolute; width: 256px; height: 140px; border-top-left-radius: 10px; border-top-right-radius: 10px;">
-                        <p class="fw-medium" style="font-size: 14px; position: absolute; bottom: 40px; left: 10px">Kamar Kost Putra Uk 5 x 4 M</p>
-                        <p class="fw-normal text-secondary-emphasis" style="font-size: 12px; position: absolute; bottom: 20px; left: 10px;"><i class="bi bi-geo-alt-fill" style="color: #9b59b6;"></i> Jambangan, Surabaya</p>
-                        <p class="fw-semibold" style="font-size: 16px; position: absolute; bottom: -4px; left: 10px; color: #fff;">Rp. 2.450.000<span class="text-white" style="font-size: 12px;">/bln</span></p>
-                        <a type="submit" style="width: 80px; height: 30px; text-align: center; position: absolute; bottom: 8px; right: 10px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; border-radius: 6px; font-size: 14px; padding: 4px;">Cek</a>
-                        <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 10px; right: 10px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                    </div>
-                </div>
-                <div x-show="filter == 'bulanan'">
-                    <div class="custom-card" style="width: 16rem; height: 14rem; background-color: #b8a1ea; position: relative; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;">
-                        <img src="{{ asset('img/kamarkostputraharian3.jpg') }}" style="position: absolute; width: 256px; height: 140px; border-top-left-radius: 10px; border-top-right-radius: 10px;">
-                        <p class="fw-medium" style="font-size: 14px; position: absolute; bottom: 40px; left: 10px">Kamar Kost Putra Uk 6 x 5 M</p>
-                        <p class="fw-normal text-secondary-emphasis" style="font-size: 12px; position: absolute; bottom: 20px; left: 10px;"><i class="bi bi-geo-alt-fill" style="color: #9b59b6;"></i> Rungkut, Surabaya</p>
-                        <p class="fw-semibold" style="font-size: 16px; position: absolute; bottom: -4px; left: 10px; color: #fff;">Rp. 2.300.000<span class="text-white" style="font-size: 12px;">/bln</span></p>
-                        <a type="submit" style="width: 80px; height: 30px; text-align: center; position: absolute; bottom: 8px; right: 10px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; border-radius: 6px; font-size: 14px; padding: 4px;">Cek</a>
-                        <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 10px; right: 10px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                    </div>
-                </div>
-                <div x-show="filter == 'bulanan'">
-                    <div class="custom-card" style="width: 16rem; height: 14rem; background-color: #b8a1ea; position: relative; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;">
-                        <img src="{{ asset('img/kamarkostputriharian1.jpg') }}" style="position: absolute; width: 256px; height: 140px; border-top-left-radius: 10px; border-top-right-radius: 10px;">
-                        <p class="fw-medium" style="font-size: 14px; position: absolute; bottom: 40px; left: 10px">Kamar Kost Putri Uk 6 x 6 M</p>
-                        <p class="fw-normal text-secondary-emphasis" style="font-size: 12px; position: absolute; bottom: 20px; left: 10px;"><i class="bi bi-geo-alt-fill" style="color: #9b59b6;"></i> Pakal, Surabaya</p>
-                        <p class="fw-semibold" style="font-size: 16px; position: absolute; bottom: -4px; left: 10px; color: #fff;">Rp. 2.100.000<span class="text-white" style="font-size: 12px;">/bln</span></p>
-                        <a type="submit" style="width: 80px; height: 30px; text-align: center; position: absolute; bottom: 8px; right: 10px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; border-radius: 6px; font-size: 14px; padding: 4px;">Cek</a>
-                        <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 10px; right: 10px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                    </div>
-                </div>
-                <div x-show="filter == 'bulanan'">
-                    <div class="custom-card" style="width: 16rem; height: 14rem; background-color: #b8a1ea; position: relative; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;">
-                        <img src="{{ asset('img/kamarkostputriharian2.jpg') }}" style="position: absolute; width: 256px; height: 140px; border-top-left-radius: 10px; border-top-right-radius: 10px;">
-                        <p class="fw-medium" style="font-size: 14px; position: absolute; bottom: 40px; left: 10px">Kamar Kost Putri Uk 5 x 5 M</p>
-                        <p class="fw-normal text-secondary-emphasis" style="font-size: 12px; position: absolute; bottom: 20px; left: 10px;"><i class="bi bi-geo-alt-fill" style="color: #9b59b6;"></i> Pakal, Surabaya</p>
-                        <p class="fw-semibold" style="font-size: 16px; position: absolute; bottom: -4px; left: 10px; color: #fff;">Rp. 2.175.000<span class="text-white" style="font-size: 12px;">/bln</span></p>
-                        <a type="submit" style="width: 80px; height: 30px; text-align: center; position: absolute; bottom: 8px; right: 10px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; border-radius: 6px; font-size: 14px; padding: 4px;">Cek</a>
-                        <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 10px; right: 10px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                    </div>
-                </div>
-                <div x-show="filter == 'harian'">
-                    <div class="custom-card" style="width: 16rem; height: 14rem; background-color: #b8a1ea; position: relative; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;">
-                        <img src="{{ asset('img/kamarkostputraharian1.jpg') }}" style="position: absolute; width: 256px; height: 140px; border-top-left-radius: 10px; border-top-right-radius: 10px;">
-                        <p class="fw-medium" style="font-size: 14px; position: absolute; bottom: 40px; left: 10px">Kamar Kost Putra Uk 6 x 7 M</p>
-                        <p class="fw-normal text-secondary-emphasis" style="font-size: 12px; position: absolute; bottom: 20px; left: 10px;"><i class="bi bi-geo-alt-fill" style="color: #9b59b6;"></i> Mulyorejo, Surabaya</p>
-                        <p class="fw-semibold" style="font-size: 16px; position: absolute; bottom: -4px; left: 10px; color: #fff;">Rp. 500.000<span class="text-white" style="font-size: 12px;">/hrn</span></p>
-                        <a type="submit" style="width: 80px; height: 30px; text-align: center; position: absolute; bottom: 8px; right: 10px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; border-radius: 6px; font-size: 14px; padding: 4px;">Cek</a>
-                        <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 10px; right: 10px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                    </div>
-                </div>
-                <div x-show="filter == 'harian'">
-                    <div class="custom-card" style="width: 16rem; height: 14rem; background-color: #b8a1ea; position: relative; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;">
-                        <img src="{{ asset('img/kamarkostputraharian2.jpg') }}" style="position: absolute; width: 256px; height: 140px; border-top-left-radius: 10px; border-top-right-radius: 10px;">
-                        <p class="fw-medium" style="font-size: 14px; position: absolute; bottom: 40px; left: 10px">Kamar Kost Putra Uk 5 x 4 M</p>
-                        <p class="fw-normal text-secondary-emphasis" style="font-size: 12px; position: absolute; bottom: 20px; left: 10px;"><i class="bi bi-geo-alt-fill" style="color: #9b59b6;"></i> Jambangan, Surabaya</p>
-                        <p class="fw-semibold" style="font-size: 16px; position: absolute; bottom: -4px; left: 10px; color: #fff;">Rp. 450.000<span class="text-white" style="font-size: 12px;">/hrn</span></p>
-                        <a type="submit" style="width: 80px; height: 30px; text-align: center; position: absolute; bottom: 8px; right: 10px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; border-radius: 6px; font-size: 14px; padding: 4px;">Cek</a>
-                        <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 10px; right: 10px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                    </div>
-                </div>
-                <div x-show="filter == 'harian'">
-                    <div class="custom-card" style="width: 16rem; height: 14rem; background-color: #b8a1ea; position: relative; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;">
-                        <img src="{{ asset('img/kamarkostputraharian3.jpg') }}" style="position: absolute; width: 256px; height: 140px; border-top-left-radius: 10px; border-top-right-radius: 10px;">
-                        <p class="fw-medium" style="font-size: 14px; position: absolute; bottom: 40px; left: 10px">Kamar Kost Putra Uk 6 x 5 M</p>
-                        <p class="fw-normal text-secondary-emphasis" style="font-size: 12px; position: absolute; bottom: 20px; left: 10px;"><i class="bi bi-geo-alt-fill" style="color: #9b59b6;"></i> Rungkut, Surabaya</p>
-                        <p class="fw-semibold" style="font-size: 16px; position: absolute; bottom: -4px; left: 10px; color: #fff;">Rp. 300.000<span class="text-white" style="font-size: 12px;">/hrn</span></p>
-                        <a type="submit" style="width: 80px; height: 30px; text-align: center; position: absolute; bottom: 8px; right: 10px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; border-radius: 6px; font-size: 14px; padding: 4px;">Cek</a>
-                        <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 10px; right: 10px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                    </div>
-                </div>
-                <div x-show="filter == 'harian'">
-                    <div class="custom-card" style="width: 16rem; height: 14rem; background-color: #b8a1ea; position: relative; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;">
-                        <img src="{{ asset('img/kamarkostputriharian1.jpg') }}" style="position: absolute; width: 256px; height: 140px; border-top-left-radius: 10px; border-top-right-radius: 10px;">
-                        <p class="fw-medium" style="font-size: 14px; position: absolute; bottom: 40px; left: 10px">Kamar Kost Putri Uk 6 x 6 M</p>
-                        <p class="fw-normal text-secondary-emphasis" style="font-size: 12px; position: absolute; bottom: 20px; left: 10px;"><i class="bi bi-geo-alt-fill" style="color: #9b59b6;"></i> Pakal, Surabaya</p>
-                        <p class="fw-semibold" style="font-size: 16px; position: absolute; bottom: -4px; left: 10px; color: #fff;">Rp. 100.000<span class="text-white" style="font-size: 12px;">/hrn</span></p>
-                        <a type="submit" style="width: 80px; height: 30px; text-align: center; position: absolute; bottom: 8px; right: 10px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; border-radius: 6px; font-size: 14px; padding: 4px;">Cek</a>
-                        <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 10px; right: 10px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                    </div>
-                </div>
-                <div x-show="filter == 'harian'">
-                    <div class="custom-card" style="width: 16rem; height: 14rem; background-color: #b8a1ea; position: relative; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;">
-                        <img src="{{ asset('img/kamarkostputriharian2.jpg') }}" style="position: absolute; width: 256px; height: 140px; border-top-left-radius: 10px; border-top-right-radius: 10px;">
-                        <p class="fw-medium" style="font-size: 14px; position: absolute; bottom: 40px; left: 10px">Kamar Kost Putri Uk 5 x 5 M</p>
-                        <p class="fw-normal text-secondary-emphasis" style="font-size: 12px; position: absolute; bottom: 20px; left: 10px;"><i class="bi bi-geo-alt-fill" style="color: #9b59b6;"></i> Pakal, Surabaya</p>
-                        <p class="fw-semibold" style="font-size: 16px; position: absolute; bottom: -4px; left: 10px; color: #fff;">Rp. 175.000<span class="text-white" style="font-size: 12px;">/hrn</span></p>
-                        <a type="submit" style="width: 80px; height: 30px; text-align: center; position: absolute; bottom: 8px; right: 10px; background: rgb(106, 5, 114);background: linear-gradient(0deg, rgba(106, 5, 114, 1) 0%, rgba(106, 5, 114, 1) 20%, rgba(136, 68, 141, 1) 50%, rgba(106, 5, 114, 1) 80%, rgba(106, 5, 114, 1) 100%); color: white; border-radius: 6px; font-size: 14px; padding: 4px;">Cek</a>
-                        <button id="btn-like-timur" onclick="changeIconAndColor(this)" style="width: 30px; height: 30px; position: absolute; margin-top: 10px; right: 10px; border-radius: 50%; border: none; font-size: 16px; background-color: #ccc; opacity: 0.7;"><i class="bi bi-star"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <hr class="hr-dadakan" style="margin-top: 0.8rem;">
-        <div class="container">
-            <div class="row mt-3 mb-0" x-show="filter == 'harian'">
-                <div class="col-8">
-                    <h1 style="font-weight: 600; font-size: 16px; font-family: 'Poppins', sans-serif;">Kost Mahasiswa</h1>
-                </div>
-                <div class="col-4 text-end">
-                    <p class="fw-normal text-primary">Semua</p>
-                </div>
-            </div>
-            <div class="row mt-3 mb-0" x-show="filter == 'bulanan'">
-                <div class="col-8">
-                    <h1 style="font-weight: 600; font-size: 16px; font-family: 'Poppins', sans-serif;">Kost Mahasiswa</h1>
-                </div>
-                <div class="col-4 text-end">
-                    <p class="fw-normal text-primary">Semua</p>
-                </div>
-            </div>
-            <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-top: -10px;">
-                <div x-show="filter == 'bulanan'">
-                    <div class="custom-card" style="width: 160px; height: 170px; box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2); border-radius: 20px; position: relative; margin-bottom: 1rem;">
-                        <img src="{{ asset('img/kamarkostputraharian4.jpg') }}" style="width: 160px; height: 100px; border-top-left-radius: 10px; border-top-right-radius: 10px;">
-                        <p class="fw-medium" style="font-size: 12px; margin-left: 10px; margin-top: 10px;">Kamar Kost Putra</p>
-                        <p class="fw-normal text-secondary" style="font-size: 10px; margin-left: 10px; margin-top: -16px;">1 Kamar - Kamar Mandi...</p>
-                        <p class="fw-semibold" style="font-size: 12px; margin-left: 10px; margin-top: -16px; color: #9b59b6;">Rp. 2.000.000<span class="text-secondary" style="font-size: 10px;">/bln</span></p>
-                    </div>
-                </div>
-                <div x-show="filter == 'bulanan'">
-                    <div class="custom-card" style="width: 160px; height: 170px; box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2); border-radius: 20px; position: relative; margin-bottom: 1rem;">
-                        <img src="{{ asset('img/kamarkostputraharian5.jpg') }}" style="width: 160px; height: 100px; border-top-left-radius: 10px; border-top-right-radius: 10px;">
-                        <p class="fw-medium" style="font-size: 12px; margin-left: 10px; margin-top: 10px;">Kamar Kost Putra</p>
-                        <p class="fw-normal text-secondary" style="font-size: 10px; margin-left: 10px; margin-top: -16px;">1 Kamar - Kamar Mandi...</p>
-                        <p class="fw-semibold" style="font-size: 12px; margin-left: 10px; margin-top: -16px; color: #9b59b6;">Rp. 2.200.000<span class="text-secondary" style="font-size: 10px;">/bln</span></p>
-                    </div>
-                </div>
-                <div x-show="filter == 'bulanan'">
-                    <div class="custom-card" style="width: 160px; height: 170px; box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2); border-radius: 20px; position: relative; margin-bottom: 1rem;">
-                        <img src="{{ asset('img/kamarkostputra1.jpg') }}" style="width: 160px; height: 100px; border-top-left-radius: 10px; border-top-right-radius: 10px;">
-                        <p class="fw-medium" style="font-size: 12px; margin-left: 10px; margin-top: 10px;">Kamar Kost Putra</p>
-                        <p class="fw-normal text-secondary" style="font-size: 10px; margin-left: 10px; margin-top: -16px;">1 Kamar - Kamar Mandi...</p>
-                        <p class="fw-semibold" style="font-size: 12px; margin-left: 10px; margin-top: -16px; color: #9b59b6;">Rp. 2.400.000<span class="text-secondary" style="font-size: 10px;">/bln</span></p>
-                    </div>
-                </div>
-                <div x-show="filter == 'bulanan'">
-                    <div class="custom-card" style="width: 160px; height: 170px; box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2); border-radius: 20px; position: relative; margin-bottom: 1rem;">
-                        <img src="{{ asset('img/kamarkostputra2.jpg') }}" style="width: 160px; height: 100px; border-top-left-radius: 10px; border-top-right-radius: 10px;">
-                        <p class="fw-medium" style="font-size: 12px; margin-left: 10px; margin-top: 10px;">Kamar Kost Putra</p>
-                        <p class="fw-normal text-secondary" style="font-size: 10px; margin-left: 10px; margin-top: -16px;">1 Kamar - Kamar Mandi...</p>
-                        <p class="fw-semibold" style="font-size: 12px; margin-left: 10px; margin-top: -16px; color: #9b59b6;">Rp. 2.600.000<span class="text-secondary" style="font-size: 10px;">/bln</span></p>
-                    </div>
-                </div>
-                <div x-show="filter == 'bulanan'">
-                    <div class="custom-card" style="width: 160px; height: 170px; box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2); border-radius: 20px; position: relative; margin-bottom: 1rem;">
-                        <img src="{{ asset('img/kamarkostputra3.jpg') }}" style="width: 160px; height: 100px; border-top-left-radius: 10px; border-top-right-radius: 10px;">
-                        <p class="fw-medium" style="font-size: 12px; margin-left: 10px; margin-top: 10px;">Kamar Kost Putra</p>
-                        <p class="fw-normal text-secondary" style="font-size: 10px; margin-left: 10px; margin-top: -16px;">1 Kamar - Kamar Mandi...</p>
-                        <p class="fw-semibold" style="font-size: 12px; margin-left: 10px; margin-top: -16px; color: #9b59b6;">Rp. 2.700.000<span class="text-secondary" style="font-size: 10px;">/bln</span></p>
-                    </div>
-                </div>
-                <div x-show="filter == 'harian'">
-                    <div class="custom-card" style="width: 160px; height: 170px; box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2); border-radius: 20px; position: relative; margin-bottom: 1rem;">
-                        <img src="{{ asset('img/kamarkostputraharian4.jpg') }}" style="width: 160px; height: 100px; border-top-left-radius: 10px; border-top-right-radius: 10px;">
-                        <p class="fw-medium" style="font-size: 12px; margin-left: 10px; margin-top: 10px;">Kamar Kost Putra</p>
-                        <p class="fw-normal text-secondary" style="font-size: 10px; margin-left: 10px; margin-top: -16px;">1 Kamar - Kamar Mandi...</p>
-                        <p class="fw-semibold" style="font-size: 12px; margin-left: 10px; margin-top: -16px; color: #9b59b6;">Rp. 300.000<span class="text-secondary" style="font-size: 10px;">/hrn</span></p>
-                    </div>
-                </div>
-                <div x-show="filter == 'harian'">
-                    <div class="custom-card" style="width: 160px; height: 170px; box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2); border-radius: 20px; position: relative; margin-bottom: 1rem;">
-                        <img src="{{ asset('img/kamarkostputraharian5.jpg') }}" style="width: 160px; height: 100px; border-top-left-radius: 10px; border-top-right-radius: 10px;">
-                        <p class="fw-medium" style="font-size: 12px; margin-left: 10px; margin-top: 10px;">Kamar Kost Putra</p>
-                        <p class="fw-normal text-secondary" style="font-size: 10px; margin-left: 10px; margin-top: -16px;">1 Kamar - Kamar Mandi...</p>
-                        <p class="fw-semibold" style="font-size: 12px; margin-left: 10px; margin-top: -16px; color: #9b59b6;">Rp. 350.000<span class="text-secondary" style="font-size: 10px;">/hrn</span></p>
-                    </div>
-                </div>
-                <div x-show="filter == 'harian'">
-                    <div class="custom-card" style="width: 160px; height: 170px; box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2); border-radius: 20px; position: relative; margin-bottom: 1rem;">
-                        <img src="{{ asset('img/kamarkostputra1.jpg') }}" style="width: 160px; height: 100px; border-top-left-radius: 10px; border-top-right-radius: 10px;">
-                        <p class="fw-medium" style="font-size: 12px; margin-left: 10px; margin-top: 10px;">Kamar Kost Putra</p>
-                        <p class="fw-normal text-secondary" style="font-size: 10px; margin-left: 10px; margin-top: -16px;">1 Kamar - Kamar Mandi...</p>
-                        <p class="fw-semibold" style="font-size: 12px; margin-left: 10px; margin-top: -16px; color: #9b59b6;">Rp. 400.000<span class="text-secondary" style="font-size: 10px;">/hrn</span></p>
-                    </div>
-                </div>
-                <div x-show="filter == 'harian'">
-                    <div class="custom-card" style="width: 160px; height: 170px; box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2); border-radius: 20px; position: relative; margin-bottom: 1rem;">
-                        <img src="{{ asset('img/kamarkostputra2.jpg') }}" style="width: 160px; height: 100px; border-top-left-radius: 10px; border-top-right-radius: 10px;">
-                        <p class="fw-medium" style="font-size: 12px; margin-left: 10px; margin-top: 10px;">Kamar Kost Putra</p>
-                        <p class="fw-normal text-secondary" style="font-size: 10px; margin-left: 10px; margin-top: -16px;">1 Kamar - Kamar Mandi...</p>
-                        <p class="fw-semibold" style="font-size: 12px; margin-left: 10px; margin-top: -16px; color: #9b59b6;">Rp. 600.000<span class="text-secondary" style="font-size: 10px;">/hrn</span></p>
-                    </div>
-                </div>
-                <div x-show="filter == 'harian'">
-                    <div class="custom-card" style="width: 160px; height: 170px; box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2); border-radius: 20px; position: relative; margin-bottom: 1rem;">
-                        <img src="{{ asset('img/kamarkostputra3.jpg') }}" style="width: 160px; height: 100px; border-top-left-radius: 10px; border-top-right-radius: 10px;">
-                        <p class="fw-medium" style="font-size: 12px; margin-left: 10px; margin-top: 10px;">Kamar Kost Putra</p>
-                        <p class="fw-normal text-secondary" style="font-size: 10px; margin-left: 10px; margin-top: -16px;">1 Kamar - Kamar Mandi...</p>
-                        <p class="fw-semibold" style="font-size: 12px; margin-left: 10px; margin-top: -16px; color: #9b59b6;">Rp. 700.000<span class="text-secondary" style="font-size: 10px;">/hrn</span></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <hr class="hr-4" style="margin-bottom: 3.4rem; margin-top: -0rem;">
     </section> --}}
+        <div class="container mt-3">
+            <div class="cardsidebar" id="cardContent">
+                <a href="" class="jadwal fw-medium"><i class="bi bi-calendar-date-fill"></i></i> Jadwal Pembayaran</a>
+                <hr class="garispemisah" style="border-top: 1px solid #ccc; margin-top: 40px;">
+                <a href="/user/kerusakan/{{ $users->id }}" class="lapor fw-medium"><i class="bi bi-exclamation-circle-fill"></i> Laporkan Kerusakan</a>
+            </div>
+            <div class="row">
+                <div class="col-3 text-start">
+                    <a type="submit" style="width: 120px; height: 30px; text-align: center; text-decoration: none; border: 1px solid #ccc; border-radius: 6px; font-size: 12px; padding-top: 4px;" class="text-dark fw-medium">{{ $kamar_kost->kategori->kategori }}</a>
+                </div>
+                <div class="col-1" style="margin-top: 0px;">
+                    <i class="bi bi-dot text-secondary" style="margin-left: 32px; font-size:20px;"></i>
+                </div>
+                <div class="col-8 text-end">
+                    <a type="submit" style="width: 190px; height: 30px; text-align: center; text-decoration: none; border-radius: 6px; padding-top: 4px; position: relative; font-family: Poppins; color: white !important; font-size: 12px;" class="@if ($transaksi->pesan == 'Kost Sedang Diproses') proses @elseif($transaksi->pesan == 'Kost Sudah Terbayar') bayar @elseif($transaksi->pesan == 'Kost Belum Dibayar') belum @endif">{{ $transaksi->pesan }}</a>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-6 text-start">
+                    <h1 class="fw-normal" style="font-size: 12px; font-family: Poppins; color: #CCCCCC;">Tgl. Masuk Kost</h1>
+                </div>
+                <div class="col-6 text-end">
+                    <h1 class="fw-nromal" style="font-size: 12px; font-family: Poppins; color: #CCCCCC;">Durasi Ngekost</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 text-start">
+                    <p class="fw-medium" style="font-size: 14px; color: #9370DB; margin-top: -8px;">{{ Carbon\Carbon::parse($transaksi->tanggal_masuk_kost)->locale('id')->format('j F Y') }}</p>
+                </div>
+                <div class="col-6 text-end">
+                    <p class="fw-medium" style="font-size: 14px; color: #9370DB; margin-top: -8px;">{{ $transaksi->durasi_ngekost }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1 class="fw-medium" style="font-size: 12px; font-family: Poppins; color: #CCCCCC;">Harga /Bulan</h1>
+                </div>
+                <div class="col-12 text-center">
+                    <p class="fw-semibold" style="font-size: 14px; color: #9b59b6; margin-top: -8px;">{{ $kamar_kost->harga_kost }}</p>
+                </div>
+            </div>
+        </div>
+        <hr class="hr-1" style="margin-top: -4px; border-top: 10px solid #ccc;">
+        <div class="container">
+            <h1 class="fw-semibold" style="font-size: 18px; font-family: Poppins;">Spesifikasi Kamar Kost</h1>
+            <div class="row">
+                <div class="col-12 text-start">
+                    <h1 class="fw-normal" style="font-size: 12px; font-family: Poppins; color: #CCCCCC;">Ukuran Kamar</h1>
+                </div>
+                <p class="text-dark fw-medium" style="font-size: 12px; margin-top: -8px;">Ukuran Kamar {{ $kamar_kost->ukuran_kost }}</p>
+            </div>
+            <div class="row" style="margin-top: -10px;">
+                <div class="col-12 text-start">
+                    <h1 class="fw-normal" style="font-size: 12px; font-family: Poppins; color: #CCCCCC;">Lokasi Kost</h1>
+                </div>
+                <p class="text-dark fw-medium" style="font-size: 12px; margin-top: -8px;">{{ $kamar_kost->alamat_lengkap_kost }}</p>
+            </div>
+            <div class="row" style="margin-top: -10px;">
+                <div class="col-12 text-start">
+                    <h1 class="fw-normal" style="font-size: 12px; font-family: Poppins; color: #CCCCCC;">Air Bersih</h1>
+                </div>
+                <p class="text-secondary-emphasis fw-medium" style="font-size: 12px; margin-top: -8px;">{{ $kamar_kost->air_kost }}</p>
+            </div>
+            <div class="row" style="margin-top: -10px;">
+                <div class="col-12 text-start">
+                    <h1 class="fw-normal" style="font-size: 12px; font-family: Poppins; color: #CCCCCC;">Tipe Listrik</h1>
+                </div>
+                <p class="text-secondary-emphasis fw-medium" style="font-size: 12px; margin-top: -8px;">{{ $kamar_kost->listrik_kost }}</p>
+            </div>
+        </div>
+        <hr class="hr-2" style="margin-top: 0px; border-top: 10px solid #ccc;">
+        <div class="container">
+            <h1 class="fw-semibold" style="font-size: 18px; font-family: Poppins;">Fasilitas Kamar</h1>
+            <section class="splide new-2" aria-label="Splide Basic HTML Example">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide">
+                            <img src="{{ asset('img/interior2.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
+                        </li>
+                        <li class="splide__slide">
+                            <img src="{{ asset('img/interior7.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
+                        </li>
+                        <li class="splide__slide">
+                            <img src="{{ asset('img/interior9.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
+                        </li>
+                        <li class="splide__slide">
+                            <img src="{{ asset('img/interior4.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
+                        </li>
+                        <li class="splide__slide">
+                            <img src="{{ asset('img/interior6.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
+                        </li>
+                        <li class="splide__slide">
+                            <img src="{{ asset('img/interior10.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
+                        </li>
+                        <li class="splide__slide">
+                            <img src="{{ asset('img/interior11.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <hr class="hr-3" style="margin-top: 20px; border-top: 1px solid #ccc;">
+            <h1 class="fw-semibold" style="font-size: 18px; font-family: Poppins;">Fasilitas Kamar Mandi</h1>
+            <section class="splide new-3" aria-label="Splide Basic HTML Example">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide">
+                            <img src="{{ asset('img/interior12.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
+                        </li>
+                        <li class="splide__slide">
+                            <img src="{{ asset('img/interior13.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
+                        </li>
+                        <li class="splide__slide">
+                            <img src="{{ asset('img/interior14.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
+                        </li>
+                        <li class="splide__slide">
+                            <img src="{{ asset('img/interior15.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
+                        </li>
+                        <li class="splide__slide">
+                            <img src="{{ asset('img/interior11.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+        <hr class="hr-4" style="margin-top: 20px; border-top: 10px solid #ccc;">
+        <div class="container">
+            <h1 class="fw-semibold" style="font-size: 18px; font-family: Poppins;">Fasilitas Umum</h1>
+            <section class="splide new-4" aria-label="Splide Basic HTML Example">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide">
+                            <img src="{{ asset('img/interior8.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
+                        </li>
+                        <li class="splide__slide">
+                            <img src="{{ asset('img/interior5.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
+                        </li>
+                        <li class="splide__slide">
+                            <img src="{{ asset('img/interior3.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
+                        </li>
+                        <li class="splide__slide">
+                            <img src="{{ asset('img/interior16.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
+                        </li>
+                        <li class="splide__slide">
+                            <img src="{{ asset('img/interior17.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
+                        </li>
+                        <li class="splide__slide">
+                            <img src="{{ asset('img/interior18.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <hr class="hr-5" style="margin-top: 20px; border-top: 1px solid #ccc;">
+            <h1 class="fw-semibold" style="font-size: 18px; font-family: Poppins;">Fasilitas Parkir</h1>
+            <div class="row">
+                <div class="col-6">
+                    <img src="{{ asset('img/interior19.jpg') }}" style="width: 164px; height: 100px; border-radius: 10px;">
+                </div>
+                <div class="col-6" style="margin-left: -8px;">
+                    <img src="{{ asset('img/interior20.jpg') }}" style="width: 164px; height: 100px; border-radius: 10px;">
+                </div>
+            </div>
+        </div>
+        <hr class="hr-6" style="margin-top: 20px; border-top: 10px solid #ccc;">
+        <div class="container">
+            <div class="select-menu">
+                <div class="select-btn">
+                    <span class="sBtn-text fw-semibold" style="font-size: 18px; font-family: Poppins;">Peraturan Kost</span>
+                    <i class="bx bx-chevron-down"></i>
+                </div>
+                <ul class="options">
+                    <li class="option">
+                        <span class="option-angka">1.</span><span class="option-text">Dilarang Membuat Suara Gaduh Pada Malam Hari</span>
+                    </li>
+                    <li class="option">
+                        <span class="option-angka">2.</span><span class="option-text">Tidak Boleh Pasutri</span>
+                    </li>
+                    <li class="option">
+                        <span class="option-angka">3.</span><span class="option-text">Lawan Jenis Dilarang Ke Kamar</span>
+                    </li>
+                    <li class="option">
+                        <span class="option-angka">4.</span><span class="option-text">Maksimal 2 Orang/Kamar</span>
+                    </li>
+                    <li class="option">
+                        <span class="option-angka">5.</span><span class="option-text">Dilarang Membawa Hewan</span>
+                    </li>
+                    <li class="option">
+                        <span class="option-angka">6.</span><span class="option-text">Dilarang Merokok</span>
+                    </li>
+                    <li class="option">
+                        <span class="option-angka">7.</span><span class="option-text">Dilarang Mengganggu Ketenagan Penghuni</span>
+                    </li>
+                    <li class="option">
+                        <span class="option-angka">8.</span><span class="option-text">Dilarang Bawa Anak</span>
+                    </li>
+                    <li class="option">
+                        <span class="option-angka">9.</span><span class="option-text">Gunakan Fasilitas Dengan Benar</span>
+                    </li>
+                    <li class="option">
+                        <span class="option-angka">10.</span><span class="option-text">Jagalah Kebersihan Pada Kost</span>
+                    </li>
+                    <li class="option">
+                        <span class="option-angka">11.</span><span class="option-text">Dilarang Telat Bayar Kost</span>
+                    </li>
+                    <li class="option">
+                        <span class="option-angka">12.</span><span class="option-text">Kunci Pintu Kamar Kost Ketika Pergi Ke Luar</span>
+                    </li>
+                    <li class="option">
+                        <span class="option-angka">13.</span><span class="option-text">Dilarang Minum Minuman Keras</span>
+                    </li>
+                    <li class="option">
+                        <span class="option-angka">14.</span><span class="option-text">Dilarang Merusak Fasilitas Di Kamar</span>
+                    </li>
+                    <li class="optionend">
+                        <span class="option-angka">15.</span><span class="option-text">Dilarang Mengadakan Pesta Di Kamar</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <hr class="garis-tepi-peraturan-kost" style="margin-top: 14x; border-top: 10px solid #ccc;">
+        <div class="container" style="margin-top: -10px;">
+            <h1 class="fw-semibold" style="font-size: 18px; font-family: Poppins; margin-top: 10px;">Kamar Kost Kamu</h1>
+            <p class="text-secondary" style="font-size: 10px; font-style: italic; margin-top: -6px;">Update tampilan terbaru kamarmu disini (Maks. 10 foto)</p>
+            <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay;">
+                <div class="position-relative">
+                    <img id="frame" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage()">
+                    <label for="uploadfoto" class="label-upload">
+                        <div class="box-icon">
+                            <div class="bg-kategori rounded-5">
+                                <i id="uploadIcon" class="bi bi-cloud-upload"></i>
+                            </div>
+                        </div>
+                        <input type="file" onchange="preview()" hidden id="uploadfoto" accept="image/*">
+                    </label>
+                </div>
+                <div class="position-relative">
+                    <img id="frame2" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage2()">
+                    <label for="uploadfoto2" class="label-upload">
+                        <div class="box-icon">
+                            <div class="bg-kategori rounded-5">
+                                <i id="uploadIcon2" class="bi bi-cloud-upload"></i>
+                            </div>
+                        </div>
+                        <input type="file" onchange="preview2()" hidden id="uploadfoto2" accept="image/*">
+                    </label>
+                </div>
+                <div class="position-relative">
+                    <img id="frame3" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage3()">
+                    <label for="uploadfoto3" class="label-upload">
+                        <div class="box-icon">
+                            <div class="bg-kategori rounded-5">
+                                <i id="uploadIcon3" class="bi bi-cloud-upload"></i>
+                            </div>
+                        </div>
+                        <input type="file" onchange="preview3()" hidden id="uploadfoto3" accept="image/*">
+                    </label>
+                </div>
+                <div class="position-relative">
+                    <img id="frame4" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage4()">
+                    <label for="uploadfoto4" class="label-upload">
+                        <div class="box-icon">
+                            <div class="bg-kategori rounded-5">
+                                <i id="uploadIcon4" class="bi bi-cloud-upload"></i>
+                            </div>
+                        </div>
+                        <input type="file" onchange="preview4()" hidden id="uploadfoto4" accept="image/*">
+                    </label>
+                </div>
+                <div class="position-relative">
+                    <img id="frame5" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage5()">
+                    <label for="uploadfoto5" class="label-upload">
+                        <div class="box-icon">
+                            <div class="bg-kategori rounded-5">
+                                <i id="uploadIcon5" class="bi bi-cloud-upload"></i>
+                            </div>
+                        </div>
+                        <input type="file" onchange="preview5()" hidden id="uploadfoto5" accept="image/*">
+                    </label>
+                </div>
+                <div class="position-relative">
+                    <img id="frame6" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage6()">
+                    <label for="uploadfoto6" class="label-upload">
+                        <div class="box-icon">
+                            <div class="bg-kategori rounded-5">
+                                <i id="uploadIcon6" class="bi bi-cloud-upload"></i>
+                            </div>
+                        </div>
+                        <input type="file" onchange="preview6()" hidden id="uploadfoto6" accept="image/*">
+                    </label>
+                </div>
+                <div class="position-relative">
+                    <img id="frame7" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage7()">
+                    <label for="uploadfoto7" class="label-upload">
+                        <div class="box-icon">
+                            <div class="bg-kategori rounded-5">
+                                <i id="uploadIcon7" class="bi bi-cloud-upload"></i>
+                            </div>
+                        </div>
+                        <input type="file" onchange="preview7()" hidden id="uploadfoto7" accept="image/*">
+                    </label>
+                </div>
+                <div class="position-relative">
+                    <img id="frame8" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage8()">
+                    <label for="uploadfoto8" class="label-upload">
+                        <div class="box-icon">
+                            <div class="bg-kategori rounded-5">
+                                <i id="uploadIcon8" class="bi bi-cloud-upload"></i>
+                            </div>
+                        </div>
+                        <input type="file" onchange="preview8()" hidden id="uploadfoto8" accept="image/*">
+                    </label>
+                </div>
+                <div class="position-relative">
+                    <img id="frame9" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage9()">
+                    <label for="uploadfoto9" class="label-upload">
+                        <div class="box-icon">
+                            <div class="bg-kategori rounded-5">
+                                <i id="uploadIcon9" class="bi bi-cloud-upload"></i>
+                            </div>
+                        </div>
+                        <input type="file" onchange="preview9()" hidden id="uploadfoto9" accept="image/*">
+                    </label>
+                </div>
+                <div class="position-relative">
+                    <img id="frame10" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage10()">
+                    <label for="uploadfoto10" class="label-upload">
+                        <div class="box-icon">
+                            <div class="bg-kategori rounded-5">
+                                <i id="uploadIcon10" class="bi bi-cloud-upload"></i>
+                            </div>
+                        </div>
+                        <input type="file" onchange="preview10()" hidden id="uploadfoto10" accept="image/*">
+                    </label>
+                </div>
+            </div>
+        </div>
+        <!-- Tampilkan ilustrasi kosong -->
+        <hr class="hr-9" style="margin-top: 20px; border-top: 10px solid #ccc; margin-bottom: 3.4rem;">
+    @else
+        <!-- Tampilkan ilustrasi kosong -->
+        <div class="container text-center" style="margin-top: 200px;">
+            <img src="{{ asset('img/planet.png') }}" alt="Ilustrasi Kosong" width="150">
+            <p class="text-muted mt-3">Anda Belum Booking Kamar Kost.</p>
+            <form action="/user/home" style="margin-top: -10px;">
+                <button class="btn btn-info">Silahkan Booking Kamar Dulu</button>
+            </form>
+        </div>
+    @endif
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -1227,16 +519,16 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        var splide = new Splide('.splide.new-1', {
-            type: "loop",
-            autoplay: true,
-            arrows: false,
-            perPage: 1,
-            autoWidth: true,
-            lazyLoad: 'nearby'
-        });
+        // var splide = new Splide('.splide.new-1', {
+        //     type: "loop",
+        //     autoplay: true,
+        //     arrows: false,
+        //     perPage: 1,
+        //     autoWidth: true,
+        //     lazyLoad: 'nearby'
+        // });
 
-        splide.mount();
+        // splide.mount();
         var splide = new Splide('.splide.new-2', {
             drag: 'free',
             pagination: false,

@@ -134,177 +134,188 @@
             </a>
         </nav>
     </div>
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content" style="margin-top: 31rem; margin-left: 4rem; width: 210px;">
-                <div class="modal-body">
+    @if ($kamar_kost)
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content" style="margin-top: 31rem; margin-left: 4rem; width: 210px;">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <a href="/user/kerusakan/{{ $users->id }}" class="kerusakan fw-medium"><i class="bi bi-exclamation-triangle-fill"></i> Laporkan Kerusakan</a>
+                            </div>
+                            <hr class="garis-pembatas-laporkan" style="border-top: 1px solid #ccc; margin-top: 10px;">
+                            <div class="col-12" style="margin-top: -10px">
+                                <a href="/user/kehilangan/{{ $users->id }}" class="kehilangan fw-medium"><i class='bx bxs-search-alt-2'></i> Laporkan Kehilangan</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section x-data="{ filter: 'form' }">
+            <div class="sticky-top" id="stickyHeader">
+                <div class="container py-2" style="background-color: white;">
                     <div class="row">
-                        <div class="col-12">
-                            <a href="{{ asset('/user/kerusakan') }}" class="kerusakan fw-medium"><i class="bi bi-exclamation-triangle-fill"></i> Laporkan Kerusakan</a>
-                        </div>
-                        <hr class="garis-pembatas-laporkan" style="border-top: 1px solid #ccc; margin-top: 10px;">
-                        <div class="col-12" style="margin-top: -10px">
-                            <a href="{{ asset('/user/kehilangan') }}" class="kehilangan fw-medium"><i class='bx bxs-search-alt-2'></i> Laporkan Kehilangan</a>
+                        <div class="col-12 text-start mt-2">
+                            <h3 class="text-dark fw-semibold teks-kerusakan" style="font-size: 16px; transition: color 0.3s ease;">Laporan Kerusakan</h3>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <section x-data="{ filter: 'form' }">
-        <div class="sticky-top" id="stickyHeader">
-            <div class="container py-2" style="background-color: white;">
-                <div class="row">
-                    <div class="col-12 text-start mt-2">
-                        <h3 class="text-dark fw-semibold teks-kerusakan" style="font-size: 16px; transition: color 0.3s ease;">Laporan Kerusakan</h3>
+            <hr class="garis-1">
+            <div class="container">
+                <div class="row" style="margin-top: -16px;">
+                    <div class="col-6 text-center" style="margin-left: -12px;">
+                        <button :class="filter == 'form' ? 'btn-active' : 'btn-non-aktif'" x-on:click="filter = 'form';">Form Laporan</button>
+                    </div>
+                    <div class="col-6 text-center" style="margin-left: 0px;">
+                        <button :class="filter == 'riwayat' ? 'btn-active' : 'btn-non-aktif'" x-on:click="filter = 'riwayat';">Riwayat Laporan</button>
                     </div>
                 </div>
             </div>
-        </div>
-        <hr class="garis-1">
-        <div class="container">
-            <div class="row" style="margin-top: -16px;">
-                <div class="col-6 text-center" style="margin-left: -12px;">
-                    <button :class="filter == 'form' ? 'btn-active' : 'btn-non-aktif'" x-on:click="filter = 'form';">Form Laporan</button>
-                </div>
-                <div class="col-6 text-center" style="margin-left: 0px;">
-                    <button :class="filter == 'riwayat' ? 'btn-active' : 'btn-non-aktif'" x-on:click="filter = 'riwayat';">Riwayat Laporan</button>
-                </div>
-            </div>
-        </div>
-        <hr class="garis-2">
-        <div class="container" x-show="filter == 'form'">
-            <div class="card-laporkan-kerusakan">
-                <div class="container mt-3">
-                    <div class="row">
-                        <div class="col-12 text-start">
-                            <h3 class="fw-medium text-secondary" style="font-size: 14px;">Nama User</h3>
-                        </div>
-                        <div class="col-12">
-                            <input type="text" class="input-nama" value="{{ $users->name }}" disabled>
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-12 text-start">
-                            <h3 class="fw-medium text-secondary" style="font-size: 14px;">No. Kamar</h3>
-                        </div>
-                        <div class="col-12">
-                            <input type="text" class="input-nama" value="Kamar No. 1" disabled>
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-12 text-start">
-                            <h3 class="fw-medium text-secondary" style="font-size: 14px;">Tanggal Laporan<span class="wajib">*</span></h3>
-                        </div>
-                        <div class="col-12">
-                            <div class="input-group">
-                                <input type="date" class="form-control" id="tanggal" name="tanggal" style="border: 1px solid rgb(187, 0, 255); border-top-leftradius: 4px; border-bottom-left-radius: 4px;" placeholder="Masukkan tanggal laporan" id="datepicker">
-                                <span class="input-group-text" style="border: 1px solid rgb(187, 0, 255); border-top-right-radius: 4px; border-bottom-right-radius: 4px; background: linear-gradient(45deg, #9c27b0, #673ab7, #3f51b5); color: white;">
-                                    <i class="bi bi-calendar"></i>
-                                </span>
+            <hr class="garis-2">
+            <div class="container" x-show="filter == 'form'">
+                <div class="card-laporkan-kerusakan">
+                    <div class="container mt-3">
+                        <div class="row">
+                            <div class="col-12 text-start">
+                                <h3 class="fw-medium text-secondary" style="font-size: 14px;">Nama User</h3>
+                            </div>
+                            <div class="col-12">
+                                <input type="text" class="input-nama" value="{{ $users->name }}" disabled>
                             </div>
                         </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-12 text-start">
-                            <h3 class="fw-medium text-secondary" style="font-size: 14px;">Apa Yang Rusak?<span class="wajib">*</span></h3>
-                        </div>
-                        <div class="col-9 text-start">
-                            <input type="text" id="inputKerusakan" class="input-kerusakan" placeholder="Barang yang mengalami kerusakan" disabled>
-                        </div>
-                        <div class="col-3 text-end">
-                            <div class="dropdown">
-                                <button class="btn-dropdown-kerusakan dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                </button>
-                                <ul class="dropdown-menu" id="barangDropdown">
-                                    <li><a class="dropdown-item" href="#" onclick="updateInput('Kasur')">Kasur</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="updateInput('Lampu Kamar')">Lampu Kamar</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="updateInput('Pintu Kamar')">Pintu Kamar</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="updateInput('Jendela Kamar')">Jendela Kamar</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="updateInput('Lantai Kamar')">Lantai Kamar</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="updateInput('AC Kamar')">AC Kamar</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="updateInput('Kulkas')">Kulkas</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="showTextInput()">Lainnya</a></li>
-                                </ul>
+                        <div class="row mt-3">
+                            <div class="col-12 text-start">
+                                <h3 class="fw-medium text-secondary" style="font-size: 14px;">No. Kamar</h3>
+                            </div>
+                            <div class="col-12">
+                                <input type="text" class="input-nama" value="Kamar No. {{ $kamar_kost->nomer_kost }}" disabled>
                             </div>
                         </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-12 text-start">
-                            <h3 class="fw-medium text-secondary" style="font-size: 14px;">Unggah Foto<span class="wajib">*</span></h3>
+                        <div class="row mt-3">
+                            <div class="col-12 text-start">
+                                <h3 class="fw-medium text-secondary" style="font-size: 14px;">Tanggal Laporan<span class="wajib">*</span></h3>
+                            </div>
+                            <div class="col-12">
+                                <div class="input-group">
+                                    <input type="date" class="form-control" id="tanggal" name="tanggal" style="border: 1px solid rgb(187, 0, 255); border-top-leftradius: 4px; border-bottom-left-radius: 4px;" placeholder="Masukkan tanggal laporan" id="datepicker">
+                                    <span class="input-group-text" style="border: 1px solid rgb(187, 0, 255); border-top-right-radius: 4px; border-bottom-right-radius: 4px; background: linear-gradient(45deg, #9c27b0, #673ab7, #3f51b5); color: white;">
+                                        <i class="bi bi-calendar"></i>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay;">
-                            <div class="position-relative">
-                                <img id="frame" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 100px; height: 100px; border-radius: 8px; cursor: pointer;" onclick="deleteImage(); checkImages()">
-                                <label for="uploadfoto" class="label-upload">
-                                    <div class="box-icon">
-                                        <div class="bg-kategori rounded-5">
-                                            <i id="uploadIcon" class="bi bi-cloud-upload"></i>
+                        <div class="row mt-3">
+                            <div class="col-12 text-start">
+                                <h3 class="fw-medium text-secondary" style="font-size: 14px;">Apa Yang Rusak?<span class="wajib">*</span></h3>
+                            </div>
+                            <div class="col-9 text-start">
+                                <input type="text" id="inputKerusakan" class="input-kerusakan" placeholder="Barang yang mengalami kerusakan" disabled>
+                            </div>
+                            <div class="col-3 text-end">
+                                <div class="dropdown">
+                                    <button class="btn-dropdown-kerusakan dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    </button>
+                                    <ul class="dropdown-menu" id="barangDropdown">
+                                        <li><a class="dropdown-item" href="#" onclick="updateInput('Kasur')">Kasur</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="updateInput('Lampu Kamar')">Lampu Kamar</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="updateInput('Pintu Kamar')">Pintu Kamar</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="updateInput('Jendela Kamar')">Jendela Kamar</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="updateInput('Lantai Kamar')">Lantai Kamar</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="updateInput('AC Kamar')">AC Kamar</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="updateInput('Kulkas')">Kulkas</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="showTextInput()">Lainnya</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-12 text-start">
+                                <h3 class="fw-medium text-secondary" style="font-size: 14px;">Unggah Foto<span class="wajib">*</span></h3>
+                            </div>
+                            <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay;">
+                                <div class="position-relative">
+                                    <img id="frame" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 100px; height: 100px; border-radius: 8px; cursor: pointer;" onclick="deleteImage(); checkImages()">
+                                    <label for="uploadfoto" class="label-upload">
+                                        <div class="box-icon">
+                                            <div class="bg-kategori rounded-5">
+                                                <i id="uploadIcon" class="bi bi-cloud-upload"></i>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <input type="file" onchange="preview()" hidden id="uploadfoto" accept="image/*">
-                                </label>
-                            </div>
-                            <div class="position-relative">
-                                <img id="frame2" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 100px; height: 100px; border-radius: 8px; cursor: pointer;" onclick="deleteImage2(); checkImages()">
-                                <label for="uploadfoto2" class="label-upload">
-                                    <div class="box-icon">
-                                        <div class="bg-kategori rounded-5">
-                                            <i id="uploadIcon2" class="bi bi-cloud-upload"></i>
+                                        <input type="file" onchange="preview()" hidden id="uploadfoto" accept="image/*">
+                                    </label>
+                                </div>
+                                <div class="position-relative">
+                                    <img id="frame2" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 100px; height: 100px; border-radius: 8px; cursor: pointer;" onclick="deleteImage2(); checkImages()">
+                                    <label for="uploadfoto2" class="label-upload">
+                                        <div class="box-icon">
+                                            <div class="bg-kategori rounded-5">
+                                                <i id="uploadIcon2" class="bi bi-cloud-upload"></i>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <input type="file" onchange="preview2()" hidden id="uploadfoto2" accept="image/*">
-                                </label>
-                            </div>
-                            <div class="position-relative">
-                                <img id="frame3" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 100px; height: 100px; border-radius: 8px; cursor: pointer;" onclick="deleteImage3(); checkImages()">
-                                <label for="uploadfoto3" class="label-upload">
-                                    <div class="box-icon">
-                                        <div class="bg-kategori rounded-5">
-                                            <i id="uploadIcon3" class="bi bi-cloud-upload"></i>
+                                        <input type="file" onchange="preview2()" hidden id="uploadfoto2" accept="image/*">
+                                    </label>
+                                </div>
+                                <div class="position-relative">
+                                    <img id="frame3" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 100px; height: 100px; border-radius: 8px; cursor: pointer;" onclick="deleteImage3(); checkImages()">
+                                    <label for="uploadfoto3" class="label-upload">
+                                        <div class="box-icon">
+                                            <div class="bg-kategori rounded-5">
+                                                <i id="uploadIcon3" class="bi bi-cloud-upload"></i>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <input type="file" onchange="preview3()" hidden id="uploadfoto3" accept="image/*">
-                                </label>
-                            </div>
-                            <div class="position-relative">
-                                <img id="frame4" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 100px; height: 100px; border-radius: 8px; cursor: pointer;" onclick="deleteImage4(); checkImages()">
-                                <label for="uploadfoto4" class="label-upload">
-                                    <div class="box-icon">
-                                        <div class="bg-kategori rounded-5">
-                                            <i id="uploadIcon4" class="bi bi-cloud-upload"></i>
+                                        <input type="file" onchange="preview3()" hidden id="uploadfoto3" accept="image/*">
+                                    </label>
+                                </div>
+                                <div class="position-relative">
+                                    <img id="frame4" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 100px; height: 100px; border-radius: 8px; cursor: pointer;" onclick="deleteImage4(); checkImages()">
+                                    <label for="uploadfoto4" class="label-upload">
+                                        <div class="box-icon">
+                                            <div class="bg-kategori rounded-5">
+                                                <i id="uploadIcon4" class="bi bi-cloud-upload"></i>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <input type="file" onchange="preview4()" hidden id="uploadfoto4" accept="image/*">
-                                </label>
+                                        <input type="file" onchange="preview4()" hidden id="uploadfoto4" accept="image/*">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-12 text-start">
+                                <h3 class="fw-medium text-secondary" style="font-size: 14px;">Keterangan (Opsional)</h3>
+                            </div>
+                            <div class="col-12">
+                                <textarea name="" id="" placeholder="Tambahkan keterangan kamu" class="textarea-keterangan"></textarea>
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-3">
-                        <div class="col-12 text-start">
-                            <h3 class="fw-medium text-secondary" style="font-size: 14px;">Keterangan (Opsional)</h3>
-                        </div>
-                        <div class="col-12">
-                            <textarea name="" id="" placeholder="Tambahkan keterangan kamu" class="textarea-keterangan"></textarea>
-                        </div>
+                    <hr class="kirim-laporan" style="border-top: 1px solid #ccc">
+                    <div class="container text-center">
+                        <button type="button" class="btn btn-dark" style="border-radius: 50px; width: 170px;" disabled id="submitButton">Kirim Laporan</button>
                     </div>
                 </div>
-                <hr class="kirim-laporan" style="border-top: 1px solid #ccc">
-                <div class="container text-center">
-                    <button type="button" class="btn btn-dark" style="border-radius: 50px; width: 170px;" disabled id="submitButton">Kirim Laporan</button>
+            </div>
+            <div class="container" x-show="filter == 'riwayat'" style="margin-top: 8rem;">
+                <div class="col-12 text-center">
+                    <img src="{{ asset('img/chat.png') }}" width="180" height="180">
+                </div>
+                <div class="col-12 text-center">
+                    <p class="fw-normal" style="font-size: 14px;">Belum Ada Laporan Yang Masuk</p>
                 </div>
             </div>
+            <hr class="hr-1" x-show="filter == 'form'">
+        </section>
+    @else
+        <!-- Tampilkan ilustrasi kosong -->
+        <div class="container text-center" style="margin-top: 200px;">
+            <img src="{{ asset('img/planet.png') }}" alt="Ilustrasi Kosong" width="150">
+            <p class="text-muted mt-3">Anda Belum Booking Kamar Kost.</p>
+            <form action="/user/home" style="margin-top: -10px;">
+                <button class="btn btn-info">Silahkan Booking Kamar Dulu</button>
+            </form>
         </div>
-        <div class="container" x-show="filter == 'riwayat'" style="margin-top: 8rem;">
-            <div class="col-12 text-center">
-                <img src="{{ asset('img/chat.png') }}" width="180" height="180">
-            </div>
-            <div class="col-12 text-center">
-                <p class="fw-normal" style="font-size: 14px;">Belum Ada Laporan Yang Masuk</p>
-            </div>
-        </div>
-        <hr class="hr-1" x-show="filter == 'form'">
-    </section>
+    @endif
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

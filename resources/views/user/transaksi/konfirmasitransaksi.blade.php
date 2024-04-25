@@ -176,7 +176,7 @@
                                                     <input type="file" x-model="gambar" @change="changePhoto($event)" id="uploadfoto" name="gambar" accept="image/*" hidden>
                                                 </div>
                                                 <div class="col-12 text-center mt-3">
-                                                    <button class="btn btn-kirim" style="color: white; border: none; width: 150px;" x-bind:disabled="!confirmation || !imageFile">Kirim</button>
+                                                    <button class="btn btn-kirim" :disabled="gambar ? null : 'disabled'" style="color: white; border: none; width: 150px;">Kirim</button>
                                                 </div>
                                             </div>
                                         </form>

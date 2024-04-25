@@ -187,8 +187,8 @@ class UserController extends Controller
             'no_transaksi'        => $kode,
             'tagihan_selanjutnya' => '1.000.000',
             'durasi_ngekost'      => '5 Bulan 3 Hari',
-            'status'              => 'Proses Pembayaran',
-            'pesan'               => 'Pembayaran Sedang Diproses',
+            'status'              => 'proses',
+            'pesan'               => 'Kost Sedang Diproses',
         ]);
 
               // $transaksi = transaksi::find(session()->get('payment_id'));
@@ -207,7 +207,11 @@ class UserController extends Controller
     public function kamar()
     {
         $users = Auth::user();
-        return view('user.kamar', compact('users'));
+        $transaksi = Transaksi::where('user_id', $users->id)->latest()->first();
+        $kamar_kost = $transaksi ? KamarKost::find($transaksi->kamar_kost_id) : null;
+        // $transaksi = Transaksi::find($id);
+        // $kamarkost = KamarKost::find($id);
+        return view('user.kamar', compact('users', 'transaksi','kamar_kost'));
     }
     public function coba()
     {
@@ -216,12 +220,16 @@ class UserController extends Controller
     public function kerusakan($id)
     {
         $users = Auth::user();
-        return view('user.laporkan.laporkankerusakan', compact('users'));
+        $transaksi = Transaksi::where('user_id', $users->id)->latest()->first();
+        $kamar_kost = $transaksi ? KamarKost::find($transaksi->kamar_kost_id) : null;
+        return view('user.laporkan.laporkankerusakan', compact('users', 'transaksi', 'kamar_kost'));
     }
     public function kehilangan($id)
     {
         $users = Auth::user();
-        return view('user.laporkan.laporkankehilangan', compact('users'));
+        $transaksi = Transaksi::where('user_id', $users->id)->latest()->first();
+        $kamar_kost = $transaksi ? KamarKost::find($transaksi->kamar_kost_id) : null;
+        return view('user.laporkan.laporkankehilangan', compact('users', 'transaksi', 'kamar_kost'));
     }
     public function riwayat()
     {
