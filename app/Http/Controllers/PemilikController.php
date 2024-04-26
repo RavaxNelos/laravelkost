@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Banner;
 use App\Models\KamarKost;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 
 class PemilikController extends Controller
@@ -20,7 +21,8 @@ class PemilikController extends Controller
     }
     public function transaksi()
     {
-        return view('pemilik.transaksi');
+        $transaksi = Transaksi::all();
+        return view('pemilik.transaksi', compact('transaksi'));
     }
     public function pengguna()
     {

@@ -35,7 +35,15 @@ class TransaksiController extends Controller
           $transaksi->status = 'selesai';
           $transaksi->pesan  = 'Kost Sudah Terbayar';
           $transaksi->save();
+         // Temukan pengguna terkait dengan transaksi
+         $pengguna = $transaksi->user;
 
+         // Periksa apakah pengguna ditemukan
+         if ($pengguna) {
+             // Ubah status pengguna menjadi "penghuni"
+             $pengguna->status = 'Penghuni';
+             $pengguna->save();
+         }
               // Redirect kembali ke halaman sebelumnya dengan pesan sukses
           return redirect()->back()->with('success', 'Status pembayaran berhasil diubah');
       } else {

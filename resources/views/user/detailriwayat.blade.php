@@ -185,6 +185,22 @@
     <div class="container">
         <div class="row">
             <div class="col-4 text-start">
+                <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 200px;">Status Transaksi</h3>
+            </div>
+            <div class="col-8 text-end">
+                <h3 class="fw-semibold text-{{ $transaksi->status == 'proses' ? 'warning' : ($transaksi->status == 'selesai' ? 'success' : 'danger') }}" style="font-size: 14px;">{{ $transaksi->status == 'proses' ? 'Proses Pembayaran' : ($transaksi->status == 'selesai' ? 'Pembayaran Diterima' : 'Pembayaran Ditolak') }}</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 text-start">
+                <h3 class="fw-normal text-secondary" style="font-size: 14px;">No. Transaksi</h3>
+            </div>
+            <div class="col-8 text-end">
+                <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">{{ $transaksi->no_transaksi }}</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 text-start">
                 <h3 class="fw-normal text-secondary" style="font-size: 14px;">Nama User</h3>
             </div>
             <div class="col-8 text-end">

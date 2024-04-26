@@ -91,6 +91,10 @@
             border: var(--bs-dropdown-border-width) solid var(--bs-dropdown-border-color);
             border-radius: var(--bs-dropdown-border-radius);
         }
+
+        .py-3 {
+            padding-bottom: 0.5rem !important;
+        }
     </style>
 </head>
 
@@ -161,94 +165,98 @@
             <hr class="garis-2">
             <div class="container" x-show="filter == 'form'">
                 <div class="card-laporkan-kehilangan">
-                    <div class="container mt-3">
-                        <div class="row">
-                            <div class="col-12 text-start">
-                                <h3 class="fw-medium text-secondary" style="font-size: 14px;">Nama User</h3>
+                    <form action="/user/kehilangan/admin" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" value="{{ $kamar_kost->id }}" name="id">
+                        <div class="container mt-3">
+                            <div class="row">
+                                <div class="col-12 text-start">
+                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">Nama User</h3>
+                                </div>
+                                <div class="col-12">
+                                    <input type="text" class="input-nama" name="name" id="name" value="{{ $users->name }}" disabled>
+                                </div>
                             </div>
-                            <div class="col-12">
-                                <input type="text" class="input-nama" value="{{ $users->name }}" disabled>
+                            <div class="row mt-3">
+                                <div class="col-12 text-start">
+                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">No. Kamar</h3>
+                                </div>
+                                <div class="col-12">
+                                    <input type="text" class="input-nama" name="nomer_kost" id="nomer_kost" value="Kamar No.{{ $kamar_kost->nomer_kost }}" disabled>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-12 text-start">
-                                <h3 class="fw-medium text-secondary" style="font-size: 14px;">No. Kamar</h3>
+                            <div class="row mt-3">
+                                <div class="col-12 text-start">
+                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">Lokasi Kehilangan<span class="wajib">*</span></h3>
+                                </div>
+                                <div class="col-12">
+                                    <input type="text" class="input-nama" name="lokasi_hilang" id="lokasi_hilang">
+                                </div>
                             </div>
-                            <div class="col-12">
-                                <input type="text" class="input-nama" value="Kamar No.{{ $kamar_kost->nomer_kost }}" disabled>
+                            <div class="row mt-3">
+                                <div class="col-12 text-start">
+                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">Apa Yang Hilang?<span class="wajib">*</span></h3>
+                                </div>
+                                <div class="col-9 text-start">
+                                    <input type="text" id="inputKerusakan" class="input-kerusakan" name="barang_hilang" id="barang_hilang" placeholder="Pilih barang anda yang hilang">
+                                </div>
+                                <div class="col-3 text-end">
+                                    <div class="dropdown">
+                                        <button class="btn-dropdown-kerusakan dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        </button>
+                                        <ul class="dropdown-menu" id="barangDropdown">
+                                            <li><a class="dropdown-item" href="#" onclick="updateInput('Handphone')">Handphone</a></li>
+                                            <li><a class="dropdown-item" href="#" onclick="updateInput('Dompet')">Dompet</a></li>
+                                            <li><a class="dropdown-item" href="#" onclick="updateInput('Laptop')">Laptop</a></li>
+                                            <li><a class="dropdown-item" href="#" onclick="updateInput('Tablet')">Tablet</a></li>
+                                            <li><a class="dropdown-item" href="#" onclick="updateInput('Jam Tangan')">Jam Tangan</a></li>
+                                            <li><a class="dropdown-item" href="#" onclick="updateInput('Surat')">Surat</a></li>
+                                            <li><a class="dropdown-item" href="#" onclick="updateInput('Sandal/Sepatu')">Sandal/Sepatu</a></li>
+                                            <li><a class="dropdown-item" href="#" onclick="showTextInput()">Lainnya</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-12 text-start">
-                                <h3 class="fw-medium text-secondary" style="font-size: 14px;">Lokasi Kehilangan<span class="wajib">*</span></h3>
+                            <div class="row mt-3">
+                                <div class="col-12 text-start">
+                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">Tanggal Kehilangan<span class="wajib">*</span></h3>
+                                </div>
+                                <div class="col-12">
+                                    <div class="input-group">
+                                        <input type="date" class="form-control" id="tanggal_hilang" name="tanggal_hilang" style="border: 1px solid rgb(187, 0, 255); border-top-leftradius: 4px; border-bottom-left-radius: 4px;">
+                                        <span class="input-group-text" style="border: 1px solid rgb(187, 0, 255); border-top-right-radius: 4px; border-bottom-right-radius: 4px; background: linear-gradient(45deg, #9c27b0, #673ab7, #3f51b5); color: white;">
+                                            <i class="bi bi-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-12">
-                                <input type="text" class="input-nama">
+                            <div class="row mt-3">
+                                <div class="col-12 text-start">
+                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">Jam Kehilangan<span class="wajib">*</span></h3>
+                                </div>
+                                <div class="col-12">
+                                    <div class="input-group">
+                                        <input type="time" class="form-control" id="jam_hilang" name="jam_hilang" style="border: 1px solid rgb(187, 0, 255); border-top-leftradius: 4px; border-bottom-left-radius: 4px;">
+                                        <span class="input-group-text" style="border: 1px solid rgb(187, 0, 255); border-top-right-radius: 4px; border-bottom-right-radius: 4px; background: linear-gradient(45deg, #9c27b0, #673ab7, #3f51b5); color: white">
+                                            <i class="bi bi-clock"></i>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-12 text-start">
-                                <h3 class="fw-medium text-secondary" style="font-size: 14px;">Apa Yang Hilang?<span class="wajib">*</span></h3>
-                            </div>
-                            <div class="col-9 text-start">
-                                <input type="text" id="inputKerusakan" class="input-kerusakan" placeholder="Pilih barang anda yang hilang" disabled>
-                            </div>
-                            <div class="col-3 text-end">
-                                <div class="dropdown">
-                                    <button class="btn-dropdown-kerusakan dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    </button>
-                                    <ul class="dropdown-menu" id="barangDropdown">
-                                        <li><a class="dropdown-item" href="#" onclick="updateInput('Handphone')">Handphone</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="updateInput('Dompet')">Dompet</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="updateInput('Laptop')">Laptop</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="updateInput('Tablet')">Tablet</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="updateInput('Jam Tangan')">Jam Tangan</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="updateInput('Surat')">Surat</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="updateInput('Sandal/Sepatu')">Sandal/Sepatu</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="showTextInput()">Lainnya</a></li>
-                                    </ul>
+                            <div class="row mt-3">
+                                <div class="col-12 text-start">
+                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">Keterangan Tambahan<span class="wajib">*</span></h3>
+                                </div>
+                                <div class="col-12">
+                                    <textarea name="keterangan" id="keterangan" placeholder="Tambahkan keterangan kamu" class="textarea-keterangan"></textarea>
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-3">
-                            <div class="col-12 text-start">
-                                <h3 class="fw-medium text-secondary" style="font-size: 14px;">Tanggal Kehilangan<span class="wajib">*</span></h3>
-                            </div>
-                            <div class="col-12">
-                                <div class="input-group">
-                                    <input type="date" class="form-control" id="tanggal" name="tanggal" style="border: 1px solid rgb(187, 0, 255); border-top-leftradius: 4px; border-bottom-left-radius: 4px;">
-                                    <span class="input-group-text" style="border: 1px solid rgb(187, 0, 255); border-top-right-radius: 4px; border-bottom-right-radius: 4px; background: linear-gradient(45deg, #9c27b0, #673ab7, #3f51b5); color: white;">
-                                        <i class="bi bi-calendar"></i>
-                                    </span>
-                                </div>
-                            </div>
+                        <hr class="kirim-laporan" style="border-top: 1px solid #ccc">
+                        <div class="container text-center">
+                            <button type="submit" class="btn btn-dark" style="border-radius: 50px; width: 170px;" disabled id="submitButton">Kirim Laporan</button>
                         </div>
-                        <div class="row mt-3">
-                            <div class="col-12 text-start">
-                                <h3 class="fw-medium text-secondary" style="font-size: 14px;">Jam Kehilangan<span class="wajib">*</span></h3>
-                            </div>
-                            <div class="col-12">
-                                <div class="input-group">
-                                    <input type="time" class="form-control" id="jamInput" name="jamInput" style="border: 1px solid rgb(187, 0, 255); border-top-leftradius: 4px; border-bottom-left-radius: 4px;">
-                                    <span class="input-group-text" style="border: 1px solid rgb(187, 0, 255); border-top-right-radius: 4px; border-bottom-right-radius: 4px; background: linear-gradient(45deg, #9c27b0, #673ab7, #3f51b5); color: white">
-                                        <i class="bi bi-clock"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-12 text-start">
-                                <h3 class="fw-medium text-secondary" style="font-size: 14px;">Keterangan Tambahan<span class="wajib">*</span></h3>
-                            </div>
-                            <div class="col-12">
-                                <textarea name="" id="" placeholder="Tambahkan keterangan kamu" class="textarea-keterangan"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <hr class="kirim-laporan" style="border-top: 1px solid #ccc">
-                    <div class="container text-center">
-                        <button type="button" class="btn btn-dark" style="border-radius: 50px; width: 170px;" disabled id="submitButton">Kirim Laporan</button>
-                    </div>
+                    </form>
                 </div>
             </div>
             <div class="container" x-show="filter == 'riwayat'">
@@ -257,133 +265,41 @@
                         <div class="card-custom-list">
                             <div class="container py-2">
                                 <div class="row">
-                                    <div class="col-5 text-start">
-                                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Nama User</h3>
+                                    <div class="col-3 text-start">
+                                        <h3 class="fw-medium text-secondary" style="font-size: 14px; width: 200px;">Nama User</h3>
                                     </div>
-                                    <div class="col-7 text-end">
-                                        <h3 class="fw-medium" style="font-size: 14px; color: #333333;">Muhammad Ravanelo</h3>
-                                    </div>
-                                    <div class="col-5 text-start" style="margin-top: -6px;">
-                                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">No. Kamar</h3>
-                                    </div>
-                                    <div class="col-7 text-end" style="margin-top: -6px;">
-                                        <h3 class="fw-medium" style="font-size: 14px; color: #333333;">Kamar No.1</h3>
-                                    </div>
-                                    <div class="col-6 text-start" style="margin-top: -6px;">
-                                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Lokasi Kehilangan</h3>
-                                    </div>
-                                    <div class="col-6 text-end" style="margin-top: -6px;">
-                                        <h3 class="fw-medium" style="font-size: 14px; color: #333333;">Di Kamar</h3>
-                                    </div>
-                                    <div class="col-6 text-start" style="margin-top: -6px;">
-                                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Yang Hilang</h3>
-                                    </div>
-                                    <div class="col-6 text-end" style="margin-top: -6px;">
-                                        <h3 class="fw-medium" style="font-size: 14px; color: #333333;">Handphone</h3>
-                                    </div>
-                                    <div class="col-7 text-start" style="margin-top: -6px;">
-                                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Tanggal Kehilangan</h3>
-                                    </div>
-                                    <div class="col-5 text-end" style="margin-top: -6px;">
-                                        <h3 class="fw-medium" style="font-size: 14px; color: #333333;">18-03-2024</h3>
-                                    </div>
-                                    <div class="col-6 text-start" style="margin-top: -6px;">
-                                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Jam Kehilangan</h3>
-                                    </div>
-                                    <div class="col-6 text-end" style="margin-top: -6px;">
-                                        <h3 class="fw-medium" style="font-size: 14px; color: #333333;">11.00 WIB</h3>
-                                    </div>
-                                </div>
-                                <hr class="hr-garis-card">
-                                <div class="col-12 text-center">
-                                    <h3 class="fw-medium" style="font-size: 14px; color: #9c27b0;">Selengkapnya</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-custom-list">
-                            <div class="container py-2">
-                                <div class="row">
-                                    <div class="col-5 text-start">
-                                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Nama User</h3>
-                                    </div>
-                                    <div class="col-7 text-end">
-                                        <h3 class="fw-medium" style="font-size: 14px; color: #333333;">Adrian Kurniawan</h3>
+                                    <div class="col-9 text-end">
+                                        <h3 class="fw-medium" style="font-size: 14px; color: #333333;">{{ $users->name }}</h3>
                                     </div>
                                     <div class="col-5 text-start" style="margin-top: -6px;">
                                         <h3 class="fw-medium text-secondary" style="font-size: 14px;">No. Kamar</h3>
                                     </div>
                                     <div class="col-7 text-end" style="margin-top: -6px;">
-                                        <h3 class="fw-medium" style="font-size: 14px; color: #333333;">Kamar No.1</h3>
+                                        <h3 class="fw-medium" style="font-size: 14px; color: #333333;">Kamar No.{{ $kehilangan?->nomer_kamar }}</h3>
                                     </div>
                                     <div class="col-6 text-start" style="margin-top: -6px;">
                                         <h3 class="fw-medium text-secondary" style="font-size: 14px;">Lokasi Kehilangan</h3>
                                     </div>
                                     <div class="col-6 text-end" style="margin-top: -6px;">
-                                        <h3 class="fw-medium" style="font-size: 14px; color: #333333;">Di Kamar</h3>
+                                        <h3 class="fw-medium" style="font-size: 14px; color: #333333;">{{ $kehilangan?->lokasi_hilang }}</h3>
                                     </div>
                                     <div class="col-6 text-start" style="margin-top: -6px;">
                                         <h3 class="fw-medium text-secondary" style="font-size: 14px;">Yang Hilang</h3>
                                     </div>
                                     <div class="col-6 text-end" style="margin-top: -6px;">
-                                        <h3 class="fw-medium" style="font-size: 14px; color: #333333;">Handphone</h3>
+                                        <h3 class="fw-medium" style="font-size: 14px; color: #333333;">{{ $kehilangan?->barang_hilang }}</h3>
                                     </div>
                                     <div class="col-7 text-start" style="margin-top: -6px;">
                                         <h3 class="fw-medium text-secondary" style="font-size: 14px;">Tanggal Kehilangan</h3>
                                     </div>
                                     <div class="col-5 text-end" style="margin-top: -6px;">
-                                        <h3 class="fw-medium" style="font-size: 14px; color: #333333;">18-03-2024</h3>
+                                        <h3 class="fw-medium" style="font-size: 14px; color: #333333;">{{ Carbon\Carbon::parse($kehilangan?->tanggal_hilang)->locale('id')->format('j F Y') }}</h3>
                                     </div>
                                     <div class="col-6 text-start" style="margin-top: -6px;">
                                         <h3 class="fw-medium text-secondary" style="font-size: 14px;">Jam Kehilangan</h3>
                                     </div>
                                     <div class="col-6 text-end" style="margin-top: -6px;">
-                                        <h3 class="fw-medium" style="font-size: 14px; color: #333333;">11.00 WIB</h3>
-                                    </div>
-                                </div>
-                                <hr class="hr-garis-card">
-                                <div class="col-12 text-center">
-                                    <h3 class="fw-medium" style="font-size: 14px; color: #9c27b0;">Selengkapnya</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-custom-list">
-                            <div class="container py-2">
-                                <div class="row">
-                                    <div class="col-5 text-start">
-                                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Nama User</h3>
-                                    </div>
-                                    <div class="col-7 text-end">
-                                        <h3 class="fw-medium" style="font-size: 14px; color: #333333;">Brahmana</h3>
-                                    </div>
-                                    <div class="col-5 text-start" style="margin-top: -6px;">
-                                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">No. Kamar</h3>
-                                    </div>
-                                    <div class="col-7 text-end" style="margin-top: -6px;">
-                                        <h3 class="fw-medium" style="font-size: 14px; color: #333333;">Kamar No.1</h3>
-                                    </div>
-                                    <div class="col-6 text-start" style="margin-top: -6px;">
-                                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Lokasi Kehilangan</h3>
-                                    </div>
-                                    <div class="col-6 text-end" style="margin-top: -6px;">
-                                        <h3 class="fw-medium" style="font-size: 14px; color: #333333;">Di Kamar</h3>
-                                    </div>
-                                    <div class="col-6 text-start" style="margin-top: -6px;">
-                                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Yang Hilang</h3>
-                                    </div>
-                                    <div class="col-6 text-end" style="margin-top: -6px;">
-                                        <h3 class="fw-medium" style="font-size: 14px; color: #333333;">Handphone</h3>
-                                    </div>
-                                    <div class="col-7 text-start" style="margin-top: -6px;">
-                                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Tanggal Kehilangan</h3>
-                                    </div>
-                                    <div class="col-5 text-end" style="margin-top: -6px;">
-                                        <h3 class="fw-medium" style="font-size: 14px; color: #333333;">18-03-2024</h3>
-                                    </div>
-                                    <div class="col-6 text-start" style="margin-top: -6px;">
-                                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Jam Kehilangan</h3>
-                                    </div>
-                                    <div class="col-6 text-end" style="margin-top: -6px;">
-                                        <h3 class="fw-medium" style="font-size: 14px; color: #333333;">11.00 WIB</h3>
+                                        <h3 class="fw-medium" style="font-size: 14px; color: #333333;">{{ $kehilangan?->jam_hilang }} WIB</h3>
                                     </div>
                                 </div>
                                 <hr class="hr-garis-card">
@@ -437,9 +353,9 @@
         document.addEventListener('DOMContentLoaded', function() {
             var lokasiInput = document.querySelector('.input-nama');
             var barangHilangInput = document.querySelector('.input-kerusakan');
-            var tanggalInput = document.querySelector('#tanggal');
-            var jamInput = document.querySelector('#jamInput');
-            var keteranganInput = document.querySelector('.textarea-keterangan');
+            var tanggalInput = document.querySelector('#tanggal_hilang');
+            var jamInput = document.querySelector('#jam_hilang');
+            var keteranganInput = document.querySelector('#keterangan');
             var submitButton = document.querySelector('#submitButton');
 
             var inputElements = [lokasiInput, barangHilangInput, tanggalInput, jamInput, keteranganInput];

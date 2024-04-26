@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('kehilangan', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
+            $table->foreignId('user_id');
             $table->string('nomer_kamar');
             $table->string('lokasi_hilang');
             $table->string('barang_hilang');

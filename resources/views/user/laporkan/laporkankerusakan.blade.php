@@ -176,124 +176,127 @@
             <hr class="garis-2">
             <div class="container" x-show="filter == 'form'">
                 <div class="card-laporkan-kerusakan">
-                    <div class="container mt-3">
-                        <div class="row">
-                            <div class="col-12 text-start">
-                                <h3 class="fw-medium text-secondary" style="font-size: 14px;">Nama User</h3>
-                            </div>
-                            <div class="col-12">
-                                <input type="text" class="input-nama" value="{{ $users->name }}" disabled>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-12 text-start">
-                                <h3 class="fw-medium text-secondary" style="font-size: 14px;">No. Kamar</h3>
-                            </div>
-                            <div class="col-12">
-                                <input type="text" class="input-nama" value="Kamar No. {{ $kamar_kost->nomer_kost }}" disabled>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-12 text-start">
-                                <h3 class="fw-medium text-secondary" style="font-size: 14px;">Tanggal Laporan<span class="wajib">*</span></h3>
-                            </div>
-                            <div class="col-12">
-                                <div class="input-group">
-                                    <input type="date" class="form-control" id="tanggal" name="tanggal" style="border: 1px solid rgb(187, 0, 255); border-top-leftradius: 4px; border-bottom-left-radius: 4px;" placeholder="Masukkan tanggal laporan" id="datepicker">
-                                    <span class="input-group-text" style="border: 1px solid rgb(187, 0, 255); border-top-right-radius: 4px; border-bottom-right-radius: 4px; background: linear-gradient(45deg, #9c27b0, #673ab7, #3f51b5); color: white;">
-                                        <i class="bi bi-calendar"></i>
-                                    </span>
+                    <form action="/user/kerusakan/admin" method="POST" enctype="multipart/form-data" x-data="{ tanggal: '', barang: '', gambar: '' }">
+                        @csrf
+                        <div class="container mt-3">
+                            <div class="row">
+                                <div class="col-12 text-start">
+                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">Nama User</h3>
+                                </div>
+                                <div class="col-12">
+                                    <input type="text" class="input-nama" name="name" id="name" value="{{ $users->name }}" disabled>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-12 text-start">
-                                <h3 class="fw-medium text-secondary" style="font-size: 14px;">Apa Yang Rusak?<span class="wajib">*</span></h3>
-                            </div>
-                            <div class="col-9 text-start">
-                                <input type="text" id="inputKerusakan" class="input-kerusakan" placeholder="Barang yang mengalami kerusakan" disabled>
-                            </div>
-                            <div class="col-3 text-end">
-                                <div class="dropdown">
-                                    <button class="btn-dropdown-kerusakan dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    </button>
-                                    <ul class="dropdown-menu" id="barangDropdown">
-                                        <li><a class="dropdown-item" href="#" onclick="updateInput('Kasur')">Kasur</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="updateInput('Lampu Kamar')">Lampu Kamar</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="updateInput('Pintu Kamar')">Pintu Kamar</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="updateInput('Jendela Kamar')">Jendela Kamar</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="updateInput('Lantai Kamar')">Lantai Kamar</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="updateInput('AC Kamar')">AC Kamar</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="updateInput('Kulkas')">Kulkas</a></li>
-                                        <li><a class="dropdown-item" href="#" onclick="showTextInput()">Lainnya</a></li>
-                                    </ul>
+                            <div class="row mt-3">
+                                <div class="col-12 text-start">
+                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">No. Kamar</h3>
+                                </div>
+                                <div class="col-12">
+                                    <input type="text" class="input-nama" name="nomer_kost" id="nomer_kost" value="Kamar No. {{ $kamar_kost->nomer_kost }}" disabled>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-12 text-start">
-                                <h3 class="fw-medium text-secondary" style="font-size: 14px;">Unggah Foto<span class="wajib">*</span></h3>
+                            <div class="row mt-3">
+                                <div class="col-12 text-start">
+                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">Tanggal Laporan<span class="wajib">*</span></h3>
+                                </div>
+                                <div class="col-12">
+                                    <div class="input-group">
+                                        <input type="date" class="form-control" id="tanggal_lapor" name="tanggal_lapor" style="border: 1px solid rgb(187, 0, 255); border-top-leftradius: 4px; border-bottom-left-radius: 4px;" placeholder="Masukkan tanggal laporan" id="datepicker" x-model="tanggal">
+                                        <span class="input-group-text" style="border: 1px solid rgb(187, 0, 255); border-top-right-radius: 4px; border-bottom-right-radius: 4px; background: linear-gradient(45deg, #9c27b0, #673ab7, #3f51b5); color: white;">
+                                            <i class="bi bi-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay;">
-                                <div class="position-relative">
-                                    <img id="frame" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 100px; height: 100px; border-radius: 8px; cursor: pointer;" onclick="deleteImage(); checkImages()">
-                                    <label for="uploadfoto" class="label-upload">
-                                        <div class="box-icon">
-                                            <div class="bg-kategori rounded-5">
-                                                <i id="uploadIcon" class="bi bi-cloud-upload"></i>
+                            <div class="row mt-3">
+                                <div class="col-12 text-start">
+                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">Apa Yang Rusak?<span class="wajib">*</span></h3>
+                                </div>
+                                <div class="col-9 text-start">
+                                    <input type="text" id="barang_rusak" name="barang_rusak" class="input-kerusakan" placeholder="Barang yang mengalami kerusakan" x-model="barang">
+                                </div>
+                                <div class="col-3 text-end">
+                                    <div class="dropdown">
+                                        <button class="btn-dropdown-kerusakan dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        </button>
+                                        <ul class="dropdown-menu" id="barangDropdown">
+                                            <li><a class="dropdown-item" href="#" onclick="updateInput('Kasur')">Kasur</a></li>
+                                            <li><a class="dropdown-item" href="#" onclick="updateInput('Lampu Kamar')">Lampu Kamar</a></li>
+                                            <li><a class="dropdown-item" href="#" onclick="updateInput('Pintu Kamar')">Pintu Kamar</a></li>
+                                            <li><a class="dropdown-item" href="#" onclick="updateInput('Jendela Kamar')">Jendela Kamar</a></li>
+                                            <li><a class="dropdown-item" href="#" onclick="updateInput('Lantai Kamar')">Lantai Kamar</a></li>
+                                            <li><a class="dropdown-item" href="#" onclick="updateInput('AC Kamar')">AC Kamar</a></li>
+                                            <li><a class="dropdown-item" href="#" onclick="updateInput('Kulkas')">Kulkas</a></li>
+                                            <li><a class="dropdown-item" href="#" onclick="showTextInput()">Lainnya</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12 text-start">
+                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">Unggah Foto<span class="wajib">*</span></h3>
+                                </div>
+                                <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay;">
+                                    <div class="position-relative">
+                                        <img id="frame" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 100px; height: 100px; border-radius: 8px; cursor: pointer;" onclick="deleteImage(); checkImages()">
+                                        <label for="uploadfoto" class="label-upload">
+                                            <div class="box-icon">
+                                                <div class="bg-kategori rounded-5">
+                                                    <i id="uploadIcon" class="bi bi-cloud-upload"></i>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <input type="file" onchange="preview()" hidden id="uploadfoto" accept="image/*">
-                                    </label>
-                                </div>
-                                <div class="position-relative">
-                                    <img id="frame2" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 100px; height: 100px; border-radius: 8px; cursor: pointer;" onclick="deleteImage2(); checkImages()">
-                                    <label for="uploadfoto2" class="label-upload">
-                                        <div class="box-icon">
-                                            <div class="bg-kategori rounded-5">
-                                                <i id="uploadIcon2" class="bi bi-cloud-upload"></i>
+                                            <input type="file" onchange="preview()" hidden id="uploadfoto" accept="image/*" x-model="gambar">
+                                        </label>
+                                    </div>
+                                    <div class="position-relative">
+                                        <img id="frame2" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 100px; height: 100px; border-radius: 8px; cursor: pointer;" onclick="deleteImage2(); checkImages()">
+                                        <label for="uploadfoto2" class="label-upload">
+                                            <div class="box-icon">
+                                                <div class="bg-kategori rounded-5">
+                                                    <i id="uploadIcon2" class="bi bi-cloud-upload"></i>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <input type="file" onchange="preview2()" hidden id="uploadfoto2" accept="image/*">
-                                    </label>
-                                </div>
-                                <div class="position-relative">
-                                    <img id="frame3" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 100px; height: 100px; border-radius: 8px; cursor: pointer;" onclick="deleteImage3(); checkImages()">
-                                    <label for="uploadfoto3" class="label-upload">
-                                        <div class="box-icon">
-                                            <div class="bg-kategori rounded-5">
-                                                <i id="uploadIcon3" class="bi bi-cloud-upload"></i>
+                                            <input type="file" onchange="preview2()" hidden id="uploadfoto2" accept="image/*">
+                                        </label>
+                                    </div>
+                                    <div class="position-relative">
+                                        <img id="frame3" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 100px; height: 100px; border-radius: 8px; cursor: pointer;" onclick="deleteImage3(); checkImages()">
+                                        <label for="uploadfoto3" class="label-upload">
+                                            <div class="box-icon">
+                                                <div class="bg-kategori rounded-5">
+                                                    <i id="uploadIcon3" class="bi bi-cloud-upload"></i>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <input type="file" onchange="preview3()" hidden id="uploadfoto3" accept="image/*">
-                                    </label>
-                                </div>
-                                <div class="position-relative">
-                                    <img id="frame4" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 100px; height: 100px; border-radius: 8px; cursor: pointer;" onclick="deleteImage4(); checkImages()">
-                                    <label for="uploadfoto4" class="label-upload">
-                                        <div class="box-icon">
-                                            <div class="bg-kategori rounded-5">
-                                                <i id="uploadIcon4" class="bi bi-cloud-upload"></i>
+                                            <input type="file" onchange="preview3()" hidden id="uploadfoto3" accept="image/*">
+                                        </label>
+                                    </div>
+                                    <div class="position-relative">
+                                        <img id="frame4" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 100px; height: 100px; border-radius: 8px; cursor: pointer;" onclick="deleteImage4(); checkImages()">
+                                        <label for="uploadfoto4" class="label-upload">
+                                            <div class="box-icon">
+                                                <div class="bg-kategori rounded-5">
+                                                    <i id="uploadIcon4" class="bi bi-cloud-upload"></i>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <input type="file" onchange="preview4()" hidden id="uploadfoto4" accept="image/*">
-                                    </label>
+                                            <input type="file" onchange="preview4()" hidden id="uploadfoto4" accept="image/*">
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12 text-start">
+                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">Keterangan (Opsional)</h3>
+                                </div>
+                                <div class="col-12">
+                                    <textarea name="keterangan" id="keterangan" placeholder="Tambahkan keterangan kamu" class="textarea-keterangan"></textarea>
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-3">
-                            <div class="col-12 text-start">
-                                <h3 class="fw-medium text-secondary" style="font-size: 14px;">Keterangan (Opsional)</h3>
-                            </div>
-                            <div class="col-12">
-                                <textarea name="" id="" placeholder="Tambahkan keterangan kamu" class="textarea-keterangan"></textarea>
-                            </div>
+                        <hr class="kirim-laporan" style="border-top: 1px solid #ccc">
+                        <div class="container text-center">
+                            <button type="submit" class="btn btn-dark" :class="tanggal && barang && gambar ? null : 'disabled'" style="border-radius: 50px; width: 170px;">Kirim Laporan</button>
                         </div>
-                    </div>
-                    <hr class="kirim-laporan" style="border-top: 1px solid #ccc">
-                    <div class="container text-center">
-                        <button type="button" class="btn btn-dark" style="border-radius: 50px; width: 170px;" disabled id="submitButton">Kirim Laporan</button>
-                    </div>
+                    </form>
                 </div>
             </div>
             <div class="container" x-show="filter == 'riwayat'" style="margin-top: 8rem;">
@@ -427,14 +430,14 @@
         }
 
         function showTextInput() {
-            var inputElement = document.getElementById("inputKerusakan");
+            var inputElement = document.getElementById("barang_rusak");
             inputElement.removeAttribute("disabled");
             inputElement.focus();
         }
 
         document.addEventListener('DOMContentLoaded', function() {
             // Memantau input dan gambar
-            var inputElements = document.querySelectorAll('.input-nama, .input-kerusakan, #tanggal');
+            var inputElements = document.querySelectorAll('.input-nama, .barang_rusak, #tanggal_lapor');
             var fileInputs = document.querySelectorAll('input[type="file"]');
             var submitButton = document.querySelector('.btn');
 
@@ -454,8 +457,8 @@
             // Fungsi untuk memeriksa input dan gambar
             function checkInputs() {
                 var namaValue = document.querySelector('.input-nama').value;
-                var kerusakanValue = document.querySelector('.input-kerusakan').value;
-                var tanggalValue = document.querySelector('#tanggal').value;
+                var kerusakanValue = document.querySelector('.barang_rusak').value;
+                var tanggalValue = document.querySelector('#tanggal_lapor').value;
 
                 // Mengaktifkan atau menonaktifkan tombol berdasarkan status input
                 submitButton.disabled = !(namaValue && kerusakanValue && tanggalValue);

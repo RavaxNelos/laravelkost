@@ -66,7 +66,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="1" aria-expanded="false">
+                    <a class="sidebar-link" href="/pemilikmin/kerusakan" aria-expanded="false">
                         <span>
                             <i class="ti ti-report"></i>
                         </span>
@@ -74,7 +74,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="2" aria-expanded="false">
+                    <a class="sidebar-link" href="/pemilikmin/kehilangan" aria-expanded="false">
                         <span>
                             <i class="ti ti-search"></i>
                         </span>
