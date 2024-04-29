@@ -80,6 +80,11 @@
         input[type=number] {
             -moz-appearance: textfield;
         }
+
+        .btn:disabled {
+            background: rgb(149, 148, 148);
+            border: none;
+        }
     </style>
 @endsection
 @section('content')
@@ -123,7 +128,7 @@
             </div>
         </div>
         <div class="modal fade" id="tambahkamar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable" role="document" x-data="{ gambar: '', kategori: '', harga: '', alamat: '', ukuran: '', tipe: '', status: '', fasilitas: '', lokasi: '', air: '', listik: '', alamatlengkap: '', deskripsi: '', nomer: '' }">
+            <div class="modal-dialog modal-dialog-scrollable" role="document" x-data="{ gambar: '', kategori: '', harga: '', alamat: '', ukuran: '', tipe: '', status: '', fasilitas: '', lokasi: '', air: '', listik: '', alamatlengkap: '', deskripsi: '', nomer: '', fasKamar: [], fasUmum: [], fasKamarmandi: [], fasParkir: [] }">
                 <div class="modal-content" style="width: 100%; height: 540px;">
                     <div class="modal-header" style=" height: 70px;">
                         <h1 class="modal-title fs-5 fw-semibold" id="exampleModalLabel" style="margin-top: -24px;">Tambah Kamar</h1>
@@ -309,7 +314,7 @@
                                             <label class="mt-2" for="Nomer Kamar">Nomer Kamar Kost <span class="text-danger">*</span></label>
                                             <div class="mt-1">
                                                 <div class="form-group">
-                                                    <input type="number" class="form-control" maxlength="2" name="nomer_kost" id="nomer_kost" placeholder="Masukkan Nomer Kamar Kost" value="{{ old('nomer_kost') }}" x-model="nomer" required>
+                                                    <input type="number" class="form-control" min="0" oninput="limitLength(this, 2)" name="nomer_kost" id="nomer_kost" placeholder="Masukkan Nomer Kamar Kost" value="{{ old('nomer_kost') }}" x-model="nomer" required>
                                                     @error('nomer_kost')
                                                         {{ $message }}
                                                     @enderror
@@ -327,11 +332,81 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="items ps-2 pt-3 fasilitas">
+                                            <div class="title">Fasilitas Kamar</div>
+                                            <input type="hidden" name=" kondisi" class="form-control add-input" value="kosong">
+                                            <input type="hidden" name="" class="form-control add-input" value="Publish">
+                                        </div>
+                                        <div class="items ps-2 fasilitas">
+                                            <div class="row">
+                                                @foreach ($fas_kamar as $facilitekamar)
+                                                    <div class="col-4">
+                                                        <div class="form-check mt-2">
+                                                            <input class="form-check-input" type="checkbox" name="fasilitas[]" value="{{ $facilitekamar->id }}" id="fasilitasKamar-{{ $facilitekamar->id }}" x-model="fasKamar" />
+                                                            <label class="form-check-label" for="fasilitasKamar-{{ $facilitekamar->id }}">
+                                                                {{ $facilitekamar->nama }}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                        <div class="items ps-2 pt-3 fasilitas">
+                                            <div class="title">Fasilitas Umum</div>
+                                        </div>
+                                        <div class="items ps-2 fasilitas">
+                                            <div class="row">
+                                                @foreach ($fas_umum as $faciliteumum)
+                                                    <div class="col-4">
+                                                        <div class="form-check mt-2">
+                                                            <input class="form-check-input" type="checkbox" name="fasilitas[]" value="{{ $faciliteumum->id }}" id="fasilits-{{ $faciliteumum->id }}" x-model="fasUmum" />
+                                                            <label class="form-check-label" for="fasilits-{{ $faciliteumum->id }}">
+                                                                {{ $faciliteumum->nama }}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                        <div class="items ps-2 pt-3 fasilitas">
+                                            <div class="title">Fasilitas Kamar Mandi</div>
+                                        </div>
+                                        <div class="items ps-2 fasilitas">
+                                            <div class="row">
+                                                @foreach ($fas_kamar_mandi as $facilitekamarmandi)
+                                                    <div class="col-4">
+                                                        <div class="form-check mt-2">
+                                                            <input class="form-check-input" type="checkbox" name="fasilitas[]" value="{{ $facilitekamarmandi->id }}" id="fasilits-{{ $facilitekamarmandi->id }}" x-model="fasKamarmandi" />
+                                                            <label class="form-check-label" for="fasilits-{{ $facilitekamarmandi->id }}">
+                                                                {{ $facilitekamarmandi->nama }}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                        <div class="items ps-2 pt-3 fasilitas">
+                                            <div class="title">Fasilitas Parkir</div>
+                                        </div>
+                                        <div class="items ps-2 fasilitas">
+                                            <div class="row">
+                                                @foreach ($fas_parkir as $faciliteparkir)
+                                                    <div class="col-4">
+                                                        <div class="form-check mt-2">
+                                                            <input class="form-check-input" type="checkbox" name="fasilitas[]" value="{{ $faciliteparkir->id }}" id="fasilits-{{ $faciliteparkir->id }}" x-model="fasParkir" />
+                                                            <label class="form-check-label" for="fasilits-{{ $faciliteparkir->id }}">
+                                                                {{ $faciliteparkir->nama }}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
                                         <div class="col-12 text-end sticky-bottom bg-white">
                                             <div class="align-items-center mt-3 mb-3">
                                                 <div class="ms-auto mt-3 mt-md-0">
                                                     <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Batal</button>
-                                                    <button type="submit" class="btn btn-info font-medium" :class="gambar && kategori && harga && alamat && ukuran && tipe && status && fasilitas && lokasi && air && listrik && alamatlengkap && deskripsi && nomer ? null : 'disabled'">
+                                                    <button type="submit" class="btn btn-info font-medium" :disabled="fasKamar.length === 0 || fasUmum.length === 0 || fasKamarmandi.length === 0 || fasParkir.length === 0 || !(gambar && kategori && alamat && ukuran && tipe && status && fasilitas && lokasi && air && listrik && alamatlengkap && deskripsi && nomer)">
                                                         <div class="align-items-center">
                                                             Tambahkan
                                                         </div>
@@ -620,6 +695,88 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <div class="container fasilitas">
+                                                            <label>Fasilitas Kamar</label>
+                                                            <div class="for-fas">
+                                                                @foreach ($fas_kamar as $facilite)
+                                                                    @php
+                                                                        $kamarkost = \App\Models\KamarKostFasilitas::where('kamar_kost_id', $item->id)
+                                                                            ->where('fasilitas_id', $facilite->id)
+                                                                            ->first();
+                                                                    @endphp
+                                                                    @if ($kamarkost)
+                                                                        <div class="fas-item">
+                                                                            <div class="for-img">
+                                                                                <img src="{{ asset('uploadkamar/' . $facilite->gambar) }}">
+                                                                            </div>
+                                                                            <div class="name">
+                                                                                {{ $facilite->nama }}
+                                                                            </div>
+                                                                        </div>
+                                                                    @endif
+                                                                @endforeach
+                                                            </div>
+                                                            <label class="pt-3">Fasilitas Umum</label>
+                                                            <div class="for-fas umum">
+                                                                @foreach ($fas_umum as $facilite)
+                                                                    @php
+                                                                        $kamarkost = \App\Models\KamarKostFasilitas::where('kamar_kost_id', $item->id)
+                                                                            ->where('fasilitas_id', $facilite->id)
+                                                                            ->first();
+                                                                    @endphp
+                                                                    @if ($kamarkost)
+                                                                        <div class="fas-item">
+                                                                            <div class="for-img">
+                                                                                <img src="{{ asset('uploadkamar/' . $facilite->gambar) }}">
+                                                                            </div>
+                                                                            <div class="name fw-light">
+                                                                                {{ $facilite->nama }}
+                                                                            </div>
+                                                                        </div>
+                                                                    @endif
+                                                                @endforeach
+                                                            </div>
+                                                            <label class="pt-3">Fasilitas Kamar Mandi</label>
+                                                            <div class="for-fas umum">
+                                                                @foreach ($fas_kamar_mandi as $facilite)
+                                                                    @php
+                                                                        $kamarkost = \App\Models\KamarKostFasilitas::where('kamar_kost_id', $item->id)
+                                                                            ->where('fasilitas_id', $facilite->id)
+                                                                            ->first();
+                                                                    @endphp
+                                                                    @if ($kamarkost)
+                                                                        <div class="fas-item">
+                                                                            <div class="for-img">
+                                                                                <img src="{{ asset('uploadkamar/' . $facilite->gambar) }}">
+                                                                            </div>
+                                                                            <div class="name fw-light">
+                                                                                {{ $facilite->nama }}
+                                                                            </div>
+                                                                        </div>
+                                                                    @endif
+                                                                @endforeach
+                                                            </div>
+                                                            <label class="pt-3">Fasilitas Parkir</label>
+                                                            <div class="for-fas umum">
+                                                                @foreach ($fas_parkir as $facilite)
+                                                                    @php
+                                                                        $kamarkost = \App\Models\KamarKostFasilitas::where('kamar_kost_id', $item->id)
+                                                                            ->where('fasilitas_id', $facilite->id)
+                                                                            ->first();
+                                                                    @endphp
+                                                                    @if ($kamarkost)
+                                                                        <div class="fas-item">
+                                                                            <div class="for-img">
+                                                                                <img src="{{ asset('uploadkamar/' . $facilite->gambar) }}">
+                                                                            </div>
+                                                                            <div class="name fw-light">
+                                                                                {{ $facilite->nama }}
+                                                                            </div>
+                                                                        </div>
+                                                                    @endif
+                                                                @endforeach
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                     <div class="modal-footer" style="height: 20px;">
                                                     </div>
@@ -850,6 +1007,94 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
+                                                                        <div class="items ps-2 pt-3 fasilitas">
+                                                                            <div class="title">Fasilitas Kamar<span class="text-danger">*</span></div>
+                                                                        </div>
+                                                                        <div class="items ps-2 fasilitas">
+                                                                            <div class="row">
+                                                                                @foreach ($fas_kamar as $facilitekamar)
+                                                                                    @php
+                                                                                        $kamarkost = \App\Models\KamarKostFasilitas::where('kamar_kost_id', $item->id)
+                                                                                            ->where('fasilitas_id', $facilitekamar->id)
+                                                                                            ->first();
+                                                                                    @endphp
+                                                                                    <div class="col-4">
+                                                                                        <div class="form-check mt-2">
+                                                                                            <input class="form-check-input" type="checkbox" name="fasilitas[]" {{ $kamarkost ? ($facilitekamar->id == $kamarkost->fasilitas_id ? 'checked' : null) : null }} value="{{ $facilitekamar->id }}" id="fasilits-{{ $facilitekamar->id }}" />
+                                                                                            <label class="form-check-label" for="fasilits-{{ $facilitekamar->id }}">
+                                                                                                {{ $facilitekamar->nama }}
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                @endforeach
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="items ps-2 pt-3 fasilitas">
+                                                                            <div class="title">Fasilitas Umum<span class="text-danger">*</span></div>
+                                                                        </div>
+                                                                        <div class="items ps-2 fasilitas">
+                                                                            <div class="row">
+                                                                                @foreach ($fas_umum as $faciliteumum)
+                                                                                    @php
+                                                                                        $kamarkost = \App\Models\KamarKostFasilitas::where('kamar_kost_id', $item->id)
+                                                                                            ->where('fasilitas_id', $faciliteumum->id)
+                                                                                            ->first();
+                                                                                    @endphp
+                                                                                    <div class="col-4">
+                                                                                        <div class="form-check mt-2">
+                                                                                            <input class="form-check-input" type="checkbox" name="fasilitas[]" {{ $kamarkost ? ($faciliteumum->id == $kamarkost->fasilitas_id ? 'checked' : null) : null }} value="{{ $faciliteumum->id }}" id="fasilits-{{ $faciliteumum->id }}" />
+                                                                                            <label class="form-check-label" for="fasilits-{{ $faciliteumum->id }}">
+                                                                                                {{ $faciliteumum->nama }}
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                @endforeach
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="items ps-2 pt-3 fasilitas">
+                                                                            <div class="title">Fasilitas Kamar Mandi<span class="text-danger">*</span></div>
+                                                                        </div>
+                                                                        <div class="items ps-2 fasilitas">
+                                                                            <div class="row">
+                                                                                @foreach ($fas_kamar_mandi as $facilitekamarmandi)
+                                                                                    @php
+                                                                                        $kamarkost = \App\Models\KamarKostFasilitas::where('kamar_kost_id', $item->id)
+                                                                                            ->where('fasilitas_id', $facilitekamarmandi->id)
+                                                                                            ->first();
+                                                                                    @endphp
+                                                                                    <div class="col-4">
+                                                                                        <div class="form-check mt-2">
+                                                                                            <input class="form-check-input" type="checkbox" name="fasilitas[]" {{ $kamarkost ? ($facilitekamarmandi->id == $kamarkost->fasilitas_id ? 'checked' : null) : null }} value="{{ $facilitekamarmandi->id }}" id="fasilits-{{ $facilitekamarmandi->id }}" />
+                                                                                            <label class="form-check-label" for="fasilits-{{ $facilitekamarmandi->id }}">
+                                                                                                {{ $facilitekamarmandi->nama }}
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                @endforeach
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="items ps-2 pt-3 fasilitas">
+                                                                            <div class="title">Fasilitas Parkir<span class="text-danger">*</span></div>
+                                                                        </div>
+                                                                        <div class="items ps-2 fasilitas">
+                                                                            <div class="row">
+                                                                                @foreach ($fas_parkir as $faciliteparkir)
+                                                                                    @php
+                                                                                        $kamarkost = \App\Models\KamarKostFasilitas::where('kamar_kost_id', $item->id)
+                                                                                            ->where('fasilitas_id', $faciliteparkir->id)
+                                                                                            ->first();
+                                                                                    @endphp
+                                                                                    <div class="col-4">
+                                                                                        <div class="form-check mt-2">
+                                                                                            <input class="form-check-input" type="checkbox" name="fasilitas[]" {{ $kamarkost ? ($faciliteparkir->id == $kamarkost->fasilitas_id ? 'checked' : null) : null }} value="{{ $faciliteparkir->id }}" id="fasilits-{{ $faciliteparkir->id }}" />
+                                                                                            <label class="form-check-label" for="fasilits-{{ $faciliteparkir->id }}">
+                                                                                                {{ $faciliteparkir->nama }}
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                @endforeach
+                                                                            </div>
+                                                                        </div>
                                                                         <div class="col-12 text-end sticky-bottom bg-white">
                                                                             <div class="align-items-center mt-3">
                                                                                 <div class="ms-auto mt-3 mb-3 mt-md-0">
@@ -895,7 +1140,7 @@
                     </a>
                 </div>
                 <div class="modal fade" id="tambahkamar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-scrollable" role="document" x-data="{ gambar: '', kategori: '', harga: '', alamat: '', ukuran: '', tipe: '', status: '', fasilitas: '', lokasi: '', air: '', listik: '', alamatlengkap: '', deskripsi: '', nomer: '' }">
+                    <div class="modal-dialog modal-dialog-scrollable" role="document" x-data="{ gambar: '', kategori: '', harga: '', alamat: '', ukuran: '', tipe: '', status: '', fasilitas: '', lokasi: '', air: '', listik: '', alamatlengkap: '', deskripsi: '', nomer: '', fasKamar: [], fasUmum: [], fasKamarmandi: [], fasParkir: [] }">
                         <div class="modal-content" style="width: 100%; height: 540px;">
                             <div class="modal-header" style=" height: 70px;">
                                 <h1 class="modal-title fs-5 fw-semibold" id="exampleModalLabel" style="margin-top: -24px;">Tambah Kamar</h1>
@@ -1081,7 +1326,7 @@
                                                     <label class="mt-2" for="Nomer Kamar">Nomer Kamar Kost <span class="text-danger">*</span></label>
                                                     <div class="mt-1">
                                                         <div class="form-group">
-                                                            <input type="number" class="form-control" maxlength="2" name="nomer_kost" id="nomer_kost" placeholder="Masukkan Nomer Kamar Kost" value="{{ old('nomer_kost') }}" x-model="nomer" required>
+                                                            <input type="number" class="form-control" min="0" oninput="limitLength(this, 2)" name="nomer_kost" id="nomer_kost" placeholder="Masukkan Nomer Kamar Kost" value="{{ old('nomer_kost') }}" x-model="nomer" required>
                                                             @error('nomer_kost')
                                                                 {{ $message }}
                                                             @enderror
@@ -1099,11 +1344,81 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="items ps-2 pt-3 fasilitas">
+                                                    <div class="title">Fasilitas Kamar</div>
+                                                    <input type="hidden" name=" kondisi" class="form-control add-input" value="kosong">
+                                                    <input type="hidden" name="" class="form-control add-input" value="Publish">
+                                                </div>
+                                                <div class="items ps-2 fasilitas">
+                                                    <div class="row">
+                                                        @foreach ($fas_kamar as $facilitekamar)
+                                                            <div class="col-4">
+                                                                <div class="form-check mt-2">
+                                                                    <input class="form-check-input" type="checkbox" name="fasilitas[]" value="{{ $facilitekamar->id }}" id="fasilitasKamar-{{ $facilitekamar->id }}" x-model="fasKamar" />
+                                                                    <label class="form-check-label" for="fasilitasKamar-{{ $facilitekamar->id }}">
+                                                                        {{ $facilitekamar->nama }}
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                                <div class="items ps-2 pt-3 fasilitas">
+                                                    <div class="title">Fasilitas Umum</div>
+                                                </div>
+                                                <div class="items ps-2 fasilitas">
+                                                    <div class="row">
+                                                        @foreach ($fas_umum as $faciliteumum)
+                                                            <div class="col-4">
+                                                                <div class="form-check mt-2">
+                                                                    <input class="form-check-input" type="checkbox" name="fasilitas[]" value="{{ $faciliteumum->id }}" id="fasilits-{{ $faciliteumum->id }}" x-model="fasUmum" />
+                                                                    <label class="form-check-label" for="fasilits-{{ $faciliteumum->id }}">
+                                                                        {{ $faciliteumum->nama }}
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                                <div class="items ps-2 pt-3 fasilitas">
+                                                    <div class="title">Fasilitas Kamar Mandi</div>
+                                                </div>
+                                                <div class="items ps-2 fasilitas">
+                                                    <div class="row">
+                                                        @foreach ($fas_kamar_mandi as $facilitekamarmandi)
+                                                            <div class="col-4">
+                                                                <div class="form-check mt-2">
+                                                                    <input class="form-check-input" type="checkbox" name="fasilitas[]" value="{{ $facilitekamarmandi->id }}" id="fasilits-{{ $facilitekamarmandi->id }}" x-model="fasKamarmandi" />
+                                                                    <label class="form-check-label" for="fasilits-{{ $facilitekamarmandi->id }}">
+                                                                        {{ $facilitekamarmandi->nama }}
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                                <div class="items ps-2 pt-3 fasilitas">
+                                                    <div class="title">Fasilitas Parkir</div>
+                                                </div>
+                                                <div class="items ps-2 fasilitas">
+                                                    <div class="row">
+                                                        @foreach ($fas_parkir as $faciliteparkir)
+                                                            <div class="col-4">
+                                                                <div class="form-check mt-2">
+                                                                    <input class="form-check-input" type="checkbox" name="fasilitas[]" value="{{ $faciliteparkir->id }}" id="fasilits-{{ $faciliteparkir->id }}" x-model="fasParkir" />
+                                                                    <label class="form-check-label" for="fasilits-{{ $faciliteparkir->id }}">
+                                                                        {{ $faciliteparkir->nama }}
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
                                                 <div class="col-12 text-end sticky-bottom bg-white">
                                                     <div class="align-items-center mt-3 mb-3">
                                                         <div class="ms-auto mt-3 mt-md-0">
                                                             <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Batal</button>
-                                                            <button type="submit" class="btn btn-info font-medium" :class="gambar && kategori && harga && alamat && ukuran && tipe && status && fasilitas && lokasi && air && listrik && alamatlengkap && deskripsi && nomer ? null : 'disabled'">
+                                                            <button type="submit" class="btn btn-info font-medium" :disabled="fasKamar.length === 0 || fasUmum.length === 0 || fasKamarmandi.length === 0 || fasParkir.length === 0 || !(gambar && kategori && alamat && ukuran && tipe && status && fasilitas && lokasi && air && listrik && alamatlengkap && deskripsi && nomer)">
                                                                 <div class="align-items-center">
                                                                     Tambahkan
                                                                 </div>
@@ -1250,6 +1565,18 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
     <script>
+        function limitLength(element, maxLength) {
+            if (element.value.length > maxLength) {
+                element.value = element.value.slice(0, maxLength);
+            }
+        }
+
+        function confirmDelete(itemId) {
+            var deleteForm = document.getElementById('deleteForm');
+            deleteForm.action = '/pemilikmin/pembayaran/destroy/' + itemId;
+            $('#deleteConfirmationModal').modal('show');
+        }
+        4
         $(document).ready(function() {
             $('.form-check-input').click(function(event) {
                 var switch_id = $(this).attr("switch_id");

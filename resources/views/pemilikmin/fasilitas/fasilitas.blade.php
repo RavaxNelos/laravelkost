@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 
-@section('title', 'Fasilias')
+@section('title', 'Fasilitas')
 
 @section('styles')
     <style>
@@ -137,14 +137,10 @@
                                         </div>
                                         <div class="col-md-12 mb-4" style="margin-top: -6px;">
                                             <div class="mt-3">
-                                                <div class="input-group">
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control" maxlength="30" name="nama" id="nama" value="{{ old('nama') }}" x-model="nama" required>
-                                                        @error('nama')
-                                                            {{ $message }}
-                                                        @enderror
-                                                    </div>
-                                                </div>
+                                                <input type="text" class="form-control" maxlength="30" name="nama" id="nama" value="{{ old('nama') }}" x-model="nama" required>
+                                                @error('nama')
+                                                    {{ $message }}
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-12 text-start">
@@ -153,7 +149,7 @@
                                         <div class="col-md-12 mb-4" style="margin-top: -6px;">
                                             <div class="mt-3">
                                                 <div class="input-group">
-                                                    <select class="form-select" id="tipe" name="tipe" value="{{ old('tipe') }}" x-model="lokasi" required>
+                                                    <select class="form-select" id="tipe" name="tipe" value="{{ old('tipe') }}" x-model="tipe" required>
                                                         <option selected>Pilih Kategori Banner...</option>
                                                         <option value="Kamar">Kamar</option>
                                                         <option value="Kamar Mandi">Kamar Mandi</option>
@@ -291,7 +287,7 @@
                                                                         <div class="col-12 text-start mt-1">
                                                                             <label for="Nama Fasilitas">Nama Fasilitas</label>
                                                                         </div>
-                                                                        <div class="col-md-12" style="margin-top: -14px;">
+                                                                        <div class="col-12" style="margin-top: -14px;">
                                                                             <div class="mt-3">
                                                                                 <div class="input-group">
                                                                                     <input type="text" class="form-control" maxlength="30" name="nama" id="nama" value="{{ $item->nama }}">
@@ -404,14 +400,10 @@
                                                 </div>
                                                 <div class="col-md-12 mb-4" style="margin-top: -6px;">
                                                     <div class="mt-3">
-                                                        <div class="input-group">
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" maxlength="30" name="nama" id="nama" value="{{ old('nama') }}" x-model="nama" required>
-                                                                @error('nama')
-                                                                    {{ $message }}
-                                                                @enderror
-                                                            </div>
-                                                        </div>
+                                                        <input type="text" class="form-control" maxlength="30" name="nama" id="nama" value="{{ old('nama') }}" x-model="nama" required>
+                                                        @error('nama')
+                                                            {{ $message }}
+                                                        @enderror
                                                     </div>
                                                 </div>
                                                 <div class="col-12 text-start">
@@ -420,7 +412,7 @@
                                                 <div class="col-md-12 mb-4" style="margin-top: -6px;">
                                                     <div class="mt-3">
                                                         <div class="input-group">
-                                                            <select class="form-select" id="tipe" name="tipe" value="{{ old('tipe') }}" x-model="lokasi" required>
+                                                            <select class="form-select" id="tipe" name="tipe" value="{{ old('tipe') }}" x-model="tipe" required>
                                                                 <option selected>Pilih Kategori Banner...</option>
                                                                 <option value="Kamar">Kamar</option>
                                                                 <option value="Kamar Mandi">Kamar Mandi</option>

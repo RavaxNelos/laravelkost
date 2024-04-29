@@ -13,11 +13,14 @@ return new class extends Migration
     {
         Schema::create('kerusakan', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
+            $table->foreignId('user_id');
             $table->string('nomer_kamar');
             $table->string('tanggal_lapor');
             $table->string('barang_rusak');
-            $table->string('gambar_rusak');
+            $table->string('gambar1');
+            $table->string('gambar2');
+            $table->string('gambar3');
+            $table->string('gambar4');
             $table->string('keterangan');
             $table->timestamps();
         });

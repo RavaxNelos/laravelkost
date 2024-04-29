@@ -245,7 +245,7 @@
                                                     <i id="uploadIcon" class="bi bi-cloud-upload"></i>
                                                 </div>
                                             </div>
-                                            <input type="file" onchange="preview()" hidden id="uploadfoto" accept="image/*" x-model="gambar">
+                                            <input type="file" onchange="preview()" hidden id="uploadfoto" name="gambar1" accept="image/*" x-model="gambar">
                                         </label>
                                     </div>
                                     <div class="position-relative">
@@ -256,7 +256,7 @@
                                                     <i id="uploadIcon2" class="bi bi-cloud-upload"></i>
                                                 </div>
                                             </div>
-                                            <input type="file" onchange="preview2()" hidden id="uploadfoto2" accept="image/*">
+                                            <input type="file" onchange="preview2()" hidden id="uploadfoto2" name="gambar2" accept="image/*">
                                         </label>
                                     </div>
                                     <div class="position-relative">
@@ -267,7 +267,7 @@
                                                     <i id="uploadIcon3" class="bi bi-cloud-upload"></i>
                                                 </div>
                                             </div>
-                                            <input type="file" onchange="preview3()" hidden id="uploadfoto3" accept="image/*">
+                                            <input type="file" onchange="preview3()" hidden id="uploadfoto3" name="gambar3" accept="image/*">
                                         </label>
                                     </div>
                                     <div class="position-relative">
@@ -278,7 +278,7 @@
                                                     <i id="uploadIcon4" class="bi bi-cloud-upload"></i>
                                                 </div>
                                             </div>
-                                            <input type="file" onchange="preview4()" hidden id="uploadfoto4" accept="image/*">
+                                            <input type="file" onchange="preview4()" hidden id="uploadfoto4" name="gambar4" accept="image/*">
                                         </label>
                                     </div>
                                 </div>

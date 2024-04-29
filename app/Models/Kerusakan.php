@@ -10,15 +10,15 @@ class Kerusakan extends Model
     use HasFactory;
     protected $table = 'kerusakan';
     protected $guard = ['id'];
-    protected $fillable = ['nama', 'nomer_kamar', 'tanggal_lapor', 'barang_rusak', 'gambar_rusak', 'keterangan'];
+    protected $fillable = ['user_id', 'nomer_kamar', 'tanggal_lapor', 'barang_rusak', 'gambar_rusak', 'keterangan'];
 
     public function kamarkost()
     {
-        return $this->belongsTo(KamarKost::class, 'nomer_kamar', 'id');
+        return $this->belongsTo(KamarKost::class, 'nomer_kost', 'id');
     }
     public function user()
     {
-        return $this->belongsTo(User::class, 'nama', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
     // public function pembayaran()
     // {

@@ -2,20 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fasilitas;
 use App\Models\KamarKost;
+use App\Models\KamarKostFasilitas;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 
 class KamarKostController extends Controller
 {
-      /**
+        /**
      * Display a listing of the resource.
      */
     public function index() {
-        $categories = Kategori::where('lokasi', 'Kategori Kost')->get();
-        $kamarkost  = KamarKost::orderBy('created_at', 'desc')->get();
+        $categories      = Kategori::where('lokasi', 'Kategori Kost')->get();
+        $kamarkost       = KamarKost::orderBy('created_at', 'desc')->get();
+        $fas_kamar       = Fasilitas::where('tipe', 'Kamar')->get();
+        $fas_kamar_mandi = Fasilitas::where('tipe', 'Kamar Mandi')->get();
+        $fas_umum        = Fasilitas::where('tipe', 'Umum')->get();
+        $fas_parkir      = Fasilitas::where('tipe', 'Parkir')->get();
         return view('pemilikmin.kamar.kamar', [
-            'kamarkost' => $kamarkost, 'categories' => $categories
+            'kamarkost' => $kamarkost, 'categories' => $categories, 'fas_kamar' => $fas_kamar, 'fas_kamar_mandi' => $fas_kamar_mandi, 'fas_umum' => $fas_umum, 'fas_parkir' => $fas_parkir
         ]);
     }
 
@@ -27,7 +33,7 @@ class KamarKostController extends Controller
         return back()->with('success', 'Status Berhasil Dirubah');
     }
 
-      /**
+        /**
      * Show the form for creating a new resource.
      */
     public function create()
@@ -37,7 +43,7 @@ class KamarKostController extends Controller
         );
     }
 
-      /**
+        /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
@@ -59,9 +65,15 @@ class KamarKostController extends Controller
         'nomer_kost'          => 'required',
     ]);
 
+    // Cek Apakah nomor kamar sudah ada sebelumnya
+    if (KamarKost::where('nomer_kamar', $request->nomer_kamar)->exists()) {
+        return back()->with('fail', 'Kamar Kost No. ' .$request->nomer_kamar. ' sudah ada');
+    }
+
     $gambarBarang = $request->file('gambar_kost');
     $namaFile     = time().'.'.$gambarBarang->getClientOriginalExtension();
     $gambarBarang->move(public_path('uploadkamar'), $namaFile);
+
 
     $kamarkost                      = new KamarKost();
     $kamarkost->kategori_id         = $request->kategori_id;
@@ -80,18 +92,26 @@ class KamarKostController extends Controller
     $kamarkost->gambar_kost         = $namaFile;
     $kamarkost->save();
 
+    // Simpan Fasilitas
+    foreach($request->fasilitas as $fasilitas) {
+        KamarKostFasilitas::create([
+            'fasilitas_id'=>$fasilitas,
+            'kamar_kost_id'=>$kamarkost->id
+        ]);
+    }
+
     return redirect()->route('kamar')->with('success', 'Kamar Berhasil Ditambahkan');
 }
 
-      /**
+        /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-          //
+            //
     }
 
-      /**
+        /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
@@ -102,7 +122,7 @@ class KamarKostController extends Controller
         ]);
     }
 
-      /**
+        /**
      * Update the specified resource in storage.
      */
     public function update(Request $request)
@@ -146,20 +166,32 @@ class KamarKostController extends Controller
         $kamarkost->alamat_lengkap_kost = $request->alamat_lengkap_kost;
         $kamarkost->deskripsi_kost      = $request->deskripsi_kost;
         $kamarkost->nomer_kost          = $request->nomer_kost;
-          // $kamarkost->layanan_barang = $request->layanan_barang;
+            // $kamarkost->layanan_barang = $request->layanan_barang;
         $kamarkost->gambar_kost = $namaFile;
         $kamarkost->save();
-          // return redirect()->route('admin.index')->with('success', 'Barang berhasil ditambahkan.');
-          // return back()->with('success', 'Kamar Telah Ditambahkan.');
+
+        // Update fasilitas kamar
+        $kamarkost->kamarKostFasilitas()->delete();
+        foreach($request->fasilitas as $fasilitas) {
+            KamarKostFasilitas::create([
+                'fasilitas_id'=>$fasilitas,
+                'kamar_kost_id'=>$kamarkost->id
+            ]);
+        }
+            // return redirect()->route('admin.index')->with('success', 'Barang berhasil ditambahkan.');
+            // return back()->with('success', 'Kamar Telah Ditambahkan.');
         return redirect()->route('kamar.store')->with('success', 'Kamar Berhasil Dirubah');
     }
 
-      /**
+        /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
         $kamarkost = KamarKost::find($id);
+        // Hapus Semua Entri Terkait dari tabel fasilitas_kamar
+        $kamarkost->kamarKostFasilitas()->delete();
+        // Hapus item kamar itu sendiri
         $kamarkost->delete();
 
         return back()->with('success', 'Kamar Berhasil Dihapus');

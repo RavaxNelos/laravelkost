@@ -126,6 +126,20 @@
             </a>
         </nav>
     </div>
+    <div class="modal" id="myModal">
+        <div class="modal-content">
+            <!-- Konten modal, dapat diedit sesuai kebutuhan -->
+            <div class="row">
+                <div class="col-12">
+                    <a href="/user/kerusakan/{{ $users->id }}" class="kerusakan fw-medium"><i class="bi bi-exclamation-triangle-fill"></i> Laporkan Kerusakan</a>
+                </div>
+                <hr class="garis-pembatas-laporkan" style="border-top: 1px solid #ccc; margin-top: 10px;">
+                <div class="col-12" style="margin-top: -10px">
+                    <a href="/user/kehilangan/{{ $users->id }}" class="kehilangan fw-medium"><i class='bx bxs-search-alt-2'></i> Laporkan Kehilangan</a>
+                </div>
+            </div>
+        </div>
+    </div>
     @if ($kamar_kost)
         <nav class="fixed-top" id="stickyTop">
             <div class="container py-3">
@@ -134,20 +148,6 @@
                 </div>
             </div>
         </nav>
-        <div class="modal" id="myModal">
-            <div class="modal-content">
-                <!-- Konten modal, dapat diedit sesuai kebutuhan -->
-                <div class="row">
-                    <div class="col-12">
-                        <a href="/user/kerusakan/{{ $users->id }}" class="kerusakan fw-medium"><i class="bi bi-exclamation-triangle-fill"></i> Laporkan Kerusakan</a>
-                    </div>
-                    <hr class="garis-pembatas-laporkan" style="border-top: 1px solid #ccc; margin-top: 10px;">
-                    <div class="col-12" style="margin-top: -10px">
-                        <a href="/user/kehilangan/{{ $users->id }}" class="kehilangan fw-medium"><i class='bx bxs-search-alt-2'></i> Laporkan Kehilangan</a>
-                    </div>
-                </div>
-            </div>
-        </div>
         <img src="{{ asset('uploadkamar/' . $kamar_kost->gambar_kost) }}" style="width: 360px; height: 250px;">
         {{-- <section class="splide new-1" aria-label="Splide Basic HTML Example">
         <div class="splide__track">
@@ -240,10 +240,38 @@
             <section class="splide new-2" aria-label="Splide Basic HTML Example">
                 <div class="splide__track">
                     <ul class="splide__list">
-                        <li class="splide__slide">
-                            <img src="{{ asset('img/interior2.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                        </li>
-                        <li class="splide__slide">
+                        @foreach ($fasKamar as $facilite)
+                            <li class="splide__slide">
+                                @php
+                                    $kamar_kost = \App\Models\KamarKostFasilitas::where('kamar_kost_id', $facilite->id)
+                                        ->where('fasilitas_id', $facilite->id)
+                                        ->first();
+                                @endphp
+                                @if ($kamar_kost)
+                                    <div class="item" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $facilite->id }}">
+                                        <img src="{{ asset('uploadkamar/' . $facilite->gambar) }}" style="width: 80px; height: 80px; border-radius: 10px;">
+                                    </div>
+                                    <div class="modal fade" id="exampleModal{{ $facilite->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    <img src="{{ asset('uploads/' . $facilite->gambar) }}">
+                                                    <div class="desk">
+                                                        <div class="top">
+                                                            {{ $facilite->nama }}
+                                                        </div>
+                                                        <div class="bottom">
+                                                            {{ $facilite->deskripsi }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                            </li>
+                        @endforeach
+                        {{-- <li class="splide__slide">
                             <img src="{{ asset('img/interior7.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
                         </li>
                         <li class="splide__slide">
@@ -260,7 +288,7 @@
                         </li>
                         <li class="splide__slide">
                             <img src="{{ asset('img/interior11.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </section>
@@ -519,6 +547,21 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
+        var modal = document.getElementById('myModal');
+        var openModalBtn = document.getElementById('openModalBtn');
+        var closeModalBtn = document.getElementById('closeModalBtn');
+
+        // Fungsi untuk menampilkan modal
+        openModalBtn.onclick = function() {
+            modal.style.display = 'block';
+        }
+
+        // Menutup modal jika area di luar modal diklik
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
         // var splide = new Splide('.splide.new-1', {
         //     type: "loop",
         //     autoplay: true,
@@ -859,22 +902,6 @@
             selectBtn = optionMenu.querySelector(".select-btn"),
             sBtn_text = optionMenu.querySelector(".sBtn-text");
         selectBtn.addEventListener("click", () => optionMenu.classList.toggle("active"));
-
-        var modal = document.getElementById('myModal');
-        var openModalBtn = document.getElementById('openModalBtn');
-        var closeModalBtn = document.getElementById('closeModalBtn');
-
-        // Fungsi untuk menampilkan modal
-        openModalBtn.onclick = function() {
-            modal.style.display = 'block';
-        }
-
-        // Menutup modal jika area di luar modal diklik
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = 'none';
-            }
-        }
         // options.forEach(option => {
         //     option.addEventListener("click", () => {
         //         let selectedOption = option.querySelector(".option-text").innerText;

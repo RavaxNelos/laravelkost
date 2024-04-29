@@ -275,7 +275,7 @@
                                         <h3 class="fw-medium text-secondary" style="font-size: 14px;">No. Kamar</h3>
                                     </div>
                                     <div class="col-7 text-end" style="margin-top: -6px;">
-                                        <h3 class="fw-medium" style="font-size: 14px; color: #333333;">Kamar No.{{ $kehilangan?->nomer_kamar }}</h3>
+                                        <h3 class="fw-medium" style="font-size: 14px; color: #333333;">Kamar No.{{ $kamar_kost->nomer_kost }}</h3>
                                     </div>
                                     <div class="col-6 text-start" style="margin-top: -6px;">
                                         <h3 class="fw-medium text-secondary" style="font-size: 14px;">Lokasi Kehilangan</h3>

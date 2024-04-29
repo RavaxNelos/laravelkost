@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Fasilitas;
+use App\Models\KamarKostFasilitas;
 use Illuminate\Http\Request;
 
 class FasilitasController extends Controller
@@ -32,10 +33,10 @@ class FasilitasController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'gambar'    => 'required|image|mimes:jpeg,png,jpg,gif|max:6048',
             'nama'      => 'required',
             'tipe'      => 'required',
             'deskripsi' => 'required',
+            'gambar'    => 'required|image|mimes:jpeg,png,jpg,gif|max:6048',
         ]);
 
         $gambarBarang = $request->file('gambar');
@@ -43,7 +44,7 @@ class FasilitasController extends Controller
         $gambarBarang->move(public_path('uploadkamar'), $namaFile);
 
         $fasilitas                = new Fasilitas();
-        $fasilitas->gambar_banner = $namaFile;
+        $fasilitas->gambar = $namaFile;
         $fasilitas->nama          = $request->nama;
         $fasilitas->tipe          = $request->tipe;
         $fasilitas->deskripsi     = $request->deskripsi;
@@ -105,6 +106,8 @@ class FasilitasController extends Controller
     public function destroy(string $id)
     {
         $fasilitas = Fasilitas::find($id);
+        $relasi = KamarKostFasilitas::where('fasilitas_id', $fasilitas);
+        $relasi->delete();
         $fasilitas->delete();
 
         return back()->with('success', 'Fasilitas Berhasil Dihapus');
