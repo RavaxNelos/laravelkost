@@ -7,6 +7,7 @@ use App\Models\Fasilitas;
 use App\Models\Favorit;
 use App\Models\Jamkamarkost;
 use App\Models\KamarKost;
+use App\Models\KamarKostFasilitas;
 use App\Models\Kategori;
 use App\Models\Kehilangan;
 use App\Models\Kerusakan;
@@ -208,17 +209,24 @@ class UserController extends Controller
     }
 
     public function kamar()
-    {
-        $users      = Auth::user();
-        $transaksi  = Transaksi::where('user_id', $users->id)->latest()->first();
-        $kamar_kost = $transaksi ? KamarKost::find($transaksi->kamar_kost_id) : null;
-        $fasKamar   = Fasilitas::where('tipe', 'Kamar')->get();
-        $fasKamarmandi = Fasilitas::where('tipe', 'Kamar Mandi')->get();
-        $fasUmum = Fasilitas::where('tipe', 'Umum')->get();
-        $fasParkir = Fasilitas::where('tipe', 'Parkir')->get();
-              // $transaksi = Transaksi::find($id);
-              // $kamarkost = KamarKost::find($id);
-        return view('user.kamar', compact('users', 'transaksi','kamar_kost', 'fasKamar', 'fasKamarmandi', 'fasUmum', 'fasParkir'));
+{
+    $users      = Auth::user();
+    $transaksi  = Transaksi::where('user_id', $users->id)->latest()->first();
+    $kamar_kost = $transaksi ? KamarKost::find($transaksi->kamar_kost_id) : null;
+    $kamar_kost_fasilitas = $transaksi ? KamarKost::find($transaksi->kamar_kost_id)->kamarkostfasilitas : null;
+
+    // dd(KamarKost::find($transaksi->kamar_kost_id)->kamarkostfasilitas);
+    $fasKamar   = Fasilitas::where('tipe', 'Kamar')->get();
+    $fasKamarmandi = Fasilitas::where('tipe', 'Kamar Mandi')->get();
+    $fasUmum = Fasilitas::where('tipe', 'Umum')->get();
+    $fasParkir = Fasilitas::where('tipe', 'Parkir')->get();
+    // dd($kamar_kost_fasilitas);
+    return view('user.kamar', compact('users', 'transaksi', 'kamar_kost', 'kamar_kost_fasilitas', 'fasKamar', 'fasKamarmandi', 'fasUmum', 'fasParkir'));
+}
+
+    public function getFasilitas($kamarKostFasilitasId) {
+        $kamar_kost_fasilitas = KamarKostFasilitas::find($kamarKostFasilitasId)->fasilitas;
+        return response()->json(['kamarKostFasilitas'=> $kamar_kost_fasilitas]);
     }
     public function coba()
     {
@@ -273,6 +281,8 @@ class UserController extends Controller
         $kehilangan = $transaksi ? Kehilangan::where('user_id',$users->id)->first() : null;
         return view('user.laporkan.laporkankehilangan', compact('users', 'transaksi', 'kamar_kost', 'kehilangan'));
     }
+
+
     public function kehilanganPost(Request $request)
     {
 

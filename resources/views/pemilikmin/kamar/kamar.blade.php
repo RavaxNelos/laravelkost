@@ -695,86 +695,102 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="container fasilitas">
+                                                        <div class="container fasilitas mt-3">
                                                             <label>Fasilitas Kamar</label>
                                                             <div class="for-fas">
-                                                                @foreach ($fas_kamar as $facilite)
-                                                                    @php
-                                                                        $kamarkost = \App\Models\KamarKostFasilitas::where('kamar_kost_id', $item->id)
-                                                                            ->where('fasilitas_id', $facilite->id)
-                                                                            ->first();
-                                                                    @endphp
-                                                                    @if ($kamarkost)
-                                                                        <div class="fas-item">
-                                                                            <div class="for-img">
-                                                                                <img src="{{ asset('uploadkamar/' . $facilite->gambar) }}">
+                                                                <div class="row">
+                                                                    @foreach ($fas_kamar as $facilite)
+                                                                        @php
+                                                                            $kamarkost = \App\Models\KamarKostFasilitas::where('kamar_kost_id', $item->id)
+                                                                                ->where('fasilitas_id', $facilite->id)
+                                                                                ->first();
+                                                                        @endphp
+                                                                        @if ($kamarkost)
+                                                                            <div class="col-4 mt-3">
+                                                                                <div class="fas-item">
+                                                                                    <div class="for-img">
+                                                                                        <img src="{{ asset('uploadkamar/' . $facilite->gambar) }}" style="width: 130px; height: 80px; border-radius: 8px;">
+                                                                                    </div>
+                                                                                    <div class="name">
+                                                                                        {{ $facilite->nama }}
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
-                                                                            <div class="name">
-                                                                                {{ $facilite->nama }}
-                                                                            </div>
-                                                                        </div>
-                                                                    @endif
-                                                                @endforeach
+                                                                        @endif
+                                                                    @endforeach
+                                                                </div>
                                                             </div>
                                                             <label class="pt-3">Fasilitas Umum</label>
                                                             <div class="for-fas umum">
-                                                                @foreach ($fas_umum as $facilite)
-                                                                    @php
-                                                                        $kamarkost = \App\Models\KamarKostFasilitas::where('kamar_kost_id', $item->id)
-                                                                            ->where('fasilitas_id', $facilite->id)
-                                                                            ->first();
-                                                                    @endphp
-                                                                    @if ($kamarkost)
-                                                                        <div class="fas-item">
-                                                                            <div class="for-img">
-                                                                                <img src="{{ asset('uploadkamar/' . $facilite->gambar) }}">
+                                                                <div class="row">
+                                                                    @foreach ($fas_umum as $facilite)
+                                                                        @php
+                                                                            $kamarkost = \App\Models\KamarKostFasilitas::where('kamar_kost_id', $item->id)
+                                                                                ->where('fasilitas_id', $facilite->id)
+                                                                                ->first();
+                                                                        @endphp
+                                                                        @if ($kamarkost)
+                                                                            <div class="col-4 mt-3">
+                                                                                <div class="fas-item">
+                                                                                    <div class="for-img">
+                                                                                        <img src="{{ asset('uploadkamar/' . $facilite->gambar) }}" style="width: 130px; height: 80px; border-radius: 8px;">
+                                                                                    </div>
+                                                                                    <div class="name">
+                                                                                        {{ $facilite->nama }}
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
-                                                                            <div class="name fw-light">
-                                                                                {{ $facilite->nama }}
-                                                                            </div>
-                                                                        </div>
-                                                                    @endif
-                                                                @endforeach
+                                                                        @endif
+                                                                    @endforeach
+                                                                </div>
                                                             </div>
                                                             <label class="pt-3">Fasilitas Kamar Mandi</label>
                                                             <div class="for-fas umum">
-                                                                @foreach ($fas_kamar_mandi as $facilite)
-                                                                    @php
-                                                                        $kamarkost = \App\Models\KamarKostFasilitas::where('kamar_kost_id', $item->id)
-                                                                            ->where('fasilitas_id', $facilite->id)
-                                                                            ->first();
-                                                                    @endphp
-                                                                    @if ($kamarkost)
-                                                                        <div class="fas-item">
-                                                                            <div class="for-img">
-                                                                                <img src="{{ asset('uploadkamar/' . $facilite->gambar) }}">
+                                                                <div class="row">
+                                                                    @foreach ($fas_kamar_mandi as $facilite)
+                                                                        @php
+                                                                            $kamarkost = \App\Models\KamarKostFasilitas::where('kamar_kost_id', $item->id)
+                                                                                ->where('fasilitas_id', $facilite->id)
+                                                                                ->first();
+                                                                        @endphp
+                                                                        @if ($kamarkost)
+                                                                            <div class="col-4 mt-3">
+                                                                                <div class="fas-item">
+                                                                                    <div class="for-img">
+                                                                                        <img src="{{ asset('uploadkamar/' . $facilite->gambar) }}" style="width: 130px; height: 80px; border-radius: 8px;">
+                                                                                    </div>
+                                                                                    <div class="name">
+                                                                                        {{ $facilite->nama }}
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
-                                                                            <div class="name fw-light">
-                                                                                {{ $facilite->nama }}
-                                                                            </div>
-                                                                        </div>
-                                                                    @endif
-                                                                @endforeach
+                                                                        @endif
+                                                                    @endforeach
+                                                                </div>
                                                             </div>
                                                             <label class="pt-3">Fasilitas Parkir</label>
                                                             <div class="for-fas umum">
-                                                                @foreach ($fas_parkir as $facilite)
-                                                                    @php
-                                                                        $kamarkost = \App\Models\KamarKostFasilitas::where('kamar_kost_id', $item->id)
-                                                                            ->where('fasilitas_id', $facilite->id)
-                                                                            ->first();
-                                                                    @endphp
-                                                                    @if ($kamarkost)
-                                                                        <div class="fas-item">
-                                                                            <div class="for-img">
-                                                                                <img src="{{ asset('uploadkamar/' . $facilite->gambar) }}">
+                                                                <div class="row">
+                                                                    @foreach ($fas_parkir as $facilite)
+                                                                        @php
+                                                                            $kamarkost = \App\Models\KamarKostFasilitas::where('kamar_kost_id', $item->id)
+                                                                                ->where('fasilitas_id', $facilite->id)
+                                                                                ->first();
+                                                                        @endphp
+                                                                        @if ($kamarkost)
+                                                                            <div class="col-4 mt-3">
+                                                                                <div class="fas-item">
+                                                                                    <div class="for-img">
+                                                                                        <img src="{{ asset('uploadkamar/' . $facilite->gambar) }}"style="width: 130px; height: 80px; border-radius: 8px;">
+                                                                                    </div>
+                                                                                    <div class="name">
+                                                                                        {{ $facilite->nama }}
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
-                                                                            <div class="name fw-light">
-                                                                                {{ $facilite->nama }}
-                                                                            </div>
-                                                                        </div>
-                                                                    @endif
-                                                                @endforeach
+                                                                        @endif
+                                                                    @endforeach
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>

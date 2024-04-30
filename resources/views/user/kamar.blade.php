@@ -126,8 +126,8 @@
             </a>
         </nav>
     </div>
-    <div class="modal" id="myModal">
-        <div class="modal-content">
+    <div class="modal" style=" display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5);" id="myModal">
+        <div class="modal-content" style="position: absolute; bottom: 70px; left: 20%; background-color: #fefefe; padding: 10px; border: 1px solid #ccc; width: 59%;">
             <!-- Konten modal, dapat diedit sesuai kebutuhan -->
             <div class="row">
                 <div class="col-12">
@@ -191,7 +191,7 @@
             </div>
             <div class="row">
                 <div class="col-6 text-start">
-                    <p class="fw-medium" style="font-size: 14px; color: #9370DB; margin-top: -8px;">{{ Carbon\Carbon::parse($transaksi->tanggal_masuk_kost)->locale('id')->format('j F Y') }}</p>
+                    <p class="fw-medium" style="font-size: 14px; color: #9370DB; margin-top: -8px;">{{ strtok($transaksi->tanggal_masuk_kost, ',') }}</p>
                 </div>
                 <div class="col-6 text-end">
                     <p class="fw-medium" style="font-size: 14px; color: #9370DB; margin-top: -8px;">{{ $transaksi->durasi_ngekost }}</p>
@@ -234,61 +234,36 @@
                 <p class="text-secondary-emphasis fw-medium" style="font-size: 12px; margin-top: -8px;">{{ $kamar_kost->listrik_kost }}</p>
             </div>
         </div>
+        <div class="modal fade" id="fasilitasKamar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body" style="padding: 4px;">
+                        <img src="" id="itemImage" height="220" width="334" style="border-radius: 5px;">
+                        <div id="itemNama" class="h3 fw-bold text-center mt-2" style="font-size: 18px;"></div>
+                        <p id="itemDeskripsi" class="text-dark fw-normal" style="font-size: 12px; margin-top: 0.5rem;"></p>
+                    </div>
+                    {{-- <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div> --}}
+                </div>
+            </div>
+        </div>
         <hr class="hr-2" style="margin-top: 0px; border-top: 10px solid #ccc;">
         <div class="container">
             <h1 class="fw-semibold" style="font-size: 18px; font-family: Poppins;">Fasilitas Kamar</h1>
             <section class="splide new-2" aria-label="Splide Basic HTML Example">
                 <div class="splide__track">
                     <ul class="splide__list">
-                        @foreach ($fasKamar as $facilite)
-                            <li class="splide__slide">
-                                @php
-                                    $kamar_kost = \App\Models\KamarKostFasilitas::where('kamar_kost_id', $facilite->id)
-                                        ->where('fasilitas_id', $facilite->id)
-                                        ->first();
-                                @endphp
-                                @if ($kamar_kost)
-                                    <div class="item" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $facilite->id }}">
-                                        <img src="{{ asset('uploadkamar/' . $facilite->gambar) }}" style="width: 80px; height: 80px; border-radius: 10px;">
+                        @foreach ($kamar_kost_fasilitas as $kost_fasilitas)
+                            @if ($kost_fasilitas->fasilitas->tipe == 'Kamar')
+                                <li class="splide__slide" onclick="getFasilitasBed({{ $kost_fasilitas->id }})">
+                                    <div class="item" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ $kost_fasilitas->fasilitas->id }}">
+                                        <img src="{{ asset('uploadkamar/' . $kost_fasilitas->fasilitas->gambar) }}" style="width: 80px; height: 80px; border-radius: 10px;">
                                     </div>
-                                    <div class="modal fade" id="exampleModal{{ $facilite->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-body">
-                                                    <img src="{{ asset('uploads/' . $facilite->gambar) }}">
-                                                    <div class="desk">
-                                                        <div class="top">
-                                                            {{ $facilite->nama }}
-                                                        </div>
-                                                        <div class="bottom">
-                                                            {{ $facilite->deskripsi }}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endif
-                            </li>
+                                </li>
+                            @endif
                         @endforeach
-                        {{-- <li class="splide__slide">
-                            <img src="{{ asset('img/interior7.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                        </li>
-                        <li class="splide__slide">
-                            <img src="{{ asset('img/interior9.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                        </li>
-                        <li class="splide__slide">
-                            <img src="{{ asset('img/interior4.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                        </li>
-                        <li class="splide__slide">
-                            <img src="{{ asset('img/interior6.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                        </li>
-                        <li class="splide__slide">
-                            <img src="{{ asset('img/interior10.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                        </li>
-                        <li class="splide__slide">
-                            <img src="{{ asset('img/interior11.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                        </li> --}}
                     </ul>
                 </div>
             </section>
@@ -297,21 +272,15 @@
             <section class="splide new-3" aria-label="Splide Basic HTML Example">
                 <div class="splide__track">
                     <ul class="splide__list">
-                        <li class="splide__slide">
-                            <img src="{{ asset('img/interior12.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                        </li>
-                        <li class="splide__slide">
-                            <img src="{{ asset('img/interior13.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                        </li>
-                        <li class="splide__slide">
-                            <img src="{{ asset('img/interior14.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                        </li>
-                        <li class="splide__slide">
-                            <img src="{{ asset('img/interior15.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                        </li>
-                        <li class="splide__slide">
-                            <img src="{{ asset('img/interior11.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                        </li>
+                        @foreach ($kamar_kost_fasilitas as $kost_fasilitas)
+                            @if ($kost_fasilitas->fasilitas->tipe == 'Kamar Mandi')
+                                <li class="splide__slide" onclick="getFasilitasBed({{ $kost_fasilitas->id }})">
+                                    <div class="item" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ $kost_fasilitas->fasilitas->id }}">
+                                        <img src="{{ asset('uploadkamar/' . $kost_fasilitas->fasilitas->gambar) }}" style="width: 80px; height: 80px; border-radius: 10px;">
+                                    </div>
+                                </li>
+                            @endif
+                        @endforeach
                     </ul>
                 </div>
             </section>
@@ -322,36 +291,28 @@
             <section class="splide new-4" aria-label="Splide Basic HTML Example">
                 <div class="splide__track">
                     <ul class="splide__list">
-                        <li class="splide__slide">
-                            <img src="{{ asset('img/interior8.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                        </li>
-                        <li class="splide__slide">
-                            <img src="{{ asset('img/interior5.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                        </li>
-                        <li class="splide__slide">
-                            <img src="{{ asset('img/interior3.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                        </li>
-                        <li class="splide__slide">
-                            <img src="{{ asset('img/interior16.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                        </li>
-                        <li class="splide__slide">
-                            <img src="{{ asset('img/interior17.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                        </li>
-                        <li class="splide__slide">
-                            <img src="{{ asset('img/interior18.jpg') }}" style="width: 80px; height: 80px; border-radius: 10px;">
-                        </li>
+                        @foreach ($kamar_kost_fasilitas as $kost_fasilitas)
+                            @if ($kost_fasilitas->fasilitas->tipe == 'Umum')
+                                <li class="splide__slide" onclick="getFasilitasBed({{ $kost_fasilitas->id }})">
+                                    <div class="item" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ $kost_fasilitas->fasilitas->id }}">
+                                        <img src="{{ asset('uploadkamar/' . $kost_fasilitas->fasilitas->gambar) }}" style="width: 80px; height: 80px; border-radius: 10px;">
+                                    </div>
+                                </li>
+                            @endif
+                        @endforeach
                     </ul>
                 </div>
             </section>
             <hr class="hr-5" style="margin-top: 20px; border-top: 1px solid #ccc;">
             <h1 class="fw-semibold" style="font-size: 18px; font-family: Poppins;">Fasilitas Parkir</h1>
             <div class="row">
-                <div class="col-6">
-                    <img src="{{ asset('img/interior19.jpg') }}" style="width: 164px; height: 100px; border-radius: 10px;">
-                </div>
-                <div class="col-6" style="margin-left: -8px;">
-                    <img src="{{ asset('img/interior20.jpg') }}" style="width: 164px; height: 100px; border-radius: 10px;">
-                </div>
+                @foreach ($kamar_kost_fasilitas as $kost_fasilitas)
+                    @if ($kost_fasilitas->fasilitas->tipe == 'Parkir')
+                        <div class="col-5" style="margin-right: 20px;">
+                            <img src="{{ asset('uploadkamar/' . $kost_fasilitas->fasilitas->gambar) }}" onclick="getFasilitasBed({{ $kost_fasilitas->id }})" style="width: 164px; height: 100px; border-radius: 10px;">
+                        </div>
+                    @endif
+                @endforeach
             </div>
         </div>
         <hr class="hr-6" style="margin-top: 20px; border-top: 10px solid #ccc;">
@@ -546,6 +507,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bxslider/dist/jquery.bxslider.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         var modal = document.getElementById('myModal');
         var openModalBtn = document.getElementById('openModalBtn');
@@ -1026,6 +988,29 @@
 
         //     // Additional code to handle other functionalities...
         // });
+    </script>
+    <script>
+        function getFasilitasBed(kamarKostFasilitasId) {
+            $.ajax({
+                url: '/getFasilitasKamar/' + kamarKostFasilitasId,
+                type: 'GET',
+                success: function(response) {
+                    var item = response.kamarKostFasilitas;
+                    $('#itemImage').attr('src', '/uploadkamar/' + item.gambar);
+                    $('#itemNama').text(item.nama);
+                    $('#itemDeskripsi').text(item.deskripsi);
+                    console.log(item);
+                    $('#fasilitasKamar').modal('show');
+                },
+            });
+        }
+
+        function closeModal() {
+            $('#itemImage').attr('src', '');
+            $('#fasilitasKamar').modal('hide');
+            $('#itemNama').text('');
+            $('#itemDeskripsi').text('');
+        }
     </script>
 </body>
 

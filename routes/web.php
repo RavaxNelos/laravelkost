@@ -82,6 +82,8 @@ Route::get('/logout', function() {
 })->name('logout');
 });
 
+
+Route::get('/getFasilitasKamar/{kamarKostFasilitasId}', [UserController::class,'getFasilitas']);
 //pemilik controller
 Route::get('/pemilik/home', [PemilikController::class, 'home'])->name('home');
 Route::get('/pemilik/area', [PemilikController::class, 'area'])->name('area');

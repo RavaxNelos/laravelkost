@@ -294,28 +294,3 @@ body {
     font-size: 14px;
     margin-right: 4px;
 }
-
-.modal {
-    display: none;
-    /* Sembunyikan modal secara default */
-    position: fixed;
-    /* Tetapkan posisi modal */
-    top: 0;
-    left: 0;
-    width: 100%;
-    /* Lebar modal 100% dari layar */
-    height: 100%;
-    /* Tinggi modal 100% dari layar */
-    background-color: rgba(0, 0, 0, 0.5);
-    /* Warna latar belakang dengan transparansi */
-}
-
-.modal-content {
-    position: absolute;
-    bottom: 70px;
-    left: 20%;
-    background-color: #fefefe;
-    padding: 10px;
-    border: 1px solid #ccc;
-    width: 59%;
-}
