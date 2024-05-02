@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('tanggal_hilang');
             $table->string('jam_hilang');
             $table->string('keterangan');
+            $table->string('status');
+            $table->string('respon')->nullable();
             $table->timestamps();
         });
     }

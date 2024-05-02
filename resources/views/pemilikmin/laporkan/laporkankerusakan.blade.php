@@ -128,6 +128,7 @@
                         <th class="text-center">Tanggal Laporan</th>
                         <th class="text-center">Barang Yang Rusak</th>
                         <th class="text-center">Keterangan</th>
+                        <th class="text-center">Status</th>
                     </thead>
                     <tbody>
                         @foreach ($kerusakan as $item)
@@ -147,6 +148,9 @@
                                 </td>
                                 <td class="text-center">
                                     <span class="usr-tipe-kost">{{ $item->keterangan }}</span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="usr-tipe-kost">{{ $item->status }}</span>
                                 </td>
                             </tr>
                             <!-- end row -->

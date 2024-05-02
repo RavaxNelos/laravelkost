@@ -85,9 +85,9 @@
         <div class="custom-card-body mt-3 mb-3">
             @foreach ($transaksi as $item)
                 <div class="container py-2">
-                    <h3 class="fw-semibold" style="font-size: 16px; color: #d8d8d8">April</h3>
+                    {{-- <h3 class="fw-semibold" style="font-size: 16px; color: #d8d8d8">April</h3> --}}
                     <div class="custom-card-list" x-show="filter == 'bulanan'">
-                        <div class="container py-2">
+                        <div class="container py-2 mt-2">
                             <div class="row" style="margin-bottom: -4px;">
                                 <div class="col-6 text-start">
                                     <h3 class="fw-medium" style="font-size: 14px; color:  #9400D3;">No. Pesanan</h3>
@@ -124,33 +124,37 @@
         </div>
         <hr class="garis-pemisah-navbar">
     </section>
-    <div class="sticky-bottom">
-        <nav class="nav">
-            <a href="{{ asset('/pemilik/home') }}" class="nav__link">
-                <ion-icon name="home-outline" style="font-size: 20px;"></ion-icon>
-                <span class="nav__text">Beranda</span>
-            </a>
-            <a href="{{ asset('/pemilik/area') }}" class="nav__link">
-                <ion-icon name="location-outline" style="font-size: 20px;"></ion-icon>
-                <span class="nav__text">Area Kost</span>
-            </a>
-            <a href="{{ asset('/pemilik/transaksi') }}" class="nav__link nav-active">
-                <ion-icon name="newspaper" style="font-size: 20px;"></ion-icon>
-                <span class="nav__text">Transaksi</span>
-            </a>
-            <a href="{{ asset('/pemilik/pengguna') }}" class="nav__link">
-                <ion-icon name="people-outline" style="font-size: 20px;"></ion-icon>
-                <span class="nav__text">Pengguna</span>
-            </a>
-            <a href="{{ asset('/pemilik/riwayat') }}" class="nav__link">
-                <ion-icon name="time-outline" style="font-size: 20px;"></ion-icon>
-                <span class="nav__text">Riwayat</span>
-            </a>
-            <a href="{{ asset('/pemilik/profil') }}" class="nav__link">
-                <ion-icon name="person-outline" style="font-size: 19px; margin-bottom: 1px;"></ion-icon>
-                <span class="nav__text">Profil</span>
-            </a>
-        </nav>
+    @if ($jumlah_transaksi <= 2)
+        <div class="fixed-bottom">
+        @else
+            <div class="sticky-bottom">
+    @endif
+    <nav class="nav">
+        <a href="{{ asset('/pemilik/home') }}" class="nav__link">
+            <ion-icon name="home-outline" style="font-size: 20px;"></ion-icon>
+            <span class="nav__text">Beranda</span>
+        </a>
+        <a href="{{ asset('/pemilik/area') }}" class="nav__link">
+            <ion-icon name="location-outline" style="font-size: 20px;"></ion-icon>
+            <span class="nav__text">Area Kost</span>
+        </a>
+        <a href="{{ asset('/pemilik/transaksi') }}" class="nav__link nav-active">
+            <ion-icon name="newspaper" style="font-size: 20px;"></ion-icon>
+            <span class="nav__text">Transaksi</span>
+        </a>
+        <a href="{{ asset('/pemilik/pengguna') }}" class="nav__link">
+            <ion-icon name="people-outline" style="font-size: 20px;"></ion-icon>
+            <span class="nav__text">Pengguna</span>
+        </a>
+        <a href="{{ asset('/pemilik/riwayat') }}" class="nav__link">
+            <ion-icon name="time-outline" style="font-size: 20px;"></ion-icon>
+            <span class="nav__text">Riwayat</span>
+        </a>
+        <a href="{{ asset('/pemilik/profil') }}" class="nav__link">
+            <ion-icon name="person-outline" style="font-size: 19px; margin-bottom: 1px;"></ion-icon>
+            <span class="nav__text">Profil</span>
+        </a>
+    </nav>
     </div>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

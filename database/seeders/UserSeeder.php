@@ -27,8 +27,8 @@ class UserSeeder extends Seeder
                 // 'gender' => $faker->randomElement(['Laki-laki', 'Perempuan']),
                 'password' => $password,
                 'lokasi' => $faker->address(),
-                'status' => rand(0,1) ? 'Pengguna' : 'Penghuni',
-                'role_id'  => rand(1,4),
+                'status' => 'Pengguna',
+                'role_id'  => rand(4),
             ]);
         }
     }

@@ -22,7 +22,8 @@ class PemilikController extends Controller
     public function transaksi()
     {
         $transaksi = Transaksi::all();
-        return view('pemilik.transaksi', compact('transaksi'));
+        $jumlah_transaksi = $transaksi->count();
+        return view('pemilik.transaksi', compact('transaksi', 'jumlah_transaksi'));
     }
     public function pengguna()
     {

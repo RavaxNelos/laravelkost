@@ -63,6 +63,7 @@ Route::get('/user/kerusakan/{id}', [UserController::class, 'kerusakan'])->name('
 Route::post('/user/kerusakan/admin', [UserController::class, 'kerusakanPost']);
 Route::get('/user/kehilangan/{id}', [UserController::class, 'kehilangan'])->name('kehilangan');
 Route::post('/user/kehilangan/admin', [UserController::class, 'kehilanganPost']);
+Route::get('/user/detailkehilangan/{id}', [UserController::class, 'detailkehilangan'])->name('detailkehilangan');
 Route::get('/user/home', [UserController::class, 'detail'])->name('detail');
 Route::get('/user/detail/{id}', [UserController::class, 'detailrumah'])->name('detailrumah');
 Route::post('/user/getTime', [UserController::class, 'getTime']);
@@ -82,7 +83,7 @@ Route::get('/logout', function() {
 })->name('logout');
 });
 
-
+// Route::get('/getFasilitasKamar/{kamarKostFasilitasId}', [UserController::class, 'getFasilitas']);
 Route::get('/getFasilitasKamar/{kamarKostFasilitasId}', [UserController::class,'getFasilitas']);
 //pemilik controller
 Route::get('/pemilik/home', [PemilikController::class, 'home'])->name('home');

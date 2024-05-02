@@ -22,7 +22,7 @@ class AuthController extends Controller
         $user->email    = $request->email;
         $user->nomorhp  = $request->nomorhp;
         $user->password = Hash::make($request->password);
-
+        $user->status   = 'Pengguna';
         $user->save();
 
         return redirect('/login')->with('success', 'Register Berhasil');

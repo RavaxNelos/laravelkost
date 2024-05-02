@@ -10,7 +10,7 @@ class Kehilangan extends Model
     use HasFactory;
     protected $table = 'kehilangan';
     protected $guard = ['id'];
-    protected $fillable = ['user_id', 'nomer_kamar', 'lokasi_hilang', 'barang_hilang', 'tanggal_hilang', 'jam_hilang', 'keterangan'];
+    protected $fillable = ['user_id', 'nomer_kamar', 'lokasi_hilang', 'barang_hilang', 'tanggal_hilang', 'jam_hilang', 'keterangan', 'status'];
     public function kamarkost()
     {
         return $this->belongsTo(KamarKost::class, 'nomer_kost', 'id');

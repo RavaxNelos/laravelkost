@@ -400,7 +400,7 @@
             </p>
         </div>
         <!-- Modal -->
-        <div class="modal fade" id="Kamarmandi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        {{-- <div class="modal fade" id="Kamarmandi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content" style="height: 364px; width: 344px; position: absolute; top: 120px;">
                     <div class="modal-body" style="padding: 4px;">
@@ -483,15 +483,15 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="modal fade" id="Wifi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        </div> --}}
+        <div class="modal fade" id="fasilitasKamar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content" style="height: 364px; width: 344px; position: absolute; top: 120px;">
                     <div class="modal-body" style="padding: 4px;">
-                        <img src="{{ asset('img/interior8.jpg') }}" height="220" width="334" style="border-radius: 5px;">
-                        <div class="h3 fw-bold text-center mt-2" style="font-size: 18px;">Wifi ASUS</div>
-                        <p class="text-dark fw-normal" style="font-size: 12px; margin-top: 0.5rem;">
-                            Router WiFi Asus hadir dalam berbagai model dengan berbagai ukuran dan fitur. Ukuran umumnya kompak, cocok untuk pengaturan rumah tangga atau kantor kecil. Fitur canggihnya mencakup teknologi WiFi 6 terbaru, kecepatan transmisi tinggi, dan kapabilitas.</p>
+                        <img src="" id="itemImage" height="220" width="334" style="border-radius: 5px;">
+                        <div class="h3 fw-bold text-center mt-2" style="font-size: 18px;" id="itemNama"></div>
+                        <p class="text-dark fw-normal" style="font-size: 12px; margin-top: 0.5rem;" id="itemDeskripsi">
+                        </p>
                     </div>
                 </div>
             </div>
@@ -501,13 +501,17 @@
             <section class="splide new-1" aria-label="Splide Basic HTML Example">
                 <div class="splide__track">
                     <ul class="splide__list">
-                        <li class="splide__slide">
-                            <!-- Button trigger modal -->
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#Kamarmandi" style="border: none; background-color: white; margin-left: -5px;">
-                                <img src="{{ asset('img/interior1.jpg') }}" height="60" width="60" style="border-radius: 5px;">
-                            </button>
-                        </li>
-                        <li class="splide__slide">
+                        @foreach ($kamar_kost_fasilitas as $kost_fasilitas)
+                            @if ($kost_fasilitas->fasilitas->tipe == 'Kamar')
+                                <li class="splide__slide" onclick="getFasilitasBed({{ $kost_fasilitas->id }})">
+                                    <!-- Button trigger modal -->
+                                    {{-- <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ $kost_fasilitas->fasilitas->id }}" style="border: none; background-color: white; margin-left: -5px;"> --}}
+                                    <img src="{{ asset('uploadkamar/' . $kost_fasilitas->fasilitas->gambar) }}" height="60" width="60" style="border-radius: 5px;">
+                                    {{-- </button> --}}
+                                </li>
+                            @endif
+                        @endforeach
+                        {{-- <li class="splide__slide">
                             <!-- Button trigger modal -->
                             <button type="button" data-bs-toggle="modal" data-bs-target="#Ac" style="border: none; background-color: white;">
                                 <img src="{{ asset('img/interior2.jpg') }}" height="60" width="60" style="border-radius: 5px;">
@@ -548,7 +552,7 @@
                             <button type="button" data-bs-toggle="modal" data-bs-target="#Wifi" style="border: none; background-color: white;">
                                 <img src="{{ asset('img/interior8.jpg') }}" height="60" width="60" style="border-radius: 5px;">
                             </button>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </section>
@@ -590,7 +594,7 @@
                 </div> --}}
  @endforeach
                     </div>
-                    <label id="addWaktu" class="btn-lainnya" data-bs-toggle="modal" data-bs-target="#chooseTime">Waktu Lainnya</label>
+                    {{-- <label id="addWaktu" class="btn-lainnya" data-bs-toggle="modal" data-bs-target="#chooseTime">Waktu Lainnya</label> --}}
                     {{-- <div id="jam-container"> --}}
                     {{-- <input type="time" id="waktu" onchange="updateWaktu()"> --}}
                     {{-- <button id="waktu-btn" onclick="submitWaktu()">Set Waktu</button> --}}
@@ -618,7 +622,7 @@
                             <input type="hidden" name="productId" value="{{ $kamarkost->id }}">
                             <input type="hidden" name="selectedDate" id="selectedDate" x-model="selectedDate">
                             <input type="hidden" name="time" id="time" x-model="time">
-                            <input type="hidden" name="getDate" value="{{ Carbon\Carbon::now()->locale('id')->settings(['formatFunction' => 'translatedFormat'])->format('j F Y, h:i') }} WIB">
+                            <input type="hidden" name="getDate" value="{{ Carbon\Carbon::now()->locale('id')->settings(['formatFunction' => 'translatedFormat'])->isoFormat('DD MMMM Y, HH:mm') }} WIB">
                             <button type="submit" class="btn btn-dark" id="btnPesanSekarang" disabled>Pesan Sekarang</button>
                         </form>
                     </div>
@@ -794,7 +798,7 @@
                 pagination: false,
                 perPage: 1,
                 autoWidth: true,
-                gap: '-0.2rem',
+                gap: '0.5rem',
                 lazyLoad: 'nearby',
                 drag: 'free',
             });
@@ -1025,6 +1029,29 @@
             });
         </script>
         <script>
+            function getFasilitasBed(kamarKostFasilitasId) {
+                $.ajax({
+                    url: '/getFasilitasKamar/' + kamarKostFasilitasId,
+                    type: 'GET',
+                    success: function(response) {
+                        var item = response.kamarKostFasilitas;
+                        $('#itemImage').attr('src', '/uploadkamar/' + item.gambar);
+                        $('#itemNama').text(item.nama);
+                        $('#itemDeskripsi').text(item.deskripsi);
+                        console.log(item);
+                        $('#fasilitasKamar').modal('show');
+                    },
+                });
+            }
+
+            function closeModal() {
+                $('#itemImage').attr('src', '');
+                $('#fasilitasKamar').modal('hide');
+                $('#itemNama').text('');
+                $('#itemDeskripsi').text('');
+            }
+        </script>s
+        <script>
             function redirectToPaymentPage(productId) {
                 var currentTime = new Date();
                 var day = currentTime.getDate();
@@ -1035,7 +1062,7 @@
                 var seconds = currentTime.getSeconds();
 
                 var formattedTime =
-                    "{{ Carbon\Carbon::now()->locale('id')->settings(['formatFunction' => 'translatedFormat'])->format('j F Y, H:i') }} WIB";
+                    "{{ Carbon\Carbon::now()->locale('id')->settings(['formatFunction' => 'translatedFormat'])->isoFormat('DD MMMM Y, H:i') }} WIB";
                 getTime(productId, formattedTime);
             }
 

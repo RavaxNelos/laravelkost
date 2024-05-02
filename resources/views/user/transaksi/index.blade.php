@@ -204,7 +204,7 @@
                 <h3 class="fw-normal text-secondary" style="font-size: 14px; width: 150px;">Tgl. Pesanan</h3>
             </div>
             <div class="col-7 text-end">
-                <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">{{ Carbon\Carbon::parse($time)->locale('id')->format('j F Y, H:i') . ' WIB' }}</h3>
+                <h3 class="fw-semibold text-secondary-emphasis" style="font-size: 14px;">{{ $time }}</h3>
             </div>
         </div>
         <div class="row">

@@ -106,6 +106,10 @@
             border: var(--bs-dropdown-border-width) solid var(--bs-dropdown-border-color);
             border-radius: var(--bs-dropdown-border-radius);
         }
+
+        #tombol:disabled {
+            height: 40px;
+        }
     </style>
 </head>
 
@@ -176,7 +180,7 @@
             <hr class="garis-2">
             <div class="container" x-show="filter == 'form'">
                 <div class="card-laporkan-kerusakan">
-                    <form action="/user/kerusakan/admin" method="POST" enctype="multipart/form-data" x-data="{ tanggal: '', barang: '', gambar: '' }">
+                    <form action="/user/kerusakan/admin" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="container mt-3">
                             <div class="row">
@@ -201,7 +205,7 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="input-group">
-                                        <input type="date" class="form-control" id="tanggal_lapor" name="tanggal_lapor" style="border: 1px solid rgb(187, 0, 255); border-top-leftradius: 4px; border-bottom-left-radius: 4px;" placeholder="Masukkan tanggal laporan" id="datepicker" x-model="tanggal">
+                                        <input type="date" class="form-control" id="tanggal" name="tanggal_lapor" style="border: 1px solid rgb(187, 0, 255); border-top-leftradius: 4px; border-bottom-left-radius: 4px;" placeholder="Masukkan tanggal laporan" id="datepicker">
                                         <span class="input-group-text" style="border: 1px solid rgb(187, 0, 255); border-top-right-radius: 4px; border-bottom-right-radius: 4px; background: linear-gradient(45deg, #9c27b0, #673ab7, #3f51b5); color: white;">
                                             <i class="bi bi-calendar"></i>
                                         </span>
@@ -213,7 +217,7 @@
                                     <h3 class="fw-medium text-secondary" style="font-size: 14px;">Apa Yang Rusak?<span class="wajib">*</span></h3>
                                 </div>
                                 <div class="col-9 text-start">
-                                    <input type="text" id="barang_rusak" name="barang_rusak" class="input-kerusakan" placeholder="Barang yang mengalami kerusakan" x-model="barang">
+                                    <input type="text" id="barang" name="barang_rusak" class="input-kerusakan" placeholder="Barang yang mengalami kerusakan">
                                 </div>
                                 <div class="col-3 text-end">
                                     <div class="dropdown">
@@ -236,7 +240,16 @@
                                 <div class="col-12 text-start">
                                     <h3 class="fw-medium text-secondary" style="font-size: 14px;">Unggah Foto<span class="wajib">*</span></h3>
                                 </div>
-                                <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay;">
+                                <div class="form-item third">
+                                    <div class="for-uploadFoto">
+                                        <div class="uploadFoto">
+                                        </div>
+                                        <button type="button" id="addInput" class="btn add">
+                                            <i class="bi bi-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                {{-- <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay;">
                                     <div class="position-relative">
                                         <img id="frame" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 100px; height: 100px; border-radius: 8px; cursor: pointer;" onclick="deleteImage(); checkImages()">
                                         <label for="uploadfoto" class="label-upload">
@@ -247,41 +260,11 @@
                                             </div>
                                             <input type="file" onchange="preview()" hidden id="uploadfoto" name="gambar1" accept="image/*" x-model="gambar">
                                         </label>
+                                        <div class="add-icon" onclick="copyImage(this)">
+                                            <i class="bi bi-plus-circle"></i>
+                                        </div>
                                     </div>
-                                    <div class="position-relative">
-                                        <img id="frame2" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 100px; height: 100px; border-radius: 8px; cursor: pointer;" onclick="deleteImage2(); checkImages()">
-                                        <label for="uploadfoto2" class="label-upload">
-                                            <div class="box-icon">
-                                                <div class="bg-kategori rounded-5">
-                                                    <i id="uploadIcon2" class="bi bi-cloud-upload"></i>
-                                                </div>
-                                            </div>
-                                            <input type="file" onchange="preview2()" hidden id="uploadfoto2" name="gambar2" accept="image/*">
-                                        </label>
-                                    </div>
-                                    <div class="position-relative">
-                                        <img id="frame3" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 100px; height: 100px; border-radius: 8px; cursor: pointer;" onclick="deleteImage3(); checkImages()">
-                                        <label for="uploadfoto3" class="label-upload">
-                                            <div class="box-icon">
-                                                <div class="bg-kategori rounded-5">
-                                                    <i id="uploadIcon3" class="bi bi-cloud-upload"></i>
-                                                </div>
-                                            </div>
-                                            <input type="file" onchange="preview3()" hidden id="uploadfoto3" name="gambar3" accept="image/*">
-                                        </label>
-                                    </div>
-                                    <div class="position-relative">
-                                        <img id="frame4" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 100px; height: 100px; border-radius: 8px; cursor: pointer;" onclick="deleteImage4(); checkImages()">
-                                        <label for="uploadfoto4" class="label-upload">
-                                            <div class="box-icon">
-                                                <div class="bg-kategori rounded-5">
-                                                    <i id="uploadIcon4" class="bi bi-cloud-upload"></i>
-                                                </div>
-                                            </div>
-                                            <input type="file" onchange="preview4()" hidden id="uploadfoto4" name="gambar4" accept="image/*">
-                                        </label>
-                                    </div>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="row mt-3">
                                 <div class="col-12 text-start">
@@ -294,7 +277,7 @@
                         </div>
                         <hr class="kirim-laporan" style="border-top: 1px solid #ccc">
                         <div class="container text-center">
-                            <button type="submit" class="btn btn-dark" :class="tanggal && barang && gambar ? null : 'disabled'" style="border-radius: 50px; width: 170px;">Kirim Laporan</button>
+                            <button type="submit" class="fw-medium rounded-pill" style="border-radius: 50px; width: 170px;" id="tombol">Kirim Laporan</button>
                         </div>
                     </form>
                 </div>
@@ -325,93 +308,206 @@
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script>
-        function preview() {
-            var frame = document.getElementById('frame');
-            var uploadIcon = document.getElementById('uploadIcon');
-            var uploadInput = document.getElementById('uploadfoto');
+        const inputElement = document.getElementById('tanggal');
+        const inputIsi = document.getElementById('barang');
+        const imageContainer = document.querySelector('.form-item.third');
+        const submitButton = document.getElementById('tombol');
 
-            if (event.target.files.length > 0) {
-                frame.src = URL.createObjectURL(event.target.files[0]);
-                uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
+        window.onload = function() {
+            checkValidation();
+        };
+
+        inputElement.addEventListener('input', function() {
+            checkValidation();
+        });
+
+        imageContainer.addEventListener('DOMSubtreeModified', function() {
+            checkValidation();
+        });
+        // function preview() {
+        //     var frame = document.getElementById('frame');
+        //     var uploadIcon = document.getElementById('uploadIcon');
+        //     var uploadInput = document.getElementById('uploadfoto');
+
+        //     if (event.target.files.length > 0) {
+        //         frame.src = URL.createObjectURL(event.target.files[0]);
+        //         uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
+        //     }
+        // }
+
+        // function deleteImage() {
+        //     var frame = document.getElementById('frame');
+        //     var uploadIcon = document.getElementById('uploadIcon');
+        //     var uploadInput = document.getElementById('uploadfoto');
+
+        //     // Kembalikan ke gambar semula dan tampilkan ikon upload
+        //     frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
+        //     uploadIcon.style.display = 'block';
+        //     uploadInput.value = ''; // Bersihkan nilai input file
+        // }
+
+        // function preview2() {
+        //     var frame = document.getElementById('frame2');
+        //     var uploadIcon = document.getElementById('uploadIcon2');
+        //     var uploadInput = document.getElementById('uploadfoto2');
+
+        //     if (event.target.files.length > 0) {
+        //         frame.src = URL.createObjectURL(event.target.files[0]);
+        //         uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
+        //     }
+        // }
+
+        // function deleteImage2() {
+        //     var frame = document.getElementById('frame2');
+        //     var uploadIcon = document.getElementById('uploadIcon2');
+        //     var uploadInput = document.getElementById('uploadfoto2');
+
+        //     // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
+        //     frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
+        //     uploadIcon.style.display = 'block';
+        //     uploadInput.value = ''; // Bersihkan nilai input file
+        // }
+
+        // function preview3() {
+        //     var frame = document.getElementById('frame3');
+        //     var uploadIcon = document.getElementById('uploadIcon3');
+        //     var uploadInput = document.getElementById('uploadfoto3');
+
+        //     if (event.target.files.length > 0) {
+        //         frame.src = URL.createObjectURL(event.target.files[0]);
+        //         uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
+        //     }
+        // }
+
+        // function deleteImage3() {
+        //     var frame = document.getElementById('frame3');
+        //     var uploadIcon = document.getElementById('uploadIcon3');
+        //     var uploadInput = document.getElementById('uploadfoto3');
+
+        //     // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
+        //     frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
+        //     uploadIcon.style.display = 'block';
+        //     uploadInput.value = ''; // Bersihkan nilai input file
+        // }
+
+        // function preview4() {
+        //     var frame = document.getElementById('frame4');
+        //     var uploadIcon = document.getElementById('uploadIcon4');
+        //     var uploadInput = document.getElementById('uploadfoto4');
+
+        //     if (event.target.files.length > 0) {
+        //         frame.src = URL.createObjectURL(event.target.files[0]);
+        //         uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
+        //     }
+        // }
+
+        // function deleteImage4() {
+        //     var frame = document.getElementById('frame4');
+        //     var uploadIcon = document.getElementById('uploadIcon4');
+        //     var uploadInput = document.getElementById('uploadfoto4');
+
+        //     // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
+        //     frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
+        //     uploadIcon.style.display = 'block';
+        //     uploadInput.value = ''; // Bersihkan nilai input file
+        // }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const uploadContainer = document.querySelector('.uploadFoto');
+            const addInputButton = document.getElementById('addInput');
+            let inputCount = 0;
+
+            // addInputButton.style.display = 'none';
+
+            function checkInputs() {
+                const inputs = uploadContainer.querySelectorAll('.untuk-file');
+                let allInputsFilled = true;
+                inputs.forEach(input => {
+                    if (!input.files[0]) {
+                        allInputsFilled = false;
+                    }
+                });
+
+                if (allInputsFilled && inputCount < 4) {
+                    addInputButton.disabled = false;
+                } else {
+                    addInputButton.disabled = true;
+                }
             }
-        }
 
-        function deleteImage() {
-            var frame = document.getElementById('frame');
-            var uploadIcon = document.getElementById('uploadIcon');
-            var uploadInput = document.getElementById('uploadfoto');
+            uploadContainer.addEventListener('change', function(event) {
+                if (event.target && event.target.classList.contains('untuk-file')) {
+                    const fileInput = event.target;
+                    const file = fileInput.files[0];
+                    const targetLabel = fileInput.parentElement.querySelector('.labelFile');
 
-            // Kembalikan ke gambar semula dan tampilkan ikon upload
-            frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
-            uploadIcon.style.display = 'block';
-            uploadInput.value = ''; // Bersihkan nilai input file
-        }
+                    if (targetLabel && file) {
+                        const img = document.createElement('img');
+                        img.src = URL.createObjectURL(file);
 
-        function preview2() {
-            var frame = document.getElementById('frame2');
-            var uploadIcon = document.getElementById('uploadIcon2');
-            var uploadInput = document.getElementById('uploadfoto2');
+                        targetLabel.style.display = 'none';
+                        targetLabel.parentElement.appendChild(img);
 
-            if (event.target.files.length > 0) {
-                frame.src = URL.createObjectURL(event.target.files[0]);
-                uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
+                        const deleteButton = document.createElement('button');
+                        deleteButton.classList.add('button-delete');
+                        deleteButton.innerHTML = '<i class="bi bi-trash3"></i>';
+                        deleteButton.addEventListener('click', function() {
+                            const parentDiv = fileInput.closest('.uploadFoto-item');
+                            parentDiv.remove();
+                            inputCount--;
+                            acselatarion();
+                            checkInputs();
+                            addInputButton.style.display = 'block';
+                        });
+                        targetLabel.parentElement.appendChild(deleteButton);
+
+                        if (inputCount < 4) {
+                            addInputButton.style.display = 'block';
+                        }
+                    }
+
+                    if (inputCount === 4) {
+                        addInputButton.style.display = 'none';
+                    }
+
+                    checkInputs();
+                }
+            });
+
+            addInputButton.addEventListener('click', function() {
+                if (inputCount < 4) {
+                    const newInputDiv = document.createElement('div');
+                    newInputDiv.classList.add('uploadFoto-item');
+                    newInputDiv.innerHTML = `
+                <input type="file" id="files${inputCount + 1}" name="input${inputCount + 1}" class="form-control untuk-file" accept="image/*">
+                <div class="input-area">
+                    <label for="files${inputCount + 1}" class="labelFile" id="labelku${inputCount + 1}">
+                        <i class='bx bx-cloud-upload'></i>
+                    </label>
+                </div>`;
+                    uploadContainer.appendChild(newInputDiv);
+
+                    inputCount++;
+
+                    if (inputCount === 4) {
+                        addInputButton.style.display = 'none';
+                    }
+
+                    checkInputs();
+                }
+            });
+
+
+            function acselatarion() {
+                const inputs = uploadContainer.querySelectorAll('.untuk-file');
+                inputs.forEach((input, index) => {
+                    input.id = `files${index + 1}`;
+                    input.name = `input${index + 1}`;
+                    const label = input.parentElement.querySelector('.labelFile');
+                    label.setAttribute('for', `files${index + 1}`);
+                });
             }
-        }
-
-        function deleteImage2() {
-            var frame = document.getElementById('frame2');
-            var uploadIcon = document.getElementById('uploadIcon2');
-            var uploadInput = document.getElementById('uploadfoto2');
-
-            // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
-            frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
-            uploadIcon.style.display = 'block';
-            uploadInput.value = ''; // Bersihkan nilai input file
-        }
-
-        function preview3() {
-            var frame = document.getElementById('frame3');
-            var uploadIcon = document.getElementById('uploadIcon3');
-            var uploadInput = document.getElementById('uploadfoto3');
-
-            if (event.target.files.length > 0) {
-                frame.src = URL.createObjectURL(event.target.files[0]);
-                uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
-            }
-        }
-
-        function deleteImage3() {
-            var frame = document.getElementById('frame3');
-            var uploadIcon = document.getElementById('uploadIcon3');
-            var uploadInput = document.getElementById('uploadfoto3');
-
-            // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
-            frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
-            uploadIcon.style.display = 'block';
-            uploadInput.value = ''; // Bersihkan nilai input file
-        }
-
-        function preview4() {
-            var frame = document.getElementById('frame4');
-            var uploadIcon = document.getElementById('uploadIcon4');
-            var uploadInput = document.getElementById('uploadfoto4');
-
-            if (event.target.files.length > 0) {
-                frame.src = URL.createObjectURL(event.target.files[0]);
-                uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
-            }
-        }
-
-        function deleteImage4() {
-            var frame = document.getElementById('frame4');
-            var uploadIcon = document.getElementById('uploadIcon4');
-            var uploadInput = document.getElementById('uploadfoto4');
-
-            // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
-            frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
-            uploadIcon.style.display = 'block';
-            uploadInput.value = ''; // Bersihkan nilai input file
-        }
+        });
 
         window.addEventListener('scroll', function() {
             var header = document.getElementById('stickyHeader');
@@ -435,51 +531,58 @@
             inputElement.focus();
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            // Memantau input dan gambar
-            var inputElements = document.querySelectorAll('.input-nama, .barang_rusak, #tanggal_lapor');
-            var fileInputs = document.querySelectorAll('input[type="file"]');
-            var submitButton = document.querySelector('.btn');
-
-            // Memantau setiap perubahan pada input dan gambar
-            inputElements.forEach(function(input) {
-                if (input.type === "date") {
-                    input.addEventListener('change', checkInputs);
-                } else {
-                    input.addEventListener('input', checkInputs);
-                }
-            });
-
-            fileInputs.forEach(function(fileInput) {
-                fileInput.addEventListener('change', checkInputs);
-            });
-
-            // Fungsi untuk memeriksa input dan gambar
-            function checkInputs() {
-                var namaValue = document.querySelector('.input-nama').value;
-                var kerusakanValue = document.querySelector('.barang_rusak').value;
-                var tanggalValue = document.querySelector('#tanggal_lapor').value;
-
-                // Mengaktifkan atau menonaktifkan tombol berdasarkan status input
-                submitButton.disabled = !(namaValue && kerusakanValue && tanggalValue);
-            }
-        });
-
-        function checkImages() {
-            var frame1 = document.getElementById("frame").getAttribute("src");
-            var frame2 = document.getElementById("frame2").getAttribute("src");
-            var frame3 = document.getElementById("frame3").getAttribute("src");
-            var frame4 = document.getElementById("frame4").getAttribute("src");
-
-            if (frame1 === "{{ asset('img/gambarpolosan.jpg') }}" &&
-                frame2 === "{{ asset('img/gambarpolosan.jpg') }}" &&
-                frame3 === "{{ asset('img/gambarpolosan.jpg') }}" &&
-                frame4 === "{{ asset('img/gambarpolosan.jpg') }}") {
-                document.getElementById("submitButton").disabled = true;
+        function checkValidation() {
+            if (inputElement.value !== '' && inputIsi.value !== '' && imageContainer.getElementsByTagName('img').length > 0) {
+                submitButton.removeAttribute('disabled');
+                submitButton.classList.add('active');
             } else {
-                document.getElementById("submitButton").disabled = false;
+                submitButton.setAttribute('disabled', 'disabled');
+                submitButton.classList.remove('active');
+                submitButton.classList.add('disabled');
             }
         }
+
+        // document.addEventListener('DOMContentLoaded', function() {
+        //             // Memantau input dan gambar
+        //             var inputElements = document.querySelectorAll('.input-nama, .barang_rusak, #tanggal_lapor');
+        //             var fileInputs = document.querySelectorAll('input[type="file"]');
+        //             var submitButton = document.querySelector('.btn');
+
+        //             // Memantau setiap perubahan pada input dan gambar
+        //             inputElements.forEach(function(input) {
+        //                 if (input.type === "date") {
+        //                     input.addEventListener('change', checkInputs);
+        //                 } else {
+        //                     input.addEventListener('input', checkInputs);
+        //                 }
+        //             });
+
+        //             fileInputs.forEach(function(fileInput) {
+        //                 fileInput.addEventListener('change', checkInputs);
+        //             });
+
+
+
+        // Fungsi untuk memeriksa input dan gambar
+        //     function checkInputs() {
+        //         var namaValue = document.querySelector('.input-nama').value;
+        //         var kerusakanValue = document.querySelector('.barang_rusak').value;
+        //         var tanggalValue = document.querySelector('#tanggal_lapor').value;
+
+        //         // Mengaktifkan atau menonaktifkan tombol berdasarkan status input
+        //         submitButton.disabled = !(namaValue && kerusakanValue && tanggalValue);
+        //     }
+        // });
+
+        // function checkImages() {
+        //     var frame1 = document.getElementById("frame").getAttribute("src");
+
+        //     if (frame1 === "{{ asset('img/gambarpolosan.jpg') }}") {
+        //         document.getElementById("submitButton").disabled = true;
+        //     } else {
+        //         document.getElementById("submitButton").disabled = false;
+        //     }
+        // }
     </script>
 </body>
 

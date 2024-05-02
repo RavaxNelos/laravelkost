@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Kerusakan extends Model
 {
     use HasFactory;
-    protected $table = 'kerusakan';
     protected $guard = ['id'];
-    protected $fillable = ['user_id', 'nomer_kamar', 'tanggal_lapor', 'barang_rusak', 'gambar_rusak', 'keterangan'];
+    protected $table = 'kerusakan';
+    protected $fillable = ['user_id', 'nomer_kamar', 'tanggal_lapor', 'barang_rusak', 'gambar_rusak', 'status'];
 
     public function kamarkost()
     {
@@ -19,6 +19,11 @@ class Kerusakan extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function gambarkerusakan()
+    {
+        return $this->hasMany(GambarKerusakan::class, 'laporan_id', 'id');
     }
     // public function pembayaran()
     // {
