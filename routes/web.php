@@ -105,6 +105,7 @@ Route::delete('/pemilikmin/kamar/destroy/{id}', [KamarKostController::class, 'de
 Route::get('/pemilikmin/transaksi', [TransaksiController::class, 'index'])->name('transaksi');
 Route::get('/pemilikmin/kerusakan', [KerusakanController::class, 'index'])->name('kerusakan');
 Route::get('/pemilikmin/kehilangan', [KehilanganController::class, 'index'])->name('kehilangan');
+Route::post('/pemilikmin/kehilangan', [KehilanganController::class, 'store'])->name('respon.store');
 // Route::post('/approve-transaction', [TransaksiController::class, 'approve']);
 Route::post('/reject/{id}', [TransaksiController::class, 'reject']);
 Route::get('/approve/{id}', [TransaksiController::class, 'approve']);

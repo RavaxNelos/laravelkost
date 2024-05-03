@@ -66,6 +66,10 @@
         .text-center {
             text-align: center !important;
         }
+
+        textarea {
+            resize: none;
+        }
     </style>
 @endsection
 @section('content')

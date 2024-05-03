@@ -254,6 +254,7 @@ class UserController extends Controller
             'nomer_kamar'   => $kamar_kost->nomer_kost,
             'tanggal_lapor' => $request->tanggal_lapor,
             'barang_rusak'  => $request->barang_rusak,
+            'keterangan'     => $request->keterangan,
             'status'        => 'Menunggu Respon',
         ]);
                       // $transaksi = transaksi::find(session()->get('payment_id'));
@@ -264,7 +265,7 @@ class UserController extends Controller
         $users      = Auth::user();
         $transaksi  = Transaksi::where('user_id', $users->id)->latest()->first();
         $kamar_kost = $transaksi ? KamarKost::find($transaksi->kamar_kost_id) : null;
-        $kehilangan = $transaksi ? Kehilangan::where('user_id',$users->id)->first() : null;
+        $kehilangan = $transaksi ? Kehilangan::where('user_id',$users->id)->get() : null;
         return view('user.laporkan.laporkankehilangan', compact('users', 'transaksi', 'kamar_kost', 'kehilangan'));
     }
 

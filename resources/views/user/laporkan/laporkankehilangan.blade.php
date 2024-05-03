@@ -95,6 +95,11 @@
         .py-3 {
             padding-bottom: 0.5rem !important;
         }
+
+        button:disabled {
+            border: none;
+            background: rgb(149, 148, 148) !important;
+        }
     </style>
 </head>
 
@@ -273,62 +278,65 @@
                     </div>
                 @else
                     <!-- Tampilan ada data dari laporkan kehilangan -->
-                    <div class="card-custom" style="width: 100%; height: auto; border-radius: 10px; background-color: gray;">
+                    <div class="card-custom" style="width: 100%; height: auto; border-radius: 10px; background-color: gray; margin-bottom: 5rem;">
                         <div class="container py-3">
-                            <div class="card-custom-list">
-                                <div class="container py-2">
-                                    <div class="row">
-                                        <div class="col-3 text-start">
-                                            <h3 class="fw-medium text-secondary" style="font-size: 14px; width: 200px;">Nama User</h3>
+                            @foreach ($kehilangan as $laporkehilangan)
+                                <div class="card-custom-list">
+                                    <div class="container py-2">
+                                        <div class="row">
+                                            <div class="col-3 text-start">
+                                                <h3 class="fw-medium text-secondary" style="font-size: 14px; width: 200px;">Nama User</h3>
+                                            </div>
+                                            <div class="col-9 text-end">
+                                                <h3 class="fw-medium" style="font-size: 14px; color: #333333;">{{ $users->name }}</h3>
+                                            </div>
+                                            <div class="col-5 text-start" style="margin-top: -4px;">
+                                                <h3 class="fw-medium text-secondary" style="font-size: 14px;">No. Kamar</h3>
+                                            </div>
+                                            <div class="col-7 text-end" style="margin-top: -4px;">
+                                                <h3 class="fw-medium" style="font-size: 14px; color: #333333;">Kamar No.{{ $kamar_kost->nomer_kost }}</h3>
+                                            </div>
+                                            <div class="col-6 text-start" style="margin-top: -4px;">
+                                                <h3 class="fw-medium text-secondary" style="font-size: 14px;">Lokasi Kehilangan</h3>
+                                            </div>
+                                            <div class="col-6 text-end" style="margin-top: -4px;">
+                                                <h3 class="fw-medium" style="font-size: 14px; color: #333333;">{{ $laporkehilangan?->lokasi_hilang }}</h3>
+                                            </div>
+                                            <div class="col-6 text-start" style="margin-top: -4px;">
+                                                <h3 class="fw-medium text-secondary" style="font-size: 14px;">Yang Hilang</h3>
+                                            </div>
+                                            <div class="col-6 text-end" style="margin-top: -4px;">
+                                                <h3 class="fw-medium" style="font-size: 14px; color: #333333;">{{ $laporkehilangan?->barang_hilang }}</h3>
+                                            </div>
+                                            <div class="col-7 text-start" style="margin-top: -4px;">
+                                                <h3 class="fw-medium text-secondary" style="font-size: 14px;">Tanggal Kehilangan</h3>
+                                            </div>
+                                            <div class="col-5 text-end" style="margin-top: -4px;">
+                                                <h3 class="fw-medium" style="font-size: 14px; color: #333333;">{{ Carbon\Carbon::parse($laporkehilangan?->tanggal_hilang)->locale('id')->isoFormat('DD MMMM Y') }}</h3>
+                                            </div>
+                                            <div class="col-6 text-start" style="margin-top: -4px;">
+                                                <h3 class="fw-medium text-secondary" style="font-size: 14px;">Jam Kehilangan</h3>
+                                            </div>
+                                            <div class="col-6 text-end" style="margin-top: -4px;">
+                                                <h3 class="fw-medium" style="font-size: 14px; color: #333333;">{{ $laporkehilangan?->jam_hilang }} WIB</h3>
+                                            </div>
+                                            <div class="col-3 text-start" style="margin-top: -4px;">
+                                                <h3 class="fw-medium text-secondary" style="font-size: 14px; width: 200px;">Status Laporan</h3>
+                                            </div>
+                                            <div class="col-9 text-end" style="margin-top: -4px;">
+                                                <h3 class="fw-medium text-{{ $laporkehilangan?->status == 'Menunggu Respon' ? 'warning' : ($laporkehilangan?->status == 'Laporan Diterima' ? 'success' : 'danger') }}" style="font-size: 14px; color: #333333;">{{ $laporkehilangan?->status == 'Menunggu Respon' ? 'Menunggu Respon' : ($laporkehilangan?->status == 'Laporan Diterima' ? 'Laporan Diterima' : 'Laporan Ditolak') }}</h3>
+                                            </div>
                                         </div>
-                                        <div class="col-9 text-end">
-                                            <h3 class="fw-medium" style="font-size: 14px; color: #333333;">{{ $users->name }}</h3>
-                                        </div>
-                                        <div class="col-5 text-start" style="margin-top: -4px;">
-                                            <h3 class="fw-medium text-secondary" style="font-size: 14px;">No. Kamar</h3>
-                                        </div>
-                                        <div class="col-7 text-end" style="margin-top: -4px;">
-                                            <h3 class="fw-medium" style="font-size: 14px; color: #333333;">Kamar No.{{ $kamar_kost->nomer_kost }}</h3>
-                                        </div>
-                                        <div class="col-6 text-start" style="margin-top: -4px;">
-                                            <h3 class="fw-medium text-secondary" style="font-size: 14px;">Lokasi Kehilangan</h3>
-                                        </div>
-                                        <div class="col-6 text-end" style="margin-top: -4px;">
-                                            <h3 class="fw-medium" style="font-size: 14px; color: #333333;">{{ $kehilangan?->lokasi_hilang }}</h3>
-                                        </div>
-                                        <div class="col-6 text-start" style="margin-top: -4px;">
-                                            <h3 class="fw-medium text-secondary" style="font-size: 14px;">Yang Hilang</h3>
-                                        </div>
-                                        <div class="col-6 text-end" style="margin-top: -4px;">
-                                            <h3 class="fw-medium" style="font-size: 14px; color: #333333;">{{ $kehilangan?->barang_hilang }}</h3>
-                                        </div>
-                                        <div class="col-7 text-start" style="margin-top: -4px;">
-                                            <h3 class="fw-medium text-secondary" style="font-size: 14px;">Tanggal Kehilangan</h3>
-                                        </div>
-                                        <div class="col-5 text-end" style="margin-top: -4px;">
-                                            <h3 class="fw-medium" style="font-size: 14px; color: #333333;">{{ Carbon\Carbon::parse($kehilangan?->tanggal_hilang)->locale('id')->isoFormat('DD MMMM Y') }}</h3>
-                                        </div>
-                                        <div class="col-6 text-start" style="margin-top: -4px;">
-                                            <h3 class="fw-medium text-secondary" style="font-size: 14px;">Jam Kehilangan</h3>
-                                        </div>
-                                        <div class="col-6 text-end" style="margin-top: -4px;">
-                                            <h3 class="fw-medium" style="font-size: 14px; color: #333333;">{{ $kehilangan?->jam_hilang }} WIB</h3>
-                                        </div>
-                                        <div class="col-3 text-start" style="margin-top: -4px;">
-                                            <h3 class="fw-medium text-secondary" style="font-size: 14px; width: 200px;">Status Laporan</h3>
-                                        </div>
-                                        <div class="col-9 text-end" style="margin-top: -4px;">
-                                            <h3 class="fw-medium text-{{ $kehilangan->status == 'Menunggu Respon' ? 'warning' : ($kehilangan->status == 'Laporan Diterima' ? 'success' : 'danger') }}" style="font-size: 14px; color: #333333;">{{ $kehilangan->status == 'Menunggu Respon' ? 'Menunggu Respon' : ($kehilangan->status == 'Laporan Diterima' ? 'Laporan Diterima' : 'Laporan Ditolak') }}</h3>
-                                        </div>
-                                    </div>
-                                    {{-- <hr class="hr-garis-card">
+                                        {{-- @dd($kehilangan) --}}
+                                        {{-- <hr class="hr-garis-card">
                                     <div class="col-12 text-center">
                                         <a href="/user/detailkehilangan/{{ $kehilangan->id }}" style="text-decoration: none;">
                                             <h3 class="fw-medium" style="font-size: 14px; color: #9c27b0;">Selengkapnya</h3>
                                         </a>
                                     </div> --}}
+                                    </div>
                                 </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 @endif

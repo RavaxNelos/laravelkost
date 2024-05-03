@@ -80,6 +80,10 @@
         input[type=number] {
             -moz-appearance: textfield;
         }
+
+        textarea {
+            resize: none;
+        }
     </style>
 @endsection
 @section('content')
@@ -125,12 +129,9 @@
                     <thead class="header-item">
                         <th class="text-center">Nama User</th>
                         <th class="text-center">Nomer Kamar</th>
-                        <th class="text-center">Lokasi Kehilangan Barang</th>
-                        <th class="text-center">Barang Yang Hilang</th>
-                        <th class="text-center">Tanggal Kehilangan</th>
-                        <th class="text-center">Jam Kehilangan</th>
                         <th class="text-center">Keterangan</th>
                         <th class="text-center">Status</th>
+                        <th class="text-center">Aksi</th>
                     </thead>
                     <tbody>
                         @foreach ($kehilangan as $item)
@@ -143,6 +144,196 @@
                                     <span class="usr-kategori-kost">{{ $item->nomer_kamar }}</span>
                                 </td>
                                 <td class="text-center">
+                                    <span class="usr-tipe-kost">{{ $item->keterangan }}</span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="usr-tipe-kost">{{ $item->status }}</span>
+                                </td>
+                                <td class="text-center">
+                                    <div class="d-flex justify-content-center">
+                                        <button class="btn btn-info mx-1" data-bs-toggle="modal" data-bs-target="#lihat-{{ $item->id }}">Lihat</button>
+                                        <div class="modal fade" id="lihat-{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-scrollable">
+                                                <div class="modal-content"style="width: 100%; height: 540px;">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5 fw-semibold" id="exampleModalLabel">Detail Laporkan Kehilangan</h1>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="container">
+                                                            <div class="row" style="margin-top: -20px;">
+                                                                <input type="hidden" name="id" value="{{ $item->id }}">
+                                                                <div class="col-12 text-start">
+                                                                    <label for="Nama User">Nama User</label>
+                                                                </div>
+                                                                <div class="col-md-12 mt-1">
+                                                                    <div class="mt-3">
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control" name="name" id="name" value="{{ $item->user->name }}" disabled>
+                                                                            @error('name')
+                                                                                {{ $message }}
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 text-start mt-2">
+                                                                    <label for="Nomer Kamar">Nomer Kamar</label>
+                                                                </div>
+                                                                <div class="col-md-12" style="margin-top: -12px;">
+                                                                    <div class="mt-3">
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control" name="nomer_kamar" id="nomer_kamar" value="{{ $item->nomer_kamar }}" disabled>
+                                                                            @error('nomer_kamar')
+                                                                                {{ $message }}
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-6 text-start mt-3">
+                                                                    <label for="Lokasi Hilang Barang">Lokasi Hilang Barang</label>
+                                                                </div>
+                                                                <div class="col-6 text-start mt-3">
+                                                                    <label for="Barang Yang Hilang">Barang Yang Hilang</label>
+                                                                </div>
+                                                                <div class="col-md-6" style="margin-top: -12px;">
+                                                                    <div class="mt-3">
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control" name="lokasi_hilang" value="{{ $item->lokasi_hilang }}" id="lokasi_hilang" disabled>
+                                                                            @error('lokasi_hilang')
+                                                                                {{ $message }}
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6" style="margin-top: -12px;">
+                                                                    <div class="mt-3">
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control" name="barang_hilang" value="{{ $item->barang_hilang }}" id="barang_hilang" disabled>
+                                                                            @error('barang_hilang')
+                                                                                {{ $message }}
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-6 text-start mt-3">
+                                                                    <label for="Tanggal Hilang">Tanggal Hilang</label>
+                                                                </div>
+                                                                <div class="col-6 text-start mt-3">
+                                                                    <label for="Jam Hilang">Jam Hilang</label>
+                                                                </div>
+                                                                <div class="col-6" style="margin-top: -12px;">
+                                                                    <div class="mt-3">
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control" name="tanggal_hilang" value="{{ Carbon\Carbon::parse($item->tanggal_hilang)->locale('id')->isoFormat('DD MMMM Y') }}" id="tanggal_hilang" disabled>
+                                                                            @error('tanggal_hilang')
+                                                                                {{ $message }}
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-6" style="margin-top: -12px;">
+                                                                    <div class="mt-3">
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control" name="jam_hilang" value="{{ $item->jam_hilang }}" id="jam_hilang" disabled>
+                                                                            @error('jam_hilang')
+                                                                                {{ $message }}
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-6 text-start mt-3">
+                                                                    <label for="Status Laporan">Status Laporan</label>
+                                                                </div>
+                                                                <div class="col-6 text-start mt-3">
+                                                                    <label for="Respon Laporan">Respon Laporan</label>
+                                                                </div>
+                                                                <div class="col-6" style="margin-top: -12px;">
+                                                                    <div class="mt-3">
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control" name="status" value="{{ $item->status }}" id="status" disabled>
+                                                                            @error('status')
+                                                                                {{ $message }}
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-6" style="margin-top: -12px;">
+                                                                    <div class="mt-3">
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control" name="respon" value="{{ $item->respon ? $item->respon : 'Admin Belum Merespon Laporan Ini!' }}" id="respon" disabled>
+                                                                            @error('respon')
+                                                                                {{ $message }}
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 text-start mt-3">
+                                                                    <label for="Keterangan Laporan">Keterangan Laporan</label>
+                                                                </div>
+                                                                <div class="col-md-12" style="margin-top: -12px;">
+                                                                    <div class="mt-3">
+                                                                        <div class="form-group">
+                                                                            <textarea class="form-control" name="keterangan" id="keterangan" rows="2" disabled>{{ $item->keterangan }}</textarea>
+                                                                            @error('keterangan')
+                                                                                {{ $message }}
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer" style="height: 20px;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#respon-{{ $item->id }}">Respon</button>
+                                        <div class="modal fade" id="respon-{{ $item->id }}" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-scrollable">
+                                                <div class="modal-content"style="width: 100%; height: 350px; margin-top: 10rem;">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5 fw-semibold" id="exampleModalLabel">Respon Laporan Kehilangan</h1>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="container">
+                                                            <form action="{{ route('respon.store') }}" method="POST" enctype="multipart/form-data" x-data="{ respon: '' }">
+                                                                @csrf
+                                                                <div class="row" style="margin-top: -10px;">
+                                                                    <input type="hidden" name="id" value="{{ $item->id }}">
+                                                                    <div class="col-6 text-start">
+                                                                        <h3 class="fw-medium" style="font-size: 14px;">Laporan Ini Dari :</h3>
+                                                                    </div>
+                                                                    <div class="col-6 text-end">
+                                                                        <h3 class="fw-medium text-secondary-emphasis" style="font-size: 14px;">{{ $item->user->name }}</h3>
+                                                                    </div>
+                                                                    <div class="col-12 text-start mt-3">
+                                                                        <label for="Respon Untuk Laporan Kehilangan">Respon Untuk Laporan Kehilangan</label>
+                                                                    </div>
+                                                                    <div class="col-12 mt-3">
+                                                                        <textarea class="form-control" name="respon" id="respon" value="{{ old('respon') }}" rows="5" placeholder="Ketik Respon Untuk Laporan Kehilangan..." maxlength="100" x-model="respon"></textarea>
+                                                                    </div>
+                                                                    <div class="col-12 text-end">
+                                                                        <div class="align-items-center mt-3">
+                                                                            <div class="ms-auto mt-3 mt-md-0">
+                                                                                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Batal</button>
+                                                                                <button type="submit" class="btn btn-info font-medium" :class="respon ? null : 'disabled'">
+                                                                                    <div class="align-items-center">
+                                                                                        Kirim
+                                                                                    </div>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                {{-- <td class="text-center">
                                     <span class="usr-harga-kost">{{ $item->lokasi_hilang }}</span>
                                 </td>
                                 <td class="text-center">
@@ -153,13 +344,7 @@
                                 </td>
                                 <td class="text-center">
                                     <span class="usr-tipe-kost">{{ $item->jam_hilang }}</span>
-                                </td>
-                                <td class="text-center">
-                                    <span class="usr-tipe-kost">{{ $item->keterangan }}</span>
-                                </td>
-                                <td class="text-center">
-                                    <span class="usr-tipe-kost">{{ $item->status }}</span>
-                                </td>
+                                </td> --}}
                             </tr>
                             <!-- end row -->
                         @endforeach

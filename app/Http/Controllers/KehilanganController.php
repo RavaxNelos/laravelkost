@@ -16,4 +16,20 @@ class KehilanganController extends Controller
             'kehilangan' => $kehilangan,
         ]);
     }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'respon' => 'required|max:100', // Atur validasi sesuai kebutuhan Anda
+        ]);
+
+        // Simpan data respon ke dalam database
+        $kehilangan = Kehilangan::where('id', $request->id)->first();
+        $kehilangan->respon = $request->respon;
+        $kehilangan->status = 'Respon Sudah Dikirim';
+        $kehilangan->save();
+
+
+        return redirect()->route('kehilangan')->with('success', 'Respon Berhasil Dikirm');
+    }
 }

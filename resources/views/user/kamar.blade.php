@@ -141,13 +141,13 @@
         </div>
     </div>
     @if ($kamar_kost)
-        <nav class="fixed-top" id="stickyTop">
+        <div class="" style="position: absolute; right: 2px;" id="stickyTop">
             <div class="container py-3">
                 <div class="col-12 text-end">
                     <button class="btn-like-detail" onclick="toggleCard()"><i class="bi bi-three-dots-vertical"></i></button>
                 </div>
             </div>
-        </nav>
+        </div>
         <img src="{{ asset('uploadkamar/' . $kamar_kost->gambar_kost) }}" style="width: 360px; height: 250px;">
         {{-- <section class="splide new-1" aria-label="Splide Basic HTML Example">
         <div class="splide__track">
@@ -202,7 +202,7 @@
                     <h1 class="fw-medium" style="font-size: 12px; font-family: Poppins; color: #CCCCCC;">Harga /Bulan</h1>
                 </div>
                 <div class="col-12 text-center">
-                    <p class="fw-semibold" style="font-size: 14px; color: #9b59b6; margin-top: -8px;">{{ $kamar_kost->harga_kost }}</p>
+                    <p class="fw-semibold" style="font-size: 16px; color: #9b59b6; margin-top: -8px;">{{ $kamar_kost->harga_kost }}</p>
                 </div>
             </div>
         </div>
@@ -213,25 +213,25 @@
                 <div class="col-12 text-start">
                     <h1 class="fw-normal" style="font-size: 12px; font-family: Poppins; color: #CCCCCC;">Ukuran Kamar</h1>
                 </div>
-                <p class="text-dark fw-medium" style="font-size: 12px; margin-top: -8px;">Ukuran Kamar {{ $kamar_kost->ukuran_kost }}</p>
+                <p class="text-dark fw-medium" style="font-size: 14px; margin-top: -8px;">Ukuran Kamar {{ $kamar_kost->ukuran_kost }}</p>
             </div>
             <div class="row" style="margin-top: -10px;">
                 <div class="col-12 text-start">
                     <h1 class="fw-normal" style="font-size: 12px; font-family: Poppins; color: #CCCCCC;">Lokasi Kost</h1>
                 </div>
-                <p class="text-dark fw-medium" style="font-size: 12px; margin-top: -8px;">{{ $kamar_kost->alamat_lengkap_kost }}</p>
+                <p class="text-dark fw-medium" style="font-size: 14px; margin-top: -8px;">{{ $kamar_kost->alamat_lengkap_kost }}</p>
             </div>
             <div class="row" style="margin-top: -10px;">
                 <div class="col-12 text-start">
                     <h1 class="fw-normal" style="font-size: 12px; font-family: Poppins; color: #CCCCCC;">Air Bersih</h1>
                 </div>
-                <p class="text-secondary-emphasis fw-medium" style="font-size: 12px; margin-top: -8px;">{{ $kamar_kost->air_kost }}</p>
+                <p class="text-secondary-emphasis fw-medium" style="font-size: 14px; margin-top: -8px;">{{ $kamar_kost->air_kost }}</p>
             </div>
             <div class="row" style="margin-top: -10px;">
                 <div class="col-12 text-start">
                     <h1 class="fw-normal" style="font-size: 12px; font-family: Poppins; color: #CCCCCC;">Tipe Listrik</h1>
                 </div>
-                <p class="text-secondary-emphasis fw-medium" style="font-size: 12px; margin-top: -8px;">{{ $kamar_kost->listrik_kost }}</p>
+                <p class="text-secondary-emphasis fw-medium" style="font-size: 14px; margin-top: -8px;">{{ $kamar_kost->listrik_kost }}</p>
             </div>
         </div>
         <div class="modal fade" id="fasilitasKamar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -590,7 +590,7 @@
                 if (st > lastScrollTop) {
                     cardContent.style.transform = 'translateY(-1000px)'; // Menggeser elemen ke atas
                 } else {
-                    cardContent.style.transform = 'translateY(0)'; // Menampilkan kembali elemen
+                    cardContent.style.transform = 'translateY(0px)'; // Menampilkan kembali elemen
                 }
 
                 lastScrollTop = st;

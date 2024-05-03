@@ -91,9 +91,28 @@
     <section class="position-relative">
         <section class="header">
             <div class="col-12 text-center">
-                <img id="profileImage" src="{{ asset($users->gambar ? 'uploadkamar/' . $users->gambar : '/img/customer1.jpg') }}" style="margin-top: 50px; border: 1px solid white; border-radius: 50%; position: relative;" width="100" height="100">
+                <img id="profileImage" src="{{ asset($users->gambar ? 'uploadkamar/' . $users->gambar : '/img/customer1.jpg') }}" data-bs-toggle="modal" data-bs-target="#profil-{{ $users->id }}" style="margin-top: 50px; border: 1px solid white; border-radius: 50%; position: relative;" width="80" height="80">
+                <!-- Modal -->
+                <div class="modal fade" id="profil-{{ $users->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content" style=" border-radius: 20px; margin-top: 10rem; width: 300px; align-items: center; justify-content: center; margin-left: 22px;">
+                            <div class="modal-body" style="padding: 0px;">
+                                <div class="container">
+                                    <input type="hidden" name="id" value="{{ $users->id }}">
+                                    <div class="row">
+                                        <div class="col-12 text-center">
+                                            <div class="position-relative">
+                                                <img id="frame" src="{{ asset($users->gambar ? 'uploadkamar/' . $users->gambar : '/img/customer1.jpg') }}" width="300" height="300" style="border-radius: 20px;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <h3 class="fw-medium" style="font-size: 18px; color: white; margin-top: 16px;">{{ $users->name }}</h3>
-                <button class="btn-status">{{ $users->status }}</button>
+                <button class="btn-status mt-2">{{ $users->status }}</button>
             </div>
         </section>
     </section>
@@ -143,7 +162,7 @@
                     </div>
                 </div>
             </div>
-            <button class="btn-edit-akun" data-bs-toggle="modal" data-bs-target="#editakun-{{ $users->id }}"><i class="bi bi-person-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: #9370DB;"></i>Akun<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 12.8rem;"></i></button>
+            <button class="btn-edit-akun" data-bs-toggle="modal" data-bs-target="#editakun-{{ $users->id }}"><i class="bi bi-person-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: #9370DB;"></i>Akun<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 13rem;"></i></button>
             <!-- Modal -->
             <div class="modal fade" id="editakun-{{ $users->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -155,7 +174,7 @@
                                     <input type="hidden" name="id" value="{{ $users->id }}">
                                     <div class="row">
                                         <div class="col-12 text-center">
-                                            <img src="{{ asset('img/user.png') }}" width="100" height="100">
+                                            <img src="{{ asset('img/user.png') }}" width="80" height="80">
                                         </div>
                                         <div class="col-12 text-center mt-2">
                                             <h3 class="fw-semibold" style="font-size: 16px;">Edit Akun</h3>
@@ -179,9 +198,9 @@
                 </div>
             </div>
             <form action="{{ route('favorit') }}">
-                <button class="btn-edit-akun"><i class="bi bi-heart-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: #9370DB;"></i>Kamar Kost Favorit<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 6.8rem;"></i></button>
+                <button class="btn-edit-akun"><i class="bi bi-heart-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: #9370DB;"></i>Kamar Kost Favorit<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 7.6rem;"></i></button>
             </form>
-            <button class="btn-edit-akun" data-bs-toggle="modal" data-bs-target="#bantuan"><i class="bi bi-question-circle-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: #9370DB;"></i>Bantuan<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 11.4rem;"></i></button>
+            <button class="btn-edit-akun" data-bs-toggle="modal" data-bs-target="#bantuan"><i class="bi bi-question-circle-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: #9370DB;"></i>Bantuan<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 11.8rem;"></i></button>
             <!-- Modal -->
             <div class="modal fade" id="bantuan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -190,7 +209,7 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-12 text-center">
-                                        <img src="{{ asset('img/info.png') }}" width="100" height="100">
+                                        <img src="{{ asset('img/info.png') }}" width="80" height="80">
                                     </div>
                                     <div class="col-12 text-center mt-2">
                                         <h3 class="fw-semibold" style="font-size: 16px;">Bantuan</h3>
@@ -207,7 +226,7 @@
                     </div>
                 </div>
             </div>
-            <button class="btn-edit-akun" data-bs-toggle="modal" data-bs-target="#editsandi-modal"><i class="bi bi-lock-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: #9370DB;"></i>Edit Kata Sandi<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 8.4rem;"></i></button>
+            <button class="btn-edit-akun" data-bs-toggle="modal" data-bs-target="#editsandi-modal"><i class="bi bi-lock-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: #9370DB;"></i>Edit Kata Sandi<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 9.2rem;"></i></button>
             <!-- Modal -->
             <div class="modal fade" id="editsandi-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -259,7 +278,7 @@
                     </div>
                 </div>
             </div>
-            <button class="btn-logout" data-bs-toggle="modal" data-bs-target="#logout"><i class="bi bi-arrow-right-square-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: red;"></i>Logout<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 12rem;"></i></button>
+            <button class="btn-logout" data-bs-toggle="modal" data-bs-target="#logout"><i class="bi bi-arrow-right-square-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: red;"></i>Logout<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 12.2rem;"></i></button>
             <!-- Modal -->
             <div class="modal fade" id="logout" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -268,7 +287,7 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-12 text-center">
-                                        <img src="{{ asset('img/cancel.png') }}" width="100" height="100">
+                                        <img src="{{ asset('img/cancel.png') }}" width="80" height="80">
                                     </div>
                                     <div class="col-12 text-center mt-2">
                                         <h3 class="fw-semibold" style="font-size: 16px;">Apa Anda Yakin Ingin Keluar?</h3>
@@ -277,9 +296,9 @@
                                         <form action="{{ route('logout') }}" method="POST" class="d-flex" role="search">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-danger" style="width: 100px;">Ya</button>
+                                            <button class="btn btn-outline-secondary" style="width: 100px;">Ya</button>
                                         </form>
-                                        <button class="btn btn-secondary" style="width: 100px;" data-bs-dismiss="modal">Tidak</button>
+                                        <button class="btn btn-secondary" style="width: 100px; border: none;" data-bs-dismiss="modal">Tidak</button>
                                     </div>
                                 </div>
                             </div>
