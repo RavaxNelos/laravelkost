@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Banner;
 use App\Models\Fasilitas;
 use App\Models\Favorit;
+use App\Models\GambarKerusakan;
 use App\Models\Jamkamarkost;
 use App\Models\KamarKost;
 use App\Models\KamarKostFasilitas;
@@ -238,7 +239,7 @@ class UserController extends Controller
         $users      = Auth::user();
         $transaksi  = Transaksi::where('user_id', $users->id)->latest()->first();
         $kamar_kost = $transaksi ? KamarKost::find($transaksi->kamar_kost_id) : null;
-        $kerusakan  = $transaksi ? Kerusakan::where('user_id',$users->id)->first() : null;
+        $kerusakan  = $transaksi ? Kerusakan::where('user_id',$users->id)->get() : null;
         return view('user.laporkan.laporkankerusakan', compact('users', 'transaksi', 'kamar_kost', 'kerusakan'));
     }
     public function kerusakanPost(Request $request)
@@ -250,15 +251,53 @@ class UserController extends Controller
 
 
         $kerusakan = Kerusakan::create([
-            'user_id'       => $user->name,
+            'user_id'       => $user->id,
             'nomer_kamar'   => $kamar_kost->nomer_kost,
             'tanggal_lapor' => $request->tanggal_lapor,
             'barang_rusak'  => $request->barang_rusak,
-            'keterangan'     => $request->keterangan,
+            'keterangan'    => $request->keterangan,
             'status'        => 'Menunggu Respon',
         ]);
-                      // $transaksi = transaksi::find(session()->get('payment_id'));
-        return redirect()->to('/user/kerusakan/{id}');
+
+
+        if ($request->file('input1')) {
+            $gambarBarang1 = $request->file('input1');
+            $namaFile1     = time().'gambar1.'.$gambarBarang1->getClientOriginalExtension();
+            $gambarBarang1->move(public_path('uploadkamar'), $namaFile1);
+            // dd($namaFile1);
+        }
+
+        if ($request->file('input2')) {
+            $gambarBarang2 = $request->file('input2');
+            $namaFile2     = time().'gambar2.'.$gambarBarang2->getClientOriginalExtension();
+            $gambarBarang2->move(public_path('uploadkamar'), $namaFile2);
+            // dd($namaFile2);
+        }
+        if ($request->file('input3')) {
+            $gambarBarang3 = $request->file('input3');
+            $namaFile3     = time().'gambar3.'.$gambarBarang3->getClientOriginalExtension();
+            $gambarBarang3->move(public_path('uploadkamar'), $namaFile3);
+        }
+
+        if ($request->file('input4')) {
+            $gambarBarang4 = $request->file('input4');
+            $namaFile4     = time().'gambar4.'.$gambarBarang4->getClientOriginalExtension();
+            $gambarBarang4->move(public_path('uploadkamar'), $namaFile4);
+        }
+
+        // dd($namaFile1.$namaFile2);
+
+        GambarKerusakan::updateOrCreate([
+            'kerusakan_id'=>$kerusakan->id
+        ],[
+            'input1'=> $namaFile1 ?? null,
+            'input2'=> $namaFile2 ?? null,
+            'input3'=> $namaFile3 ?? null,
+            'input4'=> $namaFile4 ?? null,
+        ]);
+
+        // $transaksi = transaksi::find(session()->get('payment_id'));
+        return redirect()->to('/user/kerusakan/'.Auth::user()->id);
     }
     public function kehilangan($id)
     {

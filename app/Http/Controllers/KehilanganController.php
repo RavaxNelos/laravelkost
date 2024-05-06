@@ -26,7 +26,7 @@ class KehilanganController extends Controller
         // Simpan data respon ke dalam database
         $kehilangan = Kehilangan::where('id', $request->id)->first();
         $kehilangan->respon = $request->respon;
-        $kehilangan->status = 'Respon Sudah Dikirim';
+        $kehilangan->status = 'Laporan Diterima';
         $kehilangan->save();
 
 

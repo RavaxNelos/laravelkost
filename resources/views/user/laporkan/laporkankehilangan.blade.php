@@ -268,7 +268,7 @@
                 <hr class="hr-1">
             </div>
             <div class="container" x-show="filter == 'riwayat'">
-                @if (!$kehilangan)
+                @if ($kehilangan->isEmpty())
                     <!-- Tampilkan ilustrasi kosong atau pesan bahwa tidak ada data -->
                     <div class="col-12 text-center" style="margin-top: 8rem;">
                         <img src="{{ asset('img/chat.png') }}" width="180" height="180">
@@ -281,7 +281,7 @@
                     <div class="card-custom" style="width: 100%; height: auto; border-radius: 10px; background-color: gray; margin-bottom: 5rem;">
                         <div class="container py-3">
                             @foreach ($kehilangan as $laporkehilangan)
-                                <div class="card-custom-list">
+                                <div class="card-custom-list" data-bs-toggle="modal" data-bs-target="#detailriwayat-{{ $laporkehilangan->id }}">
                                     <div class="container py-2">
                                         <div class="row">
                                             <div class="col-3 text-start">
@@ -334,6 +334,68 @@
                                             <h3 class="fw-medium" style="font-size: 14px; color: #9c27b0;">Selengkapnya</h3>
                                         </a>
                                     </div> --}}
+                                    </div>
+                                </div>
+                                <div class="modal fade" id="detailriwayat-{{ $laporkehilangan->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content"style="width: 100%; height: auto;">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fw-semibold" id="exampleModalLabel" style="font-size: 16px;">Detail Laporkan Kehilangan</h1>
+                                            </div>
+                                            <div class="modal-body">
+                                                <input type="hidden" name="id" value="{{ $laporkehilangan->id }}">
+                                                <div class="row">
+                                                    <div class="col-4 text-start">
+                                                        <h3 style="font-size: 14px;" class="fw-medium text-secondary">Nama User</h3>
+                                                    </div>
+                                                    <div class="col-8 text-end">
+                                                        <h3 style="font-size: 14px;" class="fw-medium text-secondary-emphasis">{{ $users->name }}</h3>
+                                                    </div>
+                                                    <div class="col-4 text-start">
+                                                        <h3 style="font-size: 14px; width: 200px;" class="fw-medium text-secondary">Nomer Kamar</h3>
+                                                    </div>
+                                                    <div class="col-8 text-end">
+                                                        <h3 style="font-size: 14px;" class="fw-medium text-secondary-emphasis">Kamar No.{{ $kamar_kost->nomer_kost }}</h3>
+                                                    </div>
+                                                    <div class="col-4 text-start">
+                                                        <h3 style="font-size: 14px; width: 200px;" class="fw-medium text-secondary">Lokasi Kehilangan</h3>
+                                                    </div>
+                                                    <div class="col-8 text-end">
+                                                        <h3 style="font-size: 14px;" class="fw-medium text-secondary-emphasis">{{ $laporkehilangan->lokasi_hilang }}</h3>
+                                                    </div>
+                                                    <div class="col-4 text-start">
+                                                        <h3 style="font-size: 14px; width: 200px;" class="fw-medium text-secondary">Barang Yang Hilang</h3>
+                                                    </div>
+                                                    <div class="col-8 text-end">
+                                                        <h3 style="font-size: 14px;" class="fw-medium text-secondary-emphasis">{{ $laporkehilangan->barang_hilang }}</h3>
+                                                    </div>
+                                                    <div class="col-4 text-start">
+                                                        <h3 style="font-size: 14px; width: 200px;" class="fw-medium text-secondary">Tanggal Kehilangan</h3>
+                                                    </div>
+                                                    <div class="col-8 text-end">
+                                                        <h3 style="font-size: 14px;" class="fw-medium text-secondary-emphasis">{{ Carbon\Carbon::parse($laporkehilangan->tanggal_hilang)->locale('id')->isoFormat('DD MMMM Y') }}</h3>
+                                                    </div>
+                                                    <div class="col-4 text-start">
+                                                        <h3 style="font-size: 14px; width: 200px;" class="fw-medium text-secondary">Jam Kehilangan</h3>
+                                                    </div>
+                                                    <div class="col-8 text-end">
+                                                        <h3 style="font-size: 14px;" class="fw-medium text-secondary-emphasis">{{ $laporkehilangan->jam_hilang }} WIB</h3>
+                                                    </div>
+                                                    <div class="col-4 text-start">
+                                                        <h3 style="font-size: 14px; width: 200px;" class="fw-medium text-secondary">Status Laporan</h3>
+                                                    </div>
+                                                    <div class="col-8 text-end">
+                                                        <h3 style="font-size: 14px;" class="fw-medium text-{{ $laporkehilangan->status == 'Menunggu Respon' ? 'warning' : ($laporkehilangan->status == 'Laporan Diterima' ? 'success' : 'danger') }}" style="font-size: 14px; color: #333333;">{{ $laporkehilangan->status == 'Menunggu Respon' ? 'Menunggu Respon' : ($laporkehilangan->status == 'Laporan Diterima' ? 'Laporan Diterima' : 'Laporan Ditolak') }}</h3>
+                                                    </div>
+                                                    <div class="col-12 text-start">
+                                                        <h3 style="font-size: 14px; width: 200px;" class="fw-medium text-secondary">Keterangan</h3>
+                                                    </div>
+                                                    <div class="col-12 text-start">
+                                                        <textarea name="keterangan" id="keternagan" rows="3" style="width: 100%; resize: none; text-indent: 4px;" readonly>{{ $laporkehilangan->keterangan }}</textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             @endforeach

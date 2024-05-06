@@ -13,8 +13,11 @@ return new class extends Migration
     {
         Schema::create('gambar_kerusakan', function (Blueprint $table) {
             $table->id();
-            $table->string('gambar');
-            $table->foreignId('laporan_id');
+            $table->foreignId('kerusakan_id');
+            $table->string('input1')->nullable();
+            $table->string('input2')->nullable();
+            $table->string('input3')->nullable();
+            $table->string('input4')->nullable();
             $table->timestamps();
         });
     }

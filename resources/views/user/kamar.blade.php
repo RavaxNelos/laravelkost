@@ -339,34 +339,31 @@
                         <span class="option-angka">5.</span><span class="option-text">Dilarang Membawa Hewan</span>
                     </li>
                     <li class="option">
-                        <span class="option-angka">6.</span><span class="option-text">Dilarang Merokok</span>
+                        <span class="option-angka">6.</span><span class="option-text">Dilarang Mengganggu Ketenagan Penghuni</span>
                     </li>
                     <li class="option">
-                        <span class="option-angka">7.</span><span class="option-text">Dilarang Mengganggu Ketenagan Penghuni</span>
+                        <span class="option-angka">7.</span><span class="option-text">Dilarang Bawa Anak</span>
                     </li>
                     <li class="option">
-                        <span class="option-angka">8.</span><span class="option-text">Dilarang Bawa Anak</span>
+                        <span class="option-angka">8.</span><span class="option-text">Gunakan Fasilitas Dengan Benar</span>
                     </li>
                     <li class="option">
-                        <span class="option-angka">9.</span><span class="option-text">Gunakan Fasilitas Dengan Benar</span>
+                        <span class="option-angka">9.</span><span class="option-text">Jagalah Kebersihan Pada Kost</span>
                     </li>
                     <li class="option">
-                        <span class="option-angka">10.</span><span class="option-text">Jagalah Kebersihan Pada Kost</span>
+                        <span class="option-angka">10.</span><span class="option-text">Dilarang Telat Bayar Kost</span>
                     </li>
                     <li class="option">
-                        <span class="option-angka">11.</span><span class="option-text">Dilarang Telat Bayar Kost</span>
+                        <span class="option-angka">11.</span><span class="option-text">Kunci Pintu Kamar Kost Ketika Pergi Ke Luar</span>
                     </li>
                     <li class="option">
-                        <span class="option-angka">12.</span><span class="option-text">Kunci Pintu Kamar Kost Ketika Pergi Ke Luar</span>
+                        <span class="option-angka">12.</span><span class="option-text">Dilarang Minum Minuman Keras</span>
                     </li>
                     <li class="option">
-                        <span class="option-angka">13.</span><span class="option-text">Dilarang Minum Minuman Keras</span>
-                    </li>
-                    <li class="option">
-                        <span class="option-angka">14.</span><span class="option-text">Dilarang Merusak Fasilitas Di Kamar</span>
+                        <span class="option-angka">13.</span><span class="option-text">Dilarang Merusak Fasilitas Di Kamar</span>
                     </li>
                     <li class="optionend">
-                        <span class="option-angka">15.</span><span class="option-text">Dilarang Mengadakan Pesta Di Kamar</span>
+                        <span class="option-angka">14.</span><span class="option-text">Dilarang Mengadakan Pesta Di Kamar</span>
                     </li>
                 </ul>
             </div>

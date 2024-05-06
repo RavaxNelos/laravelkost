@@ -10,7 +10,7 @@ class Kerusakan extends Model
     use HasFactory;
     protected $guard = ['id'];
     protected $table = 'kerusakan';
-    protected $fillable = ['user_id', 'nomer_kamar', 'tanggal_lapor', 'barang_rusak', 'gambar_rusak', 'status'];
+    protected $fillable = ['user_id', 'nomer_kamar', 'tanggal_lapor', 'barang_rusak', 'gambar_rusak', 'status', 'keterangan'];
 
     public function kamarkost()
     {
@@ -23,7 +23,7 @@ class Kerusakan extends Model
 
     public function gambarkerusakan()
     {
-        return $this->hasMany(GambarKerusakan::class, 'laporan_id', 'id');
+        return $this->hasOne(GambarKerusakan::class, 'kerusakan_id', 'id');
     }
     // public function pembayaran()
     // {

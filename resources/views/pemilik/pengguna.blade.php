@@ -88,10 +88,10 @@
             <div class="container py-2">
                 <div class="row" x-show="openSearch === false">
                     <div class="col-10 text-end mt-1" x-show="filter == 'lama'">
-                        <h3 class="fw-semibold" id="seachText" style="font-size: 15px;">Daftar Pengguna Lama <span style="color: #B19CD9;">(8)</span></h3>
+                        <h3 class="fw-semibold" id="seachText" style="font-size: 15px;">Daftar Pengguna Lama <span style="color: #B19CD9;">({{ $totalUsers }})</span></h3>
                     </div>
                     <div class="col-10 text-end mt-1" x-show="filter == 'baru'">
-                        <h3 class="fw-semibold" id="seachText" style="font-size: 15px;">Daftar Pengguna Baru <span style="color: #B19CD9;">(8)</span></h3>
+                        <h3 class="fw-semibold" id="seachText" style="font-size: 15px;">Daftar Pengguna Baru <span style="color: #B19CD9;">({{ $totalUsers }})</span></h3>
                     </div>
                     <div class="col-2 text-end mt-1" style="margin-top: -2px;">
                         <i id="searchIcon" class="bi bi-search" x-on:click="openSearch = true" style="font-size: 16px;"></i>
@@ -116,278 +116,25 @@
         </div>
         <div class="container py-2" @click="openSearch = false">
             <div class="row g-2">
-                <div class="col-6" x-show="filter == 'lama'">
-                    <div class="card" style="border: none">
-                        <img src="{{ asset('img/customer1.jpg') }}" class="card-img" style="opacity: 0.9" alt="...">
-                        <div class="card-img-overlay p-0">
-                            <div class="text-content" style="margin-top: 190px; background-color: rgba(0, 0, 0, 0.5); height: 40px; width: 162px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;">
-                                <div class="ms-2">
-                                    <div class="text-title-content" style="font-size: 12px;">
-                                        <p class="text-white fw-medium mb-0">Budi Santoso</p>
-                                    </div>
-                                    <div class="d-flex">
-                                        <p class="text-white-50 font-tag-content mb-1" style="font-size: 10px;">01 Februari 2023</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6" x-show="filter == 'lama'">
-                    <div class="card" style="border: none">
-                        <img src="{{ asset('img/customer2.jpg') }}" class="card-img" style="opacity: 0.9" alt="...">
-                        <div class="card-img-overlay p-0">
-                            <div class="text-content" style="margin-top: 190px; background-color: rgba(0, 0, 0, 0.5); height: 40px; width: 162px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;">
-                                <div class="ms-2">
-                                    <div class="text-title-content" style="font-size: 12px;">
-                                        <p class="text-white fw-medium mb-0">Adi Pratama</p>
-                                    </div>
-                                    <div class="d-flex">
-                                        <p class="text-white-50 font-tag-content mb-1" style="font-size: 10px;">12 Februari 2023</p>
+                @foreach ($users as $user)
+                    <div class="col-6" x-show="filter == 'baru'">
+                        <div class="card" style="border: none">
+                            <img src="{{ asset($user->gambar ? 'uploadkamar/' . $user->gambar : '/img/customer1.jpg') }}" class="card-img" style="opacity: 0.9" alt="...">
+                            <div class="card-img-overlay p-0">
+                                <div class="text-content" style="margin-top: 190px; background-color: rgba(0, 0, 0, 0.5); height: 40px; width: 162px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;">
+                                    <div class="ms-2 mt-2">
+                                        <div class="text-title-content" style="font-size: 10px;">
+                                            <p class="text-white fw-medium mb-0">{{ $user->name }}</p>
+                                        </div>
+                                        <div class="d-flex">
+                                            <p class="text-white-50 font-tag-content mb-0" style="font-size: 10px;">{{ Carbon\Carbon::parse($user->created_at)->locale('id')->isoFormat('DD MMMM Y') }}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-6" x-show="filter == 'lama'">
-                    <div class="card" style="border: none">
-                        <img src="{{ asset('img/customer3.jpg') }}" class="card-img" style="opacity: 0.9" alt="...">
-                        <div class="card-img-overlay p-0">
-                            <div class="text-content" style="margin-top: 190px; background-color: rgba(0, 0, 0, 0.5); height: 40px; width: 162px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;">
-                                <div class="ms-2">
-                                    <div class="text-title-content" style="font-size: 12px;">
-                                        <p class="text-white fw-medium mb-0">Andi Nugroho</p>
-                                    </div>
-                                    <div class="d-flex">
-                                        <p class="text-white-50 font-tag-content mb-1" style="font-size: 10px;">08 September 2023</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6" x-show="filter == 'lama'">
-                    <div class="card" style="border: none">
-                        <img src="{{ asset('img/customer4.jpg') }}" class="card-img" style="opacity: 0.9" alt="...">
-                        <div class="card-img-overlay p-0">
-                            <div class="text-content" style="margin-top: 190px; background-color: rgba(0, 0, 0, 0.5); height: 40px; width: 162px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;">
-                                <div class="ms-2">
-                                    <div class="text-title-content" style="font-size: 12px;">
-                                        <p class="text-white fw-medium mb-0">Agus Wibowo</p>
-                                    </div>
-                                    <div class="d-flex">
-                                        <p class="text-white-50 font-tag-content mb-1" style="font-size: 10px;">18 Mei 2023</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6" x-show="filter == 'lama'">
-                    <div class="card" style="border: none">
-                        <img src="{{ asset('img/customer9.jpg') }}" class="card-img" style="opacity: 0.9" alt="...">
-                        <div class="card-img-overlay p-0">
-                            <div class="text-content" style="margin-top: 190px; background-color: rgba(0, 0, 0, 0.5); height: 40px; width: 162px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;">
-                                <div class="ms-2">
-                                    <div class="text-title-content" style="font-size: 12px;">
-                                        <p class="text-white fw-medium mb-0">Azizi Asadel</p>
-                                    </div>
-                                    <div class="d-flex">
-                                        <p class="text-white-50 font-tag-content mb-1" style="font-size: 10px;">01 Agustus 2023</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6" x-show="filter == 'lama'">
-                    <div class="card" style="border: none">
-                        <img src="{{ asset('img/customer10.jpg') }}" class="card-img" style="opacity: 0.9" alt="...">
-                        <div class="card-img-overlay p-0">
-                            <div class="text-content" style="margin-top: 190px; background-color: rgba(0, 0, 0, 0.5); height: 40px; width: 162px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;">
-                                <div class="ms-2">
-                                    <div class="text-title-content" style="font-size: 12px;">
-                                        <p class="text-white fw-medium mb-0">Freya Jayawardana</p>
-                                    </div>
-                                    <div class="d-flex">
-                                        <p class="text-white-50 font-tag-content mb-1" style="font-size: 10px;">01 Maret 2023</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6" x-show="filter == 'lama'">
-                    <div class="card" style="border: none">
-                        <img src="{{ asset('img/customer11.jpg') }}" class="card-img" style="opacity: 0.9" alt="...">
-                        <div class="card-img-overlay p-0">
-                            <div class="text-content" style="margin-top: 190px; background-color: rgba(0, 0, 0, 0.5); height: 40px; width: 162px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;">
-                                <div class="ms-2">
-                                    <div class="text-title-content" style="font-size: 12px;">
-                                        <p class="text-white fw-medium mb-0">Mutiara Azzahra</p>
-                                    </div>
-                                    <div class="d-flex">
-                                        <p class="text-white-50 font-tag-content mb-1" style="font-size: 10px;">20 Februari 2023</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6" x-show="filter == 'lama'">
-                    <div class="card" style="border: none">
-                        <img src="{{ asset('img/customer12.jpg') }}" class="card-img" style="opacity: 0.9" alt="...">
-                        <div class="card-img-overlay p-0">
-                            <div class="text-content" style="margin-top: 190px; background-color: rgba(0, 0, 0, 0.5); height: 40px; width: 162px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;">
-                                <div class="ms-2">
-                                    <div class="text-title-content" style="font-size: 12px;">
-                                        <p class="text-white fw-medium mb-0">Dewi Cahaya</p>
-                                    </div>
-                                    <div class="d-flex">
-                                        <p class="text-white-50 font-tag-content mb-1" style="font-size: 10px;">30 Maret 2023</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6" x-show="filter == 'baru'">
-                    <div class="card" style="border: none">
-                        <img src="{{ asset('img/customer5.jpg') }}" class="card-img" style="opacity: 0.9" alt="...">
-                        <div class="card-img-overlay p-0">
-                            <div class="text-content" style="margin-top: 190px; background-color: rgba(0, 0, 0, 0.5); height: 40px; width: 162px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;">
-                                <div class="ms-2">
-                                    <div class="text-title-content" style="font-size: 12px;">
-                                        <p class="text-white fw-medium mb-0">Ahmad Fikri</p>
-                                    </div>
-                                    <div class="d-flex">
-                                        <p class="text-white-50 font-tag-content mb-1" style="font-size: 10px;">08 Februari 2024</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6" x-show="filter == 'baru'">
-                    <div class="card" style="border: none">
-                        <img src="{{ asset('img/customer6.jpg') }}" class="card-img" style="opacity: 0.9" alt="...">
-                        <div class="card-img-overlay p-0">
-                            <div class="text-content" style="margin-top: 190px; background-color: rgba(0, 0, 0, 0.5); height: 40px; width: 162px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;">
-                                <div class="ms-2">
-                                    <div class="text-title-content" style="font-size: 12px;">
-                                        <p class="text-white fw-medium mb-0">Budi Santoso</p>
-                                    </div>
-                                    <div class="d-flex">
-                                        <p class="text-white-50 font-tag-content mb-1" style="font-size: 10px;">12 Februari 2024</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6" x-show="filter == 'baru'">
-                    <div class="card" style="border: none">
-                        <img src="{{ asset('img/customer7.jpg') }}" class="card-img" style="opacity: 0.9" alt="...">
-                        <div class="card-img-overlay p-0">
-                            <div class="text-content" style="margin-top: 190px; background-color: rgba(0, 0, 0, 0.5); height: 40px; width: 162px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;">
-                                <div class="ms-2">
-                                    <div class="text-title-content" style="font-size: 12px;">
-                                        <p class="text-white fw-medium mb-0">Dian Pratama</p>
-                                    </div>
-                                    <div class="d-flex">
-                                        <p class="text-white-50 font-tag-content mb-1" style="font-size: 10px;">08 Maret 2024</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6" x-show="filter == 'baru'">
-                    <div class="card" style="border: none">
-                        <img src="{{ asset('img/customer8.jpg') }}" class="card-img" style="opacity: 0.9" alt="...">
-                        <div class="card-img-overlay p-0">
-                            <div class="text-content" style="margin-top: 190px; background-color: rgba(0, 0, 0, 0.5); height: 40px; width: 162px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;">
-                                <div class="ms-2">
-                                    <div class="text-title-content" style="font-size: 12px;">
-                                        <p class="text-white fw-medium mb-0">Fahmi Rahman</p>
-                                    </div>
-                                    <div class="d-flex">
-                                        <p class="text-white-50 font-tag-content mb-1" style="font-size: 10px;">18 Maret 2024</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6" x-show="filter == 'baru'">
-                    <div class="card" style="border: none">
-                        <img src="{{ asset('img/customer13.jpg') }}" class="card-img" style="opacity: 0.9" alt="...">
-                        <div class="card-img-overlay p-0">
-                            <div class="text-content" style="margin-top: 190px; background-color: rgba(0, 0, 0, 0.5); height: 40px; width: 162px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;">
-                                <div class="ms-2">
-                                    <div class="text-title-content" style="font-size: 12px;">
-                                        <p class="text-white fw-medium mb-0">Putri Indah</p>
-                                    </div>
-                                    <div class="d-flex">
-                                        <p class="text-white-50 font-tag-content mb-1" style="font-size: 10px;">01 Maret 2024</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6" x-show="filter == 'baru'">
-                    <div class="card" style="border: none">
-                        <img src="{{ asset('img/customer14.jpg') }}" class="card-img" style="opacity: 0.9" alt="...">
-                        <div class="card-img-overlay p-0">
-                            <div class="text-content" style="margin-top: 190px; background-color: rgba(0, 0, 0, 0.5); height: 40px; width: 162px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;">
-                                <div class="ms-2">
-                                    <div class="text-title-content" style="font-size: 12px;">
-                                        <p class="text-white fw-medium mb-0">Siti Nurul</p>
-                                    </div>
-                                    <div class="d-flex">
-                                        <p class="text-white-50 font-tag-content mb-1" style="font-size: 10px;">21 Maret 2024</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6" x-show="filter == 'baru'">
-                    <div class="card" style="border: none">
-                        <img src="{{ asset('img/customer15.jpg') }}" class="card-img" style="opacity: 0.9" alt="...">
-                        <div class="card-img-overlay p-0">
-                            <div class="text-content" style="margin-top: 190px; background-color: rgba(0, 0, 0, 0.5); height: 40px; width: 162px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;">
-                                <div class="ms-2">
-                                    <div class="text-title-content" style="font-size: 12px;">
-                                        <p class="text-white fw-medium mb-0">Ratna Sari</p>
-                                    </div>
-                                    <div class="d-flex">
-                                        <p class="text-white-50 font-tag-content mb-1" style="font-size: 10px;">15 Maret 2024</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6" x-show="filter == 'baru'">
-                    <div class="card" style="border: none">
-                        <img src="{{ asset('img/customer16.jpg') }}" class="card-img" style="opacity: 0.9" alt="...">
-                        <div class="card-img-overlay p-0">
-                            <div class="text-content" style="margin-top: 190px; background-color: rgba(0, 0, 0, 0.5); height: 40px; width: 162px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;">
-                                <div class="ms-2">
-                                    <div class="text-title-content" style="font-size: 12px;">
-                                        <p class="text-white fw-medium mb-0">Ayu Lestari</p>
-                                    </div>
-                                    <div class="d-flex">
-                                        <p class="text-white-50 font-tag-content mb-1" style="font-size: 10px;">30 Maret 2024</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>

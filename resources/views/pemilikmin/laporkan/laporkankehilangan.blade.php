@@ -289,8 +289,8 @@
                                         </div>
                                         <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#respon-{{ $item->id }}">Respon</button>
                                         <div class="modal fade" id="respon-{{ $item->id }}" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-scrollable">
-                                                <div class="modal-content"style="width: 100%; height: 350px; margin-top: 10rem;">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content"style="width: 100%; height: 350px;">
                                                     <div class="modal-header">
                                                         <h1 class="modal-title fs-5 fw-semibold" id="exampleModalLabel">Respon Laporan Kehilangan</h1>
                                                     </div>

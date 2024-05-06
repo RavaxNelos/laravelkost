@@ -570,35 +570,6 @@
                     </div>
  @endforeach
                     </div>
-                    {{-- <div class="col-4">
-                    <button x-on:click="new_schedule = 'time-2'" :class="new_schedule == 'time-2' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'" type="button">09.00 WIB</button>
-                </div>
-                <div class="col-4">
-                    <button x-on:click="new_schedule = 'time-3'" :class="new_schedule == 'time-3' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'" type="button">10.00 WIB</button>
-                </div>
-                <div class="col-4">
-                    <button x-on:click="new_schedule = 'time-4'" :class="new_schedule == 'time-4' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'" type="button">11.00 WIB</button>
-                </div>
-                <div class="col-4">
-                    <button x-on:click="new_schedule = 'time-5'" :class="new_schedule == 'time-5' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'" type="button">13.00 WIB</button>
-                </div>
-                <div class="col-4">
-                    <button x-on:click="new_schedule = 'time-6'" :class="new_schedule == 'time-6' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'" type="button">14.00 WIB</button>
-                </div>
-                <div class="col-4">
-                    <button x-on:click="new_schedule = 'time-7'" :class="new_schedule == 'time-7' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'" type="button">15.00 WIB</button>
-                </div>
-                <div class="col-4">
-                    <button x-on:click="new_schedule = 'time-8'" :class="new_schedule == 'time-8' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'" type="button">16.00 WIB</button>
-                </div>
-                <div class="col-4">
-                    <button x-on:click="new_schedule = 'time-9'" :class="new_schedule == 'time-9' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'" type="button">17.00 WIB</button>
-                </div> --}}
-                    {{-- <label id="addWaktu" class="btn-lainnya" data-bs-toggle="modal" data-bs-target="#chooseTime">Waktu Lainnya</label> --}}
-                    {{-- <div id="jam-container"> --}}
-                    {{-- <input type="time" id="waktu" onchange="updateWaktu()"> --}}
-                    {{-- <button id="waktu-btn" onclick="submitWaktu()">Set Waktu</button> --}}
-                    {{-- </div> --}}
             </div>
             <!-- booking kost -->
         </div>
