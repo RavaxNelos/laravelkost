@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Banner;
 use App\Models\Fasilitas;
 use App\Models\Favorit;
+use App\Models\gambarKamarKostKamu;
 use App\Models\GambarKerusakan;
 use App\Models\Jamkamarkost;
 use App\Models\KamarKost;
@@ -43,7 +44,7 @@ class UserController extends Controller
     {
 
         $kamarkost = KamarKost::find($request->kamar_kost_id);
-                      // Simpan informasi ke dalam tabel favorit
+                        // Simpan informasi ke dalam tabel favorit
         $favorit = Favorit::where('user_id', Auth::user()->id)->where('kamar_kost_id', $request->kamar_kost_id)->where('category', $kamarkost->tipe_kost)->first();
 
         if ($favorit) {
@@ -56,7 +57,7 @@ class UserController extends Controller
             ]);
         }
 
-                      // Response
+                        // Response
         return response()->json(['message' => 'Success', 'alert' => $favorit ? 'Dihapus Dari Favorit' : 'Berhasil difavoritkan'],200);
     }
     public function menujudetail()
@@ -112,7 +113,7 @@ class UserController extends Controller
         $selectedTime             = Carbon::parse(session()->get('selectedDate'))->isoFormat('DD MMMM Y') . ', ' . session()->get('waktu');
         $jamkamarkost             = Jamkamarkost::all();
 
-                      // Kirim data metode pembayaran yang dipilih ke tampilan
+                        // Kirim data metode pembayaran yang dipilih ke tampilan
         return view('user.transaksi.index', compact('pembayaran', 'kamarkost', 'users', 'pembayaranSelected', 'pembayaran_e_wallet', 'pembayaran_transfer_bank', 'selectedTime', 'jamkamarkost', 'time'));
     }
     public function paymentCheck(Request $request)
@@ -125,7 +126,7 @@ class UserController extends Controller
     {
         $pembayaran = Pembayaran::find(session()->get('payment_id'));
         return response()->json(['gambar' => '/uploadkamar/' . $pembayaran->logo_pembayaran, 'name' => $pembayaran->nama_pembayaran]);
-                      // return response()->json(['gambar' => 'test']);
+                        // return response()->json(['gambar' => 'test']);
     }
     public function konfirmasitransaksi(Request $request, $id)
     {
@@ -139,14 +140,14 @@ class UserController extends Controller
     $hargaKost          = (int) $hargaKost;
     $totalPembayaran    = $hargaKost + 200000 - 25000;
     $users              = Auth::user();
-              //durasi
-              // $hariIni = Carbon::now();
-              // $selisihTanggal = $selectedTime->diffInDays($hariIni);
-              // $bulan = floor($selisihTanggal / 30); // Hitung bulan
-              // $hari = $selisihTanggal % 30; // Hitung sisa hari
-              // $hasil = "{$bulan} bulan {$hari} hari";
-              // DATE REAL TIME
-              // $transaksi = transaksi::find(session()->get('payment_id'));
+                //durasi
+                // $hariIni = Carbon::now();
+                // $selisihTanggal = $selectedTime->diffInDays($hariIni);
+                // $bulan = floor($selisihTanggal / 30); // Hitung bulan
+                // $hari = $selisihTanggal % 30; // Hitung sisa hari
+                // $hasil = "{$bulan} bulan {$hari} hari";
+                // DATE REAL TIME
+                // $transaksi = transaksi::find(session()->get('payment_id'));
         return view('user.transaksi.konfirmasitransaksi',compact('pembayaran', 'kamarkost', 'kamarkosts', 'users', 'pembayaranSelected', 'time', 'selectedTime', 'totalPembayaran', 'hargaKost')
         );
     }
@@ -156,7 +157,7 @@ class UserController extends Controller
         $totalPembayaran = $request->input('totalPembayaran');
         $users           = Auth::user();
         $kode            = 'SUB/';
-                  // dd($totalPembayaran);
+                    // dd($totalPembayaran);
            $unique                            = Transaksi::where('no_transaksi', 'LIKE', "$kode%")->latest('no_transaksi')->first();
         if ($unique != null) $generateNewKode = intval(substr($unique->no_transaksi,strlen($kode)));
            $kode                              = $kode . ($unique != null ? Str::padLeft($generateNewKode + 1, 3, 0) : Str::padLeft(1, 3, 0));
@@ -169,13 +170,13 @@ class UserController extends Controller
         $time         = session()->get('getDate');
         $kamarkost    = KamarKost::find($id);
 
-                  // Menghapus titik dari nilai yang diambil dari database
+                    // Menghapus titik dari nilai yang diambil dari database
         $hargaKost = str_replace('.', '', $kamarkost->harga_kost);
 
-                  // Mengonversi string ke tipe data integer
+                    // Mengonversi string ke tipe data integer
         $hargaKost = (int) $hargaKost;
 
-                  // Melakukan perhitungan dengan nilai yang sudah dikonversi
+                    // Melakukan perhitungan dengan nilai yang sudah dikonversi
         $totalPembayaran = $hargaKost + 200000 - 25000;
 
         $kamarkosts         = KamarKost::where('status_kost', 'Publish')->get();
@@ -197,7 +198,7 @@ class UserController extends Controller
             'pesan'               => 'Kost Sedang Diproses',
         ]);
 
-                      // $transaksi = transaksi::find(session()->get('payment_id'));
+                        // $transaksi = transaksi::find(session()->get('payment_id'));
         return redirect()->to('/user/home');
     }
     public function back()
@@ -211,20 +212,41 @@ class UserController extends Controller
     }
 
     public function kamar()
-{
+    {
     $users                = Auth::user();
     $transaksi            = Transaksi::where('user_id', $users->id)->latest()->first();
     $kamar_kost           = $transaksi ? KamarKost::find($transaksi->kamar_kost_id) : null;
     $kamar_kost_fasilitas = $transaksi ? KamarKost::find($transaksi->kamar_kost_id)->kamarkostfasilitas : null;
 
-      // dd(KamarKost::find($transaksi->kamar_kost_id)->kamarkostfasilitas);
+        // dd(KamarKost::find($transaksi->kamar_kost_id)->kamarkostfasilitas);
     $fasKamar      = Fasilitas::where('tipe', 'Kamar')->get();
     $fasKamarmandi = Fasilitas::where('tipe', 'Kamar Mandi')->get();
     $fasUmum       = Fasilitas::where('tipe', 'Umum')->get();
     $fasParkir     = Fasilitas::where('tipe', 'Parkir')->get();
-      // dd($kamar_kost_fasilitas);
+        // dd($kamar_kost_fasilitas);
     return view('user.kamar', compact('users', 'transaksi', 'kamar_kost', 'kamar_kost_fasilitas', 'fasKamar', 'fasKamarmandi', 'fasUmum', 'fasParkir'));
-}
+    }
+
+    public function upload(Request $request)
+    {
+        // Validasi request
+        $request->validate([
+            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Sesuaikan dengan kebutuhan Anda
+        ]);
+
+        // Simpan gambar ke direktori
+        $imagePath = $request->file('uploadkamar')->store('public/uploadkamar');
+
+        // Buat entri baru di database
+        $gambar = new gambarKamarKostKamu();
+        $gambar->user_id = auth()->id(); // Sesuaikan dengan cara Anda mendapatkan user ID
+        $gambar->kamar_id = $request->input('kamar_id'); // Sesuaikan dengan cara Anda mendapatkan kamar ID
+        $gambar->gambar = $imagePath;
+        $gambar->save();
+
+        // Response sukses
+        return response()->json(['message' => 'Gambar berhasil diunggah'], 200);
+    }
 
     public function getFasilitas($kamarKostFasilitasId) {
         $kamar_kost_fasilitas = KamarKostFasilitas::find($kamarKostFasilitasId)->fasilitas;
@@ -264,14 +286,14 @@ class UserController extends Controller
             $gambarBarang1 = $request->file('input1');
             $namaFile1     = time().'gambar1.'.$gambarBarang1->getClientOriginalExtension();
             $gambarBarang1->move(public_path('uploadkamar'), $namaFile1);
-            // dd($namaFile1);
+              // dd($namaFile1);
         }
 
         if ($request->file('input2')) {
             $gambarBarang2 = $request->file('input2');
             $namaFile2     = time().'gambar2.'.$gambarBarang2->getClientOriginalExtension();
             $gambarBarang2->move(public_path('uploadkamar'), $namaFile2);
-            // dd($namaFile2);
+              // dd($namaFile2);
         }
         if ($request->file('input3')) {
             $gambarBarang3 = $request->file('input3');
@@ -285,19 +307,19 @@ class UserController extends Controller
             $gambarBarang4->move(public_path('uploadkamar'), $namaFile4);
         }
 
-        // dd($namaFile1.$namaFile2);
+          // dd($namaFile1.$namaFile2);
 
         GambarKerusakan::updateOrCreate([
-            'kerusakan_id'=>$kerusakan->id
+            'kerusakan_id' => $kerusakan->id
         ],[
-            'input1'=> $namaFile1 ?? null,
-            'input2'=> $namaFile2 ?? null,
-            'input3'=> $namaFile3 ?? null,
-            'input4'=> $namaFile4 ?? null,
+            'input1' => $namaFile1 ?? null,
+            'input2' => $namaFile2 ?? null,
+            'input3' => $namaFile3 ?? null,
+            'input4' => $namaFile4 ?? null,
         ]);
 
-        // $transaksi = transaksi::find(session()->get('payment_id'));
-        return redirect()->to('/user/kerusakan/'.Auth::user()->id);
+          // $transaksi = transaksi::find(session()->get('payment_id'));
+       return redirect()->to('/user/kerusakan/'.Auth::user()->id)->with('success', 'Lapor Kerusakan Berhasil Dikirim.');
     }
     public function kehilangan($id)
     {
@@ -326,8 +348,8 @@ class UserController extends Controller
             'keterangan'     => $request->keterangan,
             'status'         => 'Menunggu Respon',
         ]);
-                      // $transaksi = transaksi::find(session()->get('payment_id'));
-        return redirect()->to('/user/kehilangan/{id}');
+                        // $transaksi = transaksi::find(session()->get('payment_id'));
+        return redirect()->to('/user/kehilangan/'.Auth::user()->id)->with('success', 'Lapor Kehilangan Berhasil Dikirim.');
     }
 
     public function detailkehilangan($id)
@@ -342,7 +364,7 @@ class UserController extends Controller
     {
         $users     = Auth::user();
         $transaksi = Transaksi::where('user_id', $users->id)->latest()->get();
-                  // $transaksi = Transaksi::();
+                    // $transaksi = Transaksi::();
         return view('user.riwayat', compact('users', 'transaksi'));
     }
     public function detailriwayat($id)
@@ -363,7 +385,7 @@ class UserController extends Controller
             'gambar' => 'nullable',
         ]);
 
-                       // Proses gambar jika diunggah
+                         // Proses gambar jika diunggah
     if ($request->hasFile('gambar')) {
         $gambarBarang = $request->file('gambar');
         $namaFile     = time().'.'.$gambarBarang->getClientOriginalExtension();
@@ -372,7 +394,7 @@ class UserController extends Controller
         $namaFile = '';  // Tetapkan string kosong jika tidak ada gambar yang diunggah
     }
 
-                  // Perbarui data pengguna
+                    // Perbarui data pengguna
     $users = Pengguna::find($request->id);
     if ($users) {
         $users->name   = $request->name;
@@ -420,30 +442,30 @@ class UserController extends Controller
 
         return response()->json(['success' => 'Password Berhasil Dirubah']);
 
-                      // $request->validate([
-                      //     'password' => 'required',
-                      //     'new_password' => 'min:6',
-                      //     'new_password_confirmation' => 'required_with:new_password|same:new_password|min:6'
-                      // ]);
+                        // $request->validate([
+                        //     'password' => 'required',
+                        //     'new_password' => 'min:6',
+                        //     'new_password_confirmation' => 'required_with:new_password|same:new_password|min:6'
+                        // ]);
 
-                      // $auth = Auth::user();
+                        // $auth = Auth::user();
 
-                      // // The passwords matches
-                      // if (!Hash::check($request->get('password'), $auth->password))
-                      // {
-                      //     return back()->with('error', "Password Tidak Sama");
-                      // }
+                        // // The passwords matches
+                        // if (!Hash::check($request->get('password'), $auth->password))
+                        // {
+                        //     return back()->with('error', "Password Tidak Sama");
+                        // }
 
-                      // // Current Password And New Password Same
-                      // if (strcmp($request->get('password'), $request->new_password) == 0)
-                      // {
-                      //     return redirect()->back()->with("error", "Sandi Baru Tidak Sama Dengan Password Kamu.");
-                      // }
+                        // // Current Password And New Password Same
+                        // if (strcmp($request->get('password'), $request->new_password) == 0)
+                        // {
+                        //     return redirect()->back()->with("error", "Sandi Baru Tidak Sama Dengan Password Kamu.");
+                        // }
 
-                      // $users = Pengguna::find($auth->id);
-                      // $users->password = Hash::make($request->new_password);
-                      // $users->save();
-                      // return back()->with('success', "Password Berhasil Dirubah");
+                        // $users = Pengguna::find($auth->id);
+                        // $users->password = Hash::make($request->new_password);
+                        // $users->save();
+                        // return back()->with('success', "Password Berhasil Dirubah");
     }
 
     public function favorit()
@@ -462,22 +484,22 @@ class UserController extends Controller
 
         return response()->json(['message' => 'Success', 'alert' => 'DiHapus dari Favorite'], 200);
     }
-                  // public function favoritPost($id)
-                  // {
-                  //     // Cek apakah pengguna sudah autentikasi
-                  //     if (Auth::check()) {
-                  //         // Dapatkan objek KamarKost berdasarkan ID
-                  //         $kamarkost = KamarKost::findOrFail($id);
+                    // public function favoritPost($id)
+                    // {
+                    //     // Cek apakah pengguna sudah autentikasi
+                    //     if (Auth::check()) {
+                    //         // Dapatkan objek KamarKost berdasarkan ID
+                    //         $kamarkost = KamarKost::findOrFail($id);
 
-                  //         // Tambahkan kamar kost ke daftar favorit pengguna saat ini
-                  //         Auth::user()->favorites()->attach($kamarkost);
+                    //         // Tambahkan kamar kost ke daftar favorit pengguna saat ini
+                    //         Auth::user()->favorites()->attach($kamarkost);
 
-                  //         // Balas dengan pesan atau respon JSON sesuai kebutuhan aplikasi Anda
-                  //         return response()->json(['message' => 'Kamar Kost telah ditambahkan ke favorit.']);
-                  //     }
+                    //         // Balas dengan pesan atau respon JSON sesuai kebutuhan aplikasi Anda
+                    //         return response()->json(['message' => 'Kamar Kost telah ditambahkan ke favorit.']);
+                    //     }
 
-                  //     // Jika pengguna tidak terautentikasi, balas dengan respon status 401 (Unauthorized)
-                  //     return response()->json(['error' => 'Unauthenticated.'], 401);
-                  //     return view('user.kamarfavorit');
-                  // }
+                    //     // Jika pengguna tidak terautentikasi, balas dengan respon status 401 (Unauthorized)
+                    //     return response()->json(['error' => 'Unauthenticated.'], 401);
+                    //     return view('user.kamarfavorit');
+                    // }
 }

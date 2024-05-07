@@ -122,7 +122,7 @@
                             <img src="{{ asset($user->gambar ? 'uploadkamar/' . $user->gambar : '/img/customer1.jpg') }}" class="card-img" style="opacity: 0.9" alt="...">
                             <div class="card-img-overlay p-0">
                                 <div class="text-content" style="margin-top: 190px; background-color: rgba(0, 0, 0, 0.5); height: 40px; width: 162px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;">
-                                    <div class="ms-2 mt-2">
+                                    <div class="ms-2 mt-2 pt-1">
                                         <div class="text-title-content" style="font-size: 10px;">
                                             <p class="text-white fw-medium mb-0">{{ $user->name }}</p>
                                         </div>

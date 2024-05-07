@@ -114,6 +114,11 @@
             color: white;
             height: 36px;
         }
+
+
+        .py-3 {
+            padding-bottom: 0.5rem !important;
+        }
     </style>
 </head>
 
@@ -211,7 +216,7 @@
                                     <div class="col-12">
                                         <div class="input-group">
                                             <input type="date" class="form-control" id="tanggal" name="tanggal_lapor" style="border: 1px solid rgb(187, 0, 255); border-top-leftradius: 4px; border-bottom-left-radius: 4px;" placeholder="Masukkan tanggal laporan" id="datepicker">
-                                            <span class="input-group-text" style="border: 1px solid rgb(187, 0, 255); border-top-right-radius: 4px; border-bottom-right-radius: 4px; background: linear-gradient(45deg, #9c27b0, #673ab7, #3f51b5); color: white;">
+                                            <span class="input-group-text" style="border: 1px solid rgb(187, 0, 255); border-top-right-radius: 4px; border-bottom-right-radius: 4px; background: linear-gradient(45deg, #9c27b0, #673ab7, #3f51b5); color: white;" onclick="showDatePicker()">
                                                 <i class="bi bi-calendar"></i>
                                             </span>
                                         </div>
@@ -366,16 +371,24 @@
                                                         <h3 style="font-size: 14px; width: 200px;" class="fw-medium text-secondary">Gambar Kerusakan</h3>
                                                     </div>
                                                     <div class="col-3">
-                                                        <img src="{{ asset('uploadkamar/' . $laporkerusakan->gambarkerusakan->input1) }}" style="border-radius: 6px; width: 60px; height: 60px;" data-bs-target="#detailgambar1-{{ $laporkerusakan->gambarkerusakan->id }}" data-bs-toggle="modal">
+                                                        @isset($laporkerusakan->gambarkerusakan->input1)
+                                                            <img src="{{ asset('uploadkamar/' . $laporkerusakan->gambarkerusakan->input1) }}" style="border-radius: 6px; width: 70px; height: 70px;" data-bs-target="#detailgambar1-{{ $laporkerusakan->gambarkerusakan->id }}" data-bs-toggle="modal">
+                                                        @endisset
                                                     </div>
-                                                    <div class="col-3">
-                                                        <img src="{{ asset('uploadkamar/' . $laporkerusakan->gambarkerusakan->input2) }}" style="border-radius: 6px; width: 60px; height: 60px;" data-bs-target="#detailgambar2-{{ $laporkerusakan->gambarkerusakan->id }}" data-bs-toggle="modal">
+                                                    <div class="col-3" style="margin-left: -3.6px;">
+                                                        @isset($laporkerusakan->gambarkerusakan->input2)
+                                                            <img src="{{ asset('uploadkamar/' . $laporkerusakan->gambarkerusakan->input2) }}" style="border-radius: 6px; width: 70px; height: 70px;" data-bs-target="#detailgambar2-{{ $laporkerusakan->gambarkerusakan->id }}" data-bs-toggle="modal">
+                                                        @endisset
                                                     </div>
-                                                    <div class="col-3">
-                                                        <img src="{{ asset('uploadkamar/' . $laporkerusakan->gambarkerusakan->input3) }}" style="border-radius: 6px; width: 60px; height: 60px;" data-bs-target="#detailgambar3-{{ $laporkerusakan->gambarkerusakan->id }}" data-bs-toggle="modal">
+                                                    <div class="col-3" style="margin-left: -3.6px;">
+                                                        @isset($laporkerusakan->gambarkerusakan->input3)
+                                                            <img src="{{ asset('uploadkamar/' . $laporkerusakan->gambarkerusakan->input3) }}" style="border-radius: 6px; width: 70px; height: 70px;" data-bs-target="#detailgambar3-{{ $laporkerusakan->gambarkerusakan->id }}" data-bs-toggle="modal">
+                                                        @endisset
                                                     </div>
-                                                    <div class="col-3">
-                                                        <img src="{{ asset('uploadkamar/' . $laporkerusakan->gambarkerusakan->input4) }}" style="border-radius: 6px; width: 60px; height: 60px;" data-bs-target="#detailgambar4-{{ $laporkerusakan->gambarkerusakan->id }}" data-bs-toggle="modal">
+                                                    <div class="col-3" style="margin-left: -3.6px;">
+                                                        @isset($laporkerusakan->gambarkerusakan->input4)
+                                                            <img src="{{ asset('uploadkamar/' . $laporkerusakan->gambarkerusakan->input4) }}" style="border-radius: 6px; width: 70px; height: 70px;" data-bs-target="#detailgambar4-{{ $laporkerusakan->gambarkerusakan->id }}" data-bs-toggle="modal">
+                                                        @endisset
                                                     </div>
                                                     <div class="col-12 text-start mt-2">
                                                         <h3 style="font-size: 14px; width: 200px;" class="fw-medium text-secondary">Keterangan</h3>
@@ -481,6 +494,7 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         const inputElement = document.getElementById('tanggal');
         const inputIsi = document.getElementById('barang');
@@ -628,6 +642,26 @@
                 submitButton.classList.remove('active');
                 submitButton.classList.add('disabled');
             }
+        }
+    </script>
+    @if (Session::has('success'))
+        <script>
+            Swal.fire({
+                title: 'Berhasil!',
+                text: '{{ Session::get('success') }}',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 3000 // Waktu penampilan Sweet Alert (dalam milidetik)
+            });
+        </script>
+    @endif
+    <script>
+        function showDatePicker() {
+            // Dapatkan input tanggal
+            var inputTanggal = document.getElementById('tanggal');
+
+            // Munculkan pemilih tanggal
+            inputTanggal.click();
         }
     </script>
 </body>

@@ -147,7 +147,7 @@
                                     <span class="usr-tipe-kost">{{ $item->keterangan }}</span>
                                 </td>
                                 <td class="text-center">
-                                    <span class="usr-tipe-kost">{{ $item->status }}</span>
+                                    <span class="usr-tipe-kost text-{{ $item->status == 'Menunggu Respon' ? 'warning' : ($item->status == 'Laporan Diterima' ? 'success' : 'danger') }}">{{ $item->status == 'Menunggu Respon' ? 'Menunggu Respon' : ($item->status == 'Laporan Diterima' ? 'Laporan Diterima' : 'Laporan Ditolak') }}</span>
                                 </td>
                                 <td class="text-center">
                                     <div class="d-flex justify-content-center">
@@ -249,7 +249,7 @@
                                                                 <div class="col-6" style="margin-top: -12px;">
                                                                     <div class="mt-3">
                                                                         <div class="form-group">
-                                                                            <input type="text" class="form-control" name="status" value="{{ $item->status }}" id="status" disabled>
+                                                                            <input type="text" class="form-control text-{{ $item->status == 'Menunggu Respon' ? 'warning' : ($item->status == 'Laporan Diterima' ? 'success' : 'danger') }}" name="status" value="{{ $item->status == 'Menunggu Respon' ? 'Menunggu Respon' : ($item->status == 'Laporan Diterima' ? 'Laporan Diterima' : 'Laporan Ditolak') }}" id="status" disabled>
                                                                             @error('status')
                                                                                 {{ $message }}
                                                                             @enderror
@@ -357,9 +357,9 @@
                 <div class="col-12 text-center mt-2">
                     <h1 class="fw-medium fs-3">Belum Ada Data Riwayat Laporkan Kehilangan</h1>
                 </div>
+            </div>
+        </div>
     @endif
-    </div>
-    </div>
     <!-- --------------------------------------------------- -->
     <!-- Customizer -->
     <!-- --------------------------------------------------- -->

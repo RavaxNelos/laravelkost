@@ -230,7 +230,7 @@
                                     <div class="col-12">
                                         <div class="input-group">
                                             <input type="date" class="form-control" id="tanggal_hilang" name="tanggal_hilang" lang="id" style="border: 1px solid rgb(187, 0, 255); border-top-leftradius: 4px; border-bottom-left-radius: 4px;">
-                                            <span class="input-group-text" style="border: 1px solid rgb(187, 0, 255); border-top-right-radius: 4px; border-bottom-right-radius: 4px; background: linear-gradient(45deg, #9c27b0, #673ab7, #3f51b5); color: white;">
+                                            <span class="input-group-text" style="border: 1px solid rgb(187, 0, 255); border-top-right-radius: 4px; border-bottom-right-radius: 4px; background: linear-gradient(45deg, #9c27b0, #673ab7, #3f51b5); color: white;" onclick="showDatePicker()">
                                                 <i class="bi bi-calendar"></i>
                                             </span>
                                         </div>
@@ -243,7 +243,7 @@
                                     <div class="col-12">
                                         <div class="input-group">
                                             <input type="time" class="form-control" id="jam_hilang" name="jam_hilang" style="border: 1px solid rgb(187, 0, 255); border-top-leftradius: 4px; border-bottom-left-radius: 4px;">
-                                            <span class="input-group-text" style="border: 1px solid rgb(187, 0, 255); border-top-right-radius: 4px; border-bottom-right-radius: 4px; background: linear-gradient(45deg, #9c27b0, #673ab7, #3f51b5); color: white">
+                                            <span class="input-group-text" style="border: 1px solid rgb(187, 0, 255); border-top-right-radius: 4px; border-bottom-right-radius: 4px; background: linear-gradient(45deg, #9c27b0, #673ab7, #3f51b5); color: white" onclick="showHourPicker()">
                                                 <i class="bi bi-clock"></i>
                                             </span>
                                         </div>
@@ -254,7 +254,7 @@
                                         <h3 class="fw-medium text-secondary" style="font-size: 14px;">Keterangan Tambahan<span class="wajib">*</span></h3>
                                     </div>
                                     <div class="col-12">
-                                        <textarea name="keterangan" id="keterangan" placeholder="Tambahkan keterangan kamu" class="textarea-keterangan"></textarea>
+                                        <textarea name="keterangan" id="keterangan" placeholder="Tambahkan keterangan kamu" class="textarea-keterangan" maxlength="200"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -391,7 +391,7 @@
                                                         <h3 style="font-size: 14px; width: 200px;" class="fw-medium text-secondary">Keterangan</h3>
                                                     </div>
                                                     <div class="col-12 text-start">
-                                                        <textarea name="keterangan" id="keternagan" rows="3" style="width: 100%; resize: none; text-indent: 4px;" readonly>{{ $laporkehilangan->keterangan }}</textarea>
+                                                        <textarea name="keterangan" id="keternagan" rows="3" style="width: 100%; resize: none; padding: 10px;" readonly>{{ $laporkehilangan->keterangan }}</textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -417,7 +417,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script>
         window.addEventListener('scroll', function() {
             var header = document.getElementById('stickyHeader');
@@ -466,6 +468,35 @@
                 submitButton.disabled = !allInputsFilled;
             }
         });
+    </script>
+    @if (Session::has('success'))
+        <script>
+            Swal.fire({
+                title: 'Berhasil!',
+                text: '{{ Session::get('success') }}',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 3000 // Waktu penampilan Sweet Alert (dalam milidetik)
+            });
+        </script>
+    @endif
+    <script>
+        function showDatePicker() {
+            // Dapatkan input tanggal
+            var inputTanggal = document.getElementById('tanggal_hilang');
+
+            // Munculkan pemilih tanggal
+            inputTanggal.click();
+        }
+    </script>
+    <script>
+        function showHourPicker() {
+            // Dapatkan input jam
+            var inputJam = document.getElementById('jam_hilang');
+
+            // Munculkan pemilih jam
+            inputJam.click();
+        }
     </script>
 </body>
 

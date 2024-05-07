@@ -176,7 +176,7 @@
                     <i class="bi bi-clock"></i>
                     <span class="nav__text">Riwayat</span>
                 </a>
-                <a href="{{ asset('/user/profil') }}" class="nav__link">
+                <a href="" class="nav__link">
                     <i class="bi bi-person"></i>
                     <span class="nav__text">Profil</span>
                 </a>

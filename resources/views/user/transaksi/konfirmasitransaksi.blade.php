@@ -857,6 +857,7 @@
         // Fungsi untuk mengubah gambar saat pengguna memilih file baru
         function changePhoto(event) {
             const input = event.target;
+            // console.log(input.files);
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
                 reader.onload = function(e) {

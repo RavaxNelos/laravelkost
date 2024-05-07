@@ -16,4 +16,20 @@ class KerusakanController extends Controller
             'kerusakan' => $kerusakan,
         ]);
     }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'respon' => 'required|max:100', // Atur validasi sesuai kebutuhan Anda
+        ]);
+
+        // Simpan data respon ke dalam database
+        $kerusakan = Kerusakan::where('id', $request->id)->first();
+        $kerusakan->respon = $request->respon;
+        $kerusakan->status = 'Laporan Diterima';
+        $kerusakan->save();
+
+
+        return redirect()->route('kerusakan')->with('success', 'Respon Berhasil Dikirm');
+    }
 }

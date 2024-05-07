@@ -102,7 +102,7 @@
                                     <div class="row">
                                         <div class="col-12 text-center">
                                             <div class="position-relative">
-                                                <img id="frame" src="{{ asset($users->gambar ? 'uploadkamar/' . $users->gambar : '/img/customer1.jpg') }}" width="300" height="300" style="border-radius: 20px;">
+                                                <img id="profilImage" src="{{ asset($users->gambar ? 'uploadkamar/' . $users->gambar : '/img/customer1.jpg') }}" width="300" height="300" style="border-radius: 20px;">
                                             </div>
                                         </div>
                                     </div>
@@ -131,14 +131,14 @@
                                     <div class="row">
                                         <div class="col-12 text-center mt-2">
                                             <div class="position-relative">
-                                                <img id="frame" src="{{ asset($users->gambar ? 'uploadkamar/' . $users->gambar : '/img/customer1.jpg') }}" width="100" height="100" style="border-radius: 100px; cursor: pointer;" onclick="deleteImage()">
+                                                <img id="frame" src="{{ asset($users->gambar ? 'uploadkamar/' . $users->gambar : '/img/customer1.jpg') }}" width="100" height="100" style="border-radius: 100px; cursor: pointer;" onclick="deleteImage(event)">
                                                 <label for="uploadfoto" class="label-upload">
                                                     <div class="box-icon">
                                                         <div class="bg-kategori rounded-5">
                                                             <i id="uploadIcon" class="bi bi-cloud-upload" style="position: absolute; font-size: 30px; color: white; top: 30px; left: 126px;"></i>
                                                         </div>
                                                     </div>
-                                                    <input type="file" onchange="preview()" hidden id="uploadfoto" name="gambar" accept="image/*">
+                                                    <input type="file" onchange="changePhoto(event)" hidden id="uploadfoto" name="gambar" accept="image/*">
                                                 </label>
                                             </div>
                                         </div>
@@ -331,18 +331,30 @@
             var frame = document.getElementById('frame');
             var uploadIcon = document.getElementById('uploadIcon');
             var uploadInput = document.getElementById('uploadfoto');
-            var profileImage = document.getElementById('profileImage');
-            var saveButton = document.getElementById('saveButton');
 
             if (event.target.files.length > 0) {
                 frame.src = URL.createObjectURL(event.target.files[0]);
                 uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
             }
-
-            checkInputs();
         }
 
-        function deleteImage() {
+        // Fungsi untuk mengubah gambar saat pengguna memilih file baru
+        function changePhoto(event) {
+            const input = event.target;
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    // console.log(e.target.result);
+                    document.getElementById('frame').src = '';
+                    document.getElementById('frame').src = e.target.result;
+                    document.getElementById('uploadIcon').style.display = 'none'; // Sembunyikan ikon upload
+                }
+                reader.readAsDataURL(input.files[0]);
+                console.log(input.files);
+            }
+        }
+
+        function deleteImage(event) {
             var frame = document.getElementById('frame');
             var uploadIcon = document.getElementById('uploadIcon');
             var uploadInput = document.getElementById('uploadfoto');
@@ -352,56 +364,6 @@
             uploadIcon.style.display = 'block';
             uploadInput.value = ''; // Bersihkan nilai input file
             checkInputs();
-        }
-
-        // document.addEventListener('DOMContentLoaded', function() {
-        //     var passwordLamaInput = document.getElementById('katasandilama');
-        //     var toggleLamaIcon = document.getElementById('togglePasswordLama');
-
-        //     var passwordBaruInput = document.getElementById('katasandibaru');
-        //     var toggleBaruIcon = document.getElementById('togglePasswordBaru');
-
-        //     var konfirmasiBaruInput = document.getElementById('konfirmasikatasandibaru');
-        //     var toggleKonfirmasiIcon = document.getElementById('toggleKonfirmasiBaru');
-
-        //     // Fungsi untuk toggle password dan mengganti ikon
-        //     function togglePassword(input, toggleIcon) {
-        //         if (input.type === 'password') {
-        //             input.type = 'text';
-        //             toggleIcon.classList.remove('bi-eye-slash');
-        //             toggleIcon.classList.add('bi-eye');
-        //         } else {
-        //             input.type = 'password';
-        //             toggleIcon.classList.remove('bi-eye');
-        //             toggleIcon.classList.add('bi-eye-slash');
-        //         }
-        //     }
-
-        //     // Menambahkan event listener untuk setiap input
-        //     toggleLamaIcon.addEventListener('click', function() {
-        //         togglePassword(passwordLamaInput, toggleLamaIcon);
-        //     });
-
-        //     toggleBaruIcon.addEventListener('click', function() {
-        //         togglePassword(passwordBaruInput, toggleBaruIcon);
-        //     });
-
-        //     toggleKonfirmasiIcon.addEventListener('click', function() {
-        //         togglePassword(konfirmasiBaruInput, toggleKonfirmasiIcon);
-        //     });
-        // });
-        // edit profil
-        function checkInputs() {
-            var nameInput = document.getElementById('name-user').value;
-            var fileInput = document.getElementById('uploadfoto').value;
-
-            // Jika setidaknya satu input diisi, aktifkan tombol Simpan
-            if (nameInput.trim() !== '' || fileInput.trim() !== '') {
-                document.getElementById('saveButton').removeAttribute('disabled');
-            } else {
-                // Jika keduanya kosong, nonaktifkan tombol Simpan
-                document.getElementById('saveButton').setAttribute('disabled', 'disabled');
-            }
         }
         //edit akun
         function checkInputsAkun() {
@@ -418,25 +380,8 @@
         }
 
         function previewAkun() {
-            // Tambahkan fungsi ini jika Anda ingin mengatur aksi tambahan saat form diubah
-            // ...
             checkInputsAkun();
         }
-
-        // //edit sandi
-        // function checkInputsPassword() {
-        //     var katasandilamaInput = document.getElementById('katasandilama').value;
-        //     var katasandibaruInput = document.getElementById('katasandibaru').value;
-        //     var konfirmasikatasandibaruInput = document.getElementById('konfirmasikatasandibaru').value;
-
-        //     // Jika semua input diisi, aktifkan tombol Simpan
-        //     if (katasandilamaInput.trim() !== '' && katasandibaruInput.trim() !== '' && konfirmasikatasandibaruInput.trim() !== '') {
-        //         document.getElementById('simpanPasswordButton').removeAttribute('disabled');
-        //     } else {
-        //         // Jika salah satu input kosong, nonaktifkan tombol Simpan
-        //         document.getElementById('simpanPasswordButton').setAttribute('disabled', 'disabled');
-        //     }
-        // }
 
         // Batasan jumlah digit
         document.getElementById('nomorhp').addEventListener('input', function() {

@@ -48,6 +48,7 @@ Route::get('/', function () {
 //user controller percobaan
 Route::group(['middleware' => 'auth'], function () {
 Route::get('/user/kamar', [UserController::class, 'kamar'])->name('kamar');
+Route::post('/upload-gambar', [UserController::class, 'upload'])->name('upload.gambar');
 Route::get('/user/profil', [UserController::class, 'profil'])->name('profil');
 Route::post('/user/profil/edit', [UserController::class, 'profiledit'])->name('user.profil');
 Route::post('/user/akun/edit', [UserController::class, 'akunedit']);
@@ -106,6 +107,7 @@ Route::get('/pemilikmin/transaksi', [TransaksiController::class, 'index'])->name
 Route::get('/pemilikmin/kerusakan', [KerusakanController::class, 'index'])->name('kerusakan');
 Route::get('/pemilikmin/kehilangan', [KehilanganController::class, 'index'])->name('kehilangan');
 Route::post('/pemilikmin/kehilangan', [KehilanganController::class, 'store'])->name('respon.store');
+Route::post('/pemilikmin/kerusakan', [KerusakanController::class, 'store'])->name('responkerusakan.store');
 // Route::post('/approve-transaction', [TransaksiController::class, 'approve']);
 Route::post('/reject/{id}', [TransaksiController::class, 'reject']);
 Route::get('/approve/{id}', [TransaksiController::class, 'approve']);

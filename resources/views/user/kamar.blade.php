@@ -374,15 +374,33 @@
             <p class="text-secondary" style="font-size: 10px; font-style: italic; margin-top: -6px;">Update tampilan terbaru kamarmu disini (Maks. 10 foto)</p>
             <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay;">
                 <div class="position-relative">
-                    <img id="frame" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage()">
+                    <img id="frame" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="showModal()">
                     <label for="uploadfoto" class="label-upload">
                         <div class="box-icon">
                             <div class="bg-kategori rounded-5">
                                 <i id="uploadIcon" class="bi bi-cloud-upload"></i>
                             </div>
                         </div>
-                        <input type="file" onchange="preview()" hidden id="uploadfoto" accept="image/*">
+                        <input type="file" onchange="uploadImage(event)" name="gambar" hidden id="uploadfoto" accept="image/*">
                     </label>
+                </div>
+                <!-- Modal Bootstrap -->
+                <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="confirmationModalLabel">Konfirmasi</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Apakah Anda yakin ingin menghapus gambar ini?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                <button type="button" class="btn btn-primary" onclick="deleteImage()">Hapus</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="position-relative">
                     <img id="frame2" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage2()">
@@ -861,130 +879,6 @@
             selectBtn = optionMenu.querySelector(".select-btn"),
             sBtn_text = optionMenu.querySelector(".sBtn-text");
         selectBtn.addEventListener("click", () => optionMenu.classList.toggle("active"));
-        // options.forEach(option => {
-        //     option.addEventListener("click", () => {
-        //         let selectedOption = option.querySelector(".option-text").innerText;
-        //         sBtn_text.innerText = selectedOption;
-        //         optionMenu.classList.remove("active");
-        //     });
-        // });
-        // function previewImage() {
-        //     var input = document.getElementById('imageInput');
-        //     var preview = document.getElementById('preview');
-
-        //     // Pastikan file yang dipilih adalah gambar
-        //     if (input.files && input.files[0]) {
-        //         var reader = new FileReader();
-
-        //         reader.onload = function(e) {
-        //             // Tampilkan gambar pada elemen preview
-        //             preview.innerHTML = '<img src="' + e.target.result + '" alt="Preview Gambar">';
-        //         };
-
-        //         // Baca file gambar sebagai URL data
-        //         reader.readAsDataURL(input.files[0]);
-        //     }
-        // }
-
-        // // Menambahkan event listener untuk input gambar
-        // document.getElementById('imageInput').addEventListener('change', previewImage);
-
-        // var splide = new Splide('.splide.new-2', {
-        //     type: "loop",
-        //     pagination: false,
-        //     arrows: false,
-        //     perPage: 1,
-        //     autoWidth: true,
-        //     gap: '0.5rem',
-        //     lazyLoad: 'nearby'
-        // });
-
-        // splide.mount();
-
-        // JavaScript to show/hide clear search icon
-        // document.getElementById('searchInput').addEventListener('input', function() {
-        //     var clearSearchIcon = document.getElementById('clearSearchIcon');
-        //     if (this.value.trim() !== '') {
-        //         clearSearchIcon.classList.remove('d-none');
-        //     } else {
-        //         clearSearchIcon.classList.add('d-none');
-        //     }
-        // });
-
-        // // JavaScript to clear search input
-        // document.getElementById('clearSearchIcon').addEventListener('click', function() {
-        //     var searchInput = document.getElementById('searchInput');
-        //     searchInput.value = '';
-        //     this.classList.add('d-none');
-        // });
-
-        // var isFavorited = false;
-
-        // function changeIconAndColor(button) {
-        //     // Mengambil elemen ikon pada tombol
-        //     var iconElement = button.querySelector("i");
-
-        //     // Mengganti kelas ikon untuk mengubahnya menjadi bintang terisi (filled star)
-        //     iconElement.classList.toggle("bi-star");
-        //     iconElement.classList.toggle("bi-star-fill");
-
-        //     // Mengubah warna ikon menjadi kuning
-        //     var currentColor = iconElement.style.color;
-        //     iconElement.style.color = (currentColor === "purple") ? "" : "purple";
-
-        //     isFavorited = !isFavorited;
-        //     var popupText = document.getElementById('popup-text');
-
-        //     if (isFavorited) {
-        //         popupText.innerHTML = 'Berhasil Difavoritkan';
-        //     } else {
-        //         popupText.innerHTML = 'Dihapus dari Favorit';
-        //     }
-
-        //     showPopup();
-        // }
-
-        // function closePopup() {
-        //     document.getElementById('popup-background').style.display = 'none';
-        //     document.getElementById('popup').style.display = 'none';
-        // }
-
-        // function showPopup() {
-        //     document.getElementById('popup-background').style.display = 'block';
-        //     document.getElementById('popup').style.display = 'block';
-
-        //     setTimeout(function() {
-        //         closePopup();
-        //     }, 2000); // Close popup after 2 seconds
-        // }
-
-        // $(document).ready(function() {
-        //     var stickyHeader = $('#stickyHeader');
-        //     var searchInput = $('#searchInput');
-        //     var clearSearchIcon = $('#clearSearchIcon');
-
-        //     $(window).scroll(function() {
-        //         var scroll = $(window).scrollTop();
-
-        //         // Change background and box-shadow when scrolling
-        //         if (scroll > 0) {
-        //             stickyHeader.css('background-color', '#ffffff');
-        //             stickyHeader.css('box-shadow', '0px 4px 8px rgba(0, 0, 0, 0.1)');
-        //         } else {
-        //             stickyHeader.css('background-color', 'transparent');
-        //             stickyHeader.css('box-shadow', 'none');
-        //         }
-
-        //         // Show/hide clear search icon based on input value
-        //         if (searchInput.val().trim() !== '') {
-        //             clearSearchIcon.removeClass('d-none');
-        //         } else {
-        //             clearSearchIcon.addClass('d-none');
-        //         }
-        //     });
-
-        //     // Additional code to handle other functionalities...
-        // });
     </script>
     <script>
         function getFasilitasBed(kamarKostFasilitasId) {
@@ -1007,6 +901,46 @@
             $('#fasilitasKamar').modal('hide');
             $('#itemNama').text('');
             $('#itemDeskripsi').text('');
+        }
+    </script>
+    <script>
+        function uploadImage(event) {
+            const fileInput = event.target.files[0];
+            const formData = new FormData();
+            formData.append('gambar', fileInput);
+
+            // Kirim gambar ke server dengan AJAX
+            // Ganti 'upload-gambar' dengan URL endpoint Anda
+            fetch('/upload-gambar', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Terjadi kesalahan saat mengunggah gambar.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Sukses, lakukan sesuatu jika diperlukan
+                    console.log('Gambar berhasil diunggah:', data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Handle error
+                });
+        }
+
+        function showModal() {
+            $('#confirmationModal').modal('show');
+        }
+
+        function deleteImage() {
+            // Hapus gambar dari server
+            // Implementasi penghapusan gambar dari server
+
+            // Tutup modal setelah gambar dihapus
+            $('#confirmationModal').modal('hide');
         }
     </script>
 </body>
