@@ -4,16 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Banner;
 use App\Models\KamarKost;
+use App\Models\Pengguna;
 use App\Models\Transaksi;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class PemilikController extends Controller
 {
-    public function home()
+    public function home($id = null)
     {
-        return view('pemilik.home');
+        $users = Auth::user();
+        return view('pemilik.home',compact('users'));
     }
     public function area()
     {
@@ -29,16 +32,101 @@ class PemilikController extends Controller
     }
     public function pengguna()
     {
-        $totalUsers = User::where('role_id', '4')->count();
-        $users = User::where('role_id', '4')->get();
-        return view('pemilik.pengguna', compact('users', 'totalUsers'));
+    $users     = User::where('role_id', '4')->get();
+    $usersBaru = [];
+    $usersLama = [];
+
+    foreach ($users as $user) {
+    $timeDifference = now()->diffInHours($user->created_at);
+    if ($timeDifference < 1) {
+          // Pengguna yang dibuat dalam waktu kurang dari 1 jam adalah pengguna baru
+        $usersBaru[] = $user;
+    } else {
+          // Pengguna yang dibuat lebih dari 1 jam yang lalu adalah pengguna lama
+        $usersLama[] = $user;
+    }
+    }
+
+    // Jumlah pengguna baru
+    $countUsersBaru = count($usersBaru);
+
+    // Jumlah pengguna lama
+    $countUsersLama = count($usersLama);
+    $totalUsers     = User::where('role_id', '4')->count();
+        return view('pemilik.pengguna', compact('users', 'totalUsers', 'usersBaru', 'usersLama'));
     }
     public function riwayat()
     {
-        return view('pemilik.riwayat');
+        $users     = Auth::user();
+        $transaksi = Transaksi::all();
+        return view('pemilik.riwayat', compact('users', 'transaksi'));
     }
     public function profil()
     {
-        return view('pemilik.profil');
+        $users = Auth::user();
+        return view('pemilik.profil', compact('users'));
+    }
+
+    public function profilpemilikedit(Request $request) {
+        $request->validate([
+            'name'   => 'nullable',
+            'gambar' => 'nullable',
+        ]);
+
+                             // Proses gambar jika diunggah
+    if ($request->hasFile('gambar')) {
+        $gambarBarang = $request->file('gambar');
+        $namaFile     = time().'.'.$gambarBarang->getClientOriginalExtension();
+        $gambarBarang->move(public_path('uploadkamar'), $namaFile);
+    } else {
+        $namaFile = '';  // Tetapkan string kosong jika tidak ada gambar yang diunggah
+    }
+
+                        // Perbarui data pengguna
+    $users = Pengguna::find($request->id);
+    if ($users) {
+        $users->name   = $request->name;
+        $users->gambar = $namaFile ?: $users->gambar;  // Gunakan gambar baru jika diunggah, jika tidak, gunakan gambar yang ada
+        $users->save();
+    }
+
+    return back()->with('success', "Profil Berhasil Dirubah");
+    }
+
+    public function akunpemilikedit(Request $request) {
+        $request->validate([
+            'email'   => 'nullable',
+            'nomorhp' => 'nullable',
+        ]);
+
+        $users          = Pengguna::find($request->id);
+        $users->email   = $request->email;
+        $users->nomorhp = $request->nomorhp;
+        $users->save();
+
+        return back()->with('success', "Akun Berhasil Dirubah");
+    }
+    public function sandipemilikedit(Request $request) {
+        $request->validate([
+            'password'                  => 'required',
+            'new_password'              => 'required',
+            'new_password_confirmation' => 'required|same:new_password'
+        ]);
+
+        $user = Auth::user();
+
+        if (!Hash::check($request->password, $user->password)) {
+            return response()->json(['error' => 'Password Tidak Sama'], 422);
+        }
+
+        if (strcmp($request->password, $request->new_password) == 0) {
+            return response()->json(['error' => 'Sandi Baru Tidak Sama Dengan Password Kamu.'], 422);
+        }
+
+        $user           = Pengguna::find($user->id);
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        return response()->json(['success' => 'Password Berhasil Dirubah']);
     }
 }

@@ -88,10 +88,10 @@
             <div class="container py-2">
                 <div class="row" x-show="openSearch === false">
                     <div class="col-10 text-end mt-1" x-show="filter == 'lama'">
-                        <h3 class="fw-semibold" id="seachText" style="font-size: 15px;">Daftar Pengguna Lama <span style="color: #B19CD9;">({{ $totalUsers }})</span></h3>
+                        <h3 class="fw-semibold" id="seachText" style="font-size: 15px;">Daftar Pengguna Lama <span style="color: #B19CD9;">({{ $usersLama ? count($usersLama) : 0 }})</span></h3>
                     </div>
                     <div class="col-10 text-end mt-1" x-show="filter == 'baru'">
-                        <h3 class="fw-semibold" id="seachText" style="font-size: 15px;">Daftar Pengguna Baru <span style="color: #B19CD9;">({{ $totalUsers }})</span></h3>
+                        <h3 class="fw-semibold" id="seachText" style="font-size: 15px;">Daftar Pengguna Baru <span style="color: #B19CD9;">({{ $usersBaru ? count($usersBaru) : 0 }})</span></h3>
                     </div>
                     <div class="col-2 text-end mt-1" style="margin-top: -2px;">
                         <i id="searchIcon" class="bi bi-search" x-on:click="openSearch = true" style="font-size: 16px;"></i>
@@ -116,8 +116,46 @@
         </div>
         <div class="container py-2" @click="openSearch = false">
             <div class="row g-2">
+                @php
+                    $usersBaru = [];
+                    $usersLama = [];
+                @endphp
                 @foreach ($users as $user)
+                    @php
+                        $timeDifference = now()->diffInHours($user->created_at);
+                        $isNewUser = $timeDifference < 1;
+                    @endphp
+                    @if ($isNewUser)
+                        @php
+                            $usersBaru[] = $user;
+                        @endphp
+                    @else
+                        @php
+                            $usersLama[] = $user;
+                        @endphp
+                    @endif
+                @endforeach
+                @foreach ($usersBaru as $user)
                     <div class="col-6" x-show="filter == 'baru'">
+                        <div class="card" style="border: none">
+                            <img src="{{ asset($user->gambar ? 'uploadkamar/' . $user->gambar : '/img/customer1.jpg') }}" class="card-img" style="opacity: 0.9" alt="...">
+                            <div class="card-img-overlay p-0">
+                                <div class="text-content" style="margin-top: 190px; background-color: rgba(0, 0, 0, 0.5); height: 40px; width: 162px; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;">
+                                    <div class="ms-2 mt-2 pt-1">
+                                        <div class="text-title-content" style="font-size: 10px;">
+                                            <p class="text-white fw-medium mb-0">{{ $user->name }}</p>
+                                        </div>
+                                        <div class="d-flex">
+                                            <p class="text-white-50 font-tag-content mb-0" style="font-size: 10px;">{{ Carbon\Carbon::parse($user->created_at)->locale('id')->isoFormat('DD MMMM Y') }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+                @foreach ($usersLama as $user)
+                    <div class="col-6" x-show="filter == 'lama'">
                         <div class="card" style="border: none">
                             <img src="{{ asset($user->gambar ? 'uploadkamar/' . $user->gambar : '/img/customer1.jpg') }}" class="card-img" style="opacity: 0.9" alt="...">
                             <div class="card-img-overlay p-0">

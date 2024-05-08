@@ -294,3 +294,24 @@ body {
     font-size: 14px;
     margin-right: 4px;
 }
+
+.upload-foto {
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
+    background: rgb(149, 148, 148);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.upload-foto #file {
+    display: none;
+}
+
+.upload-foto i {
+    font-size: 34px;
+    color: white;
+}

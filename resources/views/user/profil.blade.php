@@ -94,15 +94,15 @@
                 <img id="profileImage" src="{{ asset($users->gambar ? 'uploadkamar/' . $users->gambar : '/img/customer1.jpg') }}" data-bs-toggle="modal" data-bs-target="#profil-{{ $users->id }}" style="margin-top: 50px; border: 1px solid white; border-radius: 50%; position: relative;" width="80" height="80">
                 <!-- Modal -->
                 <div class="modal fade" id="profil-{{ $users->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content" style=" border-radius: 20px; margin-top: 10rem; width: 300px; align-items: center; justify-content: center; margin-left: 22px;">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content" style=" border-radius: 20px; width: 300px; align-items: center; justify-content: center; margin-left: 22px;">
                             <div class="modal-body" style="padding: 0px;">
                                 <div class="container">
                                     <input type="hidden" name="id" value="{{ $users->id }}">
                                     <div class="row">
                                         <div class="col-12 text-center">
                                             <div class="position-relative">
-                                                <img id="profilImage" src="{{ asset($users->gambar ? 'uploadkamar/' . $users->gambar : '/img/customer1.jpg') }}" width="300" height="300" style="border-radius: 20px;">
+                                                <img id="profilImage" src="{{ asset($users->gambar ? 'uploadkamar/' . $users->gambar : '/img/customer1.jpg') }}" width="300" height="400" style="border-radius: 20px;">
                                             </div>
                                         </div>
                                     </div>
@@ -280,7 +280,7 @@
             </div>
             <button class="btn-logout" data-bs-toggle="modal" data-bs-target="#logout"><i class="bi bi-arrow-right-square-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: red;"></i>Logout<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 12.2rem;"></i></button>
             <!-- Modal -->
-            <div class="modal fade" id="logout" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="logout" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content" style="border: 1px solid #800080; border-radius: 20px; margin-top: 14rem;">
                         <div class="modal-body">

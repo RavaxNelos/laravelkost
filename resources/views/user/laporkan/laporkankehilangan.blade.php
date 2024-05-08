@@ -391,7 +391,13 @@
                                                         <h3 style="font-size: 14px; width: 200px;" class="fw-medium text-secondary">Keterangan</h3>
                                                     </div>
                                                     <div class="col-12 text-start">
-                                                        <textarea name="keterangan" id="keternagan" rows="3" style="width: 100%; resize: none; padding: 10px;" readonly>{{ $laporkehilangan->keterangan }}</textarea>
+                                                        <textarea name="keterangan" id="keterangan" rows="3" style="width: 100%; resize: none; padding: 10px;" readonly>{{ $laporkehilangan->keterangan }}</textarea>
+                                                    </div>
+                                                    <div class="col-12 text-start">
+                                                        <h3 style="font-size: 14px; width: 200px;" class="fw-medium text-secondary">Respon Dari Admin</h3>
+                                                    </div>
+                                                    <div class="col-12 text-start">
+                                                        <textarea name="respon" id="respon" rows="3" style="width: 100%; resize: none; padding: 10px;" readonly>{{ $laporkehilangan->respon ? $laporkehilangan->respon : 'Admin Belum Merespon Laporan Ini!' }}</textarea>
                                                     </div>
                                                 </div>
                                             </div>

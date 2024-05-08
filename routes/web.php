@@ -48,7 +48,7 @@ Route::get('/', function () {
 //user controller percobaan
 Route::group(['middleware' => 'auth'], function () {
 Route::get('/user/kamar', [UserController::class, 'kamar'])->name('kamar');
-Route::post('/upload-gambar', [UserController::class, 'upload'])->name('upload.gambar');
+Route::post('/upload', [UserController::class, 'upload'])->name('kamarUpload');
 Route::get('/user/profil', [UserController::class, 'profil'])->name('profil');
 Route::post('/user/profil/edit', [UserController::class, 'profiledit'])->name('user.profil');
 Route::post('/user/akun/edit', [UserController::class, 'akunedit']);
@@ -93,6 +93,9 @@ Route::get('/pemilik/transaksi', [PemilikController::class, 'transaksi'])->name(
 Route::get('/pemilik/pengguna', [PemilikController::class, 'pengguna'])->name('pengguna');
 Route::get('/pemilik/riwayat', [PemilikController::class, 'riwayat'])->name('riwayat');
 Route::get('/pemilik/profil', [PemilikController::class, 'profil'])->name('profil');
+Route::post('/pemilik/profil/edit', [PemilikController::class, 'profilpemilikedit'])->name('pemilik.profil');
+Route::post('/pemilik/akun/edit', [PemilikController::class, 'akunpemilikedit']);
+Route::post('/pemilik/sandi/edit', [PemilikController::class, 'sandipemilikedit']);
 
 //admin controller
 Route::get('/pemilikmin/dashboard', [PemilikMinController::class, 'dashboard'])->name('dashboard');

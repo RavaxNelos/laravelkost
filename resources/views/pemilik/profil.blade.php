@@ -95,80 +95,107 @@
     <section class="position-relative">
         <section class="header">
             <div class="col-12 text-center">
-                <img id="profileImage" src="{{ asset('img/avatar.png') }}" style="margin-top: 50px; width: 90px; height: 90px; border: 1px solid white; border-radius: 50%; position: relative;">
-                <h3 class="fw-medium" style="font-size: 18px; color: white; margin-top: 16px;">Muhammad Ravanelo Akhtar</h3>
-                <button class="btn-status">Pemilik</button>
-            </div>
-        </section>
-    </section>
-    <div class="container px-4">
-        <section class="card-list">
-            <button class="btn-edit-profil" data-bs-toggle="modal" data-bs-target="#editprofil"><i class="bi bi-pencil-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: #9370DB;"></i>Profil<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 12.8rem;"></i></button>
-            <!-- Modal -->
-            <div class="modal fade" id="editprofil" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content" style="border: 1px solid #800080; border-radius: 20px; margin-top: 10rem;">
-                        <div class="modal-body">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-12 text-center">
-                                        <h3 class="fw-semibold" style="font-size: 16px;">Edit Profil</h3>
-                                    </div>
-                                    <div class="col-12 text-center">
-                                        <div class="position-relative">
-                                            <img id="frame" src="{{ asset('img/avatar.png') }}" style="width: 100px; height: 100px; border-radius: 100px; cursor: pointer;" onclick="deleteImage()">
-                                            <label for="uploadfoto" class="label-upload">
-                                                <div class="box-icon">
-                                                    <div class="bg-kategori rounded-5">
-                                                        <i id="uploadIcon" class="bi bi-cloud-upload" style="position: absolute; font-size: 30px; color: white; top: 30px; left: 126px;"></i>
-                                                    </div>
-                                                </div>
-                                                <input type="file" onchange="preview()" hidden id="uploadfoto" accept="image/*">
-                                            </label>
+                <img id="profileImage" src="{{ asset($users->gambar ? 'uploadkamar/' . $users->gambar : '/img/customer1.jpg') }}" data-bs-toggle="modal" data-bs-target="#profil-{{ $users->id }}" style="margin-top: 50px; border: 1px solid white; border-radius: 50%; position: relative;" width="80" height="80">
+                <!-- Modal -->
+                <div class="modal fade" id="profil-{{ $users->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content" style=" border-radius: 20px; width: 300px; align-items: center; justify-content: center; margin-left: 22px;">
+                            <div class="modal-body" style="padding: 0px;">
+                                <div class="container">
+                                    <input type="hidden" name="id" value="{{ $users->id }}">
+                                    <div class="row">
+                                        <div class="col-12 text-center">
+                                            <div class="position-relative">
+                                                <img id="profilImage" src="{{ asset($users->gambar ? 'uploadkamar/' . $users->gambar : '/img/customer1.jpg') }}" width="300" height="400" style="border-radius: 20px;">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-12 text-center mt-2">
-                                        <p class="fw-medium" style="font-size: 14px;">Upload Foto Profil</p>
-                                    </div>
-                                    <div class="col-12 text-start">
-                                        <label for="name" class="fw-medium" style="font-size: 14px;">Nama Barumu</label>
-                                        <input type="text" class="input-nama" id="name-user" value="Muhammad Ravanelo Akhtar" placeholder="Ketik Nama Barumu..." oninput="checkInputs()" style="font-size: 14px;">
-                                    </div>
-                                    <div class="col-12 text-center mt-3">
-                                        <button id="saveButton" class="btn btn-secondary" style="color: white; border: none;" disabled>Simpan</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <h3 class="fw-medium" style="font-size: 18px; color: white; margin-top: 16px;">{{ $users->name }}</h3>
+                <button class="btn-status mt-2">{{ $users->status }}</button>
             </div>
-            <button class="btn-edit-akun" data-bs-toggle="modal" data-bs-target="#editakun"><i class="bi bi-person-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: #9370DB;"></i>Akun<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 12.8rem;"></i></button>
+        </section>
+    </section>
+    <div class="container px-4">
+        <section class="card-list">
+            <button class="btn-edit-profil" data-bs-toggle="modal" data-bs-target="#editprofil-{{ $users->id }}"><i class="bi bi-pencil-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: #9370DB;"></i>Profil<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 12.8rem;"></i></button>
             <!-- Modal -->
-            <div class="modal fade" id="editakun" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="editprofil-{{ $users->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content" style="border: 1px solid #800080; border-radius: 20px; margin-top: 10rem;">
                         <div class="modal-body">
                             <div class="container">
-                                <div class="row">
-                                    <div class="col-12 text-center">
-                                        <img src="{{ asset('img/user.png') }}" width="100" height="100">
+                                <form action="/pemilik/profil/edit" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{ $users->id }}">
+                                    <div class="row">
+                                        <div class="col-12 text-center mt-2">
+                                            <div class="position-relative">
+                                                <img id="frame" src="{{ asset($users->gambar ? 'uploadkamar/' . $users->gambar : '/img/customer1.jpg') }}" width="100" height="100" style="border-radius: 100px; cursor: pointer;" onclick="deleteImage(event)">
+                                                <label for="uploadfoto" class="label-upload">
+                                                    <div class="box-icon">
+                                                        <div class="bg-kategori rounded-5">
+                                                            <i id="uploadIcon" class="bi bi-cloud-upload" style="position: absolute; font-size: 30px; color: white; top: 30px; left: 126px;"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input type="file" onchange="changePhoto(event)" hidden id="uploadfoto" name="gambar" accept="image/*">
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 text-center mt-2">
+                                            <h3 class="fw-semibold" style="font-size: 16px;">Edit Profil</h3>
+                                        </div>
+                                        {{-- <div class="col-12 text-center mt-2">
+                                            <p class="fw-medium" style="font-size: 14px;">Upload Foto Profil</p>
+                                        </div> --}}
+                                        <div class="col-12 text-start">
+                                            <label for="name" class="fw-medium" style="font-size: 14px;">Nama Barumu</label>
+                                            <input type="text" class="input-nama" maxlength="30" id="name" name="name" value="{{ $users->name }}" placeholder="Ketik Nama Barumu..." style="font-size: 14px;">
+                                        </div>
+                                        <div class="col-12 text-center mt-3">
+                                            <button type="submit" class="btn btn-secondary" style="color: white; border: none;">Simpan</button>
+                                        </div>
                                     </div>
-                                    <div class="col-12 text-center mt-2">
-                                        <h3 class="fw-semibold" style="font-size: 16px;">Edit Akun</h3>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-edit-akun" data-bs-toggle="modal" data-bs-target="#editakun-{{ $users->id }}"><i class="bi bi-person-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: #9370DB;"></i>Akun<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 13rem;"></i></button>
+            <!-- Modal -->
+            <div class="modal fade" id="editakun-{{ $users->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="border: 1px solid #800080; border-radius: 20px; margin-top: 10rem;">
+                        <div class="modal-body">
+                            <div class="container">
+                                <form action="/pemilik/akun/edit" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{ $users->id }}">
+                                    <div class="row">
+                                        <div class="col-12 text-center">
+                                            <img src="{{ asset('img/user.png') }}" width="80" height="80">
+                                        </div>
+                                        <div class="col-12 text-center mt-2">
+                                            <h3 class="fw-semibold" style="font-size: 16px;">Edit Akun</h3>
+                                        </div>
+                                        <div class="col-12 text-start">
+                                            <label for="name" class="fw-medium" style="font-size: 14px;">Email Baru</label>
+                                            <input type="email" class="input-email" maxlength="30" id="email" name="email" value="{{ $users->email }}" placeholder="Ketik Email Barumu..." oninput="checkInputsAkun()" style="font-size: 14px;">
+                                        </div>
+                                        <div class="col-12 text-start mt-2">
+                                            <label for="name" class="fw-medium" style="font-size: 14px;">No. Tlpn Baru</label>
+                                            <input type="number" class="input-nohp" id="nomorhp" name="nomorhp" value="{{ $users->nomorhp }}" placeholder="Ketik Nomor Tlpn Barumu..." oninput="checkInputsAkun()" style="font-size: 14px;">
+                                        </div>
+                                        <div class="col-12 text-center mt-3">
+                                            <button type="submit" class="btn btn-secondary" style="color: white; border: none;">Simpan</button>
+                                        </div>
                                     </div>
-                                    <div class="col-12 text-start">
-                                        <label for="name" class="fw-medium" style="font-size: 14px;">Email Baru</label>
-                                        <input type="email" class="input-email" id="email" value="muhammadravaneloakhtar@gmail.com" placeholder="Ketik Email Barumu..." oninput="checkInputsAkun()" style="font-size: 14px;">
-                                    </div>
-                                    <div class="col-12 text-start mt-2">
-                                        <label for="name" class="fw-medium" style="font-size: 14px;">No. Tlpn Baru</label>
-                                        <input type="number" class="input-nohp" id="no_hp" value="082332724688" placeholder="Ketik Nomor Tlpn Barumu..." oninput="checkInputsAkun()" style="font-size: 14px;">
-                                    </div>
-                                    <div class="col-12 text-center mt-3">
-                                        <button id="simpanAkunButton" class="btn btn-secondary" style="color: white; border: none;" disabled>Simpan</button>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -177,7 +204,6 @@
             <button class="btn-edit-akun" data-bs-toggle="modal" data-bs-target="#kebijakan"><i class="bi bi-book-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: #9370DB;"></i>Kebijakan Dan Ketentuan<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 4rem;"></i>
             </button>
             <!-- Modal -->
-
             <div class="modal fade" id="kebijakan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-scrollable">
                     <div class="modal-content" style="height: 300px; position: absolute; top: 25%;">
@@ -269,70 +295,53 @@
                     </div>
                 </div>
             </div>
-            <button class="btn-edit-akun" data-bs-toggle="modal" data-bs-target="#editsandi"><i class="bi bi-lock-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: #9370DB;"></i>Edit Kata Sandi<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 8.6rem;"></i></button>
+            <button class="btn-edit-akun" data-bs-toggle="modal" data-bs-target="#editsandi-modal"><i class="bi bi-lock-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: #9370DB;"></i>Edit Kata Sandi<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 9.2rem;"></i></button>
             <!-- Modal -->
-            <div class="modal fade" id="editsandi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="editsandi-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content" style="border: 1px solid #800080; border-radius: 20px; margin-top: 6rem;">
                         <div class="modal-body">
                             <div class="container">
-                                <div class="row">
-                                    <div class="col-12 text-center">
-                                        <img src="{{ asset('img/security.png') }}" width="100" height="100">
+                                <form id="editForm">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{ $users->id }}">
+                                    <div class="row">
+                                        <div class="col-12 text-center">
+                                            <img src="{{ asset('img/security.png') }}" width="100" height="100">
+                                        </div>
+                                        <div class="col-12 text-center mt-2">
+                                            <h3 class="fw-semibold" style="font-size: 16px;">Ubah Kata Sandi</h3>
+                                        </div>
+                                        <div class="col-12 text-start">
+                                            <label for="name" class="fw-medium" style="font-size: 14px;">Kata Sandi Lama <span class="text-danger">*</span></label>
+                                            <div style="position: relative;">
+                                                <input type="text" class="input-password" id="password" name="password" placeholder="Ketik Kata Sandi Lamamu..." style="font-size: 14px;">
+                                                <i class="bi bi-eye" id="togglePasswordLama" style="position: absolute; font-size: 20px; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;" onclick="togglePasswordVisibility('password', 'togglePasswordLama')"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 text-start mt-2">
+                                            <label for="name" class="fw-medium" style="font-size: 14px;">Kata Sandi Baru <span class="text-danger">*</span></label>
+                                            <div style="position: relative;">
+                                                <input type="password" class="input-password" id="new_password" name="new_password" placeholder="Ketik Kata Sandi Barumu..." style="font-size: 14px;">
+                                                <i class="bi bi-eye-slash" id="togglePasswordBaru" style="position: absolute; font-size: 20px; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;" onclick="togglePasswordVisibility('new_password', 'togglePasswordBaru')"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 text-start mt-2">
+                                            <label for="name" class="fw-medium" style="font-size: 14px;">Konfirmasi Kata Sandi Baru <span class="text-danger">*</span></label>
+                                            <div style="position: relative;">
+                                                <input type="password" class="input-password" id="konfirmasikatasandibaru" name="new_password_confirmation" placeholder="Ketik Ulang Kata Sandi Barumu..." style="font-size: 14px;">
+                                                <i class="bi bi-eye-slash" id="toggleKonfirmasiBaru" style="position: absolute; font-size: 20px; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;" onclick="togglePasswordVisibility('konfirmasikatasandibaru', 'toggleKonfirmasiBaru')"></i>
+                                            </div>
+                                        </div>
+                                        <div id="validation-errors" style="display: none;"></div>
+                                        <div class="col-12 text-start">
+                                            <p class="fw-normal" style="font-size: 14px;">Lupa kata Sandi?<a href="#" style="font-style: italic; color: #9370DB; text-decoration: none; margin-left: 4px;">Klik Disini</a></p>
+                                        </div>
+                                        <div class="col-12 text-center mt-2">
+                                            <button type="submit" class="btn btn-secondary" style="color: white; border: none;">Simpan</button>
+                                        </div>
                                     </div>
-                                    <div class="col-12 text-center mt-2">
-                                        <h3 class="fw-semibold" style="font-size: 16px;">Ubah Kata Sandi</h3>
-                                    </div>
-                                    <div class="col-12 text-start">
-                                        <label for="name" class="fw-medium" style="font-size: 14px;">Kata Sandi Lama <span class="text-danger">*</span></label>
-                                        <input type="text" class="input-password" id="katasandilama" placeholder="Ketik Kata Sandi Lamamu..." oninput="checkInputsPassword()" style="font-size: 14px;">
-                                        <i class="bi bi-eye" id="togglePasswordLama" onclick="togglePassword('katasandilama')" style="position: absolute; font-size: 20px; right: 40px; top: 180px; cursor: pointer;"></i>
-                                    </div>
-                                    <div class="col-12 text-start mt-2">
-                                        <label for="name" class="fw-medium" style="font-size: 14px;">Kata Sandi Baru <span class="text-danger">*</span></label>
-                                        <input type="password" class="input-password" id="katasandibaru" placeholder="Ketik Kata Sandi Barumu..." oninput="checkInputsPassword()" style="font-size: 14px;">
-                                        <i class="bi bi-eye-slash" id="togglePasswordBaru" onclick="togglePassword('katasandibaru')" style="position: absolute; font-size: 20px; right: 40px; top: 252px; cursor: pointer;"></i>
-                                    </div>
-                                    <div class="col-12 text-start mt-2">
-                                        <label for="name" class="fw-medium" style="font-size: 14px;">Konfirmasi Kata Sandi Baru <span class="text-danger">*</span></label>
-                                        <input type="password" class="input-password" id="konfirmasikatasandibaru" placeholder="Ketik Ulang Kata Sandi Barumu..." oninput="checkInputsPassword()" style="font-size: 14px;">
-                                        <i class="bi bi-eye-slash" id="toggleKonfirmasiBaru" onclick="togglePassword('konfirmasikatasandibaru')" style="position: absolute; font-size: 20px; right: 40px; top: 324px; cursor: pointer;"></i>
-                                    </div>
-                                    <div class="col-12 text-start">
-                                        <p class="fw-normal" style="font-size: 14px;">Lupa kata Sandi?<a data-bs-toggle="modal" data-bs-target="#lupasandi" style="font-style: italic; color: #9370DB; text-decoration: none; margin-left: 4px;">Klik Disini</a></p>
-                                    </div>
-                                    <div class="col-12 text-center mt-2">
-                                        <button id="simpanPasswordButton" class="btn btn-secondary" style="color: white; border: none;" disabled>Simpan</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal fade" id="lupasandi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content" style="border: 1px solid #800080; border-radius: 20px; margin-top: 10rem;">
-                        <div class="modal-body">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-12 text-center">
-                                        <img src="{{ asset('img/security.png') }}" width="100" height="100">
-                                    </div>
-                                    <div class="col-12 text-center mt-2">
-                                        <h3 class="fw-semibold" style="font-size: 16px;">Lupa Kata Sandi?</h3>
-                                    </div>
-                                    <div class="col-12 text-start">
-                                        <label for="name" class="fw-medium" style="font-size: 14px;">Masukkan Email <span class="text-danger">*</span></label>
-                                        <input type="email" class="input-email" id="email" placeholder="Ketik Emailmu..." style="font-size: 14px;">
-                                    </div>
-                                    <div class="col-12 text-center mt-2">
-                                        <button id="simpanPasswordButton" class="btn btn-secondary" style="color: white; border: none;" disabled>Kirim</button>
-                                    </div>
-                                    <div class="col-12 text-center">
-                                        <a data-bs-toggle="modal" data-bs-target="#editsandi" style="text-decoration: none; font-size: 14px; color: #9370DB;">Kembali Ke Halaman Ubah Sandi</a>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -340,7 +349,7 @@
             </div>
             <button class="btn-logout" data-bs-toggle="modal" data-bs-target="#logout"><i class="bi bi-arrow-right-square-fill" style="font-size: 16px; margin-left: 10px; margin-right: 10px; color: red;"></i>Logout<i class="bi bi-arrow-right text-secondary" style="font-size: 16px; margin-left: 12.2rem;"></i></button>
             <!-- Modal -->
-            <div class="modal fade" id="logout" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="logout" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content" style="border: 1px solid #800080; border-radius: 20px; margin-top: 14rem;">
                         <div class="modal-body">
@@ -373,70 +382,47 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         function preview() {
             var frame = document.getElementById('frame');
             var uploadIcon = document.getElementById('uploadIcon');
             var uploadInput = document.getElementById('uploadfoto');
-            var profileImage = document.getElementById('profileImage');
-            var saveButton = document.getElementById('saveButton');
 
             if (event.target.files.length > 0) {
                 frame.src = URL.createObjectURL(event.target.files[0]);
                 uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
             }
-
-            checkInputs();
         }
 
-        function deleteImage() {
+        // Fungsi untuk mengubah gambar saat pengguna memilih file baru
+        function changePhoto(event) {
+            const input = event.target;
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    // console.log(e.target.result);
+                    document.getElementById('frame').src = '';
+                    document.getElementById('frame').src = e.target.result;
+                    document.getElementById('uploadIcon').style.display = 'none'; // Sembunyikan ikon upload
+                }
+                reader.readAsDataURL(input.files[0]);
+                console.log(input.files);
+            }
+        }
+
+        function deleteImage(event) {
             var frame = document.getElementById('frame');
             var uploadIcon = document.getElementById('uploadIcon');
             var uploadInput = document.getElementById('uploadfoto');
 
             // Kembalikan ke gambar semula dan tampilkan ikon upload
-            frame.src = "{{ asset('img/avatar.png') }}";
+            frame.src = "{{ asset($users->gambar ? 'uploadkamar/' . $users->gambar : '/img/customer1.jpg') }}";
             uploadIcon.style.display = 'block';
             uploadInput.value = ''; // Bersihkan nilai input file
             checkInputs();
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            var passwordLamaInput = document.getElementById('katasandilama');
-            var toggleLamaIcon = document.getElementById('togglePasswordLama');
-
-            var passwordBaruInput = document.getElementById('katasandibaru');
-            var toggleBaruIcon = document.getElementById('togglePasswordBaru');
-
-            var konfirmasiBaruInput = document.getElementById('konfirmasikatasandibaru');
-            var toggleKonfirmasiIcon = document.getElementById('toggleKonfirmasiBaru');
-
-            // Fungsi untuk toggle password dan mengganti ikon
-            function togglePassword(input, toggleIcon) {
-                if (input.type === 'password') {
-                    input.type = 'text';
-                    toggleIcon.classList.remove('bi-eye-slash');
-                    toggleIcon.classList.add('bi-eye');
-                } else {
-                    input.type = 'password';
-                    toggleIcon.classList.remove('bi-eye');
-                    toggleIcon.classList.add('bi-eye-slash');
-                }
-            }
-
-            // Menambahkan event listener untuk setiap input
-            toggleLamaIcon.addEventListener('click', function() {
-                togglePassword(passwordLamaInput, toggleLamaIcon);
-            });
-
-            toggleBaruIcon.addEventListener('click', function() {
-                togglePassword(passwordBaruInput, toggleBaruIcon);
-            });
-
-            toggleKonfirmasiIcon.addEventListener('click', function() {
-                togglePassword(konfirmasiBaruInput, toggleKonfirmasiIcon);
-            });
-        });
         // edit profil
         function checkInputs() {
             var nameInput = document.getElementById('name-user').value;
@@ -482,6 +468,71 @@
             } else {
                 // Jika salah satu input kosong, nonaktifkan tombol Simpan
                 document.getElementById('simpanPasswordButton').setAttribute('disabled', 'disabled');
+            }
+        }
+    </script>
+    @if (Session::has('success'))
+        <script>
+            Swal.fire({
+                title: 'Sukses!',
+                text: '{{ Session::get('success') }}',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 3000 // Waktu penampilan Sweet Alert (dalam milidetik)
+            });
+        </script>
+    @endif
+    <script>
+        $(document).ready(function() {
+            $('#editForm').submit(function(e) {
+                e.preventDefault();
+
+                var formData = $(this).serialize();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/pemilik/sandi/edit',
+                    data: formData,
+                    success: function(data) {
+                        $('#editsandi-modal').modal('hide');
+                        // Tampilkan SweetAlert dengan pesan sukses
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Sukses',
+                            text: data.success
+                        });
+                    },
+                    error: function(data) {
+                        var errors = data.responseJSON;
+                        $('#validation-errors').html('');
+                        // Tampilkan SweetAlert dengan pesan kesalahan
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Kesalahan',
+                            text: 'Password lama atau password baru tidak sama'
+                        });
+                        // $.each(errors.errors, function(key, value) {
+                        //     $('#validation-errors').show();
+                        //     $('#validation-errors').append('<div class="alert alert-danger">' + value + '</div>');
+                        // });
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        function togglePasswordVisibility(inputId, iconId) {
+            const input = document.getElementById(inputId);
+            const icon = document.getElementById(iconId);
+
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.remove("bi-eye-slash");
+                icon.classList.add("bi-eye");
+            } else {
+                input.type = "password";
+                icon.classList.remove("bi-eye");
+                icon.classList.add("bi-eye-slash");
             }
         }
     </script>

@@ -240,7 +240,9 @@
                     <div class="modal-body" style="padding: 4px;">
                         <img src="" id="itemImage" height="220" width="334" style="border-radius: 5px;">
                         <div id="itemNama" class="h3 fw-bold text-center mt-2" style="font-size: 18px;"></div>
-                        <p id="itemDeskripsi" class="text-dark fw-normal" style="font-size: 12px; margin-top: 0.5rem;"></p>
+                        <div class="container px-2">
+                            <p id="itemDeskripsi" class="text-dark fw-normal" style="font-size: 12px; margin-top: 0.5rem;"></p>
+                        </div>
                     </div>
                     {{-- <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -373,36 +375,17 @@
             <h1 class="fw-semibold" style="font-size: 18px; font-family: Poppins; margin-top: 10px;">Kamar Kost Kamu</h1>
             <p class="text-secondary" style="font-size: 10px; font-style: italic; margin-top: -6px;">Update tampilan terbaru kamarmu disini (Maks. 10 foto)</p>
             <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay;">
-                <div class="position-relative">
-                    <img id="frame" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="showModal()">
-                    <label for="uploadfoto" class="label-upload">
-                        <div class="box-icon">
-                            <div class="bg-kategori rounded-5">
-                                <i id="uploadIcon" class="bi bi-cloud-upload"></i>
-                            </div>
-                        </div>
-                        <input type="file" onchange="uploadImage(event)" name="gambar" hidden id="uploadfoto" accept="image/*">
-                    </label>
-                </div>
-                <!-- Modal Bootstrap -->
-                <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="confirmationModalLabel">Konfirmasi</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                Apakah Anda yakin ingin menghapus gambar ini?
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                <button type="button" class="btn btn-primary" onclick="deleteImage()">Hapus</button>
-                            </div>
-                        </div>
+                <form action="{{ route('kamarUpload') }}" method="post" enctype="multipart/form-data" id="uploadForm">
+                    @csrf
+                    <div class="upload-foto">
+                        <input type="file" id="file" name="gambar" onchange="uploadss('uploadForm')" accept="image/*" multiple>
+                        <label for="file">
+                            <i class="bi bi-cloud-arrow-up"></i>
+                        </label>
                     </div>
-                </div>
-                <div class="position-relative">
+                </form>
+                {{-- <img src="{{ asset('uploadkamar' . $gambarkerusakan->gambar1) }}" alt=""> --}}
+                {{-- <div class="position-relative">
                     <img id="frame2" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage2()">
                     <label for="uploadfoto2" class="label-upload">
                         <div class="box-icon">
@@ -500,7 +483,7 @@
                         </div>
                         <input type="file" onchange="preview10()" hidden id="uploadfoto10" accept="image/*">
                     </label>
-                </div>
+                </div> --}}
             </div>
         </div>
         <!-- Tampilkan ilustrasi kosong -->
@@ -523,6 +506,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         var modal = document.getElementById('myModal');
         var openModalBtn = document.getElementById('openModalBtn');
@@ -904,45 +888,22 @@
         }
     </script>
     <script>
-        function uploadImage(event) {
-            const fileInput = event.target.files[0];
-            const formData = new FormData();
-            formData.append('gambar', fileInput);
-
-            // Kirim gambar ke server dengan AJAX
-            // Ganti 'upload-gambar' dengan URL endpoint Anda
-            fetch('/upload-gambar', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Terjadi kesalahan saat mengunggah gambar.');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    // Sukses, lakukan sesuatu jika diperlukan
-                    console.log('Gambar berhasil diunggah:', data);
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    // Handle error
-                });
-        }
-
-        function showModal() {
-            $('#confirmationModal').modal('show');
-        }
-
-        function deleteImage() {
-            // Hapus gambar dari server
-            // Implementasi penghapusan gambar dari server
-
-            // Tutup modal setelah gambar dihapus
-            $('#confirmationModal').modal('hide');
+        function uploadss(id) {
+            document.getElementById(id).submit();
+            console.log(id);
         }
     </script>
+    @if (Session::has('success'))
+        <script>
+            Swal.fire({
+                title: 'Berhasil!',
+                text: '{{ Session::get('success') }}',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 3000 // Waktu penampilan Sweet Alert (dalam milidetik)
+            });
+        </script>
+    @endif
 </body>
 
 </html>

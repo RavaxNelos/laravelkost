@@ -111,8 +111,8 @@
             </div>
         </div>
     </div>
-    <section x-data="{ filter: 'bulanan' }">
-        <div id="stickyHeader" class="sticky-top bg-white">
+    <section x-data="{ filter: 'Bulanan' }">
+        <div class="sticky-top" id="stickyHeader">
             <div class="container py-2" style="background-color: white;">
                 <div class="row">
                     <div class="col-12 text-center mt-2">
@@ -121,273 +121,69 @@
                 </div>
             </div>
             <hr class="garis-pertama">
-            <div class="container">
-                <div class="row" style="margin-top: -16px;">
-                    <div class="col-6 text-center" style="margin-left: -12px;">
-                        <button :class="filter == 'bulanan' ? 'btn btn-dark' : 'btn text-secondary'" x-on:click="filter = 'bulanan';">Kost Bulanan</button>
-                    </div>
-                    <div class="col-6 text-center" style="margin-left: 0px;">
-                        <button :class="filter == 'harian' ? 'btn btn-dark' : 'btn text-secondary'" x-on:click="filter = 'harian';">Sewa Harian</button>
+            @if (count($transaksi) > 0)
+                <div class="container">
+                    <div class="row" style="margin-top: -16px;">
+                        <div class="col-6 text-center" style="margin-left: -12px;">
+                            <button :class="filter == 'Bulanan' ? 'btn btn-dark' : 'btn text-secondary'" x-on:click="filter = 'Bulanan';">Kost Bulanan</button>
+                        </div>
+                        <div class="col-6 text-center" style="margin-left: 0px;">
+                            <button :class="filter == 'Harian' ? 'btn btn-dark' : 'btn text-secondary'" x-on:click="filter = 'Harian';">Sewa Harian</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <hr class="garis-kedua">
+                <hr class="garis-kedua">
         </div>
         <div class="container">
-            <div class="card-custom" style="width: 336px; height: 650px; background-color: gray; border-radius : 10px; position: absolute;">
+            <div class="card-custom" style="width: 336px; height: auto; background-color: gray; border-radius : 10px; position: absolute;">
                 <div class="container">
-                    <div class="card-item-riwayat" style="background-color: #f5f5f5; width: 100%; height: 148px; border-radius: 8px; margin-top: 10px;" x-show="filter == 'bulanan'">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-8 text-start mt-2">
-                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">No. Pesanan</h3>
+                    @foreach ($transaksi as $item)
+                        <div class="card-item-riwayat" style="background-color: #f5f5f5; width: 100%; height: 148px; border-radius: 8px; margin-top: 10px; margin-bottom: 10px;" x-show="filter == '{{ $item->kamarkost->tipe_kost }}'">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-8 text-start mt-2">
+                                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">No. Pesanan</h3>
+                                    </div>
+                                    <div class="col-4 mt-2 text-end">
+                                        <h3 class="fw-medium" style="font-size: 14px; color: #333333;">{{ $item->no_transaksi }}</h3>
+                                    </div>
+                                    <div class="col-3 text-start">
+                                        <img src="{{ asset('uploadkamar/' . $item->kamarkost->gambar_kost) }}" style="width: 80px; height: 70px; border-radius: 8px;">
+                                    </div>
+                                    <div class="col-7" style="margin-left: 14px;">
+                                        <h3 class="fw-medium text-secondary-emphasis" style="font-size: 14px;">Kamar {{ $item->kamarkost->kategori->kategori }}</h3>
+                                        <p class="text-secondary fw-normal" style="font-size: 10px; margin-top: -6px; line-height: 14px; width: 190px;">Kamar Uk {{ Illuminate\Support\Str::limit($item->kamarkost->ukuran_kost, 7, '') }} {{ Illuminate\Support\Str::limit($item->kamarkost->fasilitas_kost, 45, '...') }}</p>
+                                        <h3 class="fw-medium" style="font-size: 16px; color: #9370DB; font-family: Poppins; margin-top: -10px;">Rp. {{ number_format($item->total_harga, 0, ',', '.') }}</h3>
+                                    </div>
                                 </div>
-                                <div class="col-4 mt-2" style="margin-left: -12px;">
-                                    <h3 class="fw-medium" style="font-size: 14px; color: #333333;">QRTU1234567</h3>
-                                </div>
-                                <div class="col-3 text-start">
-                                    <img src="{{ asset('img/kamarkostputra1.jpg') }}" style="width: 80px; height: 70px; border-radius: 8px;">
-                                </div>
-                                <div class="col-7" style="margin-left: 14px;">
-                                    <h3 class="fw-medium" style="font-size: 14px;">Kamar Kost Putra</h3>
-                                    <p class="text-secondary fw-normal" style="font-size: 10px; margin-top: -6px; line-height: 14px; width: 190px;">Kamar Uk 3 x 4 M | K.Mandi Dlm | 1 AC PK | 1 Lemari...</p>
-                                    <h3 class="fw-medium" style="font-size: 16px; color: #9370DB; font-family: Poppins; margin-top: -10px;">Rp. 2.300.000</h3>
+                            </div>
+                            <hr class="garis-pada-card" style="border-top: 1px solid #cccccc; margin-top: 4px;">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-6 text-start" style="margin-top: -10px;">
+                                        <p class="text-secondary fw-normal" style="font-size: 12px; width: 200px;">{{ Carbon\Carbon::parse($item->created_at)->locale('id')->isoFormat('DD MMMM Y, HH:mm') . ' WIB' }}</p>
+                                    </div>
+                                    <div class="col-6 text-end" style="margin-top: -10px;">
+                                        <p class="text-{{ $item->status == 'proses' ? 'warning' : ($item->status == 'selesai' ? 'success' : 'danger') }}" style="font-size: 12px;">
+                                            {{ $item->status == 'proses' ? 'Proses Pembayaran' : ($item->status == 'selesai' ? 'Pembayaran Diterima' : 'Pembayaran Ditolak') }}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <hr class="garis-pada-card" style="border-top: 1px solid #cccccc; margin-top: 4px;">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-7 text-start" style="margin-top: -10px;">
-                                    <p class="text-secondary fw-normal" style="font-size: 12px;">03 Maret 2024, 18.00 WIB</p>
-                                </div>
-                                <div class="col-5 text-end" style="margin-top: -10px;">
-                                    <p class="text-success fw-normal" style="font-size: 12px;">Selesai</p>
-                                </div>
-                            </div>
-                        </div>
+                    @endforeach
+                @else
+                    <div class="col-12 text-center" style="margin-top: 150px;">
+                        <img src="{{ asset('img/planet.png') }}" width="150">
                     </div>
-                    <div class="card-item-riwayat" style="background-color: #f5f5f5; width: 100%; height: 148px; border-radius: 8px; margin-top: 10px;" x-show="filter == 'bulanan'">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-8 text-start mt-2">
-                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">No. Pesanan</h3>
-                                </div>
-                                <div class="col-4 mt-2" style="margin-left: -12px;">
-                                    <h3 class="fw-medium" style="font-size: 14px; color: #333333;">QRTU1234567</h3>
-                                </div>
-                                <div class="col-3 text-start">
-                                    <img src="{{ asset('img/kamarkostputra2.jpg') }}" style="width: 80px; height: 70px; border-radius: 8px;">
-                                </div>
-                                <div class="col-7" style="margin-left: 14px;">
-                                    <h3 class="fw-medium" style="font-size: 14px;">Kamar Kost Putra</h3>
-                                    <p class="text-secondary fw-normal" style="font-size: 10px; margin-top: -6px; line-height: 14px; width: 190px;">Kamar Uk 3 x 4 M | K.Mandi Dlm | 1 AC PK | 1 Lemari...</p>
-                                    <h3 class="fw-medium" style="font-size: 16px; color: #9370DB; font-family: Poppins; margin-top: -10px;">Rp. 2.300.000</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="garis-pada-card" style="border-top: 1px solid #cccccc; margin-top: 4px;">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-7 text-start" style="margin-top: -10px;">
-                                    <p class="text-secondary fw-normal" style="font-size: 12px;">10 Januari 2024, 18.30 WIB</p>
-                                </div>
-                                <div class="col-5 text-end" style="margin-top: -10px;">
-                                    <p class="fw-normal" style="font-size: 12px; color: #9C27B0;">Berlangsung</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-item-riwayat" style="background-color: #f5f5f5; width: 100%; height: 148px; border-radius: 8px; margin-top: 10px;" x-show="filter == 'bulanan'">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-8 text-start mt-2">
-                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">No. Pesanan</h3>
-                                </div>
-                                <div class="col-4 mt-2" style="margin-left: -12px;">
-                                    <h3 class="fw-medium" style="font-size: 14px; color: #333333;">QRTU1234567</h3>
-                                </div>
-                                <div class="col-3 text-start">
-                                    <img src="{{ asset('img/kamarkostputri1.jpg') }}" style="width: 80px; height: 70px; border-radius: 8px;">
-                                </div>
-                                <div class="col-7" style="margin-left: 14px;">
-                                    <h3 class="fw-medium" style="font-size: 14px;">Kamar Kost Putri</h3>
-                                    <p class="text-secondary fw-normal" style="font-size: 10px; margin-top: -6px; line-height: 14px; width: 190px;">Kamar Uk 3 x 4 M | K.Mandi Dlm | 1 AC PK | 1 Lemari...</p>
-                                    <h3 class="fw-medium" style="font-size: 16px; color: #9370DB; font-family: Poppins; margin-top: -10px;">Rp. 2.300.000</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="garis-pada-card" style="border-top: 1px solid #cccccc; margin-top: 4px;">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-7 text-start" style="margin-top: -10px;">
-                                    <p class="text-secondary fw-normal" style="font-size: 12px;">12 Februari 2024, 19.00 WIB</p>
-                                </div>
-                                <div class="col-5 text-end" style="margin-top: -10px;">
-                                    <p class="text-success fw-normal" style="font-size: 12px;">Selesai</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-item-riwayat" style="background-color: #f5f5f5; width: 100%; height: 148px; border-radius: 8px; margin-top: 10px;" x-show="filter == 'bulanan'">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-8 text-start mt-2">
-                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">No. Pesanan</h3>
-                                </div>
-                                <div class="col-4 mt-2" style="margin-left: -12px;">
-                                    <h3 class="fw-medium" style="font-size: 14px; color: #333333;">QRTU1234567</h3>
-                                </div>
-                                <div class="col-3 text-start">
-                                    <img src="{{ asset('img/kamarkostputrI2.jpg') }}" style="width: 80px; height: 70px; border-radius: 8px;">
-                                </div>
-                                <div class="col-7" style="margin-left: 14px;">
-                                    <h3 class="fw-medium" style="font-size: 14px;">Kamar Kost Putri</h3>
-                                    <p class="text-secondary fw-normal" style="font-size: 10px; margin-top: -6px; line-height: 14px; width: 190px;">Kamar Uk 3 x 4 M | K.Mandi Dlm | 1 AC PK | 1 Lemari...</p>
-                                    <h3 class="fw-medium" style="font-size: 16px; color: #9370DB; font-family: Poppins; margin-top: -10px;">Rp. 2.300.000</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="garis-pada-card" style="border-top: 1px solid #cccccc; margin-top: 4px;">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-7 text-start" style="margin-top: -10px;">
-                                    <p class="text-secondary fw-normal" style="font-size: 12px;">15 April 2024, 19.30 WIB</p>
-                                </div>
-                                <div class="col-5 text-end" style="margin-top: -10px;">
-                                    <p class="fw-normal" style="font-size: 12px; color: #9C27B0;">Berlangsung</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-item-riwayat" style="background-color: #f5f5f5; width: 100%; height: 148px; border-radius: 8px; margin-top: 10px;" x-show="filter == 'harian'">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-8 text-start mt-2">
-                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">No. Pesanan</h3>
-                                </div>
-                                <div class="col-4 mt-2" style="margin-left: -12px;">
-                                    <h3 class="fw-medium" style="font-size: 14px; color: #333333;">AGHF1234567</h3>
-                                </div>
-                                <div class="col-3 text-start">
-                                    <img src="{{ asset('img/kamarkostputraharian1.jpg') }}" style="width: 80px; height: 70px; border-radius: 8px;">
-                                </div>
-                                <div class="col-7" style="margin-left: 14px;">
-                                    <h3 class="fw-medium" style="font-size: 14px;">Kamar Kost Putra</h3>
-                                    <p class="text-secondary fw-normal" style="font-size: 10px; margin-top: -6px; line-height: 14px; width: 190px;">Kamar Uk 3 x 4 M | K.Mandi Dlm | 1 AC PK | 1 Lemari...</p>
-                                    <h3 class="fw-medium" style="font-size: 16px; color: #9370DB; font-family: Poppins; margin-top: -10px;">Rp. 540.000</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="garis-pada-card" style="border-top: 1px solid #cccccc; margin-top: 4px;">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-7 text-start" style="margin-top: -10px;">
-                                    <p class="text-secondary fw-normal" style="font-size: 12px;">03 Maret 2024, 17.30 WIB</p>
-                                </div>
-                                <div class="col-5 text-end" style="margin-top: -10px;">
-                                    <p class="text-success fw-normal" style="font-size: 12px;">Selesai</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-item-riwayat" style="background-color: #f5f5f5; width: 100%; height: 148px; border-radius: 8px; margin-top: 10px;" x-show="filter == 'harian'">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-8 text-start mt-2">
-                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">No. Pesanan</h3>
-                                </div>
-                                <div class="col-4 mt-2" style="margin-left: -12px;">
-                                    <h3 class="fw-medium" style="font-size: 14px; color: #333333;">AGHF1234567</h3>
-                                </div>
-                                <div class="col-3 text-start">
-                                    <img src="{{ asset('img/kamarkostputraharian2.jpg') }}" style="width: 80px; height: 70px; border-radius: 8px;">
-                                </div>
-                                <div class="col-7" style="margin-left: 14px;">
-                                    <h3 class="fw-medium" style="font-size: 14px;">Kamar Kost Putra</h3>
-                                    <p class="text-secondary fw-normal" style="font-size: 10px; margin-top: -6px; line-height: 14px; width: 190px;">Kamar Uk 3 x 4 M | K.Mandi Dlm | 1 AC PK | 1 Lemari...</p>
-                                    <h3 class="fw-medium" style="font-size: 16px; color: #9370DB; font-family: Poppins; margin-top: -10px;">Rp. 540.000</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="garis-pada-card" style="border-top: 1px solid #cccccc; margin-top: 4px;">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-7 text-start" style="margin-top: -10px;">
-                                    <p class="text-secondary fw-normal" style="font-size: 12px;">06 Maret 2024, 17.00 WIB</p>
-                                </div>
-                                <div class="col-5 text-end" style="margin-top: -10px;">
-                                    <p class="fw-normal" style="font-size: 12px; color: #9C27B0;">Berlangsung</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-item-riwayat" style="background-color: #f5f5f5; width: 100%; height: 148px; border-radius: 8px; margin-top: 10px;" x-show="filter == 'harian'">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-8 text-start mt-2">
-                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">No. Pesanan</h3>
-                                </div>
-                                <div class="col-4 mt-2" style="margin-left: -12px;">
-                                    <h3 class="fw-medium" style="font-size: 14px; color: #333333;">QRTU1234567</h3>
-                                </div>
-                                <div class="col-3 text-start">
-                                    <img src="{{ asset('img/kamarkostputriharian1.jpg') }}" style="width: 80px; height: 70px; border-radius: 8px;">
-                                </div>
-                                <div class="col-7" style="margin-left: 14px;">
-                                    <h3 class="fw-medium" style="font-size: 14px;">Kamar Kost Putri</h3>
-                                    <p class="text-secondary fw-normal" style="font-size: 10px; margin-top: -6px; line-height: 14px; width: 190px;">Kamar Uk 3 x 4 M | K.Mandi Dlm | 1 AC PK | 1 Lemari...</p>
-                                    <h3 class="fw-medium" style="font-size: 16px; color: #9370DB; font-family: Poppins; margin-top: -10px;">Rp. 540.000</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="garis-pada-card" style="border-top: 1px solid #cccccc; margin-top: 4px;">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-7 text-start" style="margin-top: -10px;">
-                                    <p class="text-secondary fw-normal" style="font-size: 12px;">13 Maret 2024, 18.00 WIB</p>
-                                </div>
-                                <div class="col-5 text-end" style="margin-top: -10px;">
-                                    <p class="text-success fw-normal" style="font-size: 12px;">Selesai</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-item-riwayat" style="background-color: #f5f5f5; width: 100%; height: 148px; border-radius: 8px; margin-top: 10px;" x-show="filter == 'harian'">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-8 text-start mt-2">
-                                    <h3 class="fw-medium text-secondary" style="font-size: 14px;">No. Pesanan</h3>
-                                </div>
-                                <div class="col-4 mt-2" style="margin-left: -12px;">
-                                    <h3 class="fw-medium" style="font-size: 14px; color: #333333;">AGHF1234567</h3>
-                                </div>
-                                <div class="col-3 text-start">
-                                    <img src="{{ asset('img/kamarkostputriharian2.jpg') }}" style="width: 80px; height: 70px; border-radius: 8px;">
-                                </div>
-                                <div class="col-7" style="margin-left: 14px;">
-                                    <h3 class="fw-medium" style="font-size: 14px;">Kamar Kost Putri</h3>
-                                    <p class="text-secondary fw-normal" style="font-size: 10px; margin-top: -6px; line-height: 14px; width: 190px;">Kamar Uk 3 x 4 M | K.Mandi Dlm | 1 AC PK | 1 Lemari...</p>
-                                    <h3 class="fw-medium" style="font-size: 16px; color: #9370DB; font-family: Poppins; margin-top: -10px;">Rp. 540.000</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="garis-pada-card" style="border-top: 1px solid #cccccc; margin-top: 4px;">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-7 text-start" style="margin-top: -10px;">
-                                    <p class="text-secondary fw-normal" style="font-size: 12px;">19 Maret 2024, 19.00 WIB</p>
-                                </div>
-                                <div class="col-5 text-end" style="margin-top: -10px;">
-                                    <p class="fw-normal" style="font-size: 12px; color: #9C27B0;">Berlangsung</p>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="col-12 text-center mt-2">
+                        <h1 class="fw-medium fs-6">Belum Ada Riwayat Transaksi</h1>
                     </div>
                 </div>
             </div>
         </div>
-        <hr class="garis-ketiga">
+        @endif
+        {{-- <hr class="garis-ketiga"> --}}
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

@@ -11,11 +11,14 @@ class gambarKamarKostKamu extends Model
     protected $table = 'gambar_kamar_kost_kamu';
     protected $guard = ['id'];
 
-    public function kamar() {
+    public function kamarkost() {
         return $this->belongsTo(KamarKost::class, 'kamar_id', 'id');
     }
 
     public function user() {
         return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+    public function transaksi() {
+        return $this->belongsTo(Transaksi::class, 'kamar_id', 'id');
     }
 }
