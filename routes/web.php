@@ -48,7 +48,9 @@ Route::get('/', function () {
 //user controller percobaan
 Route::group(['middleware' => 'auth'], function () {
 Route::get('/user/kamar', [UserController::class, 'kamar'])->name('kamar');
-Route::post('/upload', [UserController::class, 'upload'])->name('kamarUpload');
+Route::post('/upload/kamar', [UserController::class, 'upload'])->name('kamarUpload');
+Route::post('/edit/kamar', [UserController::class, 'editPic'])->name('edit.pic');
+Route::post('/delete/kamar', [UserController::class, 'deletePic'])->name('delete.pic');
 Route::get('/user/profil', [UserController::class, 'profil'])->name('profil');
 Route::post('/user/profil/edit', [UserController::class, 'profiledit'])->name('user.profil');
 Route::post('/user/akun/edit', [UserController::class, 'akunedit']);

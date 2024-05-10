@@ -223,96 +223,53 @@ class UserController extends Controller
     $fasKamarmandi = Fasilitas::where('tipe', 'Kamar Mandi')->get();
     $fasUmum       = Fasilitas::where('tipe', 'Umum')->get();
     $fasParkir     = Fasilitas::where('tipe', 'Parkir')->get();
+    $fotoku        = gambarKamarKostKamu::where('user_id', auth()->user()->id)->orderBy('id', 'desc')->get();
                 // dd($kamar_kost_fasilitas);
-    return view('user.kamar', compact('users', 'transaksi', 'kamar_kost', 'kamar_kost_fasilitas', 'fasKamar', 'fasKamarmandi', 'fasUmum', 'fasParkir'));
+    return view('user.kamar', compact('users', 'transaksi', 'kamar_kost', 'kamar_kost_fasilitas', 'fasKamar', 'fasKamarmandi', 'fasUmum', 'fasParkir', 'fotoku'));
     }
 
     public function upload(Request $request)
     {
-        $id        = $request->id;
-        $kamarkost = KamarKost::find($id);
-        $gambar    = gambarKamarKostKamu::find($id);
-                // Validasi jika file yang diunggah adalah gambar
-        $request->validate([
-            'gambar*' => 'required|image|mimes:jpeg,png,jpg,gif|max:6048',
-        ]);
+       // dd($request->all());
 
-        if ($request->hasFile('gambar1')) {
-            $gambarBarang = $request->file('gambar1');
-            $namaFile1    = time().'.'.$gambarBarang->getClientOriginalName();
-            $gambarBarang->move(public_path('uploadkamar'), $namaFile1);
+        $file = $request->file('gambar');
+        $namaFile = time().'.'.$file->getClientOriginalExtension();
+        $file->move(public_path('uploadkamar'), $namaFile);
 
-            $gambar->gambar1 = $namaFile1;
-        }
-        if ($request->hasFile('gambar2')) {
-            $gambarBarang = $request->file('gambart2');
-            $namaFile2    = time().'.'.$gambarBarang->getClientOriginalName();
-            $gambarBarang->move(public_path('uploadkamar'), $namaFile2);
-
-            $gambar->gambar2 = $namaFile2;
-        }
-        if ($request->hasFile('gambar3')) {
-            $gambarBarang = $request->file('gambar3');
-            $namaFile3    = time().'.'.$gambarBarang->getClientOriginalName();
-            $gambarBarang->move(public_path('uploadkamar'), $namaFile3);
-
-            $gambar->gambar3 = $namaFile3;
-        }
-        if ($request->hasFile('gambar4')) {
-            $gambarBarang = $request->file('gambar4');
-            $namaFile4    = time().'.'.$gambarBarang->getClientOriginalName();
-            $gambarBarang->move(public_path('uploadkamar'), $namaFile4);
-
-            $gambar->gambar4 = $namaFile4;
-        }
-        if ($request->hasFile('gambar5')) {
-            $gambarBarang = $request->file('gambar5');
-            $namaFile5    = time().'.'.$gambarBarang->getClientOriginalName();
-            $gambarBarang->move(public_path('uploadkamar'), $namaFile5);
-
-            $gambar->gambar5 = $namaFile5;
-        }
-        if ($request->hasFile('gambar6')) {
-            $gambarBarang = $request->file('gambar6');
-            $namaFile6    = time().'.'.$gambarBarang->getClientOriginalName();
-            $gambarBarang->move(public_path('uploadkamar'), $namaFile6);
-
-            $gambar->gambar6 = $namaFile6;
-        }
-        if ($request->hasFile('gambar7')) {
-            $gambarBarang = $request->file('gambar7');
-            $namaFile7    = time().'.'.$gambarBarang->getClientOriginalName();
-            $gambarBarang->move(public_path('uploadkamar'), $namaFile7);
-
-            $gambar->gambar7 = $namaFile7;
-        }
-        if ($request->hasFile('gambar8')) {
-            $gambarBarang = $request->file('gambar8');
-            $namaFile8    = time().'.'.$gambarBarang->getClientOriginalName();
-            $gambarBarang->move(public_path('uploadkamar'), $namaFile8);
-
-            $gambar->gambar8 = $namaFile8;
-        }
-        if ($request->hasFile('gambar9')) {
-            $gambarBarang = $request->file('gambar9');
-            $namaFile9    = time().'.'.$gambarBarang->getClientOriginalName();
-            $gambarBarang->move(public_path('uploadkamar'), $namaFile9);
-
-            $gambar->gambar9 = $namaFile9;
-        }
-        if ($request->hasFile('gambar10')) {
-            $gambarBarang = $request->file('gambar10');
-            $namaFile10   = time().'.'.$gambarBarang->getClientOriginalName();
-            $gambarBarang->move(public_path('uploadkamar'), $namaFile10);
-
-            $gambar->gambar10 = $namaFile10;
-        }
-            $gambar           = new gambarKamarKostKamu();
-            $gambar->user_id  = auth()->user()->id;         // jika ada autentikasi pengguna
-            $gambar->kamar_id = '1';                        // sesuaikan dengan id kamar yang diinginkan
-        $gambar->save();
+        $gambarkamarku = new gambarKamarKostKamu();
+        $gambarkamarku->user_id = auth()->user()->id;
+        $gambarkamarku->kamar_id = '1';
+        $gambarkamarku->gambar = $namaFile;
+        $gambarkamarku->save();
 
         return back()->with('success', 'Gambar Berhasil Diunggah.');
+    }
+
+    public function editPic(Request $request) {
+        // dd($request->all());
+
+        $file = $request->file('gambar');
+        $namaFile = time().'.'.$file->getClientOriginalExtension();
+        $file->move(public_path('uploadkamar'), $namaFile);
+
+        $gambarkamarku = gambarKamarKostKamu::where('id', $request->id)->first();
+        $gambarkamarku->gambar = $namaFile;
+        $gambarkamarku->save();
+
+        return back()->with('success', 'Gambar Berhasil Diubah.');
+    }
+
+    public function deletePic(Request $request) {
+        // dd($request->all());
+
+        $gambarkamarku = gambarKamarKostKamu::where('id', $request->id)->first();
+            if(file_exists(public_path('uploadkamar/'.$gambarkamarku->gambar))) {
+                unlink(public_path('uploadkamar/'.$gambarkamarku->gambar));
+            }
+
+        $gambarkamarku->delete();
+
+        return back()->with('success', 'Gambar Berhasil Dihapus.');
     }
 
     public function getFasilitas($kamarKostFasilitasId) {

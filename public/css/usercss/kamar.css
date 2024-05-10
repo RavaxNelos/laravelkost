@@ -315,3 +315,130 @@ body {
     font-size: 34px;
     color: white;
 }
+
+
+.data-foto {
+    height: 8rem;
+    width: fit-content;
+    border-radius: .5rem !important;
+
+    .item {
+        height: 8rem;
+        background-color: rgb(227, 227, 227);
+        width: fit-content;
+        border-radius: .5rem !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            height: 8rem;
+            width: fit-content;
+            border-radius: .5rem !important;
+            border: 1.5px solid rgb(206, 206, 206);
+        }
+    }
+}
+
+.upload-foto {
+    /* margin-left: .5rem; */
+    height: 8rem;
+    width: 8rem;
+    overflow: hidden;
+    border-radius: .5rem;
+
+    input {
+        display: none;
+    }
+
+    label {
+        height: 8rem;
+        background-color: rgb(227, 227, 227);
+        width: 8rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        i {
+            font-size: 3rem;
+            color: white;
+        }
+    }
+}
+
+.fotoku {
+    .modal-dialog {
+        /* width: 100%; */
+
+        .modal-content {
+            width: fit-content !important;
+
+            .modal-body {
+                padding: .25rem !important;
+                width: fit-content !important;
+                border-radius: .5rem !important;
+
+                img {
+                    border-radius: .4rem !important;
+                    width: 16rem !important;
+                    height: auto !important;
+                    max-height: 40rem !important;
+                }
+
+            }
+
+            .modal-footer {
+                border-top: none;
+                padding: 0rem .11rem;
+                padding-bottom: .15rem;
+                display: flex;
+                align-items: center;
+                justify-content: end;
+                /* gap: .25rem; */
+
+                .for-edit {
+                    padding: .5rem;
+                    /* padding-bottom: .4rem;
+                    padding-left: .45rem; */
+                    background-color: rgb(0, 149, 255);
+                    border-radius: .3rem;
+
+                    .btns {
+
+                        /* background-color: aqua; */
+                        label {
+                            i {
+                                color: white;
+                            }
+                        }
+                    }
+                }
+
+                .for-delete {
+                    padding: .5rem;
+                    /* padding-bottom: .4rem;
+                    padding-left: .45rem; */
+                    background-color: rgba(255, 0, 0, 0.8);
+                    border-radius: .3rem;
+
+                    .btns {
+
+                        /* background-color: aqua; */
+                        button {
+                            border: none;
+                            background-color: transparent;
+
+                            i {
+                                color: white;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+input[type="file"] {
+    display: none;
+}

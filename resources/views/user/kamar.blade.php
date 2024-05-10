@@ -375,6 +375,50 @@
             <h1 class="fw-semibold" style="font-size: 18px; font-family: Poppins; margin-top: 10px;">Kamar Kost Kamu</h1>
             <p class="text-secondary" style="font-size: 10px; font-style: italic; margin-top: -6px;">Update tampilan terbaru kamarmu disini (Maks. 10 foto)</p>
             <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay;">
+                @foreach ($fotoku as $foto)
+                    <div class="data-foto" data-bs-toggle="modal" data-bs-target="#foto{{ $foto->id }}">
+                        <div class="item">
+                            <img src="{{ asset('uploadkamar/' . $foto->gambar) }}">
+                        </div>
+                    </div>
+
+                    {{-- modal --}}
+                    <div class="modal fade fotoku" id="foto{{ $foto->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <img src="{{ asset('uploadkamar/' . $foto->gambar) }}">
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="for-edit">
+                                        <form action="{{ route('edit.pic') }}" method="post" class="edit-form" id="formEdit{{ $foto->id }}" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="btns">
+                                                <input type="hidden" name="id" value="{{ $foto->id }}">
+                                                <input type="file" name="gambar" id="edit-{{ $foto->id }}" class="edit-pics" onchange="submitForm('formEdit{{ $foto->id }}')">
+                                                <label for="edit-{{ $foto->id }}">
+                                                    <i class="bi bi-pencil-square"></i>
+                                                </label>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="for-delete">
+                                        <form action="{{ route('delete.pic') }}" method="post" class="delete-form" id="formDelete{{ $foto->id }}" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="btns">
+                                                <input type="hidden" name="id" value="{{ $foto->id }}">
+                                                <input type="hidden" value="{{ $foto->gambar }}">
+                                                <button type="submit" class="deletes">
+                                                    <i class="bi bi-trash3"></i>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
                 <form action="{{ route('kamarUpload') }}" method="post" enctype="multipart/form-data" id="uploadForm">
                     @csrf
                     <div class="upload-foto">
@@ -639,230 +683,230 @@
 
         });
 
-        function preview() {
-            var frame = document.getElementById('frame');
-            var uploadIcon = document.getElementById('uploadIcon');
-            var uploadInput = document.getElementById('uploadfoto');
+        // function preview() {
+        //     var frame = document.getElementById('frame');
+        //     var uploadIcon = document.getElementById('uploadIcon');
+        //     var uploadInput = document.getElementById('uploadfoto');
 
-            if (event.target.files.length > 0) {
-                frame.src = URL.createObjectURL(event.target.files[0]);
-                uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
-            }
-        }
+        //     if (event.target.files.length > 0) {
+        //         frame.src = URL.createObjectURL(event.target.files[0]);
+        //         uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
+        //     }
+        // }
 
-        function deleteImage() {
-            var frame = document.getElementById('frame');
-            var uploadIcon = document.getElementById('uploadIcon');
-            var uploadInput = document.getElementById('uploadfoto');
+        // function deleteImage() {
+        //     var frame = document.getElementById('frame');
+        //     var uploadIcon = document.getElementById('uploadIcon');
+        //     var uploadInput = document.getElementById('uploadfoto');
 
-            // Kembalikan ke gambar semula dan tampilkan ikon upload
-            frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
-            uploadIcon.style.display = 'block';
-            uploadInput.value = ''; // Bersihkan nilai input file
-        }
+        //     // Kembalikan ke gambar semula dan tampilkan ikon upload
+        //     frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
+        //     uploadIcon.style.display = 'block';
+        //     uploadInput.value = ''; // Bersihkan nilai input file
+        // }
 
-        function preview2() {
-            var frame = document.getElementById('frame2');
-            var uploadIcon = document.getElementById('uploadIcon2');
-            var uploadInput = document.getElementById('uploadfoto2');
+        // function preview2() {
+        //     var frame = document.getElementById('frame2');
+        //     var uploadIcon = document.getElementById('uploadIcon2');
+        //     var uploadInput = document.getElementById('uploadfoto2');
 
-            if (event.target.files.length > 0) {
-                frame.src = URL.createObjectURL(event.target.files[0]);
-                uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
-            }
-        }
+        //     if (event.target.files.length > 0) {
+        //         frame.src = URL.createObjectURL(event.target.files[0]);
+        //         uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
+        //     }
+        // }
 
-        function deleteImage2() {
-            var frame = document.getElementById('frame2');
-            var uploadIcon = document.getElementById('uploadIcon2');
-            var uploadInput = document.getElementById('uploadfoto2');
+        // function deleteImage2() {
+        //     var frame = document.getElementById('frame2');
+        //     var uploadIcon = document.getElementById('uploadIcon2');
+        //     var uploadInput = document.getElementById('uploadfoto2');
 
-            // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
-            frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
-            uploadIcon.style.display = 'block';
-            uploadInput.value = ''; // Bersihkan nilai input file
-        }
+        //     // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
+        //     frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
+        //     uploadIcon.style.display = 'block';
+        //     uploadInput.value = ''; // Bersihkan nilai input file
+        // }
 
-        function preview3() {
-            var frame = document.getElementById('frame3');
-            var uploadIcon = document.getElementById('uploadIcon3');
-            var uploadInput = document.getElementById('uploadfoto3');
+        // function preview3() {
+        //     var frame = document.getElementById('frame3');
+        //     var uploadIcon = document.getElementById('uploadIcon3');
+        //     var uploadInput = document.getElementById('uploadfoto3');
 
-            if (event.target.files.length > 0) {
-                frame.src = URL.createObjectURL(event.target.files[0]);
-                uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
-            }
-        }
+        //     if (event.target.files.length > 0) {
+        //         frame.src = URL.createObjectURL(event.target.files[0]);
+        //         uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
+        //     }
+        // }
 
-        function deleteImage3() {
-            var frame = document.getElementById('frame3');
-            var uploadIcon = document.getElementById('uploadIcon3');
-            var uploadInput = document.getElementById('uploadfoto3');
+        // function deleteImage3() {
+        //     var frame = document.getElementById('frame3');
+        //     var uploadIcon = document.getElementById('uploadIcon3');
+        //     var uploadInput = document.getElementById('uploadfoto3');
 
-            // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
-            frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
-            uploadIcon.style.display = 'block';
-            uploadInput.value = ''; // Bersihkan nilai input file
-        }
+        //     // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
+        //     frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
+        //     uploadIcon.style.display = 'block';
+        //     uploadInput.value = ''; // Bersihkan nilai input file
+        // }
 
-        function preview4() {
-            var frame = document.getElementById('frame4');
-            var uploadIcon = document.getElementById('uploadIcon4');
-            var uploadInput = document.getElementById('uploadfoto4');
+        // function preview4() {
+        //     var frame = document.getElementById('frame4');
+        //     var uploadIcon = document.getElementById('uploadIcon4');
+        //     var uploadInput = document.getElementById('uploadfoto4');
 
-            if (event.target.files.length > 0) {
-                frame.src = URL.createObjectURL(event.target.files[0]);
-                uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
-            }
-        }
+        //     if (event.target.files.length > 0) {
+        //         frame.src = URL.createObjectURL(event.target.files[0]);
+        //         uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
+        //     }
+        // }
 
-        function deleteImage4() {
-            var frame = document.getElementById('frame4');
-            var uploadIcon = document.getElementById('uploadIcon4');
-            var uploadInput = document.getElementById('uploadfoto4');
+        // function deleteImage4() {
+        //     var frame = document.getElementById('frame4');
+        //     var uploadIcon = document.getElementById('uploadIcon4');
+        //     var uploadInput = document.getElementById('uploadfoto4');
 
-            // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
-            frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
-            uploadIcon.style.display = 'block';
-            uploadInput.value = ''; // Bersihkan nilai input file
-        }
+        //     // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
+        //     frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
+        //     uploadIcon.style.display = 'block';
+        //     uploadInput.value = ''; // Bersihkan nilai input file
+        // }
 
-        function preview5() {
-            var frame = document.getElementById('frame5');
-            var uploadIcon = document.getElementById('uploadIcon5');
-            var uploadInput = document.getElementById('uploadfoto5');
+        // function preview5() {
+        //     var frame = document.getElementById('frame5');
+        //     var uploadIcon = document.getElementById('uploadIcon5');
+        //     var uploadInput = document.getElementById('uploadfoto5');
 
-            if (event.target.files.length > 0) {
-                frame.src = URL.createObjectURL(event.target.files[0]);
-                uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
-            }
-        }
+        //     if (event.target.files.length > 0) {
+        //         frame.src = URL.createObjectURL(event.target.files[0]);
+        //         uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
+        //     }
+        // }
 
-        function deleteImage5() {
-            var frame = document.getElementById('frame5');
-            var uploadIcon = document.getElementById('uploadIcon5');
-            var uploadInput = document.getElementById('uploadfoto5');
+        // function deleteImage5() {
+        //     var frame = document.getElementById('frame5');
+        //     var uploadIcon = document.getElementById('uploadIcon5');
+        //     var uploadInput = document.getElementById('uploadfoto5');
 
-            // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
-            frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
-            uploadIcon.style.display = 'block';
-            uploadInput.value = ''; // Bersihkan nilai input file
-        }
+        //     // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
+        //     frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
+        //     uploadIcon.style.display = 'block';
+        //     uploadInput.value = ''; // Bersihkan nilai input file
+        // }
 
-        function preview6() {
-            var frame = document.getElementById('frame6');
-            var uploadIcon = document.getElementById('uploadIcon6');
-            var uploadInput = document.getElementById('uploadfoto6');
+        // function preview6() {
+        //     var frame = document.getElementById('frame6');
+        //     var uploadIcon = document.getElementById('uploadIcon6');
+        //     var uploadInput = document.getElementById('uploadfoto6');
 
-            if (event.target.files.length > 0) {
-                frame.src = URL.createObjectURL(event.target.files[0]);
-                uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
-            }
-        }
+        //     if (event.target.files.length > 0) {
+        //         frame.src = URL.createObjectURL(event.target.files[0]);
+        //         uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
+        //     }
+        // }
 
-        function deleteImage6() {
-            var frame = document.getElementById('frame6');
-            var uploadIcon = document.getElementById('uploadIcon6');
-            var uploadInput = document.getElementById('uploadfoto6');
+        // function deleteImage6() {
+        //     var frame = document.getElementById('frame6');
+        //     var uploadIcon = document.getElementById('uploadIcon6');
+        //     var uploadInput = document.getElementById('uploadfoto6');
 
-            // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
-            frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
-            uploadIcon.style.display = 'block';
-            uploadInput.value = ''; // Bersihkan nilai input file
-        }
+        //     // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
+        //     frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
+        //     uploadIcon.style.display = 'block';
+        //     uploadInput.value = ''; // Bersihkan nilai input file
+        // }
 
-        function preview7() {
-            var frame = document.getElementById('frame7');
-            var uploadIcon = document.getElementById('uploadIcon7');
-            var uploadInput = document.getElementById('uploadfoto7');
+        // function preview7() {
+        //     var frame = document.getElementById('frame7');
+        //     var uploadIcon = document.getElementById('uploadIcon7');
+        //     var uploadInput = document.getElementById('uploadfoto7');
 
-            if (event.target.files.length > 0) {
-                frame.src = URL.createObjectURL(event.target.files[0]);
-                uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
-            }
-        }
+        //     if (event.target.files.length > 0) {
+        //         frame.src = URL.createObjectURL(event.target.files[0]);
+        //         uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
+        //     }
+        // }
 
-        function deleteImage7() {
-            var frame = document.getElementById('frame7');
-            var uploadIcon = document.getElementById('uploadIcon7');
-            var uploadInput = document.getElementById('uploadfoto7');
+        // function deleteImage7() {
+        //     var frame = document.getElementById('frame7');
+        //     var uploadIcon = document.getElementById('uploadIcon7');
+        //     var uploadInput = document.getElementById('uploadfoto7');
 
-            // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
-            frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
-            uploadIcon.style.display = 'block';
-            uploadInput.value = ''; // Bersihkan nilai input file
-        }
+        //     // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
+        //     frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
+        //     uploadIcon.style.display = 'block';
+        //     uploadInput.value = ''; // Bersihkan nilai input file
+        // }
 
-        function preview8() {
-            var frame = document.getElementById('frame8');
-            var uploadIcon = document.getElementById('uploadIcon8');
-            var uploadInput = document.getElementById('uploadfoto8');
+        // function preview8() {
+        //     var frame = document.getElementById('frame8');
+        //     var uploadIcon = document.getElementById('uploadIcon8');
+        //     var uploadInput = document.getElementById('uploadfoto8');
 
-            if (event.target.files.length > 0) {
-                frame.src = URL.createObjectURL(event.target.files[0]);
-                uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
-            }
-        }
+        //     if (event.target.files.length > 0) {
+        //         frame.src = URL.createObjectURL(event.target.files[0]);
+        //         uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
+        //     }
+        // }
 
-        function deleteImage8() {
-            var frame = document.getElementById('frame8');
-            var uploadIcon = document.getElementById('uploadIcon8');
-            var uploadInput = document.getElementById('uploadfoto8');
+        // function deleteImage8() {
+        //     var frame = document.getElementById('frame8');
+        //     var uploadIcon = document.getElementById('uploadIcon8');
+        //     var uploadInput = document.getElementById('uploadfoto8');
 
-            // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
-            frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
-            uploadIcon.style.display = 'block';
-            uploadInput.value = ''; // Bersihkan nilai input file
-        }
+        //     // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
+        //     frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
+        //     uploadIcon.style.display = 'block';
+        //     uploadInput.value = ''; // Bersihkan nilai input file
+        // }
 
-        function preview9() {
-            var frame = document.getElementById('frame9');
-            var uploadIcon = document.getElementById('uploadIcon9');
-            var uploadInput = document.getElementById('uploadfoto9');
+        // function preview9() {
+        //     var frame = document.getElementById('frame9');
+        //     var uploadIcon = document.getElementById('uploadIcon9');
+        //     var uploadInput = document.getElementById('uploadfoto9');
 
-            if (event.target.files.length > 0) {
-                frame.src = URL.createObjectURL(event.target.files[0]);
-                uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
-            }
-        }
+        //     if (event.target.files.length > 0) {
+        //         frame.src = URL.createObjectURL(event.target.files[0]);
+        //         uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
+        //     }
+        // }
 
-        function deleteImage9() {
-            var frame = document.getElementById('frame9');
-            var uploadIcon = document.getElementById('uploadIcon9');
-            var uploadInput = document.getElementById('uploadfoto9');
+        // function deleteImage9() {
+        //     var frame = document.getElementById('frame9');
+        //     var uploadIcon = document.getElementById('uploadIcon9');
+        //     var uploadInput = document.getElementById('uploadfoto9');
 
-            // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
-            frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
-            uploadIcon.style.display = 'block';
-            uploadInput.value = ''; // Bersihkan nilai input file
-        }
+        //     // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
+        //     frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
+        //     uploadIcon.style.display = 'block';
+        //     uploadInput.value = ''; // Bersihkan nilai input file
+        // }
 
-        function preview10() {
-            var frame = document.getElementById('frame10');
-            var uploadIcon = document.getElementById('uploadIcon10');
-            var uploadInput = document.getElementById('uploadfoto10');
+        // function preview10() {
+        //     var frame = document.getElementById('frame10');
+        //     var uploadIcon = document.getElementById('uploadIcon10');
+        //     var uploadInput = document.getElementById('uploadfoto10');
 
-            if (event.target.files.length > 0) {
-                frame.src = URL.createObjectURL(event.target.files[0]);
-                uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
-            }
-        }
+        //     if (event.target.files.length > 0) {
+        //         frame.src = URL.createObjectURL(event.target.files[0]);
+        //         uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
+        //     }
+        // }
 
-        function deleteImage10() {
-            var frame = document.getElementById('frame10');
-            var uploadIcon = document.getElementById('uploadIcon10');
-            var uploadInput = document.getElementById('uploadfoto10');
+        // function deleteImage10() {
+        //     var frame = document.getElementById('frame10');
+        //     var uploadIcon = document.getElementById('uploadIcon10');
+        //     var uploadInput = document.getElementById('uploadfoto10');
 
-            // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
-            frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
-            uploadIcon.style.display = 'block';
-            uploadInput.value = ''; // Bersihkan nilai input file
-        }
+        //     // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
+        //     frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
+        //     uploadIcon.style.display = 'block';
+        //     uploadInput.value = ''; // Bersihkan nilai input file
+        // }
 
-        const optionMenu = document.querySelector(".select-menu"),
-            selectBtn = optionMenu.querySelector(".select-btn"),
-            sBtn_text = optionMenu.querySelector(".sBtn-text");
-        selectBtn.addEventListener("click", () => optionMenu.classList.toggle("active"));
+        // const optionMenu = document.querySelector(".select-menu"),
+        //     selectBtn = optionMenu.querySelector(".select-btn"),
+        //     sBtn_text = optionMenu.querySelector(".sBtn-text");
+        // selectBtn.addEventListener("click", () => optionMenu.classList.toggle("active"));
     </script>
     <script>
         function getFasilitasBed(kamarKostFasilitasId) {
@@ -888,10 +932,50 @@
         }
     </script>
     <script>
+        function submitForm(formId) {
+            document.getElementById(formId).submit();
+            console.log(formId);
+        }
+
         function uploadss(id) {
             document.getElementById(id).submit();
             console.log(id);
         }
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let count = 0;
+            count = document.querySelectorAll('.data-foto').length;
+            if (count < 7) {
+                console.log(count);
+            } else {
+                var formulir = document.querySelector('#uploadForm');
+                formulir.classList.add('d-none');
+            }
+
+        });
+
+        document.querySelectorAll('.deletes').forEach(function(button) {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                var form = this.closest('form');
+
+                Swal.fire({
+                    title: 'Apakah Kamu yakin?',
+                    text: 'Item ini akan dihapus secara permanen!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Ya, hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+        });
     </script>
     @if (Session::has('success'))
         <script>
