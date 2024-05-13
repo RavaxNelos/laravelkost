@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthAdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PemilikController;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +34,9 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('login');
 });
+
+Route::get('/adminlog', [AuthController::class, 'getAdmin']);
+Route::post('/adminlog', [AuthController::class, 'postAdmin']);
 
 //user controller
 // Route::get('/user/kamar', [UserController::class, 'kamar'])->name('kamar');
@@ -80,6 +84,8 @@ Route::get('/user/semua/{id}', [UserController::class, 'semua'])->name('semua');
 Route::get('/user/favorit', [UserController::class, 'favorit'])->name('favorit');
 Route::post('/favorite/add', [UserController::class, 'favoritadd']);
 Route::post('/favorit/delete', [UserController::class, 'favoritdelete']);
+// Route::get('/', 'ProductController@index');
+Route::get('/user/kamarfavoritcari', [UserController::class, 'carifavorit'])->name('favorit.cari');
 Route::get('/logout', function() {
     Auth::logout();
     return redirect('/login');

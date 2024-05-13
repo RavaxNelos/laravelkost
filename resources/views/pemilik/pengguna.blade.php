@@ -122,7 +122,7 @@
                 @endphp
                 @foreach ($users as $user)
                     @php
-                        $timeDifference = now()->diffInHours($user->created_at);
+                        $timeDifference = now()->diffInDays($user->created_at);
                         $isNewUser = $timeDifference < 1;
                     @endphp
                     @if ($isNewUser)

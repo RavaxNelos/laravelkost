@@ -64,21 +64,20 @@
             <div class="container py-1">
                 <div class="row g-3" x-show="openSearch === false">
                     <div class="col-1" style="margin-top: 22px;">
-                        <a href="javascript:void(0)" onclick="window.history.go(-1); return false;" class="btn-back-home"><ion-icon name="chevron-back-outline"></ion-icon></a>
+                        <a href="{{ 'profil' }}" class="btn-back-home"><ion-icon name="chevron-back-outline"></ion-icon></a>
                     </div>
                     <div class="col-6 text-start" style="margin-top: 26px;">
                         <h3 class="text-dark fw-semibold teks-detail" style="font-size: 16px; transition: color 0.3s ease;">Favorit</h3>
                     </div>
                     <div class="col-5 text-end" style="margin-top: 22px;">
-                        <button class="btn-search"><i id="searchIcon" class="bi bi-search" x-on:click="openSearch = true"></i></button>
+                        <a href="{{ route('favorit.cari') }}">
+                            <button class="btn-search"><i id="searchIcon" class="bi bi-search"></i></button>
+                        </a>
                     </div>
-                </div>
-                <div class="mt-2" style="margin-bottom: 4px;" x-show="openSearch === true">
-                    <input id="searchInput" type="text" class="form-control  search-input w-100" placeholder="Cari Kamar Favorit..." style="height: 30px;">
                 </div>
             </div>
         </div>
-        <hr class="hr-divider" @click="openSearch = false">
+        <hr class="hr-divider">
         @if (count($favorites) > 0)
             <div class="container" @click="openSearch = false">
                 <div class="row">
@@ -94,21 +93,7 @@
                     </div>
                 </div>
             </div>
-            {{-- <div class="container px-3" x-show="filter == 'bulanan'">
-            <div class="row">
-                <div class="col-12 text-center" style="margin-top: 8rem;">
-                    <img src="{{ asset('img/planet.png') }}" width="180" height="180">
-                </div>
-                <div class="col-12 text-center">
-                    <p class="fw-normal" style="font-size: 14px;">Belum Ada Kost Bulanan Yang Difavoritkan</p>
-                </div>
-                <div class="col-12 text-center">
-                    <form action="/home">
-                        <button class="btn btn-tambah" style="border: 1px solid purple; font-size: 14px; color: purple;">Tambahkan terlebih dahulu</button>
-                    </form>
-                </div>
-            </div>
-        </div> --}}
+
             @foreach ($favorites as $favorite)
                 <div class="container mt-3" x-show="filter == '{{ $favorite->category }}'" @click="openSearch = false" data-favorite-id="{{ $favorite->id }}">
                     <div class="row">
@@ -139,7 +124,6 @@
                 <form action="/user/home">
                     <button class="btn btn-info" style="font-size: 14px;">Tambahkan Kamar Yang Difavoritkan</button>
                 </form>
-            </div>
             </div>
         @endif
         <div id="popup" class="popup">
@@ -203,25 +187,6 @@
                 }
             });
         }
-        // function removeFavorite(id) {
-        //     axios.delete('/favorit/' + id)
-        //         .then(response => {
-        //             // Remove the favorite item from the DOM
-        //             const favoriteItem = document.getElementById('favorite-item-' + id);
-        //             if (favoriteItem) {
-        //                 favoriteItem.remove();
-        //             }
-
-        //             // Show a success message or update the UI
-        //             alert('Kamar dihapus dari favorit');
-        //         })
-        //         .catch(error => {
-        //             console.error(error);
-
-        //             // Show an error message
-        //             alert('Error deleting favorite item. Please try again later.');
-        //         });
-        // }
     </script>
 </body>
 

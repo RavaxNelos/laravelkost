@@ -244,10 +244,6 @@
                             <p id="itemDeskripsi" class="text-dark fw-normal" style="font-size: 12px; margin-top: 0.5rem;"></p>
                         </div>
                     </div>
-                    {{-- <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div> --}}
                 </div>
             </div>
         </div>
@@ -383,7 +379,7 @@
                     </div>
 
                     {{-- modal --}}
-                    <div class="modal fade fotoku" id="foto{{ $foto->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade fotoku text-center" id="foto{{ $foto->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-left: 2.4rem;">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-body">
@@ -422,112 +418,12 @@
                 <form action="{{ route('kamarUpload') }}" method="post" enctype="multipart/form-data" id="uploadForm">
                     @csrf
                     <div class="upload-foto">
-                        <input type="file" id="file" name="gambar" onchange="uploadss('uploadForm')" accept="image/*" multiple>
+                        <input type="file" id="file" name="gambar" onchange="uploadss('uploadForm')" accept="image/*">
                         <label for="file">
                             <i class="bi bi-cloud-arrow-up"></i>
                         </label>
                     </div>
                 </form>
-                {{-- <img src="{{ asset('uploadkamar' . $gambarkerusakan->gambar1) }}" alt=""> --}}
-                {{-- <div class="position-relative">
-                    <img id="frame2" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage2()">
-                    <label for="uploadfoto2" class="label-upload">
-                        <div class="box-icon">
-                            <div class="bg-kategori rounded-5">
-                                <i id="uploadIcon2" class="bi bi-cloud-upload"></i>
-                            </div>
-                        </div>
-                        <input type="file" onchange="preview2()" hidden id="uploadfoto2" accept="image/*">
-                    </label>
-                </div>
-                <div class="position-relative">
-                    <img id="frame3" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage3()">
-                    <label for="uploadfoto3" class="label-upload">
-                        <div class="box-icon">
-                            <div class="bg-kategori rounded-5">
-                                <i id="uploadIcon3" class="bi bi-cloud-upload"></i>
-                            </div>
-                        </div>
-                        <input type="file" onchange="preview3()" hidden id="uploadfoto3" accept="image/*">
-                    </label>
-                </div>
-                <div class="position-relative">
-                    <img id="frame4" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage4()">
-                    <label for="uploadfoto4" class="label-upload">
-                        <div class="box-icon">
-                            <div class="bg-kategori rounded-5">
-                                <i id="uploadIcon4" class="bi bi-cloud-upload"></i>
-                            </div>
-                        </div>
-                        <input type="file" onchange="preview4()" hidden id="uploadfoto4" accept="image/*">
-                    </label>
-                </div>
-                <div class="position-relative">
-                    <img id="frame5" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage5()">
-                    <label for="uploadfoto5" class="label-upload">
-                        <div class="box-icon">
-                            <div class="bg-kategori rounded-5">
-                                <i id="uploadIcon5" class="bi bi-cloud-upload"></i>
-                            </div>
-                        </div>
-                        <input type="file" onchange="preview5()" hidden id="uploadfoto5" accept="image/*">
-                    </label>
-                </div>
-                <div class="position-relative">
-                    <img id="frame6" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage6()">
-                    <label for="uploadfoto6" class="label-upload">
-                        <div class="box-icon">
-                            <div class="bg-kategori rounded-5">
-                                <i id="uploadIcon6" class="bi bi-cloud-upload"></i>
-                            </div>
-                        </div>
-                        <input type="file" onchange="preview6()" hidden id="uploadfoto6" accept="image/*">
-                    </label>
-                </div>
-                <div class="position-relative">
-                    <img id="frame7" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage7()">
-                    <label for="uploadfoto7" class="label-upload">
-                        <div class="box-icon">
-                            <div class="bg-kategori rounded-5">
-                                <i id="uploadIcon7" class="bi bi-cloud-upload"></i>
-                            </div>
-                        </div>
-                        <input type="file" onchange="preview7()" hidden id="uploadfoto7" accept="image/*">
-                    </label>
-                </div>
-                <div class="position-relative">
-                    <img id="frame8" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage8()">
-                    <label for="uploadfoto8" class="label-upload">
-                        <div class="box-icon">
-                            <div class="bg-kategori rounded-5">
-                                <i id="uploadIcon8" class="bi bi-cloud-upload"></i>
-                            </div>
-                        </div>
-                        <input type="file" onchange="preview8()" hidden id="uploadfoto8" accept="image/*">
-                    </label>
-                </div>
-                <div class="position-relative">
-                    <img id="frame9" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage9()">
-                    <label for="uploadfoto9" class="label-upload">
-                        <div class="box-icon">
-                            <div class="bg-kategori rounded-5">
-                                <i id="uploadIcon9" class="bi bi-cloud-upload"></i>
-                            </div>
-                        </div>
-                        <input type="file" onchange="preview9()" hidden id="uploadfoto9" accept="image/*">
-                    </label>
-                </div>
-                <div class="position-relative">
-                    <img id="frame10" src="{{ asset('img/gambarpolosan.jpg') }}" style="width: 150px; height: 150px; border-radius: 8px; cursor: pointer;" onclick="deleteImage10()">
-                    <label for="uploadfoto10" class="label-upload">
-                        <div class="box-icon">
-                            <div class="bg-kategori rounded-5">
-                                <i id="uploadIcon10" class="bi bi-cloud-upload"></i>
-                            </div>
-                        </div>
-                        <input type="file" onchange="preview10()" hidden id="uploadfoto10" accept="image/*">
-                    </label>
-                </div> --}}
             </div>
         </div>
         <!-- Tampilkan ilustrasi kosong -->
@@ -682,231 +578,6 @@
             });
 
         });
-
-        // function preview() {
-        //     var frame = document.getElementById('frame');
-        //     var uploadIcon = document.getElementById('uploadIcon');
-        //     var uploadInput = document.getElementById('uploadfoto');
-
-        //     if (event.target.files.length > 0) {
-        //         frame.src = URL.createObjectURL(event.target.files[0]);
-        //         uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
-        //     }
-        // }
-
-        // function deleteImage() {
-        //     var frame = document.getElementById('frame');
-        //     var uploadIcon = document.getElementById('uploadIcon');
-        //     var uploadInput = document.getElementById('uploadfoto');
-
-        //     // Kembalikan ke gambar semula dan tampilkan ikon upload
-        //     frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
-        //     uploadIcon.style.display = 'block';
-        //     uploadInput.value = ''; // Bersihkan nilai input file
-        // }
-
-        // function preview2() {
-        //     var frame = document.getElementById('frame2');
-        //     var uploadIcon = document.getElementById('uploadIcon2');
-        //     var uploadInput = document.getElementById('uploadfoto2');
-
-        //     if (event.target.files.length > 0) {
-        //         frame.src = URL.createObjectURL(event.target.files[0]);
-        //         uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
-        //     }
-        // }
-
-        // function deleteImage2() {
-        //     var frame = document.getElementById('frame2');
-        //     var uploadIcon = document.getElementById('uploadIcon2');
-        //     var uploadInput = document.getElementById('uploadfoto2');
-
-        //     // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
-        //     frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
-        //     uploadIcon.style.display = 'block';
-        //     uploadInput.value = ''; // Bersihkan nilai input file
-        // }
-
-        // function preview3() {
-        //     var frame = document.getElementById('frame3');
-        //     var uploadIcon = document.getElementById('uploadIcon3');
-        //     var uploadInput = document.getElementById('uploadfoto3');
-
-        //     if (event.target.files.length > 0) {
-        //         frame.src = URL.createObjectURL(event.target.files[0]);
-        //         uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
-        //     }
-        // }
-
-        // function deleteImage3() {
-        //     var frame = document.getElementById('frame3');
-        //     var uploadIcon = document.getElementById('uploadIcon3');
-        //     var uploadInput = document.getElementById('uploadfoto3');
-
-        //     // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
-        //     frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
-        //     uploadIcon.style.display = 'block';
-        //     uploadInput.value = ''; // Bersihkan nilai input file
-        // }
-
-        // function preview4() {
-        //     var frame = document.getElementById('frame4');
-        //     var uploadIcon = document.getElementById('uploadIcon4');
-        //     var uploadInput = document.getElementById('uploadfoto4');
-
-        //     if (event.target.files.length > 0) {
-        //         frame.src = URL.createObjectURL(event.target.files[0]);
-        //         uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
-        //     }
-        // }
-
-        // function deleteImage4() {
-        //     var frame = document.getElementById('frame4');
-        //     var uploadIcon = document.getElementById('uploadIcon4');
-        //     var uploadInput = document.getElementById('uploadfoto4');
-
-        //     // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
-        //     frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
-        //     uploadIcon.style.display = 'block';
-        //     uploadInput.value = ''; // Bersihkan nilai input file
-        // }
-
-        // function preview5() {
-        //     var frame = document.getElementById('frame5');
-        //     var uploadIcon = document.getElementById('uploadIcon5');
-        //     var uploadInput = document.getElementById('uploadfoto5');
-
-        //     if (event.target.files.length > 0) {
-        //         frame.src = URL.createObjectURL(event.target.files[0]);
-        //         uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
-        //     }
-        // }
-
-        // function deleteImage5() {
-        //     var frame = document.getElementById('frame5');
-        //     var uploadIcon = document.getElementById('uploadIcon5');
-        //     var uploadInput = document.getElementById('uploadfoto5');
-
-        //     // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
-        //     frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
-        //     uploadIcon.style.display = 'block';
-        //     uploadInput.value = ''; // Bersihkan nilai input file
-        // }
-
-        // function preview6() {
-        //     var frame = document.getElementById('frame6');
-        //     var uploadIcon = document.getElementById('uploadIcon6');
-        //     var uploadInput = document.getElementById('uploadfoto6');
-
-        //     if (event.target.files.length > 0) {
-        //         frame.src = URL.createObjectURL(event.target.files[0]);
-        //         uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
-        //     }
-        // }
-
-        // function deleteImage6() {
-        //     var frame = document.getElementById('frame6');
-        //     var uploadIcon = document.getElementById('uploadIcon6');
-        //     var uploadInput = document.getElementById('uploadfoto6');
-
-        //     // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
-        //     frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
-        //     uploadIcon.style.display = 'block';
-        //     uploadInput.value = ''; // Bersihkan nilai input file
-        // }
-
-        // function preview7() {
-        //     var frame = document.getElementById('frame7');
-        //     var uploadIcon = document.getElementById('uploadIcon7');
-        //     var uploadInput = document.getElementById('uploadfoto7');
-
-        //     if (event.target.files.length > 0) {
-        //         frame.src = URL.createObjectURL(event.target.files[0]);
-        //         uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
-        //     }
-        // }
-
-        // function deleteImage7() {
-        //     var frame = document.getElementById('frame7');
-        //     var uploadIcon = document.getElementById('uploadIcon7');
-        //     var uploadInput = document.getElementById('uploadfoto7');
-
-        //     // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
-        //     frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
-        //     uploadIcon.style.display = 'block';
-        //     uploadInput.value = ''; // Bersihkan nilai input file
-        // }
-
-        // function preview8() {
-        //     var frame = document.getElementById('frame8');
-        //     var uploadIcon = document.getElementById('uploadIcon8');
-        //     var uploadInput = document.getElementById('uploadfoto8');
-
-        //     if (event.target.files.length > 0) {
-        //         frame.src = URL.createObjectURL(event.target.files[0]);
-        //         uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
-        //     }
-        // }
-
-        // function deleteImage8() {
-        //     var frame = document.getElementById('frame8');
-        //     var uploadIcon = document.getElementById('uploadIcon8');
-        //     var uploadInput = document.getElementById('uploadfoto8');
-
-        //     // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
-        //     frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
-        //     uploadIcon.style.display = 'block';
-        //     uploadInput.value = ''; // Bersihkan nilai input file
-        // }
-
-        // function preview9() {
-        //     var frame = document.getElementById('frame9');
-        //     var uploadIcon = document.getElementById('uploadIcon9');
-        //     var uploadInput = document.getElementById('uploadfoto9');
-
-        //     if (event.target.files.length > 0) {
-        //         frame.src = URL.createObjectURL(event.target.files[0]);
-        //         uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
-        //     }
-        // }
-
-        // function deleteImage9() {
-        //     var frame = document.getElementById('frame9');
-        //     var uploadIcon = document.getElementById('uploadIcon9');
-        //     var uploadInput = document.getElementById('uploadfoto9');
-
-        //     // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
-        //     frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
-        //     uploadIcon.style.display = 'block';
-        //     uploadInput.value = ''; // Bersihkan nilai input file
-        // }
-
-        // function preview10() {
-        //     var frame = document.getElementById('frame10');
-        //     var uploadIcon = document.getElementById('uploadIcon10');
-        //     var uploadInput = document.getElementById('uploadfoto10');
-
-        //     if (event.target.files.length > 0) {
-        //         frame.src = URL.createObjectURL(event.target.files[0]);
-        //         uploadIcon.style.display = 'none'; // Sembunyikan ikon upload
-        //     }
-        // }
-
-        // function deleteImage10() {
-        //     var frame = document.getElementById('frame10');
-        //     var uploadIcon = document.getElementById('uploadIcon10');
-        //     var uploadInput = document.getElementById('uploadfoto10');
-
-        //     // Kembalikan ke gambar semula dan tampilkan kembali ikon upload
-        //     frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
-        //     uploadIcon.style.display = 'block';
-        //     uploadInput.value = ''; // Bersihkan nilai input file
-        // }
-
-        // const optionMenu = document.querySelector(".select-menu"),
-        //     selectBtn = optionMenu.querySelector(".select-btn"),
-        //     sBtn_text = optionMenu.querySelector(".sBtn-text");
-        // selectBtn.addEventListener("click", () => optionMenu.classList.toggle("active"));
     </script>
     <script>
         function getFasilitasBed(kamarKostFasilitasId) {
@@ -946,7 +617,7 @@
         document.addEventListener("DOMContentLoaded", function() {
             let count = 0;
             count = document.querySelectorAll('.data-foto').length;
-            if (count < 7) {
+            if (count < 10) {
                 console.log(count);
             } else {
                 var formulir = document.querySelector('#uploadForm');

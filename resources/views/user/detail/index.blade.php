@@ -399,99 +399,15 @@
                 Besar ukuran kamar kostnya {{ $kamarkost->ukuran_kost }}. Kamar kost Putra ini juga memiliki fasilitas berbagai macam seperti ac, toilet, dan lain-lain
             </p>
         </div>
-        <!-- Modal -->
-        {{-- <div class="modal fade" id="Kamarmandi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content" style="height: 364px; width: 344px; position: absolute; top: 120px;">
-                    <div class="modal-body" style="padding: 4px;">
-                        <img src="{{ asset('img/interior1.jpg') }}" height="220" width="334" style="border-radius: 5px;">
-                        <div class="h3 fw-bold text-center mt-2" style="font-size: 18px;">Kamar Mandi</div>
-                        <p class="text-dark fw-normal" style="font-size: 12px; margin-top: 0.5rem;">
-                            Kamar mandi memiliki ukuran yang umumnya berkisar antara 2 meter x 2 meter hingga 3 meter x 3 meter. Di dalamnya, terdapat wastafel, toilet, dan bak mandi atau shower. Dinding seringkali dilapisi keramik untuk memudahkan pembersihan.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="Ac" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content" style="height: 364px; width: 344px; position: absolute; top: 120px;">
-                    <div class="modal-body" style="padding: 4px;">
-                        <img src="{{ asset('img/interior2.jpg') }}" height="220" width="334" style="border-radius: 5px;">
-                        <div class="h3 fw-bold text-center mt-2" style="font-size: 18px;">AC PANASONIC</div>
-                        <p class="text-dark fw-normal" style="font-size: 12px; margin-top: 0.5rem;">
-                            AC Panasonic hadir dalam berbagai ukuran, mulai dari model split dengan kapasitas 0.5 PK hingga model ducted dengan kapasitas 5 PK. Fitur-fitur canggihnya meliputi teknologi inverter untuk efisiensi energi, filter nanoe™ yang membersihkan udara. </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="Dapur" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content" style="height: 364px; width: 344px; position: absolute; top: 120px;">
-                    <div class="modal-body" style="padding: 4px;">
-                        <img src="{{ asset('img/interior3.jpg') }}" height="220" width="334" style="border-radius: 5px;">
-                        <div class="h3 fw-bold text-center mt-2" style="font-size: 18px;">Dapur</div>
-                        <p class="text-dark fw-normal" style="font-size: 12px; margin-top: 0.5rem;">
-                            Dapur memiliki ukuran yang bervariasi, umumnya dimulai dari sekitar 3 meter x 3 meter hingga sesuai dengan kebutuhan ruang. Di dalamnya, terdapat sink, kompor atau oven, lemari penyimpanan, dan meja kerja.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="Tv" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content" style="height: 364px; width: 344px; position: absolute; top: 120px;">
-                    <div class="modal-body" style="padding: 4px;">
-                        <img src="{{ asset('img/interior4.jpg') }}" height="220" width="334" style="border-radius: 5px;">
-                        <div class="h3 fw-bold text-center mt-2" style="font-size: 18px;">Televisi LG</div>
-                        <p class="text-dark fw-normal" style="font-size: 12px; margin-top: 0.5rem;">
-                            TV LG hadir dalam berbagai ukuran, mulai dari model kecil sekitar 32 inci hingga ukuran besar lebih dari 75 inci. Fitur-fitur canggihnya mencakup teknologi OLED atau LED, resolusi 4K atau 8K untuk kualitas gambar tajam, dan dukungan untuk HDR.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="Kulkas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content" style="height: 364px; width: 344px; position: absolute; top: 120px;">
-                    <div class="modal-body" style="padding: 4px;">
-                        <img src="{{ asset('img/interior5.jpg') }}" height="220" width="334" style="border-radius: 5px;">
-                        <div class="h3 fw-bold text-center mt-2" style="font-size: 18px;">Kulkas LG</div>
-                        <p class="text-dark fw-normal" style="font-size: 12px; margin-top: 0.5rem;">
-                            Kulkas LG menghadirkan kombinasi elegan antara desain modern dan teknologi inovatif. Dengan ukuran yang bervariasi, mulai dari yang kompak hingga besar, kulkas LG menyediakan ruang penyimpanan yang efisien.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="Lemari" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content" style="height: 364px; width: 344px; position: absolute; top: 120px;">
-                    <div class="modal-body" style="padding: 4px;">
-                        <img src="{{ asset('img/interior6.jpg') }}" height="220" width="334" style="border-radius: 5px;">
-                        <div class="h3 fw-bold text-center mt-2" style="font-size: 18px;">Lemari IKEA</div>
-                        <p class="text-dark fw-normal" style="font-size: 12px; margin-top: 0.5rem;">
-                            IKEA menawarkan berbagai jenis lemari dengan ukuran dan desain yang beragam. Contohnya, lemari PAX hadir dalam berbagai ukuran lebar, tinggi, dan kedalaman, memberikan fleksibilitas dalam penyesuaian dengan kamar kost Anda.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade" id="Kasur" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content" style="height: 364px; width: 344px; position: absolute; top: 120px;">
-                    <div class="modal-body" style="padding: 4px;">
-                        <img src="{{ asset('img/interior7.jpg') }}" height="220" width="334" style="border-radius: 5px;">
-                        <div class="h3 fw-bold text-center mt-2" style="font-size: 18px;">Kasur IKEA</div>
-                        <p class="text-dark fw-normal" style="font-size: 12px; margin-top: 0.5rem;">
-                            Kasur IKEA hadir dalam berbagai ukuran, termasuk single, double, queen, dan king size, untuk memenuhi berbagai kebutuhan ruang tidur. Fitur-fiturnya pada kasur sebagai berikut, mencakup desain ergonomic, lapisan busa atau pegas untuk kenyamanan.</p>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
         <div class="modal fade" id="fasilitasKamar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content" style="height: 364px; width: 344px; position: absolute; top: 120px;">
                     <div class="modal-body" style="padding: 4px;">
                         <img src="" id="itemImage" height="220" width="334" style="border-radius: 5px;">
                         <div class="h3 fw-bold text-center mt-2" style="font-size: 18px;" id="itemNama"></div>
-                        <p class="text-dark fw-normal" style="font-size: 12px; margin-top: 0.5rem;" id="itemDeskripsi">
-                        </p>
+                        <div class="container px-2">
+                            <p id="itemDeskripsi" class="text-dark fw-normal" style="font-size: 12px; margin-top: 0.5rem;"></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -504,55 +420,10 @@
                         @foreach ($kamar_kost_fasilitas as $kost_fasilitas)
                             @if ($kost_fasilitas->fasilitas->tipe == 'Kamar')
                                 <li class="splide__slide" onclick="getFasilitasBed({{ $kost_fasilitas->id }})">
-                                    <!-- Button trigger modal -->
-                                    {{-- <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ $kost_fasilitas->fasilitas->id }}" style="border: none; background-color: white; margin-left: -5px;"> --}}
                                     <img src="{{ asset('uploadkamar/' . $kost_fasilitas->fasilitas->gambar) }}" height="60" width="60" style="border-radius: 5px;">
-                                    {{-- </button> --}}
                                 </li>
                             @endif
                         @endforeach
-                        {{-- <li class="splide__slide">
-                            <!-- Button trigger modal -->
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#Ac" style="border: none; background-color: white;">
-                                <img src="{{ asset('img/interior2.jpg') }}" height="60" width="60" style="border-radius: 5px;">
-                            </button>
-                        </li>
-                        <li class="splide__slide">
-                            <!-- Button trigger modal -->
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#Dapur" style="border: none; background-color: white;">
-                                <img src="{{ asset('img/interior3.jpg') }}" height="60" width="60" style="border-radius: 5px;">
-                            </button>
-                        </li>
-                        <li class="splide__slide">
-                            <!-- Button trigger modal -->
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#Tv" style="border: none; background-color: white;">
-                                <img src="{{ asset('img/interior4.jpg') }}" height="60" width="60" style="border-radius: 5px;">
-                            </button>
-                        </li>
-                        <li class="splide__slide">
-                            <!-- Button trigger modal -->
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#Kulkas" style="border: none; background-color: white;">
-                                <img src="{{ asset('img/interior5.jpg') }}" height="60" width="60" style="border-radius: 5px;">
-                            </button>
-                        </li>
-                        <li class="splide__slide">
-                            <!-- Button trigger modal -->
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#Lemari" style="border: none; background-color: white;">
-                                <img src="{{ asset('img/interior6.jpg') }}" height="60" width="60" style="border-radius: 5px;">
-                            </button>
-                        </li>
-                        <li class="splide__slide">
-                            <!-- Button trigger modal -->
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#Kasur" style="border: none; background-color: white;">
-                                <img src="{{ asset('img/interior7.jpg') }}" height="60" width="60" style="border-radius: 5px;">
-                            </button>
-                        </li>
-                        <li class="splide__slide">
-                            <!-- Button trigger modal -->
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#Wifi" style="border: none; background-color: white;">
-                                <img src="{{ asset('img/interior8.jpg') }}" height="60" width="60" style="border-radius: 5px;">
-                            </button>
-                        </li> --}}
                     </ul>
                 </div>
             </section>

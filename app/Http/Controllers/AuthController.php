@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LoginAdmin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -64,6 +65,31 @@ class AuthController extends Controller
         Auth::logout();
 
         return redirect()->route('login');
+    }
+
+    public function getAdmin()
+    {
+        return view('login.loginadmin');
+    }
+
+    public function postAdmin(Request $request)
+    {
+        $request->validate([
+            'name'     => 'required',
+            'password' => 'required',
+        ]);
+
+        // dd($request);
+
+        $get_admin = LoginAdmin::whereName($request->name)->first();
+
+
+        if (Auth::guard('login_admin')->attempt(['name' => $request->name, 'password' => $request->password])) {
+            // dd(Auth::user());
+            return redirect('/pemilimin/dashboard')->with('success', 'Login berhasil');
+        }
+
+        return back()->with('error', 'Nama atau Sandi salah');
     }
 
 }

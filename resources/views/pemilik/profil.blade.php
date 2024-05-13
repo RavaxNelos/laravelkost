@@ -266,6 +266,8 @@
                                 <p class="fw-medium" style="font-size: 14px;">Dengan menggunakan layanan Ngekost, pengguna dianggap telah membaca, memahami, dan menyetujui semua ketentuan dan kebijakan yang tercantum di situs web kami.</p>
                             </div>
                         </div>
+                        <div class="modal-footer" style="height: 30px;">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -365,7 +367,7 @@
                                         <form action="{{ route('logout') }}" method="POST" class="d-flex" role="search">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-danger" style="width: 100px;">Ya</button>
+                                            <button class="btn btn-outline-secondary" style="width: 100px;">Ya</button>
                                         </form>
                                         <button class="btn btn-secondary" style="width: 100px;" data-bs-dismiss="modal">Tidak</button>
                                     </div>

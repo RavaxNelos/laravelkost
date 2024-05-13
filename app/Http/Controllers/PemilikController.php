@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Banner;
 use App\Models\KamarKost;
+use App\Models\Kategori;
 use App\Models\Pengguna;
 use App\Models\Transaksi;
 use App\Models\User;
@@ -16,7 +17,20 @@ class PemilikController extends Controller
     public function home($id = null)
     {
         $users = Auth::user();
-        return view('pemilik.home',compact('users'));
+        $categories = Kategori::where('lokasi', 'Kategori Kost')->get();
+        $banner     = Banner::where('status_banner', 'Publish')->get();
+
+        $kamarkost                        = KamarKost::where('status_kost', 'Publish')->first();
+        $kamarpopulerbulanan              = KamarKost::where('status_kost', 'Publish')->where('tipe_kost', 'Bulanan')->where('lokasi_kost', 'Kamar Kost Populer')->get();
+        $kamarpopulerharian               = KamarKost::where('status_kost', 'Publish')->where('tipe_kost', 'Harian')->where('lokasi_kost', 'Kamar Kost Populer')->get();
+        $kamarkost_didekat_kamu           = KamarKost::where('lokasi_kost', 'Didekat Kamu')->get();
+        $kamarkost_area_surabaya_timur    = KamarKost::where('lokasi_kost', 'Area Surabaya Timur')->get();
+        $kamarkost_putra                  = KamarKost::where('lokasi_kost', 'Kamar Kost Putra')->get();
+        $kamarkost_populer                = KamarKost::where('lokasi_kost', 'Kamar Kost Populer')->get();
+        $kamarkost_putri                  = KamarKost::where('lokasi_kost', 'Kamar Kost Putri')->get();
+        $kamarkost_area_surabaya_barat    = KamarKost::where('lokasi_kost', 'Area Surabaya Barat')->get();
+        $kamarkost_rekomendasi_kamar_kost = KamarKost::where('lokasi_kost', 'Rekomendasi Kamar Kost')->get();
+        return view('pemilik.home',compact('users', 'banner', 'kamarkost', 'kamarpopulerbulanan', 'kamarpopulerharian', 'categories', 'kamarkost_didekat_kamu', 'kamarkost_populer', 'kamarkost_area_surabaya_timur', 'kamarkost_putra', 'kamarkost_putri', 'kamarkost_area_surabaya_barat', 'kamarkost_rekomendasi_kamar_kost'));
     }
     public function area()
     {
@@ -37,12 +51,12 @@ class PemilikController extends Controller
     $usersLama = [];
 
     foreach ($users as $user) {
-    $timeDifference = now()->diffInHours($user->created_at);
+    $timeDifference = now()->diffInDays($user->created_at);
     if ($timeDifference < 1) {
-          // Pengguna yang dibuat dalam waktu kurang dari 1 jam adalah pengguna baru
+          // Pengguna yang dibuat dalam waktu kurang dari 1 hari adalah pengguna baru
         $usersBaru[] = $user;
     } else {
-          // Pengguna yang dibuat lebih dari 1 jam yang lalu adalah pengguna lama
+          // Pengguna yang dibuat lebih dari 1 hari yang lalu adalah pengguna lama
         $usersLama[] = $user;
     }
     }

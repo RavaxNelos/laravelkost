@@ -773,6 +773,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
         function copyText() {
             // Menyalin teks ke clipboard
@@ -866,45 +867,44 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
-        // function deleteImage() {
-        //     var frame = document.getElementById('frame');
-        //     var uploadIcon = document.getElementById('uploadIcon');
-        //     var uploadInput = document.getElementById('uploadfoto');
-
-        //     // Kembalikan ke gambar semula dan tampilkan ikon upload
-        //     frame.src = "{{ asset('img/gambarpolosan.jpg') }}";
-        //     uploadIcon.style.display = 'block';
-        //     uploadInput.value = ''; // Bersihkan nilai input file
-
-        //     // Reset confirmation variable to disable "Kirim" button
-        //     app.confirmation = false; // Mengakses confirmation menggunakan x-model
-        //     app.imageFile = null; // Mengakses imageFile menggunakan x-model
-
-        //     // Nonaktifkan tombol "Kirim"
-        //     var sendButton = document.querySelector('.btn-kirim');
-        //     sendButton.disabled = true;
-        // }
     </script>
-    {{-- <script>
-            // Fungsi untuk memperbarui tanggal secara satu kali saat halaman dimuat
-            function updateTanggal() {
-                var tanggalElement = document.getElementById('tanggal-pesanan');
-                var now = new Date();
-                var options = {
-                    day: 'numeric',
-                    month: 'long',
-                    year: 'numeric'
-                };
-                var formattedDate = now.toLocaleString('id-ID', options).replace(/\u200E/g, '') + ', ' + now.toLocaleString('id-ID', {
-                    hour: 'numeric',
-                    minute: 'numeric'
-                }) + ' WIB'; // Menambahkan " WIB" setelah jam
-                tanggalElement.innerText = formattedDate;
-            }
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
 
-            // Panggil fungsi updateTanggal saat halaman dimuat
-            updateTanggal();
-        </script> --}}
+            form.addEventListener('submit', function(e) {
+                e.preventDefault(); // Mencegah pengiriman formulir default
+
+                const formData = new FormData(this);
+
+                // Kirim data ke server dengan metode AJAX atau fetch
+                fetch(this.action, {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            // Tampilkan modal SweetAlert jika respons dari server OK
+                            swal("Pembayaran berhasil dikirim!", {
+                                icon: "success",
+                                buttons: false,
+                                timer: 2500,
+                            }).then(() => {
+                                // Redirect ke halaman yang dituju setelah modal ditutup
+                                window.location.href = "/user/home";
+                            });
+                        } else {
+                            throw new Error('Network response was not ok.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('There has been a problem with your fetch operation:', error);
+                        // Tampilkan pesan kesalahan jika terjadi kesalahan saat pengiriman data
+                        swal("Oops!", "Terjadi kesalahan. Silakan coba lagi.", "error");
+                    });
+            });
+        });
+    </script>
 </body>
 
 </html>

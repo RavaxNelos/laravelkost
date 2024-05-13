@@ -44,7 +44,7 @@ class UserController extends Controller
     {
 
         $kamarkost = KamarKost::find($request->kamar_kost_id);
-                                // Simpan informasi ke dalam tabel favorit
+                                  // Simpan informasi ke dalam tabel favorit
         $favorit = Favorit::where('user_id', Auth::user()->id)->where('kamar_kost_id', $request->kamar_kost_id)->where('category', $kamarkost->tipe_kost)->first();
 
         if ($favorit) {
@@ -57,7 +57,7 @@ class UserController extends Controller
             ]);
         }
 
-                                // Response
+                                  // Response
         return response()->json(['message' => 'Success', 'alert' => $favorit ? 'Dihapus Dari Favorit' : 'Berhasil difavoritkan'],200);
     }
     public function menujudetail()
@@ -113,7 +113,7 @@ class UserController extends Controller
         $selectedTime             = Carbon::parse(session()->get('selectedDate'))->isoFormat('DD MMMM Y') . ', ' . session()->get('waktu');
         $jamkamarkost             = Jamkamarkost::all();
 
-                                // Kirim data metode pembayaran yang dipilih ke tampilan
+                                  // Kirim data metode pembayaran yang dipilih ke tampilan
         return view('user.transaksi.index', compact('pembayaran', 'kamarkost', 'users', 'pembayaranSelected', 'pembayaran_e_wallet', 'pembayaran_transfer_bank', 'selectedTime', 'jamkamarkost', 'time'));
     }
     public function paymentCheck(Request $request)
@@ -126,7 +126,7 @@ class UserController extends Controller
     {
         $pembayaran = Pembayaran::find(session()->get('payment_id'));
         return response()->json(['gambar' => '/uploadkamar/' . $pembayaran->logo_pembayaran, 'name' => $pembayaran->nama_pembayaran]);
-                                // return response()->json(['gambar' => 'test']);
+                                  // return response()->json(['gambar' => 'test']);
     }
     public function konfirmasitransaksi(Request $request, $id)
     {
@@ -140,14 +140,14 @@ class UserController extends Controller
     $hargaKost          = (int) $hargaKost;
     $totalPembayaran    = $hargaKost + 200000 - 25000;
     $users              = Auth::user();
-                        //durasi
-                        // $hariIni = Carbon::now();
-                        // $selisihTanggal = $selectedTime->diffInDays($hariIni);
-                        // $bulan = floor($selisihTanggal / 30); // Hitung bulan
-                        // $hari = $selisihTanggal % 30; // Hitung sisa hari
-                        // $hasil = "{$bulan} bulan {$hari} hari";
-                        // DATE REAL TIME
-                        // $transaksi = transaksi::find(session()->get('payment_id'));
+                          //durasi
+                          // $hariIni = Carbon::now();
+                          // $selisihTanggal = $selectedTime->diffInDays($hariIni);
+                          // $bulan = floor($selisihTanggal / 30); // Hitung bulan
+                          // $hari = $selisihTanggal % 30; // Hitung sisa hari
+                          // $hasil = "{$bulan} bulan {$hari} hari";
+                          // DATE REAL TIME
+                          // $transaksi = transaksi::find(session()->get('payment_id'));
         return view('user.transaksi.konfirmasitransaksi',compact('pembayaran', 'kamarkost', 'kamarkosts', 'users', 'pembayaranSelected', 'time', 'selectedTime', 'totalPembayaran', 'hargaKost')
         );
     }
@@ -157,7 +157,7 @@ class UserController extends Controller
         $totalPembayaran = $request->input('totalPembayaran');
         $users           = Auth::user();
         $kode            = 'SUB/';
-                            // dd($totalPembayaran);
+                              // dd($totalPembayaran);
            $unique                            = Transaksi::where('no_transaksi', 'LIKE', "$kode%")->latest('no_transaksi')->first();
         if ($unique != null) $generateNewKode = intval(substr($unique->no_transaksi,strlen($kode)));
            $kode                              = $kode . ($unique != null ? Str::padLeft($generateNewKode + 1, 3, 0) : Str::padLeft(1, 3, 0));
@@ -170,13 +170,13 @@ class UserController extends Controller
         $time         = session()->get('getDate');
         $kamarkost    = KamarKost::find($id);
 
-                            // Menghapus titik dari nilai yang diambil dari database
+                              // Menghapus titik dari nilai yang diambil dari database
         $hargaKost = str_replace('.', '', $kamarkost->harga_kost);
 
-                            // Mengonversi string ke tipe data integer
+                              // Mengonversi string ke tipe data integer
         $hargaKost = (int) $hargaKost;
 
-                            // Melakukan perhitungan dengan nilai yang sudah dikonversi
+                              // Melakukan perhitungan dengan nilai yang sudah dikonversi
         $totalPembayaran = $hargaKost + 200000 - 25000;
 
         $kamarkosts         = KamarKost::where('status_kost', 'Publish')->get();
@@ -198,8 +198,8 @@ class UserController extends Controller
             'pesan'               => 'Kost Sedang Diproses',
         ]);
 
-                                // $transaksi = transaksi::find(session()->get('payment_id'));
-        return redirect()->to('/user/home');
+                                  // $transaksi = transaksi::find(session()->get('payment_id'));
+        // return redirect()->to('/user/home');
     }
     public function back()
     {
@@ -218,41 +218,41 @@ class UserController extends Controller
     $kamar_kost           = $transaksi ? KamarKost::find($transaksi->kamar_kost_id) : null;
     $kamar_kost_fasilitas = $transaksi ? KamarKost::find($transaksi->kamar_kost_id)->kamarkostfasilitas : null;
 
-                // dd(KamarKost::find($transaksi->kamar_kost_id)->kamarkostfasilitas);
+                  // dd(KamarKost::find($transaksi->kamar_kost_id)->kamarkostfasilitas);
     $fasKamar      = Fasilitas::where('tipe', 'Kamar')->get();
     $fasKamarmandi = Fasilitas::where('tipe', 'Kamar Mandi')->get();
     $fasUmum       = Fasilitas::where('tipe', 'Umum')->get();
     $fasParkir     = Fasilitas::where('tipe', 'Parkir')->get();
     $fotoku        = gambarKamarKostKamu::where('user_id', auth()->user()->id)->orderBy('id', 'desc')->get();
-                // dd($kamar_kost_fasilitas);
+                  // dd($kamar_kost_fasilitas);
     return view('user.kamar', compact('users', 'transaksi', 'kamar_kost', 'kamar_kost_fasilitas', 'fasKamar', 'fasKamarmandi', 'fasUmum', 'fasParkir', 'fotoku'));
     }
 
     public function upload(Request $request)
     {
-       // dd($request->all());
+         // dd($request->all());
 
-        $file = $request->file('gambar');
+        $file     = $request->file('gambar');
         $namaFile = time().'.'.$file->getClientOriginalExtension();
         $file->move(public_path('uploadkamar'), $namaFile);
 
-        $gambarkamarku = new gambarKamarKostKamu();
-        $gambarkamarku->user_id = auth()->user()->id;
+        $gambarkamarku           = new gambarKamarKostKamu();
+        $gambarkamarku->user_id  = auth()->user()->id;
         $gambarkamarku->kamar_id = '1';
-        $gambarkamarku->gambar = $namaFile;
+        $gambarkamarku->gambar   = $namaFile;
         $gambarkamarku->save();
 
         return back()->with('success', 'Gambar Berhasil Diunggah.');
     }
 
     public function editPic(Request $request) {
-        // dd($request->all());
+          // dd($request->all());
 
-        $file = $request->file('gambar');
+        $file     = $request->file('gambar');
         $namaFile = time().'.'.$file->getClientOriginalExtension();
         $file->move(public_path('uploadkamar'), $namaFile);
 
-        $gambarkamarku = gambarKamarKostKamu::where('id', $request->id)->first();
+        $gambarkamarku         = gambarKamarKostKamu::where('id', $request->id)->first();
         $gambarkamarku->gambar = $namaFile;
         $gambarkamarku->save();
 
@@ -260,7 +260,7 @@ class UserController extends Controller
     }
 
     public function deletePic(Request $request) {
-        // dd($request->all());
+          // dd($request->all());
 
         $gambarkamarku = gambarKamarKostKamu::where('id', $request->id)->first();
             if(file_exists(public_path('uploadkamar/'.$gambarkamarku->gambar))) {
@@ -310,14 +310,14 @@ class UserController extends Controller
             $gambarBarang1 = $request->file('input1');
             $namaFile1     = time().'gambar1.'.$gambarBarang1->getClientOriginalExtension();
             $gambarBarang1->move(public_path('uploadkamar'), $namaFile1);
-                      // dd($namaFile1);
+                        // dd($namaFile1);
         }
 
         if ($request->file('input2')) {
             $gambarBarang2 = $request->file('input2');
             $namaFile2     = time().'gambar2.'.$gambarBarang2->getClientOriginalExtension();
             $gambarBarang2->move(public_path('uploadkamar'), $namaFile2);
-                      // dd($namaFile2);
+                        // dd($namaFile2);
         }
         if ($request->file('input3')) {
             $gambarBarang3 = $request->file('input3');
@@ -331,7 +331,7 @@ class UserController extends Controller
             $gambarBarang4->move(public_path('uploadkamar'), $namaFile4);
         }
 
-                  // dd($namaFile1.$namaFile2);
+                    // dd($namaFile1.$namaFile2);
 
         GambarKerusakan::updateOrCreate([
             'kerusakan_id' => $kerusakan->id
@@ -342,7 +342,7 @@ class UserController extends Controller
             'input4' => $namaFile4 ?? null,
         ]);
 
-                  // $transaksi = transaksi::find(session()->get('payment_id'));
+                    // $transaksi = transaksi::find(session()->get('payment_id'));
        return redirect()->to('/user/kerusakan/'.Auth::user()->id)->with('success', 'Lapor Kerusakan Berhasil Dikirim.');
     }
     public function kehilangan($id)
@@ -372,7 +372,7 @@ class UserController extends Controller
             'keterangan'     => $request->keterangan,
             'status'         => 'Menunggu Respon',
         ]);
-                                // $transaksi = transaksi::find(session()->get('payment_id'));
+                                  // $transaksi = transaksi::find(session()->get('payment_id'));
         return redirect()->to('/user/kehilangan/'.Auth::user()->id)->with('success', 'Lapor Kehilangan Berhasil Dikirim.');
     }
 
@@ -388,7 +388,7 @@ class UserController extends Controller
     {
         $users     = Auth::user();
         $transaksi = Transaksi::where('user_id', $users->id)->latest()->get();
-                            // $transaksi = Transaksi::();
+                              // $transaksi = Transaksi::();
         return view('user.riwayat', compact('users', 'transaksi'));
     }
     public function detailriwayat($id)
@@ -409,7 +409,7 @@ class UserController extends Controller
             'gambar' => 'nullable',
         ]);
 
-                                 // Proses gambar jika diunggah
+                                   // Proses gambar jika diunggah
     if ($request->hasFile('gambar')) {
         $gambarBarang = $request->file('gambar');
         $namaFile     = time().'.'.$gambarBarang->getClientOriginalExtension();
@@ -418,7 +418,7 @@ class UserController extends Controller
         $namaFile = '';  // Tetapkan string kosong jika tidak ada gambar yang diunggah
     }
 
-                            // Perbarui data pengguna
+                              // Perbarui data pengguna
     $users = Pengguna::find($request->id);
     if ($users) {
         $users->name   = $request->name;
@@ -482,6 +482,14 @@ class UserController extends Controller
         $favorites->delete();
 
         return response()->json(['message' => 'Success', 'alert' => 'DiHapus dari Favorite'], 200);
+    }
+
+    public function carifavorit(Request $request)
+    {
+        $search = $request->input('search');
+        $hasil  = Favorit::search(trim($search))->where('user_id', Auth::user()->id)->get();
+
+        return view('user.kamarfavoritcari', ['hasil' => $hasil]);
     }
 
 }

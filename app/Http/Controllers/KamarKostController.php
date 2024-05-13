@@ -66,7 +66,7 @@ class KamarKostController extends Controller
     ]);
 
     // Cek Apakah nomor kamar sudah ada sebelumnya
-    if (KamarKost::where('nomer_kamar', $request->nomer_kamar)->exists()) {
+    if (KamarKost::where('nomer_kost', $request->nomer_kost)->exists()) {
         return back()->with('fail', 'Kamar Kost No. ' .$request->nomer_kamar. ' sudah ada');
     }
 
