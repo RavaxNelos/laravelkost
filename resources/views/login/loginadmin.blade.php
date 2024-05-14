@@ -60,7 +60,7 @@
                     <div class="card">
                         <h1 class="card-title text-center">Masuk</h1>
                         <div class="card-body">
-                            <form action="{{ route('admin.login.submit') }}" method="POST">
+                            <form action="/adminlog" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-2">
                                     <label for="name" class="form-label" style="font-weight: 500; margin-left: 10px;">Masukkan nama</label>

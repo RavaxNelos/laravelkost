@@ -84,12 +84,11 @@ class AuthController extends Controller
         $get_admin = LoginAdmin::whereName($request->name)->first();
 
 
-        if (Auth::guard('login_admin')->attempt(['name' => $request->name, 'password' => $request->password])) {
+        if (Auth::guard('admin')->attempt(['name' => $request->name, 'password' => $request->password])) {
             // dd(Auth::user());
-            return redirect('/pemilimin/dashboard')->with('success', 'Login berhasil');
+            return redirect('/pemilikmin/dashboard')->with('success', 'Login berhasil');
         }
 
         return back()->with('error', 'Nama atau Sandi salah');
     }
-
 }

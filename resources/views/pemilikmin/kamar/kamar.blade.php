@@ -325,7 +325,7 @@
                                             <label class="mt-2" for="Deskripsi">Deskripsi Kost <span class="text-danger">*</span></label>
                                             <div class="mt-1">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" maxlength="100" name="deskripsi_kost" id="deskripsi_kost" placeholder="Masukkan Deskripsi Kost" value="{{ old('deskripsi_kost') }}" x-model="deskripsi" required>
+                                                    <input type="text" class="form-control" maxlength="300" name="deskripsi_kost" id="deskripsi_kost" placeholder="Masukkan Deskripsi Kost" value="{{ old('deskripsi_kost') }}" x-model="deskripsi" required>
                                                     @error('deskripsi_kost')
                                                         {{ $message }}
                                                     @enderror
@@ -1003,7 +1003,7 @@
                                                                             <label for="Nomer Kamar Kost">Nomer Kamar Kost</label>
                                                                             <div class="mt-0">
                                                                                 <div class="form-group">
-                                                                                    <input type="number" class="form-control" maxlength="2" name="nomer_kost" id="nomer_kost" value="{{ $item->nomer_kost }}">
+                                                                                    <input type="number" class="form-control" min="0" oninput="limitLength(this, 2)" name="nomer_kost" id="nomer_kost" value="{{ $item->nomer_kost }}">
                                                                                     @error('nomer_kost')
                                                                                         {{ $message }}
                                                                                     @enderror
@@ -1016,7 +1016,7 @@
                                                                         <div class="col-md-12">
                                                                             <div class="mt-0">
                                                                                 <div class="form-group">
-                                                                                    <input type="text" class="form-control" maxlength="100" name="deskripsi_kost" id="deskripsi_kost" value="{{ $item->deskripsi_kost }}">
+                                                                                    <input type="text" class="form-control" maxlength="300" name="deskripsi_kost" id="deskripsi_kost" value="{{ $item->deskripsi_kost }}">
                                                                                     @error('deskripsi_kost')
                                                                                         {{ $message }}
                                                                                     @enderror
@@ -1131,11 +1131,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        {{-- <form action="/pemilikmin/kamar/destroy">
-                                            @csrf
-                                            @method('delete')
-                                            <input type="hidden" name="id" value="{{ $item->id }}">
-                                        </form> --}}
                                     </div>
                                 </td>
                             </tr>
@@ -1353,7 +1348,7 @@
                                                     <label class="mt-2" for="Deskripsi">Deskripsi Kost <span class="text-danger">*</span></label>
                                                     <div class="mt-1">
                                                         <div class="form-group">
-                                                            <input type="text" class="form-control" maxlength="100" name="deskripsi_kost" id="deskripsi_kost" placeholder="Masukkan Deskripsi Kost" value="{{ old('deskripsi_kost') }}" x-model="deskripsi" required>
+                                                            <input type="text" class="form-control" maxlength="300" name="deskripsi_kost" id="deskripsi_kost" placeholder="Masukkan Deskripsi Kost" value="{{ old('deskripsi_kost') }}" x-model="deskripsi" required>
                                                             @error('deskripsi_kost')
                                                                 {{ $message }}
                                                             @enderror

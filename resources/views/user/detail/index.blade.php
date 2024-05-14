@@ -274,21 +274,7 @@
     <div id="popup">
         <p id="popup-text" style="font-size: 14px;"></p>
     </div>
-    <section class="splide new-2" aria-label="Splide Basic HTML Example">
-        <div class="splide__track">
-            <ul class="splide__list">
-                <li class="splide__slide">
-                    <img src="{{ asset('uploadkamar/' . $kamarkost->gambar_kost) }}" style="height: 270px; width: 100%; position: relative; object-fit: cover; border-radius: 0px;">
-                </li>
-                {{-- <li class="splide__slide">
-                    <img src="{{ asset('img/kostsurabaya7.jpg') }}" style="height: 270px; position: relative; object-fit: cover;border-radius: 0px;" class="w-100">
-                </li>
-                <li class="splide__slide">
-                    <img src="{{ asset('img/kostsurabaya8.jpg') }}" style="height: 270px; position: relative; object-fit: cover;border-radius: 0px;" class="w-100">
-                </li> --}}
-            </ul>
-        </div>
-    </section>
+    <img src="{{ asset('uploadkamar/' . $kamarkost->gambar_kost) }}" style="height: auto; width: 100%; max-height: 270px; position: relative; object-fit: cover; border-radius: 0px;">
     <div class="container">
         <!-- Judul kamar -->
         <div class="col-7 text-start mt-2">
@@ -305,9 +291,6 @@
             <div class="col-6 text-start">
                 <h6 class="fw-bold" style="font-size: 22px; color: rgba(128, 0, 128, 0.9); font-family: Ubuntu;">Rp. {{ $kamarkost->harga_kost }}</h6>
             </div>
-            {{-- <div class="col-6" style="margin-top: 12px; margin-left: -26px;">
-                <p class="text-danger" style="margin-top: -8px; font-size: 10px; font-style: italic; font-family: Ubuntu;">(Tidak Termasuk Listrik) <i class="bi bi-info-circle" data-bs-toggle="modal" data-bs-target="#exampleModal" style="color: #000000; margin-left: 4px; font-size: 12px;"></i></p>
-            </div> --}}
         </div>
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -395,8 +378,13 @@
         </section>
         <div class="col-12">
             <h6 class="fw-semibold" style="font-family: Ubuntu;">Tentang Kamar Kost</h6>
-            <p class="text-secondary tentang-kamar" style="font-size: 12px;">
-                Besar ukuran kamar kostnya {{ $kamarkost->ukuran_kost }}. Kamar kost Putra ini juga memiliki fasilitas berbagai macam seperti ac, toilet, dan lain-lain
+            <p class="text-secondary tentang-kamar" style="font-size: 12px;" id="threedots">
+                {{ Str::limit($kamarkost->deskripsi_kost, 150, '...') }}
+                <a class="text-primary" style="font-style: italic; font-size: 12px;" data-toggle="collapse" data-parent="#accordion" onclick="showMore()">Lihat Selengkapnya</a>
+            </p>
+            <p class="text-secondary tentang-kamar" style="font-size: 12px; display:none;" id="full_desc">
+                {{ $kamarkost->deskripsi_kost }}.
+                <a class="text-primary" style="font-style: italic; font-size: 12px;" data-toggle="collapse" data-parent="#accordion" onclick="showMore()">Kembali</a>
             </p>
         </div>
         <div class="modal fade" id="fasilitasKamar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -418,7 +406,7 @@
                 <div class="splide__track">
                     <ul class="splide__list">
                         @foreach ($kamar_kost_fasilitas as $kost_fasilitas)
-                            @if ($kost_fasilitas->fasilitas->tipe == 'Kamar')
+                            @if ($kost_fasilitas->fasilitas->tipe == 'Kamar' || $kost_fasilitas->fasilitas->tipe == 'Umum')
                                 <li class="splide__slide" onclick="getFasilitasBed({{ $kost_fasilitas->id }})">
                                     <img src="{{ asset('uploadkamar/' . $kost_fasilitas->fasilitas->gambar) }}" height="60" width="60" style="border-radius: 5px;">
                                 </li>
@@ -481,6 +469,19 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
         <script src="https://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
+        <script>
+            function showMore() {
+                if ($('#threedots').css('display') == 'none') {
+                    // already showing, we hide
+                    $('#threedots').show();
+                    $('#full_desc').hide();
+                } else {
+                    // show more
+                    $('#threedots').hide();
+                    $('#full_desc').show();
+                }
+            }
+        </script>
         <script>
             var selectedTime = ''; // Variabel global untuk menyimpan waktu yang dipilih
 
@@ -647,44 +648,7 @@
 
             splide.mount();
 
-            var splide = new Splide('.splide.new-2', {
-                // type: 'loop',
-                pagination: false,
-                autoplay: true,
-                lazyLoad: 'nearby',
-                arrows: false,
-                interval: '2000',
-                // autoWidth: true
-            });
-            splide.mount();
-            // var splide = new Splide('.splide.new-3', {
-            //     type: 'loop',
-            //     lazyLoad: 'nearby',
-            //     pagination: false,
-            //     interval: '2000'
-            // });
-            // splide.mount();
-
             let isFavorite = false;
-
-            // function toggleReadMore() {
-            //     const ellipsis = document.querySelector(".ellipsis");
-            //     const textSecondary = document.querySelector('.text-secondary');
-            //     const readMoreBtn = document.querySelector('.read-more-btn');
-            //     const additionalText = document.querySelector('.additional-text');
-
-            //     textSecondary.classList.toggle('expanded');
-
-            //     if (textSecondary.classList.contains('expanded')) {
-            //         additionalText.style.display = 'inline';
-            //         ellipsis.classList.add("hide-ellipsis");
-            //         readMoreBtn.textContent = 'Tutup';
-            //     } else {
-            //         additionalText.style.display = 'none';
-            //         ellipsis.classList.remove("hide-ellipsis");
-            //         readMoreBtn.textContent = 'Lihat Selengkapnya';
-            //     }
-            // }
 
             let isAlertShown = false;
 

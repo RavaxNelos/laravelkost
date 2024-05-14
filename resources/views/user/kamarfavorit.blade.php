@@ -93,26 +93,66 @@
                     </div>
                 </div>
             </div>
-
-            @foreach ($favorites as $favorite)
-                <div class="container mt-3" x-show="filter == '{{ $favorite->category }}'" @click="openSearch = false" data-favorite-id="{{ $favorite->id }}">
-                    <div class="row">
-                        <div class="col-5">
-                            <img src="{{ asset('uploadkamar/' . $favorite->kamarkost->gambar_kost) }}" style="width: 120px; height: 160px; border-radius: 10px;">
-                        </div>
-                        <div class="col-5" style="margin-left: -20px;">
-                            <a href="#" class="btn btn-outline-secondary text-dark fw-medium" style="font-size: 14px; height: 30px; padding-top: 4px; padding-bottom: 4px; padding-left: 6px; padding-right: 6px;">{{ $favorite->kamarkost->kategori->kategori }}</a>
-                            <p class="text-secondary fw-normal mt-2" style="font-size: 12px; width: 180px;">{{ $favorite->kamarkost->kategori->kategori }} Uk {{ $favorite->kamarkost->ukuran_kost }}</p>
-                            <p class="fw-medium text-dark" style="font-size: 14px; margin-top: -14px;"><i class="bi bi-geo-alt" style="margin-right: 4px;"></i>{{ $favorite->kamarkost->alamat_kost }}</p>
-                            <p class="text-secondary fw-normal" style="font-size: 12px; margin-top: -14px; width: 200px;">{{ Illuminate\Support\Str::limit($favorite->kamarkost->fasilitas_kost, 55, '...') }}</p>
-                            <p class="fw-semibold" style="font-size: 16px; margin-top: 18px; width: 200px;">Rp. {{ $favorite->kamarkost->harga_kost }} <span class="text-secondary fw-normal" style="font-size: 12px;">/{{ $favorite->kamarkost->tipe_kost }}</span></p>
-                        </div>
-                        <div class="col-2 text-end">
-                            <i class="bi bi-star-fill star-icon btn" style="color: purple; font-size: 18px; width: 40px; height: auto; border: none; border-radius: 50%;  background-color: rgba(0, 0, 0, 0.8); padding-left: 4px; padding-right: 4px; margin-top: -10px;" onclick="deleteFavoriteProduct({{ $favorite->id }},'{{ $favorite->category }}')"></i>
-                        </div>
+            <div x-show="filter == 'Bulanan'">
+                @if ($favorites->where('category', 'Bulanan')->isEmpty())
+                    <div class="col-12 text-center" style="margin-top: 140px;">
+                        <img src="{{ asset('img/planet.png') }}" width="150">
                     </div>
-                </div>
-            @endforeach
+                    <div class="col-12 text-center mt-2">
+                        <h1 class="fw-medium fs-6">Belum Ada Kamar Favorit Bulanan</h1>
+                    </div>
+                @else
+                    @foreach ($favorites->where('category', 'Bulanan') as $favorite)
+                        <div class="container mt-3" @click="openSearch = false" data-favorite-id="{{ $favorite->id }}">
+                            <div class="row">
+                                <div class="col-5">
+                                    <img src="{{ asset('uploadkamar/' . $favorite->kamarkost->gambar_kost) }}" style="width: 120px; height: 160px; border-radius: 10px;">
+                                </div>
+                                <div class="col-5" style="margin-left: -20px;">
+                                    <a href="#" class="btn btn-outline-secondary text-dark fw-medium" style="font-size: 14px; height: 30px; padding-top: 4px; padding-bottom: 4px; padding-left: 6px; padding-right: 6px;">{{ $favorite->kamarkost->kategori->kategori }}</a>
+                                    <p class="text-secondary fw-normal mt-2" style="font-size: 12px; width: 180px;">{{ $favorite->kamarkost->kategori->kategori }} Uk {{ $favorite->kamarkost->ukuran_kost }}</p>
+                                    <p class="fw-medium text-dark" style="font-size: 14px; margin-top: -14px;"><i class="bi bi-geo-alt" style="margin-right: 4px;"></i>{{ $favorite->kamarkost->alamat_kost }}</p>
+                                    <p class="text-secondary fw-normal" style="font-size: 12px; margin-top: -14px; width: 200px;">{{ Illuminate\Support\Str::limit($favorite->kamarkost->fasilitas_kost, 55, '...') }}</p>
+                                    <p class="fw-semibold" style="font-size: 16px; margin-top: 18px; width: 200px;">Rp. {{ $favorite->kamarkost->harga_kost }} <span class="text-secondary fw-normal" style="font-size: 12px;">/{{ $favorite->kamarkost->tipe_kost }}</span></p>
+                                </div>
+                                <div class="col-2 text-end">
+                                    <i class="bi bi-star-fill star-icon btn" style="color: purple; font-size: 18px; width: 40px; height: auto; border: none; border-radius: 50%;  background-color: rgba(0, 0, 0, 0.8); padding-left: 4px; padding-right: 4px; margin-top: -10px;" onclick="deleteFavoriteProduct({{ $favorite->id }},'{{ $favorite->category }}')"></i>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
+            </div>
+            <div x-show="filter == 'Harian'">
+                @if ($favorites->where('category', 'Harian')->isEmpty())
+                    <div class="col-12 text-center" style="margin-top: 140px;">
+                        <img src="{{ asset('img/planet.png') }}" width="150">
+                    </div>
+                    <div class="col-12 text-center mt-2">
+                        <h1 class="fw-medium fs-6">Belum Ada Kamar Favorit Harian</h1>
+                    </div>
+                @else
+                    @foreach ($favorites->where('category', 'Harian') as $favorite)
+                        <div class="container mt-3" @click="openSearch = false" data-favorite-id="{{ $favorite->id }}">
+                            <div class="row">
+                                <div class="col-5">
+                                    <img src="{{ asset('uploadkamar/' . $favorite->kamarkost->gambar_kost) }}" style="width: 120px; height: 160px; border-radius: 10px;">
+                                </div>
+                                <div class="col-5" style="margin-left: -20px;">
+                                    <a href="#" class="btn btn-outline-secondary text-dark fw-medium" style="font-size: 14px; height: 30px; padding-top: 4px; padding-bottom: 4px; padding-left: 6px; padding-right: 6px;">{{ $favorite->kamarkost->kategori->kategori }}</a>
+                                    <p class="text-secondary fw-normal mt-2" style="font-size: 12px; width: 180px;">{{ $favorite->kamarkost->kategori->kategori }} Uk {{ $favorite->kamarkost->ukuran_kost }}</p>
+                                    <p class="fw-medium text-dark" style="font-size: 14px; margin-top: -14px;"><i class="bi bi-geo-alt" style="margin-right: 4px;"></i>{{ $favorite->kamarkost->alamat_kost }}</p>
+                                    <p class="text-secondary fw-normal" style="font-size: 12px; margin-top: -14px; width: 200px;">{{ Illuminate\Support\Str::limit($favorite->kamarkost->fasilitas_kost, 55, '...') }}</p>
+                                    <p class="fw-semibold" style="font-size: 16px; margin-top: 18px; width: 200px;">Rp. {{ $favorite->kamarkost->harga_kost }} <span class="text-secondary fw-normal" style="font-size: 12px;">/{{ $favorite->kamarkost->tipe_kost }}</span></p>
+                                </div>
+                                <div class="col-2 text-end">
+                                    <i class="bi bi-star-fill star-icon btn" style="color: purple; font-size: 18px; width: 40px; height: auto; border: none; border-radius: 50%;  background-color: rgba(0, 0, 0, 0.8); padding-left: 4px; padding-right: 4px; margin-top: -10px;" onclick="deleteFavoriteProduct({{ $favorite->id }},'{{ $favorite->category }}')"></i>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
+            </div>
         @else
             <div class="col-12 text-center" style="margin-top: 150px;">
                 <img src="{{ asset('img/planet.png') }}" width="150">

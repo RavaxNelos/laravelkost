@@ -209,9 +209,6 @@
                     </div>
                     <!-- end Avatar icon -->
                 </div>
-                {{-- <div class="mt-2" style="margin-bottom: 4px;" x-show="openSearch === true">
-                    <input id="searchInput" type="text" class="form-control  search-input w-100" placeholder="Cari Kamar..." style="height: 30px;">
-                </div> --}}
             </div>
         </div>
         <div class="modal" id="myModal">
@@ -276,7 +273,6 @@
         </section>
         <div class="button-container">
             <button :class="filter == 'bulanan' ? 'btn btn-dark' : 'btn text-secondary'" x-on:click="filter = 'bulanan';" onclick="resetScroll('kategori-sewa')">Kost Bulanan</button>
-            {{-- <button class="btn btn-kost-bulanan active fw-semibold">Kost Bulanan</button> --}}
             <button :class="filter == 'harian' ? 'btn btn-dark' : 'btn text-secondary'" x-on:click="filter = 'harian';" onclick="resetScroll('kategori-sewa')">Sewa Harian</button>
         </div>
         <!-- end Kost bulanan dan kost harian -->
@@ -286,23 +282,22 @@
                 <div class="col-7 text-start">
                     <h1 style="font-weight: bold; font-size: 18px; font-family: 'Inter', sans-serif;">Didekat Kamu</h1>
                 </div>
-                {{-- <div class="col-5 text-end">
-                    <p class="text-primary">semua</p>
-                </div> --}}
                 <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay;" id="kategori-sewa">
                     @foreach ($kamarkost_didekat_kamu as $item)
                         <div x-show="filter == '{{ strtolower($item->tipe_kost) }}'">
-                            <div class="position-relative mb-2">
-                                <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" style="border-top-right-radius: 15px; border-top-left-radius: 15px; width: 226px; height: 236px; object-fit: cover;">
-                            </div>
-                            <div class="card-black" style="position: relative; margin-top: -8px; width: 226px; height: 100px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; opacity: 0.9;">
-                                <h6 style="top: 10px; left: 10px; font-size: 18px; position: absolute; color: #333;" class="fw-semibold">{{ $item->kategori->kategori }}</h6>
-                                <i style="position: absolute; top: 32px; left: 10px; color: #333; font-size: 12px" class="bi bi-geo-alt text-info"></i><small style="position: absolute; top: 32px; left: 26px; font-size: 12px; color: #333" class="text-secondary;"> {{ $item->alamat_kost }}, Surabaya</small>
-                                <h6 style="position: absolute; top: 58px; left: 10px; font-size: 16px; color: #333;" class="fw-bold">Rp. {{ $item->harga_kost }}</h6>
-                                <form action="/user/detail/{{ $item->id }}">
-                                    <button class="btn-didekat-mu">Lihat</button>
-                                </form>
-                            </div>
+                            <a href="/user/detail/{{ $item->id }}">
+                                <div class="position-relative mb-2">
+                                    <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" style="border-top-right-radius: 15px; border-top-left-radius: 15px; width: 226px; height: 236px; object-fit: cover;">
+                                </div>
+                                <div class="card-black" style="position: relative; margin-top: -8px; width: 226px; height: 100px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; opacity: 0.9;">
+                                    <h6 style="top: 10px; left: 10px; font-size: 18px; position: absolute; color: #333;" class="fw-semibold">{{ $item->kategori->kategori }}</h6>
+                                    <i style="position: absolute; top: 32px; left: 10px; color: #333; font-size: 12px" class="bi bi-geo-alt text-info"></i><small style="position: absolute; top: 32px; left: 26px; font-size: 12px; color: #333" class="text-secondary;"> {{ $item->alamat_kost }}, Surabaya</small>
+                                    <h6 style="position: absolute; top: 58px; left: 10px; font-size: 16px; color: #333;" class="fw-bold">Rp. {{ $item->harga_kost }}</h6>
+                                    <form action="/user/detail/{{ $item->id }}">
+                                        <button class="btn-didekat-mu">Lihat</button>
+                                    </form>
+                                </div>
+                            </a>
                         </div>
                     @endforeach
                 </div>
@@ -391,33 +386,33 @@
                     <h1 style="font-weight: bold; font-size: 18px; font-family: 'Inter', sans-serif;">Area Surabaya Timur</h1>
                 </div>
             </div>
-            <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-top: -10px; margin-bottom: 2rem;" id="katagori-sewa-timur">
+            <div class="col-12 d-flex gap-2 justify-content-between" style="overflow-x: auto; overflow: overlay; margin-top: -10px; margin-bottom: 2rem;" id="katagori-sewa-timur">
                 <!-- Area Surabaya Timur -->
                 @foreach ($kamarkost_area_surabaya_timur as $item)
                     <div x-show="filter == '{{ strtolower($item->tipe_kost) }}'">
-                        <div class="custom-card" style="width: 180px; height: 290px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
-                            <div class="position-relative mb-2">
-                                <a href="/user/detail">
+                        <a href="/user/detail/{{ $item->id }}" style="text-decoration: none;">
+                            <div class="custom-card d-flex flex-column justify-content-between" style="width: 180px; height: 290px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
+                                <div class="position-relative mb-2">
                                     <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" style="border-radius: 15px; width: 160px; height: 160px; object-fit: cover;">
-                                </a>
+                                </div>
+                                <div class="row m-0"> <!-- Tambahkan class m-0 untuk menghilangkan margin -->
+                                    <div class="col-12 mt-1 p-0"> <!-- Tambahkan class p-0 untuk menghilangkan padding -->
+                                        <h6 style="font-size: 14px;" class="fw-medium mb-1 text-secondary-emphasis">Kamar Uk. {{ $item->ukuran_kost }}</h6>
+                                    </div>
+                                    <div class="col-12 p-0"> <!-- Tambahkan class p-0 untuk menghilangkan padding -->
+                                        <h6 style="font-size: 10px;" class="text-secondary">Fasilitas: {{ Illuminate\Support\Str::limit($item->fasilitas_kost, 24, '...') }}</h6>
+                                    </div>
+                                    <div class="col-12 text-center p-0"> <!-- Tambahkan class p-0 untuk menghilangkan padding -->
+                                        <h3 style="font-size: 17px;" class="text-dark mb-0 fw-bold">Rp. {{ $item->harga_kost }}</h3>
+                                    </div>
+                                    <div class="col-12 mt-2 text-center p-0"> <!-- Tambahkan class p-0 untuk menghilangkan padding -->
+                                        <form action="/user/detail/{{ $item->id }}">
+                                            <button class="btn-area-timur-surabaya justify-content-center">Pesan Sekarang</button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
-                            <div style="width: 195px" class="row">
-                                <div class="col-12 mt-1">
-                                    <h6 style="font-size: 14px;" class="fw-medium mb-1">Kamar Uk. {{ $item->ukuran_kost }}</h6>
-                                </div>
-                                <div class="col-12">
-                                    <h6 style="font-size: 10px;" class="text-secondary">Fasilitas: {{ Illuminate\Support\Str::limit($item->fasilitas_kost, 24, '...') }}</h6>
-                                </div>
-                                <div class="col-12 text-center">
-                                    <h3 style="font-size: 17px; margin-right: 12px;" class="text-dark mb-0 fw-bold text-center">Rp. {{ $item->harga_kost }}</h3>
-                                </div>
-                                <div class="col-12 mt-2 text-center">
-                                    <form action="/user/detail/{{ $item->id }}">
-                                        <button class="btn-area-timur-surabaya justify-content-center" style="margin-right: 11px;">Pesan Sekarang</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                        </a>
                     </div>
                 @endforeach
                 <!-- end Area timur surabaya -->
@@ -448,22 +443,24 @@
             <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-top: -10px; margin-bottom: 2rem;" id="kategori-sewa-putra">
                 @foreach ($kamarkost_putra as $item)
                     <div x-show="filter == '{{ strtolower($item->tipe_kost) }}'">
-                        <div class="card" style="padding: 10px; border-radius: 15px;">
-                            <div class="position-relative mb-2">
-                                <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" style="border-radius: 15px; width: 220px; height: 150px; object-fit: cover;">
-                                {{-- <button id="btn-like-timur" class="btn-like-putra" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button> --}}
-                            </div>
-                            <div class="row">
-                                <div class="col-7 mt-2">
-                                    <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. {{ $item->harga_kost }}</h3>
+                        <a href="/user/detail/{{ $item->id }}" style="text-decoration: none;">
+                            <div class="card" style="padding: 10px; border-radius: 15px;">
+                                <div class="position-relative mb-2">
+                                    <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" style="border-radius: 15px; width: 220px; height: 150px; object-fit: cover;">
+                                    {{-- <button id="btn-like-timur" class="btn-like-putra" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button> --}}
                                 </div>
-                                <div class="col-5">
-                                    <form action="/user/detail/{{ $item->id }}">
-                                        <button class="btn-kamar-kost-putra">Lihat</button>
-                                    </form>
+                                <div class="row">
+                                    <div class="col-7 mt-2">
+                                        <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. {{ $item->harga_kost }}</h3>
+                                    </div>
+                                    <div class="col-5">
+                                        <form action="/user/detail/{{ $item->id }}">
+                                            <button class="btn-kamar-kost-putra">Lihat</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 @endforeach
             </div>
@@ -477,26 +474,29 @@
                     <!-- Kamar Populer -->
                     @foreach ($kamarkost_populer as $item)
                         <div x-show="filter == '{{ strtolower($item->tipe_kost) }}'">
-                            <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
-                                <div class="position-relative mb-2">
-                                    <div class="row">
-                                        <div class="col-4 mb-0">
-                                            <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" style="border-radius: 15px; width: 90px; height: 90px; object-fit: cover;">
-                                        </div>
-                                        <div class="col-4" style="width: 150px; margin-left: 16px;">
-                                            <h6 style="font-size: 16px; margin-top: 10px;" class="fw-bold">{{ $item->kategori->kategori }}</h6>
-                                            <p style="margin-top: -5px; font-size: 12px; color: #6a6666fa;" class="mb-2 fw-normal">Uk. Kamar {{ $item->ukuran_kost }}</p>
-                                            <form action="/user/detail/{{ $item->id }}">
-                                                <button class="btn-kost-populer" style="width: 125px; height: 33px; padding: 4px;">
-                                                    <p>Cek</p>
-                                                </button>
-                                            </form>
+                            <a href="/user/detail/{{ $item->id }}" style="text-decoration: none;">
+                                <div class="custom-card" style="width: 260px; height: 116px; padding: 9px; border-radius: 15px; border: 1px solid #ccc;">
+                                    <div class="position-relative mb-2">
+                                        <div class="row">
+                                            <div class="col-4 mb-0">
+                                                <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" style="border-radius: 15px; width: 90px; height: 90px; object-fit: cover;">
+                                            </div>
+                                            <div class="col-4" style="width: 150px; margin-left: 16px;">
+                                                <h6 style="font-size: 16px; margin-top: 10px;" class="fw-bold text-secondary-emphasis">{{ $item->kategori->kategori }}</h6>
+                                                <p style="margin-top: -5px; font-size: 12px; color: #6a6666fa;" class="mb-2 fw-normal">Uk. Kamar {{ $item->ukuran_kost }}</p>
+                                                <form action="/user/detail/{{ $item->id }}">
+                                                    <button class="btn-kost-populer" style="width: 125px; height: 33px; padding: 4px;">
+                                                        <p>Cek</p>
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     @endforeach
+                    <!-- End Kamar Populer -->
                 </div>
             @endif
         </div>
@@ -508,187 +508,30 @@
                 </div>
             </div>
             <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-top: -10px; margin-bottom: 2rem;" id="kategori-sewa-putri">
+                <!-- Kamar Kost Putri -->
                 @foreach ($kamarkost_putri as $item)
                     <div x-show="filter == '{{ strtolower($item->tipe_kost) }}'">
-                        <div class="card" style="padding: 10px; border-radius: 15px;">
-                            <div class="position-relative mb-2">
-                                <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" style="border-radius: 15px; width: 220px; height: 150px; object-fit: cover;">
-                                {{-- <button id="btn-like-timur" class="btn-like-putri" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button> --}}
-                            </div>
-                            <div class="row">
-                                <div class="col-7 mt-2">
-                                    <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. {{ $item->harga_kost }}</h3>
+                        <a href="/user/detail/{{ $item->id }}" style="text-decoration: none;">
+                            <div class="card" style="padding: 10px; border-radius: 15px;">
+                                <div class="position-relative mb-2">
+                                    <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" style="border-radius: 15px; width: 220px; height: 150px; object-fit: cover;">
                                 </div>
-                                <div class="col-5">
-                                    <form action="/user/detail/{{ $item->id }}">
-                                        <button class="btn-kamar-kost-putra">Lihat</button>
-                                    </form>
+                                <div class="row">
+                                    <div class="col-7 mt-2">
+                                        <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. {{ $item->harga_kost }}</h3>
+                                    </div>
+                                    <div class="col-5">
+                                        <form action="/user/detail/{{ $item->id }}">
+                                            <button class="btn-kamar-kost-putra">Lihat</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 @endforeach
+                <!-- End Kamar Kost Putri -->
             </div>
-            {{-- <div x-show="filter == 'bulanan'">
-                    <div class="card" style="padding: 10px; border-radius: 15px;">
-                        <div class="position-relative mb-2">
-                            <img src="{{ asset('/img/kamarkostputri1.jpg') }}" style="border-radius: 15px; width: 220px; height: 150px; object-fit: cover;">
-                            <button id="btn-like-timur" class="btn-like-putri" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                        </div>
-                        <div class="row">
-                            <div class="col-7 mt-2">
-                                <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. 1.750.000</h3>
-                            </div>
-                            <div class="col-5">
-                                <button class="btn-kamar-kost-putra">Lihat</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div x-show="filter == 'bulanan'">
-                    <div class="card" style="padding: 10px; border-radius: 15px;">
-                        <div class="position-relative mb-2">
-                            <img src="{{ asset('/img/kamarkostputri2.jpg') }}" style="border-radius: 15px; width: 220px; height: 150px; object-fit: cover;">
-                            <button id="btn-like-timur" class="btn-like-putri" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                        </div>
-                        <div class="row">
-                            <div class="col-7 mt-2">
-                                <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. 2.000.000</h3>
-                            </div>
-                            <div class="col-5">
-                                <button class="btn-kamar-kost-putra">Lihat</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div x-show="filter == 'bulanan'">
-                    <div class="card" style="padding: 10px; border-radius: 15px;">
-                        <div class="position-relative mb-2">
-                            <img src="{{ asset('/img/kamarkostputri3.jpg') }}" style="border-radius: 15px; width: 220px; height: 150px; object-fit: cover;">
-                            <button id="btn-like-timur" class="btn-like-putri" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                        </div>
-                        <div class="row">
-                            <div class="col-7 mt-2">
-                                <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. 2.250.000</h3>
-                            </div>
-                            <div class="col-5">
-                                <button class="btn-kamar-kost-putra">Lihat</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div x-show="filter == 'bulanan'">
-                    <div class="card" style="padding: 10px; border-radius: 15px;">
-                        <div class="position-relative mb-2">
-                            <img src="{{ asset('/img/kamarkostputri4.jpg') }}" style="border-radius: 15px; width: 220px; height: 150px; object-fit: cover;">
-                            <button id="btn-like-timur" class="btn-like-putri" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                        </div>
-                        <div class="row">
-                            <div class="col-7 mt-2">
-                                <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. 3.300.000</h3>
-                            </div>
-                            <div class="col-5">
-                                <button class="btn-kamar-kost-putra">Lihat</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div x-show="filter == 'bulanan'">
-                    <div class="card" style="padding: 10px; border-radius: 15px;">
-                        <div class="position-relative mb-2">
-                            <img src="{{ asset('/img/kamarkostputri5.jpg') }}" style="border-radius: 15px; width: 220px; height: 150px; object-fit: cover;">
-                            <button id="btn-like-timur" class="btn-like-putri" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                        </div>
-                        <div class="row">
-                            <div class="col-7 mt-2">
-                                <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. 5.000.000</h3>
-                            </div>
-                            <div class="col-5">
-                                <button class="btn-kamar-kost-putra">Lihat</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div x-show="filter == 'harian'">
-                    <div class="card" style="padding: 10px; border-radius: 15px;">
-                        <div class="position-relative mb-2">
-                            <img src="{{ asset('/img/kamarkostputriharian1.jpg') }}" style="border-radius: 15px; width: 220px; height: 150px; object-fit: cover;">
-                            <button id="btn-like-timur" class="btn-like-putri" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                        </div>
-                        <div class="row">
-                            <div class="col-7 mt-2">
-                                <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. 1.750.000</h3>
-                            </div>
-                            <div class="col-5">
-                                <button class="btn-kamar-kost-putra">Lihat</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div x-show="filter == 'harian'">
-                    <div class="card" style="padding: 10px; border-radius: 15px;">
-                        <div class="position-relative mb-2">
-                            <img src="{{ asset('/img/kamarkostputriharian2.jpg') }}" style="border-radius: 15px; width: 220px; height: 150px; object-fit: cover;">
-                            <button id="btn-like-timur" class="btn-like-putri" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                        </div>
-                        <div class="row">
-                            <div class="col-7 mt-2">
-                                <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. 2.000.000</h3>
-                            </div>
-                            <div class="col-5">
-                                <button class="btn-kamar-kost-putra">Lihat</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div x-show="filter == 'harian'">
-                    <div class="card" style="padding: 10px; border-radius: 15px;">
-                        <div class="position-relative mb-2">
-                            <img src="{{ asset('/img/kamarkostputriharian3.jpg') }}" style="border-radius: 15px; width: 220px; height: 150px; object-fit: cover;">
-                            <button id="btn-like-timur" class="btn-like-putri" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                        </div>
-                        <div class="row">
-                            <div class="col-7 mt-2">
-                                <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. 2.250.000</h3>
-                            </div>
-                            <div class="col-5">
-                                <button class="btn-kamar-kost-putra">Lihat</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div x-show="filter == 'harian'">
-                    <div class="card" style="padding: 10px; border-radius: 15px;">
-                        <div class="position-relative mb-2">
-                            <img src="{{ asset('/img/kamarkostputriharian4.jpg') }}" style="border-radius: 15px; width: 220px; height: 150px; object-fit: cover;">
-                            <button id="btn-like-timur" class="btn-like-putri" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                        </div>
-                        <div class="row">
-                            <div class="col-7 mt-2">
-                                <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. 3.300.000</h3>
-                            </div>
-                            <div class="col-5">
-                                <button class="btn-kamar-kost-putra">Lihat</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div x-show="filter == 'harian'">
-                    <div class="card" style="padding: 10px; border-radius: 15px;">
-                        <div class="position-relative mb-2">
-                            <img src="{{ asset('/img/kamarkostputriharian5.jpg') }}" style="border-radius: 15px; width: 220px; height: 150px; object-fit: cover;">
-                            <button id="btn-like-timur" class="btn-like-putri" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                        </div>
-                        <div class="row">
-                            <div class="col-7 mt-2">
-                                <h3 style="font-size: 15px; margin-left: -12px;" class="text-dark mb-0 fw-bold text-center">Rp. 5.000.000</h3>
-                            </div>
-                            <div class="col-5">
-                                <button class="btn-kamar-kost-putra">Lihat</button>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
             <div class="col-12" style="margin-top: -10px;">
                 <!-- banner biasa ke-2 -->
                 <section class="splide new-1" aria-label="Splide Basic HTML Example">
@@ -701,15 +544,6 @@
                                     </li>
                                 @endif
                             @endforeach
-                            {{-- <li class="splide__slide">
-                                <img src="{{ asset('/img/banner8.png') }}" style="border-radius: 15px; width: 334px; height: 160px; object-fit: cover;">
-                            </li>
-                            <li class="splide__slide">
-                                <img src="{{ asset('/img/banner9.png') }}" style="border-radius: 15px; width: 334px; height: 160px; object-fit: cover;">
-                            </li>
-                            <li class="splide__slide">
-                                <img src="{{ asset('/img/banner10.png') }}" style="border-radius: 15px; width: 334px; height: 160px; object-fit: cover;">
-                            </li> --}}
                         </ul>
                     </div>
                 </section>
@@ -724,239 +558,32 @@
                     <h1 style="font-weight: bold; font-size: 18px; font-family: 'Inter', sans-serif;">Area Surabaya Barat</h1>
                 </div>
             </div>
-            <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-top: -10px; margin-bottom: 2rem;" id="kategori-sewa-barat">
+            <div class="col-12 d-flex gap-2 justify-content-between" style="overflow-x: auto; overflow: overlay; margin-top: -10px; margin-bottom: 2rem;" id="kategori-sewa-barat">
                 <!-- Area barat surabaya -->
                 @foreach ($kamarkost_area_surabaya_barat as $item)
                     <div x-show="filter == '{{ strtolower($item->tipe_kost) }}'">
-                        <div class="custom-card" style="width: 266px; height: 180px; padding: 0px; border-radius: 15px; border: 1px solid #ccc;">
-                            <div class="position-relative mb-2">
-                                <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" style="border-top-left-radius: 13px; border-top-right-radius: 13px; width: 264px; height: 80px; object-fit: cover;">
-                                {{-- <button id="btn-like-timur" class="btn-like-barat" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button> --}}
+                        <a href="/user/detail/{{ $item->id }}" style="text-decoration: none;">
+                            <div class="custom-card" style="width: 266px; height: 180px; padding: 0px; border-radius: 15px; border: 1px solid #ccc;">
+                                <div class="position-relative mb-2">
+                                    <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" style="border-top-left-radius: 13px; border-top-right-radius: 13px; width: 264px; height: 80px; object-fit: cover;">
+                                </div>
+                                <div style="width: 266px; padding-left: 14px; padding-right: 14px;"> <!-- Sesuaikan padding -->
+                                    <div class="col-12 mt-1">
+                                        <h6 style="font-size: 16px;" class="fw-bold text-secondary-emphasis mb-1">Kamar Kost Uk. {{ $item->ukuran_kost }}</h6>
+                                    </div>
+                                    <div class="col-12">
+                                        <h6 style="font-size: 12px;" class="text-secondary">Fasilitas: {{ Illuminate\Support\Str::limit($item->fasilitas_kost, 32, '...') }}</h6>
+                                    </div>
+                                    <div class="col-12">
+                                        <form action="/user/detail/{{ $item->id }}">
+                                            <button class="btn-area-barat">Lihat Detail dan Lokasi</button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
-                            <div style="width: 280px; margin-left: 5px;" class="row">
-                                <div class="col-12 mt-1">
-                                    <h6 style="font-size: 16px;" class="fw-bold mb-1">Kamar Kost Uk. {{ $item->ukuran_kost }}</h6>
-                                </div>
-                                <div class="col-12">
-                                    <h6 style="font-size: 12px;" class="text-secondary">Fasilitas: {{ Illuminate\Support\Str::limit($item->fasilitas_kost, 32, '...') }}</h6>
-                                </div>
-                                <div class="col-12">
-                                    <form action="/user/detail/{{ $item->id }}">
-                                        <button class="btn-area-barat">Lihat Detail dan Lokasi</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                        </a>
                     </div>
                 @endforeach
-                {{-- <div x-show="filter == 'bulanan'">
-                    <div class="custom-card" style="width: 266px; height: 180px; padding: 0px; border-radius: 15px; border: 1px solid #ccc;">
-                        <div class="position-relative mb-2">
-                            <img src="{{ asset('/img/kostsurabaya6.jpg') }}" style="border-top-left-radius: 15px; border-top-right-radius: 15px; width: 265px; height: 80px; object-fit: cover;">
-                            <button id="btn-like-timur" class="btn-like-barat" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                        </div>
-                        <div style="width: 280px; margin-left: 5px;" class="row">
-                            <div class="col-12 mt-1">
-                                <h6 style="font-size: 16px;" class="fw-bold mb-1">Kamar Kost Uk. 5 x 7 Meter</h6>
-                            </div>
-                            <div class="col-12">
-                                <h6 style="font-size: 12px;" class="text-secondary">Fasilitas: Uk. 5 x 7 M | AC 1 | Toilet | Pk...</h6>
-                            </div>
-                            <div class="col-12">
-                                <form action="{{ route('detailrumah') }}">
-                                    <button class="btn-area-barat">Lihat Detail dan Lokasi</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div x-show="filter == 'bulanan'">
-                    <div class="custom-card" style="width: 266px; height: 180px; padding: 0px; border-radius: 15px; border: 1px solid #ccc;">
-                        <div class="position-relative mb-2">
-                            <img src="{{ asset('/img/kostsurabaya7.jpg') }}" style="border-top-left-radius: 15px; border-top-right-radius: 15px; width: 265px; height: 80px; object-fit: cover;">
-                            <button id="btn-like-timur" class="btn-like-barat" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                        </div>
-                        <div style="width: 280px; margin-left: 5px;" class="row">
-                            <div class="col-12 mt-1">
-                                <h6 style="font-size: 16px;" class="fw-bold mb-1">Kamar Kost Uk. 3 x 4 Meter</h6>
-                            </div>
-                            <div class="col-12">
-                                <h6 style="font-size: 12px;" class="text-secondary">Fasilitas: Uk. 3 x 4 M | AC 1 | Toilet | Pk...</h6>
-                            </div>
-                            <div class="col-12">
-                                <div class="col-12">
-                                    <button class="btn-area-barat">Lihat Detail dan Lokasi</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div x-show="filter == 'bulanan'">
-                    <div class="custom-card" style="width: 266px; height: 180px; padding: 0px; border-radius: 15px; border: 1px solid #ccc;">
-                        <div class="position-relative mb-2">
-                            <img src="{{ asset('/img/kostsurabaya8.jpg') }}" style="border-top-left-radius: 15px; border-top-right-radius: 15px; width: 265px; height: 80px; object-fit: cover;">
-                            <button id="btn-like-timur" class="btn-like-barat" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                        </div>
-                        <div style="width: 280px; margin-left: 5px;" class="row">
-                            <div class="col-12 mt-1">
-                                <h6 style="font-size: 16px;" class="fw-bold mb-1">Kamar Kost Uk. 6 x 4 Meter</h6>
-                            </div>
-                            <div class="col-12">
-                                <h6 style="font-size: 12px;" class="text-secondary">Fasilitas: Uk. 6 x 4 M | AC 1 | Toilet | Pk...</h6>
-                            </div>
-                            <div class="col-12">
-                                <div class="col-12">
-                                    <button class="btn-area-barat">Lihat Detail dan Lokasi</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div x-show="filter == 'bulanan'">
-                    <div class="custom-card" style="width: 266px; height: 180px; padding: 0px; border-radius: 15px; border: 1px solid #ccc;">
-                        <div class="position-relative mb-2">
-                            <img src="{{ asset('/img/kostsurabaya9.jpg') }}" style="border-top-left-radius: 15px; border-top-right-radius: 15px; width: 265px; height: 80px; object-fit: cover;">
-                            <button id="btn-like-timur" class="btn-like-barat" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                        </div>
-                        <div style="width: 280px; margin-left: 5px;" class="row">
-                            <div class="col-12 mt-1">
-                                <h6 style="font-size: 16px;" class="fw-bold mb-1">Kamar Kost Uk. 5 x 5 Meter</h6>
-                            </div>
-                            <div class="col-12">
-                                <h6 style="font-size: 12px;" class="text-secondary">Fasilitas: Uk. 5 x 5 M | AC 1 | Toilet | Pk...</h6>
-                            </div>
-                            <div class="col-12">
-                                <div class="col-12">
-                                    <button class="btn-area-barat">Lihat Detail dan Lokasi</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div x-show="filter == 'bulanan'">
-                    <div class="custom-card" style="width: 266px; height: 180px; padding: 0px; border-radius: 15px; border: 1px solid #ccc;">
-                        <div class="position-relative mb-2">
-                            <img src="{{ asset('/img/kostsurabaya10.jpg') }}" style="border-top-left-radius: 15px; border-top-right-radius: 15px; width: 265px; height: 80px; object-fit: cover;">
-                            <button id="btn-like-timur" class="btn-like-barat" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                        </div>
-                        <div style="width: 280px; margin-left: 5px;" class="row">
-                            <div class="col-12 mt-1">
-                                <h6 style="font-size: 16px;" class="fw-bold mb-1">Kamar Kost Uk. 7 x 7 Meter</h6>
-                            </div>
-                            <div class="col-12">
-                                <h6 style="font-size: 12px;" class="text-secondary">Fasilitas: Uk. 7 x 7 M | AC 1 | Toilet | Pk...</h6>
-                            </div>
-                            <div class="col-12">
-                                <div class="col-12">
-                                    <button class="btn-area-barat">Lihat Detail dan Lokasi</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div x-show="filter == 'harian'">
-                    <div class="custom-card" style="width: 266px; height: 180px; padding: 0px; border-radius: 15px; border: 1px solid #ccc;">
-                        <div class="position-relative mb-2">
-                            <img src="{{ asset('/img/kostsurabayaharian6.jpg') }}" style="border-top-left-radius: 15px; border-top-right-radius: 15px; width: 265px; height: 80px; object-fit: cover;">
-                            <button id="btn-like-timur" class="btn-like-barat" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                        </div>
-                        <div style="width: 280px; margin-left: 5px;" class="row">
-                            <div class="col-12 mt-1">
-                                <h6 style="font-size: 16px;" class="fw-bold mb-1">Kamar Kost Uk. 5 x 7 Meter</h6>
-                            </div>
-                            <div class="col-12">
-                                <h6 style="font-size: 12px;" class="text-secondary">Fasilitas: Uk. 5 x 7 M | AC 1 | Toilet | Pk...</h6>
-                            </div>
-                            <div class="col-12">
-                                <button class="btn-area-barat">Lihat Detail dan Lokasi</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div x-show="filter == 'harian'">
-                    <div class="custom-card" style="width: 266px; height: 180px; padding: 0px; border-radius: 15px; border: 1px solid #ccc;">
-                        <div class="position-relative mb-2">
-                            <img src="{{ asset('/img/kostsurabayaharian7.jpg') }}" style="border-top-left-radius: 15px; border-top-right-radius: 15px; width: 265px; height: 80px; object-fit: cover;">
-                            <button id="btn-like-timur" class="btn-like-barat" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                        </div>
-                        <div style="width: 280px; margin-left: 5px;" class="row">
-                            <div class="col-12 mt-1">
-                                <h6 style="font-size: 16px;" class="fw-bold mb-1">Kamar Kost Uk. 3 x 4 Meter</h6>
-                            </div>
-                            <div class="col-12">
-                                <h6 style="font-size: 12px;" class="text-secondary">Fasilitas: Uk. 3 x 4 M | AC 1 | Toilet | Pk...</h6>
-                            </div>
-                            <div class="col-12">
-                                <div class="col-12">
-                                    <button class="btn-area-barat">Lihat Detail dan Lokasi</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div x-show="filter == 'harian'">
-                    <div class="custom-card" style="width: 266px; height: 180px; padding: 0px; border-radius: 15px; border: 1px solid #ccc;">
-                        <div class="position-relative mb-2">
-                            <img src="{{ asset('/img/kostsurabayaharian8.jpg') }}" style="border-top-left-radius: 15px; border-top-right-radius: 15px; width: 265px; height: 80px; object-fit: cover;">
-                            <button id="btn-like-timur" class="btn-like-barat" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                        </div>
-                        <div style="width: 280px; margin-left: 5px;" class="row">
-                            <div class="col-12 mt-1">
-                                <h6 style="font-size: 16px;" class="fw-bold mb-1">Kamar Kost Uk. 6 x 4 Meter</h6>
-                            </div>
-                            <div class="col-12">
-                                <h6 style="font-size: 12px;" class="text-secondary">Fasilitas: Uk. 6 x 4 M | AC 1 | Toilet | Pk...</h6>
-                            </div>
-                            <div class="col-12">
-                                <div class="col-12">
-                                    <button class="btn-area-barat">Lihat Detail dan Lokasi</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div x-show="filter == 'harian'">
-                    <div class="custom-card" style="width: 266px; height: 180px; padding: 0px; border-radius: 15px; border: 1px solid #ccc;">
-                        <div class="position-relative mb-2">
-                            <img src="{{ asset('/img/kostsurabayaharian9.jpg') }}" style="border-top-left-radius: 15px; border-top-right-radius: 15px; width: 265px; height: 80px; object-fit: cover;">
-                            <button id="btn-like-timur" class="btn-like-barat" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                        </div>
-                        <div style="width: 280px; margin-left: 5px;" class="row">
-                            <div class="col-12 mt-1">
-                                <h6 style="font-size: 16px;" class="fw-bold mb-1">Kamar Kost Uk. 5 x 5 Meter</h6>
-                            </div>
-                            <div class="col-12">
-                                <h6 style="font-size: 12px;" class="text-secondary">Fasilitas: Uk. 5 x 5 M | AC 1 | Toilet | Pk...</h6>
-                            </div>
-                            <div class="col-12">
-                                <div class="col-12">
-                                    <button class="btn-area-barat">Lihat Detail dan Lokasi</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div x-show="filter == 'harian'">
-                    <div class="custom-card" style="width: 266px; height: 180px; padding: 0px; border-radius: 15px; border: 1px solid #ccc;">
-                        <div class="position-relative mb-2">
-                            <img src="{{ asset('/img/kostsurabayaharian10.jpg') }}" style="border-top-left-radius: 15px; border-top-right-radius: 15px; width: 265px; height: 80px; object-fit: cover;">
-                            <button id="btn-like-timur" class="btn-like-barat" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                        </div>
-                        <div style="width: 280px; margin-left: 5px;" class="row">
-                            <div class="col-12 mt-1">
-                                <h6 style="font-size: 16px;" class="fw-bold mb-1">Kamar Kost Uk. 7 x 7 Meter</h6>
-                            </div>
-                            <div class="col-12">
-                                <h6 style="font-size: 12px;" class="text-secondary">Fasilitas: Uk. 7 x 7 M | AC 1 | Toilet | Pk...</h6>
-                            </div>
-                            <div class="col-12">
-                                <div class="col-12">
-                                    <button class="btn-area-barat">Lihat Detail dan Lokasi</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
                 <!-- end Area barat surabaya -->
             </div>
             <!-- rekomendasi rumah -->
@@ -966,294 +593,35 @@
                     <div class="col-12 d-flex gap-2" style="overflow-x: auto; overflow: overlay; margin-bottom: 4.8rem;" id="kategori-sewa-rekomendasi">
                         @foreach ($kamarkost_rekomendasi_kamar_kost as $item)
                             <div x-show="filter == '{{ strtolower($item->tipe_kost) }}'">
-                                <div class="card" style="padding: 10px; border-radius: 15px;">
-                                    <div class="position-relative mb-2">
-                                        <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" style="border-radius: 15px; width: 220px; height: 140px; object-fit: cover;">
-                                        {{-- <button id="btn-like-timur" class="btn-like-rekomendasi" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button> --}}
-                                    </div>
-                                    <div class="row g-3">
-                                        <div class="col-10">
-                                            <h6 style="font-size: 16px; margin-bottom: -0.3rem;" class="fw-bold"> {{ $item->kategori->kategori }}</h6>
+                                <a href="/user/detail/{{ $item->id }}" style="text-decoration: none;">
+                                    <div class="card" style="padding: 10px; border-radius: 15px;">
+                                        <div class="position-relative mb-2">
+                                            <img src="{{ asset('uploadkamar/' . $item->gambar_kost) }}" style="border-radius: 15px; width: 220px; height: 140px; object-fit: cover;">
+                                        </div>
+                                        <div class="row g-3">
+                                            <div class="col-10">
+                                                <h6 style="font-size: 16px; margin-bottom: -0.3rem;" class="fw-bold"> {{ $item->kategori->kategori }}</h6>
+                                            </div>
+                                        </div>
+                                        <div class="row g-3 mb-3">
+                                            <div class="col-12">
+                                                <small style="font-size: 12px; margin-top: -40px;" class="mb-0 text-secondary fw-normal"><i class="bi bi-geo-alt-fill text-danger"></i> {{ $item->alamat_kost }}, Surabaya</small>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top: -10px;">
+                                            <div class="col-8">
+                                                <h3 style="margin-top: 5px; font-size: 18px; color: #9370DB;" class="mb-0 fw-bold">Rp. {{ $item->harga_kost }}</h3>
+                                            </div>
+                                            <div class="col-4">
+                                                <form action="/user/detail/{{ $item->id }}">
+                                                    <button class="btn-rekomendasi-rumah" style="margin-left: -20px;">Lihat</button>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="row g-3 mb-3">
-                                        <div class="col-12">
-                                            <small style="font-size: 12px; margin-top: -40px;" class="mb-0 text-secondary fw-normal"><i class="bi bi-geo-alt-fill text-danger"></i> {{ $item->alamat_kost }}, Surabaya</small>
-                                        </div>
-                                    </div>
-                                    <div class="row" style="margin-top: -10px;">
-                                        <div class="col-8">
-                                            <h3 style="margin-top: 5px; font-size: 18px; color: #9370DB;" class="mb-0 fw-bold">Rp. {{ $item->harga_kost }}</h3>
-                                        </div>
-                                        <div class="col-4">
-                                            <form action="/user/detail/{{ $item->id }}">
-                                                <button class="btn-rekomendasi-rumah" style="margin-left: -20px;">Lihat</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+                                </a>
                             </div>
                         @endforeach
-                        {{-- <div x-show="filter == 'bulanan'">
-                            <div class="card" style="padding: 10px; border-radius: 15px;">
-                                <div class="position-relative mb-2">
-                                    <img src="{{ asset('/img/rumahkost1.jpg') }}" style="border-radius: 15px; width: 220px; height: 140px; object-fit: cover;">
-                                    <button id="btn-like-timur" class="btn-like-rekomendasi" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                                </div>
-                                <div class="row g-3">
-                                    <div class="col-10">
-                                        <h6 style="font-size: 16px; margin-bottom: -0.3rem;" class="fw-bold">Kost Mahasiswa</h6>
-                                    </div>
-                                </div>
-                                <div class="row g-3 mb-3">
-                                    <div class="col-12">
-                                        <small style="font-size: 12px; margin-top: -40px;" class="mb-0 text-secondary fw-normal"><i class="bi bi-geo-alt-fill text-danger"></i> Jemur Sari No 09/09, Surabaya</small>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-top: -10px;">
-                                    <div class="col-8">
-                                        <h3 style="margin-top: 5px; font-size: 18px; color: #9370DB;" class="mb-0 fw-bold">Rp. 1.750.000</h3>
-                                    </div>
-                                    <div class="col-4">
-                                        <button class="btn-rekomendasi-rumah" style="margin-left: -20px;">Lihat</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div x-show="filter == 'bulanan'">
-                            <div class="card" style="padding: 10px; border-radius: 15px;">
-                                <div class="position-relative mb-2">
-                                    <img src="{{ asset('/img/rumahkost2.jpg') }}" style="border-radius: 15px; width: 220px; height: 140px; object-fit: cover;">
-                                    <button id="btn-like-timur" class="btn-like-rekomendasi" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                                </div>
-                                <div class="row g-3">
-                                    <div class="col-10">
-                                        <h6 style="font-size: 16px; margin-bottom: -0.3rem;" class="fw-bold">Kost Mahasiswi</h6>
-                                    </div>
-                                </div>
-                                <div class="row g-3 mb-3">
-                                    <div class="col-12">
-                                        <small style="font-size: 12px; margin-top: -40px;" class="mb-0 text-secondary fw-normal"><i class="bi bi-geo-alt-fill text-danger"></i></i> Kenjeran, Surabaya</small>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-top: -10px;">
-                                    <div class="col-8">
-                                        <h3 style="margin-top: 5px; font-size: 18px; color: #9370DB;" class="mb-0 fw-bold">Rp. 2.500.000</h3>
-                                    </div>
-                                    <div class="col-4">
-                                        <button class="btn-rekomendasi-rumah" style="margin-left: -20px;">Lihat</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div x-show="filter == 'bulanan'">
-                            <div class="card" style="padding: 10px; border-radius: 15px;">
-                                <div class="position-relative mb-2">
-                                    <img src="{{ asset('/img/rumahkost3.jpg') }}" style="border-radius: 15px; width: 220px; height: 140px; object-fit: cover;">
-                                    <button id="btn-like-timur" class="btn-like-rekomendasi" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                                </div>
-                                <div class="row g-3">
-                                    <div class="col-10">
-                                        <h6 style="font-size: 16px; margin-bottom: -0.3rem;" class="fw-bold">Kost Karyawan</h6>
-                                    </div>
-                                </div>
-                                <div class="row g-3 mb-3">
-                                    <div class="col-12">
-                                        <small style="font-size: 12px; margin-top: -40px;" class="mb-0 text-secondary fw-normal"><i class="bi bi-geo-alt-fill text-danger"></i></i> Ploso Timur, Surabaya</small>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-top: -10px;">
-                                    <div class="col-8">
-                                        <h3 style="margin-top: 5px; font-size: 18px; color: #9370DB;" class="mb-0 fw-bold">Rp. 2.350.000</h3>
-                                    </div>
-                                    <div class="col-4">
-                                        <button class="btn-rekomendasi-rumah" style="margin-left: -20px;">Lihat</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div x-show="filter == 'bulanan'">
-                            <div class="card" style="padding: 10px; border-radius: 15px;">
-                                <div class="position-relative mb-2">
-                                    <img src="{{ asset('/img/rumahkost4.jpg') }}" style="border-radius: 15px; width: 220px; height: 140px; object-fit: cover;">
-                                    <button id="btn-like-timur" class="btn-like-rekomendasi" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                                </div>
-                                <div class="row g-3">
-                                    <div class="col-10">
-                                        <h6 style="font-size: 16px; margin-bottom: -0.3rem;" class="fw-bold">Kost Putra</h6>
-                                    </div>
-                                </div>
-                                <div class="row g-3 mb-3">
-                                    <div class="col-12">
-                                        <small style="font-size: 12px; margin-top: -40px;" class="mb-0 text-secondary fw-normal"><i class="bi bi-geo-alt-fill text-danger"></i></i> Mulyorejo, Surabaya</small>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-top: -10px;">
-                                    <div class="col-8">
-                                        <h3 style="margin-top: 5px; font-size: 18px; color: #9370DB;" class="mb-0 fw-bold">Rp. 1.500.000</h3>
-                                    </div>
-                                    <div class="col-4">
-                                        <button class="btn-rekomendasi-rumah" style="margin-left: -20px;">Lihat</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div x-show="filter == 'bulanan'">
-                            <div class="card" style="padding: 10px; border-radius: 15px;">
-                                <div class="position-relative mb-2">
-                                    <img src="{{ asset('/img/rumahkost5.jpg') }}" style="border-radius: 15px; width: 220px; height: 140px; object-fit: cover;">
-                                    <button id="btn-like-timur" class="btn-like-rekomendasi" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                                </div>
-                                <div class="row g-3">
-                                    <div class="col-10">
-                                        <h6 style="font-size: 16px; margin-bottom: -0.3rem;" class="fw-bold">Kost Putri</h6>
-                                    </div>
-                                </div>
-                                <div class="row g-3 mb-3">
-                                    <div class="col-12">
-                                        <small style="font-size: 12px; margin-top: -40px;" class="mb-0 text-secondary fw-normal"><i class="bi bi-geo-alt-fill text-danger"></i></i> Kalijudan, Surabaya</small>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-top: -10px;">
-                                    <div class="col-8">
-                                        <h3 style="margin-top: 5px; font-size: 18px; color: #9370DB;" class="mb-0 fw-bold">Rp. 1.250.000</h3>
-                                    </div>
-                                    <div class="col-4">
-                                        <button class="btn-rekomendasi-rumah" style="margin-left: -20px;">Lihat</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div x-show="filter == 'harian'">
-                            <div class="card" style="padding: 10px; border-radius: 15px;">
-                                <div class="position-relative mb-2">
-                                    <img src="{{ asset('/img/rumahkostharian1.jpg') }}" style="border-radius: 15px; width: 220px; height: 140px; object-fit: cover;">
-                                    <button id="btn-like-timur" class="btn-like-rekomendasi" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                                </div>
-                                <div class="row g-3">
-                                    <div class="col-10">
-                                        <h6 style="font-size: 16px; margin-bottom: -0.3rem;" class="fw-bold">Kost Mahasiswa</h6>
-                                    </div>
-                                </div>
-                                <div class="row g-3 mb-3">
-                                    <div class="col-12">
-                                        <small style="font-size: 12px; margin-top: -40px;" class="mb-0 text-secondary fw-normal"><i class="bi bi-geo-alt-fill text-danger"></i></i> Jemur Sari, Surabaya</small>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-top: -10px;">
-                                    <div class="col-8">
-                                        <h3 style="margin-top: 5px; font-size: 18px; color: #9370DB;" class="mb-0 fw-bold">Rp. 1.250.000</h3>
-                                    </div>
-                                    <div class="col-4">
-                                        <button class="btn-rekomendasi-rumah" style="margin-left: -20px;">Lihat</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div x-show="filter == 'harian'">
-                            <div class="card" style="padding: 10px; border-radius: 15px;">
-                                <div class="position-relative mb-2">
-                                    <img src="{{ asset('/img/rumahkostharian2.jpg') }}" style="border-radius: 15px; width: 220px; height: 140px; object-fit: cover;">
-                                    <button id="btn-like-timur" class="btn-like-rekomendasi" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                                </div>
-                                <div class="row g-3">
-                                    <div class="col-10">
-                                        <h6 style="font-size: 16px; margin-bottom: -0.3rem;" class="fw-bold">Kost Mahasiswa</h6>
-                                    </div>
-                                </div>
-                                <div class="row g-3 mb-3">
-                                    <div class="col-12">
-                                        <small style="font-size: 12px; margin-top: -40px;" class="mb-0 text-secondary fw-normal"><i class="bi bi-geo-alt-fill text-danger"></i></i> Jemur Sari, Surabaya</small>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-top: -10px;">
-                                    <div class="col-8">
-                                        <h3 style="margin-top: 5px; font-size: 18px; color: #9370DB;" class="mb-0 fw-bold">Rp. 1.250.000</h3>
-                                    </div>
-                                    <div class="col-4">
-                                        <button class="btn-rekomendasi-rumah" style="margin-left: -20px;">Lihat</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div x-show="filter == 'harian'">
-                            <div class="card" style="padding: 10px; border-radius: 15px;">
-                                <div class="position-relative mb-2">
-                                    <img src="{{ asset('/img/rumahkostharian3.jpg') }}" style="border-radius: 15px; width: 220px; height: 140px; object-fit: cover;">
-                                    <button id="btn-like-timur" class="btn-like-rekomendasi" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                                </div>
-                                <div class="row g-3">
-                                    <div class="col-10">
-                                        <h6 style="font-size: 16px; margin-bottom: -0.3rem;" class="fw-bold">Kost Mahasiswa</h6>
-                                    </div>
-                                </div>
-                                <div class="row g-3 mb-3">
-                                    <div class="col-12">
-                                        <small style="font-size: 12px; margin-top: -40px;" class="mb-0 text-secondary fw-normal"><i class="bi bi-geo-alt-fill text-danger"></i></i> Jemur Sari, Surabaya</small>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-top: -10px;">
-                                    <div class="col-8">
-                                        <h3 style="margin-top: 5px; font-size: 18px; color: #9370DB;" class="mb-0 fw-bold">Rp. 1.250.000</h3>
-                                    </div>
-                                    <div class="col-4">
-                                        <button class="btn-rekomendasi-rumah" style="margin-left: -20px;">Lihat</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div x-show="filter == 'harian'">
-                            <div class="card" style="padding: 10px; border-radius: 15px;">
-                                <div class="position-relative mb-2">
-                                    <img src="{{ asset('/img/rumahkostharian4.jpg') }}" style="border-radius: 15px; width: 220px; height: 140px; object-fit: cover;">
-                                    <button id="btn-like-timur" class="btn-like-rekomendasi" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                                </div>
-                                <div class="row g-3">
-                                    <div class="col-10">
-                                        <h6 style="font-size: 16px; margin-bottom: -0.3rem;" class="fw-bold">Kost Mahasiswa</h6>
-                                    </div>
-                                </div>
-                                <div class="row g-3 mb-3">
-                                    <div class="col-12">
-                                        <small style="font-size: 12px; margin-top: -40px;" class="mb-0 text-secondary fw-normal"><i class="bi bi-geo-alt-fill text-danger"></i></i> Jemur Sari, Surabaya</small>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-top: -10px;">
-                                    <div class="col-8">
-                                        <h3 style="margin-top: 5px; font-size: 18px; color: #9370DB;" class="mb-0 fw-bold">Rp. 1.250.000</h3>
-                                    </div>
-                                    <div class="col-4">
-                                        <button class="btn-rekomendasi-rumah" style="margin-left: -20px;">Lihat</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div x-show="filter == 'harian'">
-                            <div class="card" style="padding: 10px; border-radius: 15px;">
-                                <div class="position-relative mb-2">
-                                    <img src="{{ asset('/img/rumahkostharian5.jpg') }}" style="border-radius: 15px; width: 220px; height: 140px; object-fit: cover;">
-                                    <button id="btn-like-timur" class="btn-like-rekomendasi" onclick="changeIconAndColor(this)"><i class="bi bi-star"></i></button>
-                                </div>
-                                <div class="row g-3">
-                                    <div class="col-10">
-                                        <h6 style="font-size: 16px; margin-bottom: -0.3rem;" class="fw-bold">Kost Mahasiswa</h6>
-                                    </div>
-                                </div>
-                                <div class="row g-3 mb-3">
-                                    <div class="col-12">
-                                        <small style="font-size: 12px; margin-top: -40px;" class="mb-0 text-secondary fw-normal"><i class="bi bi-geo-alt-fill text-danger"></i></i> Jemur Sari, Surabaya</small>
-                                    </div>
-                                </div>
-                                <div class="row" style="margin-top: -10px;">
-                                    <div class="col-8">
-                                        <h3 style="margin-top: 5px; font-size: 18px; color: #9370DB;" class="mb-0 fw-bold">Rp. 1.250.000</h3>
-                                    </div>
-                                    <div class="col-4">
-                                        <button class="btn-rekomendasi-rumah" style="margin-left: -20px;">Lihat</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --}}
                     </div>
                 </div>
             </div>
