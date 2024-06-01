@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- PWA  -->
+    <meta name="theme-color" content="#6777ef" />
+    <link rel="apple-touch-icon" href="{{ asset('/img/logokosthomerava.png') }}">
+    <link rel="manifest" href="{{ asset('/manifest.json') }}">
     <title>Kamar</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,37 +23,6 @@
     <!-- css rava -->
     <link rel="stylesheet" href="{{ asset('css/usercss/kamar.css') }}">
     <style>
-        /* #popup {
-            width: 204px;
-            height: 50px;
-            text-align: center;
-            display: none;
-            position: fixed;
-            top: 80%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.7);
-            color: #fff;
-            padding: 10px;
-            border-radius: 10px;
-            z-index: 1000;
-        }
-
-        #popup-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: none;
-            z-index: 999;
-        }
-
-        p#popup-text {
-            width: 186px;
-            margin-top: 4px;
-        } */
-
         * {
             font-family: 'Ubuntu', sans-serif;
         }
@@ -659,6 +632,23 @@
             });
         </script>
     @endif
+    <script src="{{ asset('/sw.js') }}"></script>
+    <script>
+        if ("serviceWorker" in navigator) {
+            // Register a service worker hosted at the root of the
+            // site using the default scope.
+            navigator.serviceWorker.register("/sw.js").then(
+                (registration) => {
+                    console.log("Service worker registration succeeded:", registration);
+                },
+                (error) => {
+                    console.error(`Service worker registration failed: ${error}`);
+                },
+            );
+        } else {
+            console.error("Service workers are not supported.");
+        }
+    </script>
 </body>
 
 </html>

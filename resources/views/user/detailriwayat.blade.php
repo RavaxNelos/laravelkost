@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- PWA  -->
+    <meta name="theme-color" content="#6777ef" />
+    <link rel="apple-touch-icon" href="{{ asset('/img/logokosthomerava.png') }}">
+    <link rel="manifest" href="{{ asset('/manifest.json') }}">
     <title>Detail Riwayat</title>
     <!-- css rava -->
     <link rel="stylesheet" href="{{ asset('css/usercss/transaksi.css') }}">
@@ -51,17 +55,6 @@
             background: transparent;
             border-radius: 2px;
         }
-
-        /* .accordion-button:focus {
-            border-color: none;
-            box-shadow: none;
-        }
-
-        .accordion-button:not(.collapsed) {
-            color: rgb(0, 0, 0);
-            background-color: white;
-            box-shadow: none;
-        } */
 
         .sticky-top {
             position: sticky;
@@ -350,26 +343,6 @@
             e.preventDefault();
         });
     </script>
-    {{-- <script>
-        // Fungsi untuk memperbarui tanggal secara satu kali saat halaman dimuat
-        function updateTanggal() {
-            var tanggalElement = document.getElementById('tanggal-pesanan');
-            var now = new Date();
-            var options = {
-                day: 'numeric',
-                month: 'long',
-                year: 'numeric'
-            };
-            var formattedDate = now.toLocaleString('id-ID', options).replace(/\u200E/g, '') + ', ' + now.toLocaleString('id-ID', {
-                hour: 'numeric',
-                minute: 'numeric'
-            }) + ' WIB'; // Menambahkan " WIB" setelah jam
-            tanggalElement.innerText = formattedDate;
-        }
-
-        // Panggil fungsi updateTanggal saat halaman dimuat
-        updateTanggal();
-    </script> --}}
     <script>
         function getPayment(paymentId) {
             $.ajax({
@@ -400,6 +373,23 @@
                     $('#name_bank').html(response.name);
                 },
             });
+        }
+    </script>
+    <script src="{{ asset('/sw.js') }}"></script>
+    <script>
+        if ("serviceWorker" in navigator) {
+            // Register a service worker hosted at the root of the
+            // site using the default scope.
+            navigator.serviceWorker.register("/sw.js").then(
+                (registration) => {
+                    console.log("Service worker registration succeeded:", registration);
+                },
+                (error) => {
+                    console.error(`Service worker registration failed: ${error}`);
+                },
+            );
+        } else {
+            console.error("Service workers are not supported.");
         }
     </script>
 </body>

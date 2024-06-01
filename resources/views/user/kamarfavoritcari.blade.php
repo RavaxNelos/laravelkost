@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- PWA  -->
+    <meta name="theme-color" content="#6777ef" />
+    <link rel="apple-touch-icon" href="{{ asset('/img/logokosthomerava.png') }}">
+    <link rel="manifest" href="{{ asset('/manifest.json') }}">
     <title>Cari Kamar Favorit</title>
     <!-- css rava -->
     <link rel="stylesheet" href="{{ asset('css/usercss/favorit.css') }}">
@@ -86,6 +90,23 @@
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script>
     <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="{{ asset('/sw.js') }}"></script>
+    <script>
+        if ("serviceWorker" in navigator) {
+            // Register a service worker hosted at the root of the
+            // site using the default scope.
+            navigator.serviceWorker.register("/sw.js").then(
+                (registration) => {
+                    console.log("Service worker registration succeeded:", registration);
+                },
+                (error) => {
+                    console.error(`Service worker registration failed: ${error}`);
+                },
+            );
+        } else {
+            console.error("Service workers are not supported.");
+        }
+    </script>
 </body>
 
 </html>

@@ -4,6 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- PWA  -->
+    <meta name="theme-color" content="#6777ef" />
+    <link rel="apple-touch-icon" href="{{ asset('/img/logokosthomerava.png') }}">
+    <link rel="manifest" href="{{ asset('/manifest.json') }}">
     <title>Home</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -801,22 +805,23 @@
             }
         }
     </script>
-    {{-- <script>
-        function favoritadd() {
-            $.ajax({
-                url: '/favorite/add',
-                type: 'POST',
-                data: {
-                    kamar_kost_id: '{{ $kamarkost->id }}',
-                    _token: '{{ csrf_token() }}'
+    <script src="{{ asset('/sw.js') }}"></script>
+    <script>
+        if ("serviceWorker" in navigator) {
+            // Register a service worker hosted at the root of the
+            // site using the default scope.
+            navigator.serviceWorker.register("/sw.js").then(
+                (registration) => {
+                    console.log("Service worker registration succeeded:", registration);
                 },
-                success: function(response) {
-                    console.log(response.alert);
-                    $('#popup-text').html(response.alert);
-                }
-            });
+                (error) => {
+                    console.error(`Service worker registration failed: ${error}`);
+                },
+            );
+        } else {
+            console.error("Service workers are not supported.");
         }
-    </script> --}}
+    </script>
 </body>
 
 </html>
