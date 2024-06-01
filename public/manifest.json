@@ -1,0 +1,17 @@
+{
+    "name": "NGEKOST",
+    "short_name": "NGT",
+    "start_url": "/index.php",
+    "background_color": "#6777ef",
+    "description": "Sewa kamar kost nyaman dan aman",
+    "display": "fullscreen",
+    "theme_color": "#6777ef",
+    "icons": [
+        {
+            "src": "/img/logokosthomerava.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}
