@@ -314,7 +314,7 @@
                                             <label class="mt-2" for="Nomer Kamar">Nomer Kamar Kost <span class="text-danger">*</span></label>
                                             <div class="mt-1">
                                                 <div class="form-group">
-                                                    <input type="number" class="form-control" min="0" oninput="limitLength(this, 2)" name="nomer_kost" id="nomer_kost" placeholder="Masukkan Nomer Kamar Kost" value="{{ old('nomer_kost') }}" x-model="nomer" required>
+                                                    <input type="number" class="form-control" min="0" oninput="limitLength(this, 3)" name="nomer_kost" id="nomer_kost" placeholder="Masukkan Nomer Kamar Kost" value="{{ old('nomer_kost') }}" x-model="nomer" required>
                                                     @error('nomer_kost')
                                                         {{ $message }}
                                                     @enderror
@@ -1003,7 +1003,7 @@
                                                                             <label for="Nomer Kamar Kost">Nomer Kamar Kost</label>
                                                                             <div class="mt-0">
                                                                                 <div class="form-group">
-                                                                                    <input type="number" class="form-control" min="0" oninput="limitLength(this, 2)" name="nomer_kost" id="nomer_kost" value="{{ $item->nomer_kost }}">
+                                                                                    <input type="number" class="form-control" min="0" oninput="limitLength(this, 3)" name="nomer_kost" id="nomer_kost" value="{{ $item->nomer_kost }}">
                                                                                     @error('nomer_kost')
                                                                                         {{ $message }}
                                                                                     @enderror
@@ -1337,7 +1337,7 @@
                                                     <label class="mt-2" for="Nomer Kamar">Nomer Kamar Kost <span class="text-danger">*</span></label>
                                                     <div class="mt-1">
                                                         <div class="form-group">
-                                                            <input type="number" class="form-control" min="0" oninput="limitLength(this, 2)" name="nomer_kost" id="nomer_kost" placeholder="Masukkan Nomer Kamar Kost" value="{{ old('nomer_kost') }}" x-model="nomer" required>
+                                                            <input type="number" class="form-control" min="0" oninput="limitLength(this, 3)" name="nomer_kost" id="nomer_kost" placeholder="Masukkan Nomer Kamar Kost" value="{{ old('nomer_kost') }}" x-model="nomer" required>
                                                             @error('nomer_kost')
                                                                 {{ $message }}
                                                             @enderror
