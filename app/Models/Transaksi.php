@@ -23,4 +23,8 @@ class Transaksi extends Model
     {
         return $this->belongsTo(Pembayaran::class, 'pembayaran_dipilih', 'id');
     }
+    public function userkamardetail()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

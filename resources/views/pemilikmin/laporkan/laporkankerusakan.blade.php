@@ -144,7 +144,7 @@
                                     <span class="usr-kategori-kost">{{ $item->nomer_kamar }}</span>
                                 </td>
                                 <td class="text-center">
-                                    <span class="usr-harga-kost">{{ $item->keterangan }}</span>
+                                    <span class="usr-harga-kost" style="text-wrap: balance;">{{ $item->keterangan }}</span>
                                 </td>
                                 <td class="text-center">
                                     <span class="usr-tipe-kost text-{{ $item->status == 'Menunggu Respon' ? 'warning' : ($item->status == 'Laporan Diterima' ? 'success' : 'danger') }}">{{ $item->status == 'Menunggu Respon' ? 'Menunggu Respon' : ($item->status == 'Laporan Diterima' ? 'Laporan Diterima' : 'Laporan Ditolak') }}</span>

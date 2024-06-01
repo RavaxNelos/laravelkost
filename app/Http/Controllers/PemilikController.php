@@ -75,6 +75,22 @@ class PemilikController extends Controller
         $transaksi = Transaksi::all();
         return view('pemilik.riwayat', compact('users', 'transaksi'));
     }
+    public function detailriwayat($id)
+    {
+        $transaksi = Transaksi::find($id);
+
+    if ($transaksi) {
+        // Mengambil pengguna yang terkait dengan transaksi
+        $users = $transaksi->user;
+    } else {
+        // Jika tidak ada transaksi, Anda mungkin ingin menangani kesalahan ini
+        $users = null;
+    }
+
+    $kamarkost = KamarKost::find($id);
+
+    return view('pemilik.detailriwayat', compact('users', 'transaksi', 'kamarkost'));
+    }
     public function profil()
     {
         $users = Auth::user();

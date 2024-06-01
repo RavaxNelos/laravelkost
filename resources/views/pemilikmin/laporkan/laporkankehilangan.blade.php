@@ -144,7 +144,7 @@
                                     <span class="usr-kategori-kost">{{ $item->nomer_kamar }}</span>
                                 </td>
                                 <td class="text-center">
-                                    <span class="usr-tipe-kost">{{ $item->keterangan }}</span>
+                                    <span class="usr-tipe-kost" style="text-wrap: balance;">{{ $item->keterangan }}</span>
                                 </td>
                                 <td class="text-center">
                                     <span class="usr-tipe-kost text-{{ $item->status == 'Menunggu Respon' ? 'warning' : ($item->status == 'Laporan Diterima' ? 'success' : 'danger') }}">{{ $item->status == 'Menunggu Respon' ? 'Menunggu Respon' : ($item->status == 'Laporan Diterima' ? 'Laporan Diterima' : 'Laporan Ditolak') }}</span>
@@ -333,18 +333,6 @@
                                         </div>
                                     </div>
                                 </td>
-                                {{-- <td class="text-center">
-                                    <span class="usr-harga-kost">{{ $item->lokasi_hilang }}</span>
-                                </td>
-                                <td class="text-center">
-                                    <span class="usr-lokasi-kost">{{ $item->barang_hilang }}</span>
-                                </td>
-                                <td class="text-center">
-                                    <span class="usr-tipe-kost">{{ Carbon\Carbon::parse($item->tanggal_hilang)->locale('id')->format('j F Y') }}</span>
-                                </td>
-                                <td class="text-center">
-                                    <span class="usr-tipe-kost">{{ $item->jam_hilang }}</span>
-                                </td> --}}
                             </tr>
                             <!-- end row -->
                         @endforeach

@@ -221,7 +221,7 @@
                                     <div class="col-12 text-center">
                                         <form action="https://api.whatsapp.com/send" method="get" target="_blank" rel="noopener noreferrer">
                                             <input type="hidden" name="phone" value="6282332724688">
-                                            <button class="btn btn-wa"><i class="bi bi-whatsapp" style="color: green; font-size: 16px; margin-right: 10px;"></i>Hubungi Kami</button>
+                                            <button class="btn btn-wa"><i class="bi bi-whatsapp" style="color: rgb(255, 255, 255); font-size: 16px; margin-right: 10px;"></i>Hubungi Kami</button>
                                         </form>
                                     </div>
                                 </div>

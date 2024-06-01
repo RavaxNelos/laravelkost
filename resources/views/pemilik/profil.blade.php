@@ -205,8 +205,8 @@
             </button>
             <!-- Modal -->
             <div class="modal fade" id="kebijakan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-scrollable">
-                    <div class="modal-content" style="height: 300px; position: absolute; top: 25%;">
+                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+                    <div class="modal-content" style="height: 500px; position: absolute; top: 10%;">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Kebijakan Dan Ketentuan</h1>
                         </div>
@@ -215,55 +215,55 @@
                                 <p class="fw-medium" style="font-size: 18px;">Deskripsi Layanan :</p>
                             </div>
                             <div class="col-12">
-                                <p class="fw-medium" style="font-size: 14px;">Ngekost adalah platform penyewaan kamar kost yang memungkinkan pengguna untuk mencari, menemukan, dan menyewa kamar kost yang sesuai dengan kebutuhan mereka.</p>
+                                <p class="fw-medium" style="font-size: 14px; margin-top: -10px;">Ngekost adalah platform penyewaan kamar kost yang memungkinkan pengguna untuk mencari, menemukan, dan menyewa kamar kost yang sesuai dengan kebutuhan mereka.</p>
                             </div>
                             <div class="col-12 text-start">
-                                <p class="fw-medium" style="font-size: 18px;">Syarat Penggunaan :</p>
+                                <p class="fw-medium" style="font-size: 18px; margin-top: 10px;">Syarat Penggunaan :</p>
                             </div>
                             <div class="col-12">
-                                <p class="fw-medium" style="font-size: 14px;">Pengguna harus berusia minimal 18 tahun untuk menggunakan layanan Ngekost. Pengguna bertanggung jawab sepenuhnya atas informasi yang diberikan dan harus mematuhi peraturan penggunaan yang berlaku.</p>
+                                <p class="fw-medium" style="font-size: 14px; margin-top: -10px;">Pengguna harus berusia minimal 18 tahun untuk menggunakan layanan Ngekost. Pengguna bertanggung jawab sepenuhnya atas informasi yang diberikan dan harus mematuhi peraturan penggunaan yang berlaku.</p>
                             </div>
                             <div class="col-12 text-start">
-                                <p class="fw-medium" style="font-size: 18px;">Privasi :</p>
+                                <p class="fw-medium" style="font-size: 18px; margin-top: 10px;">Privasi :</p>
                             </div>
                             <div class="col-12">
-                                <p class="fw-medium" style="font-size: 14px;">Kami menghargai privasi pengguna kami dan berkomitmen untuk melindungi data pribadi mereka. Informasi pribadi yang dikumpulkan oleh Ngekost akan digunakan secara hati-hati dan tidak akan dibagikan kepada pihak ketiga tanpa izin.</p>
+                                <p class="fw-medium" style="font-size: 14px; margin-top: -10px;">Kami menghargai privasi pengguna kami dan berkomitmen untuk melindungi data pribadi mereka. Informasi pribadi yang dikumpulkan oleh Ngekost akan digunakan secara hati-hati dan tidak akan dibagikan kepada pihak ketiga tanpa izin.</p>
                             </div>
                             <div class="col-12 text-start">
-                                <p class="fw-medium" style="font-size: 18px;">Hak Cipta dan Kekayaan Intelektual :</p>
+                                <p class="fw-medium" style="font-size: 18px; margin-top: 10px;">Hak Cipta dan Kekayaan Intelektual :</p>
                             </div>
                             <div class="col-12">
-                                <p class="fw-medium" style="font-size: 14px;">Seluruh materi di situs web Ngekost, termasuk teks, gambar, dan desain, dilindungi oleh hak cipta dan merupakan milik Ngekost. Pengguna dilarang menggandakan, mendistribusikan, atau menggunakan materi tersebut tanpa izin.</p>
+                                <p class="fw-medium" style="font-size: 14px; margin-top: -10px;">Seluruh materi di situs web Ngekost, termasuk teks, gambar, dan desain, dilindungi oleh hak cipta dan merupakan milik Ngekost. Pengguna dilarang menggandakan, mendistribusikan, atau menggunakan materi tersebut tanpa izin.</p>
                             </div>
                             <div class="col-12 text-start">
-                                <p class="fw-medium" style="font-size: 18px;">Pembayaran dan Pembatalan :</p>
+                                <p class="fw-medium" style="font-size: 18px; margin-top: 10px;">Pembayaran dan Pembatalan :</p>
                             </div>
                             <div class="col-12">
-                                <p class="fw-medium" style="font-size: 14px;">Pembayaran untuk kamar kost harus dilakukan sesuai dengan ketentuan yang ditetapkan. Pengguna dapat membatalkan pesanan dengan mengikuti kebijakan pembatalan yang berlaku dan mungkin dikenai biaya pembatalan sesuai dengan kebijakan kami.</p>
+                                <p class="fw-medium" style="font-size: 14px; margin-top: -10px;">Pembayaran untuk kamar kost harus dilakukan sesuai dengan ketentuan yang ditetapkan. Pengguna dapat membatalkan pesanan dengan mengikuti kebijakan pembatalan yang berlaku dan mungkin dikenai biaya pembatalan sesuai dengan kebijakan kami.</p>
                             </div>
                             <div class="col-12 text-start">
-                                <p class="fw-medium" style="font-size: 18px;">Batasan Tanggung Jawab :</p>
+                                <p class="fw-medium" style="font-size: 18px; margin-top: 10px;">Batasan Tanggung Jawab :</p>
                             </div>
                             <div class="col-12">
-                                <p class="fw-medium" style="font-size: 14px;">Ngekost tidak bertanggung jawab atas kerugian atau kerusakan yang timbul dari penggunaan layanan kami, termasuk kerugian finansial, kehilangan data, atau kerusakan fisik.</p>
+                                <p class="fw-medium" style="font-size: 14px; margin-top: -10px;">Ngekost tidak bertanggung jawab atas kerugian atau kerusakan yang timbul dari penggunaan layanan kami, termasuk kerugian finansial, kehilangan data, atau kerusakan fisik.</p>
                             </div>
                             <div class="col-12 text-start">
-                                <p class="fw-medium" style="font-size: 18px;">Perubahan dan Pembaruan :</p>
+                                <p class="fw-medium" style="font-size: 18px; margin-top: 10px;">Perubahan dan Pembaruan :</p>
                             </div>
                             <div class="col-12">
-                                <p class="fw-medium" style="font-size: 14px;">Ngekost berhak untuk mengubah atau memperbarui ketentuan dan kebijakan kami tanpa pemberitahuan sebelumnya. Perubahan tersebut akan berlaku segera setelah diterbitkan di situs web kami.</p>
+                                <p class="fw-medium" style="font-size: 14px; margin-top: -10px;">Ngekost berhak untuk mengubah atau memperbarui ketentuan dan kebijakan kami tanpa pemberitahuan sebelumnya. Perubahan tersebut akan berlaku segera setelah diterbitkan di situs web kami.</p>
                             </div>
                             <div class="col-12 text-start">
-                                <p class="fw-medium" style="font-size: 18px;">Hukum yang Berlaku :</p>
+                                <p class="fw-medium" style="font-size: 18px; margin-top: 10px;">Hukum yang Berlaku :</p>
                             </div>
                             <div class="col-12">
-                                <p class="fw-medium" style="font-size: 14px;">Kebijakan dan ketentuan penggunaan Ngekost diatur oleh hukum Republik Indonesia. Setiap perselisihan yang timbul akan diselesaikan secara damai dan dapat dibawa ke pengadilan yang berwenang.</p>
+                                <p class="fw-medium" style="font-size: 14px; margin-top: -10px;">Kebijakan dan ketentuan penggunaan Ngekost diatur oleh hukum Republik Indonesia. Setiap perselisihan yang timbul akan diselesaikan secara damai dan dapat dibawa ke pengadilan yang berwenang.</p>
                             </div>
                             <div class="col-12 text-start">
-                                <p class="fw-medium" style="font-size: 18px;">Persetujuan Pengguna :</p>
+                                <p class="fw-medium" style="font-size: 18px; margin-top: 10px;">Persetujuan Pengguna :</p>
                             </div>
                             <div class="col-12">
-                                <p class="fw-medium" style="font-size: 14px;">Dengan menggunakan layanan Ngekost, pengguna dianggap telah membaca, memahami, dan menyetujui semua ketentuan dan kebijakan yang tercantum di situs web kami.</p>
+                                <p class="fw-medium" style="font-size: 14px; margin-top: -10px;">Dengan menggunakan layanan Ngekost, pengguna dianggap telah membaca, memahami, dan menyetujui semua ketentuan dan kebijakan yang tercantum di situs web kami.</p>
                             </div>
                         </div>
                         <div class="modal-footer" style="height: 30px;">
@@ -288,7 +288,7 @@
                                     <div class="col-12 text-center">
                                         <form action="https://api.whatsapp.com/send" method="get" target="_blank" rel="noopener noreferrer">
                                             <input type="hidden" name="phone" value="6282332724688">
-                                            <button class="btn btn-wa"><i class="bi bi-whatsapp" style="color: green; font-size: 16px; margin-right: 10px;"></i>Hubungi Kami</button>
+                                            <button class="btn btn-wa"><i class="bi bi-whatsapp" style="color: rgb(255, 255, 255); font-size: 16px; margin-right: 10px;"></i>Hubungi Kami</button>
                                         </form>
                                     </div>
                                 </div>

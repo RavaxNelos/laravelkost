@@ -70,6 +70,8 @@
         textarea {
             resize: none;
         }
+
+
     </style>
 @endsection
 @section('content')
@@ -227,7 +229,7 @@
                                     <span class="usr-lokasi-banner">{{ $item->tipe }}</span>
                                 </td>
                                 <td class="text-center">
-                                    <span class="usr-status-banner">{{ $item->deskripsi }}</span>
+                                    <span class="usr-status-banner" style="text-wrap: balance;">{{ $item->deskripsi }}</span>
                                 </td>
                                 <td class="text-center">
                                     <div class="action-btn d-flex justify-content-center align-items-center gap-1">
