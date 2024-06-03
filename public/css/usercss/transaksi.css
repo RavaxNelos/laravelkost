@@ -26,6 +26,13 @@
   /* Hilangkan margin default dari <hr> */
 }
 
+.hr-last {
+  border-top: 14px solid #ccc;
+  margin-top: 1rem;
+  margin-bottom: 0rem;
+  /* Hilangkan margin default dari <hr> */
+}
+
 .hr-tengah {
   border-top: 2px dashed #000000;
   margin-top: 12px;
