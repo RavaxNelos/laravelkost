@@ -69,6 +69,12 @@
             border-radius: 0px;
             font-family: 'Poppins';
         }
+
+        /* CSS untuk elemen sticky-top saat di-scroll */
+        .scrolled {
+            background-color: white !important;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 
@@ -91,29 +97,15 @@
                 <ion-icon name="people-outline" style="font-size: 20px;"></ion-icon>
                 <span class="nav__text">Pengguna</span>
             </a>
-            <a href="{{ asset('/pemilik/riwayat') }}" class="nav__link nav-active">
-                <ion-icon name="time" style="font-size: 20px;"></ion-icon>
+            <a href="{{ asset('/pemilik/riwayat') }}" class="nav__link">
+                <ion-icon name="time-outline" style="font-size: 20px;"></ion-icon>
                 <span class="nav__text">Riwayat</span>
             </a>
-            <a href="{{ asset('/pemilik/profil') }}" class="nav__link">
-                <ion-icon name="person-outline" style="font-size: 19px; margin-bottom: 1px;"></ion-icon>
+            <a href="{{ asset('/pemilik/profil') }}" class="nav__link nav-active">
+                <ion-icon name="person" style="font-size: 19px; margin-bottom: 1px;"></ion-icon>
                 <span class="nav__text">Profil</span>
             </a>
         </nav>
-    </div>
-    <div class="modal" id="myModal">
-        <div class="modal-content">
-            <!-- Konten modal, dapat diedit sesuai kebutuhan -->
-            <div class="row">
-                <div class="col-12">
-                    <a href="/user/kerusakan/{{ $users->id }}" class="kerusakan fw-medium"><i class="bi bi-exclamation-triangle-fill"></i> Laporkan Kerusakan</a>
-                </div>
-                <hr class="garis-pembatas-laporkan" style="border-top: 1px solid #ccc; margin-top: 10px;">
-                <div class="col-12" style="margin-top: -10px">
-                    <a href="/user/kehilangan/{{ $users->id }}" class="kehilangan fw-medium"><i class='bx bxs-search-alt-2'></i> Laporkan Kehilangan</a>
-                </div>
-            </div>
-        </div>
     </div>
     <section x-data="{ filter: 'Bulanan' }">
         <div class="sticky-top" id="stickyHeader">
@@ -147,12 +139,12 @@
                     <h1 class="fw-medium fs-6">Belum Ada Transaksi Bulanan</h1>
                 </div>
             @else
-                <div class="card-custom" style="width: 336px; height: auto; background-color: gray; border-radius : 10px; position: absolute;">
-                    <div class="container">
+                <div class="card-custom" style="width: 336px; height: auto; background-color: gray; border-radius : 10px;">
+                    <div class="container" style="padding-top: 2px; padding-bottom: 10px;">
                         @foreach ($transaksi->where('kamarkost.tipe_kost', 'Bulanan') as $item)
                             <a href="/pemilik/detailriwayat/{{ $item->id }}" style="text-decoration: none;">
                                 <div class="card-item-riwayat" style="background-color: #f5f5f5; width: 100%; height: 148px; border-radius: 8px; margin-top: 10px; margin-bottom: 10px;">
-                                    <div class="container">
+                                    <div class="container mt-3">
                                         <div class="row">
                                             <div class="col-8 text-start mt-2">
                                                 <h3 class="fw-medium text-secondary" style="font-size: 14px;">No. Pesanan</h3>
@@ -200,12 +192,12 @@
                     <h1 class="fw-medium fs-6">Belum Ada Transaksi Harian</h1>
                 </div>
             @else
-                <div class="card-custom" style="width: 336px; height: auto; background-color: gray; border-radius : 10px; position: absolute;">
-                    <div class="container">
+                <div class="card-custom" style="width: 336px; height: auto; background-color: gray; border-radius : 10px;">
+                    <div class="container" style="padding-top: 2px; padding-bottom: 10px;">
                         @foreach ($transaksi->where('kamarkost.tipe_kost', 'Harian') as $item)
                             <a href="/pemilik/detailriwayat/{{ $item->id }}" style="text-decoration: none;">
                                 <div class="card-item-riwayat" style="background-color: #f5f5f5; width: 100%; height: 148px; border-radius: 8px; margin-top: 10px; margin-bottom: 10px;">
-                                    <div class="container">
+                                    <div class="container mt-3">
                                         <div class="row">
                                             <div class="col-8 text-start mt-2">
                                                 <h3 class="fw-medium text-secondary" style="font-size: 14px;">No. Pesanan</h3>
@@ -253,6 +245,7 @@
         @endif
         {{-- <hr class="garis-ketiga"> --}}
     </section>
+    <hr class="hr-bulanan" style="border-top: 10px solid #ccc; margin-bottom: 3.4rem;">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -274,7 +267,8 @@
                 modal.style.display = 'none';
             }
         }
-
+    </script>
+    <script>
         window.addEventListener('scroll', function() {
             var header = document.getElementById('stickyHeader');
             var scrollPosition = window.scrollY;

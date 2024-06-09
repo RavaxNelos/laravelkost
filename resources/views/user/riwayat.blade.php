@@ -143,12 +143,12 @@
                     <h1 class="fw-medium fs-6">Belum Ada Transaksi Bulanan</h1>
                 </div>
             @else
-                <div class="card-custom" style="width: 336px; height: auto; background-color: gray; border-radius : 10px; position: absolute;">
-                    <div class="container">
+                <div class="card-custom" style="width: 336px; height: auto; background-color: gray; border-radius : 10px;">
+                    <div class="container" style="padding-top: 2px; padding-bottom: 10px;">
                         @foreach ($transaksi->where('kamarkost.tipe_kost', 'Bulanan') as $item)
                             <a href="/user/detailriwayat/{{ $item->id }}" style="text-decoration: none;">
                                 <div class="card-item-riwayat" style="background-color: #f5f5f5; width: 100%; height: 148px; border-radius: 8px; margin-top: 10px; margin-bottom: 10px;">
-                                    <div class="container">
+                                    <div class="container mt-3">
                                         <div class="row">
                                             <div class="col-8 text-start mt-2">
                                                 <h3 class="fw-medium text-secondary" style="font-size: 14px;">No. Pesanan</h3>
@@ -196,12 +196,12 @@
                     <h1 class="fw-medium fs-6">Belum Ada Transaksi Harian</h1>
                 </div>
             @else
-                <div class="card-custom" style="width: 336px; height: auto; background-color: gray; border-radius : 10px; position: absolute;">
-                    <div class="container">
+                <div class="card-custom" style="width: 336px; height: auto; background-color: gray; border-radius : 10px;">
+                    <div class="container" style="padding-top: 2px; padding-bottom: 10px;">
                         @foreach ($transaksi->where('kamarkost.tipe_kost', 'Harian') as $item)
                             <a href="/user/detailriwayat/{{ $item->id }}" style="text-decoration: none;">
                                 <div class="card-item-riwayat" style="background-color: #f5f5f5; width: 100%; height: 148px; border-radius: 8px; margin-top: 10px; margin-bottom: 10px;">
-                                    <div class="container">
+                                    <div class="container mt-3">
                                         <div class="row">
                                             <div class="col-8 text-start mt-2">
                                                 <h3 class="fw-medium text-secondary" style="font-size: 14px;">No. Pesanan</h3>
@@ -249,6 +249,7 @@
         @endif
         {{-- <hr class="garis-ketiga"> --}}
     </section>
+    <hr class="hr-bulanan" style="border-top: 10px solid #ccc; margin-bottom: 3.4rem;">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
