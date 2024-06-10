@@ -332,7 +332,7 @@
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content"style="width: 100%; height: auto;">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fw-semibold" id="exampleModalLabel" style="font-size: 16px;">Detail Laporkan Kehilangan</h1>
+                                                <h1 class="modal-title fw-semibold" id="exampleModalLabel" style="font-size: 16px;">Detail Laporkan Kerusakan</h1>
                                             </div>
                                             <div class="modal-body">
                                                 <input type="hidden" name="id" value="{{ $laporkerusakan->id }}">

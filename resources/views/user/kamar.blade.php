@@ -71,6 +71,14 @@
         .btn-info:hover {
             color: white;
         }
+
+        .options {
+            display: none;
+        }
+
+        .options.active {
+            display: block;
+        }
     </style>
 </head>
 
@@ -289,53 +297,25 @@
         <hr class="hr-6" style="margin-top: 20px; border-top: 10px solid #ccc;">
         <div class="container">
             <div class="select-menu">
-                <div class="select-btn">
+                <div class="select-btn" onclick="toggleDropdown()">
                     <span class="sBtn-text fw-semibold" style="font-size: 18px; font-family: Poppins;">Peraturan Kost</span>
                     <i class="bx bx-chevron-down"></i>
                 </div>
                 <ul class="options">
-                    <li class="option">
-                        <span class="option-angka">1.</span><span class="option-text">Dilarang Membuat Suara Gaduh Pada Malam Hari</span>
-                    </li>
-                    <li class="option">
-                        <span class="option-angka">2.</span><span class="option-text">Tidak Boleh Pasutri</span>
-                    </li>
-                    <li class="option">
-                        <span class="option-angka">3.</span><span class="option-text">Lawan Jenis Dilarang Ke Kamar</span>
-                    </li>
-                    <li class="option">
-                        <span class="option-angka">4.</span><span class="option-text">Maksimal 2 Orang/Kamar</span>
-                    </li>
-                    <li class="option">
-                        <span class="option-angka">5.</span><span class="option-text">Dilarang Membawa Hewan</span>
-                    </li>
-                    <li class="option">
-                        <span class="option-angka">6.</span><span class="option-text">Dilarang Mengganggu Ketenagan Penghuni</span>
-                    </li>
-                    <li class="option">
-                        <span class="option-angka">7.</span><span class="option-text">Dilarang Bawa Anak</span>
-                    </li>
-                    <li class="option">
-                        <span class="option-angka">8.</span><span class="option-text">Gunakan Fasilitas Dengan Benar</span>
-                    </li>
-                    <li class="option">
-                        <span class="option-angka">9.</span><span class="option-text">Jagalah Kebersihan Pada Kost</span>
-                    </li>
-                    <li class="option">
-                        <span class="option-angka">10.</span><span class="option-text">Dilarang Telat Bayar Kost</span>
-                    </li>
-                    <li class="option">
-                        <span class="option-angka">11.</span><span class="option-text">Kunci Pintu Kamar Kost Ketika Pergi Ke Luar</span>
-                    </li>
-                    <li class="option">
-                        <span class="option-angka">12.</span><span class="option-text">Dilarang Minum Minuman Keras</span>
-                    </li>
-                    <li class="option">
-                        <span class="option-angka">13.</span><span class="option-text">Dilarang Merusak Fasilitas Di Kamar</span>
-                    </li>
-                    <li class="optionend">
-                        <span class="option-angka">14.</span><span class="option-text">Dilarang Mengadakan Pesta Di Kamar</span>
-                    </li>
+                    <li class="option"><span class="option-angka">1.</span><span class="option-text">Dilarang Membuat Suara Gaduh Pada Malam Hari</span></li>
+                    <li class="option"><span class="option-angka">2.</span><span class="option-text">Tidak Boleh Pasutri</span></li>
+                    <li class="option"><span class="option-angka">3.</span><span class="option-text">Lawan Jenis Dilarang Ke Kamar</span></li>
+                    <li class="option"><span class="option-angka">4.</span><span class="option-text">Maksimal 2 Orang/Kamar</span></li>
+                    <li class="option"><span class="option-angka">5.</span><span class="option-text">Dilarang Membawa Hewan</span></li>
+                    <li class="option"><span class="option-angka">6.</span><span class="option-text">Dilarang Mengganggu Ketenagan Penghuni</span></li>
+                    <li class="option"><span class="option-angka">7.</span><span class="option-text">Dilarang Bawa Anak</span></li>
+                    <li class="option"><span class="option-angka">8.</span><span class="option-text">Gunakan Fasilitas Dengan Benar</span></li>
+                    <li class="option"><span class="option-angka">9.</span><span class="option-text">Jagalah Kebersihan Pada Kost</span></li>
+                    <li class="option"><span class="option-angka">10.</span><span class="option-text">Dilarang Telat Bayar Kost</span></li>
+                    <li class="option"><span class="option-angka">11.</span><span class="option-text">Kunci Pintu Kamar Kost Ketika Pergi Ke Luar</span></li>
+                    <li class="option"><span class="option-angka">12.</span><span class="option-text">Dilarang Minum Minuman Keras</span></li>
+                    <li class="option"><span class="option-angka">13.</span><span class="option-text">Dilarang Merusak Fasilitas Di Kamar</span></li>
+                    <li class="optionend"><span class="option-angka">14.</span><span class="option-text">Dilarang Mengadakan Pesta Di Kamar</span></li>
                 </ul>
             </div>
         </div>
@@ -647,6 +627,12 @@
             );
         } else {
             console.error("Service workers are not supported.");
+        }
+    </script>
+    <script>
+        function toggleDropdown() {
+            var options = document.querySelector('.options');
+            options.classList.toggle('active');
         }
     </script>
 </body>
