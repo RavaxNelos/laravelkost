@@ -86,39 +86,41 @@
             @foreach ($transaksi as $item)
                 <div class="container py-2">
                     {{-- <h3 class="fw-semibold" style="font-size: 16px; color: #d8d8d8">April</h3> --}}
-                    <div class="custom-card-list" x-show="filter == 'bulanan'">
-                        <div class="container py-2 mt-2">
-                            <div class="row" style="margin-bottom: -4px;">
-                                <div class="col-6 text-start">
-                                    <h3 class="fw-medium" style="font-size: 14px; color:  #9400D3;">No. Pesanan</h3>
+                    <a href="/pemilik/detailtransaksi/{{ $item->id }}" style="text-decoration: none;">
+                        <div class="custom-card-list" x-show="filter == 'bulanan'">
+                            <div class="container py-2 mt-2">
+                                <div class="row" style="margin-bottom: -4px;">
+                                    <div class="col-6 text-start">
+                                        <h3 class="fw-medium" style="font-size: 14px; color:  #9400D3;">No. Pesanan</h3>
+                                    </div>
+                                    <div class="col-6 text-end">
+                                        <h3 class="fw-medium" style="font-size: 14px; color: #333333;">{{ $item->no_transaksi }}</h3>
+                                    </div>
                                 </div>
-                                <div class="col-6 text-end">
-                                    <h3 class="fw-medium" style="font-size: 14px; color: #333333;">{{ $item->no_transaksi }}</h3>
+                                <div class="row">
+                                    <div class="col-3 text-start">
+                                        <img src="{{ asset('uploadkamar/' . $item->kamarkost->gambar_kost) }}" style="width: 80px; height: 70px; border-radius: 8px;">
+                                    </div>
+                                    <div class="col-9" style="margin-left: 6px; width: 200px; margin-top: 2px;">
+                                        <h3 class="fw-medium text-secondary-emphasis" style="font-size: 14px;">Kamar {{ $item->kamarkost->kategori->kategori }}</h3>
+                                        <p class="text-secondary fw-normal" style="font-size: 10px; margin-top: -6px; line-height: 14px; width: 190px;">Kamar Uk {{ Illuminate\Support\Str::limit($item->kamarkost->ukuran_kost, 7, '') }} {{ Illuminate\Support\Str::limit($item->kamarkost->fasilitas_kost, 45, '...') }}</p>
+                                        <h3 class="fw-semibold" style="font-size: 16px; color: #800080; font-family: Poppins; margin-top: -14px;">Rp. {{ number_format($item->total_harga, 0, ',', '.') }}</h3>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-3 text-start">
-                                    <img src="{{ asset('uploadkamar/' . $item->kamarkost->gambar_kost) }}" style="width: 80px; height: 70px; border-radius: 8px;">
-                                </div>
-                                <div class="col-9" style="margin-left: 6px; width: 200px; margin-top: 2px;">
-                                    <h3 class="fw-medium" style="font-size: 14px;">Kamar {{ $item->kamarkost->kategori->kategori }}</h3>
-                                    <p class="text-secondary fw-normal" style="font-size: 10px; margin-top: -6px; line-height: 14px; width: 190px;">Kamar Uk {{ Illuminate\Support\Str::limit($item->kamarkost->ukuran_kost, 7, '') }} {{ Illuminate\Support\Str::limit($item->kamarkost->fasilitas_kost, 45, '...') }}</p>
-                                    <h3 class="fw-semibold" style="font-size: 16px; color: #800080; font-family: Poppins; margin-top: -14px;">Rp. {{ number_format($item->total_harga, 0, ',', '.') }}</h3>
-                                </div>
-                            </div>
-                            <hr class="hr-garis-card" style="margin-top: 2px;">
-                            <div class="row">
-                                <div class="col-6 text-start">
-                                    <p class="fw-normal mb-0" style="font-size: 12px; color:  #9400D3;">{{ Carbon\Carbon::parse($item->created_at)->locale('id')->format('j F Y, H:i') . ' WIB' }}</p>
-                                </div>
-                                <div class="col-6 text-end">
-                                    <p class="text-{{ $item->status == 'proses' ? 'warning' : ($item->status == 'selesai' ? 'success' : 'danger') }}" style="font-size: 12px;">
-                                        {{ $item->status == 'proses' ? 'Proses Pembayaran' : ($item->status == 'selesai' ? 'Pembayaran Diterima' : 'Pembayaran Ditolak') }}
-                                    </p>
+                                <hr class="hr-garis-card" style="margin-top: 2px;">
+                                <div class="row">
+                                    <div class="col-6 text-start">
+                                        <p class="fw-normal mb-0" style="font-size: 12px; color:  #9400D3;">{{ Carbon\Carbon::parse($item->created_at)->locale('id')->format('j F Y, H:i') . ' WIB' }}</p>
+                                    </div>
+                                    <div class="col-6 text-end">
+                                        <p class="text-{{ $item->status == 'proses' ? 'warning' : ($item->status == 'selesai' ? 'success' : 'danger') }}" style="font-size: 12px;">
+                                            {{ $item->status == 'proses' ? 'Proses Pembayaran' : ($item->status == 'selesai' ? 'Pembayaran Diterima' : 'Pembayaran Ditolak') }}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             @endforeach
         </div>

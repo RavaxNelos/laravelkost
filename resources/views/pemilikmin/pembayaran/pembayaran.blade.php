@@ -346,7 +346,7 @@
                                             <div class="modal-dialog">
                                                 <div class="modal-content" style="width: 100%; height: 540px;">
                                                     <div class="modal-header">
-                                                        <h1 class="modal-title fs-5 fw-semibold" id="exampleModalLabel">Edit Kamar</h1>
+                                                        <h1 class="modal-title fs-5 fw-semibold" id="exampleModalLabel">Edit Pembayaran</h1>
                                                     </div>
                                                     <div class="modal-body" style="margin-top: -20px;">
                                                         <div class="container">

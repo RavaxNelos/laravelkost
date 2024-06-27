@@ -101,6 +101,7 @@ Route::get('/pemilik/transaksi', [PemilikController::class, 'transaksi'])->name(
 Route::get('/pemilik/pengguna', [PemilikController::class, 'pengguna'])->name('pengguna');
 Route::get('/pemilik/riwayat', [PemilikController::class, 'riwayat'])->name('riwayat');
 Route::get('/pemilik/detailriwayat/{id}', [PemilikController::class, 'detailriwayat'])->name('detailriwayat');
+Route::get('/pemilik/detailtransaksi/{id}', [PemilikController::class, 'detailtransaksi'])->name('detailtransaksi');
 Route::get('/pemilik/profil', [PemilikController::class, 'profil'])->name('profil');
 Route::post('/pemilik/profil/edit', [PemilikController::class, 'profilpemilikedit'])->name('pemilik.profil');
 Route::post('/pemilik/akun/edit', [PemilikController::class, 'akunpemilikedit']);
