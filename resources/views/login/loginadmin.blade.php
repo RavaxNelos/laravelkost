@@ -23,6 +23,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <style>
             .card {
+                margin-top: 4.8rem;
+                /* height: 10rem; */
                 background: rgba(255, 255, 255, 0.5);
                 /* Latar belakang card dengan efek transparan */
                 border-radius: 30px;
@@ -51,14 +53,14 @@
     </head>
 
     <body>
-        <div class="container px-3">
+        <div class="container px-3" style="margin-top: 4rem;">
             <div class="row justify-content-center mt-6">
                 <div class="col-11 col-lg-4">
-                    <div class="gambatlogo text-center">
-                        <img src="img/logokostrava.png" alt="" style="width: 200px; margin-bottom: 20px;">
-                    </div>
                     <div class="card">
-                        <h1 class="card-title text-center">Masuk</h1>
+                        <div class="gambatlogo text-center">
+                            <img src="img/logokostrava.png" alt="" style="width: 200px; margin-top: -30px;">
+                        </div>
+                        <h1 class="card-title text-center" style="margin-top: -30px;">Masuk</h1>
                         <div class="card-body">
                             <form action="/adminlog" method="POST" enctype="multipart/form-data">
                                 @csrf
@@ -79,8 +81,8 @@
                             </form>
                         </div>
                     </div>
-                    <p class="text-center" style="color: #fff; font-size: 16px; margin-top: 6rem;">Idea by</p>
-                    <p class="text-center text-primary" style="margin-top: -20px;">Burning Room Technology</p>
+                    <!-- <p class="text-center" style="color: #fff; font-size: 16px; margin-top: 6rem;">Idea by</p>
+                    <p class="text-center text-primary" style="margin-top: -20px;">Burning Room Technology</p> -->
                 </div>
             </div>
         </div>

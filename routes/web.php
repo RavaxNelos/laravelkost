@@ -109,6 +109,7 @@ Route::post('/pemilik/sandi/edit', [PemilikController::class, 'sandipemilikedit'
 
 //admin controller
 Route::get('/pemilikmin/dashboard', [PemilikMinController::class, 'dashboard'])->name('dashboard');
+Route::get('/pemilikmin/dashboard', [PemilikMinController::class, 'menghitung'])->name('dashboard');
 Route::get('/pemilikmin/kamar', [KamarKostController::class, 'index'])->name('kamar');
 Route::get('toggleStatus/{id}', [KamarKostController::class, 'toggleStatus'])->name('toggleStatus');
 Route::get('/pemilikmin/tambahkamar', [KamarKostController::class, 'create'])->name('tambahkamar');
@@ -215,6 +216,7 @@ Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('registerPost', [AuthController::class, 'registerPost'])->name('registerPost');
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'loginPost'])->name('login');
+// Route::get('/welcome', [AuthController::class, 'welcome'])->name('welcome');
 });
 
 Route::group(['middleware' => 'auth'], function () {

@@ -28,7 +28,12 @@ class AuthController extends Controller
         $user->role_id  = '4';
         $user->save();
 
+        // return redirect('/welcome')->with('success', 'Register Berhasil');
         return redirect('/login')->with('success', 'Register Berhasil');
+    }
+    public function welcome()
+    {
+        return view('welcome');
     }
 
     public function login()
