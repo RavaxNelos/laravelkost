@@ -8,11 +8,14 @@
     <title>Laporkan Kerusakan</title>
     <link rel="stylesheet" href="{{ asset('css/usercss/laporkankerusakan.css') }}">
     <!-- end css rava -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- font google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <!-- end font google -->
     <!-- iconbootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -24,7 +27,9 @@
     <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
     <!-- end splide js -->
     <!-- font awoseme -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- end font awoseme -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <style>
@@ -154,11 +159,13 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-12">
-                                <a href="/user/kerusakan/{{ $users->id }}" class="kerusakan fw-medium"><i class="bi bi-exclamation-triangle-fill"></i> Laporkan Kerusakan</a>
+                                <a href="/user/kerusakan/{{ $users->id }}" class="kerusakan fw-medium"><i
+                                        class="bi bi-exclamation-triangle-fill"></i> Laporkan Kerusakan</a>
                             </div>
                             <hr class="garis-pembatas-laporkan" style="border-top: 1px solid #ccc; margin-top: 10px;">
                             <div class="col-12" style="margin-top: -10px">
-                                <a href="/user/kehilangan/{{ $users->id }}" class="kehilangan fw-medium"><i class='bx bxs-search-alt-2'></i> Laporkan Kehilangan</a>
+                                <a href="/user/kehilangan/{{ $users->id }}" class="kehilangan fw-medium"><i
+                                        class='bx bxs-search-alt-2'></i> Laporkan Kehilangan</a>
                             </div>
                         </div>
                     </div>
@@ -170,7 +177,8 @@
                 <div class="container py-2" style="background-color: white;">
                     <div class="row">
                         <div class="col-12 text-start mt-2">
-                            <h3 class="text-dark fw-semibold teks-kerusakan" style="font-size: 16px; transition: color 0.3s ease;">Laporan Kerusakan</h3>
+                            <h3 class="text-dark fw-semibold teks-kerusakan"
+                                style="font-size: 16px; transition: color 0.3s ease;">Laporan Kerusakan</h3>
                         </div>
                     </div>
                 </div>
@@ -179,10 +187,12 @@
             <div class="container">
                 <div class="row" style="margin-top: -16px;">
                     <div class="col-6 text-center" style="margin-left: -12px;">
-                        <button :class="filter == 'form' ? 'btn-active' : 'btn-non-aktif'" x-on:click="filter = 'form';">Form Laporan</button>
+                        <button :class="filter == 'form' ? 'btn-active' : 'btn-non-aktif'"
+                            x-on:click="filter = 'form';">Form Laporan</button>
                     </div>
                     <div class="col-6 text-center" style="margin-left: 0px;">
-                        <button :class="filter == 'riwayat' ? 'btn-active' : 'btn-non-aktif'" x-on:click="filter = 'riwayat';">Riwayat Laporan</button>
+                        <button :class="filter == 'riwayat' ? 'btn-active' : 'btn-non-aktif'"
+                            x-on:click="filter = 'riwayat';">Riwayat Laporan</button>
                     </div>
                 </div>
             </div>
@@ -198,7 +208,8 @@
                                         <h3 class="fw-medium text-secondary" style="font-size: 14px;">Nama User</h3>
                                     </div>
                                     <div class="col-12">
-                                        <input type="text" class="input-nama" name="name" id="name" value="{{ $users->name }}" disabled>
+                                        <input type="text" class="input-nama" name="name" id="name"
+                                            value="{{ $users->name }}" disabled>
                                     </div>
                                 </div>
                                 <div class="row mt-3">
@@ -206,17 +217,24 @@
                                         <h3 class="fw-medium text-secondary" style="font-size: 14px;">No. Kamar</h3>
                                     </div>
                                     <div class="col-12">
-                                        <input type="text" class="input-nama" name="nomer_kost" id="nomer_kost" value="Kamar No. {{ $kamar_kost->nomer_kost }}" disabled>
+                                        <input type="text" class="input-nama" name="nomer_kost" id="nomer_kost"
+                                            value="Kamar No. {{ $kamar_kost->nomer_kost }}" disabled>
                                     </div>
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-12 text-start">
-                                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Tanggal Laporan<span class="wajib">*</span></h3>
+                                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Tanggal
+                                            Laporan<span class="wajib">*</span></h3>
                                     </div>
                                     <div class="col-12">
                                         <div class="input-group">
-                                            <input type="date" class="form-control" id="tanggal" name="tanggal_lapor" style="border: 1px solid rgb(187, 0, 255); border-top-leftradius: 4px; border-bottom-left-radius: 4px;" placeholder="Masukkan tanggal laporan" id="datepicker">
-                                            <span class="input-group-text" style="border: 1px solid rgb(187, 0, 255); border-top-right-radius: 4px; border-bottom-right-radius: 4px; background: linear-gradient(45deg, #9c27b0, #673ab7, #3f51b5); color: white;" onclick="showDatePicker()">
+                                            <input type="date" class="form-control" id="tanggal"
+                                                name="tanggal_lapor"
+                                                style="border: 1px solid rgb(187, 0, 255); border-top-leftradius: 4px; border-bottom-left-radius: 4px;"
+                                                placeholder="Masukkan tanggal laporan" id="datepicker">
+                                            <span class="input-group-text"
+                                                style="border: 1px solid rgb(187, 0, 255); border-top-right-radius: 4px; border-bottom-right-radius: 4px; background: linear-gradient(45deg, #9c27b0, #673ab7, #3f51b5); color: white;"
+                                                onclick="showDatePicker()">
                                                 <i class="bi bi-calendar"></i>
                                             </span>
                                         </div>
@@ -224,31 +242,43 @@
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-12 text-start">
-                                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Apa Yang Rusak?<span class="wajib">*</span></h3>
+                                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Apa Yang
+                                            Rusak?<span class="wajib">*</span></h3>
                                     </div>
                                     <div class="col-9 text-start">
-                                        <input type="text" id="barang" name="barang_rusak" class="input-kerusakan" placeholder="Barang yang mengalami kerusakan">
+                                        <input type="text" id="barang" name="barang_rusak"
+                                            class="input-kerusakan" placeholder="Barang yang mengalami kerusakan">
                                     </div>
                                     <div class="col-3 text-end">
                                         <div class="dropdown">
-                                            <button class="btn-dropdown-kerusakan dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <button class="btn-dropdown-kerusakan dropdown-toggle" type="button"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
                                             </button>
                                             <ul class="dropdown-menu" id="barangDropdown">
-                                                <li><a class="dropdown-item" href="#" onclick="updateInput('Kasur')">Kasur</a></li>
-                                                <li><a class="dropdown-item" href="#" onclick="updateInput('Lampu Kamar')">Lampu Kamar</a></li>
-                                                <li><a class="dropdown-item" href="#" onclick="updateInput('Pintu Kamar')">Pintu Kamar</a></li>
-                                                <li><a class="dropdown-item" href="#" onclick="updateInput('Jendela Kamar')">Jendela Kamar</a></li>
-                                                <li><a class="dropdown-item" href="#" onclick="updateInput('Lantai Kamar')">Lantai Kamar</a></li>
-                                                <li><a class="dropdown-item" href="#" onclick="updateInput('AC Kamar')">AC Kamar</a></li>
-                                                <li><a class="dropdown-item" href="#" onclick="updateInput('Kulkas')">Kulkas</a></li>
-                                                <li><a class="dropdown-item" href="#" onclick="showTextInput()">Lainnya</a></li>
+                                                <li><a class="dropdown-item" href="#"
+                                                        onclick="updateInput('Kasur')">Kasur</a></li>
+                                                <li><a class="dropdown-item" href="#"
+                                                        onclick="updateInput('Lampu Kamar')">Lampu Kamar</a></li>
+                                                <li><a class="dropdown-item" href="#"
+                                                        onclick="updateInput('Pintu Kamar')">Pintu Kamar</a></li>
+                                                <li><a class="dropdown-item" href="#"
+                                                        onclick="updateInput('Jendela Kamar')">Jendela Kamar</a></li>
+                                                <li><a class="dropdown-item" href="#"
+                                                        onclick="updateInput('Lantai Kamar')">Lantai Kamar</a></li>
+                                                <li><a class="dropdown-item" href="#"
+                                                        onclick="updateInput('AC Kamar')">AC Kamar</a></li>
+                                                <li><a class="dropdown-item" href="#"
+                                                        onclick="updateInput('Kulkas')">Kulkas</a></li>
+                                                <li><a class="dropdown-item" href="#"
+                                                        onclick="showTextInput()">Lainnya</a></li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-12 text-start">
-                                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Unggah Foto<span class="wajib">*</span></h3>
+                                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Unggah Foto<span
+                                                class="wajib">*</span></h3>
                                     </div>
                                     <div class="form-item third">
                                         <div class="for-uploadFoto">
@@ -262,7 +292,8 @@
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-12 text-start">
-                                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Keterangan <span class="wajib">*</span></h3>
+                                        <h3 class="fw-medium text-secondary" style="font-size: 14px;">Keterangan <span
+                                                class="wajib">*</span></h3>
                                     </div>
                                     <div class="col-12">
                                         <textarea name="keterangan" id="keterangan" placeholder="Tambahkan keterangan kamu" class="textarea-keterangan"></textarea>
@@ -271,7 +302,8 @@
                             </div>
                             <hr class="kirim-laporan" style="border-top: 1px solid #ccc">
                             <div class="container text-center">
-                                <button type="submit" class="fw-medium rounded-pill" style="border-radius: 50px; width: 170px;" id="tombol">Kirim Laporan</button>
+                                <button type="submit" class="fw-medium rounded-pill"
+                                    style="border-radius: 50px; width: 170px; background-color: #9370DB; border: 1px solid #9c27b0; height: 36px; color: white;" id="tombol">Kirim Laporan</button>
                             </div>
                         </form>
                     </div>
@@ -289,115 +321,168 @@
                     </div>
                 @else
                     <!-- Tampilan ada data dari laporkan kehilangan -->
-                    <div class="card-custom" style="width: 100%; height: auto; border-radius: 10px; background-color: gray; margin-bottom: 5rem;">
+                    <div class="card-custom"
+                        style="width: 100%; height: auto; border-radius: 10px; background-color: gray; margin-bottom: 5rem;">
                         <div class="container py-3">
                             @foreach ($kerusakan as $laporkerusakan)
-                                <div class="card-custom-list" data-bs-toggle="modal" data-bs-target="#detailriwayat-{{ $laporkerusakan->id }}">
+                                <div class="card-custom-list" data-bs-toggle="modal"
+                                    data-bs-target="#detailriwayat-{{ $laporkerusakan->id }}">
                                     <div class="container py-2">
                                         <div class="row">
                                             <div class="col-3 text-start">
-                                                <h3 class="fw-medium text-secondary" style="font-size: 14px; width: 200px;">Nama User</h3>
+                                                <h3 class="fw-medium text-secondary"
+                                                    style="font-size: 14px; width: 200px;">Nama User</h3>
                                             </div>
                                             <div class="col-9 text-end">
-                                                <h3 class="fw-medium" style="font-size: 14px; color: #333333;">{{ $users->name }}</h3>
+                                                <h3 class="fw-medium" style="font-size: 14px; color: #333333;">
+                                                    {{ $users->name }}</h3>
                                             </div>
                                             <div class="col-5 text-start" style="margin-top: -4px;">
-                                                <h3 class="fw-medium text-secondary" style="font-size: 14px;">No. Kamar</h3>
+                                                <h3 class="fw-medium text-secondary" style="font-size: 14px;">No.
+                                                    Kamar</h3>
                                             </div>
                                             <div class="col-7 text-end" style="margin-top: -4px;">
-                                                <h3 class="fw-medium" style="font-size: 14px; color: #333333;">Kamar No.{{ $kamar_kost->nomer_kost }}</h3>
+                                                <h3 class="fw-medium" style="font-size: 14px; color: #333333;">Kamar
+                                                    No.{{ $kamar_kost->nomer_kost }}</h3>
                                             </div>
                                             <div class="col-6 text-start" style="margin-top: -4px;">
-                                                <h3 class="fw-medium text-secondary" style="font-size: 14px;">Tanggal Kerusakan</h3>
+                                                <h3 class="fw-medium text-secondary" style="font-size: 14px;">Tanggal
+                                                    Kerusakan</h3>
                                             </div>
                                             <div class="col-6 text-end" style="margin-top: -4px;">
-                                                <h3 class="fw-medium" style="font-size: 14px; color: #333333;">{{ Carbon\Carbon::parse($laporkerusakan->tanggal_lapor)->locale('id')->isoFormat('DD MMMM Y') }}</h3>
+                                                <h3 class="fw-medium" style="font-size: 14px; color: #333333;">
+                                                    {{ Carbon\Carbon::parse($laporkerusakan->tanggal_lapor)->locale('id')->isoFormat('DD MMMM Y') }}
+                                                </h3>
                                             </div>
                                             <div class="col-6 text-start" style="margin-top: -4px;">
-                                                <h3 class="fw-medium text-secondary" style="font-size: 14px;">Yang Rusak</h3>
+                                                <h3 class="fw-medium text-secondary" style="font-size: 14px;">Yang
+                                                    Rusak</h3>
                                             </div>
                                             <div class="col-6 text-end" style="margin-top: -4px;">
-                                                <h3 class="fw-medium" style="font-size: 14px; color: #333333;">{{ $laporkerusakan?->barang_rusak }}</h3>
+                                                <h3 class="fw-medium" style="font-size: 14px; color: #333333;">
+                                                    {{ $laporkerusakan?->barang_rusak }}</h3>
                                             </div>
                                             <div class="col-3 text-start" style="margin-top: -4px;">
-                                                <h3 class="fw-medium text-secondary" style="font-size: 14px; width: 200px;">Status Laporan</h3>
+                                                <h3 class="fw-medium text-secondary"
+                                                    style="font-size: 14px; width: 200px;">Status Laporan</h3>
                                             </div>
                                             <div class="col-9 text-end" style="margin-top: -4px;">
-                                                <h3 class="fw-medium text-{{ $laporkerusakan?->status == 'Menunggu Respon' ? 'warning' : ($laporkerusakan?->status == 'Laporan Diterima' ? 'success' : 'danger') }}" style="font-size: 14px; color: #333333;">{{ $laporkerusakan?->status == 'Menunggu Respon' ? 'Menunggu Respon' : ($laporkerusakan?->status == 'Laporan Diterima' ? 'Laporan Diterima' : 'Laporan Ditolak') }}</h3>
+                                                <h3 class="fw-medium text-{{ $laporkerusakan?->status == 'Menunggu Respon' ? 'warning' : ($laporkerusakan?->status == 'Laporan Diterima' ? 'success' : 'danger') }}"
+                                                    style="font-size: 14px; color: #333333;">
+                                                    {{ $laporkerusakan?->status == 'Menunggu Respon' ? 'Menunggu Respon' : ($laporkerusakan?->status == 'Laporan Diterima' ? 'Laporan Diterima' : 'Laporan Ditolak') }}
+                                                </h3>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="modal fade" id="detailriwayat-{{ $laporkerusakan->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="detailriwayat-{{ $laporkerusakan->id }}" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content"style="width: 100%; height: auto;">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fw-semibold" id="exampleModalLabel" style="font-size: 16px;">Detail Laporkan Kerusakan</h1>
+                                                <h1 class="modal-title fw-semibold" id="exampleModalLabel"
+                                                    style="font-size: 16px;">Detail Laporkan Kerusakan</h1>
                                             </div>
                                             <div class="modal-body">
-                                                <input type="hidden" name="id" value="{{ $laporkerusakan->id }}">
+                                                <input type="hidden" name="id"
+                                                    value="{{ $laporkerusakan->id }}">
                                                 <div class="row">
                                                     <div class="col-4 text-start">
-                                                        <h3 style="font-size: 14px;" class="fw-medium text-secondary">Nama User</h3>
+                                                        <h3 style="font-size: 14px;" class="fw-medium text-secondary">
+                                                            Nama User</h3>
                                                     </div>
                                                     <div class="col-8 text-end">
-                                                        <h3 style="font-size: 14px;" class="fw-medium text-secondary-emphasis">{{ $users->name }}</h3>
+                                                        <h3 style="font-size: 14px;"
+                                                            class="fw-medium text-secondary-emphasis">
+                                                            {{ $users->name }}</h3>
                                                     </div>
                                                     <div class="col-4 text-start">
-                                                        <h3 style="font-size: 14px; width: 200px;" class="fw-medium text-secondary">Nomer Kamar</h3>
+                                                        <h3 style="font-size: 14px; width: 200px;"
+                                                            class="fw-medium text-secondary">Nomer Kamar</h3>
                                                     </div>
                                                     <div class="col-8 text-end">
-                                                        <h3 style="font-size: 14px;" class="fw-medium text-secondary-emphasis">Kamar No.{{ $kamar_kost->nomer_kost }}</h3>
+                                                        <h3 style="font-size: 14px;"
+                                                            class="fw-medium text-secondary-emphasis">Kamar
+                                                            No.{{ $kamar_kost->nomer_kost }}</h3>
                                                     </div>
                                                     <div class="col-4 text-start">
-                                                        <h3 style="font-size: 14px; width: 200px;" class="fw-medium text-secondary">Tanggal Lapor Kerusakan</h3>
+                                                        <h3 style="font-size: 14px; width: 200px;"
+                                                            class="fw-medium text-secondary">Tanggal Lapor Kerusakan
+                                                        </h3>
                                                     </div>
                                                     <div class="col-8 text-end">
-                                                        <h3 style="font-size: 14px;" class="fw-medium text-secondary-emphasis">{{ Carbon\Carbon::parse($laporkerusakan->tanggal_lapor)->locale('id')->isoFormat('DD MMMM Y') }}</h3>
+                                                        <h3 style="font-size: 14px;"
+                                                            class="fw-medium text-secondary-emphasis">
+                                                            {{ Carbon\Carbon::parse($laporkerusakan->tanggal_lapor)->locale('id')->isoFormat('DD MMMM Y') }}
+                                                        </h3>
                                                     </div>
                                                     <div class="col-4 text-start">
-                                                        <h3 style="font-size: 14px; width: 200px;" class="fw-medium text-secondary">Barang Yang Rusak</h3>
+                                                        <h3 style="font-size: 14px; width: 200px;"
+                                                            class="fw-medium text-secondary">Barang Yang Rusak</h3>
                                                     </div>
                                                     <div class="col-8 text-end">
-                                                        <h3 style="font-size: 14px;" class="fw-medium text-secondary-emphasis">{{ $laporkerusakan->barang_rusak }}</h3>
+                                                        <h3 style="font-size: 14px;"
+                                                            class="fw-medium text-secondary-emphasis">
+                                                            {{ $laporkerusakan->barang_rusak }}</h3>
                                                     </div>
                                                     <div class="col-4 text-start">
-                                                        <h3 style="font-size: 14px; width: 200px;" class="fw-medium text-secondary">Status Laporan</h3>
+                                                        <h3 style="font-size: 14px; width: 200px;"
+                                                            class="fw-medium text-secondary">Status Laporan</h3>
                                                     </div>
                                                     <div class="col-8 text-end">
-                                                        <h3 style="font-size: 14px;" class="fw-medium text-{{ $laporkerusakan->status == 'Menunggu Respon' ? 'warning' : ($laporkerusakan->status == 'Laporan Diterima' ? 'success' : 'danger') }}" style="font-size: 14px; color: #333333;">{{ $laporkerusakan->status == 'Menunggu Respon' ? 'Menunggu Respon' : ($laporkerusakan->status == 'Laporan Diterima' ? 'Laporan Diterima' : 'Laporan Ditolak') }}</h3>
+                                                        <h3 style="font-size: 14px;"
+                                                            class="fw-medium text-{{ $laporkerusakan->status == 'Menunggu Respon' ? 'warning' : ($laporkerusakan->status == 'Laporan Diterima' ? 'success' : 'danger') }}"
+                                                            style="font-size: 14px; color: #333333;">
+                                                            {{ $laporkerusakan->status == 'Menunggu Respon' ? 'Menunggu Respon' : ($laporkerusakan->status == 'Laporan Diterima' ? 'Laporan Diterima' : 'Laporan Ditolak') }}
+                                                        </h3>
                                                     </div>
                                                     <div class="col-12 text-start">
-                                                        <h3 style="font-size: 14px; width: 200px;" class="fw-medium text-secondary">Gambar Kerusakan</h3>
+                                                        <h3 style="font-size: 14px; width: 200px;"
+                                                            class="fw-medium text-secondary">Gambar Kerusakan</h3>
                                                     </div>
                                                     <div class="col-3">
                                                         @isset($laporkerusakan->gambarkerusakan->input1)
-                                                            <img src="{{ asset('uploadkamar/' . $laporkerusakan->gambarkerusakan->input1) }}" style="border-radius: 6px; width: 70px; height: 70px;" data-bs-target="#detailgambar1-{{ $laporkerusakan->gambarkerusakan->id }}" data-bs-toggle="modal">
+                                                            <img src="{{ asset('uploadkamar/' . $laporkerusakan->gambarkerusakan->input1) }}"
+                                                                style="border-radius: 6px; width: 70px; height: 70px;"
+                                                                data-bs-target="#detailgambar1-{{ $laporkerusakan->gambarkerusakan->id }}"
+                                                                data-bs-toggle="modal">
                                                         @endisset
                                                     </div>
                                                     <div class="col-3" style="margin-left: -3.6px;">
                                                         @isset($laporkerusakan->gambarkerusakan->input2)
-                                                            <img src="{{ asset('uploadkamar/' . $laporkerusakan->gambarkerusakan->input2) }}" style="border-radius: 6px; width: 70px; height: 70px;" data-bs-target="#detailgambar2-{{ $laporkerusakan->gambarkerusakan->id }}" data-bs-toggle="modal">
+                                                            <img src="{{ asset('uploadkamar/' . $laporkerusakan->gambarkerusakan->input2) }}"
+                                                                style="border-radius: 6px; width: 70px; height: 70px;"
+                                                                data-bs-target="#detailgambar2-{{ $laporkerusakan->gambarkerusakan->id }}"
+                                                                data-bs-toggle="modal">
                                                         @endisset
                                                     </div>
                                                     <div class="col-3" style="margin-left: -3.6px;">
                                                         @isset($laporkerusakan->gambarkerusakan->input3)
-                                                            <img src="{{ asset('uploadkamar/' . $laporkerusakan->gambarkerusakan->input3) }}" style="border-radius: 6px; width: 70px; height: 70px;" data-bs-target="#detailgambar3-{{ $laporkerusakan->gambarkerusakan->id }}" data-bs-toggle="modal">
+                                                            <img src="{{ asset('uploadkamar/' . $laporkerusakan->gambarkerusakan->input3) }}"
+                                                                style="border-radius: 6px; width: 70px; height: 70px;"
+                                                                data-bs-target="#detailgambar3-{{ $laporkerusakan->gambarkerusakan->id }}"
+                                                                data-bs-toggle="modal">
                                                         @endisset
                                                     </div>
                                                     <div class="col-3" style="margin-left: -3.6px;">
                                                         @isset($laporkerusakan->gambarkerusakan->input4)
-                                                            <img src="{{ asset('uploadkamar/' . $laporkerusakan->gambarkerusakan->input4) }}" style="border-radius: 6px; width: 70px; height: 70px;" data-bs-target="#detailgambar4-{{ $laporkerusakan->gambarkerusakan->id }}" data-bs-toggle="modal">
+                                                            <img src="{{ asset('uploadkamar/' . $laporkerusakan->gambarkerusakan->input4) }}"
+                                                                style="border-radius: 6px; width: 70px; height: 70px;"
+                                                                data-bs-target="#detailgambar4-{{ $laporkerusakan->gambarkerusakan->id }}"
+                                                                data-bs-toggle="modal">
                                                         @endisset
                                                     </div>
                                                     <div class="col-12 text-start mt-2">
-                                                        <h3 style="font-size: 14px; width: 200px;" class="fw-medium text-secondary">Keterangan</h3>
+                                                        <h3 style="font-size: 14px; width: 200px;"
+                                                            class="fw-medium text-secondary">Keterangan</h3>
                                                     </div>
                                                     <div class="col-12 text-start">
-                                                        <textarea name="keterangan" id="keterangan" rows="3" style="width: 100%; resize: none; padding: 10px;" readonly>{{ $laporkerusakan->keterangan }}</textarea>
+                                                        <textarea name="keterangan" id="keterangan" rows="3" style="width: 100%; resize: none; padding: 10px;"
+                                                            readonly>{{ $laporkerusakan->keterangan }}</textarea>
                                                     </div>
                                                     <div class="col-12 text-start mt-2">
-                                                        <h3 style="font-size: 14px; width: 200px;" class="fw-medium text-secondary">Respon Dari Admin</h3>
+                                                        <h3 style="font-size: 14px; width: 200px;"
+                                                            class="fw-medium text-secondary">Respon Dari Admin</h3>
                                                     </div>
                                                     <div class="col-12 text-start">
                                                         <textarea name="respon" id="respon" rows="3" style="width: 100%; resize: none; padding: 10px;" readonly>{{ $laporkerusakan->respon }}</textarea>
@@ -407,74 +492,94 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="modal fade" id="detailgambar1-{{ $laporkerusakan->gambarkerusakan->id }}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                                <div class="modal fade" id="detailgambar1-{{ $laporkerusakan->gambarkerusakan->id }}"
+                                    aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Gambar Kerusakan</h1>
+                                                <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Gambar
+                                                    Kerusakan</h1>
                                             </div>
                                             <div class="modal-body">
-                                                <input type="hidden" name="id" value="{{ $laporkerusakan->gambarkerusakan->id }}">
+                                                <input type="hidden" name="id"
+                                                    value="{{ $laporkerusakan->gambarkerusakan->id }}">
                                                 <div class="container">
-                                                    <img src="{{ asset('uploadkamar/' . $laporkerusakan->gambarkerusakan->input1) }}" style="border-radius: 6px; width: 100%; height: 200px;">
+                                                    <img src="{{ asset('uploadkamar/' . $laporkerusakan->gambarkerusakan->input1) }}"
+                                                        style="border-radius: 6px; width: 100%; height: 200px;">
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailriwayat-{{ $laporkerusakan->id }}">Kembali</button>
+                                                <button class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#detailriwayat-{{ $laporkerusakan->id }}">Kembali</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="modal fade" id="detailgambar2-{{ $laporkerusakan->gambarkerusakan->id }}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                                <div class="modal fade" id="detailgambar2-{{ $laporkerusakan->gambarkerusakan->id }}"
+                                    aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Gambar Kerusakan</h1>
+                                                <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Gambar
+                                                    Kerusakan</h1>
                                             </div>
                                             <div class="modal-body">
-                                                <input type="hidden" name="id" value="{{ $laporkerusakan->gambarkerusakan->id }}">
+                                                <input type="hidden" name="id"
+                                                    value="{{ $laporkerusakan->gambarkerusakan->id }}">
                                                 <div class="container">
-                                                    <img src="{{ asset('uploadkamar/' . $laporkerusakan->gambarkerusakan->input2) }}" style="border-radius: 6px; width: 100%; height: 200px;">
+                                                    <img src="{{ asset('uploadkamar/' . $laporkerusakan->gambarkerusakan->input2) }}"
+                                                        style="border-radius: 6px; width: 100%; height: 200px;">
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailriwayat-{{ $laporkerusakan->id }}">Kembali</button>
+                                                <button class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#detailriwayat-{{ $laporkerusakan->id }}">Kembali</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="modal fade" id="detailgambar3-{{ $laporkerusakan->gambarkerusakan->id }}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                                <div class="modal fade" id="detailgambar3-{{ $laporkerusakan->gambarkerusakan->id }}"
+                                    aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Gambar Kerusakan</h1>
+                                                <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Gambar
+                                                    Kerusakan</h1>
                                             </div>
                                             <div class="modal-body">
-                                                <input type="hidden" name="id" value="{{ $laporkerusakan->gambarkerusakan->id }}">
+                                                <input type="hidden" name="id"
+                                                    value="{{ $laporkerusakan->gambarkerusakan->id }}">
                                                 <div class="container">
-                                                    <img src="{{ asset('uploadkamar/' . $laporkerusakan->gambarkerusakan->input3) }}" style="border-radius: 6px; width: 100%; height: 200px;">
+                                                    <img src="{{ asset('uploadkamar/' . $laporkerusakan->gambarkerusakan->input3) }}"
+                                                        style="border-radius: 6px; width: 100%; height: 200px;">
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailriwayat-{{ $laporkerusakan->id }}">Kembali</button>
+                                                <button class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#detailriwayat-{{ $laporkerusakan->id }}">Kembali</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="modal fade" id="detailgambar4-{{ $laporkerusakan->gambarkerusakan->id }}" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                                <div class="modal fade" id="detailgambar4-{{ $laporkerusakan->gambarkerusakan->id }}"
+                                    aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Gambar Kerusakan</h1>
+                                                <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Gambar
+                                                    Kerusakan</h1>
                                             </div>
                                             <div class="modal-body">
-                                                <input type="hidden" name="id" value="{{ $laporkerusakan->gambarkerusakan->id }}">
+                                                <input type="hidden" name="id"
+                                                    value="{{ $laporkerusakan->gambarkerusakan->id }}">
                                                 <div class="container">
-                                                    <img src="{{ asset('uploadkamar/' . $laporkerusakan->gambarkerusakan->input4) }}" style="border-radius: 6px; width: 100%; height: 200px;">
+                                                    <img src="{{ asset('uploadkamar/' . $laporkerusakan->gambarkerusakan->input4) }}"
+                                                        style="border-radius: 6px; width: 100%; height: 200px;">
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailriwayat-{{ $laporkerusakan->id }}">Kembali</button>
+                                                <button class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#detailriwayat-{{ $laporkerusakan->id }}">Kembali</button>
                                             </div>
                                         </div>
                                     </div>
@@ -495,67 +600,94 @@
             </form>
         </div>
     @endif
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    </script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        const inputElement = document.getElementById('tanggal');
-        const inputIsi = document.getElementById('barang');
-        const inputKeterangan = document.getElementById('keterangan');
-        const imageContainer = document.querySelector('.form-item.third');
-        const submitButton = document.getElementById('tombol');
-
-        window.onload = function() {
-            checkValidation();
-        };
-
-        inputElement.addEventListener('input', function() {
-            checkValidation();
-        });
-
-        imageContainer.addEventListener('DOMSubtreeModified', function() {
-            checkValidation();
-        });
-
         document.addEventListener('DOMContentLoaded', function() {
-            const uploadContainer = document.querySelector('.uploadFoto');
+            const inputTanggal = document.getElementById('tanggal');
+            const inputBarang = document.getElementById('barang');
+            const inputKeterangan = document.getElementById('keterangan');
+            const imageContainer = document.querySelector('.uploadFoto');
             const addInputButton = document.getElementById('addInput');
+            const submitButton = document.getElementById('tombol');
             let inputCount = 0;
 
-            // addInputButton.style.display = 'none';
+            // Fungsi untuk mengecek validasi seluruh input
+            function checkValidation() {
+                const allInputsValid =
+                    inputTanggal.value.trim() !== '' &&
+                    inputBarang.value.trim() !== '' &&
+                    inputKeterangan.value.trim() !== '' &&
+                    areImageInputsFilled();
 
-            function checkInputs() {
-                const inputs = uploadContainer.querySelectorAll('.untuk-file');
-                let allInputsFilled = true;
-                inputs.forEach(input => {
-                    if (!input.files[0]) {
-                        allInputsFilled = false;
+                // Aktifkan atau nonaktifkan tombol submit
+                submitButton.disabled = !allInputsValid;
+            }
+
+            // Fungsi untuk mengecek apakah semua input file terisi
+            function areImageInputsFilled() {
+                const inputs = imageContainer.querySelectorAll('.untuk-file');
+                return Array.from(inputs).every(input => input.files[0]);
+            }
+
+            // Fungsi untuk menambahkan input baru
+            function addNewInput() {
+                if (inputCount < 4) {
+                    const newInputDiv = document.createElement('div');
+                    newInputDiv.classList.add('uploadFoto-item');
+                    newInputDiv.innerHTML = `
+                <input type="file" id="files${inputCount + 1}" name="input${inputCount + 1}" 
+                    class="form-control untuk-file" accept="image/*">
+                <div class="input-area">
+                    <label for="files${inputCount + 1}" class="labelFile" id="labelku${inputCount + 1}">
+                        <i class='bx bx-cloud-upload'></i>
+                    </label>
+                </div>`;
+                    imageContainer.appendChild(newInputDiv);
+                    inputCount++;
+                    if (inputCount === 4) {
+                        addInputButton.style.display = 'none';
                     }
-                });
-
-                if (allInputsFilled && inputCount < 4) {
-                    addInputButton.disabled = false;
-                } else {
-                    addInputButton.disabled = true;
+                    checkValidation();
                 }
             }
 
-            uploadContainer.addEventListener('change', function(event) {
+            // Fungsi untuk memperbarui ID dan nama input setelah penghapusan
+            function updateInputAttributes() {
+                const inputs = imageContainer.querySelectorAll('.untuk-file');
+                inputs.forEach((input, index) => {
+                    input.id = `files${index + 1}`;
+                    input.name = `input${index + 1}`;
+                    const label = input.parentElement.querySelector('.labelFile');
+                    if (label) {
+                        label.setAttribute('for', `files${index + 1}`);
+                    }
+                });
+            }
+
+            // Event listener untuk perubahan input file
+            imageContainer.addEventListener('change', function(event) {
                 if (event.target && event.target.classList.contains('untuk-file')) {
                     const fileInput = event.target;
                     const file = fileInput.files[0];
                     const targetLabel = fileInput.parentElement.querySelector('.labelFile');
 
                     if (targetLabel && file) {
+                        // Tampilkan preview gambar
                         const img = document.createElement('img');
                         img.src = URL.createObjectURL(file);
 
                         targetLabel.style.display = 'none';
                         targetLabel.parentElement.appendChild(img);
 
+                        // Tambahkan tombol hapus
                         const deleteButton = document.createElement('button');
                         deleteButton.classList.add('button-delete');
                         deleteButton.innerHTML = '<i class="bi bi-trash3"></i>';
@@ -563,58 +695,32 @@
                             const parentDiv = fileInput.closest('.uploadFoto-item');
                             parentDiv.remove();
                             inputCount--;
-                            acselatarion();
-                            checkInputs();
+                            updateInputAttributes();
                             addInputButton.style.display = 'block';
+                            checkValidation();
                         });
                         targetLabel.parentElement.appendChild(deleteButton);
 
-                        if (inputCount < 4) {
-                            addInputButton.style.display = 'block';
+                        // Sembunyikan tombol tambah jika sudah mencapai 4 input
+                        if (inputCount === 4) {
+                            addInputButton.style.display = 'none';
                         }
                     }
 
-                    if (inputCount === 4) {
-                        addInputButton.style.display = 'none';
-                    }
-
-                    checkInputs();
+                    checkValidation();
                 }
             });
 
-            addInputButton.addEventListener('click', function() {
-                if (inputCount < 4) {
-                    const newInputDiv = document.createElement('div');
-                    newInputDiv.classList.add('uploadFoto-item');
-                    newInputDiv.innerHTML = `
-                <input type="file" id="files${inputCount + 1}" name="input${inputCount + 1}" class="form-control untuk-file" accept="image/*">
-                <div class="input-area">
-                    <label for="files${inputCount + 1}" class="labelFile" id="labelku${inputCount + 1}">
-                        <i class='bx bx-cloud-upload'></i>
-                    </label>
-                </div>`;
-                    uploadContainer.appendChild(newInputDiv);
+            // Event listener untuk tombol tambah input
+            addInputButton.addEventListener('click', addNewInput);
 
-                    inputCount++;
-
-                    if (inputCount === 4) {
-                        addInputButton.style.display = 'none';
-                    }
-
-                    checkInputs();
-                }
+            // Event listener untuk perubahan pada input teks
+            [inputTanggal, inputBarang, inputKeterangan].forEach(input => {
+                input.addEventListener('input', checkValidation);
             });
 
-
-            function acselatarion() {
-                const inputs = uploadContainer.querySelectorAll('.untuk-file');
-                inputs.forEach((input, index) => {
-                    input.id = `files${index + 1}`;
-                    input.name = `input${index + 1}`;
-                    const label = input.parentElement.querySelector('.labelFile');
-                    label.setAttribute('for', `files${index + 1}`);
-                });
-            }
+            // Cek validasi saat halaman dimuat
+            checkValidation();
         });
 
         window.addEventListener('scroll', function() {
@@ -640,7 +746,8 @@
         }
 
         function checkValidation() {
-            if (inputElement.value !== '' && inputIsi.value !== '' && inputKeterangan.value !== '' && imageContainer.getElementsByTagName('img').length > 0) {
+            if (inputElement.value !== '' && inputIsi.value !== '' && inputKeterangan.value !== '' && imageContainer
+                .getElementsByTagName('img').length > 0) {
                 submitButton.removeAttribute('disabled');
                 submitButton.classList.add('active');
             } else {
