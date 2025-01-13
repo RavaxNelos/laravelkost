@@ -9,15 +9,19 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://eonasdan.github.io/bootstrap-datetimepicker/css/prettify-1.0.css">
     <link rel="stylesheet" href="https://eonasdan.github.io/bootstrap-datetimepicker/css/base.css">
-    <link rel="stylesheet" href="https://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css">
+    <link rel="stylesheet"
+        href="https://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="{{ asset('css/usercss/detailrumah.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style>
         #jam-container {
@@ -246,7 +250,8 @@
         <div class="modal-dialog modal-dialog-centered modal-sm">
             <div class="modal-content">
                 <div class="modal-body">
-                    <input type="time" name="waktu" step="3600" class="form-control" pattern="[0-2][0-9]:[0-5][0-9]" id="waktu">
+                    <input type="time" name="waktu" step="3600" class="form-control"
+                        pattern="[0-2][0-9]:[0-5][0-9]" id="waktu">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
@@ -259,13 +264,16 @@
         <div class="container py-3">
             <div class="row g-3">
                 <div class="col-1">
-                    <a href="javascript:void(0)" onclick="window.history.go(-1); return false;" class="btn-back-home"><ion-icon name="chevron-back-outline" style="margin-bottom: -4px;"></ion-icon></a>
+                    <a href="javascript:void(0)" onclick="window.history.go(-1); return false;"
+                        class="btn-back-home"><ion-icon name="chevron-back-outline"
+                            style="margin-bottom: -4px;"></ion-icon></a>
                 </div>
                 <div class="col-6 mt-4 text-start" id="kamarKost" style="margin-top: 25px !important;">
                     <h3 class="fw-bold" style="font-size: 16px; transition: color 0.3s ease;">Detail Kamar Kost</h3>
                 </div>
                 <div class="col-5 text-end">
-                    <button class="btn-like-detail" onclick="changeIconAndColor(this)"><i class="bi {{ $favorit ? 'bi-star-fill' : 'bi-star' }}" style="color: purple;"></i></button>
+                    <button class="btn-like-detail" onclick="changeIconAndColor(this)"><i
+                            class="bi {{ $favorit ? 'bi-star-fill' : 'bi-star' }}" style="color: purple;"></i></button>
                 </div>
             </div>
         </div>
@@ -274,7 +282,8 @@
     <div id="popup">
         <p id="popup-text" style="font-size: 14px;"></p>
     </div>
-    <img src="{{ asset('uploadkamar/' . $kamarkost->gambar_kost) }}" style="height: auto; width: 100%; max-height: 270px; position: relative; object-fit: cover; border-radius: 0px;">
+    <img src="{{ asset('uploadkamar/' . $kamarkost->gambar_kost) }}"
+        style="height: auto; width: 100%; max-height: 270px; position: relative; object-fit: cover; border-radius: 0px;">
     <div class="container">
         <!-- Judul kamar -->
         <div class="col-7 text-start mt-2">
@@ -282,14 +291,16 @@
         </div>
         <div class="row">
             <div class="col-9 text-start">
-                <p class="text-secondary" style="margin-top: -8px; font-size: 12px;">Ukuran Kamar Kostnya {{ $kamarkost->ukuran_kost }}</p>
+                <p class="text-secondary" style="margin-top: -8px; font-size: 12px;">Ukuran Kamar Kostnya
+                    {{ $kamarkost->ukuran_kost }}</p>
             </div>
         </div>
         <!-- end Judul kamar -->
         <!-- harga kamar -->
         <div class="row" style="margin-top: -8px; margin-bottom: 6px;">
             <div class="col-6 text-start">
-                <h6 class="fw-bold" style="font-size: 22px; color: rgba(128, 0, 128, 0.9); font-family: Ubuntu;">Rp. {{ $kamarkost->harga_kost }}</h6>
+                <h6 class="fw-bold" style="font-size: 22px; color: rgba(128, 0, 128, 0.9); font-family: Ubuntu;">Rp.
+                    {{ $kamarkost->harga_kost }}</h6>
             </div>
         </div>
         <!-- Modal -->
@@ -297,7 +308,10 @@
             <div class="modal-dialog">
                 <div class="modal-content" style="width: 336px; position: absolute; top: 320px; height: 84px;">
                     <div class="modal-body">
-                        <p class="fw-normal" style="font-size: 12px; margin-top: -4px; justify-content: center; font-family: Ubuntu;">Biaya sewa kamar tidak termasuk listrik, dan pembayaran listrik akan dilakukan melalui sistem token dengan tarif yang berlaku.</p>
+                        <p class="fw-normal"
+                            style="font-size: 12px; margin-top: -4px; justify-content: center; font-family: Ubuntu;">
+                            Biaya sewa kamar tidak termasuk listrik, dan pembayaran listrik akan dilakukan melalui
+                            sistem token dengan tarif yang berlaku.</p>
                     </div>
                 </div>
             </div>
@@ -310,7 +324,8 @@
             <div class="splide__track">
                 <ul class="splide__list">
                     <li class="splide__slide">
-                        <div class="mt-6" style="margin-top: 40px; text-align: center; display: flex; flex-direction: column; align-items: center;">
+                        <div class="mt-6"
+                            style="margin-top: 40px; text-align: center; display: flex; flex-direction: column; align-items: center;">
                             <img src="{{ asset('img/iconwifi.png') }}" width="24" height="24">
                             <div class="text-dark" style="margin-top: 4px;">
                                 <p style="font-size: 10px; color: #9a8a8a;">Wifi</p>
@@ -318,7 +333,8 @@
                         </div>
                     </li>
                     <li class="splide__slide">
-                        <div class="mt-6" style="margin-top: 40px; text-align: center; display: flex; flex-direction: column; align-items: center;">
+                        <div class="mt-6"
+                            style="margin-top: 40px; text-align: center; display: flex; flex-direction: column; align-items: center;">
                             <img src="{{ asset('img/iconkasur.png') }}" width="24" height="24">
                             <div class="text-dark" style="margin-top: 4px;">
                                 <p style="font-size: 10px; color: #9a8a8a;">Kasur</p>
@@ -326,7 +342,8 @@
                         </div>
                     </li>
                     <li class="splide__slide">
-                        <div class="mt-6" style="margin-top: 40px; text-align: center; display: flex; flex-direction: column; align-items: center; ">
+                        <div class="mt-6"
+                            style="margin-top: 40px; text-align: center; display: flex; flex-direction: column; align-items: center; ">
                             <img src="{{ asset('img/iconlemari.png') }}" width="24" height="24">
                             <div class="text-dark" style="margin-top: 4px;">
                                 <p style="font-size: 10px; color: #9a8a8a;">Lemari</p>
@@ -334,7 +351,8 @@
                         </div>
                     </li>
                     <li class="splide__slide">
-                        <div class="mt-6" style="margin-top: 40px; text-align: center; display: flex; flex-direction: column; align-items: center; ">
+                        <div class="mt-6"
+                            style="margin-top: 40px; text-align: center; display: flex; flex-direction: column; align-items: center; ">
                             <img src="{{ asset('img/icondapur.png') }}" width="24" height="24">
                             <div class="text-dark" style="margin-top: 4px;">
                                 <p style="font-size: 10px; color: #9a8a8a;">Dapur</p>
@@ -342,7 +360,8 @@
                         </div>
                     </li>
                     <li class="splide__slide">
-                        <div class="mt-6" style="margin-top: 40px; text-align: center; display: flex; flex-direction: column; align-items: center; ">
+                        <div class="mt-6"
+                            style="margin-top: 40px; text-align: center; display: flex; flex-direction: column; align-items: center; ">
                             <img src="{{ asset('img/iconkamarmandi.png') }}" width="24" height="24">
                             <div class="text-dark" style="margin-top: 4px;">
                                 <p style="font-size: 10px; color: #9a8a8a;">Toilet</p>
@@ -350,7 +369,8 @@
                         </div>
                     </li>
                     <li class="splide__slide">
-                        <div class="mt-6" style="margin-top: 40px; text-align: center; display: flex; flex-direction: column; align-items: center; ">
+                        <div class="mt-6"
+                            style="margin-top: 40px; text-align: center; display: flex; flex-direction: column; align-items: center; ">
                             <img src="{{ asset('img/iconac.png') }}" width="24" height="24">
                             <div class="text-dark" style="margin-top: 4px;">
                                 <p style="font-size: 10px; color: #9a8a8a;">Ac</p>
@@ -358,7 +378,8 @@
                         </div>
                     </li>
                     <li class="splide__slide">
-                        <div class="mt-6" style="margin-top: 40px; text-align: center; display: flex; flex-direction: column; align-items: center; ">
+                        <div class="mt-6"
+                            style="margin-top: 40px; text-align: center; display: flex; flex-direction: column; align-items: center; ">
                             <img src="{{ asset('img/iconkulkas.png') }}" width="24" height="24">
                             <div class="text-dark" style="margin-top: 4px;">
                                 <p style="font-size: 10px; color: #9a8a8a;">Kulkas</p>
@@ -366,7 +387,8 @@
                         </div>
                     </li>
                     <li class="splide__slide">
-                        <div class="mt-6" style="margin-top: 40px; text-align: center; display: flex; flex-direction: column; align-items: center; ">
+                        <div class="mt-6"
+                            style="margin-top: 40px; text-align: center; display: flex; flex-direction: column; align-items: center; ">
                             <img src="{{ asset('img/iconsofa.png') }}" width="24" height="24">
                             <div class="text-dark" style="margin-top: 4px;">
                                 <p style="font-size: 10px; color: #9a8a8a;">Sofa</p>
@@ -380,21 +402,26 @@
             <h6 class="fw-semibold" style="font-family: Ubuntu;">Tentang Kamar Kost</h6>
             <p class="text-secondary tentang-kamar" style="font-size: 12px;" id="threedots">
                 {{ Str::limit($kamarkost->deskripsi_kost, 150, '...') }}
-                <a class="text-primary" style="font-style: italic; font-size: 12px;" data-toggle="collapse" data-parent="#accordion" onclick="showMore()">Lihat Selengkapnya</a>
+                <a class="text-primary" style="font-style: italic; font-size: 12px;" data-toggle="collapse"
+                    data-parent="#accordion" onclick="showMore()">Lihat Selengkapnya</a>
             </p>
             <p class="text-secondary tentang-kamar" style="font-size: 12px; display:none;" id="full_desc">
                 {{ $kamarkost->deskripsi_kost }}.
-                <a class="text-primary" style="font-style: italic; font-size: 12px;" data-toggle="collapse" data-parent="#accordion" onclick="showMore()">Kembali</a>
+                <a class="text-primary" style="font-style: italic; font-size: 12px;" data-toggle="collapse"
+                    data-parent="#accordion" onclick="showMore()">Kembali</a>
             </p>
         </div>
-        <div class="modal fade" id="fasilitasKamar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="fasilitasKamar" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content" style="height: 364px; width: 344px; position: absolute; top: 120px;">
                     <div class="modal-body" style="padding: 4px;">
-                        <img src="" id="itemImage" height="220" width="334" style="border-radius: 5px;">
+                        <img src="" id="itemImage" height="220" width="334"
+                            style="border-radius: 5px;">
                         <div class="h3 fw-bold text-center mt-2" style="font-size: 18px;" id="itemNama"></div>
                         <div class="container px-2">
-                            <p id="itemDeskripsi" class="text-dark fw-normal" style="font-size: 12px; margin-top: 0.5rem;"></p>
+                            <p id="itemDeskripsi" class="text-dark fw-normal"
+                                style="font-size: 12px; margin-top: 0.5rem;"></p>
                         </div>
                     </div>
                 </div>
@@ -408,7 +435,8 @@
                         @foreach ($kamar_kost_fasilitas as $kost_fasilitas)
                             @if ($kost_fasilitas->fasilitas->tipe == 'Kamar' || $kost_fasilitas->fasilitas->tipe == 'Umum')
                                 <li class="splide__slide" onclick="getFasilitasBed({{ $kost_fasilitas->id }})">
-                                    <img src="{{ asset('uploadkamar/' . $kost_fasilitas->fasilitas->gambar) }}" height="60" width="60" style="border-radius: 5px;">
+                                    <img src="{{ asset('uploadkamar/' . $kost_fasilitas->fasilitas->gambar) }}"
+                                        height="60" width="60" style="border-radius: 5px;">
                                 </li>
                             @endif
                         @endforeach
@@ -418,16 +446,19 @@
         </div>
         <!-- booking kost -->
         <div class="col-12 text-start">
-            <h6 class="fw-semibold" style="margin-bottom: 10px; margin-top: 30px; font-family: Poppins;">Jadwal Masuk Kost</h6>
+            <h6 class="fw-semibold" style="margin-bottom: 10px; margin-top: 30px; font-family: Poppins;">Jadwal Masuk
+                Kost</h6>
         </div>
         <div class="container px-2">
             <div id="datetimepicker"></div>
             <div class="row mt-2 g-2 justify-content-center" x-data="{ new_schedule: '' }" id="jam-container">
                 @foreach ($jamkamarkost as $item)
                     <div class="col-4">
-                        <button x-on:click="new_schedule = '{{ $item->jamkamar_kost }}'; setSelectedTime('{{ $item->jamkamar_kost }} WIB')" " :class="new_schedule == '{{ $item->jamkamar_kost }}' ? 'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'" type="button">{{ $item->jamkamar_kost }} WIB</button>
+                        <button
+                            x-on:click="new_schedule = '{{ $item->jamkamar_kost }}'; setSelectedTime('{{ $item->jamkamar_kost }} WIB')" " :class="new_schedule == '{{ $item->jamkamar_kost }}' ?
+                                'btn time-btn fw-semibold active btn-waktu' : 'btn fw-semibold btn-waktu'" type="button">{{ $item->jamkamar_kost }} WIB</button>
                     </div>
- @endforeach
+                @endforeach
                     </div>
             </div>
             <!-- booking kost -->
@@ -437,12 +468,14 @@
             <div class="container">
                 <div class="row">
                     <div class="col-2 mt-3">
-                        <a href="https://api.whatsapp.com/send?phone=6282332724688" target="_blank" rel="noopener noreferrer">
+                        <a href="https://api.whatsapp.com/send?phone=6282332724688" target="_blank"
+                            rel="noopener noreferrer">
                             <button class="btn-wa"><i class="bi bi-whatsapp"></i></button>
                         </a>
                     </div>
                     <div class="col-2 mt-3">
-                        <a href="https://maps.app.goo.gl/pWPjQFsNmoAjsngG7" target="_blank" rel="noopener noreferrer">
+                        <a href="https://maps.app.goo.gl/pWPjQFsNmoAjsngG7" target="_blank"
+                            rel="noopener noreferrer">
                             <button class="btn-lokasi"><i class="bi bi-geo-alt-fill"></i></button>
                         </a>
                     </div>
@@ -452,15 +485,19 @@
                             <input type="hidden" name="productId" value="{{ $kamarkost->id }}">
                             <input type="hidden" name="selectedDate" id="selectedDate" x-model="selectedDate">
                             <input type="hidden" name="time" id="time" x-model="time">
-                            <input type="hidden" name="getDate" value="{{ Carbon\Carbon::now()->locale('id')->settings(['formatFunction' => 'translatedFormat'])->isoFormat('DD MMMM Y, HH:mm') }} WIB">
-                            <button type="submit" class="btn btn-dark" id="btnPesanSekarang" disabled>Pesan Sekarang</button>
+                            <input type="hidden" name="getDate"
+                                value="{{ Carbon\Carbon::now()->locale('id')->settings(['formatFunction' => 'translatedFormat'])->isoFormat('DD MMMM Y, HH:mm') }} WIB">
+                            <button type="submit" class="btn btn-dark" id="btnPesanSekarang" disabled>Pesan
+                                Sekarang</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
         <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -468,7 +505,9 @@
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
-        <script src="https://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
+        <script
+            src="https://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js">
+        </script>
         <script>
             function showMore() {
                 if ($('#threedots').css('display') == 'none') {
@@ -799,7 +838,8 @@
                 $("#chooseTime").modal('hide');
                 $("#addWaktu").addClass('d-none');
                 var waktu = $("#waktu").val();
-                var buttonHtml = "<div class='col-4'><button class='btn time-btn fw-semibold active btn-waktu' data-waktu='" + waktu + "' type='button'>" + waktu + " WIB</button></div>";
+                var buttonHtml = "<div class='col-4'><button class='btn time-btn fw-semibold active btn-waktu' data-waktu='" +
+                    waktu + "' type='button'>" + waktu + " WIB</button></div>";
                 $("#jam-container").append(buttonHtml);
             }
 

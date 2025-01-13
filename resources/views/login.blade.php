@@ -12,11 +12,14 @@
     <!-- css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="{{ asset('css/usercss/login.css') }}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    </script>
     <style>
         .card {
-            margin-top: 5rem;
+            margin-top: 7rem;
             background: rgba(255, 255, 255, 0.5);
             /* Latar belakang card dengan efek transparan */
             border-radius: 30px;
@@ -67,21 +70,31 @@
                         <form id="loginForm" action="{{ route('login') }}" method="POST">
                             @csrf
                             <div class="mb-2">
-                                <label for="name" class="form-label" style="font-weight: 500; margin-left: 10px;">Masukkan nama</label>
-                                <input type="text" name="name" class="form-control required" id="email" placeholder="Masukkan nama anda" onkeyup="enableSubmit()" style="border-radius: 50px; background-color: #ffffff; margin-top: -5px; font-style: italic;">
+                                <label for="name" class="form-label"
+                                    style="font-weight: 500; margin-left: 10px;">Masukkan nama</label>
+                                <input type="text" name="name" class="form-control required" id="email"
+                                    placeholder="Masukkan nama anda" onkeyup="enableSubmit()"
+                                    style="border-radius: 50px; background-color: #ffffff; margin-top: -5px; font-style: italic;">
                             </div>
                             <div class="mb-2" style="position: relative">
-                                <label for="password" class="form-label" style="font-weight: 500; margin-left: 10px;">Password</label>
-                                <input type="password" name="password" class="form-control required" id="password" placeholder="Masukkan password anda" onkeyup="enableSubmit()" style="border-radius: 50px; background-color: #ffffff; margin-top: -5px; font-style: italic;">
-                                <i class="bi bi-eye-slash" id="togglePassword" style="position: absolute; font-size: 20px; right: 10px; top: 31px; cursor: pointer;"></i>
+                                <label for="password" class="form-label"
+                                    style="font-weight: 500; margin-left: 10px;">Password</label>
+                                <input type="password" name="password" class="form-control required" id="password"
+                                    placeholder="Masukkan password anda" onkeyup="enableSubmit()"
+                                    style="border-radius: 50px; background-color: #ffffff; margin-top: -5px; font-style: italic;">
+                                <i class="bi bi-eye-slash" id="togglePassword"
+                                    style="position: absolute; font-size: 20px; right: 10px; top: 31px; cursor: pointer;"></i>
                             </div>
                             <div class="mb-3">
                                 <div class="text-center">
-                                    <input type="submit" class="btn btn-dark" style="border-radius: 50px; width: 170px; margin-top: 20px;" value="Masuk" disabled>
+                                    <input type="submit" class="btn btn-dark"
+                                        style="border-radius: 50px; width: 170px; margin-top: 20px;" value="Masuk"
+                                        disabled>
                                 </div>
                             </div>
                         </form>
-                        <p class="text-center text-indah">Belum punya akun? <a href="{{ route('register') }}">Daftar di sini</a></p>
+                        <p class="text-center text-indah">Belum punya akun? <a href="{{ route('register') }}">Daftar di
+                                sini</a></p>
                     </div>
                 </div>
                 <!-- <p class="text-center" style="color: #fff; font-size: 16px; margin-top: 6rem;">Idea by</p>
@@ -106,7 +119,9 @@
         });
 
         function enableSubmit() {
-            let inputs = document.getElementsByClassName('required'); // Enter your class name for a required field, this should also be reflected within your form fields.
+            let inputs = document.getElementsByClassName(
+                'required'
+                ); // Enter your class name for a required field, this should also be reflected within your form fields.
             let btn = document.querySelector('input[type="submit"]');
             let isValid = true;
             for (var i = 0; i < inputs.length; i++) {
